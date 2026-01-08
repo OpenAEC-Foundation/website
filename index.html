@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open AEC Foundation - Open source voor een open bouwsector</title>
+  <meta name="description" content="Open AEC Foundation ontwikkelt, ondersteunt en promoot open source software voor de volledige bouwketen.">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dawn: #E07B3C;
+      --horizon: #C45A20;
+      --sky: #4A90B8;
+      --mist: #6BB8D4;
+      --stone: #3A3A3A;
+      --sand: #F5F0EB;
+      --cloud: #FFFFFF;
+      --earth: #2D2D2D;
+      --growth: #5AAD58;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'DM Sans', sans-serif;
+      color: var(--stone);
+      background-color: var(--sand);
+      line-height: 1.6;
+    }
+    
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      border-bottom: 1px solid rgba(107,184,212,0.25);
+    }
+    
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    
+    .nav-link {
+      background: none;
+      border: none;
+      font-size: 15px;
+      color: var(--stone);
+      cursor: pointer;
+      font-weight: 500;
+      font-family: inherit;
+      text-decoration: none;
+    }
+    
+    .nav-link:hover {
+      color: var(--dawn);
+    }
+    
+    .btn {
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    
+    .btn-primary {
+      background-color: var(--dawn);
+      color: var(--cloud);
+    }
+    
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--stone);
+      border: 2px solid rgba(58,58,58,0.2);
+    }
+    
+    .btn-large {
+      padding: 16px 32px;
+      font-size: 16px;
+      border-radius: 10px;
+    }
+    
+    /* Hero Section */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 24px 80px;
+      background: linear-gradient(135deg, var(--sand) 0%, var(--cloud) 50%, rgba(107,184,212,0.1) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-bg-1 {
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(107,184,212,0.2) 0%, transparent 70%);
+    }
+    
+    .hero-bg-2 {
+      position: absolute;
+      bottom: -30%;
+      left: -15%;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(224,123,60,0.1) 0%, transparent 70%);
+    }
+    
+    .hero-content {
+      max-width: 900px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background-color: rgba(224,123,60,0.12);
+      color: var(--horizon);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 32px;
+    }
+    
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      background-color: var(--dawn);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    
+    .hero h1 {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--stone);
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+    
+    .hero p {
+      font-size: 18px;
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .launch-box {
+      margin-top: 64px;
+      padding: 20px 32px;
+      background-color: var(--cloud);
+      border-radius: 12px;
+      display: inline-block;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    
+    .launch-box p:first-child {
+      font-size: 13px;
+      opacity: 0.6;
+      margin-bottom: 4px;
+    }
+    
+    .launch-box p:last-child {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--dawn);
+      margin: 0;
+    }
+    
+    /* Sections */
+    section {
+      padding: 120px 24px;
+    }
+    
+    .section-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dawn);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 16px;
+    }
+    
+    .section-title {
+      font-size: 36px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    
+    .section-desc {
+      font-size: 18px;
+      opacity: 0.8;
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+    
+    /* Over Ons */
+    .over-ons {
+      background-color: var(--cloud);
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 64px;
+    }
+    
+    .feature-card {
+      padding: 32px;
+      background-color: var(--sand);
+      border-radius: 16px;
+      transition: transform 0.2s;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-4px);
+    }
+    
+    .feature-icon {
+      font-size: 36px;
+      display: block;
+      margin-bottom: 16px;
+    }
+    
+    .feature-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    
+    .feature-card p {
+      font-size: 14px;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+    
+    /* Missie */
+    .missie {
+      background-color: var(--earth);
+      color: var(--sand);
+    }
+    
+    .missie .section-title {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 400;
+      font-style: italic;
+      line-height: 1.4;
+      max-width: 800px;
+      margin: 0 auto 48px;
+    }
+    
+    .missie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      text-align: left;
+    }
+    
+    .missie-item {
+      padding: 24px;
+      border-left: 3px solid var(--dawn);
+    }
+    
+    .missie-item h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--cloud);
+    }
+    
+    .missie-item p {
+      font-size: 14px;
+      opacity: 0.7;
+      line-height: 1.6;
+    }
+    
+    /* Bestuur */
+    .bestuur {
+      background-color: var(--cloud);
+    }
+    
+    .cta-box {
+      background: linear-gradient(135deg, rgba(224,123,60,0.1) 0%, rgba(74,144,184,0.1) 100%);
+      border-radius: 24px;
+      padding: 48px;
+      text-align: center;
+      border: 2px solid rgba(224,123,60,0.2);
+      margin-top: 64px;
+    }
+    
+    .cta-icon {
+      width: 80px;
+      height: 80px;
+      background-color: var(--dawn);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 36px;
+    }
+    
+    .cta-box h3 {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .cta-box > p {
+      font-size: 16px;
+      opacity: 0.8;
+      max-width: 500px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+    
+    .roles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+    
+    .role-tag {
+      padding: 8px 16px;
+      background-color: var(--cloud);
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+    
+    /* Contact */
+    .contact {
+      background-color: var(--sand);
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 48px;
+      margin-top: 64px;
+    }
+    
+    .contact-card {
+      background-color: var(--cloud);
+      border-radius: 20px;
+      padding: 40px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    
+    .contact-card h3 {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+    
+    .contact-name {
+      font-size: 24px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    
+    .contact-role {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-bottom: 32px;
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    
+    .contact-icon {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(224,123,60,0.1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    
+    .contact-icon.blue {
+      background-color: rgba(74,144,184,0.1);
+    }
+    
+    .contact-item-label {
+      font-size: 14px;
+      opacity: 0.6;
+      margin-bottom: 4px;
+    }
+    
+    .contact-item-value {
+      font-size: 15px;
+      line-height: 1.5;
+    }
+    
+    .contact-item-value.highlight {
+      font-weight: 600;
+      color: var(--dawn);
+    }
+    
+    /* Form */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      font-size: 14px;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 8px;
+    }
+    
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 2px solid rgba(107,184,212,0.3);
+      border-radius: 10px;
+      font-size: 15px;
+      background-color: var(--sand);
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--dawn);
+    }
+    
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--earth);
+      color: var(--sand);
+      padding: 64px 24px 32px;
+    }
+    
+    .footer-content {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+    
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    
+    .footer-desc {
+      font-size: 14px;
+      opacity: 0.7;
+      margin-top: 16px;
+      max-width: 300px;
+      line-height: 1.6;
+    }
+    
+    .footer-section h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    
+    .footer-section p {
+      font-size: 14px;
+      opacity: 0.7;
+      line-height: 1.8;
+    }
+    
+    .footer-date {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--dawn);
+    }
+    
+    .footer-bottom {
+      border-top: 1px solid rgba(245,240,235,0.1);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    .footer-bottom p {
+      font-size: 13px;
+      opacity: 0.5;
+    }
+    
+    /* Logo SVG */
+    .logo-full {
+      display: block;
+    }
+    
+    .logo-compact {
+      display: block;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+      
+      section {
+        padding: 80px 24px;
+      }
+      
+      .section-title {
+        font-size: 28px;
+      }
+      
+      .cta-box {
+        padding: 32px 24px;
+      }
+      
+      .footer-grid {
+        flex-direction: column;
+        gap: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="#hero">
+        <svg class="logo-compact" width="180" height="45" viewBox="0 0 200 50" fill="none">
+          <path d="M8 45 L8 22 L30 5 L52 22 L52 45" stroke="#E07B3C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <path d="M20 45 L20 30 L30 22 L40 30 L40 45" stroke="#4A90B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <text x="65" y="30" font-family="'DM Sans', sans-serif" font-size="18" font-weight="700" fill="#3A3A3A">Open</text>
+          <text x="118" y="30" font-family="'DM Sans', sans-serif" font-size="18" font-weight="700" fill="#E07B3C">AEC</text>
+        </svg>
+      </a>
+      <div class="nav-menu">
+        <a href="#over-ons" class="nav-link">Over ons</a>
+        <a href="#missie" class="nav-link">Missie</a>
+        <a href="#bestuur" class="nav-link">Bestuur</a>
+        <a href="#contact" class="nav-link">Contact</a>
+        <a href="#contact" class="btn btn-primary">Word bestuurslid</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero-bg-1"></div>
+    <div class="hero-bg-2"></div>
+    <div class="hero-content">
+      <div class="badge">
+        <span class="badge-dot"></span>
+        Stichting in oprichting
+      </div>
+      
+      <svg class="logo-full" width="392" height="112" viewBox="0 0 280 80" fill="none" style="margin: 0 auto 32px;">
+        <path d="M10 70 L10 35 L50 10 L90 35 L90 70" stroke="#E07B3C" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M30 70 L30 45 L50 30 L70 45 L70 70" stroke="#4A90B8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <text x="108" y="42" font-family="'DM Sans', sans-serif" font-size="26" font-weight="700" fill="#3A3A3A">Open</text>
+        <text x="175" y="42" font-family="'DM Sans', sans-serif" font-size="26" font-weight="700" fill="#E07B3C">AEC</text>
+        <text x="108" y="62" font-family="'DM Sans', sans-serif" font-size="11" font-weight="500" fill="#3A3A3A" letter-spacing="2.5">FOUNDATION</text>
+      </svg>
+      
+      <h1>Open source voor een open bouwsector</h1>
+      
+      <p>Wij ontwikkelen, ondersteunen en promoten open source software voor de volledige bouwketen — van ontwerp tot oplevering en beheer.</p>
+      
+      <div class="hero-buttons">
+        <a href="#bestuur" class="btn btn-primary btn-large">Word bestuurslid →</a>
+        <a href="#over-ons" class="btn btn-secondary btn-large">Lees meer</a>
+      </div>
+      
+      <div class="launch-box">
+        <p>Geplande oprichting</p>
+        <p>1 maart 2026</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Over Ons Section -->
+  <section class="over-ons" id="over-ons">
+    <div class="container">
+      <div class="text-center">
+        <p class="section-label">Over ons</p>
+        <h2 class="section-title">Waarom Open AEC Foundation?</h2>
+        <p class="section-desc">De bouwsector verdient software die transparant, toekomstbestendig en door de gebruikers zelf vormgegeven wordt.</p>
+      </div>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">💰</span>
+          <h3>Kostenreductie</h3>
+          <p>Geen licentiekosten, lagere advieskosten. Bouwen wordt voordeliger voor iedereen.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🔓</span>
+          <h3>Geen vendor lock-in</h3>
+          <p>Open data formaten zorgen dat bestanden voor altijd leesbaar blijven.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🤖</span>
+          <h3>AI-gereed</h3>
+          <p>Open source code is beter te integreren met AI en automatisering.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🌍</span>
+          <h3>Toekomstbestendig</h3>
+          <p>Community kan software blijven onderhouden, onafhankelijk van leveranciers.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">👥</span>
+          <h3>Door gebruikers gestuurd</h3>
+          <p>Ontwikkeling wordt bepaald door wat gebruikers nodig hebben, niet door sales.</p>
+        </div>
+        <div class="feature-card">
+          <span class="feature-icon">🎓</span>
+          <h3>Educatie</h3>
+          <p>Stage- en opleidingsmogelijkheden voor studenten wereldwijd.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Missie Section -->
+  <section class="missie" id="missie">
+    <div class="container text-center">
+      <p class="section-label">Onze missie</p>
+      <h2 class="section-title">"Het ontwikkelen, ondersteunen en promoten van open source software voor de volledige bouwketen."</h2>
+      
+      <div class="missie-grid">
+        <div class="missie-item">
+          <h3>Ontwikkeling</h3>
+          <p>Coördineren en financieren van open source softwareontwikkeling</p>
+        </div>
+        <div class="missie-item">
+          <h3>Ondersteuning</h3>
+          <p>Beheren van licenties, API-koppelingen en integraties</p>
+        </div>
+        <div class="missie-item">
+          <h3>Educatie</h3>
+          <p>Stage- en opleidingsmogelijkheden voor studenten</p>
+        </div>
+        <div class="missie-item">
+          <h3>Advocacy</h3>
+          <p>Promoten van open source en open standaarden</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Bestuur Section -->
+  <section class="bestuur" id="bestuur">
+    <div class="container">
+      <div class="text-center">
+        <p class="section-label">Word onderdeel</p>
+        <h2 class="section-title">Bestuursleden gezocht</h2>
+        <p class="section-desc">We zoeken gedreven mensen uit de bouwsector die willen bijdragen aan een open toekomst.</p>
+      </div>
+      
+      <div class="cta-box">
+        <div class="cta-icon">🏗️</div>
+        <h3>Bouw mee aan de toekomst</h3>
+        <p>Het bestuur bestaat uit invloedrijke personen uit de bouwsector: architecten, aannemers, adviseurs en vertegenwoordigers van brancheorganisaties.</p>
+        
+        <div class="roles">
+          <span class="role-tag">Architecten</span>
+          <span class="role-tag">Aannemers</span>
+          <span class="role-tag">Adviseurs</span>
+          <span class="role-tag">IT-specialisten</span>
+          <span class="role-tag">Beleidsmakers</span>
+        </div>
+        
+        <a href="#contact" class="btn btn-primary btn-large">Neem contact op</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="text-center">
+        <p class="section-label">Contact</p>
+        <h2 class="section-title">Neem contact op</h2>
+      </div>
+      
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-card">
+          <h3>Contactpersoon</h3>
+          <p class="contact-name">Maarten Vroegindeweij</p>
+          <p class="contact-role">Initiatiefnemer Open AEC Foundation</p>
+          
+          <div class="contact-info">
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <div>
+                <p class="contact-item-label">Adres</p>
+                <p class="contact-item-value">Burgemeester de Raadtsingel 31<br>Dordrecht</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon blue">📅</span>
+              <div>
+                <p class="contact-item-label">Oprichting</p>
+                <p class="contact-item-value highlight">1 maart 2026</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Contact Form -->
+        <div class="contact-card">
+          <h3>Stuur een bericht</h3>
+          <form>
+            <div class="form-group">
+              <label for="name">Naam</label>
+              <input type="text" id="name" placeholder="Uw naam">
+            </div>
+            <div class="form-group">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" placeholder="uw@email.nl">
+            </div>
+            <div class="form-group">
+              <label for="message">Bericht</label>
+              <textarea id="message" placeholder="Ik ben geïnteresseerd in..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Verstuur bericht</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-grid">
+        <div>
+          <svg width="180" height="45" viewBox="0 0 200 50" fill="none">
+            <path d="M8 45 L8 22 L30 5 L52 22 L52 45" stroke="#E07B3C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M20 45 L20 30 L30 22 L40 30 L40 45" stroke="#4A90B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <text x="65" y="30" font-family="'DM Sans', sans-serif" font-size="18" font-weight="700" fill="#F5F0EB">Open</text>
+            <text x="118" y="30" font-family="'DM Sans', sans-serif" font-size="18" font-weight="700" fill="#E07B3C">AEC</text>
+          </svg>
+          <p class="footer-desc">Open source software voor de volledige bouwketen — van ontwerp tot oplevering en beheer.</p>
+        </div>
+        <div class="footer-section">
+          <h4>Stichting i.o.</h4>
+          <p>Burgemeester de Raadtsingel 31<br>Dordrecht<br>Nederland</p>
+        </div>
+        <div class="footer-section">
+          <h4>Oprichting</h4>
+          <p class="footer-date">1 maart 2026</p>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2026 Open AEC Foundation i.o. — Open source voor een open bouwsector</p>
+        <p>Geïnspireerd door de Blender Foundation</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
