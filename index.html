@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Open AEC Foundation - Open source voor een open bouwsector</title>
-  <meta name="description" content="Open AEC Foundation ontwikkelt, ondersteunt en promoot open source software voor de volledige bouwketen.">
+  <title data-i18n="meta.title">Open AEC Foundation - Open source voor een open bouwsector</title>
+  <meta name="description" data-i18n-attr="content" data-i18n="meta.description" content="Open AEC Foundation ontwikkelt, ondersteunt en promoot open source software voor de volledige bouwketen.">
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -581,12 +581,67 @@
       display: block;
     }
     
+    /* Language Switcher */
+    .lang-switcher {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background-color: var(--sand);
+      padding: 4px;
+      border-radius: 8px;
+      margin-left: 16px;
+    }
+
+    .lang-btn {
+      background: none;
+      border: none;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 6px;
+      color: var(--stone);
+      opacity: 0.6;
+      transition: all 0.2s;
+      font-family: inherit;
+    }
+
+    .lang-btn:hover {
+      opacity: 1;
+    }
+
+    .lang-btn.active {
+      background-color: var(--cloud);
+      opacity: 1;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .mobile-only {
+      display: none;
+    }
+
+    .desktop-only {
+      display: flex;
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .nav-menu {
         display: none;
       }
-      
+
+      .mobile-only {
+        display: flex;
+      }
+
+      .desktop-only {
+        display: none;
+      }
+
+      .lang-switcher {
+        margin-left: 0;
+      }
+
       section {
         padding: 80px 24px;
       }
@@ -619,11 +674,19 @@
         </svg>
       </a>
       <div class="nav-menu">
-        <a href="#over-ons" class="nav-link">Over ons</a>
-        <a href="#missie" class="nav-link">Missie</a>
-        <a href="#bestuur" class="nav-link">Bestuur</a>
-        <a href="#contact" class="nav-link">Contact</a>
-        <a href="#contact" class="btn btn-primary">Word bestuurslid</a>
+        <a href="#over-ons" class="nav-link" data-i18n="nav.about">Over ons</a>
+        <a href="#missie" class="nav-link" data-i18n="nav.mission">Missie</a>
+        <a href="#bestuur" class="nav-link" data-i18n="nav.board">Bestuur</a>
+        <a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a>
+        <a href="#contact" class="btn btn-primary" data-i18n="nav.joinBoard">Word bestuurslid</a>
+        <div class="lang-switcher desktop-only">
+          <button class="lang-btn active" data-lang="nl">NL</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+      <div class="lang-switcher mobile-only">
+        <button class="lang-btn active" data-lang="nl">NL</button>
+        <button class="lang-btn" data-lang="en">EN</button>
       </div>
     </div>
   </nav>
@@ -635,9 +698,9 @@
     <div class="hero-content">
       <div class="badge">
         <span class="badge-dot"></span>
-        Stichting in oprichting
+        <span data-i18n="hero.badge">Stichting in oprichting</span>
       </div>
-      
+
       <svg class="logo-full" width="392" height="112" viewBox="0 0 280 80" fill="none" style="margin: 0 auto 32px;">
         <path d="M10 70 L10 35 L50 10 L90 35 L90 70" stroke="#E07B3C" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
         <path d="M30 70 L30 45 L50 30 L70 45 L70 70" stroke="#4A90B8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
@@ -645,19 +708,19 @@
         <text x="175" y="42" font-family="'DM Sans', sans-serif" font-size="26" font-weight="700" fill="#E07B3C">AEC</text>
         <text x="108" y="62" font-family="'DM Sans', sans-serif" font-size="11" font-weight="500" fill="#3A3A3A" letter-spacing="2.5">FOUNDATION</text>
       </svg>
-      
-      <h1>Open source voor een open bouwsector</h1>
-      
-      <p>Wij ontwikkelen, ondersteunen en promoten open source software voor de volledige bouwketen — van ontwerp tot oplevering en beheer.</p>
-      
+
+      <h1 data-i18n="hero.title">Open source voor een open bouwsector</h1>
+
+      <p data-i18n="hero.description">Wij ontwikkelen, ondersteunen en promoten open source software voor de volledige bouwketen — van ontwerp tot oplevering en beheer.</p>
+
       <div class="hero-buttons">
-        <a href="#bestuur" class="btn btn-primary btn-large">Word bestuurslid →</a>
-        <a href="#over-ons" class="btn btn-secondary btn-large">Lees meer</a>
+        <a href="#bestuur" class="btn btn-primary btn-large" data-i18n="hero.joinBtn">Word bestuurslid →</a>
+        <a href="#over-ons" class="btn btn-secondary btn-large" data-i18n="hero.readMore">Lees meer</a>
       </div>
-      
+
       <div class="launch-box">
-        <p>Geplande oprichting</p>
-        <p>1 maart 2026</p>
+        <p data-i18n="hero.launchLabel">Geplande oprichting</p>
+        <p data-i18n="hero.launchDate">1 maart 2026</p>
       </div>
     </div>
   </section>
@@ -666,41 +729,41 @@
   <section class="over-ons" id="over-ons">
     <div class="container">
       <div class="text-center">
-        <p class="section-label">Over ons</p>
-        <h2 class="section-title">Waarom Open AEC Foundation?</h2>
-        <p class="section-desc">De bouwsector verdient software die transparant, toekomstbestendig en door de gebruikers zelf vormgegeven wordt.</p>
+        <p class="section-label" data-i18n="about.label">Over ons</p>
+        <h2 class="section-title" data-i18n="about.title">Waarom Open AEC Foundation?</h2>
+        <p class="section-desc" data-i18n="about.description">De bouwsector verdient software die transparant, toekomstbestendig en door de gebruikers zelf vormgegeven wordt.</p>
       </div>
-      
+
       <div class="features-grid">
         <div class="feature-card">
           <span class="feature-icon">💰</span>
-          <h3>Kostenreductie</h3>
-          <p>Geen licentiekosten, lagere advieskosten. Bouwen wordt voordeliger voor iedereen.</p>
+          <h3 data-i18n="about.features.cost.title">Kostenreductie</h3>
+          <p data-i18n="about.features.cost.desc">Geen licentiekosten, lagere advieskosten. Bouwen wordt voordeliger voor iedereen.</p>
         </div>
         <div class="feature-card">
           <span class="feature-icon">🔓</span>
-          <h3>Geen vendor lock-in</h3>
-          <p>Open data formaten zorgen dat bestanden voor altijd leesbaar blijven.</p>
+          <h3 data-i18n="about.features.vendor.title">Geen vendor lock-in</h3>
+          <p data-i18n="about.features.vendor.desc">Open data formaten zorgen dat bestanden voor altijd leesbaar blijven.</p>
         </div>
         <div class="feature-card">
           <span class="feature-icon">🤖</span>
-          <h3>AI-gereed</h3>
-          <p>Open source code is beter te integreren met AI en automatisering.</p>
+          <h3 data-i18n="about.features.ai.title">AI-gereed</h3>
+          <p data-i18n="about.features.ai.desc">Open source code is beter te integreren met AI en automatisering.</p>
         </div>
         <div class="feature-card">
           <span class="feature-icon">🌍</span>
-          <h3>Toekomstbestendig</h3>
-          <p>Community kan software blijven onderhouden, onafhankelijk van leveranciers.</p>
+          <h3 data-i18n="about.features.future.title">Toekomstbestendig</h3>
+          <p data-i18n="about.features.future.desc">Community kan software blijven onderhouden, onafhankelijk van leveranciers.</p>
         </div>
         <div class="feature-card">
           <span class="feature-icon">👥</span>
-          <h3>Door gebruikers gestuurd</h3>
-          <p>Ontwikkeling wordt bepaald door wat gebruikers nodig hebben, niet door sales.</p>
+          <h3 data-i18n="about.features.users.title">Door gebruikers gestuurd</h3>
+          <p data-i18n="about.features.users.desc">Ontwikkeling wordt bepaald door wat gebruikers nodig hebben, niet door sales.</p>
         </div>
         <div class="feature-card">
           <span class="feature-icon">🎓</span>
-          <h3>Educatie</h3>
-          <p>Stage- en opleidingsmogelijkheden voor studenten wereldwijd.</p>
+          <h3 data-i18n="about.features.edu.title">Educatie</h3>
+          <p data-i18n="about.features.edu.desc">Stage- en opleidingsmogelijkheden voor studenten wereldwijd.</p>
         </div>
       </div>
     </div>
@@ -709,25 +772,25 @@
   <!-- Missie Section -->
   <section class="missie" id="missie">
     <div class="container text-center">
-      <p class="section-label">Onze missie</p>
-      <h2 class="section-title">"Het ontwikkelen, ondersteunen en promoten van open source software voor de volledige bouwketen."</h2>
-      
+      <p class="section-label" data-i18n="mission.label">Onze missie</p>
+      <h2 class="section-title" data-i18n="mission.title">"Het ontwikkelen, ondersteunen en promoten van open source software voor de volledige bouwketen."</h2>
+
       <div class="missie-grid">
         <div class="missie-item">
-          <h3>Ontwikkeling</h3>
-          <p>Coördineren en financieren van open source softwareontwikkeling</p>
+          <h3 data-i18n="mission.items.dev.title">Ontwikkeling</h3>
+          <p data-i18n="mission.items.dev.desc">Coördineren en financieren van open source softwareontwikkeling</p>
         </div>
         <div class="missie-item">
-          <h3>Ondersteuning</h3>
-          <p>Beheren van licenties, API-koppelingen en integraties</p>
+          <h3 data-i18n="mission.items.support.title">Ondersteuning</h3>
+          <p data-i18n="mission.items.support.desc">Beheren van licenties, API-koppelingen en integraties</p>
         </div>
         <div class="missie-item">
-          <h3>Educatie</h3>
-          <p>Stage- en opleidingsmogelijkheden voor studenten</p>
+          <h3 data-i18n="mission.items.edu.title">Educatie</h3>
+          <p data-i18n="mission.items.edu.desc">Stage- en opleidingsmogelijkheden voor studenten</p>
         </div>
         <div class="missie-item">
-          <h3>Advocacy</h3>
-          <p>Promoten van open source en open standaarden</p>
+          <h3 data-i18n="mission.items.advocacy.title">Advocacy</h3>
+          <p data-i18n="mission.items.advocacy.desc">Promoten van open source en open standaarden</p>
         </div>
       </div>
     </div>
@@ -737,25 +800,25 @@
   <section class="bestuur" id="bestuur">
     <div class="container">
       <div class="text-center">
-        <p class="section-label">Word onderdeel</p>
-        <h2 class="section-title">Bestuursleden gezocht</h2>
-        <p class="section-desc">We zoeken gedreven mensen uit de bouwsector die willen bijdragen aan een open toekomst.</p>
+        <p class="section-label" data-i18n="board.label">Word onderdeel</p>
+        <h2 class="section-title" data-i18n="board.title">Bestuursleden gezocht</h2>
+        <p class="section-desc" data-i18n="board.description">We zoeken gedreven mensen uit de bouwsector die willen bijdragen aan een open toekomst.</p>
       </div>
-      
+
       <div class="cta-box">
         <div class="cta-icon">🏗️</div>
-        <h3>Bouw mee aan de toekomst</h3>
-        <p>Het bestuur bestaat uit invloedrijke personen uit de bouwsector: architecten, aannemers, adviseurs en vertegenwoordigers van brancheorganisaties.</p>
-        
+        <h3 data-i18n="board.cta.title">Bouw mee aan de toekomst</h3>
+        <p data-i18n="board.cta.desc">Het bestuur bestaat uit invloedrijke personen uit de bouwsector: architecten, aannemers, adviseurs en vertegenwoordigers van brancheorganisaties.</p>
+
         <div class="roles">
-          <span class="role-tag">Architecten</span>
-          <span class="role-tag">Aannemers</span>
-          <span class="role-tag">Adviseurs</span>
-          <span class="role-tag">IT-specialisten</span>
-          <span class="role-tag">Beleidsmakers</span>
+          <span class="role-tag" data-i18n="board.roles.architects">Architecten</span>
+          <span class="role-tag" data-i18n="board.roles.contractors">Aannemers</span>
+          <span class="role-tag" data-i18n="board.roles.consultants">Adviseurs</span>
+          <span class="role-tag" data-i18n="board.roles.it">IT-specialisten</span>
+          <span class="role-tag" data-i18n="board.roles.policy">Beleidsmakers</span>
         </div>
-        
-        <a href="#contact" class="btn btn-primary btn-large">Neem contact op</a>
+
+        <a href="#contact" class="btn btn-primary btn-large" data-i18n="board.cta.button">Neem contact op</a>
       </div>
     </div>
   </section>
@@ -764,52 +827,52 @@
   <section class="contact" id="contact">
     <div class="container">
       <div class="text-center">
-        <p class="section-label">Contact</p>
-        <h2 class="section-title">Neem contact op</h2>
+        <p class="section-label" data-i18n="contact.label">Contact</p>
+        <h2 class="section-title" data-i18n="contact.title">Neem contact op</h2>
       </div>
-      
+
       <div class="contact-grid">
         <!-- Contact Info -->
         <div class="contact-card">
-          <h3>Contactpersoon</h3>
+          <h3 data-i18n="contact.person.title">Contactpersoon</h3>
           <p class="contact-name">Maarten Vroegindeweij</p>
-          <p class="contact-role">Initiatiefnemer Open AEC Foundation</p>
-          
+          <p class="contact-role" data-i18n="contact.person.role">Initiatiefnemer Open AEC Foundation</p>
+
           <div class="contact-info">
             <div class="contact-item">
               <span class="contact-icon">📍</span>
               <div>
-                <p class="contact-item-label">Adres</p>
+                <p class="contact-item-label" data-i18n="contact.person.addressLabel">Adres</p>
                 <p class="contact-item-value">Burgemeester de Raadtsingel 31<br>Dordrecht</p>
               </div>
             </div>
             <div class="contact-item">
               <span class="contact-icon blue">📅</span>
               <div>
-                <p class="contact-item-label">Oprichting</p>
-                <p class="contact-item-value highlight">1 maart 2026</p>
+                <p class="contact-item-label" data-i18n="contact.person.foundingLabel">Oprichting</p>
+                <p class="contact-item-value highlight" data-i18n="contact.person.foundingDate">1 maart 2026</p>
               </div>
             </div>
           </div>
         </div>
-        
+
         <!-- Contact Form -->
         <div class="contact-card">
-          <h3>Stuur een bericht</h3>
+          <h3 data-i18n="contact.form.title">Stuur een bericht</h3>
           <form>
             <div class="form-group">
-              <label for="name">Naam</label>
-              <input type="text" id="name" placeholder="Uw naam">
+              <label for="name" data-i18n="contact.form.name">Naam</label>
+              <input type="text" id="name" data-i18n-attr="placeholder" data-i18n="contact.form.namePlaceholder" placeholder="Uw naam">
             </div>
             <div class="form-group">
-              <label for="email">E-mail</label>
-              <input type="email" id="email" placeholder="uw@email.nl">
+              <label for="email" data-i18n="contact.form.email">E-mail</label>
+              <input type="email" id="email" data-i18n-attr="placeholder" data-i18n="contact.form.emailPlaceholder" placeholder="uw@email.nl">
             </div>
             <div class="form-group">
-              <label for="message">Bericht</label>
-              <textarea id="message" placeholder="Ik ben geïnteresseerd in..."></textarea>
+              <label for="message" data-i18n="contact.form.message">Bericht</label>
+              <textarea id="message" data-i18n-attr="placeholder" data-i18n="contact.form.messagePlaceholder" placeholder="Ik ben geïnteresseerd in..."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;">Verstuur bericht</button>
+            <button type="submit" class="btn btn-primary btn-large" style="width: 100%;" data-i18n="contact.form.submit">Verstuur bericht</button>
           </form>
         </div>
       </div>
@@ -827,26 +890,333 @@
             <text x="65" y="30" font-family="'DM Sans', sans-serif" font-size="18" font-weight="700" fill="#F5F0EB">Open</text>
             <text x="118" y="30" font-family="'DM Sans', sans-serif" font-size="18" font-weight="700" fill="#E07B3C">AEC</text>
           </svg>
-          <p class="footer-desc">Open source software voor de volledige bouwketen — van ontwerp tot oplevering en beheer.</p>
+          <p class="footer-desc" data-i18n="footer.description">Open source software voor de volledige bouwketen — van ontwerp tot oplevering en beheer.</p>
         </div>
         <div class="footer-section">
-          <h4>Stichting i.o.</h4>
-          <p>Burgemeester de Raadtsingel 31<br>Dordrecht<br>Nederland</p>
+          <h4 data-i18n="footer.foundation">Stichting i.o.</h4>
+          <p>Burgemeester de Raadtsingel 31<br>Dordrecht<br><span data-i18n="footer.country">Nederland</span></p>
         </div>
         <div class="footer-section">
-          <h4>Oprichting</h4>
-          <p class="footer-date">1 maart 2026</p>
+          <h4 data-i18n="footer.foundingLabel">Oprichting</h4>
+          <p class="footer-date" data-i18n="footer.foundingDate">1 maart 2026</p>
         </div>
       </div>
-      
+
       <div class="footer-bottom">
-        <p>© 2026 Open AEC Foundation i.o. — Open source voor een open bouwsector</p>
-        <p>Geïnspireerd door de Blender Foundation</p>
+        <p data-i18n="footer.copyright">© 2026 Open AEC Foundation i.o. — Open source voor een open bouwsector</p>
+        <p data-i18n="footer.inspired">Geïnspireerd door de Blender Foundation</p>
       </div>
     </div>
   </footer>
 
   <script>
+    // Translations
+    const translations = {
+      nl: {
+        meta: {
+          title: "Open AEC Foundation - Open source voor een open bouwsector",
+          description: "Open AEC Foundation ontwikkelt, ondersteunt en promoot open source software voor de volledige bouwketen."
+        },
+        nav: {
+          about: "Over ons",
+          mission: "Missie",
+          board: "Bestuur",
+          contact: "Contact",
+          joinBoard: "Word bestuurslid"
+        },
+        hero: {
+          badge: "Stichting in oprichting",
+          title: "Open source voor een open bouwsector",
+          description: "Wij ontwikkelen, ondersteunen en promoten open source software voor de volledige bouwketen — van ontwerp tot oplevering en beheer.",
+          joinBtn: "Word bestuurslid →",
+          readMore: "Lees meer",
+          launchLabel: "Geplande oprichting",
+          launchDate: "1 maart 2026"
+        },
+        about: {
+          label: "Over ons",
+          title: "Waarom Open AEC Foundation?",
+          description: "De bouwsector verdient software die transparant, toekomstbestendig en door de gebruikers zelf vormgegeven wordt.",
+          features: {
+            cost: {
+              title: "Kostenreductie",
+              desc: "Geen licentiekosten, lagere advieskosten. Bouwen wordt voordeliger voor iedereen."
+            },
+            vendor: {
+              title: "Geen vendor lock-in",
+              desc: "Open data formaten zorgen dat bestanden voor altijd leesbaar blijven."
+            },
+            ai: {
+              title: "AI-gereed",
+              desc: "Open source code is beter te integreren met AI en automatisering."
+            },
+            future: {
+              title: "Toekomstbestendig",
+              desc: "Community kan software blijven onderhouden, onafhankelijk van leveranciers."
+            },
+            users: {
+              title: "Door gebruikers gestuurd",
+              desc: "Ontwikkeling wordt bepaald door wat gebruikers nodig hebben, niet door sales."
+            },
+            edu: {
+              title: "Educatie",
+              desc: "Stage- en opleidingsmogelijkheden voor studenten wereldwijd."
+            }
+          }
+        },
+        mission: {
+          label: "Onze missie",
+          title: "\"Het ontwikkelen, ondersteunen en promoten van open source software voor de volledige bouwketen.\"",
+          items: {
+            dev: {
+              title: "Ontwikkeling",
+              desc: "Coördineren en financieren van open source softwareontwikkeling"
+            },
+            support: {
+              title: "Ondersteuning",
+              desc: "Beheren van licenties, API-koppelingen en integraties"
+            },
+            edu: {
+              title: "Educatie",
+              desc: "Stage- en opleidingsmogelijkheden voor studenten"
+            },
+            advocacy: {
+              title: "Advocacy",
+              desc: "Promoten van open source en open standaarden"
+            }
+          }
+        },
+        board: {
+          label: "Word onderdeel",
+          title: "Bestuursleden gezocht",
+          description: "We zoeken gedreven mensen uit de bouwsector die willen bijdragen aan een open toekomst.",
+          cta: {
+            title: "Bouw mee aan de toekomst",
+            desc: "Het bestuur bestaat uit invloedrijke personen uit de bouwsector: architecten, aannemers, adviseurs en vertegenwoordigers van brancheorganisaties.",
+            button: "Neem contact op"
+          },
+          roles: {
+            architects: "Architecten",
+            contractors: "Aannemers",
+            consultants: "Adviseurs",
+            it: "IT-specialisten",
+            policy: "Beleidsmakers"
+          }
+        },
+        contact: {
+          label: "Contact",
+          title: "Neem contact op",
+          person: {
+            title: "Contactpersoon",
+            role: "Initiatiefnemer Open AEC Foundation",
+            addressLabel: "Adres",
+            foundingLabel: "Oprichting",
+            foundingDate: "1 maart 2026"
+          },
+          form: {
+            title: "Stuur een bericht",
+            name: "Naam",
+            namePlaceholder: "Uw naam",
+            email: "E-mail",
+            emailPlaceholder: "uw@email.nl",
+            message: "Bericht",
+            messagePlaceholder: "Ik ben geïnteresseerd in...",
+            submit: "Verstuur bericht"
+          }
+        },
+        footer: {
+          description: "Open source software voor de volledige bouwketen — van ontwerp tot oplevering en beheer.",
+          foundation: "Stichting i.o.",
+          country: "Nederland",
+          foundingLabel: "Oprichting",
+          foundingDate: "1 maart 2026",
+          copyright: "© 2026 Open AEC Foundation i.o. — Open source voor een open bouwsector",
+          inspired: "Geïnspireerd door de Blender Foundation"
+        }
+      },
+      en: {
+        meta: {
+          title: "Open AEC Foundation - Open source for an open construction sector",
+          description: "Open AEC Foundation develops, supports and promotes open source software for the entire construction chain."
+        },
+        nav: {
+          about: "About us",
+          mission: "Mission",
+          board: "Board",
+          contact: "Contact",
+          joinBoard: "Join the board"
+        },
+        hero: {
+          badge: "Foundation in formation",
+          title: "Open source for an open construction sector",
+          description: "We develop, support and promote open source software for the entire construction chain — from design to delivery and management.",
+          joinBtn: "Join the board →",
+          readMore: "Read more",
+          launchLabel: "Planned founding",
+          launchDate: "March 1, 2026"
+        },
+        about: {
+          label: "About us",
+          title: "Why Open AEC Foundation?",
+          description: "The construction sector deserves software that is transparent, future-proof and shaped by its users.",
+          features: {
+            cost: {
+              title: "Cost reduction",
+              desc: "No license costs, lower consulting fees. Building becomes more affordable for everyone."
+            },
+            vendor: {
+              title: "No vendor lock-in",
+              desc: "Open data formats ensure files remain readable forever."
+            },
+            ai: {
+              title: "AI-ready",
+              desc: "Open source code integrates better with AI and automation."
+            },
+            future: {
+              title: "Future-proof",
+              desc: "Community can continue maintaining software, independent of vendors."
+            },
+            users: {
+              title: "User-driven",
+              desc: "Development is determined by what users need, not by sales."
+            },
+            edu: {
+              title: "Education",
+              desc: "Internship and training opportunities for students worldwide."
+            }
+          }
+        },
+        mission: {
+          label: "Our mission",
+          title: "\"Developing, supporting and promoting open source software for the entire construction chain.\"",
+          items: {
+            dev: {
+              title: "Development",
+              desc: "Coordinating and funding open source software development"
+            },
+            support: {
+              title: "Support",
+              desc: "Managing licenses, API connections and integrations"
+            },
+            edu: {
+              title: "Education",
+              desc: "Internship and training opportunities for students"
+            },
+            advocacy: {
+              title: "Advocacy",
+              desc: "Promoting open source and open standards"
+            }
+          }
+        },
+        board: {
+          label: "Get involved",
+          title: "Board members wanted",
+          description: "We are looking for driven people from the construction sector who want to contribute to an open future.",
+          cta: {
+            title: "Build the future together",
+            desc: "The board consists of influential people from the construction sector: architects, contractors, consultants and representatives of industry organizations.",
+            button: "Get in touch"
+          },
+          roles: {
+            architects: "Architects",
+            contractors: "Contractors",
+            consultants: "Consultants",
+            it: "IT specialists",
+            policy: "Policy makers"
+          }
+        },
+        contact: {
+          label: "Contact",
+          title: "Get in touch",
+          person: {
+            title: "Contact person",
+            role: "Founder Open AEC Foundation",
+            addressLabel: "Address",
+            foundingLabel: "Founding",
+            foundingDate: "March 1, 2026"
+          },
+          form: {
+            title: "Send a message",
+            name: "Name",
+            namePlaceholder: "Your name",
+            email: "Email",
+            emailPlaceholder: "your@email.com",
+            message: "Message",
+            messagePlaceholder: "I am interested in...",
+            submit: "Send message"
+          }
+        },
+        footer: {
+          description: "Open source software for the entire construction chain — from design to delivery and management.",
+          foundation: "Foundation i.f.",
+          country: "The Netherlands",
+          foundingLabel: "Founding",
+          foundingDate: "March 1, 2026",
+          copyright: "© 2026 Open AEC Foundation i.f. — Open source for an open construction sector",
+          inspired: "Inspired by the Blender Foundation"
+        }
+      }
+    };
+
+    // i18n System
+    const i18n = {
+      currentLang: localStorage.getItem('lang') || 'nl',
+
+      init() {
+        this.setLanguage(this.currentLang);
+        this.bindEvents();
+      },
+
+      getNestedValue(obj, path) {
+        return path.split('.').reduce((current, key) => current && current[key], obj);
+      },
+
+      setLanguage(lang) {
+        this.currentLang = lang;
+        localStorage.setItem('lang', lang);
+        document.documentElement.lang = lang;
+
+        // Update all elements with data-i18n
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+          const key = element.getAttribute('data-i18n');
+          const translation = this.getNestedValue(translations[lang], key);
+
+          if (translation) {
+            const attr = element.getAttribute('data-i18n-attr');
+            if (attr) {
+              element.setAttribute(attr, translation);
+            } else {
+              element.innerHTML = translation;
+            }
+          }
+        });
+
+        // Update title
+        const titleTranslation = this.getNestedValue(translations[lang], 'meta.title');
+        if (titleTranslation) {
+          document.title = titleTranslation;
+        }
+
+        // Update language buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+        });
+      },
+
+      bindEvents() {
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            this.setLanguage(btn.getAttribute('data-lang'));
+          });
+        });
+      }
+    };
+
+    // Initialize when DOM is ready
+    document.addEventListener('DOMContentLoaded', () => {
+      i18n.init();
+    });
+
     // Smooth scrolling
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
