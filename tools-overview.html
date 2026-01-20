@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open AEC Foundation - Complete Tools Overzicht</title>
+    <style>
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-card-hover: #334155;
+            --accent-blue: #3b82f6;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --accent-orange: #f59e0b;
+            --accent-pink: #ec4899;
+            --accent-cyan: #06b6d4;
+            --accent-red: #ef4444;
+            --accent-lime: #84cc16;
+            --text-primary: #f1f5f9;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+            background: var(--bg-card);
+            padding: 1rem 2rem;
+            border-radius: 12px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        .mind-map {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .category {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .category:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .category-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .category-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .category-count {
+            margin-left: auto;
+            background: rgba(255,255,255,0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        .tools-list {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .tool {
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            padding: 1rem;
+            transition: background 0.2s;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tool:hover {
+            background: var(--bg-card-hover);
+        }
+
+        .tool-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tool-name a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .tool-name a:hover {
+            text-decoration: underline;
+        }
+
+        .tool-badge {
+            font-size: 0.65rem;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+
+        .badge-python { background: #3776ab; color: white; }
+        .badge-csharp { background: #68217a; color: white; }
+        .badge-js { background: #f7df1e; color: black; }
+        .badge-html { background: #e34f26; color: white; }
+        .badge-css { background: #264de4; color: white; }
+        .badge-react { background: #61dafb; color: black; }
+        .badge-rust { background: #dea584; color: black; }
+
+        .badge-private {
+            background: #ef4444;
+            color: white;
+            font-size: 0.6rem;
+        }
+
+        .badge-public {
+            background: #10b981;
+            color: white;
+            font-size: 0.6rem;
+        }
+
+        .tool-desc {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .tool-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.75rem;
+        }
+
+        .feature-tag {
+            font-size: 0.7rem;
+            padding: 0.2rem 0.5rem;
+            background: rgba(255,255,255,0.08);
+            border-radius: 4px;
+            color: var(--text-muted);
+        }
+
+        /* Category colors */
+        .cat-bim .category-icon { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .cat-viewers .category-icon { background: linear-gradient(135deg, #10b981, #059669); }
+        .cat-fem .category-icon { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+        .cat-calc .category-icon { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .cat-gis .category-icon { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+        .cat-docs .category-icon { background: linear-gradient(135deg, #ec4899, #db2777); }
+        .cat-integration .category-icon { background: linear-gradient(135deg, #84cc16, #65a30d); }
+        .cat-ai .category-icon { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .cat-erp .category-icon { background: linear-gradient(135deg, #f97316, #ea580c); }
+        .cat-scripts .category-icon { background: linear-gradient(135deg, #a855f7, #9333ea); }
+
+        .legend {
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+        }
+
+        .legend-title {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .legend-color {
+            width: 16px;
+            height: 16px;
+            border-radius: 4px;
+        }
+
+        /* Visual connections */
+        .hub-visual {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .hub-center {
+            width: 140px;
+            height: 140px;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 80px rgba(59, 130, 246, 0.4);
+            position: relative;
+            z-index: 10;
+        }
+
+        .hub-center::before {
+            content: '';
+            position: absolute;
+            width: 220px;
+            height: 220px;
+            border: 2px dashed rgba(255,255,255,0.15);
+            border-radius: 50%;
+            animation: rotate 30s linear infinite;
+        }
+
+        .hub-center::after {
+            content: '';
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px dashed rgba(255,255,255,0.08);
+            border-radius: 50%;
+            animation: rotate 45s linear infinite reverse;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hub-logo {
+            font-size: 2.5rem;
+        }
+
+        .hub-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.25rem;
+        }
+
+        /* Flowchart section */
+        .flow-section {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-card);
+            border-radius: 16px;
+        }
+
+        .flow-title {
+            text-align: center;
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .flow-diagram {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            padding: 1rem;
+        }
+
+        .flow-box {
+            padding: 0.75rem 1.25rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .flow-arrow {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+        }
+
+        .flow-input { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+        .flow-process { background: linear-gradient(135deg, #8b5cf6, #6d28d9); }
+        .flow-output { background: linear-gradient(135deg, #10b981, #059669); }
+        .flow-storage { background: linear-gradient(135deg, #f59e0b, #d97706); }
+
+        @media (max-width: 768px) {
+            .mind-map {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .stats {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .flow-diagram {
+                flex-direction: column;
+            }
+
+            .flow-arrow {
+                transform: rotate(90deg);
+            }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 3rem;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Open AEC Foundation</h1>
+            <p class="subtitle">Complete Overzicht van alle Open Source Tools voor de AEC Sector</p>
+
+            <div class="hub-visual">
+                <div class="hub-center">
+                    <span class="hub-logo">🏗️</span>
+                    <span class="hub-text">OpenAEC</span>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-number">27+</div>
+                    <div class="stat-label">Repositories</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label">Categorieën</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">7+</div>
+                    <div class="stat-label">Programmeertalen</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">21</div>
+                    <div class="stat-label">Publiek</div>
+                </div>
+            </div>
+        </header>
+
+        <div class="mind-map">
+            <!-- BIM & Building Modeling -->
+            <div class="category cat-bim">
+                <div class="category-header">
+                    <div class="category-icon">🏛️</div>
+                    <span class="category-title">BIM & Building Modeling</span>
+                    <span class="category-count">2 tools</span>
+                </div>
+                <div class="tools-list">
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/building.py" target="_blank">building.py</a>
+                            <span class="tool-badge badge-python">Python</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Python library voor het maken van gebouwen, systemen en objecten. Exporteert naar Blender, Revit, IFC, Struct4U, DXF & Speckle. Geen dependencies.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Geometry</span>
+                            <span class="feature-tag">Export</span>
+                            <span class="feature-tag">IFC</span>
+                            <span class="feature-tag">Speckle</span>
+                            <span class="feature-tag">FreeCAD</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/INB-Template" target="_blank">INB-Template</a>
+                            <span class="tool-badge badge-css">IFC4x3</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">IFC-template voor de Nederlandse bouwsector met NEN47 materialen, staalprofielen (HEA, HEB, IPE, etc.) en elementtypes. Geschikt voor Bonsai en FreeCAD.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">NEN47</span>
+                            <span class="feature-tag">Staalprofielen</span>
+                            <span class="feature-tag">Bonsai</span>
+                            <span class="feature-tag">FreeCAD</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Viewers & Visualisatie -->
+            <div class="category cat-viewers">
+                <div class="category-header">
+                    <div class="category-icon">👁️</div>
+                    <span class="category-title">Viewers & Visualisatie</span>
+                    <span class="category-count">4 tools</span>
+                </div>
+                <div class="tools-list">
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/monty-IFC-viewer" target="_blank">monty-IFC-viewer</a>
+                            <span class="tool-badge badge-js">JavaScript</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Webgebaseerde IFC viewer met bouwvolgorde visualisatie. Drag & drop, animatie en element eigenschappen. Door Piet Mol.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Three.js</span>
+                            <span class="feature-tag">web-ifc</span>
+                            <span class="feature-tag">Animatie</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/Open-2D-Studio" target="_blank">Open 2D Studio</a>
+                            <span class="tool-badge badge-csharp">C#</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Cross-platform PDF viewer gebouwd met .NET en Avalonia UI. Ondersteunt Windows, Linux en macOS. Tauri shell.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">.NET</span>
+                            <span class="feature-tag">Avalonia</span>
+                            <span class="feature-tag">Cross-platform</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/CPT-viewer" target="_blank">CPT-viewer</a>
+                            <span class="tool-badge badge-js">JavaScript</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Viewer voor CPT (Cone Penetration Test) sonderingen. Ondersteunt GEF en BRO-xml formaten voor geotechnisch onderzoek.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">GEF</span>
+                            <span class="feature-tag">BRO-xml</span>
+                            <span class="feature-tag">Geotechniek</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/cutlist-optimizer" target="_blank">cutlist-optimizer</a>
+                            <span class="tool-badge badge-rust">Rust</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Tool voor het optimaliseren van zaagplannen voor 1D en 2D materialen. Minimaliseer afval bij het zagen.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Optimalisatie</span>
+                            <span class="feature-tag">Zaagplannen</span>
+                            <span class="feature-tag">Materiaal</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FEM/Analyse Software -->
+            <div class="category cat-fem">
+                <div class="category-header">
+                    <div class="category-icon">📐</div>
+                    <span class="category-title">FEM / Analyse Software</span>
+                    <span class="category-count">2 tools</span>
+                </div>
+                <div class="tools-list">
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/Open-FEM2D-Studio" target="_blank">Open FEM2D Studio</a>
+                            <span class="tool-badge badge-python">Python/C</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">2D Finite Element Analysis software voor constructieve berekeningen. Python frontend met C backend voor performance.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">FEM</span>
+                            <span class="feature-tag">Constructie</span>
+                            <span class="feature-tag">2D Analyse</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            Open FEM3D Studio
+                            <span class="tool-badge badge-csharp">C#</span>
+                            <span class="tool-badge badge-private">Private</span>
+                        </div>
+                        <div class="tool-desc">Cross-platform 3D FEM analysis software voor geavanceerde constructieve berekeningen.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">3D FEM</span>
+                            <span class="feature-tag">Cross-platform</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calculatie & Begroting -->
+            <div class="category cat-calc">
+                <div class="category-header">
+                    <div class="category-icon">🧮</div>
+                    <span class="category-title">Calculatie & Begroting</span>
+                    <span class="category-count">3 tools</span>
+                </div>
+                <div class="tools-list">
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/Open-Calc" target="_blank">Open-Calc</a>
+                            <span class="tool-badge badge-react">React/TS</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Open-source begrotingssoftware voor de bouwsector. SBO (ZZP'ers), Extended (MKB) en Estimator (Pro) edities. PWA met offline support.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">PWA</span>
+                            <span class="feature-tag">Offline</span>
+                            <span class="feature-tag">Excel Export</span>
+                            <span class="feature-tag">Grid Interface</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/DutchSailor/Calcpad" target="_blank">Open-CalcPAD</a>
+                            <span class="tool-badge badge-csharp">C#</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Programmeerbare calculator met HTML rapport generator. Eenheden, matrices, functies, plotting, export naar Word/PDF.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Engineering</span>
+                            <span class="feature-tag">SI/Imperial</span>
+                            <span class="feature-tag">Word/PDF</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            opencalc (desktop)
+                            <span class="tool-badge badge-python">Python/Qt</span>
+                            <span class="tool-badge badge-private">Private</span>
+                        </div>
+                        <div class="tool-desc">Desktop versie van OpenCalc met Qt interface en project management systeem.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Desktop</span>
+                            <span class="feature-tag">Qt</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GIS & Data Integratie -->
+            <div class="category cat-gis">
+                <div class="category-header">
+                    <div class="category-icon">🗺️</div>
+                    <span class="category-title">GIS & Data Integratie</span>
+                    <span class="category-count">3 tools</span>
+                </div>
+                <div class="tools-list">
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/DutchSailor/GIS2BIM" target="_blank">GIS2BIM</a>
+                            <span class="tool-badge badge-python">Dynamo</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Custom nodes voor Dynamo om 2D/3D GIS-informatie te importeren in Revit. PDOK, Kadaster, BAG, BGT en meer.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Dynamo</span>
+                            <span class="feature-tag">Revit</span>
+                            <span class="feature-tag">PDOK</span>
+                            <span class="feature-tag">Kadaster</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/GIS2BIM-OpenAnalysis" target="_blank">GIS2BIM-OpenAnalysis</a>
+                            <span class="tool-badge badge-python">FastAPI</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Locatie analyse & rapportage generator. 30+ kaartlagen, PDF generatie, presets voor architecten, ontwikkelaars en bouwhistorici.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">PDF Rapport</span>
+                            <span class="feature-tag">DXF Export</span>
+                            <span class="feature-tag">WMS/WMTS</span>
+                            <span class="feature-tag">AHN</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/Project-Ocondat" target="_blank">Project-Ocondat</a>
+                            <span class="tool-badge badge-python">Python</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Open building data via WikiData. Staalprofielen, Eurocode standaarden en andere open datasets.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">WikiData</span>
+                            <span class="feature-tag">Open Data</span>
+                            <span class="feature-tag">Eurocode</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Documenten & Rapportage -->
+            <div class="category cat-docs">
+                <div class="category-header">
+                    <div class="category-icon">📄</div>
+                    <span class="category-title">Documenten & Rapportage</span>
+                    <span class="category-count">3 tools</span>
+                </div>
+                <div class="tools-list">
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/Open-PDF-Creator" target="_blank">Open-PDF-Creator</a>
+                            <span class="tool-badge badge-python">Python</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Cross-platform virtuele PDF printer en combiner. Export naar PDF, PNG, JPEG, TIFF. System tray integratie.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Virtual Printer</span>
+                            <span class="feature-tag">Combiner</span>
+                            <span class="feature-tag">Multi-format</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/Open-Report-Builder-Studio" target="_blank">Open-Report-Builder</a>
+                            <span class="tool-badge badge-react">React</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Moderne rapport generator voor PDF documenten. Drag & drop, automatisch voorblad, inhoudsopgave. ERPNext integratie, 100% browser-based.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">pdf-lib</span>
+                            <span class="feature-tag">ERPNext</span>
+                            <span class="feature-tag">Client-side</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/OpenBooks" target="_blank">OpenBooks</a>
+                            <span class="tool-badge badge-html">Collectie</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Digitaliseren van historische bouwboeken. Prof. Gugel, Prof. Wattjes (10 delen), Prof. Vandepitte, Potma & De Vries.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Archief</span>
+                            <span class="feature-tag">Constructie</span>
+                            <span class="feature-tag">Architectuur</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ERPNext & Bedrijfssoftware -->
+            <div class="category cat-erp">
+                <div class="category-header">
+                    <div class="category-icon">🏢</div>
+                    <span class="category-title">ERPNext & Bedrijfssoftware</span>
+                    <span class="category-count">3 tools</span>
+                </div>
+                <div class="tools-list">
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/ERPNext-Level-Dashboard" target="_blank">ERPNext-Level-Dashboard</a>
+                            <span class="tool-badge badge-js">JavaScript</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Alternatieve GUI voor ERPNext met verbeterde gebruikerservaring en moderne interface.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Dashboard</span>
+                            <span class="feature-tag">UI/UX</span>
+                            <span class="feature-tag">ERPNext</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/ERPNext_Anthropic_Claude_Development_Skill_Package" target="_blank">ERPNext Claude Skills</a>
+                            <span class="tool-badge badge-python">Python</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">28 deterministische Claude AI skills voor foutloze ERPNext/Frappe v14-16 development. Gestructureerde output.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Claude AI</span>
+                            <span class="feature-tag">Skills</span>
+                            <span class="feature-tag">Frappe</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            ERPNext MCP-Connector
+                            <span class="tool-badge badge-python">MCP</span>
+                            <span class="tool-badge badge-private">Private</span>
+                        </div>
+                        <div class="tool-desc">Model Context Protocol connector voor ERPNext integratie met AI assistenten zoals Claude.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">MCP</span>
+                            <span class="feature-tag">API</span>
+                            <span class="feature-tag">Claude</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Integraties & Connectors -->
+            <div class="category cat-integration">
+                <div class="category-header">
+                    <div class="category-icon">🔗</div>
+                    <span class="category-title">NextCloud Integraties</span>
+                    <span class="category-count">4 tools</span>
+                </div>
+                <div class="tools-list">
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/ERPNext-NextCloud-App" target="_blank">ERPNext-NextCloud-App</a>
+                            <span class="tool-badge badge-python">Python</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Integratie tussen ERPNext en NextCloud voor document synchronisatie en workflow automatisering.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">ERPNext</span>
+                            <span class="feature-tag">NextCloud</span>
+                            <span class="feature-tag">Sync</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/IfcGit4NextCloud" target="_blank">IfcGit4NextCloud</a>
+                            <span class="tool-badge badge-python">NextCloud</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">NextCloud add-on voor IfcGit integratie. Versiebeheer voor IFC bestanden direct in NextCloud.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Git</span>
+                            <span class="feature-tag">IFC</span>
+                            <span class="feature-tag">Versioning</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/NextCloud-Claude-Bot" target="_blank">NextCloud-Claude-Bot</a>
+                            <span class="tool-badge badge-python">Python</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Claude AI integratie voor NextCloud. Chat-gebaseerde AI assistent in NextCloud Talk.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Claude AI</span>
+                            <span class="feature-tag">Chat</span>
+                            <span class="feature-tag">Talk</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/nextcloud-talk-erp-next-bot" target="_blank">nextcloud-talk-erp-next-bot</a>
+                            <span class="tool-badge badge-python">Python</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">NextCloud Talk bot met ERPNext integratie voor communicatie en taakbeheer.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Talk</span>
+                            <span class="feature-tag">ERPNext</span>
+                            <span class="feature-tag">Bot</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI & Automatisering -->
+            <div class="category cat-ai">
+                <div class="category-header">
+                    <div class="category-icon">🤖</div>
+                    <span class="category-title">AI & Automatisering</span>
+                    <span class="category-count">2 tools</span>
+                </div>
+                <div class="tools-list">
+                    <div class="tool">
+                        <div class="tool-name">
+                            Agent Army
+                            <span class="tool-badge badge-python">FastAPI</span>
+                            <span class="tool-badge badge-private">Private</span>
+                        </div>
+                        <div class="tool-desc">AI-powered virtuele werknemers geïntegreerd met ERPNext en NextCloud. Persistent memory, taken scheduling, dagelijkse rapportage.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Claude AI</span>
+                            <span class="feature-tag">ERPNext</span>
+                            <span class="feature-tag">NextCloud Talk</span>
+                            <span class="feature-tag">Scheduler</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/aerius-calculator" target="_blank">aerius-calculator</a>
+                            <span class="tool-badge badge-python">Python</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">AERIUS stikstofdepositie berekeningen automatisering voor bouwprojecten.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Stikstof</span>
+                            <span class="feature-tag">AERIUS</span>
+                            <span class="feature-tag">Vergunningen</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scripts & Libraries -->
+            <div class="category cat-scripts">
+                <div class="category-header">
+                    <div class="category-icon">📜</div>
+                    <span class="category-title">Scripts & Libraries</span>
+                    <span class="category-count">2 tools</span>
+                </div>
+                <div class="tools-list">
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/AEC-Scripts" target="_blank">AEC-Scripts</a>
+                            <span class="tool-badge badge-python">Python</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Python scripts library voor de AEC sector. Herbruikbare scripts voor automatisering en data processing.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Scripts</span>
+                            <span class="feature-tag">Automatisering</span>
+                            <span class="feature-tag">Library</span>
+                        </div>
+                    </div>
+                    <div class="tool">
+                        <div class="tool-name">
+                            <a href="https://github.com/OpenAEC-Foundation/website" target="_blank">website</a>
+                            <span class="tool-badge badge-html">HTML</span>
+                            <span class="tool-badge badge-public">Public</span>
+                        </div>
+                        <div class="tool-desc">Officiële website van de Open AEC Foundation. Overzicht van alle tools en projecten.</div>
+                        <div class="tool-features">
+                            <span class="feature-tag">Website</span>
+                            <span class="feature-tag">Documentatie</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Workflow diagram -->
+        <div class="flow-section">
+            <div class="flow-title">🔄 Typische Workflow: Van Ontwerp naar Uitvoering</div>
+            <div class="flow-diagram">
+                <div class="flow-box flow-input">📍 GIS2BIM<br><small>Locatie Data</small></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-box flow-process">🏛️ building.py<br><small>BIM Modelleren</small></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-box flow-process">📐 FEM2D/3D<br><small>Analyse</small></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-box flow-output">🧮 Open-Calc<br><small>Begroting</small></div>
+                <span class="flow-arrow">→</span>
+                <div class="flow-box flow-storage">📄 Report Builder<br><small>Documenten</small></div>
+            </div>
+        </div>
+
+        <div class="legend">
+            <div class="legend-title">Legenda Programmeertalen</div>
+            <div class="legend-items">
+                <div class="legend-item">
+                    <span class="legend-color badge-python"></span>
+                    <span>Python</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color badge-csharp"></span>
+                    <span>C# / .NET</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color badge-js"></span>
+                    <span>JavaScript</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color badge-react"></span>
+                    <span>React / TypeScript</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color badge-rust"></span>
+                    <span>Rust</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color badge-html"></span>
+                    <span>HTML / Docs</span>
+                </div>
+                <div class="legend-item" style="margin-left: 2rem;">
+                    <span class="legend-color badge-public"></span>
+                    <span>Public Repo</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color badge-private"></span>
+                    <span>Private Repo</span>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Open AEC Foundation</strong> - Open Source Software voor de Bouwsector</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="https://github.com/OpenAEC-Foundation">GitHub</a>
+                &nbsp;•&nbsp;
+                <a href="https://openaec-foundation.github.io/website/">Website</a>
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.75rem;">
+                Gegenereerd: Januari 2026 | 27+ repositories | 10 categorieën
+            </p>
+        </footer>
+    </div>
+</body>
+</html>
