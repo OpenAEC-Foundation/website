@@ -66,7 +66,7 @@ The OpenAEC Foundation maintains **16 open source repositories** for the AEC (Ar
 
 ## Live Website
 
-https://openaec-foundation.github.io/website/
+https://open-aec.com/
 
 ## Features
 
