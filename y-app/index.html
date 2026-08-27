@@ -269,6 +269,26 @@
       .mode-table { font-size: 0.8rem; }
       .mode-table th, .mode-table td { padding: var(--sp-2) var(--sp-3); }
     }
+    /* Screenshot-slider. Deze klassen stonden in de markup maar nergens in CSS,
+       waardoor de screenshots op ware grootte (tot 2560px) uitliepen en de hele
+       pagina horizontaal ging scrollen. Zelfde regels als de andere productpagina's. */
+    .media-slider { max-width: 850px; margin: 0 auto var(--sp-10); position: relative; }
+    .slider-container { position: relative; overflow: hidden; border-radius: var(--radius-lg); background: var(--night-build); }
+    .slider-track { display: flex; transition: transform 0.4s ease; }
+    .slider-slide { min-width: 100%; }
+    .slider-slide img { width: 100%; display: block; border-radius: var(--radius-lg); }
+    .slider-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); color: white; border: none;
+      width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+      font-size: 1.25rem; display: flex; align-items: center; justify-content: center; z-index: 2;
+    }
+    .slider-btn:hover { background: rgba(0,0,0,0.7); }
+    .slider-prev { left: var(--sp-3); }
+    .slider-next { right: var(--sp-3); }
+    .slider-dots { display: flex; justify-content: center; gap: var(--sp-2); padding: var(--sp-3) 0; }
+    .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: #D6D3D1; border: none; cursor: pointer; }
+    .slider-dot.active { background: var(--amber); }
   </style>
 </head>
 <body>
@@ -310,281 +330,281 @@
 
       <!-- What is Y-app? -->
       <div class="explainer">
-        <h3>Wat is Y-app?</h3>
-        <p>Y-app is geen chat-tool en geen losse ERP-frontend. Het is een <strong style="color: white;">"Everything-app"</strong> — een multi-tenant ERPNext-werkomgeving die je hele bedrijfsstack bundelt in één web-applicatie. E-mail (IMAP/SMTP + Office 365), ERP (ERPNext), bestanden (NextCloud), chat (Teams, NextCloud Talk, Telegram), agenda, AI-assistent (Claude) en tientallen bedrijfsmodules — bereikbaar vanuit één tabblad in je browser.</p>
+        <h3 data-i18n="explainer1.title">Wat is Y-app?</h3>
+        <p data-i18n="explainer1.intro">Y-app is geen chat-tool en geen losse ERP-frontend. Het is een <strong style="color: white;">"Everything-app"</strong> — een multi-tenant ERPNext-werkomgeving die je hele bedrijfsstack bundelt in één web-applicatie. E-mail (IMAP/SMTP + Office 365), ERP (ERPNext), bestanden (NextCloud), chat (Teams, NextCloud Talk, Telegram), agenda, AI-assistent (Claude) en tientallen bedrijfsmodules — bereikbaar vanuit één tabblad in je browser.</p>
         <ul>
-          <li><strong style="color: white;">Multi-tenant</strong> — koppel meerdere ERPNext-instances aan één Y-app account</li>
-          <li><strong style="color: white;">Versleutelde vault</strong> — credentials in server-side SQLite met AES-256-GCM, PBKDF2-SHA256 (210k iter)</li>
-          <li><strong style="color: white;">Geen browser-tabs nodig</strong> — wissel tussen instances via interne tabs met eigen routing en sessie</li>
-          <li><strong style="color: white;">Werkgever- of werknemer-modus</strong> — beperk modules per instance via een dropdown</li>
-          <li><strong style="color: white;">Volledige NL/EN i18n</strong> — 1190+ vertalingen, schakelbaar op runtime</li>
+          <li data-i18n="explainer1.li1"><strong style="color: white;">Multi-tenant</strong> — koppel meerdere ERPNext-instances aan één Y-app account</li>
+          <li data-i18n="explainer1.li2"><strong style="color: white;">Versleutelde vault</strong> — credentials in server-side SQLite met AES-256-GCM, PBKDF2-SHA256 (210k iter)</li>
+          <li data-i18n="explainer1.li3"><strong style="color: white;">Geen browser-tabs nodig</strong> — wissel tussen instances via interne tabs met eigen routing en sessie</li>
+          <li data-i18n="explainer1.li4"><strong style="color: white;">Werkgever- of werknemer-modus</strong> — beperk modules per instance via een dropdown</li>
+          <li data-i18n="explainer1.li5"><strong style="color: white;">Volledige NL/EN i18n</strong> — 1190+ vertalingen, schakelbaar op runtime</li>
         </ul>
       </div>
 
       <!-- How it works -->
       <div class="content-block">
-        <h2>Hoe het <span class="accent">werkt</span></h2>
-        <p>Y-app draait op je eigen server (of via impertio.app). Zelf-signup, instance-beheer en mode-switching gebeuren binnen de app — geen IT-tickets nodig.</p>
+        <h2 data-i18n="howitworks.title">Hoe het <span class="accent">werkt</span></h2>
+        <p data-i18n="howitworks.intro">Y-app draait op je eigen server (of via impertio.app). Zelf-signup, instance-beheer en mode-switching gebeuren binnen de app — geen IT-tickets nodig.</p>
         <div class="steps">
           <div class="step">
             <span class="step-number">1</span>
-            <h3>Maak een Y-app account</h3>
-            <p>Zelf-signup met e-mail en wachtwoord. Bcrypt met 12 rounds, HttpOnly session cookies, sessie-scoped credential-cache.</p>
+            <h3 data-i18n="howitworks.step1.title">Maak een Y-app account</h3>
+            <p data-i18n="howitworks.step1.desc">Zelf-signup met e-mail en wachtwoord. Bcrypt met 12 rounds, HttpOnly session cookies, sessie-scoped credential-cache.</p>
           </div>
           <div class="step">
             <span class="step-number">2</span>
-            <h3>Voeg ERPNext-instances toe</h3>
-            <p>Voor elk bedrijf of klant: URL, naam, kleur en credentials. Direct versleuteld opgeslagen in de server-side vault.</p>
+            <h3 data-i18n="howitworks.step2.title">Voeg ERPNext-instances toe</h3>
+            <p data-i18n="howitworks.step2.desc">Voor elk bedrijf of klant: URL, naam, kleur en credentials. Direct versleuteld opgeslagen in de server-side vault.</p>
           </div>
           <div class="step">
             <span class="step-number">3</span>
-            <h3>Wissel via in-app tabs</h3>
-            <p>Geen browser-tabs: schakel tussen instances binnen Y-app. Elke tab heeft eigen routing-state, ERPNext-sessie en cache.</p>
+            <h3 data-i18n="howitworks.step3.title">Wissel via in-app tabs</h3>
+            <p data-i18n="howitworks.step3.desc">Geen browser-tabs: schakel tussen instances binnen Y-app. Elke tab heeft eigen routing-state, ERPNext-sessie en cache.</p>
           </div>
           <div class="step">
             <span class="step-number">4</span>
-            <h3>Employer of Employee mode</h3>
-            <p>Switch per instance tussen volledige modules (Employer) of een beperkte set voor medewerkers (Employee).</p>
+            <h3 data-i18n="howitworks.step4.title">Employer of Employee mode</h3>
+            <p data-i18n="howitworks.step4.desc">Switch per instance tussen volledige modules (Employer) of een beperkte set voor medewerkers (Employee).</p>
           </div>
         </div>
       </div>
 
       <!-- Security USP -->
       <div class="explainer highlight">
-        <h3>Multi-tenant en versleuteld — zelfs de host kan je credentials niet lezen</h3>
-        <p>Y-app draait op een zero-knowledge principe voor je ERPNext-credentials. Elke combinatie van e-mail, ERPNext-key en OAuth2-token wordt versleuteld in een server-side SQLite vault met een masterkey die <strong style="color: white;">alleen ontsleutelbaar is met jouw Y-app wachtwoord</strong>.</p>
+        <h3 data-i18n="explainer2.title">Multi-tenant en versleuteld — zelfs de host kan je credentials niet lezen</h3>
+        <p data-i18n="explainer2.intro">Y-app draait op een zero-knowledge principe voor je ERPNext-credentials. Elke combinatie van e-mail, ERPNext-key en OAuth2-token wordt versleuteld in een server-side SQLite vault met een masterkey die <strong style="color: white;">alleen ontsleutelbaar is met jouw Y-app wachtwoord</strong>.</p>
         <ul>
-          <li><strong style="color: white;">AES-256-GCM</strong> — authenticated encryption voor elke credential</li>
-          <li><strong style="color: white;">PBKDF2-SHA256, 210.000 iteraties</strong> — moderne OWASP-aanbeveling voor key derivation</li>
-          <li><strong style="color: white;">Masterkey-bestand met mode 600</strong> — alleen leesbaar voor het Y-app proces</li>
-          <li><strong style="color: white;">AsyncLocalStorage per request</strong> — credentials nooit gedeeld tussen gebruikers in dezelfde Node-proces</li>
-          <li><strong style="color: white;">Zelfs de host kan je data niet zien</strong> — zonder jouw login is de vault een blob willekeurige bytes</li>
-          <li><strong style="color: white;">Eén account, meerdere bedrijven</strong> — ideaal voor accountants, consultants, holdings en franchise-organisaties</li>
+          <li data-i18n="explainer2.li1"><strong style="color: white;">AES-256-GCM</strong> — authenticated encryption voor elke credential</li>
+          <li data-i18n="explainer2.li2"><strong style="color: white;">PBKDF2-SHA256, 210.000 iteraties</strong> — moderne OWASP-aanbeveling voor key derivation</li>
+          <li data-i18n="explainer2.li3"><strong style="color: white;">Masterkey-bestand met mode 600</strong> — alleen leesbaar voor het Y-app proces</li>
+          <li data-i18n="explainer2.li4"><strong style="color: white;">AsyncLocalStorage per request</strong> — credentials nooit gedeeld tussen gebruikers in dezelfde Node-proces</li>
+          <li data-i18n="explainer2.li5"><strong style="color: white;">Zelfs de host kan je data niet zien</strong> — zonder jouw login is de vault een blob willekeurige bytes</li>
+          <li data-i18n="explainer2.li6"><strong style="color: white;">Eén account, meerdere bedrijven</strong> — ideaal voor accountants, consultants, holdings en franchise-organisaties</li>
         </ul>
       </div>
 
       <!-- Features -->
       <div class="content-block">
-        <h2>Wat zit erin? — <span class="accent">de modules</span></h2>
-        <p>Y-app bundelt tientallen modules in zeven domeinen. Elke module is direct gekoppeld aan de actieve ERPNext-instance — geen losse logins, geen aparte URLs.</p>
+        <h2 data-i18n="modules.title">Wat zit erin? — <span class="accent">de modules</span></h2>
+        <p data-i18n="modules.intro">Y-app bundelt tientallen modules in zeven domeinen. Elke module is direct gekoppeld aan de actieve ERPNext-instance — geen losse logins, geen aparte URLs.</p>
 
         <!-- Communicatie -->
         <div class="feature-category">
-          <h3>Communicatie &amp; Samenwerking</h3>
+          <h3 data-i18n="modules.communicatie.title">Communicatie &amp; Samenwerking</h3>
           <div class="feature-list">
             <div class="feature-card">
-              <h4>Webmail</h4>
-              <p>Volwaardige IMAP/SMTP-client met caching, mapbeheer, bijlages, rich-text editor, sjablonen en handtekeningen. Wachtwoord-auth of Office 365 OAuth2.</p>
+              <h4 data-i18n="modules.communicatie.webmail.title">Webmail</h4>
+              <p data-i18n="modules.communicatie.webmail.desc">Volwaardige IMAP/SMTP-client met caching, mapbeheer, bijlages, rich-text editor, sjablonen en handtekeningen. Wachtwoord-auth of Office 365 OAuth2.</p>
             </div>
             <div class="feature-card">
-              <h4>Messenger</h4>
-              <p>Multi-platform chat: NextCloud Talk, MS Teams (Graph API), Telegram (Bot API). Eén overzicht voor alle gesprekken.</p>
+              <h4 data-i18n="modules.communicatie.messenger.title">Messenger</h4>
+              <p data-i18n="modules.communicatie.messenger.desc">Multi-platform chat: NextCloud Talk, MS Teams (Graph API), Telegram (Bot API). Eén overzicht voor alle gesprekken.</p>
             </div>
             <div class="feature-card">
-              <h4>Contacten</h4>
-              <p>Samengevoegde contactdatabase uit ERPNext en e-mail-historie. Eén bron voor klanten, leveranciers en collega's.</p>
+              <h4 data-i18n="modules.communicatie.contacten.title">Contacten</h4>
+              <p data-i18n="modules.communicatie.contacten.desc">Samengevoegde contactdatabase uit ERPNext en e-mail-historie. Eén bron voor klanten, leveranciers en collega's.</p>
             </div>
             <div class="feature-card">
-              <h4>Brieven</h4>
-              <p>Documentgeneratie met sjablonen: standaardbrief, offerte, orderbevestiging, betalingsherinnering.</p>
+              <h4 data-i18n="modules.communicatie.brieven.title">Brieven</h4>
+              <p data-i18n="modules.communicatie.brieven.desc">Documentgeneratie met sjablonen: standaardbrief, offerte, orderbevestiging, betalingsherinnering.</p>
             </div>
             <div class="feature-card">
-              <h4>Vergader-notulen</h4>
-              <p>Lokale opslag met agenda, actiepunten, deadlines en koppeling naar projecten en taken.</p>
+              <h4 data-i18n="modules.communicatie.vergadernotulen.title">Vergader-notulen</h4>
+              <p data-i18n="modules.communicatie.vergadernotulen.desc">Lokale opslag met agenda, actiepunten, deadlines en koppeling naar projecten en taken.</p>
             </div>
           </div>
         </div>
 
         <!-- Projecten -->
         <div class="feature-category">
-          <h3>Projecten &amp; Taken</h3>
+          <h3 data-i18n="modules.projecten.title">Projecten &amp; Taken</h3>
           <div class="feature-list">
             <div class="feature-card">
-              <h4>Projecten met kaartweergave</h4>
-              <p>Leaflet-kaart met projectlocaties, status-tracking en taken-tellers per project.</p>
+              <h4 data-i18n="modules.projecten.kaartweergave.title">Projecten met kaartweergave</h4>
+              <p data-i18n="modules.projecten.kaartweergave.desc">Leaflet-kaart met projectlocaties, status-tracking en taken-tellers per project.</p>
             </div>
             <div class="feature-card">
-              <h4>Taken</h4>
-              <p>Volledige CRUD met status, prioriteit, sortering, filtering en toewijzing aan medewerkers.</p>
+              <h4 data-i18n="modules.projecten.taken.title">Taken</h4>
+              <p data-i18n="modules.projecten.taken.desc">Volledige CRUD met status, prioriteit, sortering, filtering en toewijzing aan medewerkers.</p>
             </div>
             <div class="feature-card">
-              <h4>Subtaken</h4>
-              <p>Geneste taakstructuur voor het opdelen van complexere werkpakketten.</p>
+              <h4 data-i18n="modules.projecten.subtaken.title">Subtaken</h4>
+              <p data-i18n="modules.projecten.subtaken.desc">Geneste taakstructuur voor het opdelen van complexere werkpakketten.</p>
             </div>
             <div class="feature-card">
-              <h4>Planning (Gantt)</h4>
-              <p>Week- of meerwekenweergave met drag-and-drop, medewerker-filter, prioriteit-kleuren en vakantiedagen-integratie.</p>
+              <h4 data-i18n="modules.projecten.planning.title">Planning (Gantt)</h4>
+              <p data-i18n="modules.projecten.planning.desc">Week- of meerwekenweergave met drag-and-drop, medewerker-filter, prioriteit-kleuren en vakantiedagen-integratie.</p>
             </div>
             <div class="feature-card">
-              <h4>Offertes</h4>
-              <p>Quote-overzicht met filters en detail-view, direct gekoppeld aan ERPNext Quotation.</p>
+              <h4 data-i18n="modules.projecten.offertes.title">Offertes</h4>
+              <p data-i18n="modules.projecten.offertes.desc">Quote-overzicht met filters en detail-view, direct gekoppeld aan ERPNext Quotation.</p>
             </div>
             <div class="feature-card">
-              <h4>Verkooporders</h4>
-              <p>Orderbevestigingen en status-tracking — van quote tot delivery note.</p>
+              <h4 data-i18n="modules.projecten.verkooporders.title">Verkooporders</h4>
+              <p data-i18n="modules.projecten.verkooporders.desc">Orderbevestigingen en status-tracking — van quote tot delivery note.</p>
             </div>
             <div class="feature-card">
-              <h4>Leveringsnotas</h4>
-              <p>Delivery-status en klant-koppeling voor uitlevering en logistieke planning.</p>
+              <h4 data-i18n="modules.projecten.leveringsnotas.title">Leveringsnotas</h4>
+              <p data-i18n="modules.projecten.leveringsnotas.desc">Delivery-status en klant-koppeling voor uitlevering en logistieke planning.</p>
             </div>
             <div class="feature-card">
-              <h4>Leads</h4>
-              <p>Lead-management en kwalificatie, met opvolg-acties en conversie naar opportunity.</p>
+              <h4 data-i18n="modules.projecten.leads.title">Leads</h4>
+              <p data-i18n="modules.projecten.leads.desc">Lead-management en kwalificatie, met opvolg-acties en conversie naar opportunity.</p>
             </div>
             <div class="feature-card">
-              <h4>Todo</h4>
-              <p>Persoonlijke takenlijst per gebruiker — los van project-taken.</p>
+              <h4 data-i18n="modules.projecten.todo.title">Todo</h4>
+              <p data-i18n="modules.projecten.todo.desc">Persoonlijke takenlijst per gebruiker — los van project-taken.</p>
             </div>
           </div>
         </div>
 
         <!-- HR -->
         <div class="feature-category">
-          <h3>HR &amp; Personeel</h3>
+          <h3 data-i18n="modules.hr.title">HR &amp; Personeel</h3>
           <div class="feature-list">
             <div class="feature-card">
-              <h4>Medewerkers</h4>
-              <p>Volledig personeelsoverzicht met foto, contactgegevens, contracten en verlof-allocaties.</p>
+              <h4 data-i18n="modules.hr.medewerkers.title">Medewerkers</h4>
+              <p data-i18n="modules.hr.medewerkers.desc">Volledig personeelsoverzicht met foto, contactgegevens, contracten en verlof-allocaties.</p>
             </div>
             <div class="feature-card">
-              <h4>Vakantieplanning</h4>
-              <p>Verlofaanvragen en -allocaties in kalenderweergave, met overuren-registratie.</p>
+              <h4 data-i18n="modules.hr.vakantieplanning.title">Vakantieplanning</h4>
+              <p data-i18n="modules.hr.vakantieplanning.desc">Verlofaanvragen en -allocaties in kalenderweergave, met overuren-registratie.</p>
             </div>
             <div class="feature-card">
-              <h4>Declaraties</h4>
-              <p>Onkostendeclaraties indienen, accorderen en uitbetalen — incl. bijlagen.</p>
+              <h4 data-i18n="modules.hr.declaraties.title">Declaraties</h4>
+              <p data-i18n="modules.hr.declaraties.desc">Onkostendeclaraties indienen, accorderen en uitbetalen — incl. bijlagen.</p>
             </div>
             <div class="feature-card">
-              <h4>Tijdregistratie</h4>
-              <p>Uren boeken met project-koppeling, billable/niet-billable, "Nu"-knop en goedkeur-workflow.</p>
+              <h4 data-i18n="modules.hr.tijdregistratie.title">Tijdregistratie</h4>
+              <p data-i18n="modules.hr.tijdregistratie.desc">Uren boeken met project-koppeling, billable/niet-billable, "Nu"-knop en goedkeur-workflow.</p>
             </div>
             <div class="feature-card">
-              <h4>Loonadministratie</h4>
-              <p>Loonbelasting- en salaris-rapportages per periode.</p>
+              <h4 data-i18n="modules.hr.loonadministratie.title">Loonadministratie</h4>
+              <p data-i18n="modules.hr.loonadministratie.desc">Loonbelasting- en salaris-rapportages per periode.</p>
             </div>
           </div>
         </div>
 
         <!-- Financieel -->
         <div class="feature-category">
-          <h3>Financieel &amp; Boekhouding</h3>
+          <h3 data-i18n="modules.financieel.title">Financieel &amp; Boekhouding</h3>
           <div class="feature-list">
             <div class="feature-card">
-              <h4>Financieel dashboard</h4>
-              <p>Omzet-grafieken per project of medewerker, billable %, top-klanten en maandelijkse trends.</p>
+              <h4 data-i18n="modules.financieel.dashboard.title">Financieel dashboard</h4>
+              <p data-i18n="modules.financieel.dashboard.desc">Omzet-grafieken per project of medewerker, billable %, top-klanten en maandelijkse trends.</p>
             </div>
             <div class="feature-card">
-              <h4>Omzet</h4>
-              <p>Maandelijkse omzet-trends met year-over-year vergelijking.</p>
+              <h4 data-i18n="modules.financieel.omzet.title">Omzet</h4>
+              <p data-i18n="modules.financieel.omzet.desc">Maandelijkse omzet-trends met year-over-year vergelijking.</p>
             </div>
             <div class="feature-card">
-              <h4>Verkoopfacturen</h4>
-              <p>Openstaande facturen met ageing-analyse (0-30, 31-60, 61-90, 90+ dagen) en e-mail herinneringen.</p>
+              <h4 data-i18n="modules.financieel.verkoopfacturen.title">Verkoopfacturen</h4>
+              <p data-i18n="modules.financieel.verkoopfacturen.desc">Openstaande facturen met ageing-analyse (0-30, 31-60, 61-90, 90+ dagen) en e-mail herinneringen.</p>
             </div>
             <div class="feature-card">
-              <h4>Inkoopfacturen</h4>
-              <p>Leveranciers-facturen registreren, accorderen en betalen.</p>
+              <h4 data-i18n="modules.financieel.inkoopfacturen.title">Inkoopfacturen</h4>
+              <p data-i18n="modules.financieel.inkoopfacturen.desc">Leveranciers-facturen registreren, accorderen en betalen.</p>
             </div>
             <div class="feature-card">
-              <h4>Openstaand</h4>
-              <p>Debiteuren-analyse met betaalvoorwaarden en aanmaning-status.</p>
+              <h4 data-i18n="modules.financieel.openstaand.title">Openstaand</h4>
+              <p data-i18n="modules.financieel.openstaand.desc">Debiteuren-analyse met betaalvoorwaarden en aanmaning-status.</p>
             </div>
             <div class="feature-card">
-              <h4>Kostinzicht</h4>
-              <p>Kosten-analyse en trending per kostenplaats of project.</p>
+              <h4 data-i18n="modules.financieel.kostinzicht.title">Kostinzicht</h4>
+              <p data-i18n="modules.financieel.kostinzicht.desc">Kosten-analyse en trending per kostenplaats of project.</p>
             </div>
             <div class="feature-card">
-              <h4>Grootboek</h4>
-              <p>Rekeningschema en journaalposten — chart of accounts navigeerbaar.</p>
+              <h4 data-i18n="modules.financieel.grootboek.title">Grootboek</h4>
+              <p data-i18n="modules.financieel.grootboek.desc">Rekeningschema en journaalposten — chart of accounts navigeerbaar.</p>
             </div>
             <div class="feature-card">
-              <h4>Banktransacties</h4>
-              <p>Bankafschriften en reconciliatie met openstaande posten.</p>
+              <h4 data-i18n="modules.financieel.banktransacties.title">Banktransacties</h4>
+              <p data-i18n="modules.financieel.banktransacties.desc">Bankafschriften en reconciliatie met openstaande posten.</p>
             </div>
             <div class="feature-card">
-              <h4>Boekprogramma</h4>
-              <p>Journaalposten en memoriaalboekingen direct invoeren.</p>
+              <h4 data-i18n="modules.financieel.boekprogramma.title">Boekprogramma</h4>
+              <p data-i18n="modules.financieel.boekprogramma.desc">Journaalposten en memoriaalboekingen direct invoeren.</p>
             </div>
             <div class="feature-card">
-              <h4>BTW-aangifte</h4>
-              <p>Kwartaal-BTW berekening op basis van belastingrekeningen.</p>
+              <h4 data-i18n="modules.financieel.btw.title">BTW-aangifte</h4>
+              <p data-i18n="modules.financieel.btw.desc">Kwartaal-BTW berekening op basis van belastingrekeningen.</p>
             </div>
             <div class="feature-card">
-              <h4>Jaarrekening</h4>
-              <p>Jaarafsluiting, balans en winst-/verliesrekening.</p>
+              <h4 data-i18n="modules.financieel.jaarrekening.title">Jaarrekening</h4>
+              <p data-i18n="modules.financieel.jaarrekening.desc">Jaarafsluiting, balans en winst-/verliesrekening.</p>
             </div>
             <div class="feature-card">
-              <h4>Rentabiliteit</h4>
-              <p>Per-project en per-klant rentabiliteits-analyse.</p>
+              <h4 data-i18n="modules.financieel.rentabiliteit.title">Rentabiliteit</h4>
+              <p data-i18n="modules.financieel.rentabiliteit.desc">Per-project en per-klant rentabiliteits-analyse.</p>
             </div>
             <div class="feature-card">
-              <h4>Liquiditeit</h4>
-              <p>Cashflow-prognose op basis van openstaande posten en verwachte betalingen.</p>
+              <h4 data-i18n="modules.financieel.liquiditeit.title">Liquiditeit</h4>
+              <p data-i18n="modules.financieel.liquiditeit.desc">Cashflow-prognose op basis van openstaande posten en verwachte betalingen.</p>
             </div>
           </div>
         </div>
 
         <!-- Bestanden -->
         <div class="feature-category">
-          <h3>Bestanden &amp; Kennis</h3>
+          <h3 data-i18n="modules.bestanden.title">Bestanden &amp; Kennis</h3>
           <div class="feature-list">
             <div class="feature-card">
-              <h4>NextCloud Files</h4>
-              <p>WebDAV file-browser met mapnavigatie, preview, upload/download en deel-links.</p>
+              <h4 data-i18n="modules.bestanden.nextcloudfiles.title">NextCloud Files</h4>
+              <p data-i18n="modules.bestanden.nextcloudfiles.desc">WebDAV file-browser met mapnavigatie, preview, upload/download en deel-links.</p>
             </div>
             <div class="feature-card">
-              <h4>Wiki</h4>
-              <p>Markdown-kennisbank met zoeken, publish/unpublish en rich rendering.</p>
+              <h4 data-i18n="modules.bestanden.wiki.title">Wiki</h4>
+              <p data-i18n="modules.bestanden.wiki.desc">Markdown-kennisbank met zoeken, publish/unpublish en rich rendering.</p>
             </div>
           </div>
         </div>
 
         <!-- Agenda -->
         <div class="feature-category">
-          <h3>Agenda</h3>
+          <h3 data-i18n="modules.agenda.title">Agenda</h3>
           <div class="feature-list">
             <div class="feature-card">
-              <h4>Multi-source kalender</h4>
-              <p>ERPNext events, taken, verlof en urenstaten plus iCalendar (ICS) feeds en Office 365 OAuth2 — alles in één agenda.</p>
+              <h4 data-i18n="modules.agenda.multisource.title">Multi-source kalender</h4>
+              <p data-i18n="modules.agenda.multisource.desc">ERPNext events, taken, verlof en urenstaten plus iCalendar (ICS) feeds en Office 365 OAuth2 — alles in één agenda.</p>
             </div>
             <div class="feature-card">
-              <h4>Maand-, week- of dag-view</h4>
-              <p>Schakel tussen overzichten, filter op bron en plan vergaderingen op een klik.</p>
+              <h4 data-i18n="modules.agenda.view.title">Maand-, week- of dag-view</h4>
+              <p data-i18n="modules.agenda.view.desc">Schakel tussen overzichten, filter op bron en plan vergaderingen op een klik.</p>
             </div>
             <div class="feature-card">
-              <h4>Jitsi video-meetings</h4>
-              <p>Genereer een Jitsi Meet-link direct in de uitnodiging — geen extra accounts nodig.</p>
+              <h4 data-i18n="modules.agenda.jitsimeeting.title">Jitsi video-meetings</h4>
+              <p data-i18n="modules.agenda.jitsimeeting.desc">Genereer een Jitsi Meet-link direct in de uitnodiging — geen extra accounts nodig.</p>
             </div>
           </div>
         </div>
 
         <!-- Systeem -->
         <div class="feature-category">
-          <h3>Systeem &amp; DevOps</h3>
+          <h3 data-i18n="modules.systeem.title">Systeem &amp; DevOps</h3>
           <div class="feature-list">
             <div class="feature-card">
-              <h4>AI Agent (Claude)</h4>
-              <p>Claude AI-assistent met context over je ERPNext-data. SSE streaming, file-context en multi-turn conversaties.</p>
+              <h4 data-i18n="modules.systeem.aiagent.title">AI Agent (Claude)</h4>
+              <p data-i18n="modules.systeem.aiagent.desc">Claude AI-assistent met context over je ERPNext-data. SSE streaming, file-context en multi-turn conversaties.</p>
             </div>
             <div class="feature-card">
-              <h4>Terminal</h4>
-              <p>WebSocket-shell (PowerShell of bash) per actieve instance — handig voor admins en developers.</p>
+              <h4 data-i18n="modules.systeem.terminal.title">Terminal</h4>
+              <p data-i18n="modules.systeem.terminal.desc">WebSocket-shell (PowerShell of bash) per actieve instance — handig voor admins en developers.</p>
             </div>
             <div class="feature-card">
-              <h4>Health check</h4>
-              <p>Status-monitoring per instance, IMAP- en OAuth2-token validatie.</p>
+              <h4 data-i18n="modules.systeem.health.title">Health check</h4>
+              <p data-i18n="modules.systeem.health.desc">Status-monitoring per instance, IMAP- en OAuth2-token validatie.</p>
             </div>
             <div class="feature-card">
-              <h4>Global search (Ctrl+K)</h4>
-              <p>Zoek door alle ERPNext-records van de actieve instance — vanaf elk scherm.</p>
+              <h4 data-i18n="modules.systeem.search.title">Global search (Ctrl+K)</h4>
+              <p data-i18n="modules.systeem.search.desc">Zoek door alle ERPNext-records van de actieve instance — vanaf elk scherm.</p>
             </div>
             <div class="feature-card">
-              <h4>Instance management</h4>
-              <p>Zelf instances toevoegen, bewerken of verwijderen. Geen IT-ticket nodig.</p>
+              <h4 data-i18n="modules.systeem.instance.title">Instance management</h4>
+              <p data-i18n="modules.systeem.instance.desc">Zelf instances toevoegen, bewerken of verwijderen. Geen IT-ticket nodig.</p>
             </div>
             <div class="feature-card">
-              <h4>NL / EN i18n</h4>
-              <p>Volledig vertaald met 1190+ vertalingen, runtime taalwissel via react-i18next.</p>
+              <h4 data-i18n="modules.systeem.i18n.title">NL / EN i18n</h4>
+              <p data-i18n="modules.systeem.i18n.desc">Volledig vertaald met 1190+ vertalingen, runtime taalwissel via react-i18next.</p>
             </div>
           </div>
         </div>
@@ -592,71 +612,71 @@
 
       <!-- Employer vs Employee mode comparison -->
       <div class="content-block">
-        <h2>Employer vs Employee <span class="accent">mode</span></h2>
-        <p>Per instance kies je in een dropdown of de gebruiker werkgever-toegang krijgt (alle modules) of werknemer-toegang (beperkte set, focus op eigen taken).</p>
+        <h2 data-i18n="modetable.title">Employer vs Employee <span class="accent">mode</span></h2>
+        <p data-i18n="modetable.intro">Per instance kies je in een dropdown of de gebruiker werkgever-toegang krijgt (alle modules) of werknemer-toegang (beperkte set, focus op eigen taken).</p>
         <table class="mode-table">
           <thead>
             <tr>
-              <th>Module</th>
-              <th style="text-align: center;">Employer</th>
-              <th style="text-align: center;">Employee</th>
+              <th data-i18n="modetable.th.module">Module</th>
+              <th style="text-align: center;" data-i18n="modetable.th.employer">Employer</th>
+              <th style="text-align: center;" data-i18n="modetable.th.employee">Employee</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>Webmail, Messenger, Contacten</td><td style="text-align: center;" class="yes">Ja</td><td style="text-align: center;" class="yes">Ja</td></tr>
-            <tr><td>Projecten &amp; Taken &amp; Planning</td><td style="text-align: center;" class="yes">Ja</td><td style="text-align: center;" class="yes">Ja</td></tr>
-            <tr><td>Tijdregistratie &amp; Declaraties</td><td style="text-align: center;" class="yes">Ja</td><td style="text-align: center;" class="yes">Ja</td></tr>
-            <tr><td>Agenda &amp; Vergader-notulen</td><td style="text-align: center;" class="yes">Ja</td><td style="text-align: center;" class="yes">Ja</td></tr>
-            <tr><td>NextCloud Files &amp; Wiki</td><td style="text-align: center;" class="yes">Ja</td><td style="text-align: center;" class="yes">Ja</td></tr>
-            <tr><td>Offertes, Verkooporders, Leveringen, Leads</td><td style="text-align: center;" class="yes">Ja</td><td style="text-align: center;" class="no">Beperkt</td></tr>
-            <tr><td>Medewerkers, Vakantieplanning, Loonadministratie</td><td style="text-align: center;" class="yes">Ja</td><td style="text-align: center;" class="no">Nee</td></tr>
-            <tr><td>Financieel dashboard, Verkoop-/Inkoopfacturen, Openstaand</td><td style="text-align: center;" class="yes">Ja</td><td style="text-align: center;" class="no">Nee</td></tr>
-            <tr><td>Grootboek, Banktransacties, BTW, Jaarrekening</td><td style="text-align: center;" class="yes">Ja</td><td style="text-align: center;" class="no">Nee</td></tr>
-            <tr><td>Rentabiliteit &amp; Liquiditeit</td><td style="text-align: center;" class="yes">Ja</td><td style="text-align: center;" class="no">Nee</td></tr>
-            <tr><td>Terminal &amp; AI Agent</td><td style="text-align: center;" class="yes">Ja</td><td style="text-align: center;" class="no">Nee</td></tr>
+            <tr><td data-i18n="modetable.row1.module">Webmail, Messenger, Contacten</td><td style="text-align: center;" class="yes" data-i18n="modetable.row1.employer">Ja</td><td style="text-align: center;" class="yes" data-i18n="modetable.row1.employee">Ja</td></tr>
+            <tr><td data-i18n="modetable.row2.module">Projecten &amp; Taken &amp; Planning</td><td style="text-align: center;" class="yes" data-i18n="modetable.row2.employer">Ja</td><td style="text-align: center;" class="yes" data-i18n="modetable.row2.employee">Ja</td></tr>
+            <tr><td data-i18n="modetable.row3.module">Tijdregistratie &amp; Declaraties</td><td style="text-align: center;" class="yes" data-i18n="modetable.row3.employer">Ja</td><td style="text-align: center;" class="yes" data-i18n="modetable.row3.employee">Ja</td></tr>
+            <tr><td data-i18n="modetable.row4.module">Agenda &amp; Vergader-notulen</td><td style="text-align: center;" class="yes" data-i18n="modetable.row4.employer">Ja</td><td style="text-align: center;" class="yes" data-i18n="modetable.row4.employee">Ja</td></tr>
+            <tr><td data-i18n="modetable.row5.module">NextCloud Files &amp; Wiki</td><td style="text-align: center;" class="yes" data-i18n="modetable.row5.employer">Ja</td><td style="text-align: center;" class="yes" data-i18n="modetable.row5.employee">Ja</td></tr>
+            <tr><td data-i18n="modetable.row6.module">Offertes, Verkooporders, Leveringen, Leads</td><td style="text-align: center;" class="yes" data-i18n="modetable.row6.employer">Ja</td><td style="text-align: center;" class="no" data-i18n="modetable.row6.employee">Beperkt</td></tr>
+            <tr><td data-i18n="modetable.row7.module">Medewerkers, Vakantieplanning, Loonadministratie</td><td style="text-align: center;" class="yes" data-i18n="modetable.row7.employer">Ja</td><td style="text-align: center;" class="no" data-i18n="modetable.row7.employee">Nee</td></tr>
+            <tr><td data-i18n="modetable.row8.module">Financieel dashboard, Verkoop-/Inkoopfacturen, Openstaand</td><td style="text-align: center;" class="yes" data-i18n="modetable.row8.employer">Ja</td><td style="text-align: center;" class="no" data-i18n="modetable.row8.employee">Nee</td></tr>
+            <tr><td data-i18n="modetable.row9.module">Grootboek, Banktransacties, BTW, Jaarrekening</td><td style="text-align: center;" class="yes" data-i18n="modetable.row9.employer">Ja</td><td style="text-align: center;" class="no" data-i18n="modetable.row9.employee">Nee</td></tr>
+            <tr><td data-i18n="modetable.row10.module">Rentabiliteit &amp; Liquiditeit</td><td style="text-align: center;" class="yes" data-i18n="modetable.row10.employer">Ja</td><td style="text-align: center;" class="no" data-i18n="modetable.row10.employee">Nee</td></tr>
+            <tr><td data-i18n="modetable.row11.module">Terminal &amp; AI Agent</td><td style="text-align: center;" class="yes" data-i18n="modetable.row11.employer">Ja</td><td style="text-align: center;" class="no" data-i18n="modetable.row11.employee">Nee</td></tr>
           </tbody>
         </table>
       </div>
 
       <!-- Integrations -->
       <div class="content-block">
-        <h2>Integraties</h2>
-        <p>Y-app praat met de tools die je waarschijnlijk al gebruikt — geen lock-in, geen migratie.</p>
+        <h2 data-i18n="integrations.title">Integraties</h2>
+        <p data-i18n="integrations.intro">Y-app praat met de tools die je waarschijnlijk al gebruikt — geen lock-in, geen migratie.</p>
         <div class="integrations-grid">
           <div class="integration-card">
             <h4>ERPNext</h4>
-            <p>REST API en session bridge — alle DocTypes beschikbaar.</p>
+            <p data-i18n="integrations.erpnext.desc">REST API en session bridge — alle DocTypes beschikbaar.</p>
           </div>
           <div class="integration-card">
             <h4>Office 365</h4>
-            <p>OAuth2 + Microsoft Graph API voor mail en agenda.</p>
+            <p data-i18n="integrations.office365.desc">OAuth2 + Microsoft Graph API voor mail en agenda.</p>
           </div>
           <div class="integration-card">
             <h4>NextCloud</h4>
-            <p>WebDAV + OCS API voor files, talk en deel-links.</p>
+            <p data-i18n="integrations.nextcloud.desc">WebDAV + OCS API voor files, talk en deel-links.</p>
           </div>
           <div class="integration-card">
             <h4>Telegram</h4>
-            <p>Bot API voor zakelijke chat en notificaties.</p>
+            <p data-i18n="integrations.telegram.desc">Bot API voor zakelijke chat en notificaties.</p>
           </div>
           <div class="integration-card">
             <h4>Jitsi Meet</h4>
-            <p>URL-generatie voor video-meetings, zonder account.</p>
+            <p data-i18n="integrations.jitsi.desc">URL-generatie voor video-meetings, zonder account.</p>
           </div>
           <div class="integration-card">
             <h4>Claude AI</h4>
-            <p>CLI-spawning + SSE streaming met ERPNext-context.</p>
+            <p data-i18n="integrations.claudeai.desc">CLI-spawning + SSE streaming met ERPNext-context.</p>
           </div>
           <div class="integration-card">
             <h4>iCalendar (ICS)</h4>
-            <p>Lees externe feeds in de Y-app agenda.</p>
+            <p data-i18n="integrations.ical.desc">Lees externe feeds in de Y-app agenda.</p>
           </div>
         </div>
       </div>
 
       <!-- Tech stack -->
       <div class="content-block">
-        <h2>Technologie</h2>
+        <h2 data-i18n="techstack.title">Technologie</h2>
         <div class="tech-stack">
           <span class="tech-tag">React 19</span>
           <span class="tech-tag">TypeScript</span>
@@ -679,16 +699,16 @@
           <span class="tech-tag">tsx --watch</span>
           <span class="tech-tag">nginx</span>
         </div>
-        <p>React 19 + TypeScript + Vite 7 + TailwindCSS 4 op de frontend, Node.js 20 + Express 4 + WebSocket op de backend. Authenticatie via bcryptjs (12 rounds), HttpOnly cookies en AsyncLocalStorage voor per-request credential scoping. Versleuteling met AES-256-GCM en PBKDF2-SHA256 (210k iteraties), gegevens in een SQLite-database (WAL mode). Productie draait onder PM2, achter een nginx reverse proxy met TLS termination, WebSocket upgrade en statische dist-serving. Development via tsx --watch.</p>
+        <p data-i18n="techstack.summary">React 19 + TypeScript + Vite 7 + TailwindCSS 4 op de frontend, Node.js 20 + Express 4 + WebSocket op de backend. Authenticatie via bcryptjs (12 rounds), HttpOnly cookies en AsyncLocalStorage voor per-request credential scoping. Versleuteling met AES-256-GCM en PBKDF2-SHA256 (210k iteraties), gegevens in een SQLite-database (WAL mode). Productie draait onder PM2, achter een nginx reverse proxy met TLS termination, WebSocket upgrade en statische dist-serving. Development via tsx --watch.</p>
       </div>
 
       <!-- CTAs -->
       <div class="content-block">
         <div class="cta-links">
-          <a href="https://y-app.impertio.app" target="_blank" rel="noopener" class="cta-primary">Live demo &rarr;</a>
+          <a href="https://y-app.impertio.app" target="_blank" rel="noopener" class="cta-primary" data-i18n="cta.demo">Live demo &rarr;</a>
           <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" class="cta-secondary">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-            <span>GitHub repository</span>
+            <span data-i18n="cta.github">GitHub repository</span>
           </a>
         </div>
       </div>

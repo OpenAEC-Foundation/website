@@ -10,7 +10,14 @@
   },
   "what": {
     "title": "Open Calculations Studio nedir?",
-    "desc": "Open Calculations Studio, yapısal hesaplamalar için modern bir açık kaynak araçtır — <strong style=\"color: white;\">CalcPAD'den ilham alarak</strong>, Hollandalı ve Avrupalı yapı mühendisleri arasında yaygın olarak kullanılan araç. Tüm hesaplama motorunu CalcPAD syntax desteği ile TypeScript'te yeniden inşa ettik ve hesaplamaların doğrudan BIM modelleriyle entegre olması için canlı IFC ve IFCX dışa aktarımı ekledik."
+    "desc": "Open Calculations Studio, yapısal hesaplamalar için modern bir açık kaynak araçtır — <strong style=\"color: white;\">CalcPAD'den ilham alarak</strong>, Hollandalı ve Avrupalı yapı mühendisleri arasında yaygın olarak kullanılan araç. Tüm hesaplama motorunu CalcPAD syntax desteği ile TypeScript'te yeniden inşa ettik ve hesaplamaların doğrudan BIM modelleriyle entegre olması için canlı IFC ve IFCX dışa aktarımı ekledik.",
+    "list1": "<strong style=\"color: white;\">CalcPAD uyumlu</strong> — mevcut <code>.cpd</code> dosyaları değişiklik gerektirmeden çalışır",
+    "list2": "<strong style=\"color: white;\">Birim farkındalıklı</strong> — mathjs ile <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code>",
+    "list3": "<strong style=\"color: white;\">Canlı IFCX + IFC4x3 STEP dışa aktarımı</strong> — hesap doğrudan BIM elemanına dönüşür",
+    "list4": "<strong style=\"color: white;\">KaTeX ile görüntüleme</strong> — gerçek kesirler, alt/üst simgeler ve Yunan harfleriyle matematiksel formüller",
+    "list5": "<strong style=\"color: white;\">SVG çizimler</strong> — parametrik şemalar doğrudan hesabın içinde",
+    "list6": "<strong style=\"color: white;\">Yük durumları</strong> — ayrı sekmelerde SLS / ULS / deprem",
+    "list7": "<strong style=\"color: white;\">Kütüphane olarak kullanılabilir</strong> — FEM uygulamalarına veya yönetmelik kontrollerine gömülebilir"
   },
   "why": {
     "title": "Neden Open <span class=\"accent\">Calculations</span> Studio?",
@@ -23,19 +30,58 @@
   },
   "features": {
     "title": "Özellikler",
-    "units": { "title": "Birimli formüller", "desc": "<code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> ve tüm SI birimleriyle çalışın. Mathjs birim-farkında aritmetik ve otomatik basitleştirme (<code>b*h</code> → <code>mm²</code>) sağlar." },
-    "katex": { "title": "Matematiksel dizgi", "desc": "Gerçek kesirler, üstler, altlar ve Yunan harfleri (σ, ε, ρ, Φ, ψ) ile KaTeX render. Formüller <code>isim = formül = doldurulmuş değerler = sonuç</code>'u tek satırda gösterir." },
-    "editor": { "title": "Canlı önizleme", "desc": "<code>.cpd</code> için sözdizimi vurgulamalı split-pane editör (CodeMirror 6). Yazarken debounced önizleme yeniden render eder." },
-    "loadcases": { "title": "Yük durumları", "desc": "SLS / ULS / deprem vb. için sekmeler, her biri kendi giriş değişkeni prompt değerleri ile. Tek belge, birden fazla senaryo." },
-    "calcpad": { "title": "CalcPAD uyumlu", "desc": "Mevcut <code>.cpd</code> dosyalarıyla tamamen uyumlu: <code>#if/#else if/#end if</code>, <code>#repeat</code>, <code>#for</code>, <code>#def</code> makroları, <code>#include</code>, <code>$Plot</code>, matrisler, lookuplar." },
-    "ifc": { "title": "IFC4x3 STEP dışa aktarma", "desc": "Geleneksel değişken isimleri (<code>b_fdn</code>, <code>l_fdn</code>, <code>D_paal</code>, <code>M_Ed</code>, <code>R_c_d</code>) aracılığıyla yapısal elemanları algılar. Geçerli Project → Site → Building → Storey iskeleti oluşturur." },
-    "ifcx": { "title": "IFCX JSON-LD", "desc": "Canlı IFCX (draft) dışa aktarma — hesaplamalar, standartlar ve meta veriler için ad alanları olan IFC'nin yeni nesli. Hesaplama ve BIM modeli tek formatta." },
-    "svg": { "title": "SVG çizimleri", "desc": "Değer interpolasyonu ile parametrik SVG makroları. <code>@img(file.svg)</code> dış çizimleri satır içinde gömer. Elle yazılmış SVG için <code>@svg ... @end</code>." },
-    "viewer": { "title": "IFC sekmesi", "desc": "Sözdizimi vurgulamalı yerleşik STEP görüntüleyici ve IFCX JSON görüntüleyici. Tıklanabilir entity türleri doğrudan buildingSMART belgelerine bağlanır." },
-    "gef": { "title": "GEF yükleme", "desc": "<code>@gef name</code> yükleme — temel hesaplamalarında doğrudan sondaj verilerini kullanın. Open Geotechniek Studio ile entegre olur." },
-    "themes": { "title": "5 tema", "desc": "Light, Forge, OpenAEC, Blueprint ve Contrast — tümü OpenAEC tasarım token'ları üzerine inşa edilmiştir. Ortamınız için en iyi çalışanı seçin." },
-    "pdf": { "title": "PDF dışa aktarma", "desc": "Headless önizleme ile Tauri shell aracılığıyla baskıya hazır PDF dışa aktarma. Proje dosyası veya üçüncü taraf incelemesi için hazır." },
-    "library": { "title": "Kütüphane modu", "desc": "<code>@ifc-calc/core</code>'u TypeScript kütüphanesi olarak kullanın: FEM uygulamalarından veya code-checking'den ayrıştırın, değerlendirin, render edin, IFC/IFCX oluşturun." }
+    "units": {
+      "title": "Birimli formüller",
+      "desc": "<code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> ve tüm SI birimleriyle çalışın. Mathjs birim-farkında aritmetik ve otomatik basitleştirme (<code>b*h</code> → <code>mm²</code>) sağlar."
+    },
+    "katex": {
+      "title": "Matematiksel dizgi",
+      "desc": "Gerçek kesirler, üstler, altlar ve Yunan harfleri (σ, ε, ρ, Φ, ψ) ile KaTeX render. Formüller <code>isim = formül = doldurulmuş değerler = sonuç</code>'u tek satırda gösterir."
+    },
+    "editor": {
+      "title": "Canlı önizleme",
+      "desc": "<code>.cpd</code> için sözdizimi vurgulamalı split-pane editör (CodeMirror 6). Yazarken debounced önizleme yeniden render eder."
+    },
+    "loadcases": {
+      "title": "Yük durumları",
+      "desc": "SLS / ULS / deprem vb. için sekmeler, her biri kendi giriş değişkeni prompt değerleri ile. Tek belge, birden fazla senaryo."
+    },
+    "calcpad": {
+      "title": "CalcPAD uyumlu",
+      "desc": "Mevcut <code>.cpd</code> dosyalarıyla tamamen uyumlu: <code>#if/#else if/#end if</code>, <code>#repeat</code>, <code>#for</code>, <code>#def</code> makroları, <code>#include</code>, <code>$Plot</code>, matrisler, lookuplar."
+    },
+    "ifc": {
+      "title": "IFC4x3 STEP dışa aktarma",
+      "desc": "Geleneksel değişken isimleri (<code>b_fdn</code>, <code>l_fdn</code>, <code>D_paal</code>, <code>M_Ed</code>, <code>R_c_d</code>) aracılığıyla yapısal elemanları algılar. Geçerli Project → Site → Building → Storey iskeleti oluşturur."
+    },
+    "ifcx": {
+      "title": "IFCX JSON-LD",
+      "desc": "Canlı IFCX (draft) dışa aktarma — hesaplamalar, standartlar ve meta veriler için ad alanları olan IFC'nin yeni nesli. Hesaplama ve BIM modeli tek formatta."
+    },
+    "svg": {
+      "title": "SVG çizimleri",
+      "desc": "Değer interpolasyonu ile parametrik SVG makroları. <code>@img(file.svg)</code> dış çizimleri satır içinde gömer. Elle yazılmış SVG için <code>@svg ... @end</code>."
+    },
+    "viewer": {
+      "title": "IFC sekmesi",
+      "desc": "Sözdizimi vurgulamalı yerleşik STEP görüntüleyici ve IFCX JSON görüntüleyici. Tıklanabilir entity türleri doğrudan buildingSMART belgelerine bağlanır."
+    },
+    "gef": {
+      "title": "GEF yükleme",
+      "desc": "<code>@gef name</code> yükleme — temel hesaplamalarında doğrudan sondaj verilerini kullanın. Open Geotechniek Studio ile entegre olur."
+    },
+    "themes": {
+      "title": "5 tema",
+      "desc": "Light, Forge, OpenAEC, Blueprint ve Contrast — tümü OpenAEC tasarım token'ları üzerine inşa edilmiştir. Ortamınız için en iyi çalışanı seçin."
+    },
+    "pdf": {
+      "title": "PDF dışa aktarma",
+      "desc": "Headless önizleme ile Tauri shell aracılığıyla baskıya hazır PDF dışa aktarma. Proje dosyası veya üçüncü taraf incelemesi için hazır."
+    },
+    "library": {
+      "title": "Kütüphane modu",
+      "desc": "<code>@ifc-calc/core</code>'u TypeScript kütüphanesi olarak kullanın: FEM uygulamalarından veya code-checking'den ayrıştırın, değerlendirin, render edin, IFC/IFCX oluşturun."
+    }
   },
   "compat": {
     "title": "CalcPAD uyumluluğu",
@@ -43,10 +89,22 @@
   },
   "useCases": {
     "title": "Kullanıcı profilleri",
-    "structural": { "title": "Yapı mühendisleri", "desc": "Kirişler, kolonlar, temeller için el hesaplamaları — okunabilir bir belgede doğrudan. Mevcut CalcPAD dosyalarınızı taşıma olmadan açın." },
-    "bim": { "title": "BIM modelleyicileri", "desc": "Hesaplamaları doğrudan IFC elemanlarına bağlayın. Değerlerin elle aktarımı yok — kontrol modelde yaşar." },
-    "education": { "title": "Eğitim", "desc": "Yapı mühendisliği öğrencileri uygulamada karşılaşacakları gerçek sözdizimi ile hesaplamayı öğrenir. Açık kaynak — lisans maliyeti yok." },
-    "fem": { "title": "FEM geliştiricileri", "desc": "Kendi FEM uygulamanızda pre/post-processing veya code-checking için <code>@ifc-calc/core</code>'u gömün. TypeScript kütüphanesi, npm-installable." }
+    "structural": {
+      "title": "Yapı mühendisleri",
+      "desc": "Kirişler, kolonlar, temeller için el hesaplamaları — okunabilir bir belgede doğrudan. Mevcut CalcPAD dosyalarınızı taşıma olmadan açın."
+    },
+    "bim": {
+      "title": "BIM modelleyicileri",
+      "desc": "Hesaplamaları doğrudan IFC elemanlarına bağlayın. Değerlerin elle aktarımı yok — kontrol modelde yaşar."
+    },
+    "education": {
+      "title": "Eğitim",
+      "desc": "Yapı mühendisliği öğrencileri uygulamada karşılaşacakları gerçek sözdizimi ile hesaplamayı öğrenir. Açık kaynak — lisans maliyeti yok."
+    },
+    "fem": {
+      "title": "FEM geliştiricileri",
+      "desc": "Kendi FEM uygulamanızda pre/post-processing veya code-checking için <code>@ifc-calc/core</code>'u gömün. TypeScript kütüphanesi, npm-installable."
+    }
   },
   "tech": {
     "title": "Teknoloji",

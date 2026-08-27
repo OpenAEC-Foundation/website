@@ -10,7 +10,14 @@
   },
   "what": {
     "title": "Qu'est-ce qu'Open Calculations Studio ?",
-    "desc": "Open Calculations Studio est un outil moderne et open source pour les calculs structuraux — <strong style=\"color: white;\">inspiré de CalcPAD</strong>, l'outil largement utilisé par les ingénieurs structure néerlandais et européens. Nous avons reconstruit tout le moteur de calcul en TypeScript avec prise en charge de la syntaxe CalcPAD, et ajouté l'export IFC et IFCX en direct pour que les calculs s'intègrent directement avec les modèles BIM."
+    "desc": "Open Calculations Studio est un outil moderne et open source pour les calculs structuraux — <strong style=\"color: white;\">inspiré de CalcPAD</strong>, l'outil largement utilisé par les ingénieurs structure néerlandais et européens. Nous avons reconstruit tout le moteur de calcul en TypeScript avec prise en charge de la syntaxe CalcPAD, et ajouté l'export IFC et IFCX en direct pour que les calculs s'intègrent directement avec les modèles BIM.",
+    "list1": "<strong style=\"color: white;\">Compatible CalcPAD</strong> — les fichiers <code>.cpd</code> existants fonctionnent sans modification",
+    "list2": "<strong style=\"color: white;\">Gestion des unités</strong> — <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> via mathjs",
+    "list3": "<strong style=\"color: white;\">Export IFCX + IFC4x3 STEP en direct</strong> — le calcul devient immédiatement un élément BIM",
+    "list4": "<strong style=\"color: white;\">Rendu KaTeX</strong> — formules mathématiques avec vraies fractions, indices/exposants et lettres grecques",
+    "list5": "<strong style=\"color: white;\">Dessins SVG</strong> — schémas paramétriques directement dans le calcul",
+    "list6": "<strong style=\"color: white;\">Cas de charge</strong> — ELS / ELU / sismique dans des onglets distincts",
+    "list7": "<strong style=\"color: white;\">Utilisable comme bibliothèque</strong> — à intégrer dans des applications EF ou des vérifications normatives"
   },
   "why": {
     "title": "Pourquoi Open <span class=\"accent\">Calculations</span> Studio ?",
@@ -23,19 +30,58 @@
   },
   "features": {
     "title": "Fonctionnalités",
-    "units": { "title": "Formules avec unités", "desc": "Travaillez avec <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> et toutes les unités SI. Mathjs gère l'arithmétique sensible aux unités et la simplification automatique (<code>b*h</code> → <code>mm²</code>)." },
-    "katex": { "title": "Mise en forme mathématique", "desc": "Rendu KaTeX avec vraies fractions, exposants, indices et lettres grecques (σ, ε, ρ, Φ, ψ). Les formules affichent <code>nom = formule = valeurs remplies = résultat</code> sur une ligne." },
-    "editor": { "title": "Aperçu en direct", "desc": "Éditeur en split-pane (CodeMirror 6) avec coloration syntaxique pour <code>.cpd</code>. L'aperçu se met à jour pendant que vous tapez." },
-    "loadcases": { "title": "Cas de charge", "desc": "Onglets pour ELS / ELU / sismique, etc., chacun avec ses propres valeurs pour les variables d'entrée. Un document, plusieurs scénarios." },
-    "calcpad": { "title": "Compatible CalcPAD", "desc": "Entièrement compatible avec les fichiers <code>.cpd</code> existants : <code>#if/#else if/#end if</code>, <code>#repeat</code>, <code>#for</code>, macros <code>#def</code>, <code>#include</code>, <code>$Plot</code>, matrices, lookups." },
-    "ifc": { "title": "Export IFC4x3 STEP", "desc": "Détecte les éléments structuraux via des noms de variables conventionnels (<code>b_fdn</code>, <code>l_fdn</code>, <code>D_paal</code>, <code>M_Ed</code>, <code>R_c_d</code>). Génère un squelette valide Project → Site → Building → Storey." },
-    "ifcx": { "title": "IFCX JSON-LD", "desc": "Export IFCX en direct (draft) — la nouvelle génération d'IFC avec espaces de noms pour calculs, normes et métadonnées. Calcul et modèle BIM dans un seul format." },
-    "svg": { "title": "Dessins SVG", "desc": "Macros SVG paramétriques avec interpolation de valeurs. <code>@img(file.svg)</code> intègre des dessins externes en ligne. <code>@svg ... @end</code> pour du SVG manuscrit." },
-    "viewer": { "title": "Onglet IFC", "desc": "Visualiseur STEP et visualiseur IFCX JSON intégrés avec coloration syntaxique. Les types d'entités sont cliquables et renvoient à la documentation buildingSMART." },
-    "gef": { "title": "Import GEF", "desc": "<code>@gef name</code> — utilisez les données de sondage directement dans les calculs de fondation. S'intègre avec Open Geotechniek Studio." },
-    "themes": { "title": "5 thèmes", "desc": "Light, Forge, OpenAEC, Blueprint et Contrast — tous basés sur les design tokens OpenAEC. Choisissez ce qui fonctionne le mieux pour vous." },
-    "pdf": { "title": "Export PDF", "desc": "Export PDF prêt à imprimer via shell Tauri avec aperçu headless. Prêt pour le dossier projet ou une revue tierce." },
-    "library": { "title": "Mode bibliothèque", "desc": "Utilisez <code>@ifc-calc/core</code> en tant que bibliothèque TypeScript : parser, évaluer, rendre, générer IFC/IFCX depuis vos applications FEM ou contrôles normatifs." }
+    "units": {
+      "title": "Formules avec unités",
+      "desc": "Travaillez avec <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> et toutes les unités SI. Mathjs gère l'arithmétique sensible aux unités et la simplification automatique (<code>b*h</code> → <code>mm²</code>)."
+    },
+    "katex": {
+      "title": "Mise en forme mathématique",
+      "desc": "Rendu KaTeX avec vraies fractions, exposants, indices et lettres grecques (σ, ε, ρ, Φ, ψ). Les formules affichent <code>nom = formule = valeurs remplies = résultat</code> sur une ligne."
+    },
+    "editor": {
+      "title": "Aperçu en direct",
+      "desc": "Éditeur en split-pane (CodeMirror 6) avec coloration syntaxique pour <code>.cpd</code>. L'aperçu se met à jour pendant que vous tapez."
+    },
+    "loadcases": {
+      "title": "Cas de charge",
+      "desc": "Onglets pour ELS / ELU / sismique, etc., chacun avec ses propres valeurs pour les variables d'entrée. Un document, plusieurs scénarios."
+    },
+    "calcpad": {
+      "title": "Compatible CalcPAD",
+      "desc": "Entièrement compatible avec les fichiers <code>.cpd</code> existants : <code>#if/#else if/#end if</code>, <code>#repeat</code>, <code>#for</code>, macros <code>#def</code>, <code>#include</code>, <code>$Plot</code>, matrices, lookups."
+    },
+    "ifc": {
+      "title": "Export IFC4x3 STEP",
+      "desc": "Détecte les éléments structuraux via des noms de variables conventionnels (<code>b_fdn</code>, <code>l_fdn</code>, <code>D_paal</code>, <code>M_Ed</code>, <code>R_c_d</code>). Génère un squelette valide Project → Site → Building → Storey."
+    },
+    "ifcx": {
+      "title": "IFCX JSON-LD",
+      "desc": "Export IFCX en direct (draft) — la nouvelle génération d'IFC avec espaces de noms pour calculs, normes et métadonnées. Calcul et modèle BIM dans un seul format."
+    },
+    "svg": {
+      "title": "Dessins SVG",
+      "desc": "Macros SVG paramétriques avec interpolation de valeurs. <code>@img(file.svg)</code> intègre des dessins externes en ligne. <code>@svg ... @end</code> pour du SVG manuscrit."
+    },
+    "viewer": {
+      "title": "Onglet IFC",
+      "desc": "Visualiseur STEP et visualiseur IFCX JSON intégrés avec coloration syntaxique. Les types d'entités sont cliquables et renvoient à la documentation buildingSMART."
+    },
+    "gef": {
+      "title": "Import GEF",
+      "desc": "<code>@gef name</code> — utilisez les données de sondage directement dans les calculs de fondation. S'intègre avec Open Geotechniek Studio."
+    },
+    "themes": {
+      "title": "5 thèmes",
+      "desc": "Light, Forge, OpenAEC, Blueprint et Contrast — tous basés sur les design tokens OpenAEC. Choisissez ce qui fonctionne le mieux pour vous."
+    },
+    "pdf": {
+      "title": "Export PDF",
+      "desc": "Export PDF prêt à imprimer via shell Tauri avec aperçu headless. Prêt pour le dossier projet ou une revue tierce."
+    },
+    "library": {
+      "title": "Mode bibliothèque",
+      "desc": "Utilisez <code>@ifc-calc/core</code> en tant que bibliothèque TypeScript : parser, évaluer, rendre, générer IFC/IFCX depuis vos applications FEM ou contrôles normatifs."
+    }
   },
   "compat": {
     "title": "Compatibilité CalcPAD",
@@ -43,10 +89,22 @@
   },
   "useCases": {
     "title": "Profils d'utilisateurs",
-    "structural": { "title": "Ingénieurs structure", "desc": "Calculs manuels pour poutres, poteaux, fondations — directement dans un document lisible. Ouvrez vos fichiers CalcPAD existants sans migration." },
-    "bim": { "title": "Modeleurs BIM", "desc": "Liez les calculs directement aux éléments IFC. Pas de transfert manuel de valeurs — la vérification vit dans le modèle." },
-    "education": { "title": "Enseignement &amp; formation", "desc": "Les étudiants en génie civil apprennent à calculer avec la vraie syntaxe qu'ils rencontreront en pratique. Open source — pas de frais de licence." },
-    "fem": { "title": "Développeurs FEM", "desc": "Intégrez <code>@ifc-calc/core</code> dans votre propre application FEM pour pré/post-traitement ou contrôle normatif. Bibliothèque TypeScript, installable via npm." }
+    "structural": {
+      "title": "Ingénieurs structure",
+      "desc": "Calculs manuels pour poutres, poteaux, fondations — directement dans un document lisible. Ouvrez vos fichiers CalcPAD existants sans migration."
+    },
+    "bim": {
+      "title": "Modeleurs BIM",
+      "desc": "Liez les calculs directement aux éléments IFC. Pas de transfert manuel de valeurs — la vérification vit dans le modèle."
+    },
+    "education": {
+      "title": "Enseignement &amp; formation",
+      "desc": "Les étudiants en génie civil apprennent à calculer avec la vraie syntaxe qu'ils rencontreront en pratique. Open source — pas de frais de licence."
+    },
+    "fem": {
+      "title": "Développeurs FEM",
+      "desc": "Intégrez <code>@ifc-calc/core</code> dans votre propre application FEM pour pré/post-traitement ou contrôle normatif. Bibliothèque TypeScript, installable via npm."
+    }
   },
   "tech": {
     "title": "Technologie",

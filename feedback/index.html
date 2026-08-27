@@ -353,8 +353,9 @@
     <div id="msg-success" class="message message-success">
       <span class="message-icon">&#10003;</span>
       <div>
-        <strong>Bedankt voor je feedback!</strong><br />
-        Je feedback is succesvol verstuurd. We nemen het zo snel mogelijk in behandeling.
+        <strong>Nog één stap</strong><br />
+        Je e-mailprogramma opent met de feedback er al in. Verstuur die mail om het af te ronden — dan komt het binnen op
+        <a href="mailto:info@open-aec.com">info@open-aec.com</a>.
       </div>
     </div>
     <div id="msg-error" class="message message-error">
@@ -546,28 +547,26 @@
       submitText.style.display = 'none';
       submitSpinner.style.display = 'inline-flex';
 
+      // De site is statisch: /api/feedback bestond niet en gaf altijd een 404.
+      // We stellen daarom een mail op naar info@open-aec.com die de bezoeker
+      // zelf verstuurt — de enige route die zonder backend gegarandeerd aankomt.
       try {
-        const response = await fetch('/api/feedback', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
+        const lines = [
+          'Feedback via open-aec.com', '',
+          'Tool: ' + data.tool,
+          'Soort: ' + data.type,
+          'Titel: ' + data.titel,
+          '', 'Omschrijving:', data.beschrijving,
+        ];
+        if (data.email) lines.push('', 'Afzender: ' + data.email);
+        const href = 'mailto:info@open-aec.com'
+          + '?subject=' + encodeURIComponent('[' + data.type + '] ' + data.titel)
+          + '&body=' + encodeURIComponent(lines.join('\n'));
 
-        if (!response.ok) throw new Error('API error');
+        window.location.href = href;
 
-        // Success
         msgSuccess.classList.add('show');
-        form.reset();
-        filePreview.innerHTML = '';
         msgSuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        loadIssues();
-      } catch (err) {
-        // Fallback: open GitHub issue
-        const url = buildGitHubIssueUrl(data);
-        msgErrorText.innerHTML = `De API is niet beschikbaar. <a href="${url}" target="_blank" rel="noopener">Klik hier om je feedback als GitHub Issue aan te maken.</a>`;
-        msgError.classList.add('show');
-        window.open(url, '_blank');
-        msgError.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } finally {
         submitBtn.disabled = false;
         submitText.style.display = 'inline';
@@ -623,7 +622,12 @@
         container.innerHTML = '';
         container.appendChild(list);
       } catch (err) {
-        container.innerHTML = '<div class="empty-state">Kon feedback niet laden. <a href="https://github.com/OpenAEC-Foundation/open-feedback-studio/issues?q=label%3Afeedback" target="_blank" rel="noopener">Bekijk op GitHub</a></div>';
+        // De repo open-feedback-studio bestaat niet, dus dit loopt altijd op een
+        // 404. Een permanente foutmelding tonen aan elke bezoeker heeft geen nut;
+        // we verbergen het blok tot er een echte bron voor is.
+        const card = container.closest('.card');
+        if (card) card.style.display = 'none';
+        else container.innerHTML = '';
       }
     }
 

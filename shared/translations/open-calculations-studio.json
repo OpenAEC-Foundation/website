@@ -10,7 +10,14 @@
   },
   "what": {
     "title": "What is Open Calculations Studio?",
-    "desc": "Open Calculations Studio is a modern, open-source tool for structural calculations — <strong style=\"color: white;\">inspired by CalcPAD</strong>, the widely-used tool among Dutch and European structural engineers. We rebuilt the entire calculation engine in TypeScript with support for CalcPAD syntax, and added live IFC and IFCX export so calculations integrate directly with BIM models."
+    "desc": "Open Calculations Studio is a modern, open-source tool for structural calculations — <strong style=\"color: white;\">inspired by CalcPAD</strong>, the widely-used tool among Dutch and European structural engineers. We rebuilt the entire calculation engine in TypeScript with support for CalcPAD syntax, and added live IFC and IFCX export so calculations integrate directly with BIM models.",
+    "list1": "<strong style=\"color: white;\">CalcPAD-compatible</strong> — existing <code>.cpd</code> files work without changes",
+    "list2": "<strong style=\"color: white;\">Unit-aware</strong> — <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> via mathjs",
+    "list3": "<strong style=\"color: white;\">Live IFCX + IFC4x3 STEP export</strong> — a calculation becomes a BIM element straight away",
+    "list4": "<strong style=\"color: white;\">KaTeX rendering</strong> — mathematical formulas with real fractions, sub/superscripts and Greek letters",
+    "list5": "<strong style=\"color: white;\">SVG drawings</strong> — parametric diagrams directly inside the calculation",
+    "list6": "<strong style=\"color: white;\">Load cases</strong> — SLS / ULS / seismic in separate tabs",
+    "list7": "<strong style=\"color: white;\">Usable as a library</strong> — embed in FEM applications or code checks"
   },
   "why": {
     "title": "Why Open <span class=\"accent\">Calculations</span> Studio?",
@@ -23,19 +30,58 @@
   },
   "features": {
     "title": "Features",
-    "units": { "title": "Formulas with units", "desc": "Work with <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> and all SI units. Mathjs handles unit-aware arithmetic and automatic simplification (<code>b*h</code> → <code>mm²</code>)." },
-    "katex": { "title": "Math typesetting", "desc": "KaTeX rendering with real fractions, superscripts, subscripts and Greek letters (σ, ε, ρ, Φ, ψ). Formulas show <code>name = formula = filled-in values = result</code> on one line." },
-    "editor": { "title": "Live preview", "desc": "Split-pane editor (CodeMirror 6) with syntax highlighting for <code>.cpd</code>. Debounced preview re-renders as you type." },
-    "loadcases": { "title": "Load cases", "desc": "Tabs for SLS / ULS / earthquake etc., each with its own prompt values for input variables. One document, multiple scenarios." },
-    "calcpad": { "title": "CalcPAD-compatible", "desc": "Fully compatible with existing <code>.cpd</code> files: <code>#if/#else if/#end if</code>, <code>#repeat</code>, <code>#for</code>, <code>#def</code> macros, <code>#include</code>, <code>$Plot</code>, matrices, lookups." },
-    "ifc": { "title": "IFC4x3 STEP export", "desc": "Detects structural elements via conventional variable names (<code>b_fdn</code>, <code>l_fdn</code>, <code>D_paal</code>, <code>M_Ed</code>, <code>R_c_d</code>). Generates valid Project → Site → Building → Storey skeleton." },
-    "ifcx": { "title": "IFCX JSON-LD", "desc": "Live IFCX (draft) export — the next generation of IFC with namespaces for calculations, standards and metadata. Calculation and BIM model in one format." },
-    "svg": { "title": "SVG drawings", "desc": "Parametric SVG macros with value interpolation. <code>@img(file.svg)</code> embeds external drawings inline. <code>@svg ... @end</code> for hand-written SVG." },
-    "viewer": { "title": "IFC tab", "desc": "Built-in STEP viewer and IFCX JSON viewer with syntax highlighting. Clickable entity types link directly to buildingSMART documentation." },
-    "gef": { "title": "GEF upload", "desc": "<code>@gef name</code> upload — use sounding data directly in foundation calculations. Integrates with Open Geotechniek Studio." },
-    "themes": { "title": "5 themes", "desc": "Light, Forge, OpenAEC, Blueprint and Contrast — all built on OpenAEC design tokens. Pick what works best for your environment." },
-    "pdf": { "title": "PDF export", "desc": "Print-ready PDF export via Tauri shell with headless preview. Ready for project file or third-party review." },
-    "library": { "title": "Library mode", "desc": "Use <code>@ifc-calc/core</code> as a TypeScript library: parse, evaluate, render, generate IFC/IFCX from FEM apps or code-checking." }
+    "units": {
+      "title": "Formulas with units",
+      "desc": "Work with <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> and all SI units. Mathjs handles unit-aware arithmetic and automatic simplification (<code>b*h</code> → <code>mm²</code>)."
+    },
+    "katex": {
+      "title": "Math typesetting",
+      "desc": "KaTeX rendering with real fractions, superscripts, subscripts and Greek letters (σ, ε, ρ, Φ, ψ). Formulas show <code>name = formula = filled-in values = result</code> on one line."
+    },
+    "editor": {
+      "title": "Live preview",
+      "desc": "Split-pane editor (CodeMirror 6) with syntax highlighting for <code>.cpd</code>. Debounced preview re-renders as you type."
+    },
+    "loadcases": {
+      "title": "Load cases",
+      "desc": "Tabs for SLS / ULS / earthquake etc., each with its own prompt values for input variables. One document, multiple scenarios."
+    },
+    "calcpad": {
+      "title": "CalcPAD-compatible",
+      "desc": "Fully compatible with existing <code>.cpd</code> files: <code>#if/#else if/#end if</code>, <code>#repeat</code>, <code>#for</code>, <code>#def</code> macros, <code>#include</code>, <code>$Plot</code>, matrices, lookups."
+    },
+    "ifc": {
+      "title": "IFC4x3 STEP export",
+      "desc": "Detects structural elements via conventional variable names (<code>b_fdn</code>, <code>l_fdn</code>, <code>D_paal</code>, <code>M_Ed</code>, <code>R_c_d</code>). Generates valid Project → Site → Building → Storey skeleton."
+    },
+    "ifcx": {
+      "title": "IFCX JSON-LD",
+      "desc": "Live IFCX (draft) export — the next generation of IFC with namespaces for calculations, standards and metadata. Calculation and BIM model in one format."
+    },
+    "svg": {
+      "title": "SVG drawings",
+      "desc": "Parametric SVG macros with value interpolation. <code>@img(file.svg)</code> embeds external drawings inline. <code>@svg ... @end</code> for hand-written SVG."
+    },
+    "viewer": {
+      "title": "IFC tab",
+      "desc": "Built-in STEP viewer and IFCX JSON viewer with syntax highlighting. Clickable entity types link directly to buildingSMART documentation."
+    },
+    "gef": {
+      "title": "GEF upload",
+      "desc": "<code>@gef name</code> upload — use sounding data directly in foundation calculations. Integrates with Open Geotechniek Studio."
+    },
+    "themes": {
+      "title": "5 themes",
+      "desc": "Light, Forge, OpenAEC, Blueprint and Contrast — all built on OpenAEC design tokens. Pick what works best for your environment."
+    },
+    "pdf": {
+      "title": "PDF export",
+      "desc": "Print-ready PDF export via Tauri shell with headless preview. Ready for project file or third-party review."
+    },
+    "library": {
+      "title": "Library mode",
+      "desc": "Use <code>@ifc-calc/core</code> as a TypeScript library: parse, evaluate, render, generate IFC/IFCX from FEM apps or code-checking."
+    }
   },
   "compat": {
     "title": "CalcPAD compatibility",
@@ -43,10 +89,22 @@
   },
   "useCases": {
     "title": "User profiles",
-    "structural": { "title": "Structural engineers", "desc": "Hand calculations for beams, columns, foundations — directly in a readable document. Open your existing CalcPAD files without migration." },
-    "bim": { "title": "BIM modelers", "desc": "Link calculations directly to IFC elements. No manual transfer of values — the check lives in the model." },
-    "education": { "title": "Education &amp; training", "desc": "Structural engineering students learn to calculate with real syntax they'll meet in practice. Open source — no license costs." },
-    "fem": { "title": "FEM developers", "desc": "Embed <code>@ifc-calc/core</code> in your own FEM application for pre/post-processing or code-checking. TypeScript library, npm-installable." }
+    "structural": {
+      "title": "Structural engineers",
+      "desc": "Hand calculations for beams, columns, foundations — directly in a readable document. Open your existing CalcPAD files without migration."
+    },
+    "bim": {
+      "title": "BIM modelers",
+      "desc": "Link calculations directly to IFC elements. No manual transfer of values — the check lives in the model."
+    },
+    "education": {
+      "title": "Education &amp; training",
+      "desc": "Structural engineering students learn to calculate with real syntax they'll meet in practice. Open source — no license costs."
+    },
+    "fem": {
+      "title": "FEM developers",
+      "desc": "Embed <code>@ifc-calc/core</code> in your own FEM application for pre/post-processing or code-checking. TypeScript library, npm-installable."
+    }
   },
   "tech": {
     "title": "Technology",

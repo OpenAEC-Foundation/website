@@ -12,6 +12,7 @@
       latest: 'Laatste',
       nightly: 'Nightly',
       version: 'Versie',
+      versions: 'Versies',
       releases: 'releases',
       changes: 'wijzigingen',
       change: 'wijziging',
@@ -35,6 +36,7 @@
       latest: 'Latest',
       nightly: 'Nightly',
       version: 'Version',
+      versions: 'Versions',
       releases: 'releases',
       changes: 'changes',
       change: 'change',
@@ -58,6 +60,7 @@
       latest: 'Dernière',
       nightly: 'Nightly',
       version: 'Version',
+      versions: 'Versions',
       releases: 'versions',
       changes: 'modifications',
       change: 'modification',
@@ -81,12 +84,13 @@
       latest: 'En son',
       nightly: 'Nightly',
       version: 'Sürüm',
+      versions: 'Sürümler',
       releases: 'sürüm',
       changes: 'değişiklik',
       change: 'değişiklik',
       release: 'sürüm',
       from: 'başlangıç',
-      until: 'bitiş',
+      until: 'kadar',
       viewGitHub: "GitHub'da görüntüle →",
       viewAll: "Tüm sürümleri GitHub'da görüntüle →",
       error: 'Sürüm notları yüklenemedi.',
@@ -326,9 +330,9 @@
 
     // Use EN version of changes if available and language is EN
     const lang = getLang();
-    const changes = (lang === 'en' && Array.isArray(group.allChangesEn))
+    const changes = dedupe((lang === 'en' && Array.isArray(group.allChangesEn))
       ? group.allChangesEn
-      : group.allChanges;
+      : group.allChanges);
 
     return `
       <div class="rn-group ${isLatest ? 'latest expanded' : ''}" data-group-index="${group._idx}">
@@ -350,10 +354,10 @@
   // Lazy render group body content on first expand
   function renderGroupBody(group) {
     const lang = getLang();
-    const changes = (lang === 'en' && Array.isArray(group.allChangesEn))
+    const changes = dedupe((lang === 'en' && Array.isArray(group.allChangesEn))
       ? group.allChangesEn
-      : group.allChanges;
-    const changesList = changes.map(c => `<li>${escapeHtml(c)}</li>`).join('');
+      : group.allChanges);
+    const changesList = changes.map(c => `<li>${inline(c)}</li>`).join('');
     const releaseRows = group.releases.map(r => `
       <div class="rn-release-row">
         <span class="rn-release-tag">${escapeHtml(r.tag)}</span>
@@ -374,15 +378,34 @@
     `;
   }
 
+  // Opeenvolgende patch-releases herhalen vaak letterlijk dezelfde changelogregels.
+  // Die stapelden op in de groepstelling; hier houden we de eerste van elke regel.
+  function dedupe(list) {
+    if (!Array.isArray(list)) return [];
+    const seen = new Set();
+    return list.filter(c => {
+      const k = String(c).trim();
+      if (!k || seen.has(k)) return false;
+      seen.add(k);
+      return true;
+    });
+  }
+
+  // Inline markdown binnen één regel: eerst alles escapen, daarna alleen code,
+  // vet en links toestaan. Geen ruimte voor injectie. Staat los van
+  // renderMarkdown omdat de losse changelog-regels hem ook nodig hebben — die
+  // komen als kale markdown uit de release-JSON.
+  function inline(s) {
+    return escapeHtml(s)
+      .replace(/`([^`]+)`/g, '<code>$1</code>')
+      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  }
+
   // Minimale markdown-renderer voor de changelog-sectie. Bewust klein: we
   // escapen eerst alles en staan daarna alleen koppen, lijsten, vet, code en
   // links toe. Genoeg voor docs/CHANGELOG.md, geen ruimte voor injectie.
   function renderMarkdown(md) {
-    const inline = (s) => escapeHtml(s)
-      .replace(/`([^`]+)`/g, '<code>$1</code>')
-      .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-      .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
-
     const out = [];
     let list = null;      // opgebouwde <li>-teksten
     let para = [];        // opgebouwde alinea-regels
@@ -451,7 +474,7 @@
             ${data.latestChangelog
               ? `<div class="rn-changelog">${renderMarkdown(data.latestChangelog)}</div>`
               : changes.length
-                ? `<ol class="rn-changes-list">${changes.map(c => `<li>${escapeHtml(c)}</li>`).join('')}</ol>`
+                ? `<ol class="rn-changes-list">${changes.map(c => `<li>${inline(c)}</li>`).join('')}</ol>`
                 : `<p class="rn-loading">${t('noReleases')}</p>`}
             <div class="rn-releases-detail">
               <div class="rn-release-row">
@@ -492,7 +515,7 @@
           </div>
           <div class="rn-stat-card">
             <div class="rn-stat-num">${data.groups.length}</div>
-            <div class="rn-stat-label">${t('version')}s</div>
+            <div class="rn-stat-label">${t('versions')}</div>
           </div>
         </div>
       </div>
@@ -550,10 +573,18 @@
 
       try {
         const data = await fetchData(repo);
+        // Een tool zonder releases levert een blok op met "0 wijzigingen / 0 releases
+        // / 0 versies". Dat leest als kapot terwijl er simpelweg nog niets is; dan
+        // verbergen we het hele blok liever.
+        if (!data || !(data.totalReleases > 0) && !(data.groups && data.groups.length)) {
+          placeholder.style.display = 'none';
+          return;
+        }
         renderAll(container, data, latestOnly);
         placeholder._rnData = data;
       } catch (err) {
-        container.innerHTML = `<p class="rn-error">${t('error')}</p>`;
+        // De data ontbreekt (nog). Een foutmelding tonen aan bezoekers helpt niemand.
+        placeholder.style.display = 'none';
       }
     }
 

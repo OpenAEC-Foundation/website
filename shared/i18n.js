@@ -1,6 +1,9 @@
 // Shared i18n for all OpenAEC subpages
 (function() {
   const STORAGE_KEY = 'openaec-lang';
+  // De titel in de HTML is de Nederlandse. Vastleggen bij het laden, zodat we
+  // hem kunnen terugzetten als de bezoeker naar Nederlands schakelt.
+  const ORIGINAL_TITLE = document.title;
 
   // Stored preference > browser language (nl/en/fr/tr) > English.
   function getCurrentLang() {
@@ -42,6 +45,7 @@
   function applyTranslations(lang) {
     if (lang === 'nl') {
       // Dutch is the default — restore original content from data-i18n-nl
+      document.title = ORIGINAL_TITLE;
       document.querySelectorAll('[data-i18n]').forEach(el => {
         const original = el.getAttribute('data-i18n-nl');
         if (original != null) setHtmlIfChanged(el, original);
@@ -54,26 +58,45 @@
     // EN  → /shared/translations/<page>.json   (legacy default, always exists)
     // FR  → /shared/translations/<page>.fr.json (with EN fallback)
     // TR  → /shared/translations/<page>.tr.json (with EN fallback)
+    //
+    // The EN file is always loaded as the base and the language file is merged
+    // over it, key by key. Taking only the first file that loads would leave
+    // any key it happens to miss untranslated — the element then keeps its
+    // Dutch markup, which is worse than showing English.
     const pageId = document.querySelector('meta[name="i18n-page"]')?.content;
     if (!pageId) {
       applyInlineTranslations(lang);
       return;
     }
 
-    const urls = (lang === 'en')
-      ? [`/shared/translations/${pageId}.json`]
-      : [`/shared/translations/${pageId}.${lang}.json`, `/shared/translations/${pageId}.json`];
+    const urls = [`/shared/translations/${pageId}.json`];
+    if (lang !== 'en') urls.push(`/shared/translations/${pageId}.${lang}.json`);
 
-    function loadFirstAvailable(list) {
-      if (!list.length) return Promise.resolve(null);
-      return fetch(list[0])
-        .then(r => r.ok ? r.json() : loadFirstAvailable(list.slice(1)))
-        .catch(() => loadFirstAvailable(list.slice(1)));
+    function loadJson(url) {
+      return fetch(url)
+        .then(r => r.ok ? r.json() : null)
+        .catch(() => null);
     }
 
-    loadFirstAvailable(urls)
-      .then(translations => {
-        if (!translations) { applyInlineTranslations(lang); return; }
+    // Later sources win; nested objects are merged rather than replaced.
+    function mergeInto(target, source) {
+      Object.keys(source).forEach(key => {
+        const value = source[key];
+        if (value && typeof value === 'object' && !Array.isArray(value)) {
+          if (!target[key] || typeof target[key] !== 'object') target[key] = {};
+          mergeInto(target[key], value);
+        } else {
+          target[key] = value;
+        }
+      });
+      return target;
+    }
+
+    Promise.all(urls.map(loadJson))
+      .then(sources => {
+        const found = sources.filter(Boolean);
+        if (!found.length) { applyInlineTranslations(lang); return; }
+        const translations = found.reduce(mergeInto, {});
         document.querySelectorAll('[data-i18n]').forEach(el => {
           const key = el.getAttribute('data-i18n');
           if (!el.getAttribute('data-i18n-nl')) {
@@ -86,6 +109,11 @@
             else setHtmlIfChanged(el, translation);
           }
         });
+        // De paginatitel staat niet in de body en heeft dus geen data-i18n;
+        // hij komt uit de sleutel meta.title. Ontbreekt die, dan blijft de
+        // Nederlandse titel staan — beter dan een lege tab.
+        document.title = (translations.meta && translations.meta.title) || ORIGINAL_TITLE;
+
         applyInlineTranslations(lang);
       })
       .catch(() => applyInlineTranslations(lang));

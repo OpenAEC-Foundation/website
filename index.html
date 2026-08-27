@@ -716,12 +716,14 @@
     .homepage-nav .nav-brand .accent { color: var(--amber); }
     .homepage-nav .nav-menu {
       display: flex;
-      gap: var(--sp-6);
+      gap: clamp(var(--sp-3), 1.2vw, var(--sp-6));
       align-items: center;
     }
     .homepage-nav .nav-links {
       display: flex;
-      gap: var(--sp-8);
+      /* Vaste sp-8 maakte de balk breder dan het scherm; dan viel de ruimte
+         tussen logo en "Ecosystem" helemaal weg. Schaalt nu mee. */
+      gap: clamp(var(--sp-3), 1.8vw, var(--sp-8));
       list-style: none;
       align-items: center;
     }
@@ -1519,8 +1521,8 @@
           <p style="font-family: var(--font-code); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); margin-top: 2px;" data-i18n="board.members.maarten.role">Voorzitter</p>
         </div>
         <div style="text-align: center;">
-          <img src="/personen/Jochem.jpeg" alt="Jochem Kolfhof" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #E7E5E4; margin: 0 auto var(--sp-3); display: block;">
-          <p style="font-family: var(--font-heading); font-weight: 700; font-size: 1rem;" data-i18n="board.members.jochem.name">Jochem Kolfhof</p>
+          <img src="/personen/Jochem.jpeg" alt="Jochem Kolthof" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #E7E5E4; margin: 0 auto var(--sp-3); display: block;">
+          <p style="font-family: var(--font-heading); font-weight: 700; font-size: 1rem;" data-i18n="board.members.jochem.name">Jochem Kolthof</p>
           <p style="font-family: var(--font-code); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); margin-top: 2px;" data-i18n="board.members.jochem.role">Penningmeester</p>
         </div>
         <div style="text-align: center;">
@@ -1610,20 +1612,21 @@
 
         <div class="contact-card">
           <h3 data-i18n="contact.form.title">Stuur een bericht</h3>
-          <form>
+          <form id="contactForm">
             <div class="form-group">
               <label for="name" data-i18n="contact.form.name">Naam</label>
-              <input type="text" id="name" data-i18n-attr="placeholder" data-i18n="contact.form.namePlaceholder" placeholder="Uw naam">
+              <input type="text" id="name" name="name" required data-i18n-attr="placeholder" data-i18n="contact.form.namePlaceholder" placeholder="Uw naam">
             </div>
             <div class="form-group">
               <label for="email" data-i18n="contact.form.email">E-mail</label>
-              <input type="email" id="email" data-i18n-attr="placeholder" data-i18n="contact.form.emailPlaceholder" placeholder="uw@email.nl">
+              <input type="email" id="email" name="email" required data-i18n-attr="placeholder" data-i18n="contact.form.emailPlaceholder" placeholder="uw@email.nl">
             </div>
             <div class="form-group">
               <label for="message" data-i18n="contact.form.message">Bericht</label>
-              <textarea id="message" data-i18n-attr="placeholder" data-i18n="contact.form.messagePlaceholder" placeholder="Ik ben geïnteresseerd in..."></textarea>
+              <textarea id="message" name="message" required data-i18n-attr="placeholder" data-i18n="contact.form.messagePlaceholder" placeholder="Ik ben geïnteresseerd in..."></textarea>
             </div>
             <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" data-i18n="contact.form.submit">Verstuur bericht</button>
+            <p id="contactFormNote" style="display:none; margin-top: var(--sp-3); font-size: 0.875rem; color: #57534E;" data-i18n="contact.form.sent">Uw e-mailprogramma opent met het bericht er al in. Verstuur die mail om het af te ronden — dan komt het binnen op <a href="mailto:info@open-aec.com">info@open-aec.com</a>.</p>
           </form>
         </div>
       </div>
@@ -1915,7 +1918,7 @@
           moreLink: "Meer over het bestuur",
           members: {
             maarten: { name: "Maarten Vroegindeweij", role: "Voorzitter" },
-            jochem: { name: "Jochem Kolfhof", role: "Penningmeester" },
+            jochem: { name: "Jochem Kolthof", role: "Penningmeester" },
             martjan: { name: "Martjan den Hoed", role: "Secretaris" },
             silvia: { name: "Silvia Taurer", role: "Bestuurslid" }
           }
@@ -2135,7 +2138,7 @@
           moreLink: "More about the board",
           members: {
             maarten: { name: "Maarten Vroegindeweij", role: "Chairman" },
-            jochem: { name: "Jochem Kolfhof", role: "Treasurer" },
+            jochem: { name: "Jochem Kolthof", role: "Treasurer" },
             martjan: { name: "Martjan den Hoed", role: "Secretary" },
             silvia: { name: "Silvia Taurer", role: "Board member" }
           }
@@ -2539,6 +2542,24 @@
 
     document.addEventListener('DOMContentLoaded', () => {
       i18n.init();
+      // Contactformulier. De site is statisch, dus er is geen backend om het
+      // bericht naartoe te sturen; zonder handler herlaadde de pagina en was het
+      // bericht weg. We stellen een mail op naar info@open-aec.com die de
+      // bezoeker zelf verstuurt.
+      var contactForm = document.getElementById('contactForm');
+      if (contactForm) {
+        contactForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var get = function (id) { return (document.getElementById(id).value || '').trim(); };
+          var body = ['Bericht via open-aec.com', '', 'Naam: ' + get('name'), 'E-mail: ' + get('email'), '', get('message')];
+          window.location.href = 'mailto:info@open-aec.com'
+            + '?subject=' + encodeURIComponent('Bericht van ' + get('name'))
+            + '&body=' + encodeURIComponent(body.join('\n'));
+          var note = document.getElementById('contactFormNote');
+          if (note) note.style.display = 'block';
+        });
+      }
+
       // Email obfuscation
       var u = 'maarten'; var d = 'open-aec.com';
       var el = document.getElementById('email-link');

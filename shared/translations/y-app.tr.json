@@ -4,5 +4,341 @@
     "desc": "İşletmeniz için Everything-app — e-posta, ERP, faturalar, mesai, projeler, iletişim ve daha fazlası tek bir araçta. <strong style=\"color: white;\">Multi-tenant: bir hesap, birden fazla ERPNext örneği.</strong>",
     "badge": "Beta",
     "category": "Everything-app"
+  },
+  "explainer1": {
+    "title": "Y-app nedir?",
+    "intro": "Y-app bir sohbet aracı ya da bağımsız bir ERP arayüzü değil. Tüm iş yığınınızı tek bir web uygulamasında birleştiren, çok kiracılı (multi-tenant) bir ERPNext çalışma alanı olan bir <strong style=\"color: white;\">\"Everything-app\"</strong>. E-posta (IMAP/SMTP + Office 365), ERP (ERPNext), dosyalar (NextCloud), sohbet (Teams, NextCloud Talk, Telegram), takvim, bir AI asistanı (Claude) ve düzinelerce iş modülü — hepsi tek bir tarayıcı sekmesinden erişilebilir.",
+    "li1": "<strong style=\"color: white;\">Multi-tenant</strong> — tek bir Y-app hesabına birden fazla ERPNext örneği bağlayın",
+    "li2": "<strong style=\"color: white;\">Şifrelenmiş kasa</strong> — sunucu taraflı SQLite veritabanında AES-256-GCM ve PBKDF2-SHA256 (210 bin iterasyon) ile korunan kimlik bilgileri",
+    "li3": "<strong style=\"color: white;\">Tarayıcı sekmesine gerek yok</strong> — uygulama içi sekmelerle örnekler arasında geçiş yapın, her biri kendi yönlendirmesi ve oturumuyla",
+    "li4": "<strong style=\"color: white;\">İşveren veya çalışan modu</strong> — bir açılır menü üzerinden örnek başına modülleri kısıtlayın",
+    "li5": "<strong style=\"color: white;\">Tam NL/EN i18n</strong> — 1190+ çeviri, çalışma zamanında değiştirilebilir"
+  },
+  "howitworks": {
+    "title": "Nasıl <span class=\"accent\">çalışır</span>",
+    "intro": "Y-app kendi sunucunuzda (veya impertio.app üzerinden) çalışır. Kendi kendine kayıt, örnek yönetimi ve mod değiştirme hepsi uygulama içinde gerçekleşir — IT talebine gerek yok.",
+    "step1": {
+      "title": "Bir Y-app hesabı oluşturun",
+      "desc": "E-posta ve şifreyle kendi kendine kayıt. 12 turlu Bcrypt, HttpOnly oturum çerezleri, oturum kapsamlı kimlik bilgisi önbelleği."
+    },
+    "step2": {
+      "title": "ERPNext örnekleri ekleyin",
+      "desc": "Her şirket veya müşteri için: URL, ad, renk ve kimlik bilgileri. Hemen sunucu taraflı kasada şifrelenir."
+    },
+    "step3": {
+      "title": "Uygulama içi sekmelerle geçiş yapın",
+      "desc": "Tarayıcı sekmesi yok: Y-app içinde örnekler arasında geçiş yapın. Her sekme kendi yönlendirme durumunu, ERPNext oturumunu ve önbelleğini korur."
+    },
+    "step4": {
+      "title": "İşveren veya Çalışan modu",
+      "desc": "Örnek başına, tam modül setiyle (İşveren) ya da personel için kısıtlı bir setle (Çalışan) arasında geçiş yapın."
+    }
+  },
+  "explainer2": {
+    "title": "Multi-tenant ve şifrelenmiş — barındırıcı bile kimlik bilgilerinizi okuyamaz",
+    "intro": "Y-app, ERPNext kimlik bilgileriniz için sıfır bilgi (zero-knowledge) ilkesiyle çalışır. Her e-posta, ERPNext anahtarı ve OAuth2 belirteci kombinasyonu, <strong style=\"color: white;\">yalnızca Y-app şifrenizle çözülebilen</strong> bir ana anahtarla sunucu taraflı SQLite kasasında şifrelenir.",
+    "li1": "<strong style=\"color: white;\">AES-256-GCM</strong> — her kimlik bilgisi için kimlik doğrulamalı şifreleme",
+    "li2": "<strong style=\"color: white;\">PBKDF2-SHA256, 210.000 iterasyon</strong> — anahtar türetme için güncel OWASP tavsiyesi",
+    "li3": "<strong style=\"color: white;\">600 izinli ana anahtar dosyası</strong> — yalnızca Y-app süreci tarafından okunabilir",
+    "li4": "<strong style=\"color: white;\">İstek başına AsyncLocalStorage</strong> — kimlik bilgileri aynı Node sürecindeki kullanıcılar arasında asla paylaşılmaz",
+    "li5": "<strong style=\"color: white;\">Barındırıcı bile verilerinizi göremez</strong> — girişiniz olmadan kasa rastgele baytlardan oluşan bir yığındır",
+    "li6": "<strong style=\"color: white;\">Bir hesap, birden fazla şirket</strong> — muhasebeciler, danışmanlar, holdingler ve franchise kuruluşları için ideal"
+  },
+  "modules": {
+    "title": "İçinde ne var? — <span class=\"accent\">modüller</span>",
+    "intro": "Y-app, yedi alanda düzinelerce modülü bir araya getirir. Her modül doğrudan aktif ERPNext örneğine bağlıdır — ayrı giriş yok, ayrı URL yok.",
+    "communicatie": {
+      "title": "İletişim ve İşbirliği",
+      "webmail": {
+        "title": "Webmail",
+        "desc": "Önbellekleme, klasör yönetimi, ekler, zengin metin düzenleyici, şablonlar ve imzalarla tam donanımlı IMAP/SMTP istemcisi. Şifre kimlik doğrulaması veya Office 365 OAuth2."
+      },
+      "messenger": {
+        "title": "Messenger",
+        "desc": "Çok platformlu sohbet: NextCloud Talk, MS Teams (Graph API), Telegram (Bot API). Her konuşma için tek bir genel bakış."
+      },
+      "contacten": {
+        "title": "Kişiler",
+        "desc": "ERPNext ve e-posta geçmişinden birleştirilmiş kişi veritabanı. Müşteriler, tedarikçiler ve meslektaşlar için tek kaynak."
+      },
+      "brieven": {
+        "title": "Mektuplar",
+        "desc": "Şablonlarla belge oluşturma: standart mektup, teklif, sipariş onayı, ödeme hatırlatması."
+      },
+      "vergadernotulen": {
+        "title": "Toplantı notları",
+        "desc": "Gündem, aksiyon maddeleri, son tarihler ve projeler ile görevlere bağlantılarla yerel depolama."
+      }
+    },
+    "projecten": {
+      "title": "Projeler ve Görevler",
+      "kaartweergave": {
+        "title": "Harita görünümlü projeler",
+        "desc": "Proje konumları, durum takibi ve proje başına görev sayaçlarıyla Leaflet haritası."
+      },
+      "taken": {
+        "title": "Görevler",
+        "desc": "Durum, öncelik, sıralama, filtreleme ve personele atama ile tam CRUD."
+      },
+      "subtaken": {
+        "title": "Alt görevler",
+        "desc": "Daha karmaşık iş paketlerini parçalara ayırmak için iç içe görev yapısı."
+      },
+      "planning": {
+        "title": "Planlama (Gantt)",
+        "desc": "Sürükle-bırak, personel filtresi, öncelik renkleri ve tatil entegrasyonuyla haftalık veya çok haftalık görünüm."
+      },
+      "offertes": {
+        "title": "Teklifler",
+        "desc": "Doğrudan ERPNext Quotation'a bağlı, filtreler ve ayrıntı görünümüyle teklif genel bakışı."
+      },
+      "verkooporders": {
+        "title": "Satış siparişleri",
+        "desc": "Sipariş onayları ve durum takibi — tekliften teslimat fişine kadar."
+      },
+      "leveringsnotas": {
+        "title": "Teslimat fişleri",
+        "desc": "Nakliye ve lojistik planlaması için teslimat durumu ve müşteri bağlantısı."
+      },
+      "leads": {
+        "title": "Potansiyel müşteriler (Leads)",
+        "desc": "Takip aksiyonları ve fırsata dönüştürme ile potansiyel müşteri yönetimi ve niteleme."
+      },
+      "todo": {
+        "title": "Yapılacaklar",
+        "desc": "Kullanıcı başına kişisel görev listesi — proje görevlerinden ayrı."
+      }
+    },
+    "hr": {
+      "title": "İK ve Personel",
+      "medewerkers": {
+        "title": "Çalışanlar",
+        "desc": "Fotoğraf, iletişim bilgileri, sözleşmeler ve izin tahsisleriyle tam personel genel bakışı."
+      },
+      "vakantieplanning": {
+        "title": "İzin planlaması",
+        "desc": "Fazla mesai kaydıyla birlikte takvim görünümünde izin talepleri ve tahsisleri."
+      },
+      "declaraties": {
+        "title": "Masraf beyanları",
+        "desc": "Ekler dahil masraf beyanlarını gönderin, onaylayın ve ödeyin."
+      },
+      "tijdregistratie": {
+        "title": "Zaman kaydı",
+        "desc": "Proje bağlantısı, faturalanabilir/faturalanamaz ayrımı, bir \"Şimdi\" düğmesi ve onay iş akışıyla saat kaydı."
+      },
+      "loonadministratie": {
+        "title": "Bordro",
+        "desc": "Dönem başına bordro vergisi ve maaş raporları."
+      }
+    },
+    "financieel": {
+      "title": "Finans ve Muhasebe",
+      "dashboard": {
+        "title": "Finansal gösterge paneli",
+        "desc": "Proje veya çalışan başına gelir grafikleri, faturalanabilir %, en iyi müşteriler ve aylık trendler."
+      },
+      "omzet": {
+        "title": "Ciro",
+        "desc": "Yıldan yıla karşılaştırmalı aylık ciro trendleri."
+      },
+      "verkoopfacturen": {
+        "title": "Satış faturaları",
+        "desc": "Yaşlandırma analiziyle (0-30, 31-60, 61-90, 90+ gün) ve e-posta hatırlatmalarıyla ödenmemiş faturalar."
+      },
+      "inkoopfacturen": {
+        "title": "Alış faturaları",
+        "desc": "Tedarikçi faturalarını kaydedin, onaylayın ve ödeyin."
+      },
+      "openstaand": {
+        "title": "Açık kalemler",
+        "desc": "Ödeme koşulları ve hatırlatma durumuyla alacak hesapları analizi."
+      },
+      "kostinzicht": {
+        "title": "Maliyet görünürlüğü",
+        "desc": "Maliyet merkezi veya proje başına maliyet analizi ve trend takibi."
+      },
+      "grootboek": {
+        "title": "Genel muhasebe defteri",
+        "desc": "Hesap planı ve yevmiye kayıtları — gezilebilir hesap planı."
+      },
+      "banktransacties": {
+        "title": "Banka işlemleri",
+        "desc": "Açık kalemlere göre banka ekstreleri ve mutabakat."
+      },
+      "boekprogramma": {
+        "title": "Muhasebe programı",
+        "desc": "Yevmiye kayıtlarını ve mahsup fişlerini doğrudan girin."
+      },
+      "btw": {
+        "title": "KDV beyannamesi",
+        "desc": "Vergi hesaplarına dayalı üç aylık KDV hesaplaması."
+      },
+      "jaarrekening": {
+        "title": "Yıllık hesaplar",
+        "desc": "Yıl sonu kapanışı, bilanço ve kâr-zarar tablosu."
+      },
+      "rentabiliteit": {
+        "title": "Kârlılık",
+        "desc": "Proje ve müşteri başına kârlılık analizi."
+      },
+      "liquiditeit": {
+        "title": "Likidite",
+        "desc": "Açık kalemlere ve beklenen ödemelere dayalı nakit akışı tahmini."
+      }
+    },
+    "bestanden": {
+      "title": "Dosyalar ve Bilgi",
+      "nextcloudfiles": {
+        "title": "NextCloud Dosyaları",
+        "desc": "Klasör gezinme, önizleme, yükleme/indirme ve paylaşım bağlantılarıyla WebDAV dosya tarayıcısı."
+      },
+      "wiki": {
+        "title": "Wiki",
+        "desc": "Arama, yayınlama/yayından kaldırma ve zengin görüntülemeyle Markdown bilgi tabanı."
+      }
+    },
+    "agenda": {
+      "title": "Takvim",
+      "multisource": {
+        "title": "Çoklu kaynak takvim",
+        "desc": "ERPNext etkinlikleri, görevler, izinler ve zaman çizelgeleri artı iCalendar (ICS) beslemeleri ve Office 365 OAuth2 — hepsi tek bir takvimde."
+      },
+      "view": {
+        "title": "Ay, hafta veya gün görünümü",
+        "desc": "Genel bakışlar arasında geçiş yapın, kaynağa göre filtreleyin ve tek tıkla toplantı planlayın."
+      },
+      "jitsimeeting": {
+        "title": "Jitsi video toplantıları",
+        "desc": "Davette doğrudan bir Jitsi Meet bağlantısı oluşturun — ekstra hesaba gerek yok."
+      }
+    },
+    "systeem": {
+      "title": "Sistem ve DevOps",
+      "aiagent": {
+        "title": "AI Ajanı (Claude)",
+        "desc": "ERPNext verileriniz hakkında bağlama sahip Claude AI asistanı. SSE akışı, dosya bağlamı ve çok turlu konuşmalar."
+      },
+      "terminal": {
+        "title": "Terminal",
+        "desc": "Aktif örnek başına WebSocket kabuğu (PowerShell veya bash) — yöneticiler ve geliştiriciler için kullanışlı."
+      },
+      "health": {
+        "title": "Sağlık kontrolü",
+        "desc": "Örnek başına durum izleme, IMAP ve OAuth2 belirteç doğrulaması."
+      },
+      "search": {
+        "title": "Genel arama (Ctrl+K)",
+        "desc": "Aktif örneğin tüm ERPNext kayıtlarında arama yapın — herhangi bir ekrandan."
+      },
+      "instance": {
+        "title": "Örnek yönetimi",
+        "desc": "Örnekleri kendiniz ekleyin, düzenleyin veya kaldırın. IT talebine gerek yok."
+      },
+      "i18n": {
+        "title": "NL / EN i18n",
+        "desc": "react-i18next ile çalışma zamanında dil değiştirme, 1190+ çeviriyle eksiksiz çevrilmiş."
+      }
+    }
+  },
+  "modetable": {
+    "title": "İşveren ve Çalışan <span class=\"accent\">modu</span>",
+    "intro": "Örnek başına, açılır bir menüden kullanıcının işveren erişimi mi (tüm modüller) yoksa çalışan erişimi mi (kendi görevlerine odaklı, kısıtlı bir set) alacağını seçersiniz.",
+    "th": {
+      "module": "Modül",
+      "employer": "İşveren",
+      "employee": "Çalışan"
+    },
+    "row1": {
+      "module": "Webmail, Messenger, Kişiler",
+      "employer": "Evet",
+      "employee": "Evet"
+    },
+    "row2": {
+      "module": "Projeler, Görevler ve Planlama",
+      "employer": "Evet",
+      "employee": "Evet"
+    },
+    "row3": {
+      "module": "Zaman kaydı ve Masraf beyanları",
+      "employer": "Evet",
+      "employee": "Evet"
+    },
+    "row4": {
+      "module": "Takvim ve Toplantı notları",
+      "employer": "Evet",
+      "employee": "Evet"
+    },
+    "row5": {
+      "module": "NextCloud Dosyaları ve Wiki",
+      "employer": "Evet",
+      "employee": "Evet"
+    },
+    "row6": {
+      "module": "Teklifler, Satış siparişleri, Teslimatlar, Potansiyel müşteriler",
+      "employer": "Evet",
+      "employee": "Sınırlı"
+    },
+    "row7": {
+      "module": "Çalışanlar, İzin planlaması, Bordro",
+      "employer": "Evet",
+      "employee": "Hayır"
+    },
+    "row8": {
+      "module": "Finansal gösterge paneli, Satış/Alış faturaları, Açık kalemler",
+      "employer": "Evet",
+      "employee": "Hayır"
+    },
+    "row9": {
+      "module": "Genel muhasebe defteri, Banka işlemleri, KDV, Yıllık hesaplar",
+      "employer": "Evet",
+      "employee": "Hayır"
+    },
+    "row10": {
+      "module": "Kârlılık ve Likidite",
+      "employer": "Evet",
+      "employee": "Hayır"
+    },
+    "row11": {
+      "module": "Terminal ve AI Ajanı",
+      "employer": "Evet",
+      "employee": "Hayır"
+    }
+  },
+  "integrations": {
+    "title": "Entegrasyonlar",
+    "intro": "Y-app, muhtemelen zaten kullandığınız araçlarla konuşur — kilitlenme yok, geçiş derdi yok.",
+    "erpnext": {
+      "desc": "REST API ve oturum köprüsü — her DocType kullanılabilir."
+    },
+    "office365": {
+      "desc": "Posta ve takvim için OAuth2 + Microsoft Graph API."
+    },
+    "nextcloud": {
+      "desc": "Dosyalar, talk ve paylaşım bağlantıları için WebDAV + OCS API."
+    },
+    "telegram": {
+      "desc": "İş sohbeti ve bildirimler için Bot API."
+    },
+    "jitsi": {
+      "desc": "Video toplantıları için URL oluşturma, hesaba gerek yok."
+    },
+    "claudeai": {
+      "desc": "ERPNext bağlamıyla CLI başlatma + SSE akışı."
+    },
+    "ical": {
+      "desc": "Harici beslemeleri Y-app takvimine okuyun."
+    }
+  },
+  "techstack": {
+    "title": "Teknoloji",
+    "summary": "Ön yüzde React 19 + TypeScript + Vite 7 + TailwindCSS 4, arka yüzde Node.js 20 + Express 4 + WebSocket. Kimlik doğrulama bcryptjs (12 tur), HttpOnly çerezler ve istek başına kimlik bilgisi kapsamı için AsyncLocalStorage ile yapılır. AES-256-GCM ve PBKDF2-SHA256 (210 bin iterasyon) ile şifreleme, veriler SQLite veritabanında (WAL modu). Üretim, PM2 altında, TLS sonlandırma, WebSocket yükseltmesi ve statik dist sunumu yapan bir nginx ters proxy'nin arkasında çalışır. Geliştirme tsx --watch ile yapılır."
+  },
+  "cta": {
+    "demo": "Canlı demo &rarr;",
+    "github": "GitHub deposu"
+  },
+  "meta": {
+    "title": "Y-app — İşletmeniz için her şey uygulaması — OpenAEC Foundation"
   }
 }

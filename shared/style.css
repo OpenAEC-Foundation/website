@@ -128,6 +128,9 @@ pre code {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  /* Ondergrens: zonder gap valt space-between terug op nul zodra de balk te vol
+     wordt, en plakt het eerste menu-item tegen het logo. */
+  gap: var(--sp-4);
 }
 .nav-brand {
   font-family: var(--font-heading);
@@ -140,11 +143,14 @@ pre code {
 .nav-menu {
   display: flex;
   align-items: center;
-  gap: var(--sp-6);
+  /* Meeschalende tussenruimte: met vaste sp-6 duwden de langere Franse labels
+     ("Feuille de route", "Nous soutenons") de taalschakelaar buiten beeld op 1280px. */
+  gap: clamp(var(--sp-2), 1.1vw, var(--sp-6));
 }
 .nav-links {
   display: flex;
-  gap: var(--sp-6);
+  /* Schaalt mee zodat de balk ook met langere labels binnen het scherm blijft. */
+  gap: clamp(var(--sp-3), 1.4vw, var(--sp-6));
   list-style: none;
   align-items: center;
 }
@@ -471,14 +477,14 @@ pre code {
 .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 /* Responsive */
-@media (max-width: 768px) {
-  .hero h1 { font-size: 1.6rem; word-break: break-word; overflow-wrap: anywhere; }
-  .hero .tagline { font-size: 0.95rem; }
-  .hero { padding: var(--sp-8) var(--sp-4) !important; }
-  .page-header h1 { font-size: 1.6rem; word-break: break-word; }
-  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+@media (max-width: 1150px) {
+  /* De nav klapt in op 1150px, niet op 768px. Tussen die twee breedtes paste de
+     balk niet meer: het menu botste tegen het logo en de pagina kreeg
+     horizontale scroll. De overige mobiele regels blijven op 768px staan. */
   .hamburger { display: block; }
+
   .nav-menu { display: none !important; }
+
   .nav-menu.active {
     display: flex !important;
     flex-direction: column;
@@ -493,27 +499,40 @@ pre code {
     z-index: 1000;
     gap: var(--sp-2);
   }
+
   .nav-menu.active .nav-links {
     display: flex !important;
     flex-direction: column;
     gap: var(--sp-3);
   }
+
   .nav-menu.active .nav-links a {
     font-size: 1rem;
     padding: var(--sp-2) 0;
   }
+
   .nav-menu.active .lang-switcher {
     display: flex !important;
     margin-left: 0;
     margin-top: var(--sp-3);
     justify-content: flex-start;
   }
+
   .nav-menu.active .nav-feedback-btn {
     display: inline-flex;
     align-self: flex-start;
     margin-top: var(--sp-2);
   }
+
   .navbar .nav-container { position: relative; }
+}
+
+@media (max-width: 768px) {
+  .hero h1 { font-size: 1.6rem; word-break: break-word; overflow-wrap: anywhere; }
+  .hero .tagline { font-size: 0.95rem; }
+  .hero { padding: var(--sp-8) var(--sp-4) !important; }
+  .page-header h1 { font-size: 1.6rem; word-break: break-word; }
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .footer-container { flex-direction: column; text-align: center; }
   .section { padding: var(--sp-8) var(--sp-4); }
   .download-grid { grid-template-columns: 1fr; }

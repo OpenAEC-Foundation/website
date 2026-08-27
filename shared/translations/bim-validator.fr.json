@@ -1,6 +1,170 @@
 {
   "header": {
     "label": "Écosystème OpenAEC",
-    "desc": "Outil open source de validation IFC. Validez vos modèles contre les spécifications IDS, les standards néerlandais et les exigences projet — dans le navigateur, en CLI ou via API."
+    "desc": "Outil open source de validation IFC. Validez vos modèles contre les spécifications IDS, les standards néerlandais et les exigences projet — dans le navigateur, en CLI ou via API.",
+    "github": "Voir le code source sur GitHub"
+  },
+  "stats": {
+    "ids": "Norme de validation",
+    "nlbim": "Spécifications NL BIM Basis ILS",
+    "rvb": "Spécifications RVB BIM Norm",
+    "maxsize": "Taille de fichier max"
+  },
+  "validation": {
+    "title": "Validation",
+    "ids": {
+      "feature": "Validation IDS",
+      "desc": "Validez les modèles IFC par rapport aux fichiers Information Delivery Specification (IDS). Chaque spécification est vérifiée par élément avec un résultat réussite/échec et des messages d'erreur détaillés."
+    },
+    "nlbim": {
+      "feature": "NL BIM Basis ILS v2",
+      "desc": "Standard néerlandais de base BIM intégré avec 12 spécifications : dénomination des étages, classification NL/SfB, attributs d'espace, structure porteuse, surfaces extérieures, résistance au feu, valeur U, matériaux et statut de rénovation."
+    },
+    "rvb": {
+      "feature": "RVB BIM Norm v1.1",
+      "desc": "Norme intégrée du Rijksvastgoedbedrijf (agence immobilière de l'État néerlandais) avec 27 spécifications pour les projets de construction publics : informations projet, coordonnées du site, NL-SfB par type d'élément, propriétés structurelles et de sécurité incendie, et informations de zone."
+    },
+    "customids": {
+      "feature": "Import IDS personnalisé",
+      "desc": "Importez votre propre fichier de spécification IDS (max 10 Mo) pour valider selon des exigences spécifiques au projet ou à l'organisation."
+    },
+    "multischema": {
+      "feature": "Multi-schéma",
+      "desc": "Prend en charge les schémas IFC2X3 et IFC4 — compatible avec les exports de Revit, ArchiCAD, Tekla et autres logiciels BIM."
+    },
+    "elementreport": {
+      "feature": "Rapport au niveau des éléments",
+      "desc": "Pour chaque élément en échec, le GlobalId, la classe IFC, le nom de l'élément et un message d'erreur détaillé sont affichés."
+    }
+  },
+  "table": {
+    "th": {
+      "feature": "Fonctionnalité",
+      "desc": "Description"
+    }
+  },
+  "viewer": {
+    "title": "Visualiseur 3D",
+    "webgl": {
+      "feature": "Visualiseur 3D WebGL",
+      "desc": "Vue 3D interactive du modèle IFC dans le navigateur via That Open Engine (Three.js). Aucune installation ni plugin nécessaire."
+    },
+    "selection": {
+      "feature": "Sélection d'éléments",
+      "desc": "Cliquez sur un élément dans le visualiseur 3D pour voir ses propriétés, ou cliquez sur une erreur dans la liste des résultats pour mettre en évidence l'élément en 3D."
+    },
+    "navigation": {
+      "feature": "Navigation caméra",
+      "desc": "Orbitez, déplacez-vous et zoomez dans le modèle. Bouton « tout ajuster » pour afficher le modèle entier."
+    },
+    "panels": {
+      "feature": "Panneaux redimensionnables",
+      "desc": "Division à trois volets déplaçable : panneau de navigation (gauche), visualiseur 3D (centre) et panneau de détail (droite). Chaque panneau est repliable."
+    }
+  },
+  "bcf": {
+    "title": "Export BCF",
+    "zip": {
+      "feature": "Export BCF 2.1 ZIP",
+      "desc": "Exportez toutes les erreurs de validation sous forme de fichier BCF 2.1 ZIP. Chaque élément en échec devient un sujet BCF avec un point de vue, directement importable dans Revit, Solibri, BIMcollab ou Navisworks."
+    },
+    "platform": {
+      "feature": "Intégration BCF Platform",
+      "desc": "Connectez-vous à la BCF Platform d'OpenAEC pour transmettre les problèmes directement à un tableau de bord central de projet. Comprend l'authentification OIDC et la sélection de projet."
+    },
+    "queue": {
+      "feature": "File d'attente des problèmes",
+      "desc": "Aperçu local des problèmes BCF générés avec miniatures et détails extensibles, avant l'export ou la transmission à la plateforme."
+    }
+  },
+  "interfaces": {
+    "title": "Interfaces",
+    "web": {
+      "feature": "Application web",
+      "desc": "Interface entièrement basée sur le navigateur avec import par glisser-déposer, sélection de standard, barre de progression, vue des résultats et visualiseur 3D."
+    },
+    "cli": {
+      "feature": "CLI",
+      "desc": "<code>ifc-validate model.ifc --ids nl-bim</code> — adapté au traitement par lots, aux pipelines CI/CD et au scripting. Sortie en console, JSON ou HTML."
+    },
+    "restapi": {
+      "feature": "API REST",
+      "desc": "Backend FastAPI avec endpoints de validation asynchrones. Intégrable dans vos propres workflows, tableaux de bord ou outils tiers."
+    }
+  },
+  "reporting": {
+    "title": "Rapports &amp; export",
+    "dashboard": {
+      "feature": "Tableau de bord des résultats",
+      "desc": "Carte de synthèse avec total réussite/échec, pourcentage, nombre d'éléments validés et horodatage."
+    },
+    "breakdown": {
+      "feature": "Détail par spécification",
+      "desc": "Liste extensible par spécification avec statut réussite/échec, pourcentage et liste paginée des éléments en échec."
+    },
+    "jsonexport": {
+      "feature": "Export JSON",
+      "desc": "Téléchargez les résultats complets de validation sous forme de fichier JSON structuré pour une analyse ou un archivage ultérieur."
+    },
+    "htmlreport": {
+      "feature": "Rapport HTML",
+      "desc": "Générez un rapport HTML autonome à partager avec l'équipe projet ou le client."
+    }
+  },
+  "fileprocessing": {
+    "title": "Traitement des fichiers",
+    "dragdrop": {
+      "feature": "Import par glisser-déposer",
+      "desc": "Glissez des fichiers IFC, IFCXML ou IFCZIP dans le navigateur. Maximum 500 Mo par fichier."
+    },
+    "memory": {
+      "feature": "Gestion de la mémoire",
+      "desc": "Vérification automatique de la disponibilité de RAM suffisante (les fichiers IFC utilisent environ 10 fois leur taille en mémoire). Les fichiers temporaires sont supprimés immédiatement."
+    },
+    "largefiles": {
+      "feature": "Fichiers volumineux",
+      "desc": "Optimisé pour les modèles IFC jusqu'à plus de 1 Go. Indicateur de progression pendant le traitement."
+    }
+  },
+  "deployment": {
+    "title": "Déploiement &amp; intégration",
+    "docker": {
+      "feature": "Déploiement Docker",
+      "desc": "Configuration Docker Compose complète avec backend, frontend, nginx, PostgreSQL et Redis. Une seule commande pour tout démarrer."
+    },
+    "onpremises": {
+      "feature": "Sur site (on-premises)",
+      "desc": "Exécutez le validateur sur votre propre serveur pour un contrôle maximal des données et de la confidentialité. Aucune dépendance au cloud."
+    },
+    "multitenant": {
+      "feature": "Multi-tenant",
+      "desc": "Stockage de projets avec intégration NextCloud optionnelle pour la gestion des fichiers par organisation."
+    },
+    "sso": {
+      "feature": "Authentification SSO",
+      "desc": "Authentification unique basée sur OIDC pour les environnements d'entreprise."
+    }
+  },
+  "developments": {
+    "label": "Développement du projet",
+    "title": "Développements récents",
+    "intro": "Le validateur est en développement actif. Voici les améliorations récentes les plus notables du dépôt public.",
+    "item1": {
+      "title": "Projets cloisonnés par organisation",
+      "desc": "Les routes de projet, de fichier et de cloud vérifient désormais le contexte de l'organisation avant que des données ne soient ouvertes ou modifiées."
+    },
+    "item2": {
+      "title": "Dépendances sécurisées",
+      "desc": "Les outils frontend et l'analyseur de données ont été mis à jour, et les problèmes de sécurité signalés dans le contrôle des dépendances ont été résolus."
+    },
+    "item3": {
+      "title": "Ouvrir et enregistrer des projets localement et dans le cloud",
+      "desc": "Le workflow de projet prend désormais en charge les fichiers de projet locaux, l'enregistrement en tant que nouveau projet, ainsi que l'ouverture ou la mise à jour depuis un stockage de projet lié."
+    },
+    "item4": {
+      "title": "Plans de coupe interactifs",
+      "desc": "Les plans de coupe peuvent être sélectionnés et déplacés directement dans la vue 3D pour une inspection ciblée du modèle."
+    },
+    "link": "Voir la modification &rarr;"
   }
 }

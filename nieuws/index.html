@@ -349,7 +349,7 @@
       <div class="filter-bar">
         <span class="filter-label" data-i18n="filter.label">Filter:</span>
         <button class="filter-btn active" data-filter="all" data-i18n="filter.all">Alles</button>
-        <button class="filter-btn" data-filter="release">Releases</button>
+        <button class="filter-btn" data-filter="release" data-i18n="filter.releases">Releases</button>
         <button class="filter-btn" data-filter="new_repo" data-i18n="filter.new_repos">Nieuwe repos</button>
         <button class="filter-btn" data-filter="linkedin">LinkedIn</button>
       </div>
@@ -500,7 +500,7 @@
       const icon = TYPE_ICON[item.type] || TYPE_ICON.release;
       const loc = localize(item);
       return `
-        <a class="news-card" href="${escapeHtml(item.url)}" target="_blank" rel="noopener">
+        <a class="news-card" href="${escapeHtml(item.url)}"${/^https?:\/\//.test(item.url) ? ' target="_blank" rel="noopener"' : ''}>
           <div class="news-icon ${escapeHtml(item.type)}">${icon}</div>
           <div class="news-body">
             <div class="news-meta">

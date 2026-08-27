@@ -239,9 +239,19 @@ async function main() {
     }
   }
 
-  const publicRepos = repos.filter(r => !r.private);
+  // Forks tellen niet mee: dat is andermans software die toevallig in de org
+  // staat. Zonder deze filter leverde de fork llvm-project in zijn eentje
+  // 352.681 van de 362.737 commits — 97% van de teller kwam niet van OpenAEC.
+  // De repo's uit EXTERNAL_REPOS zijn geen forks en blijven dus meetellen.
+  const forks = repos.filter(r => r.fork);
+  if (forks.length) {
+    console.log(`  Skipping ${forks.length} fork(s), not our own software: ${forks.map(r => r.name).join(', ')}`);
+  }
+  const ownRepos = repos.filter(r => !r.fork);
 
-  console.log(`Found ${repos.length} repos (${publicRepos.length} public, incl. ${EXTERNAL_REPOS.length} external)`);
+  const publicRepos = ownRepos.filter(r => !r.private);
+
+  console.log(`Found ${ownRepos.length} own repos (${publicRepos.length} public, incl. ${EXTERNAL_REPOS.length} external)`);
 
   // Org-wide issue/PR counts via search API (one request each)
   console.log('Fetching org-wide issue & PR counts...');
@@ -296,7 +306,7 @@ async function main() {
 
   // Fetch releases from ALL repos (we still need release counts for private repos
   // internally), but news items are ONLY emitted for public repos below.
-  for (const repo of repos) {
+  for (const repo of ownRepos) {
     try {
       // Fetch ALL releases (paginated) to get full history
       const releases = await fetchAllPages(
@@ -394,9 +404,9 @@ async function main() {
   });
 
   const summary = {
-    totalRepos: repos.length,
+    totalRepos: ownRepos.length,
     publicRepos: publicRepos.length,
-    privateRepos: repos.length - publicRepos.length,
+    privateRepos: ownRepos.length - publicRepos.length,
     totalStars: publicRepos.reduce((s, r) => s + r.stargazers_count, 0),
     totalForks: publicRepos.reduce((s, r) => s + r.forks_count, 0),
     // GitHub's `open_issues_count` counts BOTH issues AND PRs — keep the legacy

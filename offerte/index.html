@@ -362,7 +362,7 @@
         </div>
         <div class="form-nav">
           <div></div>
-          <button class="btn btn-primary" onclick="goToStep(2)">Volgende &rarr;</button>
+          <button class="btn btn-primary" onclick="goToStep(2)" data-i18n="nav.next">Volgende &rarr;</button>
         </div>
       </div>
 
@@ -396,8 +396,8 @@
           </div>
         </div>
         <div class="form-nav">
-          <button class="btn btn-secondary" onclick="goToStep(1)">&larr; Terug</button>
-          <button class="btn btn-primary" onclick="goToStep(3)">Overzicht &rarr;</button>
+          <button class="btn btn-secondary" onclick="goToStep(1)" data-i18n="nav.back">&larr; Terug</button>
+          <button class="btn btn-primary" onclick="goToStep(3)" data-i18n="nav.overview">Overzicht &rarr;</button>
         </div>
       </div>
 
@@ -417,7 +417,7 @@
           </div>
         </div>
         <div class="form-nav">
-          <button class="btn btn-secondary" onclick="goToStep(2)">&larr; Terug</button>
+          <button class="btn btn-secondary" onclick="goToStep(2)" data-i18n="nav.back">&larr; Terug</button>
           <button class="btn btn-primary btn-lg" onclick="submitQuote()" data-i18n="submit.button">Offerte aanvragen</button>
         </div>
       </div>
@@ -428,8 +428,9 @@
           <circle cx="12" cy="12" r="10"/>
           <path d="M8 12l3 3 5-5"/>
         </svg>
-        <h2 data-i18n="success.title">Aanvraag verzonden</h2>
-        <p data-i18n="success.desc">Bedankt voor uw offerte-aanvraag. Wij nemen zo snel mogelijk contact met u op.</p>
+        <h2 data-i18n="success.title">Nog één stap</h2>
+        <p data-i18n="success.desc">Uw e-mailprogramma opent met de aanvraag er al in. Verstuur die mail om de aanvraag af te ronden — dan komt hij bij ons binnen.</p>
+        <p style="margin-top: var(--sp-3);"><a id="quoteMailFallback" href="mailto:info@open-aec.com" data-i18n="success.fallback">Opent er niets? Mail de aanvraag naar info@open-aec.com</a></p>
         <a href="/" class="btn btn-primary" style="margin-top: var(--sp-6); display: inline-flex;" data-i18n="success.home">Terug naar home</a>
       </div>
 
@@ -480,6 +481,9 @@
           <input type="number" id="uc-${t.id}" min="1" max="9999" value="1" disabled>
         </div>
       `;
+      row.querySelector('h3').setAttribute('data-i18n', 'tools.items.' + t.id + '.name');
+      row.querySelector('.tool-info p').setAttribute('data-i18n', 'tools.items.' + t.id + '.desc');
+      row.querySelector('.user-count label').setAttribute('data-i18n', 'form.users');
       const cb = row.querySelector('input[type="checkbox"]');
       const uc = row.querySelector('input[type="number"]');
       row.addEventListener('click', (e) => {
@@ -558,11 +562,35 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
+    // De site is statisch: er is geen backend om de aanvraag naartoe te sturen.
+    // We stellen daarom een mail op naar info@open-aec.com en laten de bezoeker
+    // die zelf versturen. Dat is de enige route die gegarandeerd aankomt, en de
+    // bezoeker ziet zwart-op-wit dat de aanvraag de deur uit gaat.
+    function buildQuoteMailto() {
+      const val = id => (document.getElementById(id).value || '').trim();
+      const lines = ['Offerte-aanvraag via open-aec.com', '', 'Naam: ' + val('q-name')];
+      if (val('q-company')) lines.push('Bedrijf: ' + val('q-company'));
+      lines.push('E-mail: ' + val('q-email'));
+      if (val('q-phone')) lines.push('Telefoon: ' + val('q-phone'));
+      lines.push('', 'Gekozen tools:');
+      getSelectedTools().forEach(t => {
+        lines.push('- ' + t.name + ' (' + t.users + ' gebruiker' + (t.users > 1 ? 's' : '') + ')');
+      });
+      const subject = 'Offerte-aanvraag' + (val('q-company') ? ' \u2014 ' + val('q-company') : '');
+      return 'mailto:info@open-aec.com?subject=' + encodeURIComponent(subject) +
+             '&body=' + encodeURIComponent(lines.join('\n'));
+    }
+
     function submitQuote() {
-      // In a real app this would POST to a backend
+      const href = buildQuoteMailto();
+      const link = document.getElementById('quoteMailFallback');
+      if (link) link.href = href;
+
       document.querySelectorAll('[id^="step"]').forEach(el => el.hidden = true);
       document.getElementById('stepSuccess').style.display = 'block';
       document.querySelector('.steps').style.display = 'none';
+
+      window.location.href = href;
     }
   </script>
   <script src="/shared/i18n.js?v=20260728"></script>
