@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAEC BCF Manager Studio vs BIMcollab — kendi sunucunuzda, açık kaynak BCF</title>
+  <meta name="description" content="BCF Manager Studio, BIM projeleri için BCF 2.1 ve BCF API 3.0 ile kendi sunucunuzda barındırılan, açık kaynak sorun yönetimi sunar. Özellikler…">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="OpenAEC BCF Manager Studio vs BIMcollab — kendi sunucunuzda, açık kaynak BCF">
+  <meta property="og:description" content="BCF Manager Studio, BIM projeleri için BCF 2.1 ve BCF API 3.0 ile kendi sunucunuzda barındırılan, açık kaynak sorun yönetimi sunar. Özellikler…">
+  <meta property="og:url" content="https://open-aec.com/tr/vs/bimcollab/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="OpenAEC BCF Manager Studio vs BIMcollab — self-hosted, open source BCF">
+  <meta name="twitter:description" content="BCF Manager Studio, BIM projeleri için BCF 2.1 ve BCF API 3.0 ile kendi sunucunuzda barındırılan, açık kaynak sorun yönetimi sunar. Özellikler…">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="vs-bimcollab">
+  <meta name="keywords" content="BIMcollab alternatief, open source BCF, BCF Manager Studio, BCF API 3.0, self-hosted BIM issue management">
+  <link rel="canonical" href="https://open-aec.com/tr/vs/bimcollab/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/vs/bimcollab/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/vs/bimcollab/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/vs/bimcollab/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/vs/bimcollab/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/vs/bimcollab/">
+  <!-- hreflang:end -->
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <style>
+    .page-header { background: var(--night-build); padding: var(--sp-20) var(--sp-6) var(--sp-12); text-align: center; border-bottom: 3px solid transparent; border-image: var(--gradient-accent) 1; }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 { font-family: var(--font-heading); font-weight: 700; font-size: 2.25rem; color: white; letter-spacing: -0.02em; margin-bottom: var(--sp-4); }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p { font-size: 1.0625rem; color: var(--scaffold-gray); max-width: 720px; margin: 0 auto; line-height: 1.6; }
+    .compare-table { width: 100%; border-collapse: collapse; background: white; border: 1px solid #E7E5E4; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); font-size: 0.9375rem; }
+    .compare-table th, .compare-table td { padding: var(--sp-4); text-align: left; border-bottom: 1px solid #E7E5E4; vertical-align: top; }
+    .compare-table thead th { background: var(--night-build); color: white; font-family: var(--font-heading); font-size: 0.95rem; }
+    .compare-table thead th:first-child { width: 30%; }
+    .compare-table thead th .badge { display: block; font-family: var(--font-code); font-size: 0.65rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em; color: var(--warm-gold); margin-top: 4px; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .feat { font-weight: 600; color: var(--deep-forge); background: var(--concrete); }
+    .yes { color: #15803D; font-weight: 600; }
+    .no { color: #B91C1C; font-weight: 600; }
+    .partial { color: var(--amber); font-weight: 600; }
+    .choose-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--sp-6); margin-top: var(--sp-6); }
+    .choose-card { background: white; border: 1px solid #E7E5E4; border-radius: var(--radius-lg); padding: var(--sp-6); box-shadow: var(--shadow-sm); }
+    .choose-card.openaec { border-top: 4px solid var(--amber); }
+    .choose-card.competitor { border-top: 4px solid #57534E; }
+    .choose-card h3 { font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: var(--sp-4); color: var(--deep-forge); }
+    .choose-card ul { list-style: none; padding: 0; margin: 0; }
+    .choose-card li { padding: var(--sp-2) 0 var(--sp-2) var(--sp-6); position: relative; font-size: 0.9375rem; line-height: 1.55; color: #44403C; }
+    .choose-card li::before { content: "→"; position: absolute; left: 0; color: var(--amber); font-weight: 700; }
+    .choose-card.competitor li::before { color: #57534E; }
+    .cta-block { background: var(--night-build); color: white; border-radius: var(--radius-lg); padding: var(--sp-10) var(--sp-6); text-align: center; max-width: 800px; margin: 0 auto; }
+    .cta-block h2 { color: white; margin-bottom: var(--sp-4); }
+    .cta-block p { color: var(--scaffold-gray); max-width: 600px; margin: 0 auto var(--sp-6); line-height: 1.6; }
+    .summary-lead { max-width: 780px; margin: 0 auto; font-size: 1.0625rem; line-height: 1.7; color: #44403C; }
+    .summary-lead p { margin-bottom: var(--sp-4); }
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 1.75rem; }
+      .compare-table { font-size: 0.8125rem; }
+      .compare-table th, .compare-table td { padding: var(--sp-3); }
+    }
+  </style>
+  <meta name="i18n-static" content="tr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "tr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/tr/vs/bimcollab/#webpage",
+        "url": "https://open-aec.com/tr/vs/bimcollab/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "tr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/tr/vs/bimcollab/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/tr/vs/bimcollab/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/tr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Vs",
+            "item": "https://open-aec.com/tr/vs"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Bimcollab",
+            "item": "https://open-aec.com/tr/vs/bimcollab/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/tr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/tr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Ekosistem</a></li>
+        <li><a href="/tr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Yol haritası</a></li>
+        <li><a href="/tr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Mimari</a></li>
+        <li><a href="/tr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">İstatistikler</a></li>
+        <li><a href="/tr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Haberler</a></li>
+        <li><a href="/tr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Destekçiler</a></li>
+        <li><a href="/tr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Desteklerimiz</a></li>
+        <li><a href="/tr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Yapı</a></li>
+        <li><a href="/tr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">İletişim</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Geri bildirim</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/vs/bimcollab/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/vs/bimcollab/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/vs/bimcollab/" hreflang="fr">FR</a>
+        <a class="lang-btn active" data-lang="tr" href="/tr/vs/bimcollab/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">Karşılaştırma</p>
+    <h1 data-i18n="header.title">OpenAEC <span class="accent">vs BIMcollab</span></h1>
+    <p data-i18n="header.desc">BCF Manager Studio, BIM projeleri için BCF 2.1 ve BCF API 3.0 ile kendi sunucunuzda barındırılan, açık kaynak sorun yönetimi sunar. Özellikler, fiyatlandırma ve mimari açısından BIMcollab ile karşılaştırın.</p>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="summary-lead">
+        <p data-i18n="summary.p1"><strong>BIMcollab</strong>, Avrupa genelinde yaygın olarak kullanılan, yerleşik bir BIM sorun yönetimi SaaS çözümüdür. Eklentiler aracılığıyla Revit, Archicad, Tekla, Navisworks ve Solibri ile entegre olur ve kullanıcı dostu bir web arayüzü sunar. BIMcollab yalnızca bulut tabanlıdır ve kullanıcı başına yılda tipik olarak €300-800 tutar (Zoom, Cloud veya Nexus sürümüne ve proje sayısına bağlı olarak).</p>
+        <p data-i18n="summary.p2">OpenAEC Foundation'ın <strong>BCF Manager Studio</strong>'su, BCF 2.1 ve BCF API 3.0'ı tam olarak destekleyen ücretsiz, açık kaynak bir BCF aracıdır. Kendi sunucunuzda barındırabilir veya yerel olarak çalıştırabilirsiniz — verileriniz sizde kalır, zorunlu bulut yoktur. OpenAEC BIM Validator ve Monty IFC Viewer ile sorunsuz entegrasyon sağlar.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom: var(--sp-8);" data-i18n="comparison.title">Özellik karşılaştırması</h2>
+      <div style="overflow-x: auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th data-i18n="comparison.th.feature">Özellik</th>
+              <th>BCF Manager Studio<span class="badge">OpenAEC Foundation</span></th>
+              <th>BIMcollab<span class="badge">KUBUS bv</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="feat" data-i18n="comparison.rows.price.label">Fiyat</td><td class="yes" data-i18n="comparison.rows.price.openaec">Ücretsiz</td><td data-i18n="comparison.rows.price.competitor">~€300-800/kullanıcı/yıl</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.license.label">Lisans</td><td data-i18n="comparison.rows.license.openaec">Açık kaynak (LGPL-3.0)</td><td data-i18n="comparison.rows.license.competitor">Ticari, SaaS aboneliği</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.licenseCost.label">Kullanıcı başına lisans maliyeti</td><td class="yes" data-i18n="comparison.rows.licenseCost.openaec">€0</td><td data-i18n="comparison.rows.licenseCost.competitor">Abonelik, yıllık</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.deployment.label">Dağıtım modeli</td><td class="yes" data-i18n="comparison.rows.deployment.openaec">Kendi sunucunuzda veya yerel</td><td class="no" data-i18n="comparison.rows.deployment.competitor">Yalnızca bulut (SaaS)</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.bcf21.label">BCF 2.1</td><td class="yes" data-i18n="comparison.rows.bcf21.openaec">Yerel destek</td><td class="yes" data-i18n="comparison.rows.bcf21.competitor">Evet</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.bcfApi3.label">BCF API 3.0</td><td class="yes" data-i18n="comparison.rows.bcfApi3.openaec">Yerleşik, tam destek</td><td class="partial" data-i18n="comparison.rows.bcfApi3.competitor">Sınırlı / yol haritasında</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.dataLocation.label">Veri konumu / egemenliği</td><td class="yes" data-i18n="comparison.rows.dataLocation.openaec">Siz belirlersiniz</td><td class="partial" data-i18n="comparison.rows.dataLocation.competitor">Satıcı tarafından barındırılır (AB bölgesi)</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.webInterface.label">Web arayüzü</td><td class="yes" data-i18n="comparison.rows.webInterface.openaec">Evet</td><td class="yes" data-i18n="comparison.rows.webInterface.competitor">Evet</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.revitPlugin.label">Revit eklentisi</td><td class="partial" data-i18n="comparison.rows.revitPlugin.openaec">Sınırlı</td><td class="yes" data-i18n="comparison.rows.revitPlugin.competitor">Olgun</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.archicadPlugin.label">Archicad eklentisi</td><td class="partial" data-i18n="comparison.rows.archicadPlugin.openaec">Sınırlı</td><td class="yes" data-i18n="comparison.rows.archicadPlugin.competitor">Olgun</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.teklaPlugin.label">Tekla eklentisi</td><td class="partial" data-i18n="comparison.rows.teklaPlugin.openaec">Sınırlı</td><td class="yes" data-i18n="comparison.rows.teklaPlugin.competitor">Olgun</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.navisworksPlugin.label">Navisworks eklentisi</td><td class="partial" data-i18n="comparison.rows.navisworksPlugin.openaec">BCF dışa aktarma yoluyla</td><td class="yes" data-i18n="comparison.rows.navisworksPlugin.competitor">Evet</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.issueDashboard.label">Sorun takip panosu</td><td class="yes" data-i18n="comparison.rows.issueDashboard.openaec">Evet</td><td class="yes" data-i18n="comparison.rows.issueDashboard.competitor">Kapsamlı</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.bimValidatorIntegration.label">BIM Validator ile entegrasyon</td><td class="yes" data-i18n="comparison.rows.bimValidatorIntegration.openaec">Yerel destek</td><td class="no" data-i18n="comparison.rows.bimValidatorIntegration.competitor">Geçerli değil</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.selfHosted.label">Kendi altyapınızda barındırma</td><td class="yes" data-i18n="comparison.rows.selfHosted.openaec">Tamamen</td><td class="no" data-i18n="comparison.rows.selfHosted.competitor">Mümkün değil</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.sourceCode.label">Kaynak kod</td><td class="yes" data-i18n="comparison.rows.sourceCode.openaec">GitHub, herkese açık</td><td class="no" data-i18n="comparison.rows.sourceCode.competitor">Kapalı</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.telemetry.label">Telemetri</td><td class="yes" data-i18n="comparison.rows.telemetry.openaec">Yok</td><td class="partial" data-i18n="comparison.rows.telemetry.competitor">Var</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.support.label">Destek</td><td data-i18n="comparison.rows.support.openaec">Topluluk + GitHub</td><td class="yes" data-i18n="comparison.rows.support.competitor">Ticari, SLA</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 style="text-align:center;" data-i18n="choose.title">Ne zaman hangisini seçmelisiniz?</h2>
+      <div class="choose-grid">
+        <div class="choose-card openaec">
+          <h3 data-i18n="choose.openaec.title">Şu durumlarda <span class="accent">BCF Manager Studio</span>'yu seçin...</h3>
+          <ul>
+            <li data-i18n="choose.openaec.item1">Kendi sunucunuzda çalışmak istiyorsanız — BIM verileriniz kendi sunucunuzda kalır.</li>
+            <li data-i18n="choose.openaec.item2">Veri egemenliği veya GDPR gereksinimleriniz, yalnızca bulut tabanlı çözümleri zorlaştırıyorsa.</li>
+            <li data-i18n="choose.openaec.item3">BCF API 3.0'a (standardın en güncel sürümü) yerel olarak ihtiyaç duyuyorsanız.</li>
+            <li data-i18n="choose.openaec.item4">Kullanıcı başına yıllık abonelik ödemek istemiyorsanız.</li>
+            <li data-i18n="choose.openaec.item5">BCF alışverişi yapmanız gereken projeler yürüten bir danışman veya küçük bir firmaysanız.</li>
+            <li data-i18n="choose.openaec.item6">BCF sorunlarını OpenAEC BIM Validator aracılığıyla IDS doğrulama sonuçlarıyla ilişkilendirmek istiyorsanız.</li>
+            <li data-i18n="choose.openaec.item7">Aracı özelleştirmek veya mevcut bir sorun takip sistemine entegre etmek istiyorsanız.</li>
+          </ul>
+        </div>
+        <div class="choose-card competitor">
+          <h3 data-i18n="choose.competitor.title">Şu durumlarda BIMcollab'ı seçin...</h3>
+          <ul>
+            <li data-i18n="choose.competitor.item1">Zaten BIMcollab kullanan ortaklarla yoğun bir şekilde iş birliği yapıyorsanız.</li>
+            <li data-i18n="choose.competitor.item2">Revit, Archicad, Tekla ve Navisworks için olgun eklentilere ihtiyaç duyuyorsanız.</li>
+            <li data-i18n="choose.competitor.item3">Kendi sunucunuzu kurmak istemiyor ve hazır bir SaaS çözümünü tercih ediyorsanız.</li>
+            <li data-i18n="choose.competitor.item4">SLA ve katılım desteği içeren ticari destek ihtiyacınız varsa.</li>
+            <li data-i18n="choose.competitor.item5">Kuruluşunuz zaten BIMcollab Zoom/Nexus/Cloud iş akışında çalışıyorsa.</li>
+            <li data-i18n="choose.competitor.item6">Smart Issues, istatistikler veya gelişmiş panolar gibi BIMcollab'a özgü özellikler kullanıyorsanız.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-block">
+        <h2 data-i18n="cta.title">BCF Manager Studio'yu deneyin</h2>
+        <p data-i18n="cta.desc">BIM projeleri için kendi sunucunuzda barındırılan BCF sorun yönetimi. Açık kaynak, abonelik yok, zorunlu bulut yok. Açık BCF standardı aracılığıyla ortaklarla iş birliği yapın.</p>
+        <div class="btn-group">
+          <a href="/tr/bcf-manager-studio/" class="btn btn-primary btn-lg">BCF Manager Studio</a>
+          <a href="https://github.com/OpenAEC-Foundation" class="btn btn-ghost btn-lg" style="color:white;border-color:white;">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="footer-container">
+    <a href="/tr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <span data-i18n="footer.slogan">Özgürce inşa edin. Birlikte inşa edelim.</span>
+    <p>&copy; 2026 OpenAEC Foundation</p>
+  </div></footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "BCF Manager Studio",
+    "alternateName": "OpenAEC BCF Manager Studio",
+    "description": "Open source, self-hosted BCF issue management tool van de OpenAEC Foundation. Gratis alternatief voor BIMcollab met native ondersteuning voor BCF 2.1 en BCF API 3.0. Naadloze integratie met OpenAEC BIM Validator en Monty IFC Viewer.",
+    "brand": { "@type": "Brand", "name": "OpenAEC Foundation" },
+    "operatingSystem": "Browser, Windows, macOS, Linux",
+    "applicationCategory": "BusinessApplication",
+    "url": "https://open-aec.com/bcf-manager-studio/",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" },
+    "isAccessibleForFree": true,
+    "license": "https://www.gnu.org/licenses/lgpl-3.0.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wat is een open source alternatief voor BIMcollab?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "BCF Manager Studio van de OpenAEC Foundation is een gratis, open source alternatief voor BIMcollab. Het ondersteunt BCF 2.1 en BCF API 3.0 native en kan self-hosted of lokaal draaien — uw data blijft bij u, geen verplichte cloud."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan ik BCF Manager Studio self-hosted draaien?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, BCF Manager Studio is ontworpen voor self-hosting. U draait het op uw eigen server of lokaal, zodat uw BIM-data binnen uw eigen infrastructuur blijft. BIMcollab is daarentegen cloud-only (SaaS)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ondersteunt BCF Manager Studio BCF API 3.0?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, BCF Manager Studio ondersteunt BCF API 3.0 native — de nieuwste versie van de open BCF-standaard van buildingSMART."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="/shared/i18n.js"></script>
+</body>
+</html>

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demander un devis — OpenAEC Foundation</title>
+  <meta name="description" content="Sélectionnez les outils dont vous avez besoin, indiquez le nombre d'utilisateurs et demandez un devis personnalisé.">
+  <link rel="canonical" href="https://open-aec.com/fr/offerte/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/offerte/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/offerte/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/offerte/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/offerte/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/offerte/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Demander un devis — OpenAEC Foundation">
+  <meta property="og:description" content="Sélectionnez les outils dont vous avez besoin, indiquez le nombre d'utilisateurs et demandez un devis personnalisé.">
+  <meta property="og:url" content="https://open-aec.com/fr/offerte/">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Offerte aanvragen">
+  <meta name="twitter:description" content="Sélectionnez les outils dont vous avez besoin, indiquez le nombre d'utilisateurs et demandez un devis personnalisé.">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="offerte">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-16) var(--sp-6) var(--sp-10);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: white;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-4);
+    }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p {
+      font-size: 1.125rem;
+      color: var(--scaffold-gray);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .quote-form-container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Steps indicator */
+    .steps {
+      display: flex;
+      justify-content: center;
+      gap: var(--sp-8);
+      margin-bottom: var(--sp-10);
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      font-size: 0.875rem;
+      color: var(--scaffold-gray);
+      font-weight: 500;
+    }
+    .step.active { color: var(--deep-forge); }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: #E7E5E4;
+      color: #57534E;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+    .step.active .step-num {
+      background: var(--amber);
+      color: white;
+    }
+    .step.done .step-num {
+      background: var(--success);
+      color: white;
+    }
+
+    /* Tool selection */
+    .tool-select-grid {
+      display: grid;
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-8);
+    }
+    .tool-row {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-4);
+      background: white;
+      border: 1.5px solid #E7E5E4;
+      border-radius: var(--radius-md);
+      padding: var(--sp-3) var(--sp-4);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      cursor: pointer;
+    }
+    .tool-row:hover {
+      border-color: #D6D3D1;
+    }
+    .tool-row.selected {
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(217,119,6,0.12);
+    }
+    .tool-row input[type="checkbox"] {
+      appearance: none;
+      -webkit-appearance: none;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #D6D3D1;
+      border-radius: 4px;
+      flex-shrink: 0;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.15s ease;
+    }
+    .tool-row input[type="checkbox"]:checked {
+      background: var(--amber);
+      border-color: var(--amber);
+    }
+    .tool-row input[type="checkbox"]:checked::after {
+      content: '';
+      position: absolute;
+      left: 5px;
+      top: 1px;
+      width: 6px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+    .tool-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .tool-info h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 0.9375rem;
+      color: var(--deep-forge);
+    }
+    .tool-info p {
+      font-size: 0.75rem;
+      color: var(--scaffold-gray);
+      margin-top: 1px;
+    }
+    .user-count {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      flex-shrink: 0;
+    }
+    .user-count label {
+      font-size: 0.75rem;
+      color: var(--scaffold-gray);
+      white-space: nowrap;
+    }
+    .user-count input[type="number"] {
+      width: 70px;
+      padding: 6px 8px;
+      border: 1.5px solid #D6D3D1;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      text-align: center;
+      background: var(--blueprint-white);
+      transition: border-color 0.15s ease;
+    }
+    .user-count input[type="number"]:focus {
+      outline: none;
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(217,119,6,0.15);
+    }
+    .user-count input[type="number"]:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    /* Contact form fields */
+    .form-section { margin-bottom: var(--sp-8); }
+    .form-section h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.25rem;
+      margin-bottom: var(--sp-4);
+      color: var(--deep-forge);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-4);
+    }
+    .form-group { margin-bottom: var(--sp-4); }
+    .form-group label {
+      font-size: 0.875rem;
+      font-weight: 500;
+      display: block;
+      margin-bottom: var(--sp-2);
+      color: var(--deep-forge);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1.5px solid #D6D3D1;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      font-family: var(--font-body);
+      background: var(--blueprint-white);
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--amber);
+      box-shadow: 0 0 0 3px rgba(217,119,6,0.15);
+    }
+    .form-group textarea { resize: vertical; min-height: 80px; }
+
+    /* Summary */
+    .summary-box {
+      background: var(--concrete);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      margin-bottom: var(--sp-6);
+    }
+    .summary-box h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: var(--sp-4);
+    }
+    .summary-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .summary-list li {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--sp-2) 0;
+      border-bottom: 1px solid #E7E5E4;
+      font-size: 0.875rem;
+    }
+    .summary-list li:last-child { border-bottom: none; }
+    .summary-list .tool-name { font-weight: 600; color: var(--deep-forge); }
+    .summary-list .user-badge {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--amber);
+      font-weight: 500;
+    }
+    .summary-empty {
+      font-size: 0.875rem;
+      color: var(--scaffold-gray);
+      font-style: italic;
+    }
+
+    /* Navigation buttons */
+    .form-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--sp-4);
+      margin-top: var(--sp-6);
+    }
+
+    /* Success message */
+    .success-message {
+      text-align: center;
+      padding: var(--sp-12) 0;
+      display: none;
+    }
+    .success-message svg {
+      color: var(--success);
+      margin-bottom: var(--sp-4);
+    }
+    .success-message h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin-bottom: var(--sp-3);
+    }
+    .success-message p {
+      color: var(--scaffold-gray);
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .page-footer.footer {
+      background: var(--deep-forge);
+      border-top: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--sp-4);
+    }
+    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
+
+    [hidden] { display: none !important; }
+
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 2rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .tool-row { flex-wrap: wrap; }
+      .user-count { width: 100%; justify-content: flex-end; }
+      .steps { gap: var(--sp-4); }
+      .step span:not(.step-num) { display: none; }
+    }
+  </style>
+  <meta name="i18n-static" content="fr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "fr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/fr/offerte/#webpage",
+        "url": "https://open-aec.com/fr/offerte/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "fr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/fr/offerte/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/fr/offerte/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Offerte",
+            "item": "https://open-aec.com/fr/offerte/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/fr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Écosystème</a></li>
+        <li><a href="/fr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Feuille de route</a></li>
+        <li><a href="/fr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Architecture</a></li>
+        <li><a href="/fr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">Statistiques</a></li>
+        <li><a href="/fr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Actualités</a></li>
+        <li><a href="/fr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Partenaires</a></li>
+        <li><a href="/fr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Nous soutenons</a></li>
+        <li><a href="/fr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Structure</a></li>
+        <li><a href="/fr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">Contact</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Commentaires</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/offerte/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/offerte/" hreflang="en">EN</a>
+        <a class="lang-btn active" data-lang="fr" href="/fr/offerte/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/offerte/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20260728"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">Écosystème OpenAEC</p>
+    <h1 data-i18n="header.title">Demander un <span class="accent">devis</span></h1>
+    <p data-i18n="header.desc">Sélectionnez les outils dont vous avez besoin, indiquez le nombre d'utilisateurs et demandez un devis personnalisé.</p>
+  </header>
+
+  <section class="section" style="background: var(--blueprint-white);">
+    <div class="quote-form-container">
+
+      <!-- Steps -->
+      <div class="steps">
+        <div class="step active" data-step="1"><span class="step-num">1</span> <span data-i18n="steps.select">Sélectionner les outils</span></div>
+        <div class="step" data-step="2"><span class="step-num">2</span> <span data-i18n="steps.details">Détails</span></div>
+        <div class="step" data-step="3"><span class="step-num">3</span> <span data-i18n="steps.confirm">Confirmer</span></div>
+      </div>
+
+      <!-- Step 1: Tool selection -->
+      <div id="step1">
+        <div class="form-section">
+          <h2 data-i18n="step1.title">Sélectionnez vos outils</h2>
+          <div class="tool-select-grid" id="toolGrid"></div>
+        </div>
+        <div class="form-nav">
+          <div></div>
+          <button class="btn btn-primary" onclick="goToStep(2)" data-i18n="nav.next">Suivant &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Step 2: Contact details -->
+      <div id="step2" hidden>
+        <div class="form-section">
+          <h2 data-i18n="step2.title">Vos coordonnées</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="q-name" data-i18n="form.name">Nom *</label>
+              <input type="text" id="q-name" placeholder="Uw naam" required>
+            </div>
+            <div class="form-group">
+              <label for="q-company" data-i18n="form.company">Entreprise</label>
+              <input type="text" id="q-company" placeholder="Bedrijfsnaam">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="q-email">E-mail *</label>
+              <input type="email" id="q-email" placeholder="uw@email.nl" required>
+            </div>
+            <div class="form-group">
+              <label for="q-phone" data-i18n="form.phone">Téléphone</label>
+              <input type="tel" id="q-phone" placeholder="06-12345678">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="q-notes" data-i18n="form.notes">Remarques</label>
+            <textarea id="q-notes" placeholder="Beschrijf uw situatie of specifieke wensen..."></textarea>
+          </div>
+        </div>
+        <div class="form-nav">
+          <button class="btn btn-secondary" onclick="goToStep(1)" data-i18n="nav.back">&larr; Retour</button>
+          <button class="btn btn-primary" onclick="goToStep(3)" data-i18n="nav.overview">Récapitulatif &rarr;</button>
+        </div>
+      </div>
+
+      <!-- Step 3: Summary -->
+      <div id="step3" hidden>
+        <div class="form-section">
+          <h2 data-i18n="step3.title">Récapitulatif de la demande de devis</h2>
+
+          <div class="summary-box">
+            <h3 data-i18n="summary.tools">Outils sélectionnés</h3>
+            <ul class="summary-list" id="summaryTools"></ul>
+          </div>
+
+          <div class="summary-box">
+            <h3 data-i18n="summary.contact">Coordonnées</h3>
+            <ul class="summary-list" id="summaryContact"></ul>
+          </div>
+        </div>
+        <div class="form-nav">
+          <button class="btn btn-secondary" onclick="goToStep(2)" data-i18n="nav.back">&larr; Retour</button>
+          <button class="btn btn-primary btn-lg" onclick="submitQuote()" data-i18n="submit.button">Demander un devis</button>
+        </div>
+      </div>
+
+      <!-- Success -->
+      <div id="stepSuccess" class="success-message">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/>
+          <path d="M8 12l3 3 5-5"/>
+        </svg>
+        <h2 data-i18n="success.title">Encore une étape</h2>
+        <p data-i18n="success.desc">Votre messagerie s'ouvre avec la demande déjà rédigée. Envoyez ce message pour finaliser votre demande — elle nous parviendra alors.</p>
+        <p style="margin-top: var(--sp-3);"><a id="quoteMailFallback" href="mailto:info@open-aec.com" data-i18n="success.fallback">Rien ne s'ouvre ? Envoyez la demande à info@open-aec.com</a></p>
+        <a href="/fr/" class="btn btn-primary" style="margin-top: var(--sp-6); display: inline-flex;" data-i18n="success.home">Retour à l'accueil</a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer page-footer" style="padding: var(--sp-6);">
+    <div class="footer-inner">
+      <a href="/fr/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
+      <a href="https://www.linkedin.com/company/23749451" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+      <p>&copy; 2026 OpenAEC Foundation</p>
+    </div>
+  </footer>
+
+  <script>
+    const tools = [
+      { id: 'ifcx', name: 'IFCX', desc: 'Universeel dataformaat' },
+      { id: 'open2d', name: 'Open 2D Studio', desc: '2D-documenten & tekeningen' },
+      { id: 'openpdf', name: 'Open PDF Studio', desc: 'PDF-documentstromen' },
+      { id: 'openenergy', name: 'Open Energy Studio', desc: 'Energie-analyse & prestaties' },
+      { id: 'openplanner', name: 'Open Planner Studio', desc: 'Projectplanning & coördinatie' },
+      { id: 'openpointcloud', name: 'Open Pointcloud Studio', desc: 'Pointcloud-data & analyse' },
+      { id: 'montyifc', name: 'Monty IFC Viewer', desc: 'Lichtgewicht IFC-viewer' },
+      { id: 'opencalc', name: 'Open Calc Studio', desc: 'Kostenramingen & begrotingen' },
+      { id: 'openfield', name: 'Open Field Studio', desc: 'Veldwerk & inspecties' },
+      { id: 'yapp', name: 'Y-app', desc: 'Communicatie & samenwerking' },
+      { id: 'bimvalidator', name: 'BIM Validator', desc: 'IFC-modelvalidatie' },
+      { id: 'openaecdocs', name: 'OpenAEC Docs', desc: 'Document management' },
+      { id: 'openspeech', name: 'Open Speech Studio', desc: 'Spraak-naar-tekst & notulen' },
+      { id: 'cloudplatform', name: 'OpenAEC Cloud Platform', desc: 'Centraal cloudplatform' },
+      { id: 'openheatloss', name: 'Open Heatloss Studio', desc: 'Warmteverliesberekening' },
+      { id: 'open3d', name: 'Open 3D Viewer', desc: '3D BIM-model viewer' },
+    ];
+
+    // Build tool grid
+    const grid = document.getElementById('toolGrid');
+    tools.forEach(t => {
+      const row = document.createElement('div');
+      row.className = 'tool-row';
+      row.innerHTML = `
+        <input type="checkbox" id="cb-${t.id}" data-tool="${t.id}">
+        <div class="tool-info">
+          <h3>${t.name}</h3>
+          <p>${t.desc}</p>
+        </div>
+        <div class="user-count">
+          <label>Gebruikers</label>
+          <input type="number" id="uc-${t.id}" min="1" max="9999" value="1" disabled>
+        </div>
+      `;
+      row.querySelector('h3').setAttribute('data-i18n', 'tools.items.' + t.id + '.name');
+      row.querySelector('.tool-info p').setAttribute('data-i18n', 'tools.items.' + t.id + '.desc');
+      row.querySelector('.user-count label').setAttribute('data-i18n', 'form.users');
+      const cb = row.querySelector('input[type="checkbox"]');
+      const uc = row.querySelector('input[type="number"]');
+      row.addEventListener('click', (e) => {
+        if (e.target.type === 'number') return;
+        cb.checked = !cb.checked;
+        row.classList.toggle('selected', cb.checked);
+        uc.disabled = !cb.checked;
+        if (cb.checked) uc.focus();
+      });
+      cb.addEventListener('change', () => {
+        row.classList.toggle('selected', cb.checked);
+        uc.disabled = !cb.checked;
+      });
+      grid.appendChild(row);
+    });
+
+    function getSelectedTools() {
+      return tools
+        .filter(t => document.getElementById('cb-' + t.id).checked)
+        .map(t => ({
+          ...t,
+          users: parseInt(document.getElementById('uc-' + t.id).value) || 1
+        }));
+    }
+
+    function goToStep(n) {
+      // Validate step 1
+      if (n === 2 && getSelectedTools().length === 0) {
+        alert('Selecteer minimaal een tool.');
+        return;
+      }
+      // Validate step 2
+      if (n === 3) {
+        const name = document.getElementById('q-name').value.trim();
+        const email = document.getElementById('q-email').value.trim();
+        if (!name || !email) {
+          alert('Vul uw naam en e-mailadres in.');
+          return;
+        }
+      }
+
+      // Build summary for step 3
+      if (n === 3) {
+        const selected = getSelectedTools();
+        const toolList = document.getElementById('summaryTools');
+        toolList.innerHTML = selected.map(t =>
+          `<li><span class="tool-name">${t.name}</span><span class="user-badge">${t.users} gebruiker${t.users > 1 ? 's' : ''}</span></li>`
+        ).join('');
+
+        const contact = document.getElementById('summaryContact');
+        const name = document.getElementById('q-name').value;
+        const company = document.getElementById('q-company').value;
+        const email = document.getElementById('q-email').value;
+        const phone = document.getElementById('q-phone').value;
+        let items = `<li><span class="tool-name">Naam</span><span>${name}</span></li>`;
+        if (company) items += `<li><span class="tool-name">Bedrijf</span><span>${company}</span></li>`;
+        items += `<li><span class="tool-name">E-mail</span><span>${email}</span></li>`;
+        if (phone) items += `<li><span class="tool-name">Telefoon</span><span>${phone}</span></li>`;
+        contact.innerHTML = items;
+      }
+
+      // Show/hide steps
+      document.querySelectorAll('[id^="step"]').forEach(el => {
+        if (el.id === 'step' + n) el.hidden = false;
+        else if (el.id !== 'stepSuccess') el.hidden = true;
+      });
+
+      // Update step indicators
+      document.querySelectorAll('.step').forEach(s => {
+        const sn = parseInt(s.dataset.step);
+        s.classList.remove('active', 'done');
+        if (sn === n) s.classList.add('active');
+        else if (sn < n) s.classList.add('done');
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // De site is statisch: er is geen backend om de aanvraag naartoe te sturen.
+    // We stellen daarom een mail op naar info@open-aec.com en laten de bezoeker
+    // die zelf versturen. Dat is de enige route die gegarandeerd aankomt, en de
+    // bezoeker ziet zwart-op-wit dat de aanvraag de deur uit gaat.
+    function buildQuoteMailto() {
+      const val = id => (document.getElementById(id).value || '').trim();
+      const lines = ['Offerte-aanvraag via open-aec.com', '', 'Naam: ' + val('q-name')];
+      if (val('q-company')) lines.push('Bedrijf: ' + val('q-company'));
+      lines.push('E-mail: ' + val('q-email'));
+      if (val('q-phone')) lines.push('Telefoon: ' + val('q-phone'));
+      lines.push('', 'Gekozen tools:');
+      getSelectedTools().forEach(t => {
+        lines.push('- ' + t.name + ' (' + t.users + ' gebruiker' + (t.users > 1 ? 's' : '') + ')');
+      });
+      const subject = 'Offerte-aanvraag' + (val('q-company') ? ' \u2014 ' + val('q-company') : '');
+      return 'mailto:info@open-aec.com?subject=' + encodeURIComponent(subject) +
+             '&body=' + encodeURIComponent(lines.join('\n'));
+    }
+
+    function submitQuote() {
+      const href = buildQuoteMailto();
+      const link = document.getElementById('quoteMailFallback');
+      if (link) link.href = href;
+
+      document.querySelectorAll('[id^="step"]').forEach(el => el.hidden = true);
+      document.getElementById('stepSuccess').style.display = 'block';
+      document.querySelector('.steps').style.display = 'none';
+
+      window.location.href = href;
+    }
+  </script>
+  <script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>

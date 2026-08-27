@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Speech Studio — AEC için yerel konuşmadan metne | OpenAEC Foundation</title>
+  <meta name="description" content="Whisper AI ile ücretsiz yerel ses tanıma. CTRL+Win'e basın ve herhangi bir uygulamaya dikte edin — sohbet, e-posta, terminal, IDE. Bulut yok, abonelik yok…">
+  <link rel="canonical" href="https://open-aec.com/tr/open-speech-studio/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-speech-studio/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/open-speech-studio/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/open-speech-studio/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/open-speech-studio/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/open-speech-studio/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Open Speech Studio — AEC için yerel konuşmadan metne | OpenAEC Foundation">
+  <meta property="og:description" content="Whisper AI ile ücretsiz yerel ses tanıma. CTRL+Win'e basın ve herhangi bir uygulamaya dikte edin — sohbet, e-posta, terminal, IDE. Bulut yok, abonelik yok…">
+  <meta property="og:url" content="https://open-aec.com/tr/open-speech-studio/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-speech-studio.png">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open Speech Studio — Lokale spraak-naar-tekst voor de AEC | OpenAEC Foundation">
+  <meta name="twitter:description" content="Whisper AI ile ücretsiz yerel ses tanıma. CTRL+Win'e basın ve herhangi bir uygulamaya dikte edin — sohbet, e-posta, terminal, IDE. Bulut yok, abonelik yok…">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-speech-studio.png">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="open-speech-studio">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+
+  <!-- Schema.org SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open Speech Studio",
+    "alternateName": "OpenAEC Speech Studio",
+    "applicationCategory": "UtilitiesApplication",
+    "applicationSubCategory": "Speech Recognition",
+    "operatingSystem": "Windows 10, Windows 11",
+    "softwareVersion": "0.10.3",
+    "datePublished": "2026-05-19",
+    "url": "https://open-aec.com/open-speech-studio/",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-speech-studio/releases",
+    "installUrl": "https://github.com/OpenAEC-Foundation/open-speech-studio/releases",
+    "license": "https://www.gnu.org/licenses/lgpl-3.0.html",
+    "description": "Gratis lokale spraak-naar-tekst tool voor AEC professionals. Druk CTRL+Windows en dicteer in elke applicatie - e-mail, chat, IDE, Outlook, terminal. 100% lokaal met Whisper AI, geen cloud, geen abonnement, GDPR-veilig. Alternatief voor Dragon NaturallySpeaking en Otter.ai.",
+    "featureList": [
+      "Dicteer in elke applicatie via systeembrede overlay",
+      "100% lokaal met OpenAI Whisper - geen cloud",
+      "CUDA GPU-versnelling",
+      "Parallelle transcriptie van audiobestanden",
+      "Real-time vergader-transcriptie",
+      "99 talen ondersteund (Nederlands, Engels, Duits, Frans, ...)",
+      "Whisper modellen: tiny, base, small, medium, large",
+      "Sneltoetsen: CTRL+Win en CTRL+SHIFT+Spatie",
+      "Export naar TXT, SRT, VTT",
+      "Geschiedenis van transcripties",
+      "Automatische klembord-integratie",
+      "GDPR-compliant - data verlaat nooit je PC"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "OpenAEC Foundation",
+      "url": "https://open-aec.com"
+    },
+    "isAccessibleForFree": true,
+    "keywords": "spraakherkenning, speech-to-text, dicteren, whisper, lokaal, GDPR, AEC, bouw, notulen, transcriptie",
+    "sameAs": [
+      "https://github.com/OpenAEC-Foundation/open-speech-studio"
+    ]
+  }
+  </script>
+
+  <link rel="stylesheet" href="/shared/style.css">
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: white;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-4);
+    }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p {
+      font-size: 1.125rem;
+      color: var(--scaffold-gray);
+      max-width: 760px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      background: #D1FAE5;
+      color: #065F46;
+      margin-top: var(--sp-4);
+    }
+    .header-meta {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      color: var(--scaffold-gray);
+      margin-top: var(--sp-2);
+    }
+    .header-cta {
+      display: flex;
+      gap: var(--sp-3);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--sp-6);
+    }
+    .header-cta .btn-primary {
+      background: var(--amber);
+      color: var(--deep-forge);
+    }
+    .header-cta .btn-ghost {
+      background: rgba(255,255,255,0.06);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .content { max-width: 850px; margin: 0 auto; }
+    .content h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-4);
+    }
+    .content h2 .accent { color: var(--amber); }
+    .content p { font-size: 1rem; color: #57534E; line-height: 1.7; margin-bottom: var(--sp-4); }
+    .content-block + .content-block { margin-top: var(--sp-12); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--sp-6);
+      margin: var(--sp-8) 0;
+    }
+    .feature-card {
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .feature-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-2);
+    }
+    .feature-card p { font-size: 0.875rem; color: #57534E; line-height: 1.6; margin-bottom: 0; }
+    .feature-card .feature-icon {
+      width: 36px; height: 36px;
+      border-radius: var(--radius-md);
+      background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; margin-bottom: var(--sp-3);
+    }
+
+    /* Use cases grid */
+    .usecase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: var(--sp-5);
+      margin: var(--sp-8) 0;
+    }
+    .usecase-card {
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-left: 4px solid var(--amber);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+    .usecase-card .usecase-tag {
+      font-family: var(--font-code);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--warm-gold);
+      font-weight: 600;
+    }
+    .usecase-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--deep-forge);
+      margin: 0;
+    }
+    .usecase-card p {
+      font-size: 0.9rem;
+      color: #57534E;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* Why local - comparison cards */
+    .why-section {
+      background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-10) var(--sp-6);
+      margin-top: var(--sp-12);
+    }
+    .why-section h2 { text-align: center; }
+    .why-section .why-intro {
+      text-align: center;
+      max-width: 580px;
+      margin: 0 auto var(--sp-8);
+      color: #78350F;
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--sp-5);
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .why-card {
+      background: white;
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid #FDE68A;
+    }
+    .why-card .why-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: var(--sp-2);
+    }
+    .why-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.05rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-2);
+    }
+    .why-card p {
+      font-size: 0.875rem;
+      color: #57534E;
+      line-height: 1.6;
+      margin: 0;
+    }
+    .why-card .price-callout {
+      display: block;
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--warm-gold);
+      margin-top: var(--sp-2);
+      font-weight: 600;
+    }
+
+    /* Comparison table */
+    .comparison-wrap { overflow-x: auto; margin: var(--sp-6) 0; }
+    .comparison-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      font-size: 0.9rem;
+      min-width: 560px;
+    }
+    .comparison-table th, .comparison-table td {
+      padding: var(--sp-3) var(--sp-4);
+      text-align: left;
+      border-bottom: 1px solid #F5F5F4;
+    }
+    .comparison-table thead th {
+      background: var(--deep-forge);
+      color: white;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .comparison-table thead th.us {
+      background: var(--amber);
+      color: var(--deep-forge);
+    }
+    .comparison-table td.us-cell {
+      background: #FFFBEB;
+      font-weight: 600;
+      color: var(--deep-forge);
+    }
+    .comparison-table td.row-label {
+      font-weight: 600;
+      color: var(--deep-forge);
+    }
+
+    /* Final CTA */
+    .final-cta {
+      background: var(--night-build);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-12) var(--sp-6);
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.08);
+      margin-top: var(--sp-12);
+    }
+    .final-cta h2 {
+      color: white;
+      font-size: 1.75rem;
+      margin-bottom: var(--sp-3);
+    }
+    .final-cta h2 .accent { color: var(--amber); }
+    .final-cta p {
+      color: var(--scaffold-gray);
+      max-width: 540px;
+      margin: 0 auto var(--sp-6);
+      font-size: 1rem;
+    }
+    .final-cta .cta-row {
+      display: flex; gap: var(--sp-4); justify-content: center; flex-wrap: wrap;
+    }
+    .final-cta .install-meta {
+      margin-top: var(--sp-4);
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--scaffold-gray);
+    }
+
+    .cta-links { display: flex; gap: var(--sp-4); flex-wrap: wrap; margin-top: var(--sp-6); }
+    .cta-links a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: var(--radius-md);
+      font-family: var(--font-heading); font-weight: 600; font-size: 0.875rem;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .cta-links a:hover { opacity: 0.85; }
+    .cta-secondary { background: var(--deep-forge); color: white; }
+
+    .page-footer.footer {
+      background: var(--deep-forge);
+      border-top: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-4);
+    }
+    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
+
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 2rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .usecase-grid { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <meta name="i18n-static" content="tr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "tr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/tr/open-speech-studio/#webpage",
+        "url": "https://open-aec.com/tr/open-speech-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "tr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/tr/open-speech-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/tr/open-speech-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/tr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Open Speech Studio",
+            "item": "https://open-aec.com/tr/open-speech-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/tr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/tr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Ekosistem</a></li>
+        <li><a href="/tr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Yol haritası</a></li>
+        <li><a href="/tr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Mimari</a></li>
+        <li><a href="/tr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">İstatistikler</a></li>
+        <li><a href="/tr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Haberler</a></li>
+        <li><a href="/tr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Destekçiler</a></li>
+        <li><a href="/tr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Desteklerimiz</a></li>
+        <li><a href="/tr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Yapı</a></li>
+        <li><a href="/tr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">İletişim</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Geri bildirim</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/open-speech-studio/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/open-speech-studio/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/open-speech-studio/" hreflang="fr">FR</a>
+        <a class="lang-btn active" data-lang="tr" href="/tr/open-speech-studio/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20260728"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">OpenAEC ekosistemi</p>
+    <h1 data-i18n="header.title">Open Speech <span class="accent">Studio</span></h1>
+    <p data-i18n="header.desc">Whisper AI ile ücretsiz yerel ses tanıma. <strong style="color:white;">CTRL+Win</strong>'e basın ve herhangi bir uygulamaya dikte edin — sohbet, e-posta, terminal, IDE. Bulut yok, abonelik yok, sınır yok. v0.10.3 stable, 1 yükleyici, 30 saniyede hazır.</p>
+    <span class="status-badge" data-i18n="header.badge">v0.10.3 STABLE</span>
+    <div class="header-meta" data-i18n="header.meta">v0.10.3 &middot; 80 commit &middot; Whisper AI &middot; Tauri 2 &middot; Rust</div>
+    <div class="header-cta">
+      <a href="https://github.com/OpenAEC-Foundation/open-speech-studio/releases" target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-i18n="header.cta.download">Yükleyiciyi indir (.exe)</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-speech-studio" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-i18n="header.cta.github">GitHub'da görüntüle</a>
+    </div>
+  </header>
+
+  <section class="section" style="background: var(--blueprint-white);">
+
+    <!-- Screenshots -->
+    <style>
+      .media-slider { max-width: 850px; margin: calc(-1 * var(--sp-4)) auto var(--sp-8); position: relative; }
+      .slider-container { position: relative; overflow: hidden; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); background: #2A2A32; }
+      .slider-track { display: flex; transition: transform 0.4s ease; }
+      .slider-slide { min-width: 100%; }
+      .slider-slide img { width: 100%; display: block; }
+      .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.25rem; display: flex; align-items: center; justify-content: center; z-index: 2; }
+      .slider-btn:hover { background: rgba(0,0,0,0.7); }
+      .slider-prev { left: 12px; }
+      .slider-next { right: 12px; }
+      .slider-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0; }
+      .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: #D6D3D1; border: none; cursor: pointer; }
+      .slider-dot.active { background: #D97706; }
+    </style>
+    <div class="media-slider">
+      <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-speech-studio-tts.png" alt="Open Speech Studio — tekst-naar-spraak met lokale stemmen"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-speech-studio-models.png" alt="Open Speech Studio — Whisper-spraakmodellen beheren"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-speech-studio-settings.png" alt="Open Speech Studio — instellingen met GPU-versnelling"></div>
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Vorige">&lsaquo;</button>
+        <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Volgende">&rsaquo;</button>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+
+    <div class="content">
+
+      <!-- USE CASES voor AEC professionals -->
+      <div class="content-block">
+        <h2 data-i18n="usecases.heading"><span class="accent">AEC profesyonelleri</span> için kullanım senaryoları</h2>
+        <p data-i18n="usecases.intro">İster şantiyede inceleme yapın, ister proje toplantısında not alın, ister görevler arasında bir e-posta dikte edin — Open Speech Studio her yerde çalışır, çevrimdışı bile.</p>
+        <div class="usecase-grid">
+          <div class="usecase-card">
+            <span class="usecase-tag" data-i18n="usecases.inspection.tag">ŞANTİYE</span>
+            <h3 data-i18n="usecases.inspection.title">Şantiyede incelemeler</h3>
+            <p data-i18n="usecases.inspection.desc">Fotoğraf çekerken bulgularınızı doğrudan Open Field Studio'ya dikte edin. Eldiven çıkarmak yok, küçük ekranda yazmak yok. Sadece konuşun — tamam.</p>
+          </div>
+          <div class="usecase-card">
+            <span class="usecase-tag" data-i18n="usecases.meetings.tag">TOPLANTILAR</span>
+            <h3 data-i18n="usecases.meetings.title">Toplantı tutanakları</h3>
+            <p data-i18n="usecases.meetings.desc">Yerinde proje toplantılarının gerçek zamanlı transkripsiyonu. Tamamen yerel işlenir — müşteri isimleri, fiyatlar veya gizli proje verileri için gizlilik kaygısı yok.</p>
+          </div>
+          <div class="usecase-card">
+            <span class="usecase-tag" data-i18n="usecases.email.tag">İLETİŞİM</span>
+            <h3 data-i18n="usecases.email.title">Şantiyede hızlı e-postalar</h3>
+            <p data-i18n="usecases.email.desc">Görevler arasında Outlook veya Gmail'e dikte edin. Elleriniz kirliyken, güvenlik eldivenleri taktığınızda veya merdiven tutarken eller serbest.</p>
+          </div>
+          <div class="usecase-card">
+            <span class="usecase-tag" data-i18n="usecases.ai.tag">AI WORKFLOW</span>
+            <h3 data-i18n="usecases.ai.title">AI prompt'ları yazmak</h3>
+            <p data-i18n="usecases.ai.desc">Claude veya ChatGPT için bir prompt'u yazmaktan çok daha hızlı dikte edin. Konuşmak ~3x daha hızlıdır ve genellikle daha doğal ifade edersiniz — uzun, detaylı prompt'lar için idealdir.</p>
+          </div>
+          <div class="usecase-card">
+            <span class="usecase-tag" data-i18n="usecases.code.tag">GELİŞTİRİCİLER</span>
+            <h3 data-i18n="usecases.code.title">Kod yorumları ve commit'ler</h3>
+            <p data-i18n="usecases.code.desc">Kod açıklamalarını, docstring'leri ve commit mesajlarını doğrudan IDE veya terminalinize dikte edin. VS Code, Cursor, Neovim'de sorunsuz çalışır — metin girebileceğiniz her yerde.</p>
+          </div>
+          <div class="usecase-card">
+            <span class="usecase-tag" data-i18n="usecases.accessibility.tag">ERİŞİLEBİLİRLİK</span>
+            <h3 data-i18n="usecases.accessibility.title">Erişilebilirlik</h3>
+            <p data-i18n="usecases.accessibility.desc">RSI hastaları, motor bozukluğu olan kişiler veya geçici yaralanmalar için. Bilgisayarınızı tamamen klavyesiz kullanın — KVKK güvenli ve aboneliksiz.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- WAAROM LOKAAL -->
+      <div class="why-section">
+        <h2 data-i18n="why.heading">Neden yerel?</h2>
+        <p class="why-intro" data-i18n="why.intro">Bulut ses tanıma sesinizi üçüncü taraf sunuculara gönderir. Open Speech Studio her şeyi kendi PC'nizde yapar — daha hızlı, daha güvenli ve aylık ücret olmadan.</p>
+        <div class="why-grid">
+          <div class="why-card">
+            <span class="why-icon">🔒</span>
+            <h3 data-i18n="why.privacy.title">Gizlilik</h3>
+            <p data-i18n="why.privacy.desc">Sesiniz bilgisayarınızdan asla ayrılmaz. Otomatik olarak KVKK güvenli — harici sağlayıcılarla DPA gerekmiyor, veri ihlali riski yok.</p>
+          </div>
+          <div class="why-card">
+            <span class="why-icon">💶</span>
+            <h3 data-i18n="why.cost.title">Abonelik yok</h3>
+            <p data-i18n="why.cost.desc">Otter.ai aylık ~20 € ücret alır. Dragon NaturallySpeaking ~500 € bir kez. Open Speech Studio sonsuza dek ücretsiz — açık kaynak LGPL-3.0.</p>
+            <span class="price-callout" data-i18n="why.cost.callout">Sonsuza dek 0 €</span>
+          </div>
+          <div class="why-card">
+            <span class="why-icon">♾️</span>
+            <h3 data-i18n="why.limits.title">Hız sınırı yok</h3>
+            <p data-i18n="why.limits.desc">İsterseniz günde 10 saat dikte edin. API kotaları yok, 'Fair Use Policy' yok, sürpriz faturalar yok. Tek sınırınız donanımınız.</p>
+          </div>
+        </div>
+
+        <!-- Comparison table -->
+        <div class="comparison-wrap" style="max-width: 800px; margin: var(--sp-8) auto 0;">
+          <table class="comparison-table">
+            <thead>
+              <tr>
+                <th data-i18n="compare.feature">Özellik</th>
+                <th class="us" data-i18n="compare.us">Open Speech Studio</th>
+                <th data-i18n="compare.dragon">Dragon NaturallySpeaking</th>
+                <th data-i18n="compare.otter">Otter.ai</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="row-label" data-i18n="compare.price">Fiyat</td>
+                <td class="us-cell" data-i18n="compare.price.us">&euro;0 (open source)</td>
+                <td data-i18n="compare.price.dragon">~&euro;500 one-time</td>
+                <td data-i18n="compare.price.otter">~&euro;20/maand</td>
+              </tr>
+              <tr>
+                <td class="row-label" data-i18n="compare.local">%100 yerel</td>
+                <td class="us-cell" data-i18n="compare.yes">Evet</td>
+                <td data-i18n="compare.yes2">Evet</td>
+                <td data-i18n="compare.no">Hayır (bulut)</td>
+              </tr>
+              <tr>
+                <td class="row-label" data-i18n="compare.gdpr">DPA olmadan KVKK güvenli</td>
+                <td class="us-cell" data-i18n="compare.yes3">Evet</td>
+                <td data-i18n="compare.yes4">Evet</td>
+                <td data-i18n="compare.no2">Hayır</td>
+              </tr>
+              <tr>
+                <td class="row-label" data-i18n="compare.langs">Diller</td>
+                <td class="us-cell" data-i18n="compare.langs.us">99 talen (Whisper)</td>
+                <td data-i18n="compare.langs.dragon">~6 talen</td>
+                <td data-i18n="compare.langs.otter">~10 talen</td>
+              </tr>
+              <tr>
+                <td class="row-label" data-i18n="compare.gpu">GPU hızlandırma (CUDA)</td>
+                <td class="us-cell" data-i18n="compare.yes5">Evet</td>
+                <td data-i18n="compare.no3">Hayır</td>
+                <td data-i18n="compare.na">Yok (bulut)</td>
+              </tr>
+              <tr>
+                <td class="row-label" data-i18n="compare.opensource">Açık kaynak</td>
+                <td class="us-cell" data-i18n="compare.opensource.us">Ja (LGPL-3.0)</td>
+                <td data-i18n="compare.no4">Hayır</td>
+                <td data-i18n="compare.no5">Hayır</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- FUNCTIONALITEITEN -->
+      <div class="content-block">
+        <h2 data-i18n="features.heading">Özellikler — <span class="accent">bu</span> ne yapabilir?</h2>
+        <p data-i18n="features.intro">Open Speech Studio bir dikte aracından daha fazlasıdır. Ses dosyası transkripsiyonu, toplantı kayıtları, birden fazla Whisper modeli ve standart altyazı formatlarına dışa aktarma içeren eksiksiz bir konuşma-metin paketidir.</p>
+        <div class="features-grid">
+          <div class="feature-card">
+            <span class="feature-icon">🎙️</span>
+            <h3 data-i18n="features.dictate.title">Her yerde dikte edin</h3>
+            <p data-i18n="features.dictate.desc">Sistem genelinde bir overlay aracılığıyla doğrudan herhangi bir uygulamaya metin dikte edin. Outlook, Word, Chrome, VS Code, Slack, Teams'te çalışır — OS'nizde tam anlamıyla her yerde.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">📂</span>
+            <h3 data-i18n="features.transcribe.title">Ses dosyası transkripsiyonu</h3>
+            <p data-i18n="features.transcribe.desc">Paralel işleme ile ses dosyalarını (.mp3, .wav, .m4a, .ogg) transkribe edin. Aynı anda birden fazla dosya, hızlı ve doğru.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">👥</span>
+            <h3 data-i18n="features.meetings.title">Gerçek zamanlı toplantı transkripsiyonu</h3>
+            <p data-i18n="features.meetings.desc">Proje toplantılarını kaydedin ve transkripsiyonun gerçek zamanlı görünmesini izleyin. Şantiyede çevrimdışı bile otomatik tutanak.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">⚡</span>
+            <h3 data-i18n="features.gpu.title">CUDA GPU hızlandırma</h3>
+            <p data-i18n="features.gpu.desc">Daha hızlı sonuçlar için CUDA GPU hızlandırma. Modern bir GPU'da Whisper Large neredeyse gerçek zamanlı çalışır — donanımınızın optimal kullanımı.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">⌨️</span>
+            <h3 data-i18n="features.shortcuts.title">Klavye kısayolları</h3>
+            <p data-i18n="features.shortcuts.desc">Overlay için CTRL+Win, alternatif olarak CTRL+SHIFT+Space. Fare tıklaması gerekmez, menü aramak yok — dikte &lt;100ms'de başlar.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🧠</span>
+            <h3 data-i18n="features.models.title">Whisper AI modelleri</h3>
+            <p data-i18n="features.models.desc">5 model: tiny, base, small, medium, large. Hız (tiny) veya doğruluk (large) arasında seçim yapın. Modele bağlı olarak 1-10 GB bellek kullanımı.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🌍</span>
+            <h3 data-i18n="features.languages.title">99 dil</h3>
+            <p data-i18n="features.languages.desc">Whisper 99 dili destekler: Hollandaca, İngilizce, Almanca, Fransızca, İspanyolca, Lehçe, Arapça, Türkçe, Mandarin ve daha fazlası. Otomatik dil algılama.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🎛️</span>
+            <h3 data-i18n="features.overlay.title">Spotify tarzı overlay</h3>
+            <p data-i18n="features.overlay.desc">Canlı dalga formu görselleştirmesi olan zarif, minimalist overlay UI. Yoldan çekilir, eklendikten sonra otomatik kaybolur.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🕘</span>
+            <h3 data-i18n="features.history.title">Geçmiş</h3>
+            <p data-i18n="features.history.desc">Transkripsiyonların tam geçmişi — aranabilir, yeniden kullanılabilir. Her şey yerel olarak saklanır, kontrol sizde.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">📄</span>
+            <h3 data-i18n="features.export.title">TXT, SRT, VTT dışa aktarma</h3>
+            <p data-i18n="features.export.desc">Transkripsiyonları düz metin (.txt) veya zaman damgalarıyla video içeriği için altyazı (.srt, .vtt) olarak dışa aktarın.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">📋</span>
+            <h3 data-i18n="features.clipboard.title">Pano entegrasyonu</h3>
+            <p data-i18n="features.clipboard.desc">Otomatik pano entegrasyonu — dikte edin ve doğrudan yapıştırın veya metnin imleç konumuna otomatik olarak eklenmesine izin verin.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-icon">🔒</span>
+            <h3 data-i18n="features.local.title">%100 yerel</h3>
+            <p data-i18n="features.local.desc">Her şey kendi bilgisayarınızda yerel olarak çalışır. Verileriniz PC'nizden asla ayrılmaz. Bulut yok, abonelik yok, sınır yok. KVKK güvenli, kutudan çıkar çıkmaz.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SHORTCUTS BLOCK (kept) -->
+      <div class="content-block" style="background: var(--night-build); border-radius: var(--radius-lg); padding: var(--sp-8); text-align: center; border-left: 4px solid var(--amber);">
+        <h2 style="color: white; margin-bottom: var(--sp-2);" data-i18n="shortcuts.title">Klavye kısayolları</h2>
+        <p style="color: var(--scaffold-gray); margin-bottom: var(--sp-4);" data-i18n="shortcuts.desc">İşletim sisteminizde her yerde konuşma tanımayı başlatın:</p>
+        <div style="display: flex; gap: var(--sp-4); justify-content: center; flex-wrap: wrap; align-items: center;">
+          <span style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 8px 20px; border-radius: var(--radius-md); font-family: var(--font-code); font-size: 0.9rem; color: var(--amber);">CTRL + Windows</span>
+          <span style="color: var(--scaffold-gray);" data-i18n="shortcuts.or">veya</span>
+          <span style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 8px 20px; border-radius: var(--radius-md); font-family: var(--font-code); font-size: 0.9rem; color: var(--amber);">CTRL + SHIFT + Spatie</span>
+        </div>
+        <p style="color: var(--scaffold-gray); margin-top: var(--sp-4); font-size: 0.85rem;" data-i18n="shortcuts.note">Ayarlarda yapılandırılabilir — başka yazılımlarla çakışırsa kendi kısayolunuzu seçin.</p>
+      </div>
+
+      <!-- TECH STACK -->
+      <div class="content-block">
+        <h2 data-i18n="tech.heading">Teknoloji <span class="accent">stack'i</span></h2>
+        <p data-i18n="tech.desc">Open Speech Studio modern, performanslı bir stack üzerine inşa edilmiştir. <strong>OpenAI Whisper</strong> state-of-the-art ses tanıma için. <strong>Rust</strong> hafif, hızlı bir backend için (Python runtime gerekmez). <strong>Tauri 2</strong> masaüstü uygulaması için — Electron'dan çok daha hafif (~10 MB, 200 MB yerine). UI için <strong>TypeScript + Svelte</strong>. LGPL-3.0 altında tamamen açık kaynak.</p>
+      </div>
+
+      <!-- FINAL CTA -->
+      <div class="final-cta">
+        <h2 data-i18n="finalcta.heading">Şimdi indirin <span class="accent">— 30 saniye kurulum</span></h2>
+        <p data-i18n="finalcta.desc">1 yükleyici dosyası (.exe), kayıt yok, hesap yok, kredi kartı yok. &lt;1 dakikada dikteye hazır. Windows 10 ve Windows 11'de çalışır.</p>
+        <div class="cta-row">
+          <a href="https://github.com/OpenAEC-Foundation/open-speech-studio/releases" target="_blank" rel="noopener" class="btn btn-primary btn-lg" style="background: var(--amber); color: var(--deep-forge);" data-i18n="finalcta.download">Yükleyiciyi indir (.exe)</a>
+          <a href="https://github.com/OpenAEC-Foundation/open-speech-studio" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-i18n="finalcta.github">GitHub'da kaynağı görüntüle</a>
+        </div>
+        <p class="install-meta" data-i18n="finalcta.meta">v0.10.3 stable &middot; LGPL-3.0 &middot; Windows 10/11 &middot; ~40 MB indirme</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Release Notes (shared component) -->
+  <div data-release-notes="open-speech-studio"></div>
+  <script src="/shared/release-notes.js?v=20260728"></script>
+
+  <footer class="footer page-footer" style="padding: var(--sp-6);">
+    <div class="footer-inner">
+      <a href="/tr/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
+      <div style="display: flex; gap: var(--sp-4); align-items: center;">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg> GitHub</a>
+        <a href="https://www.linkedin.com/company/23749451" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+      </div>
+      <p>&copy; 2026 OpenAEC Foundation</p>
+    </div>
+  </footer>
+<script>
+  (function(){
+    const track = document.getElementById('sliderTrack');
+    const dots = document.getElementById('sliderDots');
+    if(!track || !dots) return;
+    let current = 0;
+    const slides = track.children.length;
+    for(let i=0;i<slides;i++){
+      const d = document.createElement('button');
+      d.className = 'slider-dot' + (i===0?' active':'');
+      d.onclick = ()=>slideTo(i);
+      dots.appendChild(d);
+    }
+    window.slideMove = function(dir){slideTo(current+dir);};
+    window.slideTo = function(i){
+      current = (i+slides)%slides;
+      track.style.transform = 'translateX(-' + (current*100) + '%)';
+      dots.querySelectorAll('.slider-dot').forEach((d,idx)=>d.classList.toggle('active',idx===current));
+    };
+  })();
+</script>
+<script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>

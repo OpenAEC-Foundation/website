@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAEC BCF Manager Studio — OpenAEC Foundation</title>
+  <meta name="description" content="Open-source BCF 2.1 issue management platform for BIM projects. Manage issues, communicate with teams and link to IFC models.">
+  <link rel="canonical" href="https://open-aec.com/en/bcf-manager-studio/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/bcf-manager-studio/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/bcf-manager-studio/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/bcf-manager-studio/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/bcf-manager-studio/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/bcf-manager-studio/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="OpenAEC BCF Manager Studio">
+  <meta property="og:description" content="Open-source BCF 2.1 issue management platform for BIM projects. Manage issues, communicate with teams and link to IFC models.">
+  <meta property="og:url" content="https://open-aec.com/en/bcf-manager-studio/">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="OpenAEC BCF Manager Studio">
+  <meta name="twitter:description" content="Open-source BCF 2.1 issue management platform for BIM projects. Manage issues, communicate with teams and link to IFC models.">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="bcf-manager-studio">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BCF Manager Studio",
+    "applicationCategory": "EngineeringApplication",
+    "applicationSubCategory": "BIM / Issue Management",
+    "operatingSystem": "Windows, macOS, Linux, Web",
+    "url": "https://open-aec.com/bcf-manager-studio/",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/openaec-bcf-platform/releases",
+    "license": "https://www.gnu.org/licenses/lgpl-3.0.html",
+    "description": "Open-source BCF 2.1 issue management platform for BIM projects. BCF API 3.0, IFC GlobalId linking, viewpoints, team collaboration.",
+    "featureList": [
+      "BCF 2.1 issue management",
+      "Viewpoints met 3D-snapshots",
+      "Team-samenwerking",
+      "BCF XML import/export",
+      "REST API (BCF API 3.0)",
+      "Projectbeheer",
+      "IFC-koppeling",
+      "Self-hosted",
+      "Notificaties"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "isAccessibleForFree": true,
+    "keywords": "BCF, BIM issues, BCF 2.1, BCF API 3.0, BIMcollab alternative, issue management",
+    "sameAs": "https://github.com/OpenAEC-Foundation/openaec-bcf-platform",
+    "publisher": {
+      "@type": "Organization",
+      "name": "OpenAEC Foundation",
+      "url": "https://open-aec.com"
+    }
+  }
+  </script>
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: white;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-4);
+    }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p {
+      font-size: 1.125rem;
+      color: var(--scaffold-gray);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      background: #DBEAFE;
+      color: #1E40AF;
+      margin-top: var(--sp-4);
+    }
+    .version-info {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      color: var(--scaffold-gray);
+      margin-top: var(--sp-2);
+    }
+
+    .content { max-width: 850px; margin: 0 auto; }
+    .content h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-4);
+    }
+    .content h2 .accent { color: var(--amber); }
+    .content p { font-size: 1rem; color: #57534E; line-height: 1.7; margin-bottom: var(--sp-4); }
+    .content-block + .content-block { margin-top: var(--sp-12); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--sp-6);
+      margin: var(--sp-8) 0;
+    }
+    .feature-card {
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .feature-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-2);
+    }
+    .feature-card p { font-size: 0.875rem; color: #57534E; line-height: 1.6; margin-bottom: 0; }
+
+    /* BCF explainer */
+    .bcf-explainer {
+      background: var(--night-build);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-8);
+      margin: var(--sp-8) 0;
+    }
+    .bcf-explainer h3 { color: var(--amber); font-family: var(--font-heading); font-size: 1.125rem; margin-bottom: var(--sp-4); }
+    .bcf-explainer p { color: var(--scaffold-gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: var(--sp-3); }
+    .bcf-explainer ul { list-style: none; padding: 0; margin: 0; }
+    .bcf-explainer ul li {
+      position: relative;
+      padding: var(--sp-2) 0 var(--sp-2) var(--sp-5);
+      color: var(--scaffold-gray);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    .bcf-explainer ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 12px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+    }
+
+    /* Tech stack */
+    .tech-stack {
+      display: flex;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+      margin: var(--sp-4) 0;
+    }
+    .tech-tag {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      background: var(--concrete);
+      color: var(--deep-forge);
+    }
+
+    .cta-links { display: flex; gap: var(--sp-4); flex-wrap: wrap; margin-top: var(--sp-6); }
+    .cta-links a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: var(--radius-md);
+      font-family: var(--font-heading); font-weight: 600; font-size: 0.875rem;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .cta-links a:hover { opacity: 0.85; }
+    .cta-primary { background: var(--amber); color: var(--deep-forge); }
+    .cta-secondary { background: var(--deep-forge); color: white; }
+
+    .page-footer.footer {
+      background: var(--deep-forge);
+      border-top: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-4);
+    }
+    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
+
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 1.8rem; word-break: break-word; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <meta name="i18n-static" content="en">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/en/bcf-manager-studio/#webpage",
+        "url": "https://open-aec.com/en/bcf-manager-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "en",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/en/bcf-manager-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/en/bcf-manager-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/en/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Bcf Manager Studio",
+            "item": "https://open-aec.com/en/bcf-manager-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/en/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/en/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Ecosystem</a></li>
+        <li><a href="/en/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Roadmap</a></li>
+        <li><a href="/en/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Architecture</a></li>
+        <li><a href="/en/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">Statistics</a></li>
+        <li><a href="/en/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">News</a></li>
+        <li><a href="/en/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Supporters</a></li>
+        <li><a href="/en/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">We support</a></li>
+        <li><a href="/en/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Structure</a></li>
+        <li><a href="/en/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">Contact</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Feedback</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/bcf-manager-studio/" hreflang="nl">NL</a>
+        <a class="lang-btn active" data-lang="en" href="/en/bcf-manager-studio/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/bcf-manager-studio/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/bcf-manager-studio/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js?v=20260728"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">OpenAEC Ecosystem</p>
+    <h1 data-i18n="header.title">BCF Manager <span class="accent">Studio</span></h1>
+    <p data-i18n="header.desc">Open-source BCF 2.1 issue management platform for BIM projects. Manage issues, communicate with teams and link to IFC models.</p>
+    <span class="status-badge" data-i18n="header.badge">In development</span>
+    <div class="version-info">26 commits &middot; Rust + TypeScript &middot; By 3BM Bouwkunde</div>
+  </header>
+
+  <section class="section" style="background: var(--blueprint-white);">
+    <div class="content">
+
+      <!-- BCF explainer -->
+      <div class="bcf-explainer">
+        <h3 data-i18n="bcf.title">What is BCF?</h3>
+        <p data-i18n="bcf.desc">BIM Collaboration Format (BCF) is an open standard (buildingSMART) for exchanging issues and comments between BIM software. It enables reporting, discussing and resolving problems in a building model — regardless of which software the parties involved are using.</p>
+        <ul>
+          <li data-i18n="bcf.list1">Open standard: BCF 2.1 (XML) and BCF API 3.0 (REST)</li>
+          <li data-i18n="bcf.list2">Software-independent: works with any BIM package that supports BCF</li>
+          <li data-i18n="bcf.list3">Viewpoints: visual snapshots of the 3D model for each issue</li>
+          <li data-i18n="bcf.list4">Metadata: priority, status, assignment, deadlines, labels</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="why.title">Why BCF Manager <span class="accent">Studio</span>?</h2>
+        <p data-i18n="why.desc1">Existing BCF tools are often part of expensive, proprietary BIM platforms. BCF Manager Studio offers a standalone, open-source alternative that anyone can use — free, without license fees, without vendor lock-in.</p>
+        <p data-i18n="why.desc2">The platform runs locally or on your own server. Your data stays yours. Connect it to your own IFC viewer, share issues with your team, and export to any BCF-compatible package.</p>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="features.title">Features</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3 data-i18n="features.issues.title">BCF 2.1 issue management</h3>
+            <p data-i18n="features.issues.desc">Create, edit and manage issues conforming to the BCF 2.1 standard. Full support for topics, comments, viewpoints and snapshots.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.viewpoints.title">Viewpoints with 3D snapshots</h3>
+            <p data-i18n="features.viewpoints.desc">Link visual viewpoints to issues with camera position, selection and visibility. Directly visible in your IFC viewer.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.collaboration.title">Team collaboration</h3>
+            <p data-i18n="features.collaboration.desc">Assign issues to team members, set deadlines, add comments and track status. Real-time synchronization between all participants.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.xml.title">BCF XML import/export</h3>
+            <p data-i18n="features.xml.desc">Import and export BCF files (XML format) for exchange with Solibri, Navisworks, BIMcollab and other BCF-compatible software.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.api.title">REST API (BCF API 3.0)</h3>
+            <p data-i18n="features.api.desc">Full BCF API 3.0 implementation for integration with external tools, dashboards and automation.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.projects.title">Project management</h3>
+            <p data-i18n="features.projects.desc">Organize issues per project with labels, priorities, milestones and filters. Clear dashboard with statistics.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.ifc.title">IFC integration</h3>
+            <p data-i18n="features.ifc.desc">Link issues directly to IFC elements via GlobalId. Navigate from an issue directly to the relevant element in your model.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.selfhosted.title">Self-hosted</h3>
+            <p data-i18n="features.selfhosted.desc">Run the platform on your own server or locally. Full control over your data, no cloud dependency.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.notifications.title">Notifications</h3>
+            <p data-i18n="features.notifications.desc">Receive notifications for new issues, status changes and replies. Configurable per project and per user.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="tech.title">Technology</h2>
+        <div class="tech-stack">
+          <span class="tech-tag">Rust</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Tauri 2</span>
+          <span class="tech-tag">BCF 2.1 XML</span>
+          <span class="tech-tag">BCF API 3.0</span>
+          <span class="tech-tag">REST API</span>
+          <span class="tech-tag">Docker</span>
+        </div>
+        <p data-i18n="tech.desc">Built with the same technology stack as the entire OpenAEC ecosystem: a Rust backend for performance and security, a TypeScript frontend for usability, and Tauri 2 for cross-platform distribution.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="cta-links">
+          <a href="https://github.com/OpenAEC-Foundation/openaec-bcf-platform" target="_blank" rel="noopener" class="cta-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            <span data-i18n="cta.github">GitHub &rarr;</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Release Notes (shared component) -->
+  <div data-release-notes="openaec-bcf-platform"></div>
+  <script src="/shared/release-notes.js?v=20260728"></script>
+
+  <footer class="footer page-footer" style="padding: var(--sp-6);">
+    <div class="footer-inner">
+      <a href="/en/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
+      <div style="display: flex; gap: var(--sp-4); align-items: center;">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/company/23749451" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <p>&copy; 2026 OpenAEC Foundation</p>
+    </div>
+  </footer>
+<script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>

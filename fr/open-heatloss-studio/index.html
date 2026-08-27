@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Heatloss Studio — OpenAEC Foundation</title>
+  <meta name="description" content="Calcul de déperditions thermiques open source pour bâtiments, conforme à la norme NEN 12831.">
+  <link rel="canonical" href="https://open-aec.com/fr/open-heatloss-studio/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-heatloss-studio/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/open-heatloss-studio/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/open-heatloss-studio/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/open-heatloss-studio/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/open-heatloss-studio/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Open Heatloss Studio">
+  <meta property="og:description" content="Calcul de déperditions thermiques open source pour bâtiments, conforme à la norme NEN 12831.">
+  <meta property="og:url" content="https://open-aec.com/fr/open-heatloss-studio/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-heatloss-studio.png">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open Heatloss Studio">
+  <meta name="twitter:description" content="Calcul de déperditions thermiques open source pour bâtiments, conforme à la norme NEN 12831.">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-heatloss-studio.png">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="open-heatloss-studio">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open Heatloss Studio",
+    "applicationCategory": "EngineeringApplication",
+    "applicationSubCategory": "Building Physics",
+    "operatingSystem": "Windows, macOS, Linux, Web",
+    "url": "https://open-aec.com/open-heatloss-studio/",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-heatloss-studio/releases",
+    "license": "https://www.gnu.org/licenses/lgpl-3.0.html",
+    "description": "Heat loss calculations for buildings per NEN 12831 and ISSO 51:2023. Rust calculation engine, IFCX integration, PDF reports.",
+    "featureList": [
+      "NEN 12831 berekeningen",
+      "ISSO 51:2023",
+      "Transmissieverliezen",
+      "Grondgebonden constructies",
+      "Ventilatieverliezen",
+      "Opwarmtoeslag",
+      "Klimaatdata KNMI",
+      "U-waarde calculator",
+      "Thermische bruggen",
+      "IFCX-import",
+      "Zonering",
+      "Radiatorenberekening",
+      "Vloerverwarming",
+      "Warmtepomp dimensionering",
+      "Ketelvermogen",
+      "Rapportgeneratie",
+      "Exports",
+      "Materiaalbibliotheek",
+      "Constructie-opbouwen",
+      "Variantenstudie",
+      "Dashboard",
+      "CLI & batch",
+      "100% lokaal",
+      "Cross-platform"
+    ],
+    "screenshot": "https://open-aec.com/shared/assets/screenshots/open-heatloss-studio.png",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "isAccessibleForFree": true,
+    "keywords": "heat loss, warmteverlies, NEN 12831, ISSO 51, building physics, transmissieverlies, ventilatieverlies, U-waarde",
+    "sameAs": [
+      "https://github.com/OpenAEC-Foundation/open-heatloss-studio",
+      "https://open-heatloss-studio.open-aec.com/"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "OpenAEC Foundation",
+      "url": "https://open-aec.com"
+    }
+  }
+  </script>
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: white;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-4);
+    }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p {
+      font-size: 1.125rem;
+      color: var(--scaffold-gray);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      background: #FED7AA;
+      color: #9A3412;
+      margin-top: var(--sp-4);
+    }
+
+    .content { max-width: 850px; margin: 0 auto; }
+    .content h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-4);
+    }
+    .content h2 .accent { color: var(--amber); }
+    .content p { font-size: 1rem; color: #57534E; line-height: 1.7; margin-bottom: var(--sp-4); }
+    .content-block + .content-block { margin-top: var(--sp-12); }
+
+    /* Slider */
+    .media-slider { max-width: 850px; margin: 0 auto var(--sp-10); position: relative; }
+    .slider-container { position: relative; overflow: hidden; border-radius: var(--radius-lg); background: var(--night-build); }
+    .slider-track { display: flex; transition: transform 0.4s ease; }
+    .slider-slide { min-width: 100%; }
+    .slider-slide img, .slider-slide video { width: 100%; display: block; border-radius: var(--radius-lg); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--sp-6);
+      margin: var(--sp-8) 0;
+    }
+    .feature-card {
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .feature-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-2);
+    }
+    .feature-card p { font-size: 0.875rem; color: #57534E; line-height: 1.6; margin-bottom: 0; }
+
+    .cta-links { display: flex; gap: var(--sp-4); flex-wrap: wrap; margin-top: var(--sp-6); }
+    .cta-links a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: var(--radius-md);
+      font-family: var(--font-heading); font-weight: 600; font-size: 0.875rem;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .cta-links a:hover { opacity: 0.85; }
+    .cta-primary { background: var(--amber); color: var(--deep-forge); }
+    .cta-secondary { background: var(--deep-forge); color: white; }
+
+    .page-footer.footer {
+      background: var(--deep-forge);
+      border-top: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-4);
+    }
+    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
+
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 2rem; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <meta name="i18n-static" content="fr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "fr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/fr/open-heatloss-studio/#webpage",
+        "url": "https://open-aec.com/fr/open-heatloss-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "fr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/fr/open-heatloss-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/fr/open-heatloss-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Open Heatloss Studio",
+            "item": "https://open-aec.com/fr/open-heatloss-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/fr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Écosystème</a></li>
+        <li><a href="/fr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Feuille de route</a></li>
+        <li><a href="/fr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Architecture</a></li>
+        <li><a href="/fr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">Statistiques</a></li>
+        <li><a href="/fr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Actualités</a></li>
+        <li><a href="/fr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Partenaires</a></li>
+        <li><a href="/fr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Nous soutenons</a></li>
+        <li><a href="/fr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Structure</a></li>
+        <li><a href="/fr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">Contact</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Commentaires</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/open-heatloss-studio/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/open-heatloss-studio/" hreflang="en">EN</a>
+        <a class="lang-btn active" data-lang="fr" href="/fr/open-heatloss-studio/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/open-heatloss-studio/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20260728"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">Écosystème OpenAEC</p>
+    <h1 data-i18n="header.title">Open Heatloss <span class="accent">Studio</span></h1>
+    <p data-i18n="header.desc">Calcul de déperditions thermiques open source pour bâtiments, conforme à la norme NEN 12831.</p>
+    <span class="status-badge" data-i18n="header.badge">Beta</span>
+    <div style="display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-code); font-size: 0.7rem; color: var(--scaffold-gray); margin-top: var(--sp-2);">260 commits &middot; Rust + TypeScript &middot; Tauri 2 &middot; NEN 12831 / ISSO 51</div>
+  </header>
+
+  <section class="section" style="background: var(--blueprint-white);">
+
+    <!-- Screenshot -->
+    <div class="media-slider">
+      <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+          <div class="slider-slide">
+            <video controls muted playsinline poster="/shared/assets/screenshots/open-heatloss-studio.png">
+              <source src="/shared/assets/screenshots/open-heatloss-demo.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-heatloss-studio.png" alt="Open Heatloss Studio - Overzicht"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-heatloss-1.png" alt="Open Heatloss Studio - Projectinvoer"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-heatloss-2.png" alt="Open Heatloss Studio - Ruimte-eigenschappen"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-heatloss-3.png" alt="Open Heatloss Studio - Constructie-opbouw"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-heatloss-4.png" alt="Open Heatloss Studio - U-waarde berekening"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-heatloss-5.png" alt="Open Heatloss Studio - Transmissieverliezen"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-heatloss-6.png" alt="Open Heatloss Studio - Ventilatieverliezen"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-heatloss-7.png" alt="Open Heatloss Studio - Resultaten per ruimte"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-heatloss-8.png" alt="Open Heatloss Studio - Zonering"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-heatloss-9.png" alt="Open Heatloss Studio - Rapportgeneratie"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-heatloss-10.png" alt="Open Heatloss Studio - Dashboard"></div>
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideMove(-1)" style="position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.25rem; display: flex; align-items: center; justify-content: center; z-index: 2; left: 12px;">&lsaquo;</button>
+        <button class="slider-btn slider-next" onclick="slideMove(1)" style="position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.25rem; display: flex; align-items: center; justify-content: center; z-index: 2; right: 12px;">&rsaquo;</button>
+      </div>
+      <div class="slider-dots" id="sliderDots" style="display: flex; justify-content: center; gap: 8px; padding: 12px 0;"></div>
+    </div>
+    <script>
+      (function() {
+        const track = document.getElementById('sliderTrack');
+        const dots = document.getElementById('sliderDots');
+        if (!track) return;
+        const slides = track.children;
+        let current = 0;
+        for (let i = 0; i < slides.length; i++) {
+          const d = document.createElement('button');
+          d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+          d.style.cssText = 'width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;background:' + (i === 0 ? '#D97706' : '#D6D3D1') + ';';
+          d.onclick = () => goTo(i);
+          dots.appendChild(d);
+        }
+        function goTo(i) {
+          current = (i + slides.length) % slides.length;
+          track.style.transform = 'translateX(-' + (current * 100) + '%)';
+          Array.from(dots.children).forEach((dot, idx) => {
+            dot.style.background = idx === current ? '#D97706' : '#D6D3D1';
+          });
+        }
+        window.slideMove = (dir) => goTo(current + dir);
+      })();
+    </script>
+
+    <div class="content">
+      <!-- Norm explainer -->
+      <div class="bcf-explainer">
+        <h3 data-i18n="norm.title">Quelles normes sont prises en charge ?</h3>
+        <p data-i18n="norm.desc">Open Heatloss Studio met en œuvre les normes néerlandaises et européennes officielles pour le calcul des déperditions. Pleinement conforme aux méthodologies en vigueur pour la conception du chauffage et la performance énergétique.</p>
+        <ul>
+          <li data-i18n="norm.list1"><strong>NEN-EN 12831-1:2017</strong> — Performance énergétique des bâtiments, méthode de calcul de la charge thermique de conception</li>
+          <li data-i18n="norm.list2"><strong>NEN 12831-1+NEN 1:2019/A1:2021</strong> — annexe nationale néerlandaise</li>
+          <li data-i18n="norm.list3"><strong>ISSO 51:2023</strong> — calcul des déperditions pour les logements et bâtiments résidentiels</li>
+          <li data-i18n="norm.list4"><strong>ISSO 53/57</strong> — méthodologies pour le tertiaire et les bâtiments complexes</li>
+          <li data-i18n="norm.list5"><strong>NTA 8800</strong> — performance énergétique intégrale (BENG)</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="why.title">Pourquoi Open Heatloss <span class="accent">Studio</span> ?</h2>
+        <p data-i18n="why.desc">Les calculs de déperditions thermiques sont essentiels à la conception des systèmes de chauffage et à la performance énergétique des bâtiments. Open Heatloss Studio offre une alternative open source accessible aux logiciels commerciaux coûteux, entièrement conforme à la NEN 12831.</p>
+        <p data-i18n="why.desc2">Construit sur un cœur de calcul en Rust pour une vitesse et une précision maximales — des milliers de pièces sont calculées en quelques secondes. Tout tourne en local, sans dépendance au cloud ; vos données de projet restent les vôtres.</p>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="features.title">Fonctionnalités</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3 data-i18n="features.nen12831.title">Calculs NEN 12831</h3>
+            <p data-i18n="features.nen12831.desc">Calculs de déperditions thermiques complets conformes à la NEN 12831. Résultats précis pour la conception des systèmes de chauffage.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.isso51.title">ISSO 51:2023</h3>
+            <p data-i18n="features.isso51.desc">Méthodologie spécifique de calcul des déperditions des logements et bâtiments résidentiels selon la publication ISSO 51 (2023).</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.transmission.title">Déperditions par transmission par pièce</h3>
+            <p data-i18n="features.transmission.desc">Calcul détaillé des déperditions par transmission par pièce, y compris les facteurs de correction pour les constructions en contact avec le sol.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.ground.title">Constructions en contact avec le sol</h3>
+            <p data-i18n="features.ground.desc">Facteurs de correction pour les dallages, murs de cave, vides sanitaires et locaux non chauffés adjacents (facteurs b).</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.ventilation.title">Déperditions par ventilation</h3>
+            <p data-i18n="features.ventilation.desc">Calcul des déperditions par ventilation basé sur le système de ventilation, le débit d'air et l'infiltration.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.heatup.title">Surpuissance de relance</h3>
+            <p data-i18n="features.heatup.desc">Calcul de la puissance supplémentaire nécessaire à la relance après réduit de nuit — conformément aux tableaux de la NEN 12831 annexe F.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.climate.title">Données climatiques KNMI</h3>
+            <p data-i18n="features.climate.desc">Températures intérieures et extérieures de calcul par site. Zones climatiques KNMI sélectionnées automatiquement à partir du code postal.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.uvalue.title">Calculateur de valeur U</h3>
+            <p data-i18n="features.uvalue.desc">Calculez les valeurs U des constructions couche par couche. Bibliothèque de matériaux avec des valeurs λ conformes à NEN-EN 12524 et NTA 8800.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.thermal.title">Ponts thermiques</h3>
+            <p data-i18n="features.thermal.desc">Ponts thermiques linéiques (Ψ) selon NEN-EN ISO 14683. Valeurs par défaut ou calcul détaillé par nœud.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.ifcx.title">Intégration IFCX</h3>
+            <p data-i18n="features.ifcx.desc">Importez la géométrie du bâtiment et les propriétés des constructions directement depuis les modèles IFCX pour une saisie plus rapide.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.zones.title">Zonage</h3>
+            <p data-i18n="features.zones.desc">Regroupez les pièces par zone de chauffage, régulateur ou local technique. Des consignes différentes par zone sont possibles.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.radiator.title">Dimensionnement des radiateurs</h3>
+            <p data-i18n="features.radiator.desc">Déterminez la puissance des radiateurs par pièce à partir des déperditions, de la température d'eau et de l'exposant. Sélection dans une bibliothèque fabricant.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.floor.title">Plancher chauffant</h3>
+            <p data-i18n="features.floor.desc">Puissance du plancher chauffant par pièce, avec température de système, pas de pose et température de départ.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.heatpump.title">Dimensionnement de la pompe à chaleur</h3>
+            <p data-i18n="features.heatpump.desc">Pré-dimensionnement de la pompe à chaleur à partir des déperditions totales à la température de base. Indication de SCOP par type.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.boiler.title">Puissance de chaudière</h3>
+            <p data-i18n="features.boiler.desc">Puissance de chaudière incluant l'eau chaude sanitaire, les facteurs de simultanéité et les volumes tampons.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.reports.title">Génération de rapports</h3>
+            <p data-i18n="features.reports.desc">Générez des rapports clairs avec les déperditions par pièce, des récapitulatifs et des représentations graphiques.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.export.title">Exports</h3>
+            <p data-i18n="features.export.desc">Export vers Excel (XLSX) pour analyse complémentaire, IFCX pour l'intégration BIM et JSON pour l'automatisation et les liaisons API.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.library.title">Bibliothèque de physique du bâtiment</h3>
+            <p data-i18n="features.library.desc">Bibliothèque étendue de propriétés matériaux, compositions de paroi et valeurs U standard.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.constructions.title">Compositions de parois</h3>
+            <p data-i18n="features.constructions.desc">Compositions prédéfinies (façades, toitures, planchers) avec valeur U automatique. Créez et réutilisez vos propres compositions.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.compare.title">Étude de variantes</h3>
+            <p data-i18n="features.compare.desc">Comparez plusieurs variantes de conception côte à côte. Analyses what-if pour l'isolation, la ventilation et l'orientation solaire.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.dashboard.title">Tableau de bord</h3>
+            <p data-i18n="features.dashboard.desc">Vue d'ensemble en temps réel : déperditions totales, déperditions par zone, top 10 des pièces les plus déperditives, indicateurs énergétiques.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.cli.title">CLI et traitement par lots</h3>
+            <p data-i18n="features.cli.desc">Interface en ligne de commande pour les calculs par lots. Intégrez-la dans des pipelines CI ou automatisez sur des portefeuilles entiers.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.local.title">100 % local</h3>
+            <p data-i18n="features.local.desc">Tous les calculs tournent localement sur votre machine. Pas de cloud, pas de traçage. Vos données de projet restent les vôtres.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.crossplatform.title">Multiplateforme</h3>
+            <p data-i18n="features.crossplatform.desc">Disponible pour Windows, macOS, Linux et en application web. Tauri 2 + Rust pour des performances maximales.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="tech.title">Technologie</h2>
+        <div class="tech-stack">
+          <span class="tech-tag">Rust</span>
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">Tauri 2</span>
+          <span class="tech-tag">NEN 12831</span>
+          <span class="tech-tag">ISSO 51:2023</span>
+          <span class="tech-tag">IFC/IFCX</span>
+          <span class="tech-tag">PDF.js</span>
+          <span class="tech-tag">REST API</span>
+        </div>
+        <p data-i18n="tech.desc">Un cœur de calcul en Rust pour les calculs normatifs, un front-end TypeScript/SolidJS pour l'interface et Tauri 2 pour la distribution multiplateforme. La même stack que le reste de l'écosystème OpenAEC, pour une intégration sans couture.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="cta-links">
+          <a href="https://open-heatloss-studio.open-aec.com/" target="_blank" rel="noopener" class="cta-primary" data-i18n="cta.demo">Voir la démo en ligne</a>
+          <a href="https://github.com/OpenAEC-Foundation/open-heatloss-studio" target="_blank" rel="noopener" class="cta-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            <span data-i18n="cta.github">Voir sur GitHub</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Release Notes (shared component) -->
+  <div data-release-notes="open-heatloss-studio"></div>
+  <script src="/shared/release-notes.js?v=20260728"></script>
+
+  <footer class="footer page-footer" style="padding: var(--sp-6);">
+    <div class="footer-inner">
+      <a href="/fr/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
+      <div style="display: flex; gap: var(--sp-4); align-items: center;">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg> GitHub</a>
+        <a href="https://www.linkedin.com/company/23749451" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+      </div>
+      <p>&copy; 2026 OpenAEC Foundation</p>
+    </div>
+  </footer>
+<script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>

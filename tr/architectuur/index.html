@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yazılım mimarisi — OpenAEC Foundation</title>
+  <meta name="description" content="Tek kod tabanı, tüm platformlar. Araçlarımız aynı kaynak kodundan web uygulaması olarak, Windows, Linux ve macOS'ta masaüstü uygulaması olarak ve mobil…">
+  <link rel="canonical" href="https://open-aec.com/tr/architectuur/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/architectuur/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/architectuur/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/architectuur/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/architectuur/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/architectuur/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Yazılım mimarisi — OpenAEC Foundation">
+  <meta property="og:description" content="Tek kod tabanı, tüm platformlar. Araçlarımız aynı kaynak kodundan web uygulaması olarak, Windows, Linux ve macOS'ta masaüstü uygulaması olarak ve mobil…">
+  <meta property="og:url" content="https://open-aec.com/tr/architectuur/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Software architectuur">
+  <meta name="twitter:description" content="Tek kod tabanı, tüm platformlar. Araçlarımız aynı kaynak kodundan web uygulaması olarak, Windows, Linux ve macOS'ta masaüstü uygulaması olarak ve mobil…">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="architectuur">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: white;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-4);
+    }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p {
+      font-size: 1.125rem;
+      color: var(--scaffold-gray);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .content { max-width: 850px; margin: 0 auto; }
+    .content h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-4);
+    }
+    .content h2 .accent { color: var(--amber); }
+    .content p {
+      font-size: 1rem;
+      color: #57534E;
+      line-height: 1.7;
+      margin-bottom: var(--sp-4);
+    }
+    .content-block + .content-block { margin-top: var(--sp-12); }
+
+    /* Architecture diagram */
+    .arch-diagram {
+      background: var(--night-build);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-8);
+      margin: var(--sp-8) 0;
+      overflow-x: auto;
+    }
+    .arch-layers {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+      min-width: 600px;
+    }
+    .arch-layer {
+      border-radius: var(--radius-md);
+      padding: var(--sp-4) var(--sp-5);
+    }
+    .arch-layer-label {
+      font-family: var(--font-code);
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: var(--sp-2);
+      display: block;
+    }
+    .arch-layer-items {
+      display: flex;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+    }
+    .arch-item {
+      font-family: var(--font-code);
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--radius-sm);
+      white-space: nowrap;
+    }
+    .layer-platform { background: rgba(217,119,6,0.12); }
+    .layer-platform .arch-layer-label { color: var(--amber); }
+    .layer-platform .arch-item { background: rgba(217,119,6,0.2); color: var(--amber); }
+    .layer-runtime { background: rgba(245,158,11,0.1); }
+    .layer-runtime .arch-layer-label { color: var(--warm-gold); }
+    .layer-runtime .arch-item { background: rgba(245,158,11,0.18); color: #B45309; }
+    .layer-core { background: rgba(37,99,235,0.08); }
+    .layer-core .arch-layer-label { color: var(--info); }
+    .layer-core .arch-item { background: rgba(37,99,235,0.15); color: var(--info); }
+    .layer-ui { background: rgba(22,163,74,0.08); }
+    .layer-ui .arch-layer-label { color: var(--success); }
+    .layer-ui .arch-item { background: rgba(22,163,74,0.15); color: #166534; }
+    .layer-data { background: rgba(161,161,170,0.1); }
+    .layer-data .arch-layer-label { color: var(--scaffold-gray); }
+    .layer-data .arch-item { background: rgba(161,161,170,0.18); color: #3F3F46; }
+    .arch-arrow {
+      text-align: center;
+      color: var(--scaffold-gray);
+      font-size: 1.25rem;
+      padding: var(--sp-1) 0;
+    }
+
+    /* Tech cards */
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--sp-6);
+      margin: var(--sp-8) 0;
+    }
+    .tech-card {
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .tech-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-2);
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+    .tech-card p {
+      font-size: 0.875rem;
+      color: #57534E;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+    .tech-badge {
+      font-family: var(--font-code);
+      font-size: 0.6rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      background: rgba(217,119,6,0.12);
+      color: #92400E;
+    }
+
+    /* Platform comparison */
+    .table-scroll { overflow-x: auto; }
+    .platform-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: var(--sp-6) 0;
+    }
+    .platform-table thead th {
+      background: var(--concrete);
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--deep-forge);
+      padding: var(--sp-3) var(--sp-4);
+      text-align: left;
+      border-bottom: 2px solid #E7E5E4;
+    }
+    .platform-table tbody td {
+      padding: var(--sp-3) var(--sp-4);
+      font-size: 0.875rem;
+      border-bottom: 1px solid #E7E5E4;
+      vertical-align: top;
+    }
+    .platform-table tbody td:first-child {
+      font-weight: 600;
+      color: var(--deep-forge);
+    }
+    .check { color: var(--success); font-weight: 700; }
+
+    /* Highlight */
+    .highlight-block {
+      background: var(--night-build);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-8);
+      margin: var(--sp-8) 0;
+      border-left: 4px solid var(--amber);
+    }
+    .highlight-block h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: white;
+      margin-bottom: var(--sp-3);
+    }
+    .highlight-block p {
+      color: var(--scaffold-gray);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    .page-footer.footer {
+      background: var(--deep-forge);
+      border-top: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--sp-4);
+    }
+    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
+
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 2rem; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .arch-diagram { padding: var(--sp-4); }
+    }
+  </style>
+  <meta name="i18n-static" content="tr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "tr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/tr/architectuur/#webpage",
+        "url": "https://open-aec.com/tr/architectuur/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "tr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/tr/architectuur/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/tr/architectuur/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/tr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Architectuur",
+            "item": "https://open-aec.com/tr/architectuur/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/tr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/tr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Ekosistem</a></li>
+        <li><a href="/tr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Yol haritası</a></li>
+        <li><a href="/tr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Mimari</a></li>
+        <li><a href="/tr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">İstatistikler</a></li>
+        <li><a href="/tr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Haberler</a></li>
+        <li><a href="/tr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Destekçiler</a></li>
+        <li><a href="/tr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Desteklerimiz</a></li>
+        <li><a href="/tr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Yapı</a></li>
+        <li><a href="/tr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">İletişim</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Geri bildirim</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/architectuur/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/architectuur/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/architectuur/" hreflang="fr">FR</a>
+        <a class="lang-btn active" data-lang="tr" href="/tr/architectuur/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20260728"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">OpenAEC ekosistemi</p>
+    <h1 data-i18n="header.title">Yazılım <span class="accent">mimarisi</span></h1>
+    <p data-i18n="header.desc">Tek kod tabanı, tüm platformlar. Araçlarımız aynı kaynak kodundan web uygulaması olarak, Windows, Linux ve macOS'ta masaüstü uygulaması olarak ve mobil uygulama olarak çalışır.</p>
+  </header>
+
+  <section class="section" style="background: var(--blueprint-white);">
+    <div class="content">
+
+      <!-- Intro -->
+      <div class="content-block">
+        <h2 data-i18n="intro.title">Tek kod tabanı, <span class="accent">her yerde</span></h2>
+        <p data-i18n="intro.p1">OpenAEC ekosistemindeki her araç, tüm platformlarda çalışan tek bir uygulama olarak geliştirilir. Web ve masaüstü için ayrı sürümler yok, çift bakım yok. Aynı kod, aynı özellikler, her yerde.</p>
+        <p data-i18n="intro.p2">Bunu temel olarak Tauri ve Rust üzerine inşa ederek başarıyoruz; modern bir web frontend hem tarayıcıda hem de yerel bir kabukta çalışır.</p>
+      </div>
+
+      <!-- Architecture diagram -->
+      <div class="content-block">
+        <h2 data-i18n="diagram.title"><span class="accent">Mimari</span> özeti</h2>
+        <div class="arch-diagram">
+          <div class="arch-layers">
+            <div class="arch-layer layer-platform">
+              <span class="arch-layer-label" data-i18n="diagram.platforms">Platformlar</span>
+              <div class="arch-layer-items">
+                <span class="arch-item">Windows</span>
+                <span class="arch-item">macOS</span>
+                <span class="arch-item">Linux</span>
+                <span class="arch-item">Web browser</span>
+                <span class="arch-item">Android</span>
+                <span class="arch-item">iOS</span>
+              </div>
+            </div>
+            <div class="arch-arrow">&darr;</div>
+            <div class="arch-layer layer-runtime">
+              <span class="arch-layer-label" data-i18n="diagram.runtime">Runtime</span>
+              <div class="arch-layer-items">
+                <span class="arch-item">Tauri 2.0</span>
+                <span class="arch-item">WebView (native)</span>
+                <span class="arch-item">Browser (web)</span>
+              </div>
+            </div>
+            <div class="arch-arrow">&darr;</div>
+            <div class="arch-layer layer-core">
+              <span class="arch-layer-label">Core (Rust)</span>
+              <div class="arch-layer-items">
+                <span class="arch-item">IFC Parser</span>
+                <span class="arch-item">IFCX Engine</span>
+                <span class="arch-item" data-i18n="diagram.validation">Doğrulama</span>
+                <span class="arch-item" data-i18n="diagram.calculations">Hesaplamalar</span>
+                <span class="arch-item">File I/O</span>
+                <span class="arch-item">API Client</span>
+              </div>
+            </div>
+            <div class="arch-arrow">&darr;</div>
+            <div class="arch-layer layer-ui">
+              <span class="arch-layer-label">Frontend</span>
+              <div class="arch-layer-items">
+                <span class="arch-item">HTML / CSS</span>
+                <span class="arch-item">JavaScript / TypeScript</span>
+                <span class="arch-item">Three.js (3D)</span>
+                <span class="arch-item">Web Components</span>
+              </div>
+            </div>
+            <div class="arch-arrow">&darr;</div>
+            <div class="arch-layer layer-data">
+              <span class="arch-layer-label">Data</span>
+              <div class="arch-layer-items">
+                <span class="arch-item">IFCX</span>
+                <span class="arch-item">SQLite (lokaal)</span>
+                <span class="arch-item">PostgreSQL (server)</span>
+                <span class="arch-item">REST API</span>
+                <span class="arch-item">NextCloud</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech stack -->
+      <div class="content-block">
+        <h2 data-i18n="tech.title">Teknoloji <span class="accent">stack'i</span></h2>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <h3>Tauri 2.0 <span class="tech-badge">Core</span></h3>
+            <p data-i18n="tech.tauri_desc">Web teknolojisiyle masaüstü ve mobil uygulamalar oluşturmak için framework. Chromium yerine işletim sisteminin yerel webview'unu kullanır — küçük kurulum dosyaları (&lt;10MB) ve düşük bellek kullanımı sağlar.</p>
+          </div>
+          <div class="tech-card">
+            <h3>Rust <span class="tech-badge">Backend</span></h3>
+            <p data-i18n="tech.rust_desc">Her aracın temel mantığı Rust ile yazılmıştır: IFC ayrıştırma, doğrulama, hesaplamalar ve dosya işleme. Rust bellek güvenliği, yüksek performans sunar ve her platforma derlenir.</p>
+          </div>
+          <div class="tech-card">
+            <h3>WebAssembly <span class="tech-badge">Web</span></h3>
+            <p data-i18n="tech.wasm_desc">Aynı Rust kodu web sürümü için WebAssembly'ye (WASM) derlenir. Bu, tam hesaplama mantığının da tarayıcıda yerel performansa yakın çalışmasını sağlar.</p>
+          </div>
+          <div class="tech-card">
+            <h3>HTML / CSS / JS <span class="tech-badge">UI</span></h3>
+            <p data-i18n="tech.ui_desc">Kullanıcı arayüzü standart web teknolojisi ile inşa edilmiştir. Ağır framework'ler yok — hafif, hızlı ve sürdürülebilir. Aynı UI Tauri'de ve tarayıcıda çalışır.</p>
+          </div>
+          <div class="tech-card">
+            <h3>Three.js <span class="tech-badge">3D</span></h3>
+            <p data-i18n="tech.threejs_desc">Three.js ve That Open Engine aracılığıyla IFC modellerinin 3D görselleştirmesi. WebGL tabanlı, tarayıcının çalıştığı her yerde çalışır.</p>
+          </div>
+          <div class="tech-card">
+            <h3>FastAPI <span class="tech-badge">API</span></h3>
+            <p data-i18n="tech.fastapi_desc">Asenkron doğrulama, belge yönetimi ve entegrasyonlar için Python FastAPI ile sunucu tarafı API'ler. Docker üzerinden dağıtılır.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- One system highlight -->
+      <div class="content-block">
+        <div class="highlight-block">
+          <h3 data-i18n="highlight.title">Yerel ve bulutta — tek sistem</h3>
+          <p data-i18n="highlight.desc">Her OpenAEC aracı, internet bağlantısı olmadan kendi makinenizde bağımsız olarak çalışır. Ancak çevrimiçi olduğunuzda, her şey OpenAEC platformu aracılığıyla bulutla sorunsuz bir şekilde senkronize olur. Projeler, belgeler ve model verileri yerel kurulumlar ve sunucu arasında otomatik olarak akar. Seçim sizin: tamamen yerel, tamamen bulutta veya hibrit yapılandırma.</p>
+        </div>
+      </div>
+
+      <!-- Platform comparison -->
+      <div class="content-block">
+        <h2 data-i18n="comparison.title">Platform <span class="accent">karşılaştırması</span></h2>
+        <div class="table-scroll">
+        <table class="platform-table">
+          <thead>
+            <tr>
+              <th data-i18n="comparison.feature">Özellik</th>
+              <th>Desktop (Tauri)</th>
+              <th>Web (Browser)</th>
+              <th data-i18n="comparison.mobile">Mobil (Tauri)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td data-i18n="comparison.offline">Çevrimdışı çalışma</td><td class="check">&#10003;</td><td data-i18n="comparison.limited_pwa">Sınırlı (PWA)</td><td class="check">&#10003;</td></tr>
+            <tr><td data-i18n="comparison.file_access">Dosya erişimi</td><td class="check" data-i18n="comparison.full">&#10003; Tam</td><td data-i18n="comparison.limited_upload">Sınırlı (yükleme)</td><td class="check">&#10003;</td></tr>
+            <tr><td data-i18n="comparison.ifc_processing">IFC işleme</td><td class="check">&#10003; Native Rust</td><td class="check">&#10003; WASM</td><td class="check">&#10003; Native Rust</td></tr>
+            <tr><td>3D Viewer</td><td class="check">&#10003;</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+            <tr><td data-i18n="comparison.install_size">Kurulum boyutu</td><td>&lt;10 MB</td><td>0 MB</td><td>&lt;15 MB</td></tr>
+            <tr><td data-i18n="comparison.auto_update">Otomatik güncelleme</td><td class="check">&#10003;</td><td data-i18n="comparison.always_current">Her zaman güncel</td><td class="check">&#10003;</td></tr>
+            <tr><td data-i18n="comparison.camera">Kamera erişimi</td><td>&#8212;</td><td class="check">&#10003;</td><td class="check">&#10003;</td></tr>
+            <tr><td data-i18n="comparison.system_integration">Sistem entegrasyonu</td><td class="check" data-i18n="comparison.full2">&#10003; Tam</td><td data-i18n="comparison.limited">Sınırlı</td><td class="check">&#10003;</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+
+      <!-- Extensibility -->
+      <div class="content-block">
+        <h2 data-i18n="extensibility.title">Genişletilebilirlik ve <span class="accent">entegrasyon</span></h2>
+        <p style="color: #57534E; line-height: 1.7; margin-bottom: var(--sp-6);" data-i18n="extensibility.desc">Ekosistemdeki her araç genişletilebilir ve entegre edilebilir olacak şekilde tasarlanmıştır. Dört genişletilebilirlik katmanı:</p>
+        <div class="tech-grid">
+          <div class="tech-card">
+            <h3>Open Feedback Studio <span class="tech-badge">Feedback</span></h3>
+            <p data-i18n="extensibility.feedback_desc">Her araçta yerleşik geri bildirim sistemi. Kullanıcılar geri bildirim sağlayabilir, hata raporlayabilir ve özellik isteklerini doğrudan uygulamadan gönderebilir. Merkezi platforma bağlıdır.</p>
+          </div>
+          <div class="tech-card">
+            <h3>REST API <span class="tech-badge">API</span></h3>
+            <p data-i18n="extensibility.api_desc">Her araç harici sistemlerle entegrasyon için bir REST API sunar. İş akışlarını otomatikleştirin, ERP sistemleriyle bağlantı kurun veya ekosistemin üzerine kendi gösterge panolarınızı oluşturun.</p>
+          </div>
+          <div class="tech-card">
+            <h3>MCP Servers <span class="tech-badge">AI</span></h3>
+            <p data-i18n="extensibility.mcp_desc">Her araç için Model Context Protocol (MCP) sunucuları. Bu, AI ajanlarının (Claude gibi) araçlarla doğrudan iletişim kurmasını sağlar — modelleri doğrulayın, belgeler oluşturun veya doğal dil ile hesaplamalar gerçekleştirin.</p>
+          </div>
+          <div class="tech-card">
+            <h3>Extensions <span class="tech-badge">Plugins</span></h3>
+            <p data-i18n="extensibility.extensions_desc">Her araç özel işlevsellik için uzantıları destekler. TypeScript veya Rust'ta kendi eklentilerinizi oluşturun ve uzantı kayıt defteri aracılığıyla toplulukla paylaşın.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Standing on shoulders -->
+      <div class="content-block">
+        <div class="highlight-block">
+          <h3 data-i18n="opensource.title">Mevcut açık kaynak projeler üzerine inşa etmek</h3>
+          <p data-i18n="opensource.desc">Tekerleği yeniden icat etmiyoruz. OpenAEC ekosistemi mümkün olduğunca BIM ve 3D dünyasından kanıtlanmış açık kaynak projeler üzerine inşa edilir:</p>
+        </div>
+        <div class="tech-grid" style="margin-top: var(--sp-6);">
+          <div class="tech-card">
+            <h3>That Open Engine</h3>
+            <p data-i18n="opensource.thatopen_desc">Görüntüleyicilerimizdeki 3D render ve IFC ayrıştırma That Open Engine'e (eski adıyla IFC.js) dayanır. Tarayıcıda BIM için güçlü bir TypeScript/Three.js kütüphanesi.</p>
+          </div>
+          <div class="tech-card">
+            <h3>Blender &amp; Bonsai</h3>
+            <p data-i18n="opensource.blender_desc">3D modelleme ve BIM oluşturma için Blender ve Bonsai eklentisi (eski adıyla BlenderBIM) ile entegre oluyoruz. Dünyanın en güçlü açık kaynak 3D aracı.</p>
+          </div>
+          <div class="tech-card">
+            <h3>IfcOpenShell</h3>
+            <p data-i18n="opensource.ifcopenshell_desc">IFC dosyalarını okumak, yazmak ve manipüle etmek için endüstri standardı Python/C++ kütüphanesi. Sunucu tarafı IFC işlememizin omurgası.</p>
+          </div>
+          <div class="tech-card">
+            <h3>PDF.js &amp; pdf-lib</h3>
+            <p data-i18n="opensource.pdfjs_desc">Render için Mozilla'nın PDF.js'i ve PDF belgelerini programatik olarak oluşturmak ve düzenlemek için pdf-lib. Kanıtlanmış teknoloji, milyonlarca kullanıcı.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Why this approach -->
+      <div class="content-block">
+        <h2 data-i18n="why.title">Neden bu <span class="accent">yaklaşım</span>?</h2>
+        <div class="tech-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+          <div class="tech-card">
+            <h3 data-i18n="why.small_title">Küçük ve hızlı</h3>
+            <p data-i18n="why.small_desc">Electron yok, Chromium yok. Tauri yerel webview'u kullanır — kurulum dosyaları 10MB'den küçüktür ve bellek kullanımı minimumdur.</p>
+          </div>
+          <div class="tech-card">
+            <h3 data-i18n="why.safe_title">Güvenli</h3>
+            <p data-i18n="why.safe_desc">Rust bellek hatalarını, buffer overflow'larını ve race condition'ları önler. Uygulama tasarım gereği güvenlidir.</p>
+          </div>
+          <div class="tech-card">
+            <h3 data-i18n="why.opensource_title">Açık kaynak</h3>
+            <p data-i18n="why.opensource_desc">Tauri, Rust ve kullanılan tüm kütüphaneler açık kaynaktır. Framework düzeyinde tedarikçi bağımlılığı yoktur.</p>
+          </div>
+          <div class="tech-card">
+            <h3 data-i18n="why.futureproof_title">Geleceğe dayanıklı</h3>
+            <p data-i18n="why.futureproof_desc">Web standartları ve Rust uzun ömürlü teknolojilerdir. Framework değişimi yok, breaking change yok.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer page-footer" style="padding: var(--sp-6);">
+    <div class="footer-inner">
+      <a href="/tr/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
+      <a href="https://www.linkedin.com/company/23749451" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+      <p>&copy; 2026 OpenAEC Foundation</p>
+    </div>
+  </footer>
+  <script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>

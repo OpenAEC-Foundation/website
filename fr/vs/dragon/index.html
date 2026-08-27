@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAEC Open Speech Studio vs Dragon NaturallySpeaking — alternative open source pour la reconnaissance vocale</title>
+  <meta name="description" content="Open Speech Studio est une alternative gratuite et open source à Dragon NaturallySpeaking. Comparez reconnaissance vocale, dictée, langues, plateformes et…">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="OpenAEC Open Speech Studio vs Dragon NaturallySpeaking — alternative open source pour la reconnaissance vocale">
+  <meta property="og:description" content="Open Speech Studio est une alternative gratuite et open source à Dragon NaturallySpeaking. Comparez reconnaissance vocale, dictée, langues, plateformes et…">
+  <meta property="og:url" content="https://open-aec.com/fr/vs/dragon/">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="OpenAEC Open Speech Studio vs Dragon NaturallySpeaking — open source alternatief voor spraakherkenning">
+  <meta name="twitter:description" content="Open Speech Studio est une alternative gratuite et open source à Dragon NaturallySpeaking. Comparez reconnaissance vocale, dictée, langues, plateformes et…">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="vs-dragon">
+  <meta name="keywords" content="Dragon NaturallySpeaking alternatief, open source spraakherkenning, Open Speech Studio, Whisper AI, Dragon Nuance vergelijking, gratis speech-to-text, dictation software">
+  <link rel="canonical" href="https://open-aec.com/fr/vs/dragon/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/vs/dragon/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/vs/dragon/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/vs/dragon/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/vs/dragon/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/vs/dragon/">
+  <!-- hreflang:end -->
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.25rem;
+      color: white;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-4);
+    }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p {
+      font-size: 1.0625rem;
+      color: var(--scaffold-gray);
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      font-size: 0.9375rem;
+    }
+    .compare-table th, .compare-table td {
+      padding: var(--sp-4);
+      text-align: left;
+      border-bottom: 1px solid #E7E5E4;
+      vertical-align: top;
+    }
+    .compare-table thead th {
+      background: var(--night-build);
+      color: white;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+    }
+    .compare-table thead th:first-child {
+      width: 30%;
+    }
+    .compare-table thead th .badge {
+      display: block;
+      font-family: var(--font-code);
+      font-size: 0.65rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--warm-gold);
+      margin-top: 4px;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .feat {
+      font-weight: 600;
+      color: var(--deep-forge);
+      background: var(--concrete);
+    }
+    .yes { color: #15803D; font-weight: 600; }
+    .no { color: #B91C1C; font-weight: 600; }
+    .partial { color: var(--amber); font-weight: 600; }
+    .choose-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--sp-6);
+      margin-top: var(--sp-6);
+    }
+    .choose-card {
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .choose-card.openaec { border-top: 4px solid var(--amber); }
+    .choose-card.competitor { border-top: 4px solid #57534E; }
+    .choose-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      margin-bottom: var(--sp-4);
+      color: var(--deep-forge);
+    }
+    .choose-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .choose-card li {
+      padding: var(--sp-2) 0 var(--sp-2) var(--sp-6);
+      position: relative;
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      color: #44403C;
+    }
+    .choose-card li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+      font-weight: 700;
+    }
+    .choose-card.competitor li::before { color: #57534E; }
+    .cta-block {
+      background: var(--night-build);
+      color: white;
+      border-radius: var(--radius-lg);
+      padding: var(--sp-10) var(--sp-6);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .cta-block h2 { color: white; margin-bottom: var(--sp-4); }
+    .cta-block p { color: var(--scaffold-gray); max-width: 600px; margin: 0 auto var(--sp-6); line-height: 1.6; }
+    .summary-lead {
+      max-width: 780px;
+      margin: 0 auto;
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: #44403C;
+    }
+    .summary-lead p { margin-bottom: var(--sp-4); }
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 1.75rem; }
+      .compare-table { font-size: 0.8125rem; }
+      .compare-table th, .compare-table td { padding: var(--sp-3); }
+    }
+  </style>
+  <meta name="i18n-static" content="fr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "fr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/fr/vs/dragon/#webpage",
+        "url": "https://open-aec.com/fr/vs/dragon/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "fr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/fr/vs/dragon/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/fr/vs/dragon/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Vs",
+            "item": "https://open-aec.com/fr/vs"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Dragon",
+            "item": "https://open-aec.com/fr/vs/dragon/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/fr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Écosystème</a></li>
+        <li><a href="/fr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Feuille de route</a></li>
+        <li><a href="/fr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Architecture</a></li>
+        <li><a href="/fr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">Statistiques</a></li>
+        <li><a href="/fr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Actualités</a></li>
+        <li><a href="/fr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Partenaires</a></li>
+        <li><a href="/fr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Nous soutenons</a></li>
+        <li><a href="/fr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Structure</a></li>
+        <li><a href="/fr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">Contact</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Commentaires</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/vs/dragon/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/vs/dragon/" hreflang="en">EN</a>
+        <a class="lang-btn active" data-lang="fr" href="/fr/vs/dragon/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/vs/dragon/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">Comparaison</p>
+    <h1 data-i18n="header.title">OpenAEC Open Speech Studio <span class="accent">vs Dragon</span></h1>
+    <p data-i18n="header.desc">Open Speech Studio est une alternative gratuite et open source à Dragon NaturallySpeaking. Comparez reconnaissance vocale, dictée, langues, plateformes et confidentialité — factuel et équilibré.</p>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="summary-lead">
+        <p data-i18n="summary.p1"><strong>Dragon NaturallySpeaking</strong> (Nuance, propriété de Microsoft depuis 2022) est la référence établie depuis des décennies pour la reconnaissance vocale sur ordinateur. Dragon Professional coûte généralement 500-700 € en achat unique, avec une variante par abonnement (Dragon Anywhere) autour de 15-20 € par mois. Le logiciel fonctionne uniquement sous Windows, traite l'audio à 100 % en local et jouit d'une solide réputation pour la précision de dictée et les vocabulaires spécialisés (médical, juridique).</p>
+        <p data-i18n="summary.p2"><strong>Open Speech Studio</strong> de la Fondation OpenAEC est une application de reconnaissance vocale gratuite et open source, construite sur <strong>Whisper AI</strong> d'OpenAI. Elle fonctionne sur plusieurs plateformes (Windows, macOS, Linux), traite l'audio à 100 % en local et prend en charge 99 langues dès l'installation. Licence : LGPL-3.0. Sans abonnement, sans télémétrie, sans dépendance à un éditeur.</p>
+        <p data-i18n="summary.p3"><strong>Positionnement honnête :</strong> Dragon capitalise sur des décennies d'expérience en précision de dictée et en vocabulaires spécialisés (médical, juridique), avec un entraînement de profil vocal poussé. Open Speech Studio s'appuie sur Whisper AI, une technologie de pointe très performante pour la dictée générale, mais reste un projet plus jeune, sans les dictionnaires spécialisés que Dragon a constitués au fil des décennies.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom: var(--sp-8);" data-i18n="comparison.title">Comparaison des fonctionnalités</h2>
+      <div style="overflow-x: auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th data-i18n="comparison.feature">Fonctionnalité</th>
+              <th>Open Speech Studio<span class="badge">OpenAEC Foundation</span></th>
+              <th>Dragon NaturallySpeaking<span class="badge">Nuance / Microsoft</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="feat" data-i18n="comparison.rows.price.label">Prix</td><td class="yes" data-i18n="comparison.rows.price.openaec">Gratuit</td><td data-i18n="comparison.rows.price.dragon">~500-700 € en achat unique ou 15-20 €/mois</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.license.label">Licence</td><td data-i18n="comparison.rows.license.openaec">LGPL-3.0 (open source)</td><td data-i18n="comparison.rows.license.dragon">Propriétaire, commercial</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.platforms.label">Plateformes</td><td class="yes">Windows, macOS, Linux</td><td class="partial" data-i18n="comparison.rows.platforms.dragon">Windows uniquement</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.processing.label">Traitement</td><td class="yes" data-i18n="comparison.rows.processing.openaec">100 % local (Whisper AI)</td><td class="yes" data-i18n="comparison.rows.processing.dragon">100 % local</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.languages.label">Langues</td><td class="yes" data-i18n="comparison.rows.languages.openaec">99 langues (Whisper)</td><td data-i18n="comparison.rows.languages.dragon">~5 langues</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.shortcuts.label">Raccourcis clavier</td><td data-i18n="comparison.rows.shortcuts.openaec">CTRL+Win, CTRL+Shift+Espace</td><td data-i18n="comparison.rows.shortcuts.dragon">Configurable</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.meetingTranscription.label">Transcription de réunions</td><td class="yes" data-i18n="comparison.rows.meetingTranscription.openaec">Temps réel</td><td class="partial" data-i18n="comparison.rows.meetingTranscription.dragon">Limité</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.audioFiles.label">Fichiers audio (par lot)</td><td class="yes" data-i18n="comparison.rows.audioFiles.openaec">Traitement par lot et en parallèle</td><td class="yes" data-i18n="comparison.rows.audioFiles.dragon">Oui</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.gpuAcceleration.label">Accélération GPU</td><td class="yes">CUDA</td><td class="partial" data-i18n="comparison.rows.gpuAcceleration.dragon">Limitée</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.voiceProfileTraining.label">Entraînement du profil vocal</td><td class="partial" data-i18n="comparison.rows.voiceProfileTraining.openaec">N/A (Whisper fonctionne dès l'installation)</td><td class="yes" data-i18n="comparison.rows.voiceProfileTraining.dragon">Poussé</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.customVocabulary.label">Vocabulaire personnalisé</td><td data-i18n="comparison.rows.customVocabulary.openaec">Prompting Whisper</td><td class="yes" data-i18n="comparison.rows.customVocabulary.dragon">Étendu (médical, juridique)</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.gdprConcerns.label">Préoccupations RGPD</td><td class="yes" data-i18n="comparison.rows.gdprConcerns.openaec">Aucune — tout est local</td><td class="yes" data-i18n="comparison.rows.gdprConcerns.dragon">Aucune — tout est local</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.monthlySubscription.label">Abonnement mensuel</td><td class="yes" data-i18n="comparison.rows.monthlySubscription.openaec">Non</td><td class="no" data-i18n="comparison.rows.monthlySubscription.dragon">Oui (Dragon Anywhere)</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.updateFrequency.label">Fréquence des mises à jour</td><td class="yes" data-i18n="comparison.rows.updateFrequency.openaec">Hebdomadaire (développement ouvert)</td><td data-i18n="comparison.rows.updateFrequency.dragon">Annuelle</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.telemetry.label">Télémétrie</td><td class="yes" data-i18n="comparison.rows.telemetry.openaec">Aucune</td><td class="partial" data-i18n="comparison.rows.telemetry.dragon">Optionnelle / propriétaire</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.sourceCode.label">Code source disponible</td><td class="yes" data-i18n="comparison.rows.sourceCode.openaec">GitHub, public</td><td class="no" data-i18n="comparison.rows.sourceCode.dragon">Fermé</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.enterpriseSupport.label">Support entreprise 24/7</td><td class="partial" data-i18n="comparison.rows.enterpriseSupport.openaec">Communauté + partenaires commerciaux</td><td class="yes" data-i18n="comparison.rows.enterpriseSupport.dragon">Oui</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 style="text-align:center;" data-i18n="choose.title">Quand choisir quoi ?</h2>
+      <div class="choose-grid">
+        <div class="choose-card openaec">
+          <h3 data-i18n="choose.openaec.title">Choisissez <span class="accent">Open Speech Studio</span> si...</h3>
+          <ul>
+            <li data-i18n="choose.openaec.li1">Vous ne voulez pas payer 500-700 € et ne voulez pas non plus d'abonnement.</li>
+            <li data-i18n="choose.openaec.li2">Vous travaillez sous macOS ou Linux (Dragon est réservé à Windows).</li>
+            <li data-i18n="choose.openaec.li3">Vous avez besoin de plusieurs langues — Whisper prend en charge 99 langues dès l'installation.</li>
+            <li data-i18n="choose.openaec.li4">Vous ne voulez pas de dépendance à un éditeur et souhaitez pouvoir inspecter le code source.</li>
+            <li data-i18n="choose.openaec.li5">Vous accordez de l'importance à la transparence et souhaitez soutenir l'open source.</li>
+            <li data-i18n="choose.openaec.li6">Vous utilisez déjà d'autres outils OpenAEC et souhaitez des workflows intégrés.</li>
+            <li data-i18n="choose.openaec.li7">Vous accordez de l'importance à la confidentialité et à la souveraineté des données — tout fonctionne en local, sans télémétrie.</li>
+          </ul>
+        </div>
+        <div class="choose-card competitor">
+          <h3 data-i18n="choose.dragon.title">Choisissez Dragon NaturallySpeaking si...</h3>
+          <ul>
+            <li data-i18n="choose.dragon.li1">Vous avez besoin d'un entraînement avancé du profil vocal pour une précision personnelle maximale.</li>
+            <li data-i18n="choose.dragon.li2">Vous travaillez dans un domaine spécifique avec des vocabulaires étendus (médical, juridique) que Dragon optimise depuis des décennies.</li>
+            <li data-i18n="choose.dragon.li3">Vous avez besoin d'un support entreprise 24/7 avec SLA.</li>
+            <li data-i18n="choose.dragon.li4">Vous disposez de macros Dragon historiques, profondément ancrées dans votre workflow, que vous ne voulez pas perdre.</li>
+            <li data-i18n="choose.dragon.li5">Vous travaillez exclusivement sous Windows et le coût de la licence n'est pas un problème.</li>
+            <li data-i18n="choose.dragon.li6">Vous avez besoin d'une responsabilité contractuelle d'un éditeur commercial pour des raisons de conformité.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-block">
+        <h2 data-i18n="cta.title">Essayez Open Speech Studio gratuitement</h2>
+        <p data-i18n="cta.desc">Téléchargez pour Windows, macOS ou Linux et découvrez la reconnaissance vocale Whisper AI en 99 langues — locale, confidentielle et sans abonnement. Sans inscription, sans compte, sans télémétrie.</p>
+        <div class="btn-group">
+          <a href="/fr/open-speech-studio/" class="btn btn-primary btn-lg">Open Speech Studio</a>
+          <a href="https://github.com/OpenAEC-Foundation/open-speech-studio" class="btn btn-ghost btn-lg" style="color:white;border-color:white;" data-i18n="cta.github">Voir le code source sur GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="footer-container">
+    <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <span data-i18n="footer.slogan">Construisez librement. Construisons ensemble.</span>
+    <p>&copy; 2026 OpenAEC Foundation</p>
+  </div></footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Open Speech Studio",
+    "alternateName": "OpenAEC Open Speech Studio",
+    "description": "Open source spraakherkenningsapplicatie van de OpenAEC Foundation, gebouwd op Whisper AI. Gratis, LGPL-3.0 alternatief voor Dragon NaturallySpeaking met 99 talen, lokale verwerking, GPU-versnelling (CUDA), real-time vergader-transcriptie en batch audio-verwerking. Cross-platform (Windows, macOS, Linux).",
+    "brand": {
+      "@type": "Brand",
+      "name": "OpenAEC Foundation"
+    },
+    "operatingSystem": "Windows, macOS, Linux",
+    "applicationCategory": "UtilitiesApplication",
+    "url": "https://open-aec.com/open-speech-studio/",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "isAccessibleForFree": true,
+    "license": "https://www.gnu.org/licenses/lgpl-3.0.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Is Open Speech Studio echt gratis?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Open Speech Studio is volledig gratis en open source onder de LGPL-3.0 licentie. Geen abonnement, geen aankoop, geen verborgen kosten en geen telemetrie."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Werkt Open Speech Studio zonder internet?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Open Speech Studio verwerkt audio 100% lokaal op uw eigen apparaat. Er is geen internetverbinding nodig om dictation, vergader-transcriptie of audio-bestand verwerking uit te voeren."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Hoeveel talen ondersteunt Open Speech Studio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open Speech Studio ondersteunt 99 talen via Whisper AI, out-of-the-box. Dragon NaturallySpeaking ondersteunt ter vergelijking ongeveer 5 talen."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Open Speech Studio zo nauwkeurig als Dragon NaturallySpeaking?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Voor algemene dictation: ja, Whisper AI is state-of-the-art en presteert uitstekend. Voor branche-specifieke vocabulaires (medisch, juridisch) heeft Dragon nog voordelen dankzij decennia van gespecialiseerde woordenboeken en stemprofiel-training."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Op welke platforms werkt Open Speech Studio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open Speech Studio draait op Windows, macOS en Linux. Dragon NaturallySpeaking is alleen beschikbaar voor Windows."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="/shared/i18n.js"></script>
+</body>
+</html>

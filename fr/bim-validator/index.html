@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BIM Validator — OpenAEC Foundation</title>
+  <meta name="description" content="Outil open source de validation IFC. Validez vos modèles contre les spécifications IDS, les standards néerlandais et les exigences projet — dans le…">
+  <link rel="canonical" href="https://open-aec.com/fr/bim-validator/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/bim-validator/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/bim-validator/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/bim-validator/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/bim-validator/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/bim-validator/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="BIM Validator">
+  <meta property="og:description" content="Outil open source de validation IFC. Validez vos modèles contre les spécifications IDS, les standards néerlandais et les exigences projet — dans le…">
+  <meta property="og:url" content="https://open-aec.com/fr/bim-validator/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/bim-validator.png">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="BIM Validator">
+  <meta name="twitter:description" content="Outil open source de validation IFC. Validez vos modèles contre les spécifications IDS, les standards néerlandais et les exigences projet — dans le…">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/bim-validator.png">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="bim-validator">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "BIM Validator",
+    "applicationCategory": "EngineeringApplication",
+    "applicationSubCategory": "BIM / Validation",
+    "operatingSystem": "Web",
+    "url": "https://open-aec.com/bim-validator/",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases",
+    "license": "https://www.gnu.org/licenses/lgpl-3.0.html",
+    "description": "Browser-based IFC validation tool. Upload an IFC model, validate against IDS specifications (NL-BIM Basis ILS, RVB BIM Norm), view results in 3D, export BCF issues.",
+    "screenshot": "https://open-aec.com/shared/assets/screenshots/bim-validator.png",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "isAccessibleForFree": true,
+    "keywords": "IFC validation, IDS, NL-BIM Basis ILS, RVB BIM Norm, BIM compliance, Solibri alternative",
+    "sameAs": "https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator",
+    "publisher": {
+      "@type": "Organization",
+      "name": "OpenAEC Foundation",
+      "url": "https://open-aec.com"
+    }
+  }
+  </script>
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: white;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-4);
+    }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p {
+      font-size: 1.125rem;
+      color: var(--scaffold-gray);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .header-actions {
+      display: flex;
+      justify-content: center;
+      gap: var(--sp-3);
+      margin-top: var(--sp-6);
+    }
+    .header-actions .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+    }
+    .header-actions .github-cta {
+      color: #18181B;
+    }
+    .header-actions .github-cta:hover,
+    .header-actions .github-cta:focus-visible {
+      background: var(--signal-orange);
+      color: #18181B;
+    }
+
+    .development-section {
+      background: var(--concrete);
+    }
+    .development-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .development-intro {
+      max-width: 680px;
+      color: #57534E;
+      margin-bottom: var(--sp-8);
+    }
+    .development-list {
+      display: grid;
+      gap: var(--sp-4);
+    }
+    .development-item {
+      display: grid;
+      grid-template-columns: 9rem minmax(0, 1fr) auto;
+      gap: var(--sp-5);
+      align-items: start;
+      padding: var(--sp-5);
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-left: 3px solid var(--amber);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+    }
+    .development-item time {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: #57534E;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .development-item h3 {
+      font-size: 1rem;
+      margin: 0 0 var(--sp-1);
+      color: var(--deep-forge);
+    }
+    .development-item p {
+      margin: 0;
+      color: #57534E;
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    .development-link {
+      color: var(--info);
+      font-family: var(--font-heading);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .development-link:hover,
+    .development-link:focus-visible {
+      color: #1E40AF;
+    }
+
+    .feature-section { max-width: 900px; margin: 0 auto; }
+    .feature-section h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-6);
+      padding-bottom: var(--sp-3);
+      border-bottom: 2px solid var(--amber);
+      display: inline-block;
+    }
+    .feature-section + .feature-section { margin-top: var(--sp-12); }
+
+    .feature-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: var(--sp-4);
+    }
+    .feature-table thead th {
+      background: var(--concrete);
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--deep-forge);
+      padding: var(--sp-3) var(--sp-4);
+      text-align: left;
+      border-bottom: 2px solid #E7E5E4;
+    }
+    .feature-table tbody td {
+      padding: var(--sp-3) var(--sp-4);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      border-bottom: 1px solid #E7E5E4;
+      vertical-align: top;
+    }
+    .feature-table tbody td:first-child {
+      font-weight: 600;
+      color: var(--deep-forge);
+      white-space: nowrap;
+      width: 200px;
+    }
+    .feature-table tbody td:last-child {
+      color: #57534E;
+    }
+    .feature-table tbody tr:hover {
+      background: var(--blueprint-white);
+    }
+
+    .highlight-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: var(--sp-6);
+      margin: var(--sp-8) auto;
+      max-width: 900px;
+    }
+    .highlight-card {
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .highlight-card .number {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2rem;
+      color: var(--amber);
+    }
+    .highlight-card .label {
+      font-size: 0.875rem;
+      color: var(--scaffold-gray);
+      margin-top: var(--sp-1);
+    }
+
+    .page-footer.footer {
+      background: var(--deep-forge);
+      border-top: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--sp-4);
+    }
+    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
+
+    /* Slider */
+    .media-slider {
+      max-width: 900px;
+      margin: calc(-1 * var(--sp-4)) auto var(--sp-8);
+      position: relative;
+      z-index: 1;
+    }
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--night-build);
+    }
+    .slider-track {
+      display: flex;
+      transition: transform 0.4s ease;
+    }
+    .slider-slide {
+      min-width: 100%;
+      position: relative;
+    }
+    .slider-slide img, .slider-slide video {
+      width: 100%;
+      display: block;
+      border-radius: var(--radius-lg);
+    }
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.5);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      transition: background 0.15s;
+    }
+    .slider-btn:hover { background: rgba(0,0,0,0.7); }
+    .slider-prev { left: var(--sp-3); }
+    .slider-next { right: var(--sp-3); }
+    .slider-dots {
+      display: flex;
+      justify-content: center;
+      gap: var(--sp-2);
+      padding: var(--sp-3) 0;
+    }
+    .slider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #D6D3D1;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .slider-dot.active { background: var(--amber); }
+
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 2rem; }
+      .feature-table tbody td:first-child { white-space: normal; width: auto; }
+      .highlight-cards { grid-template-columns: repeat(2, 1fr); }
+      .development-item { grid-template-columns: 1fr; gap: var(--sp-2); }
+    }
+  </style>
+  <meta name="i18n-static" content="fr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "fr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/fr/bim-validator/#webpage",
+        "url": "https://open-aec.com/fr/bim-validator/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "fr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/fr/bim-validator/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/fr/bim-validator/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "BIM Validator",
+            "item": "https://open-aec.com/fr/bim-validator/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/fr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Écosystème</a></li>
+        <li><a href="/fr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Feuille de route</a></li>
+        <li><a href="/fr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Architecture</a></li>
+        <li><a href="/fr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">Statistiques</a></li>
+        <li><a href="/fr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Actualités</a></li>
+        <li><a href="/fr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Partenaires</a></li>
+        <li><a href="/fr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Nous soutenons</a></li>
+        <li><a href="/fr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Structure</a></li>
+        <li><a href="/fr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">Contact</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Commentaires</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/bim-validator/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/bim-validator/" hreflang="en">EN</a>
+        <a class="lang-btn active" data-lang="fr" href="/fr/bim-validator/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/bim-validator/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20260728"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">Écosystème OpenAEC</p>
+    <h1>BIM <span class="accent">Validator</span></h1>
+    <p data-i18n="header.desc">Outil open source de validation IFC. Validez vos modèles contre les spécifications IDS, les standards néerlandais et les exigences projet — dans le navigateur, en CLI ou via API.</p>
+    <div class="header-actions">
+      <a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator" target="_blank" rel="noopener" class="btn btn-primary github-cta" data-i18n="header.github">Voir le code source sur GitHub</a>
+    </div>
+  </header>
+
+  <!-- Key stats -->
+  <div class="highlight-cards" style="margin-top: calc(-1 * var(--sp-8)); position: relative; z-index: 1;">
+    <div class="highlight-card">
+      <div class="number">IDS</div>
+      <div class="label" data-i18n="stats.ids">Norme de validation</div>
+    </div>
+    <div class="highlight-card">
+      <div class="number">12+</div>
+      <div class="label" data-i18n="stats.nlbim">Spécifications NL BIM Basis ILS</div>
+    </div>
+    <div class="highlight-card">
+      <div class="number">27+</div>
+      <div class="label" data-i18n="stats.rvb">Spécifications RVB BIM Norm</div>
+    </div>
+    <div class="highlight-card">
+      <div class="number">1GB+</div>
+      <div class="label" data-i18n="stats.maxsize">Taille de fichier max</div>
+    </div>
+  </div>
+
+  <!-- Media slider -->
+  <div class="media-slider">
+    <div class="slider-container">
+      <div class="slider-track" id="sliderTrack">
+        <div class="slider-slide"><img src="/shared/assets/screenshots/bim-validator.png" alt="BIM Validator - Overzicht"></div>
+        <div class="slider-slide"><img src="/shared/assets/screenshots/bim-validator-2.png" alt="BIM Validator - Validatie"></div>
+        <div class="slider-slide"><img src="/shared/assets/screenshots/bim-validator-3.png" alt="BIM Validator - Resultaten"></div>
+        <div class="slider-slide"><img src="/shared/assets/screenshots/bim-validator-4.png" alt="BIM Validator - 3D Viewer"></div>
+      </div>
+      <button class="slider-btn slider-prev" onclick="slideMove(-1)">&lsaquo;</button>
+      <button class="slider-btn slider-next" onclick="slideMove(1)">&rsaquo;</button>
+    </div>
+    <div class="slider-dots" id="sliderDots"></div>
+  </div>
+  <script>
+    (function(){
+      const track = document.getElementById('sliderTrack');
+      const dots = document.getElementById('sliderDots');
+      const slides = track.children.length;
+      let current = 0;
+      for(let i=0;i<slides;i++){
+        const d = document.createElement('button');
+        d.className = 'slider-dot' + (i===0?' active':'');
+        d.onclick = ()=>slideTo(i);
+        dots.appendChild(d);
+      }
+      window.slideMove = function(dir){slideTo(current+dir);};
+      window.slideTo = function(i){
+        current = (i+slides)%slides;
+        track.style.transform = 'translateX(-'+current*100+'%)';
+        dots.querySelectorAll('.slider-dot').forEach((d,idx)=>d.classList.toggle('active',idx===current));
+      };
+    })();
+  </script>
+
+  <section class="section" style="background: var(--blueprint-white);">
+    <div class="feature-section">
+      <h2 data-i18n="validation.title">Validation</h2>
+      <div class="table-wrapper" style="overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; display: block;">
+      <table class="feature-table">
+        <thead><tr><th data-i18n="table.th.feature">Fonctionnalité</th><th data-i18n="table.th.desc">Description</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n="validation.ids.feature">Validation IDS</td><td data-i18n="validation.ids.desc">Validez les modèles IFC par rapport aux fichiers Information Delivery Specification (IDS). Chaque spécification est vérifiée par élément avec un résultat réussite/échec et des messages d'erreur détaillés.</td></tr>
+          <tr><td data-i18n="validation.nlbim.feature">NL BIM Basis ILS v2</td><td data-i18n="validation.nlbim.desc">Standard néerlandais de base BIM intégré avec 12 spécifications : dénomination des étages, classification NL/SfB, attributs d'espace, structure porteuse, surfaces extérieures, résistance au feu, valeur U, matériaux et statut de rénovation.</td></tr>
+          <tr><td data-i18n="validation.rvb.feature">RVB BIM Norm v1.1</td><td data-i18n="validation.rvb.desc">Norme intégrée du Rijksvastgoedbedrijf (agence immobilière de l'État néerlandais) avec 27 spécifications pour les projets de construction publics : informations projet, coordonnées du site, NL-SfB par type d'élément, propriétés structurelles et de sécurité incendie, et informations de zone.</td></tr>
+          <tr><td data-i18n="validation.customids.feature">Import IDS personnalisé</td><td data-i18n="validation.customids.desc">Importez votre propre fichier de spécification IDS (max 10 Mo) pour valider selon des exigences spécifiques au projet ou à l'organisation.</td></tr>
+          <tr><td data-i18n="validation.multischema.feature">Multi-schéma</td><td data-i18n="validation.multischema.desc">Prend en charge les schémas IFC2X3 et IFC4 — compatible avec les exports de Revit, ArchiCAD, Tekla et autres logiciels BIM.</td></tr>
+          <tr><td data-i18n="validation.elementreport.feature">Rapport au niveau des éléments</td><td data-i18n="validation.elementreport.desc">Pour chaque élément en échec, le GlobalId, la classe IFC, le nom de l'élément et un message d'erreur détaillé sont affichés.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="feature-section">
+      <h2 data-i18n="viewer.title">Visualiseur 3D</h2>
+      <div class="table-wrapper" style="overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; display: block;">
+      <table class="feature-table">
+        <thead><tr><th data-i18n="table.th.feature">Fonctionnalité</th><th data-i18n="table.th.desc">Description</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n="viewer.webgl.feature">Visualiseur 3D WebGL</td><td data-i18n="viewer.webgl.desc">Vue 3D interactive du modèle IFC dans le navigateur via That Open Engine (Three.js). Aucune installation ni plugin nécessaire.</td></tr>
+          <tr><td data-i18n="viewer.selection.feature">Sélection d'éléments</td><td data-i18n="viewer.selection.desc">Cliquez sur un élément dans le visualiseur 3D pour voir ses propriétés, ou cliquez sur une erreur dans la liste des résultats pour mettre en évidence l'élément en 3D.</td></tr>
+          <tr><td data-i18n="viewer.navigation.feature">Navigation caméra</td><td data-i18n="viewer.navigation.desc">Orbitez, déplacez-vous et zoomez dans le modèle. Bouton « tout ajuster » pour afficher le modèle entier.</td></tr>
+          <tr><td data-i18n="viewer.panels.feature">Panneaux redimensionnables</td><td data-i18n="viewer.panels.desc">Division à trois volets déplaçable : panneau de navigation (gauche), visualiseur 3D (centre) et panneau de détail (droite). Chaque panneau est repliable.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="feature-section">
+      <h2 data-i18n="bcf.title">Export BCF</h2>
+      <div class="table-wrapper" style="overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; display: block;">
+      <table class="feature-table">
+        <thead><tr><th data-i18n="table.th.feature">Fonctionnalité</th><th data-i18n="table.th.desc">Description</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n="bcf.zip.feature">Export BCF 2.1 ZIP</td><td data-i18n="bcf.zip.desc">Exportez toutes les erreurs de validation sous forme de fichier BCF 2.1 ZIP. Chaque élément en échec devient un sujet BCF avec un point de vue, directement importable dans Revit, Solibri, BIMcollab ou Navisworks.</td></tr>
+          <tr><td data-i18n="bcf.platform.feature">Intégration BCF Platform</td><td data-i18n="bcf.platform.desc">Connectez-vous à la BCF Platform d'OpenAEC pour transmettre les problèmes directement à un tableau de bord central de projet. Comprend l'authentification OIDC et la sélection de projet.</td></tr>
+          <tr><td data-i18n="bcf.queue.feature">File d'attente des problèmes</td><td data-i18n="bcf.queue.desc">Aperçu local des problèmes BCF générés avec miniatures et détails extensibles, avant l'export ou la transmission à la plateforme.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="feature-section">
+      <h2 data-i18n="interfaces.title">Interfaces</h2>
+      <div class="table-wrapper" style="overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; display: block;">
+      <table class="feature-table">
+        <thead><tr><th data-i18n="table.th.feature">Fonctionnalité</th><th data-i18n="table.th.desc">Description</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n="interfaces.web.feature">Application web</td><td data-i18n="interfaces.web.desc">Interface entièrement basée sur le navigateur avec import par glisser-déposer, sélection de standard, barre de progression, vue des résultats et visualiseur 3D.</td></tr>
+          <tr><td data-i18n="interfaces.cli.feature">CLI</td><td data-i18n="interfaces.cli.desc"><code>ifc-validate model.ifc --ids nl-bim</code> — adapté au traitement par lots, aux pipelines CI/CD et au scripting. Sortie en console, JSON ou HTML.</td></tr>
+          <tr><td data-i18n="interfaces.restapi.feature">API REST</td><td data-i18n="interfaces.restapi.desc">Backend FastAPI avec endpoints de validation asynchrones. Intégrable dans vos propres workflows, tableaux de bord ou outils tiers.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="feature-section">
+      <h2 data-i18n="reporting.title">Rapports &amp; export</h2>
+      <div class="table-wrapper" style="overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; display: block;">
+      <table class="feature-table">
+        <thead><tr><th data-i18n="table.th.feature">Fonctionnalité</th><th data-i18n="table.th.desc">Description</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n="reporting.dashboard.feature">Tableau de bord des résultats</td><td data-i18n="reporting.dashboard.desc">Carte de synthèse avec total réussite/échec, pourcentage, nombre d'éléments validés et horodatage.</td></tr>
+          <tr><td data-i18n="reporting.breakdown.feature">Détail par spécification</td><td data-i18n="reporting.breakdown.desc">Liste extensible par spécification avec statut réussite/échec, pourcentage et liste paginée des éléments en échec.</td></tr>
+          <tr><td data-i18n="reporting.jsonexport.feature">Export JSON</td><td data-i18n="reporting.jsonexport.desc">Téléchargez les résultats complets de validation sous forme de fichier JSON structuré pour une analyse ou un archivage ultérieur.</td></tr>
+          <tr><td data-i18n="reporting.htmlreport.feature">Rapport HTML</td><td data-i18n="reporting.htmlreport.desc">Générez un rapport HTML autonome à partager avec l'équipe projet ou le client.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="feature-section">
+      <h2 data-i18n="fileprocessing.title">Traitement des fichiers</h2>
+      <div class="table-wrapper" style="overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; display: block;">
+      <table class="feature-table">
+        <thead><tr><th data-i18n="table.th.feature">Fonctionnalité</th><th data-i18n="table.th.desc">Description</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n="fileprocessing.dragdrop.feature">Import par glisser-déposer</td><td data-i18n="fileprocessing.dragdrop.desc">Glissez des fichiers IFC, IFCXML ou IFCZIP dans le navigateur. Maximum 500 Mo par fichier.</td></tr>
+          <tr><td data-i18n="fileprocessing.memory.feature">Gestion de la mémoire</td><td data-i18n="fileprocessing.memory.desc">Vérification automatique de la disponibilité de RAM suffisante (les fichiers IFC utilisent environ 10 fois leur taille en mémoire). Les fichiers temporaires sont supprimés immédiatement.</td></tr>
+          <tr><td data-i18n="fileprocessing.largefiles.feature">Fichiers volumineux</td><td data-i18n="fileprocessing.largefiles.desc">Optimisé pour les modèles IFC jusqu'à plus de 1 Go. Indicateur de progression pendant le traitement.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+
+    <div class="feature-section">
+      <h2 data-i18n="deployment.title">Déploiement &amp; intégration</h2>
+      <div class="table-wrapper" style="overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; display: block;">
+      <table class="feature-table">
+        <thead><tr><th data-i18n="table.th.feature">Fonctionnalité</th><th data-i18n="table.th.desc">Description</th></tr></thead>
+        <tbody>
+          <tr><td data-i18n="deployment.docker.feature">Déploiement Docker</td><td data-i18n="deployment.docker.desc">Configuration Docker Compose complète avec backend, frontend, nginx, PostgreSQL et Redis. Une seule commande pour tout démarrer.</td></tr>
+          <tr><td data-i18n="deployment.onpremises.feature">Sur site (on-premises)</td><td data-i18n="deployment.onpremises.desc">Exécutez le validateur sur votre propre serveur pour un contrôle maximal des données et de la confidentialité. Aucune dépendance au cloud.</td></tr>
+          <tr><td data-i18n="deployment.multitenant.feature">Multi-tenant</td><td data-i18n="deployment.multitenant.desc">Stockage de projets avec intégration NextCloud optionnelle pour la gestion des fichiers par organisation.</td></tr>
+          <tr><td data-i18n="deployment.sso.feature">Authentification SSO</td><td data-i18n="deployment.sso.desc">Authentification unique basée sur OIDC pour les environnements d'entreprise.</td></tr>
+        </tbody>
+      </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section development-section" id="recent-developments">
+    <div class="development-inner">
+      <p class="section-label" data-i18n="developments.label">Développement du projet</p>
+      <h2 data-i18n="developments.title">Développements récents</h2>
+      <p class="development-intro" data-i18n="developments.intro">Le validateur est en développement actif. Voici les améliorations récentes les plus notables du dépôt public.</p>
+      <div class="development-list">
+        <article class="development-item">
+          <time datetime="2026-04-21">21 april 2026</time>
+          <div>
+            <h3 data-i18n="developments.item1.title">Projets cloisonnés par organisation</h3>
+            <p data-i18n="developments.item1.desc">Les routes de projet, de fichier et de cloud vérifient désormais le contexte de l'organisation avant que des données ne soient ouvertes ou modifiées.</p>
+          </div>
+          <a class="development-link" href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/commit/562f071" target="_blank" rel="noopener" data-i18n="developments.link">Voir la modification &rarr;</a>
+        </article>
+        <article class="development-item">
+          <time datetime="2026-04-20">20 april 2026</time>
+          <div>
+            <h3 data-i18n="developments.item2.title">Dépendances sécurisées</h3>
+            <p data-i18n="developments.item2.desc">Les outils frontend et l'analyseur de données ont été mis à jour, et les problèmes de sécurité signalés dans le contrôle des dépendances ont été résolus.</p>
+          </div>
+          <a class="development-link" href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/commit/f80e92c" target="_blank" rel="noopener" data-i18n="developments.link">Voir la modification &rarr;</a>
+        </article>
+        <article class="development-item">
+          <time datetime="2026-04-16">16 april 2026</time>
+          <div>
+            <h3 data-i18n="developments.item3.title">Ouvrir et enregistrer des projets localement et dans le cloud</h3>
+            <p data-i18n="developments.item3.desc">Le workflow de projet prend désormais en charge les fichiers de projet locaux, l'enregistrement en tant que nouveau projet, ainsi que l'ouverture ou la mise à jour depuis un stockage de projet lié.</p>
+          </div>
+          <a class="development-link" href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/commit/f73da0e" target="_blank" rel="noopener" data-i18n="developments.link">Voir la modification &rarr;</a>
+        </article>
+        <article class="development-item">
+          <time datetime="2026-04-02">2 april 2026</time>
+          <div>
+            <h3 data-i18n="developments.item4.title">Plans de coupe interactifs</h3>
+            <p data-i18n="developments.item4.desc">Les plans de coupe peuvent être sélectionnés et déplacés directement dans la vue 3D pour une inspection ciblée du modèle.</p>
+          </div>
+          <a class="development-link" href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/commit/ecf9f10" target="_blank" rel="noopener" data-i18n="developments.link">Voir la modification &rarr;</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div data-release-notes="OpenAEC-BIM-validator"></div>
+  <script src="/shared/release-notes.js?v=20260728"></script>
+
+  <footer class="footer page-footer" style="padding: var(--sp-6);">
+    <div class="footer-inner">
+      <a href="/fr/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
+      <a href="https://www.linkedin.com/company/23749451" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+      <p>&copy; 2026 OpenAEC Foundation</p>
+    </div>
+  </footer>
+  <script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>

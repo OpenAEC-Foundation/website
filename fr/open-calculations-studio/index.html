@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Calculations Studio — OpenAEC Foundation</title>
+  <meta name="description" content="Application de bureau open source pour les calculs structuraux — inspirée de CalcPAD, avec export direct vers IFC4x3 STEP et IFCX JSON-LD. Anciennement…">
+  <link rel="canonical" href="https://open-aec.com/fr/open-calculations-studio/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-calculations-studio/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/open-calculations-studio/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/open-calculations-studio/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/open-calculations-studio/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/open-calculations-studio/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Open Calculations Studio">
+  <meta property="og:description" content="Application de bureau open source pour les calculs structuraux — inspirée de CalcPAD, avec export direct vers IFC4x3 STEP et IFCX JSON-LD. Anciennement…">
+  <meta property="og:url" content="https://open-aec.com/fr/open-calculations-studio/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-calculations-studio.png">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open Calculations Studio">
+  <meta name="twitter:description" content="Application de bureau open source pour les calculs structuraux — inspirée de CalcPAD, avec export direct vers IFC4x3 STEP et IFCX JSON-LD. Anciennement…">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-calculations-studio.png">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="open-calculations-studio">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open Calculations Studio",
+    "alternateName": ["Ifc-Calc"],
+    "applicationCategory": "EngineeringApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "softwareVersion": "0.1.4",
+    "license": "https://www.gnu.org/licenses/lgpl-3.0.html",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "url": "https://open-aec.com/open-calculations-studio/",
+    "description": "Open-source desktop application for structural calculations — inspired by CalcPAD. With live IFCX and IFC4x3 STEP export, under the OpenAEC Foundation. Works as standalone Tauri app or embedded library for FEM applications and code-checking.",
+    "publisher": { "@type": "Organization", "name": "OpenAEC Foundation", "url": "https://open-aec.com" }
+  }
+  </script>
+
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; font-family: var(--font-code); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .page-header h1 { font-family: var(--font-heading); font-weight: 700; font-size: 2.5rem; color: white; letter-spacing: -0.02em; margin-bottom: var(--sp-4); }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p { font-size: 1.125rem; color: var(--scaffold-gray); max-width: 750px; margin: 0 auto; line-height: 1.6; }
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-code); font-size: 0.7rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 4px 14px; border-radius: var(--radius-full);
+      background: #DBEAFE; color: #1E40AF;
+      margin-top: var(--sp-4); margin-right: 6px;
+    }
+    .version-info {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-code); font-size: 0.7rem;
+      color: var(--scaffold-gray); margin-top: var(--sp-2);
+    }
+
+    .content { max-width: 900px; margin: 0 auto; }
+    .content h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; color: var(--deep-forge); margin-bottom: var(--sp-4); }
+    .content h2 .accent { color: var(--amber); }
+    .content p { font-size: 1rem; color: #57534E; line-height: 1.7; margin-bottom: var(--sp-4); }
+    .content-block + .content-block { margin-top: var(--sp-12); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--sp-6);
+      margin: var(--sp-8) 0;
+    }
+    .feature-card {
+      background: white; border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg); padding: var(--sp-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .feature-card h3 { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--deep-forge); margin-bottom: var(--sp-2); }
+    .feature-card p { font-size: 0.875rem; color: #57534E; line-height: 1.6; margin-bottom: 0; }
+
+    .explainer {
+      background: var(--night-build);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-8);
+      margin: var(--sp-8) 0;
+    }
+    .explainer h3 { color: var(--amber); font-family: var(--font-heading); font-size: 1.125rem; margin-bottom: var(--sp-4); }
+    .explainer p { color: var(--scaffold-gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: var(--sp-3); }
+    .explainer ul { list-style: none; padding: 0; margin: 0; }
+    .explainer ul li {
+      position: relative;
+      padding: var(--sp-2) 0 var(--sp-2) var(--sp-5);
+      color: var(--scaffold-gray);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    .explainer ul li::before {
+      content: ''; position: absolute; left: 0; top: 12px;
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--amber);
+    }
+    .explainer code {
+      background: rgba(217, 119, 6, 0.15); color: var(--amber);
+      padding: 1px 6px; border-radius: 3px;
+      font-family: var(--font-code); font-size: 0.85em;
+    }
+
+    /* Code block */
+    .code-block {
+      background: var(--night-build);
+      color: #E7E5E4;
+      border-radius: var(--radius-md);
+      padding: var(--sp-5);
+      overflow-x: auto;
+      font-family: var(--font-code);
+      font-size: 0.85rem;
+      line-height: 1.6;
+      margin: var(--sp-6) 0;
+    }
+    .code-block .comment { color: #71717A; }
+    .code-block .keyword { color: var(--amber); }
+    .code-block .string  { color: #93C5FD; }
+    .code-block .number  { color: #86EFAC; }
+
+    .tech-stack { display: flex; gap: var(--sp-3); flex-wrap: wrap; margin: var(--sp-4) 0; }
+    .tech-tag {
+      font-family: var(--font-code); font-size: 0.75rem; font-weight: 500;
+      padding: 4px 12px; border-radius: var(--radius-full);
+      background: var(--concrete); color: var(--deep-forge);
+    }
+
+    .cta-links { display: flex; gap: var(--sp-4); flex-wrap: wrap; margin-top: var(--sp-6); }
+    .cta-links a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: var(--radius-md);
+      font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .cta-links a:hover { opacity: 0.85; }
+    .cta-primary { background: var(--amber); color: var(--deep-forge); }
+    .cta-secondary { background: var(--deep-forge); color: white; }
+
+    .page-footer.footer { background: var(--deep-forge); border-top: 3px solid transparent; border-image: var(--gradient-accent) 1; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-4); }
+    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
+
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 1.8rem; word-break: break-word; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <meta name="i18n-static" content="fr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "fr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/fr/open-calculations-studio/#webpage",
+        "url": "https://open-aec.com/fr/open-calculations-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "fr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/fr/open-calculations-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/fr/open-calculations-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Open Calculations Studio",
+            "item": "https://open-aec.com/fr/open-calculations-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/fr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Écosystème</a></li>
+        <li><a href="/fr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Feuille de route</a></li>
+        <li><a href="/fr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Architecture</a></li>
+        <li><a href="/fr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">Statistiques</a></li>
+        <li><a href="/fr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Actualités</a></li>
+        <li><a href="/fr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Partenaires</a></li>
+        <li><a href="/fr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Nous soutenons</a></li>
+        <li><a href="/fr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Structure</a></li>
+        <li><a href="/fr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">Contact</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Commentaires</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/open-calculations-studio/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/open-calculations-studio/" hreflang="en">EN</a>
+        <a class="lang-btn active" data-lang="fr" href="/fr/open-calculations-studio/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/open-calculations-studio/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js?v=20260728"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">Écosystème OpenAEC</p>
+    <h1 data-i18n="header.title">Open <span class="accent">Calculations</span> Studio</h1>
+    <p data-i18n="header.desc">Application de bureau open source pour les calculs structuraux — <strong style="color: white;">inspirée de CalcPAD</strong>, avec export direct vers <strong style="color: white;">IFC4x3 STEP</strong> et <strong style="color: white;">IFCX JSON-LD</strong>. Anciennement Ifc-Calc, reconstruite sous l'égide de l'OpenAEC Foundation.</p>
+    <div>
+      <span class="status-badge" data-i18n="header.badge">En développement</span>
+      <a href="https://open-calculations-studio.open-aec.com/" target="_blank" rel="noopener" class="status-badge" style="background:#16A34A;color:white;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">🚀 <span lang="en">open-calculations-studio.open-aec.com</span> &rarr;</a>
+    </div>
+    <div class="version-info">v0.1.4 &middot; TypeScript + Rust + Tauri 2 &middot; mathjs + KaTeX &middot; CalcPAD-compatible &middot; 67 commits &middot; 11 releases &middot; 8 stars</div>
+  </header>
+
+  <section class="section" style="background: var(--blueprint-white); padding-top: var(--sp-10); padding-bottom: var(--sp-4);">
+    <div class="content" style="max-width: 1100px;">
+      <figure style="margin: 0; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid #E7E5E4;">
+        <img src="/shared/assets/screenshots/open-calculations-studio.png" alt="Open Calculations Studio - CalcPAD-syntax editor met live preview, wind-belastingberekening en SVG-tekening" style="width: 100%; height: auto; display: block;" loading="lazy">
+        <figcaption style="background: var(--night-build); color: var(--scaffold-gray); font-family: var(--font-code); font-size: 0.75rem; padding: 10px 16px; text-align: center;" data-i18n="screenshot.caption">Éditeur en syntaxe CalcPAD avec aperçu en direct &middot; calcul de charge au vent &middot; dessin SVG paramétrique</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--blueprint-white);">
+
+    <div class="content">
+
+      <!-- What is it? -->
+      <div class="explainer">
+        <h3 data-i18n="what.title">Qu'est-ce qu'Open Calculations Studio ?</h3>
+        <p data-i18n="what.desc">Open Calculations Studio est un outil moderne et open source pour les calculs structuraux — <strong style="color: white;">inspiré de CalcPAD</strong>, l'outil largement utilisé par les ingénieurs structure néerlandais et européens. Nous avons reconstruit tout le moteur de calcul en TypeScript avec prise en charge de la syntaxe CalcPAD, et ajouté l'export IFC et IFCX en direct pour que les calculs s'intègrent directement avec les modèles BIM.</p>
+        <ul>
+          <li data-i18n="what.list1"><strong style="color: white;">Compatible CalcPAD</strong> — les fichiers <code>.cpd</code> existants fonctionnent sans modification</li>
+          <li data-i18n="what.list2"><strong style="color: white;">Gestion des unités</strong> — <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> via mathjs</li>
+          <li data-i18n="what.list3"><strong style="color: white;">Export IFCX + IFC4x3 STEP en direct</strong> — le calcul devient immédiatement un élément BIM</li>
+          <li data-i18n="what.list4"><strong style="color: white;">Rendu KaTeX</strong> — formules mathématiques avec vraies fractions, indices/exposants et lettres grecques</li>
+          <li data-i18n="what.list5"><strong style="color: white;">Dessins SVG</strong> — schémas paramétriques directement dans le calcul</li>
+          <li data-i18n="what.list6"><strong style="color: white;">Cas de charge</strong> — ELS / ELU / sismique dans des onglets distincts</li>
+          <li data-i18n="what.list7"><strong style="color: white;">Utilisable comme bibliothèque</strong> — à intégrer dans des applications EF ou des vérifications normatives</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="why.title">Pourquoi Open <span class="accent">Calculations</span> Studio ?</h2>
+        <p data-i18n="why.desc1">CalcPAD est utilisé depuis des années par les ingénieurs structure néerlandais pour les calculs manuels. Mais il est closed-source, ne fonctionne que sur Windows et n'a pas d'intégration BIM native. Open Calculations Studio apporte la fonctionnalité CalcPAD aux technologies web modernes : multiplateforme, open source, avec export IFC direct.</p>
+        <p data-i18n="why.desc2">Le fichier de régression <code>2259-Intertek-units.cpd</code> de 1094 lignes s'évalue avec <strong>0 erreur</strong> et produit <strong>6 dessins SVG</strong>. Suffisant pour de vrais calculs de projet.</p>
+      </div>
+
+      <!-- Example code block -->
+      <div class="content-block">
+        <h2 data-i18n="example.title"><span class="accent">Document</span> d'exemple</h2>
+        <p data-i18n="example.desc">Un document CalcPAD est naturel pour un ingénieur — formules, unités, logique conditionnelle et dessins côte à côte :</p>
+        <div class="code-block"><span class="string">"Project — woning Laageind 57</span>
+
+<span class="keyword">#include</span> svg_drawing.cpd
+
+<span class="comment"># 1. Invoer</span>
+b = <span class="number">300</span> mm
+h = <span class="number">500</span> mm
+N_Ed = ?*(kN)
+fck = <span class="number">30</span> N/mm^2
+
+<span class="comment"># 2. Geometrie</span>
+A = b*h          <span class="comment">// mm² — automatisch</span>
+W_y = b*h^<span class="number">2</span>/<span class="number">6</span>    <span class="comment">// mm³</span>
+
+<span class="comment"># 3. Toetsing</span>
+sigma = N_Ed/A to N/mm^<span class="number">2</span>
+
+<span class="keyword">#if</span> sigma ≤ fck/<span class="number">1.5</span>
+    <span class="string">'Voldoet ✓</span>
+<span class="keyword">#else</span>
+    <span class="string">'Voldoet NIET ✗</span>
+<span class="keyword">#end if</span>
+
+<span class="comment"># 4. Detail-tekening</span>
+@img(detail-D1.svg)
+
+<span class="comment"># 5. Belasting-diagram</span>
+$Plot{f(x) @ x = <span class="number">0</span> : L}</div>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="features.title">Fonctionnalités</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3 data-i18n="features.units.title">Formules avec unités</h3>
+            <p data-i18n="features.units.desc">Travaillez avec <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> et toutes les unités SI. Mathjs gère l'arithmétique sensible aux unités et la simplification automatique (<code>b*h</code> → <code>mm²</code>).</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.katex.title">Mise en forme mathématique</h3>
+            <p data-i18n="features.katex.desc">Rendu KaTeX avec vraies fractions, exposants, indices et lettres grecques (σ, ε, ρ, Φ, ψ). Les formules affichent <code>nom = formule = valeurs remplies = résultat</code> sur une ligne.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.editor.title">Aperçu en direct</h3>
+            <p data-i18n="features.editor.desc">Éditeur en split-pane (CodeMirror 6) avec coloration syntaxique pour <code>.cpd</code>. L'aperçu se met à jour pendant que vous tapez.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.loadcases.title">Cas de charge</h3>
+            <p data-i18n="features.loadcases.desc">Onglets pour ELS / ELU / sismique, etc., chacun avec ses propres valeurs pour les variables d'entrée. Un document, plusieurs scénarios.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.calcpad.title">Compatible CalcPAD</h3>
+            <p data-i18n="features.calcpad.desc">Entièrement compatible avec les fichiers <code>.cpd</code> existants : <code>#if/#else if/#end if</code>, <code>#repeat</code>, <code>#for</code>, macros <code>#def</code>, <code>#include</code>, <code>$Plot</code>, matrices, lookups.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.ifc.title">Export IFC4x3 STEP</h3>
+            <p data-i18n="features.ifc.desc">Détecte les éléments structuraux via des noms de variables conventionnels (<code>b_fdn</code>, <code>l_fdn</code>, <code>D_paal</code>, <code>M_Ed</code>, <code>R_c_d</code>). Génère un squelette valide Project → Site → Building → Storey.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.ifcx.title">IFCX JSON-LD</h3>
+            <p data-i18n="features.ifcx.desc">Export IFCX en direct (draft) — la nouvelle génération d'IFC avec espaces de noms pour calculs, normes et métadonnées. Calcul et modèle BIM dans un seul format.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.svg.title">Dessins SVG</h3>
+            <p data-i18n="features.svg.desc">Macros SVG paramétriques avec interpolation de valeurs. <code>@img(file.svg)</code> intègre des dessins externes en ligne. <code>@svg ... @end</code> pour du SVG manuscrit.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.viewer.title">Onglet IFC</h3>
+            <p data-i18n="features.viewer.desc">Visualiseur STEP et visualiseur IFCX JSON intégrés avec coloration syntaxique. Les types d'entités sont cliquables et renvoient à la documentation buildingSMART.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.gef.title">Import GEF</h3>
+            <p data-i18n="features.gef.desc"><code>@gef name</code> — utilisez les données de sondage directement dans les calculs de fondation. S'intègre avec Open Geotechniek Studio.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.themes.title">5 thèmes</h3>
+            <p data-i18n="features.themes.desc">Light, Forge, OpenAEC, Blueprint et Contrast — tous basés sur les design tokens OpenAEC. Choisissez ce qui fonctionne le mieux pour vous.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.pdf.title">Export PDF</h3>
+            <p data-i18n="features.pdf.desc">Export PDF prêt à imprimer via shell Tauri avec aperçu headless. Prêt pour le dossier projet ou une revue tierce.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.library.title">Mode bibliothèque</h3>
+            <p data-i18n="features.library.desc">Utilisez <code>@ifc-calc/core</code> en tant que bibliothèque TypeScript : parser, évaluer, rendre, générer IFC/IFCX depuis vos applications FEM ou contrôles normatifs.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CalcPAD compat block -->
+      <div class="explainer">
+        <h3 data-i18n="compat.title">Compatibilité CalcPAD</h3>
+        <p data-i18n="compat.desc">Entièrement <em>compatible sous-ensemble</em> avec les fichiers CalcPAD du monde réel. Fonctionne directement sur vos documents <code>.cpd</code> existants :</p>
+        <ul>
+          <li><code>"Title</code>, <code>'prose</code>, <code>// comment</code></li>
+          <li><code>#if … #else if … #else … #end if</code>, <code>#hide / #show / #pre / #post</code></li>
+          <li><code>#repeat n … #end repeat</code> en <code>#for var = lo : hi … #loop</code> (incl. nested)</li>
+          <li><code>#def name(p1; p2; …) … #end def</code> macros, <code>#def Name$ = literal</code> constants</li>
+          <li><code>#include filename.cpd</code> — externe macro-libraries en SVG drawings</li>
+          <li><code>$Plot{ … @ x = lo : hi }</code> — inline parametrische plots</li>
+          <li>Subscript-comma's (<code>V_b,0</code>), <code>$</code>-getypeerde refs, matrix <code>[a;b|c;d]</code></li>
+          <li>Format-specs (<code>:F2</code>), dotted/percent identifiers</li>
+          <li>mathjs Matrix-aware <code>take</code>, <code>hlookup</code>, <code>hlookup_ge</code>, <code>vlookup</code>, <code>get</code></li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="useCases.title">Profils d'utilisateurs</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3 data-i18n="useCases.structural.title">Ingénieurs structure</h3>
+            <p data-i18n="useCases.structural.desc">Calculs manuels pour poutres, poteaux, fondations — directement dans un document lisible. Ouvrez vos fichiers CalcPAD existants sans migration.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="useCases.bim.title">Modeleurs BIM</h3>
+            <p data-i18n="useCases.bim.desc">Liez les calculs directement aux éléments IFC. Pas de transfert manuel de valeurs — la vérification vit dans le modèle.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="useCases.education.title">Enseignement &amp; formation</h3>
+            <p data-i18n="useCases.education.desc">Les étudiants en génie civil apprennent à calculer avec la vraie syntaxe qu'ils rencontreront en pratique. Open source — pas de frais de licence.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="useCases.fem.title">Développeurs FEM</h3>
+            <p data-i18n="useCases.fem.desc">Intégrez <code>@ifc-calc/core</code> dans votre propre application FEM pour pré/post-traitement ou contrôle normatif. Bibliothèque TypeScript, installable via npm.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="tech.title">Technologie</h2>
+        <div class="tech-stack">
+          <span class="tech-tag">TypeScript</span>
+          <span class="tech-tag">React 19</span>
+          <span class="tech-tag">Rust</span>
+          <span class="tech-tag">Tauri 2</span>
+          <span class="tech-tag">mathjs</span>
+          <span class="tech-tag">KaTeX</span>
+          <span class="tech-tag">CodeMirror 6</span>
+          <span class="tech-tag">Vite</span>
+          <span class="tech-tag">npm workspaces</span>
+        </div>
+        <p data-i18n="tech.desc">Monorepo avec trois packages : <code>@ifc-calc/core</code> (parser + évaluateur + générateur IFC en bibliothèque TypeScript), <code>@openaec/calculations-studio</code> (application de bureau Tauri 2 avec interface React 19), et <code>@ifc-calc/web</code> (build navigateur uniquement). Multiplateforme : Windows, macOS, Linux.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="cta-links">
+          <a href="https://open-calculations-studio.open-aec.com/" target="_blank" rel="noopener" class="cta-primary" data-i18n="cta.liveDemo">🚀 Ouvrir la démo en ligne</a>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Calculations-Studio" target="_blank" rel="noopener" class="cta-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            <span data-i18n="cta.github">Dépôt GitHub</span>
+          </a>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Calculations-Studio/releases" target="_blank" rel="noopener" class="cta-secondary" data-i18n="cta.releases">Versions &amp; téléchargements</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Release Notes (shared component) -->
+  <div data-release-notes="Open-Calculations-Studio"></div>
+  <script src="/shared/release-notes.js?v=20260728"></script>
+
+  <footer class="footer page-footer" style="padding: var(--sp-6);">
+    <div class="footer-inner">
+      <a href="/fr/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
+      <div style="display: flex; gap: var(--sp-4); align-items: center;">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" style="color: var(--scaffold-gray); font-size: 0.75rem; text-decoration: none;">GitHub</a>
+        <a href="https://www.linkedin.com/company/23749451" target="_blank" rel="noopener" style="color: var(--scaffold-gray); font-size: 0.75rem; text-decoration: none;">LinkedIn</a>
+      </div>
+      <p>&copy; 2026 OpenAEC Foundation</p>
+    </div>
+  </footer>
+  <script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>

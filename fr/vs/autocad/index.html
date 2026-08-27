@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAEC Open 2D Studio vs AutoCAD LT — alternative de CAO 2D open source</title>
+  <meta name="description" content="Open 2D Studio est un outil CAO 2D open source construit avec Rust et Tauri. Comparaison avec AutoCAD LT sur les fonctionnalités, le prix, les plateformes…">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="OpenAEC Open 2D Studio vs AutoCAD LT — alternative de CAO 2D open source">
+  <meta property="og:description" content="Open 2D Studio est un outil CAO 2D open source construit avec Rust et Tauri. Comparaison avec AutoCAD LT sur les fonctionnalités, le prix, les plateformes…">
+  <meta property="og:url" content="https://open-aec.com/fr/vs/autocad/">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="OpenAEC Open 2D Studio vs AutoCAD LT — open source 2D CAD alternatief">
+  <meta name="twitter:description" content="Open 2D Studio est un outil CAO 2D open source construit avec Rust et Tauri. Comparaison avec AutoCAD LT sur les fonctionnalités, le prix, les plateformes…">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="vs-autocad">
+  <meta name="keywords" content="AutoCAD alternatief, open source CAD, Open 2D Studio, AutoCAD LT vergelijking, gratis 2D tekenen, DXF editor">
+  <link rel="canonical" href="https://open-aec.com/fr/vs/autocad/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/vs/autocad/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/vs/autocad/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/vs/autocad/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/vs/autocad/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/vs/autocad/">
+  <!-- hreflang:end -->
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <style>
+    .page-header { background: var(--night-build); padding: var(--sp-20) var(--sp-6) var(--sp-12); text-align: center; border-bottom: 3px solid transparent; border-image: var(--gradient-accent) 1; }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 { font-family: var(--font-heading); font-weight: 700; font-size: 2.25rem; color: white; letter-spacing: -0.02em; margin-bottom: var(--sp-4); }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p { font-size: 1.0625rem; color: var(--scaffold-gray); max-width: 720px; margin: 0 auto; line-height: 1.6; }
+    .compare-table { width: 100%; border-collapse: collapse; background: white; border: 1px solid #E7E5E4; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); font-size: 0.9375rem; }
+    .compare-table th, .compare-table td { padding: var(--sp-4); text-align: left; border-bottom: 1px solid #E7E5E4; vertical-align: top; }
+    .compare-table thead th { background: var(--night-build); color: white; font-family: var(--font-heading); font-size: 0.95rem; }
+    .compare-table thead th:first-child { width: 30%; }
+    .compare-table thead th .badge { display: block; font-family: var(--font-code); font-size: 0.65rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em; color: var(--warm-gold); margin-top: 4px; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .feat { font-weight: 600; color: var(--deep-forge); background: var(--concrete); }
+    .yes { color: #15803D; font-weight: 600; }
+    .no { color: #B91C1C; font-weight: 600; }
+    .partial { color: var(--amber); font-weight: 600; }
+    .choose-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--sp-6); margin-top: var(--sp-6); }
+    .choose-card { background: white; border: 1px solid #E7E5E4; border-radius: var(--radius-lg); padding: var(--sp-6); box-shadow: var(--shadow-sm); }
+    .choose-card.openaec { border-top: 4px solid var(--amber); }
+    .choose-card.competitor { border-top: 4px solid #57534E; }
+    .choose-card h3 { font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: var(--sp-4); color: var(--deep-forge); }
+    .choose-card ul { list-style: none; padding: 0; margin: 0; }
+    .choose-card li { padding: var(--sp-2) 0 var(--sp-2) var(--sp-6); position: relative; font-size: 0.9375rem; line-height: 1.55; color: #44403C; }
+    .choose-card li::before { content: "→"; position: absolute; left: 0; color: var(--amber); font-weight: 700; }
+    .choose-card.competitor li::before { color: #57534E; }
+    .cta-block { background: var(--night-build); color: white; border-radius: var(--radius-lg); padding: var(--sp-10) var(--sp-6); text-align: center; max-width: 800px; margin: 0 auto; }
+    .cta-block h2 { color: white; margin-bottom: var(--sp-4); }
+    .cta-block p { color: var(--scaffold-gray); max-width: 600px; margin: 0 auto var(--sp-6); line-height: 1.6; }
+    .summary-lead { max-width: 780px; margin: 0 auto; font-size: 1.0625rem; line-height: 1.7; color: #44403C; }
+    .summary-lead p { margin-bottom: var(--sp-4); }
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 1.75rem; }
+      .compare-table { font-size: 0.8125rem; }
+      .compare-table th, .compare-table td { padding: var(--sp-3); }
+    }
+  </style>
+  <meta name="i18n-static" content="fr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "fr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/fr/vs/autocad/#webpage",
+        "url": "https://open-aec.com/fr/vs/autocad/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "fr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/fr/vs/autocad/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/fr/vs/autocad/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Vs",
+            "item": "https://open-aec.com/fr/vs"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Autocad",
+            "item": "https://open-aec.com/fr/vs/autocad/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/fr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Écosystème</a></li>
+        <li><a href="/fr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Feuille de route</a></li>
+        <li><a href="/fr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Architecture</a></li>
+        <li><a href="/fr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">Statistiques</a></li>
+        <li><a href="/fr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Actualités</a></li>
+        <li><a href="/fr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Partenaires</a></li>
+        <li><a href="/fr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Nous soutenons</a></li>
+        <li><a href="/fr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Structure</a></li>
+        <li><a href="/fr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">Contact</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Commentaires</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/vs/autocad/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/vs/autocad/" hreflang="en">EN</a>
+        <a class="lang-btn active" data-lang="fr" href="/fr/vs/autocad/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/vs/autocad/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">Comparaison</p>
+    <h1 data-i18n="header.title">OpenAEC <span class="accent">vs AutoCAD LT</span></h1>
+    <p data-i18n="header.desc">Open 2D Studio est un outil CAO 2D open source construit avec Rust et Tauri. Comparaison avec AutoCAD LT sur les fonctionnalités, le prix, les plateformes et le modèle de licence.</p>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="summary-lead">
+        <p data-i18n="intro.p1"><strong>AutoCAD LT</strong> est la version 2D allégée du célèbre AutoCAD d'Autodesk, sorti pour la première fois en 1993. C'est la norme de facto pour le dessin 2D en architecture, en génie civil et dans les installations techniques du bâtiment, avec un vaste écosystème de plug-ins, de familles et de formats d'échange. AutoCAD LT coûte généralement entre 500 et 700 € par utilisateur et par an (abonnement annuel ou pluriannuel).</p>
+        <p data-i18n="intro.p2"><strong>Open 2D Studio</strong> de l'OpenAEC Foundation est une application CAO 2D open source (version actuelle v0.35, plus de 90 commits, 17 étoiles sur GitHub). Construite avec Rust et Tauri pour la rapidité et une faible empreinte mémoire, multiplateforme sous Windows, macOS et Linux. Prend en charge les lignes, arcs, cercles, polylignes, hachures, calques, cotations et l'échange DXF. Licence : LGPL-3.0.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom: var(--sp-8);" data-i18n="features.title">Comparaison des fonctionnalités</h2>
+      <div style="overflow-x: auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th data-i18n="features.table.col-feature">Fonctionnalité</th>
+              <th>Open 2D Studio<span class="badge">OpenAEC Foundation, v0.35</span></th>
+              <th>AutoCAD LT<span class="badge">Autodesk Inc.</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="feat" data-i18n="features.rows.price.label">Prix</td><td class="yes" data-i18n="features.rows.price.openaec">Gratuit</td><td data-i18n="features.rows.price.competitor">~500-700 €/utilisateur/an</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.license.label">Licence</td><td data-i18n="features.rows.license.openaec">LGPL-3.0 (open source)</td><td data-i18n="features.rows.license.competitor">Commerciale, propriétaire</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.license-cost.label">Coût de licence par utilisateur</td><td class="yes" data-i18n="features.rows.license-cost.openaec">0 €</td><td data-i18n="features.rows.license-cost.competitor">Abonnement, annuel</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.platforms.label">Plateformes</td><td class="yes" data-i18n="features.rows.platforms.openaec">Windows, macOS, Linux</td><td class="partial" data-i18n="features.rows.platforms.competitor">Windows, macOS (web/mobile limité)</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.tech-stack.label">Stack technique</td><td data-i18n="features.rows.tech-stack.openaec">Rust + Tauri (natif, faible mémoire)</td><td data-i18n="features.rows.tech-stack.competitor">C++ (propriétaire)</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.line-arc-circle.label">Ligne / Arc / Cercle</td><td class="yes" data-i18n="features.rows.line-arc-circle.openaec">Oui</td><td class="yes" data-i18n="features.rows.line-arc-circle.competitor">Oui</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.polyline.label">Polyligne</td><td class="yes" data-i18n="features.rows.polyline.openaec">Oui</td><td class="yes" data-i18n="features.rows.polyline.competitor">Oui</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.hatch.label">Hachure</td><td class="yes" data-i18n="features.rows.hatch.openaec">Oui</td><td class="yes" data-i18n="features.rows.hatch.competitor">Oui</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.layers.label">Calques</td><td class="yes" data-i18n="features.rows.layers.openaec">Oui</td><td class="yes" data-i18n="features.rows.layers.competitor">Oui</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.dimensions.label">Cotations</td><td class="yes" data-i18n="features.rows.dimensions.openaec">Oui</td><td class="yes" data-i18n="features.rows.dimensions.competitor">Oui</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.dxf.label">Import/export DXF</td><td class="yes" data-i18n="features.rows.dxf.openaec">Oui</td><td class="yes" data-i18n="features.rows.dxf.competitor">Oui (DWG natif aussi)</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.dwg.label">DWG (natif)</td><td class="partial" data-i18n="features.rows.dwg.openaec">Via conversion DXF</td><td class="yes" data-i18n="features.rows.dwg.competitor">Natif</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.3d-modeling.label">Modélisation 3D</td><td class="no" data-i18n="features.rows.3d-modeling.openaec">Non (2D uniquement)</td><td class="no" data-i18n="features.rows.3d-modeling.competitor">Non dans LT (3D dans AutoCAD complet)</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.lisp-macros.label">LISP / AutoLISP / macros</td><td class="no" data-i18n="features.rows.lisp-macros.openaec">Non pris en charge</td><td class="yes" data-i18n="features.rows.lisp-macros.competitor">Limité dans LT</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.plugins.label">Écosystème de plug-ins</td><td class="partial" data-i18n="features.rows.plugins.openaec">Restreint, en croissance</td><td class="yes" data-i18n="features.rows.plugins.competitor">Vaste, établi</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.templates.label">Modèles / familles</td><td class="partial" data-i18n="features.rows.templates.openaec">Limité</td><td class="yes" data-i18n="features.rows.templates.competitor">Étendu</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.telemetry.label">Télémétrie</td><td class="yes" data-i18n="features.rows.telemetry.openaec">Aucune</td><td class="no" data-i18n="features.rows.telemetry.competitor">Oui</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.source-code.label">Code source</td><td class="yes" data-i18n="features.rows.source-code.openaec">GitHub, public</td><td class="no" data-i18n="features.rows.source-code.competitor">Fermé</td></tr>
+            <tr><td class="feat" data-i18n="features.rows.maturity.label">Maturité</td><td class="partial" data-i18n="features.rows.maturity.openaec">v0.35, en développement actif</td><td class="yes" data-i18n="features.rows.maturity.competitor">Plus de 30 ans (depuis 1993)</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 style="text-align:center;" data-i18n="choose.title">Quand choisir quoi ?</h2>
+      <div class="choose-grid">
+        <div class="choose-card openaec">
+          <h3 data-i18n="choose.openaec.title">Choisissez <span class="accent">Open 2D Studio</span> si...</h3>
+          <ul>
+            <li data-i18n="choose.openaec.item1">Vous ne voulez pas payer un abonnement annuel de 500 à 700 € pour du dessin 2D de base.</li>
+            <li data-i18n="choose.openaec.item2">Vous travaillez sous Linux (AutoCAD LT ne fonctionne pas nativement sous Linux).</li>
+            <li data-i18n="choose.openaec.item3">Vous travaillez sur une machine légère et tenez à une faible empreinte mémoire (application Tauri).</li>
+            <li data-i18n="choose.openaec.item4">Vous voulez créer ou modifier simplement des dessins DXF, sans dépendance à un fournisseur.</li>
+            <li data-i18n="choose.openaec.item5">Vous êtes indépendant, étudiant ou petite structure et avez besoin d'outils 2D professionnels.</li>
+            <li data-i18n="choose.openaec.item6">Vous êtes prêt à travailler avec un outil encore en maturation (v0.35).</li>
+            <li data-i18n="choose.openaec.item7">Vous voulez soutenir l'open source ou contribuer vous-même au développement.</li>
+          </ul>
+        </div>
+        <div class="choose-card competitor">
+          <h3 data-i18n="choose.competitor.title">Choisissez AutoCAD LT si...</h3>
+          <ul>
+            <li data-i18n="choose.competitor.item1">Vous échangez intensivement des fichiers DWG avec d'autres bureaux utilisant AutoCAD.</li>
+            <li data-i18n="choose.competitor.item2">Vous avez besoin de fonctionnalités 2D avancées intégrées au workflow établi d'AutoCAD.</li>
+            <li data-i18n="choose.competitor.item3">Vous avez besoin d'accéder au vaste écosystème de plug-ins et de modèles d'Autodesk.</li>
+            <li data-i18n="choose.competitor.item4">Vous avez besoin d'un support commercial, de formations et de certifications.</li>
+            <li data-i18n="choose.competitor.item5">Votre organisation travaille depuis des années avec des workflows AutoCAD et un investissement important dans des macros.</li>
+            <li data-i18n="choose.competitor.item6">Vous préférez une stabilité et une complétude fonctionnelle maximales plutôt que des économies.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-block">
+        <h2 data-i18n="cta.title">Essayez Open 2D Studio</h2>
+        <p data-i18n="cta.desc">Téléchargez Open 2D Studio pour Windows, macOS ou Linux. Open source, sans abonnement, sans télémétrie. Une alternative équitable en développement actif.</p>
+        <div class="btn-group">
+          <a href="/fr/open-2d-studio/" class="btn btn-primary btn-lg">Open 2D Studio</a>
+          <a href="https://github.com/OpenAEC-Foundation/open-2d-studio" class="btn btn-ghost btn-lg" style="color:white;border-color:white;" data-i18n="cta.github-link">Voir le code source sur GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="footer-container">
+    <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <span data-i18n="footer.slogan">Construisez librement. Construisons ensemble.</span>
+    <p>&copy; 2026 OpenAEC Foundation</p>
+  </div></footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Open 2D Studio",
+    "alternateName": "OpenAEC Open 2D Studio",
+    "description": "Open source 2D CAD-applicatie van de OpenAEC Foundation, gebouwd met Rust en Tauri. Gratis, LGPL-3.0 alternatief voor AutoCAD LT met line, arc, circle, polyline, hatch, layers, dimensies en DXF-uitwisseling. Cross-platform op Windows, macOS en Linux.",
+    "brand": { "@type": "Brand", "name": "OpenAEC Foundation" },
+    "operatingSystem": "Windows, macOS, Linux",
+    "applicationCategory": "DesignApplication",
+    "softwareVersion": "0.35",
+    "url": "https://open-aec.com/open-2d-studio/",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" },
+    "isAccessibleForFree": true,
+    "license": "https://www.gnu.org/licenses/lgpl-3.0.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wat is een open source alternatief voor AutoCAD LT?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open 2D Studio van de OpenAEC Foundation is een open source 2D CAD-applicatie gebouwd met Rust en Tauri. Het ondersteunt line, arc, circle, polyline, hatch, layers, dimensies en DXF-uitwisseling onder LGPL-3.0 licentie en draait cross-platform op Windows, macOS en Linux."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Draait Open 2D Studio op Linux?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, Open 2D Studio draait native op Windows, macOS en Linux. AutoCAD LT heeft geen native Linux-versie."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ondersteunt Open 2D Studio DWG?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open 2D Studio gebruikt DXF als primair uitwisselingsformaat. DWG-uitwisseling kan via DXF-conversie. AutoCAD LT ondersteunt DWG native."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="/shared/i18n.js"></script>
+</body>
+</html>

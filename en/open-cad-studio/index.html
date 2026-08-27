@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open CAD Studio — OpenAEC Foundation</title>
+  <meta name="description" content="A full-featured 2D + 3D CAD application built in Rust with GPU-accelerated rendering. Native DWG DXF read and write, paper space, ACIS solids, dimensions…">
+  <link rel="canonical" href="https://open-aec.com/en/open-cad-studio/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-cad-studio/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/open-cad-studio/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/open-cad-studio/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/open-cad-studio/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/open-cad-studio/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Open CAD Studio">
+  <meta property="og:description" content="A full-featured 2D + 3D CAD application built in Rust with GPU-accelerated rendering. Native DWG DXF read and write, paper space, ACIS solids, dimensions…">
+  <meta property="og:url" content="https://open-aec.com/en/open-cad-studio/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-cad-studio.jpeg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open CAD Studio">
+  <meta name="twitter:description" content="A full-featured 2D + 3D CAD application built in Rust with GPU-accelerated rendering. Native DWG DXF read and write, paper space, ACIS solids, dimensions…">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-cad-studio.jpeg">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="open-cad-studio">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open CAD Studio",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "Windows, macOS, Linux",
+    "softwareVersion": "0.8.8",
+    "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+    "downloadUrl": "https://github.com/HakanSeven12/OpenCADStudio/releases/download/v0.8.8/OpenCADStudio-v0.8.8-windows-x86_64-portable.exe",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "url": "https://open-aec.com/open-cad-studio/",
+    "author": { "@type": "Person", "name": "Hakan Seven", "url": "https://github.com/HakanSeven12" },
+    "description": "Full-featured 2D + 3D CAD application built in Rust with wgpu GPU rendering. Native DWG/DXF read and write (R13–R2018), paper space, ACIS solids, dimensions, layouts, plot to PDF. Community project recognized by the OpenAEC Foundation."
+  }
+  </script>
+
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; font-family: var(--font-code); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
+    .page-header h1 { font-family: var(--font-heading); font-weight: 700; font-size: 2.5rem; color: white; letter-spacing: -0.02em; margin-bottom: var(--sp-4); }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p { font-size: 1.125rem; color: var(--scaffold-gray); max-width: 800px; margin: 0 auto; line-height: 1.6; }
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-code); font-size: 0.7rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 4px 14px; border-radius: var(--radius-full);
+      background: #E0E7FF; color: #3730A3;
+      margin-top: var(--sp-4); margin-right: 6px;
+    }
+    .status-badge.beta { background: #FED7AA; color: #9A3412; }
+    .version-info { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-code); font-size: 0.7rem; color: var(--scaffold-gray); margin-top: var(--sp-2); }
+
+    .content { max-width: 1000px; margin: 0 auto; }
+    .content h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; color: var(--deep-forge); margin-bottom: var(--sp-4); }
+    .content h2 .accent { color: var(--amber); }
+    .content p { font-size: 1rem; color: #57534E; line-height: 1.7; margin-bottom: var(--sp-4); }
+    .content-block + .content-block { margin-top: var(--sp-12); }
+
+    /* Slider — copied from open-geotechniek-studio for consistency */
+    .media-slider { max-width: 1100px; margin: 0 auto; position: relative; }
+    .slider-container { position: relative; overflow: hidden; border-radius: var(--radius-lg); background: var(--night-build); box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+    .slider-track { display: flex; transition: transform 0.4s ease; }
+    .slider-slide { min-width: 100%; }
+    .slider-slide img { width: 100%; display: block; }
+    .slider-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); color: white; border: none;
+      width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+      font-size: 1.5rem; display: flex; align-items: center; justify-content: center;
+      z-index: 2;
+    }
+    .slider-btn:hover { background: rgba(0,0,0,0.7); }
+    .slider-prev { left: 12px; }
+    .slider-next { right: 12px; }
+    .slider-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0; }
+    .slider-dot { width: 10px; height: 10px; border-radius: 50%; border: none; cursor: pointer; background: #D6D3D1; }
+    .slider-dot.active { background: var(--amber); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--sp-6);
+      margin: var(--sp-8) 0;
+    }
+    .feature-card {
+      background: white; border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg); padding: var(--sp-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .feature-card h3 { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--deep-forge); margin-bottom: var(--sp-2); }
+    .feature-card p { font-size: 0.875rem; color: #57534E; line-height: 1.6; margin-bottom: 0; }
+    .feature-card code { background: var(--concrete); padding: 1px 5px; border-radius: 3px; font-size: 0.85em; }
+
+    .explainer {
+      background: var(--night-build);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-8);
+      margin: var(--sp-8) 0;
+    }
+    .explainer h3 { color: var(--amber); font-family: var(--font-heading); font-size: 1.125rem; margin-bottom: var(--sp-4); }
+    .explainer p { color: var(--scaffold-gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: var(--sp-3); }
+    .explainer code {
+      background: rgba(217, 119, 6, 0.15); color: var(--amber);
+      padding: 1px 6px; border-radius: 3px;
+      font-family: var(--font-code); font-size: 0.85em;
+    }
+    .explainer a { color: var(--amber); }
+
+    .tech-stack { display: flex; gap: var(--sp-3); flex-wrap: wrap; margin: var(--sp-4) 0; }
+    .tech-tag {
+      font-family: var(--font-code); font-size: 0.75rem; font-weight: 500;
+      padding: 4px 12px; border-radius: var(--radius-full);
+      background: var(--concrete); color: var(--deep-forge);
+    }
+
+    .author-card {
+      background: white; border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg); padding: var(--sp-6);
+      display: flex; align-items: center; gap: var(--sp-4);
+      margin: var(--sp-8) 0;
+      box-shadow: var(--shadow-sm);
+    }
+    .author-card .avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      background: linear-gradient(135deg, #3730A3, #6366F1);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+    .author-card h4 { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--deep-forge); margin-bottom: var(--sp-1); }
+    .author-card p { font-size: 0.875rem; color: #57534E; margin: 0; line-height: 1.5; }
+    .author-card a { color: var(--amber); text-decoration: none; font-weight: 600; }
+
+    .cta-links { display: flex; gap: var(--sp-4); flex-wrap: wrap; margin-top: var(--sp-6); }
+    .cta-links a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 12px 24px; border-radius: var(--radius-md);
+      font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .cta-links a:hover { opacity: 0.85; }
+    .cta-primary { background: var(--amber); color: var(--deep-forge); }
+    .cta-secondary { background: var(--deep-forge); color: white; }
+
+    .page-footer.footer { background: var(--deep-forge); border-top: 3px solid transparent; border-image: var(--gradient-accent) 1; }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-4); }
+    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
+
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 1.8rem; word-break: break-word; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <meta name="i18n-static" content="en">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/en/open-cad-studio/#webpage",
+        "url": "https://open-aec.com/en/open-cad-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "en",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/en/open-cad-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/en/open-cad-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/en/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Open CAD Studio",
+            "item": "https://open-aec.com/en/open-cad-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/en/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/en/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Ecosystem</a></li>
+        <li><a href="/en/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Roadmap</a></li>
+        <li><a href="/en/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Architecture</a></li>
+        <li><a href="/en/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">Statistics</a></li>
+        <li><a href="/en/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">News</a></li>
+        <li><a href="/en/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Supporters</a></li>
+        <li><a href="/en/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">We support</a></li>
+        <li><a href="/en/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Structure</a></li>
+        <li><a href="/en/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">Contact</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Feedback</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/open-cad-studio/" hreflang="nl">NL</a>
+        <a class="lang-btn active" data-lang="en" href="/en/open-cad-studio/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/open-cad-studio/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/open-cad-studio/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js?v=20260728"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">Community project · OpenAEC ecosystem</p>
+    <h1 data-i18n="header.title">Open <span class="accent">CAD</span> Studio</h1>
+    <p data-i18n="header.desc">A full-featured <strong style="color: white;">2D + 3D CAD application</strong> built in Rust with GPU-accelerated rendering. Native <strong style="color: white;">DWG &amp; DXF</strong> read and write, paper space, ACIS solids, dimensions, layouts. An open source community project by Hakan Seven, recognized and promoted by the OpenAEC Foundation.</p>
+    <div>
+      <span class="status-badge" data-i18n="header.community">Community project</span>
+      <span class="status-badge beta" data-i18n="header.beta" data-ocs-ver>Beta · v0.7.0</span>
+    </div>
+    <div class="version-info">Rust · iced · wgpu · GPL-3.0 · 1322 commits · <span data-ocs-rel>66 releases</span> · <span data-ocs-stars>161</span> stars</div>
+    <div style="margin-top: var(--sp-4);">
+      <a href="https://hakanseven12.github.io/OpenCADStudio/" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="header.demoBtn">▶ Live demo in your browser</a>
+    </div>
+  </header>
+
+  <!-- Download — placed at the top of the page -->
+  <section class="section" id="download" style="background: var(--blueprint-white); padding-top: var(--sp-8); padding-bottom: var(--sp-2);">
+    <div class="content">
+      <div class="content-block" style="margin-top: 0;">
+        <h2 data-i18n="download.title" data-ocs-ver>Download <span class="accent">v0.7.0</span></h2>
+        <p data-i18n="download.desc">Released June 2026. Three native binaries — Windows, macOS (Apple Silicon) and Linux (AppImage). Pick the one for your platform and you're up and running in seconds.</p>
+        <div class="download-section">
+          <div class="download-grid">
+            <div class="download-item">
+              <div class="os">Windows (portable)</div>
+              <div class="size">~30 MB</div>
+              <a href="https://github.com/HakanSeven12/OpenCADStudio/releases/latest" data-ocs-dl="windows" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Download .exe</a>
+            </div>
+            <div class="download-item">
+              <div class="os">Windows (installer)</div>
+              <div class="size">~30 MB</div>
+              <a href="https://github.com/HakanSeven12/OpenCADStudio/releases/latest" data-ocs-dl="windows-msi" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Download .msi</a>
+            </div>
+            <div class="download-item">
+              <div class="os">macOS (Apple Silicon)</div>
+              <div class="size">~13 MB</div>
+              <a href="https://github.com/HakanSeven12/OpenCADStudio/releases/latest" data-ocs-dl="macos" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Download .dmg</a>
+            </div>
+            <div class="download-item">
+              <div class="os">Linux (AppImage)</div>
+              <div class="size">~15 MB</div>
+              <a href="https://github.com/HakanSeven12/OpenCADStudio/releases/latest" data-ocs-dl="linux" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Download AppImage</a>
+            </div>
+          </div>
+        </div>
+        <p style="font-size:0.85rem;color:var(--scaffold-gray);margin-top:var(--sp-3);" data-i18n="download.note" data-ocs-rel>Need to build from source or grab an older version? See <a href="https://github.com/HakanSeven12/OpenCADStudio/releases" target="_blank" rel="noopener" style="color:var(--amber);">all releases on GitHub</a> (60 releases so far).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--blueprint-white); padding-top: var(--sp-10); padding-bottom: var(--sp-4);">
+    <div class="content" style="max-width: 1100px;">
+      <div class="media-slider">
+        <div class="slider-container">
+          <div class="slider-track" id="sliderTrack">
+            <div class="slider-slide"><img src="/shared/assets/screenshots/open-cad-studio.jpeg" alt="Open CAD Studio — DWG van stedelijk weg- en infrastructuur-ontwerp met meerdere XREFs"></div>
+            <div class="slider-slide"><img src="/shared/assets/screenshots/open-cad-studio-2.png" alt="Open CAD Studio — Constructietekening van een funderingsherstel (CP 21) met sondering-aanduidingen op NAP-niveau"></div>
+          </div>
+          <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Vorige">&lsaquo;</button>
+          <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Volgende">&rsaquo;</button>
+        </div>
+        <div class="slider-dots" id="sliderDots"></div>
+      </div>
+      <p style="background: var(--night-build); color: var(--scaffold-gray); font-family: var(--font-code); font-size: 0.75rem; padding: 10px 16px; text-align: center; margin: var(--sp-2) 0 0; border-radius: var(--radius-md);" data-i18n="screenshot.caption">Open CAD Studio in action — DWG drawings of a road design and a foundation repair structural drawing (PUNTNIVEAU -14.5 m NAP)</p>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--blueprint-white);">
+    <div class="content">
+
+      <div class="author-card">
+        <div class="avatar">HS</div>
+        <div>
+          <h4>Hakan Seven</h4>
+          <p data-i18n="author.desc">Independent open-source developer. Building Open CAD Studio since March 2026.<br><a href="https://github.com/HakanSeven12" target="_blank" rel="noopener">github.com/HakanSeven12 &rarr;</a></p>
+        </div>
+      </div>
+
+      <div class="explainer">
+        <h3 data-i18n="what.title">What is Open CAD Studio?</h3>
+        <p data-i18n="what.desc">Open CAD Studio is an independent open-source CAD project filling a major gap in AEC tooling: a <strong style="color: white;">modern, performant, native DWG/DXF-compatible CAD application</strong> that doesn't depend on Autodesk, Bricsys or other commercial vendors. Entirely written in Rust, with GPU-accelerated rendering via wgpu and an interactive UI in iced.</p>
+        <p data-i18n="what.desc2">The OpenAEC Foundation views Open CAD Studio as a natural addition to the ecosystem. The project isn't developed by us, but it fits our mission: promoting open source software for the entire AEC chain. We link to it actively and encourage collaboration.</p>
+        <p data-i18n="what.license"><strong style="color: white;">License</strong>: GPL-3.0 (note: different from our own LGPL-3.0 tools, which is more permissive for library use).</p>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="formats.title">File formats — <span class="accent">native DWG &amp; DXF</span></h2>
+        <p data-i18n="formats.desc">Perhaps the most important feature: Open CAD Studio reads and writes DWG and DXF natively, across all versions from R13 through R2018. No converters, no workarounds, no Autodesk libraries.</p>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3 data-i18n="formats.dwg.title">DWG (R13–R2018)</h3>
+            <p data-i18n="formats.dwg.desc">Native reading and writing of DWG files — the de-facto industry-standard format. Without third-party library licenses.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="formats.dxf.title">DXF (R13–R2018)</h3>
+            <p data-i18n="formats.dxf.desc">Full DXF read/write including modern versions. Compatible with AutoCAD, BricsCAD, LibreCAD and any CAD application that supports DXF.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="formats.stl.title">STL / STEP / OBJ</h3>
+            <p data-i18n="formats.stl.desc">Export to STL and STEP AP203 for 3D printing and CAM. OBJ import for 3D models from other sources.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="formats.pdf.title">PDF plot</h3>
+            <p data-i18n="formats.pdf.desc">Plot layouts directly to PDF — with correct paper sizes read from embedded PlotSettings.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="formats.wblock.title">WBLOCK</h3>
+            <p data-i18n="formats.wblock.desc">Write selected entities or a block to an external file for reuse.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="formats.xref.title">XREF</h3>
+            <p data-i18n="formats.xref.desc">External references (xrefs) attach, reload and auto-resolve — just like AutoCAD.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="drafting.title">2D <span class="accent">drafting</span></h2>
+        <p data-i18n="drafting.desc">Complete 2D drafting package with all the commands you'd expect from a professional CAD application:</p>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3 data-i18n="drafting.geom.title">Basic geometry</h3>
+            <p data-i18n="drafting.geom.desc"><code>LINE</code>, <code>PLINE</code>, <code>RECTANG</code>, <code>POLYGON</code>, <code>CIRCLE</code>, <code>ARC</code>, <code>ELLIPSE</code>, <code>SPLINE</code></p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="drafting.modify.title">Modify</h3>
+            <p data-i18n="drafting.modify.desc"><code>OFFSET</code>, <code>TRIM</code>, <code>EXTEND</code>, <code>FILLET</code>, <code>BREAK</code>, <code>STRETCH</code>, <code>LENGTHEN</code> — works on lines, arcs, ellipses, polylines and splines</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="drafting.transform.title">Transformations</h3>
+            <p data-i18n="drafting.transform.desc"><code>ARRAY</code>, <code>MIRROR</code>, <code>MOVE</code>, <code>COPY</code>, <code>ROTATE</code>, <code>SCALE</code>, <code>EXPLODE</code></p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="drafting.hatch.title">Hatch</h3>
+            <p data-i18n="drafting.hatch.desc"><code>HATCH</code> and <code>HATCHEDIT</code> with pattern, scale and angle editing.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="drafting.mass.title">Properties</h3>
+            <p data-i18n="drafting.mass.desc"><code>MASSPROP</code> — area, perimeter and centroid of selected entities.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="drafting.text.title">Text editing</h3>
+            <p data-i18n="drafting.text.desc"><code>DDEDIT</code> — double-click to edit text. <code>MTEXT</code>, <code>TEXT</code>, <code>DTEXT</code> with font browser.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="modeling.title">3D <span class="accent">modelling</span></h2>
+        <p data-i18n="modeling.desc">Full 3D modelling capabilities with ACIS solids tessellation:</p>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3 data-i18n="modeling.prim.title">Primitives</h3>
+            <p data-i18n="modeling.prim.desc"><code>BOX</code>, <code>SPHERE</code>, <code>CYLINDER</code> — basic solids for parametric modelling.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="modeling.extrude.title">Extrude &amp; revolve</h3>
+            <p data-i18n="modeling.extrude.desc">Profile-based solids: <code>EXTRUDE</code> for linear extrusion and <code>REVOLVE</code> for rotation about an axis.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="modeling.loft.title">Loft &amp; sweep</h3>
+            <p data-i18n="modeling.loft.desc"><code>LOFT</code> between multiple profiles, <code>SWEEP</code> along any path.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="modeling.array.title">3D Array</h3>
+            <p data-i18n="modeling.array.desc"><code>ARRAY3D</code> — rectangular or polar arrays in 3D.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="modeling.acis.title">ACIS tessellation</h3>
+            <p data-i18n="modeling.acis.desc">Renders <code>3DSOLID</code>, <code>REGION</code> and <code>BODY</code> entities — solids from DWG/DXF are displayed correctly.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="modeling.gpu.title">GPU-accelerated</h3>
+            <p data-i18n="modeling.gpu.desc">wgpu-based rendering. Smooth interaction with large models, even with many solids at once.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="annotations.title"><span class="accent">Annotations</span> &amp; dimensions</h2>
+        <p data-i18n="annotations.desc">Full dimensioning, GD&amp;T, leaders, tables and mlines — all with style managers and correct DIMSTYLE behaviour (DIMASZ, DIMSCALE, DIMEXO, DIMEXE, …).</p>
+        <ul style="list-style: none; padding-left: 0; color: #57534E; line-height: 1.8;">
+          <li><strong>Dimensies</strong>: linear, aligned, angular, radial, diameter, ordinate</li>
+          <li><strong>Tekst</strong>: MTEXT, TEXT, DTEXT met font browser (STYLE DIALOG)</li>
+          <li><strong>Leaders</strong>: MLEADER met straight en spline paths · MLEADERSTYLE manager</li>
+          <li><strong>GD&amp;T tolerances</strong>: feature control frames</li>
+          <li><strong>Tables</strong>: TABLE entities · TABLESTYLE manager</li>
+          <li><strong>MLines</strong>: MLINE met MLSTYLE manager en EXPLODE-ondersteuning</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="paperspace.title">Paper space &amp; <span class="accent">layouts</span></h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3 data-i18n="paperspace.layouts.title">Multi-tab layout</h3>
+            <p data-i18n="paperspace.layouts.desc">Model space + unlimited paper space tabs. Camera position and zoom saved per layout.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="paperspace.viewports.title">Viewport projection</h3>
+            <p data-i18n="paperspace.viewports.desc">Model content correctly projected into paper-space viewport rectangles. Double-click for inline MSPACE overlay.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="paperspace.vports.title">Viewport presets</h3>
+            <p data-i18n="paperspace.vports.desc"><code>VPORTS</code> — single, 2H, 2V, 4-way configurations.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="paperspace.styles.title">Plot styles</h3>
+            <p data-i18n="paperspace.styles.desc"><code>PLOTSTYLEPANEL</code> and <code>STYLESMANAGER</code> — CTB/STB plot style table editor.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="paperspace.print.title">PRINT</h3>
+            <p data-i18n="paperspace.print.desc">Send layouts directly to the system printer with correct paper sizes from embedded PlotSettings.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="paperspace.manager.title">Layout manager</h3>
+            <p data-i18n="paperspace.manager.desc"><code>LAYOUTMANAGER</code> / <code>LAYOUTPANEL</code> — GUI for layout management.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="tech.title">Technology</h2>
+        <div class="tech-stack">
+          <span class="tech-tag">Rust</span>
+          <span class="tech-tag">iced (UI)</span>
+          <span class="tech-tag">wgpu (GPU)</span>
+          <span class="tech-tag">DWG R13–R2018</span>
+          <span class="tech-tag">DXF R13–R2018</span>
+          <span class="tech-tag">ACIS tessellation</span>
+          <span class="tech-tag">GPL-3.0</span>
+        </div>
+        <p data-i18n="tech.desc">Entirely written in Rust — memory-safe, fast, compiles to Windows, macOS and Linux. UI via <a href="https://iced.rs" target="_blank" rel="noopener">iced</a>, GPU rendering via <a href="https://wgpu.rs" target="_blank" rel="noopener">wgpu</a>. Native DWG/DXF without vendor lock-in.</p>
+      </div>
+
+      <div class="content-block">
+        <div class="cta-links">
+          <a href="https://github.com/HakanSeven12/OpenCADStudio" target="_blank" rel="noopener" class="cta-primary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            <span data-i18n="cta.github">GitHub: HakanSeven12/OpenCADStudio</span>
+          </a>
+          <a href="https://github.com/HakanSeven12/OpenCADStudio/issues" target="_blank" rel="noopener" class="cta-secondary" data-i18n="cta.issues">Issues &amp; feedback</a>
+          <a href="/en/open-2d-studio/" class="cta-secondary" data-i18n="cta.relatedTool">Also check Open 2D Studio</a>
+        </div>
+        <p style="color: var(--scaffold-gray); font-size: 0.9rem; margin-top: var(--sp-4); margin-bottom: 0;">
+          <span style="color: var(--warm-gold);">⭐</span>
+          <strong style="color: white;" data-ocs-stars>147</strong>
+          <span data-i18n="cta.starsLine">GitHub stars · open-source CAD app built by one independent developer</span>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- All versions & release notes (live from GitHub) -->
+  <style>
+    .ocs-releases { max-width: 820px; margin-top: var(--sp-5); }
+    .ocs-rel { border: 1px solid #E7E5E4; border-radius: var(--radius-md); margin-bottom: var(--sp-2); background: white; overflow: hidden; }
+    .ocs-rel > summary { cursor: pointer; padding: var(--sp-3) var(--sp-4); display: flex; align-items: center; gap: var(--sp-3); font-family: var(--font-heading); font-weight: 600; color: var(--deep-forge); list-style: none; }
+    .ocs-rel > summary::-webkit-details-marker { display: none; }
+    .ocs-rel > summary::before { content: '▸'; color: var(--amber); font-size: 0.8rem; transition: transform 0.15s ease; }
+    .ocs-rel[open] > summary::before { transform: rotate(90deg); }
+    .ocs-rel-tag { color: var(--amber); }
+    .ocs-rel-date { color: #78716C; font-size: 0.85rem; font-weight: 400; margin-left: auto; }
+    .ocs-rel-body { padding: var(--sp-3) var(--sp-4) var(--sp-4); white-space: pre-wrap; word-break: break-word; font-size: 0.9rem; line-height: 1.6; color: #44403C; border-top: 1px solid #F5F5F4; }
+    .ocs-rel-body a { color: var(--amber); }
+    .ocs-rel-loading { color: var(--scaffold-gray); }
+  </style>
+  <section class="section" id="releases" style="background: white;">
+    <div class="content">
+      <div class="content-block" style="margin-top: 0;">
+        <h2 data-i18n="releases.title">All versions &amp; <span class="accent">release notes</span></h2>
+        <p data-i18n="releases.desc">Every released version of Open CAD Studio, fetched live from GitHub.</p>
+        <div id="ocs-releases" class="ocs-releases"><p class="ocs-rel-loading" data-i18n="releases.loading">Loading releases…</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer page-footer" style="padding: var(--sp-6);">
+    <div class="footer-inner">
+      <a href="/en/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
+      <div style="display: flex; gap: var(--sp-4); align-items: center;">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" style="color: var(--scaffold-gray); font-size: 0.75rem; text-decoration: none;">GitHub</a>
+        <a href="https://www.linkedin.com/company/23749451" target="_blank" rel="noopener" style="color: var(--scaffold-gray); font-size: 0.75rem; text-decoration: none;">LinkedIn</a>
+      </div>
+      <p>&copy; 2026 OpenAEC Foundation</p>
+    </div>
+  </footer>
+  <script>
+    // Screenshot slider
+    (function() {
+      const track = document.getElementById('sliderTrack');
+      const dots = document.getElementById('sliderDots');
+      if (!track) return;
+      const slides = track.children;
+      let current = 0;
+      for (let i = 0; i < slides.length; i++) {
+        const d = document.createElement('button');
+        d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+        d.style.cssText = 'width:10px;height:10px;border-radius:50%;border:none;cursor:pointer;background:' + (i === 0 ? '#D97706' : '#D6D3D1') + ';';
+        d.onclick = () => goTo(i);
+        dots.appendChild(d);
+      }
+      function goTo(i) {
+        current = (i + slides.length) % slides.length;
+        track.style.transform = 'translateX(-' + (current * 100) + '%)';
+        Array.from(dots.children).forEach((dot, idx) => {
+          dot.style.background = idx === current ? '#D97706' : '#D6D3D1';
+        });
+      }
+      window.slideMove = (dir) => goTo(current + dir);
+    })();
+  </script>
+  <script>
+    // Fetch and render all releases with notes (external repo HakanSeven12/OpenCADStudio).
+    (function () {
+      var box = document.getElementById('ocs-releases');
+      if (!box) return;
+      function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+      // Minimal, safe markdown: escape first, then linkify bare URLs and **bold**.
+      function fmt(s) {
+        return esc(s.trim())
+          .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+          .replace(/(https?:\/\/[^\s)]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
+      }
+      fetch('https://api.github.com/repos/HakanSeven12/OpenCADStudio/releases?per_page=100')
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (list) {
+          if (!list || !list.length) { box.innerHTML = '<p class="ocs-rel-loading">' + (box.getAttribute('data-empty') || 'Geen releases gevonden.') + '</p>'; return; }
+          box.innerHTML = list.map(function (rel, i) {
+            var tag = esc(rel.tag_name || rel.name || '');
+            var date = (rel.published_at || '').slice(0, 10);
+            var body = (rel.body || '').trim();
+            return '<details class="ocs-rel"' + (i === 0 ? ' open' : '') + '>' +
+              '<summary><span class="ocs-rel-tag">' + tag + '</span><span class="ocs-rel-date">' + date + '</span></summary>' +
+              '<div class="ocs-rel-body">' + (body ? fmt(body) : '<em>—</em>') + '</div>' +
+              '</details>';
+          }).join('');
+        })
+        .catch(function () { box.innerHTML = '<p class="ocs-rel-loading"><a href="https://github.com/HakanSeven12/OpenCADStudio/releases" target="_blank" rel="noopener" style="color:var(--amber)">Bekijk alle releases op GitHub &rarr;</a></p>'; });
+    })();
+  </script>
+  <script src="/shared/i18n.js?v=20260728"></script>
+  <!-- Always-latest downloads + live version / releases / stars for Open CAD Studio
+       (external community repo HakanSeven12/OpenCADStudio). Progressive enhancement:
+       without JS the buttons already point at the /releases/latest page. -->
+  <script>
+    (function () {
+      var REPO = 'HakanSeven12/OpenCADStudio';
+      var LATEST = 'https://github.com/' + REPO + '/releases/latest';
+      var state = { tag: null, releases: null };
+
+      // Re-apply version + release-count into the i18n-managed labels. Runs on
+      // load and again whenever i18n rewrites them (language switch) via the
+      // observer below. Guarded so it never loops on its own mutation.
+      function patch() {
+        if (state.tag) {
+          document.querySelectorAll('[data-ocs-ver]').forEach(function (el) {
+            var want = el.innerHTML.replace(/v\d+\.\d+\.\d+/g, state.tag);
+            if (el.innerHTML !== want) el.innerHTML = want;
+          });
+        }
+        if (state.releases) {
+          document.querySelectorAll('[data-ocs-rel]').forEach(function (el) {
+            var want = el.innerHTML.replace(/(\d+)(\s+(?:releases|versions|versies|sürüm))/i, state.releases + '$2');
+            if (el.innerHTML !== want) el.innerHTML = want;
+          });
+        }
+      }
+
+      function setDownloads(assets) {
+        var match = {
+          windows: /windows.*portable.*\.exe$/i,
+          'windows-msi': /windows.*installer.*\.msi$/i,
+          macos: /macos.*\.dmg$/i,
+          linux: /linux.*\.AppImage$/i
+        };
+        document.querySelectorAll('[data-ocs-dl]').forEach(function (a) {
+          var re = match[a.getAttribute('data-ocs-dl')];
+          var hit = re && assets.filter(function (x) { return re.test(x.name); })[0];
+          a.href = hit ? hit.browser_download_url : LATEST;
+        });
+      }
+
+      function start() {
+        try {
+          var obs = new MutationObserver(patch);
+          document.querySelectorAll('[data-ocs-ver],[data-ocs-rel]').forEach(function (el) {
+            obs.observe(el, { childList: true, subtree: true, characterData: true });
+          });
+        } catch (e) {}
+
+        fetch('https://api.github.com/repos/' + REPO + '/releases/latest')
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (rel) {
+            if (!rel) return;
+            state.tag = rel.tag_name;
+            if (rel.assets && rel.assets.length) setDownloads(rel.assets);
+            patch();
+          }).catch(function () {});
+
+        fetch('https://api.github.com/repos/' + REPO)
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (repo) {
+            if (repo && typeof repo.stargazers_count === 'number') {
+              document.querySelectorAll('[data-ocs-stars]').forEach(function (el) {
+                el.textContent = repo.stargazers_count;
+              });
+            }
+          }).catch(function () {});
+
+        fetch('https://api.github.com/repos/' + REPO + '/releases?per_page=1')
+          .then(function (r) {
+            var link = r.headers.get('Link') || '';
+            var m = link.match(/[?&]page=(\d+)>;\s*rel="last"/);
+            if (m) { state.releases = m[1]; patch(); }
+          }).catch(function () {});
+      }
+
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+      else start();
+    })();
+  </script>
+</body>
+</html>

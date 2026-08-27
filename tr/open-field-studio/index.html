@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Field Studio — OpenAEC Foundation</title>
+  <meta name="description" content="İnşaat projelerinde denetim, teslim ve kalite güvencesi için ücretsiz ve açık kaynak araç.">
+  <link rel="canonical" href="https://open-aec.com/tr/open-field-studio/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-field-studio/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/open-field-studio/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/open-field-studio/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/open-field-studio/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/open-field-studio/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Open Field Studio">
+  <meta property="og:description" content="İnşaat projelerinde denetim, teslim ve kalite güvencesi için ücretsiz ve açık kaynak araç.">
+  <meta property="og:url" content="https://open-aec.com/tr/open-field-studio/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-field-studio.jpeg">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open Field Studio">
+  <meta name="twitter:description" content="İnşaat projelerinde denetim, teslim ve kalite güvencesi için ücretsiz ve açık kaynak araç.">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-field-studio.jpeg">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="open-field-studio">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open Field Studio",
+    "applicationCategory": "EngineeringApplication",
+    "applicationSubCategory": "Site Inspection",
+    "operatingSystem": "Windows, macOS, Linux, Android, iOS",
+    "url": "https://open-aec.com/open-field-studio/",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases",
+    "description": "Site inspection and quality control app. Defect pinning on floorplans, 15 checklist templates including NEN 2767, signed handover reports, offline-first.",
+    "featureList": [
+      "Tickets & gebreken op plattegrond",
+      "15 checklist-templates (NEN 2767)",
+      "Energielabel opname (NTA 8800)",
+      "Monument inspectie",
+      "Oplevering met handtekeningen",
+      "Dashboard met live statistieken",
+      "Camera-integratie",
+      "4 talen (NL/EN/DE/FR)",
+      "Volledig offline",
+      "Professionele rapporten export"
+    ],
+    "screenshot": "https://open-aec.com/shared/assets/screenshots/open-field-studio.jpeg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "isAccessibleForFree": true,
+    "keywords": "inspection, defects, snagging, NEN 2767, handover, oplevering, kwaliteitsborging, PlanRadar alternative, Snag alternative",
+    "sameAs": [
+      "https://github.com/OpenAEC-Foundation/Open-Field-Studio",
+      "https://open-field-studio.open-aec.com/"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "OpenAEC Foundation",
+      "url": "https://open-aec.com"
+    }
+  }
+  </script>
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: white;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-4);
+    }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p {
+      font-size: 1.125rem;
+      color: var(--scaffold-gray);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      background: #FED7AA;
+      color: #9A3412;
+      margin-top: var(--sp-4);
+    }
+    .version-info {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      color: var(--scaffold-gray);
+      margin-top: var(--sp-2);
+    }
+
+    .content { max-width: 850px; margin: 0 auto; }
+    .content h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-4);
+    }
+    .content h2 .accent { color: var(--amber); }
+    .content p { font-size: 1rem; color: #57534E; line-height: 1.7; margin-bottom: var(--sp-4); }
+    .content-block + .content-block { margin-top: var(--sp-12); }
+
+    /* Slider */
+    .media-slider { max-width: 850px; margin: 0 auto var(--sp-10); position: relative; }
+    .slider-container { position: relative; overflow: hidden; border-radius: var(--radius-lg); background: var(--night-build); }
+    .slider-track { display: flex; transition: transform 0.4s ease; }
+    .slider-slide { min-width: 100%; }
+    .slider-slide img { width: 100%; display: block; border-radius: var(--radius-lg); }
+    .slider-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); color: white; border: none;
+      width: 40px; height: 40px; border-radius: 50%; cursor: pointer;
+      font-size: 1.25rem; display: flex; align-items: center; justify-content: center; z-index: 2;
+    }
+    .slider-btn:hover { background: rgba(0,0,0,0.7); }
+    .slider-prev { left: var(--sp-3); }
+    .slider-next { right: var(--sp-3); }
+    .slider-dots { display: flex; justify-content: center; gap: var(--sp-2); padding: var(--sp-3) 0; }
+    .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: #D6D3D1; border: none; cursor: pointer; }
+    .slider-dot.active { background: var(--amber); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--sp-6);
+      margin: var(--sp-8) 0;
+    }
+    .feature-card {
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .feature-card h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-2);
+    }
+    .feature-card p { font-size: 0.875rem; color: #57534E; line-height: 1.6; margin-bottom: 0; }
+
+    .cta-links { display: flex; gap: var(--sp-4); flex-wrap: wrap; margin-top: var(--sp-6); }
+    .cta-links a {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 10px 20px; border-radius: var(--radius-md);
+      font-family: var(--font-heading); font-weight: 600; font-size: 0.875rem;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .cta-links a:hover { opacity: 0.85; }
+    .cta-primary { background: var(--amber); color: var(--deep-forge); }
+    .cta-secondary { background: var(--deep-forge); color: white; }
+
+    .page-footer.footer {
+      background: var(--deep-forge);
+      border-top: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .footer-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-4);
+    }
+    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
+
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 2rem; }
+      .features-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <meta name="i18n-static" content="tr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "tr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/tr/open-field-studio/#webpage",
+        "url": "https://open-aec.com/tr/open-field-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "tr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/tr/open-field-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/tr/open-field-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/tr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Open Field Studio",
+            "item": "https://open-aec.com/tr/open-field-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/tr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/tr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Ekosistem</a></li>
+        <li><a href="/tr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Yol haritası</a></li>
+        <li><a href="/tr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Mimari</a></li>
+        <li><a href="/tr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">İstatistikler</a></li>
+        <li><a href="/tr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Haberler</a></li>
+        <li><a href="/tr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Destekçiler</a></li>
+        <li><a href="/tr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Desteklerimiz</a></li>
+        <li><a href="/tr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Yapı</a></li>
+        <li><a href="/tr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">İletişim</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Geri bildirim</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/open-field-studio/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/open-field-studio/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/open-field-studio/" hreflang="fr">FR</a>
+        <a class="lang-btn active" data-lang="tr" href="/tr/open-field-studio/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20260728"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">OpenAEC ekosistemi</p>
+    <h1 data-i18n="header.title">Open Field <span class="accent">Studio</span></h1>
+    <p data-i18n="header.desc">İnşaat projelerinde denetim, teslim ve kalite güvencesi için ücretsiz ve açık kaynak araç.</p>
+    <span class="status-badge" data-i18n="header.badge">Beta</span>
+    <div class="version-info">v0.1.3 &middot; 18 commits &middot; CC BY-SA 4.0 &middot; Tauri v2</div>
+  </header>
+
+  <section class="section" style="background: var(--blueprint-white);">
+
+    <!-- Slider -->
+    <div class="media-slider">
+      <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-field-studio.jpeg" alt="Open Field Studio - Overzicht"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-field-studio-2.jpeg" alt="Open Field Studio - Inspectie"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-field-studio-3.jpeg" alt="Open Field Studio - Checklist"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-field-studio-4.jpeg" alt="Open Field Studio - Plattegrond"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-field-studio-5.jpeg" alt="Open Field Studio - Rapportage"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-field-studio-6.jpeg" alt="Open Field Studio - Dashboard"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-field-studio-7.jpeg" alt="Open Field Studio - Camera"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-field-studio-8.jpeg" alt="Open Field Studio - Export"></div>
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideMove(-1)">&lsaquo;</button>
+        <button class="slider-btn slider-next" onclick="slideMove(1)">&rsaquo;</button>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+
+    <div class="content">
+      <div class="content-block">
+        <h2 data-i18n="why.title">Neden Open Field <span class="accent">Studio</span>?</h2>
+        <p data-i18n="why.desc">Şantiyedeki denetimler ve teslimler çevrimdışı çalışan güvenilir araçlar gerektirir. Open Field Studio, kontrol listelerini, kusur kaydını ve raporlamayı tamamen çevrimdışı çalışan ve dört dilde sunulan bir uygulamada birleştirir.</p>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="features.title">Özellikler</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3 data-i18n="features.tickets.title">Plan üzerinde biletler ve kusurlar</h3>
+            <p data-i18n="features.tickets.desc">Kusurları ve notları doğrudan plan üzerine kaydedin. Konum başına tüm açık öğelerin görsel özeti.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.checklists.title">15 kontrol listesi şablonu (NEN 2767)</h3>
+            <p data-i18n="features.checklists.desc">NEN 2767 ve diğer standartlara uygun hazır kontrol listeleri. Projeye özel gereksinimlere göre özelleştirilebilir.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.energy.title">Enerji etiketi anketi (NTA 8800)</h3>
+            <p data-i18n="features.energy.desc">NTA 8800'e uygun enerji etiketi anketlerini yapılandırılmış giriş formlarıyla doğrudan sahada gerçekleştirin.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.monument.title">Anıt denetimi</h3>
+            <p data-i18n="features.monument.desc">Kültürel-tarihi değerlere dikkat eden tarihi binalar için özel denetim modülleri.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.handover.title">İmzalı teslim</h3>
+            <p data-i18n="features.handover.desc">İmza işlevselliğine sahip dijital teslim raporları. Tüm taraflar doğrudan ekranda imzalar.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.dashboard.title">Canlı istatistiklerle gösterge paneli</h3>
+            <p data-i18n="features.dashboard.desc">Tüm denetimlerin, açık kusurların ve proje başına ilerlemenin gerçek zamanlı özeti.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.camera.title">Kamera entegrasyonu</h3>
+            <p data-i18n="features.camera.desc">Uygulamadan doğrudan fotoğraf çekin ve bunları kusurlara, kontrol listelerine veya plan üzerindeki konumlara bağlayın.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.languages.title">4 dil (NL/EN/DE/FR)</h3>
+            <p data-i18n="features.languages.desc">Hollandaca, İngilizce, Almanca ve Fransızca olarak tamamen mevcuttur. Uluslararası projeler için idealdir.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.offline.title">Tamamen çevrimdışı</h3>
+            <p data-i18n="features.offline.desc">Şantiyede internet bağlantısı olmadan çalışır. Çevrimiçi olduğunuzda senkronize edin.</p>
+          </div>
+          <div class="feature-card">
+            <h3 data-i18n="features.reports.title">Profesyonel rapor dışa aktarma</h3>
+            <p data-i18n="features.reports.desc">Denetimleri ve teslimleri fotoğraf ve planlar içeren profesyonel PDF raporları olarak dışa aktarın.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-block">
+        <div class="cta-links">
+          <a href="https://open-field-studio.open-aec.com/" target="_blank" rel="noopener" class="cta-primary" data-i18n="cta.demo">Canlı demoyu görüntüle</a>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Field-Studio" target="_blank" rel="noopener" class="cta-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+            <span data-i18n="cta.github">GitHub'da görüntüle</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Release Notes (shared component) -->
+  <div data-release-notes="open-field-studio"></div>
+  <script src="/shared/release-notes.js?v=20260728"></script>
+
+  <footer class="footer page-footer" style="padding: var(--sp-6);">
+    <div class="footer-inner">
+      <a href="/tr/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
+      <div style="display: flex; gap: var(--sp-4); align-items: center;">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg> GitHub</a>
+        <a href="https://www.linkedin.com/company/23749451" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+      </div>
+      <p>&copy; 2026 OpenAEC Foundation</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const track = document.getElementById('sliderTrack');
+      const dots = document.getElementById('sliderDots');
+      const slides = track.children.length;
+      let current = 0;
+      for(let i=0;i<slides;i++){
+        const d = document.createElement('button');
+        d.className = 'slider-dot' + (i===0?' active':'');
+        d.onclick = ()=>slideTo(i);
+        dots.appendChild(d);
+      }
+      window.slideMove = function(dir){slideTo(current+dir);};
+      window.slideTo = function(i){
+        current = (i+slides)%slides;
+        track.style.transform = 'translateX(-'+current*100+'%)';
+        dots.querySelectorAll('.slider-dot').forEach((d,idx)=>d.classList.toggle('active',idx===current));
+      };
+    })();
+  </script>
+<script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>

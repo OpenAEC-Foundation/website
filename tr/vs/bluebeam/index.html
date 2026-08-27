@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAEC Open PDF Studio vs Bluebeam Revu — PDF işaretleme için açık kaynak alternatif</title>
+  <meta name="description" content="Open PDF Studio, Bluebeam Revu'ya ücretsiz ve açık kaynak bir alternatiftir. PDF açıklama, ölçüm araçları, gizleme ve işbirliği açısından karşılaştırın —…">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="OpenAEC Open PDF Studio vs Bluebeam Revu — PDF işaretleme için açık kaynak alternatif">
+  <meta property="og:description" content="Open PDF Studio, Bluebeam Revu'ya ücretsiz ve açık kaynak bir alternatiftir. PDF açıklama, ölçüm araçları, gizleme ve işbirliği açısından karşılaştırın —…">
+  <meta property="og:url" content="https://open-aec.com/tr/vs/bluebeam/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="OpenAEC Open PDF Studio vs Bluebeam Revu — open source alternatief voor PDF markup">
+  <meta name="twitter:description" content="Open PDF Studio, Bluebeam Revu'ya ücretsiz ve açık kaynak bir alternatiftir. PDF açıklama, ölçüm araçları, gizleme ve işbirliği açısından karşılaştırın —…">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="vs-bluebeam">
+  <meta name="keywords" content="Bluebeam alternatief, open source PDF markup, Open PDF Studio, Bluebeam Revu vergelijking, gratis PDF annotatie">
+  <link rel="canonical" href="https://open-aec.com/tr/vs/bluebeam/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/vs/bluebeam/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/vs/bluebeam/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/vs/bluebeam/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/vs/bluebeam/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/vs/bluebeam/">
+  <!-- hreflang:end -->
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.25rem;
+      color: white;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-4);
+    }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p {
+      font-size: 1.0625rem;
+      color: var(--scaffold-gray);
+      max-width: 720px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      font-size: 0.9375rem;
+    }
+    .compare-table th, .compare-table td {
+      padding: var(--sp-4);
+      text-align: left;
+      border-bottom: 1px solid #E7E5E4;
+      vertical-align: top;
+    }
+    .compare-table thead th {
+      background: var(--night-build);
+      color: white;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+    }
+    .compare-table thead th:first-child {
+      width: 30%;
+    }
+    .compare-table thead th .badge {
+      display: block;
+      font-family: var(--font-code);
+      font-size: 0.65rem;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--warm-gold);
+      margin-top: 4px;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .feat {
+      font-weight: 600;
+      color: var(--deep-forge);
+      background: var(--concrete);
+    }
+    .yes { color: #15803D; font-weight: 600; }
+    .no { color: #B91C1C; font-weight: 600; }
+    .partial { color: var(--amber); font-weight: 600; }
+    .choose-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: var(--sp-6);
+      margin-top: var(--sp-6);
+    }
+    .choose-card {
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .choose-card.openaec { border-top: 4px solid var(--amber); }
+    .choose-card.competitor { border-top: 4px solid #57534E; }
+    .choose-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      margin-bottom: var(--sp-4);
+      color: var(--deep-forge);
+    }
+    .choose-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .choose-card li {
+      padding: var(--sp-2) 0 var(--sp-2) var(--sp-6);
+      position: relative;
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      color: #44403C;
+    }
+    .choose-card li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--amber);
+      font-weight: 700;
+    }
+    .choose-card.competitor li::before { color: #57534E; }
+    .cta-block {
+      background: var(--night-build);
+      color: white;
+      border-radius: var(--radius-lg);
+      padding: var(--sp-10) var(--sp-6);
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .cta-block h2 { color: white; margin-bottom: var(--sp-4); }
+    .cta-block p { color: var(--scaffold-gray); max-width: 600px; margin: 0 auto var(--sp-6); line-height: 1.6; }
+    .summary-lead {
+      max-width: 780px;
+      margin: 0 auto;
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: #44403C;
+    }
+    .summary-lead p { margin-bottom: var(--sp-4); }
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 1.75rem; }
+      .compare-table { font-size: 0.8125rem; }
+      .compare-table th, .compare-table td { padding: var(--sp-3); }
+    }
+  </style>
+  <meta name="i18n-static" content="tr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "tr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/tr/vs/bluebeam/#webpage",
+        "url": "https://open-aec.com/tr/vs/bluebeam/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "tr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/tr/vs/bluebeam/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/tr/vs/bluebeam/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/tr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Vs",
+            "item": "https://open-aec.com/tr/vs"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Bluebeam",
+            "item": "https://open-aec.com/tr/vs/bluebeam/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/tr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/tr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Ekosistem</a></li>
+        <li><a href="/tr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Yol haritası</a></li>
+        <li><a href="/tr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Mimari</a></li>
+        <li><a href="/tr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">İstatistikler</a></li>
+        <li><a href="/tr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Haberler</a></li>
+        <li><a href="/tr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Destekçiler</a></li>
+        <li><a href="/tr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Desteklerimiz</a></li>
+        <li><a href="/tr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Yapı</a></li>
+        <li><a href="/tr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">İletişim</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Geri bildirim</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/vs/bluebeam/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/vs/bluebeam/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/vs/bluebeam/" hreflang="fr">FR</a>
+        <a class="lang-btn active" data-lang="tr" href="/tr/vs/bluebeam/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">Karşılaştırma</p>
+    <h1 data-i18n="header.title">OpenAEC <span class="accent">vs Bluebeam</span></h1>
+    <p data-i18n="header.desc">Open PDF Studio, Bluebeam Revu'ya ücretsiz ve açık kaynak bir alternatiftir. PDF açıklama, ölçüm araçları, gizleme ve işbirliği açısından karşılaştırın — gerçeklere dayalı ve dengeli.</p>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="summary-lead">
+        <p data-i18n="summary.p1"><strong>Bluebeam Revu</strong>, 2002'den bu yana inşaat sektöründe PDF işaretleme için fiili endüstri standardı olmuştur. Yazılım gelişmiş açıklama, ölçüm ve iş birliği özellikleri sunar ve yükleniciler, mimarlar ve mühendislik firmalarının iş akışlarına derinlemesine yerleşmiştir. Bluebeam Revu, sürüme (Basics, Core, Complete) ve ülkeye bağlı olarak kullanıcı başına yılda tipik olarak €300-500 tutar (abonelik).</p>
+        <p data-i18n="summary.p2">OpenAEC Foundation'ın <strong>Open PDF Studio</strong>'su, hızlı vektörel PDF görüntüleme için kendi Rust motoruna sahip ücretsiz, açık kaynak bir PDF düzenleyicisidir. Proje artık <span data-figure="downloads:open-pdf-studio">15.858</span>'den fazla indirmeye ulaştı ve 20'den fazla açıklama aracı, ölçüm fonksiyonları, gizleme, OCR ve formlar sunuyor. Lisans: LGPL-3.0. Abonelik yok, telemetri yok, satıcıya bağımlılık yok.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom: var(--sp-8);" data-i18n="comparison.heading">Özellik karşılaştırması</h2>
+      <div style="overflow-x: auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th data-i18n="comparison.table.featureHeader">Özellik</th>
+              <th>Open PDF Studio<span class="badge">OpenAEC Foundation</span></th>
+              <th>Bluebeam Revu<span class="badge">Bluebeam, Inc.</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="feat" data-i18n="comparison.rows.price.label">Fiyat</td><td class="yes" data-i18n="comparison.rows.price.openaec">Ücretsiz</td><td data-i18n="comparison.rows.price.competitor">~€300-500/kullanıcı/yıl</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.license.label">Lisans</td><td>LGPL-3.0 (open source)</td><td data-i18n="comparison.rows.license.competitor">Ticari, özel mülk</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.licenseCost.label">Kullanıcı başına lisans maliyeti</td><td class="yes">€0</td><td data-i18n="comparison.rows.licenseCost.competitor">Abonelik, yıllık</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.platforms.label">Platformlar</td><td>Windows, macOS, Linux, Android</td><td data-i18n="comparison.rows.platforms.competitor">Windows, iPad (macOS'ta sınırlı)</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.pdfEngine.label">PDF motoru</td><td data-i18n="comparison.rows.pdfEngine.openaec">Kendi Rust motoru, son derece hızlı vektörel PDF'ler</td><td data-i18n="comparison.rows.pdfEngine.competitor">Kendi motoru, yüksek düzeyde optimize edilmiş</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.annotationTools.label">Açıklama araçları</td><td class="yes" data-i18n="comparison.rows.annotationTools.openaec">20'den fazla araç (vurgulama, şekiller, açıklama balonları, kaşeler, serbest çizim kalemi)</td><td class="yes" data-i18n="comparison.rows.annotationTools.competitor">Kapsamlı, araç sandığı dahil</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.measurementTools.label">Ölçüm araçları</td><td class="yes" data-i18n="comparison.rows.measurementTools.openaec">Ölçek kalibrasyonu ile mesafe, alan, çevre ölçümü</td><td class="yes" data-i18n="comparison.rows.measurementTools.competitor">Kapsamlı, sayım ve çevre ölçümü dahil</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.redaction.label">Gizleme (redaction)</td><td class="yes" data-i18n="comparison.rows.redaction.openaec">Evet</td><td class="yes" data-i18n="comparison.rows.redaction.competitor">Evet</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.ocr.label">OCR</td><td class="yes" data-i18n="comparison.rows.ocr.openaec">Evet</td><td class="yes" data-i18n="comparison.rows.ocr.competitor">Evet</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.forms.label">Formlar</td><td class="yes" data-i18n="comparison.rows.forms.openaec">Evet</td><td class="yes" data-i18n="comparison.rows.forms.competitor">Evet</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.signatures.label">İmzalar ve kaşeler</td><td class="yes" data-i18n="comparison.rows.signatures.openaec">Çoklu darbe, 5 kayıtlı imza, 10 kaşe</td><td class="yes" data-i18n="comparison.rows.signatures.competitor">Evet</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.watermarks.label">Filigran / üst bilgi / alt bilgi</td><td class="yes" data-i18n="comparison.rows.watermarks.openaec">Evet</td><td class="yes" data-i18n="comparison.rows.watermarks.competitor">Evet</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.cloudCollab.label">Bulut iş birliği</td><td class="partial" data-i18n="comparison.rows.cloudCollab.openaec">Sınırlı (öncelikle yerel)</td><td class="yes">Bluebeam Studio (cloud)</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.pluginEcosystem.label">Eklenti ekosistemi</td><td class="partial" data-i18n="comparison.rows.pluginEcosystem.openaec">Sınırlı, büyüyor</td><td class="yes" data-i18n="comparison.rows.pluginEcosystem.competitor">Büyük, yerleşik bir pazar</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.telemetry.label">Telemetri</td><td class="yes" data-i18n="comparison.rows.telemetry.openaec">Yok</td><td class="no" data-i18n="comparison.rows.telemetry.competitor">Var</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.selfHosted.label">Kendi sunucunuzda / yerel</td><td class="yes" data-i18n="comparison.rows.selfHosted.openaec">Tamamen yerel</td><td class="partial" data-i18n="comparison.rows.selfHosted.competitor">Studio bulut hesabı için gerekli</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.sourceCode.label">Kaynak kod erişilebilirliği</td><td class="yes" data-i18n="comparison.rows.sourceCode.openaec">GitHub, herkese açık</td><td class="no" data-i18n="comparison.rows.sourceCode.competitor">Kapalı</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.downloads.label">İndirmeler / topluluk</td><td data-i18n="comparison.rows.downloads.openaec"><span data-figure="downloads:open-pdf-studio">15.858</span>+ indirme</td><td data-i18n="comparison.rows.downloads.competitor">Dünya çapında yüz binlerce kullanıcı</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 style="text-align:center;" data-i18n="choose.heading">Ne zaman hangisini seçmelisiniz?</h2>
+      <div class="choose-grid">
+        <div class="choose-card openaec">
+          <h3 data-i18n="choose.openaec.title">Şu durumlarda <span class="accent">Open PDF Studio</span>'yu seçin...</h3>
+          <ul>
+            <li data-i18n="choose.openaec.items.li1">PDF işaretleme için yıllık abonelik ödemek istemiyorsanız.</li>
+            <li data-i18n="choose.openaec.items.li2">Platformlar arası çalışıyorsanız (Linux, macOS ve Android tam olarak desteklenir).</li>
+            <li data-i18n="choose.openaec.items.li3">Gizlilik ve veri egemenliği sizin için önemliyse — telemetri yok, her şey yerel.</li>
+            <li data-i18n="choose.openaec.items.li4">Lisans yönetimiyle uğraşmadan hızlıca profesyonel PDF araçlarına ihtiyaç duyan bir serbest çalışan veya küçük bir firmaysanız.</li>
+            <li data-i18n="choose.openaec.items.li5">Yazılımı kendi iş akışınıza uyarlamak veya entegre etmek istiyorsanız (LGPL-3.0).</li>
+            <li data-i18n="choose.openaec.items.li6">Rust motoru sayesinde vektörel PDF'leri (teknik çizimleri) çok hızlı açmak istiyorsanız.</li>
+            <li data-i18n="choose.openaec.items.li7">AEC sektöründe açık kaynağı desteklemek istiyorsanız.</li>
+          </ul>
+        </div>
+        <div class="choose-card competitor">
+          <h3 data-i18n="choose.competitor.title">Şu durumlarda Bluebeam Revu'yu seçin...</h3>
+          <ul>
+            <li data-i18n="choose.competitor.items.li1">Bluebeam Studio'da, kendisi de Bluebeam kullanan dış taraflarla yoğun bir şekilde iş birliği yapıyorsanız.</li>
+            <li data-i18n="choose.competitor.items.li2">İş akışınıza zaten yerleşmiş belirli Bluebeam eklentilerine veya entegrasyonlarına ihtiyaç duyuyorsanız.</li>
+            <li data-i18n="choose.competitor.items.li3">Bluebeam'in şirket standardı olduğu ve araç sandıklarını paylaştığınız bir kuruluşta çalışıyorsanız.</li>
+            <li data-i18n="choose.competitor.items.li4">Ekibinizde zaten kurulmuş gelişmiş kalibrasyon ve metraj (take-off) iş akışlarına ihtiyaç duyuyorsanız.</li>
+            <li data-i18n="choose.competitor.items.li5">SLA ile 7/24 ticari satıcı desteğine ihtiyaç duyuyorsanız.</li>
+            <li data-i18n="choose.competitor.items.li6">Lisans maliyeti sizin için sorun değilse ve en gelişmiş özellik setini tercih ediyorsanız.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-block">
+        <h2 data-i18n="cta.heading">Open PDF Studio'yu ücretsiz deneyin</h2>
+        <p data-i18n="cta.desc">Windows, macOS, Linux veya Android için indirin ve iş akışınıza uyup uymadığını kendiniz görün. Kayıt yok, hesap yok, telemetri yok.</p>
+        <div class="btn-group">
+          <a href="/tr/open-pdf-studio/" class="btn btn-primary btn-lg">Open PDF Studio</a>
+          <a href="https://github.com/OpenAEC-Foundation/open-pdf-studio" class="btn btn-ghost btn-lg" style="color:white;border-color:white;" data-i18n="cta.githubBtn">GitHub'da kaynak kodunu görüntüleyin</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="footer-container">
+    <a href="/tr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <span data-i18n="footer.slogan">Özgürce inşa edin. Birlikte inşa edelim.</span>
+    <p>&copy; 2026 OpenAEC Foundation</p>
+  </div></footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Open PDF Studio",
+    "alternateName": "OpenAEC Open PDF Studio",
+    "description": "Open source PDF-editor en annotator van de OpenAEC Foundation. Gratis, LGPL-3.0 alternatief voor Bluebeam Revu met Rust PDF-engine, 20+ annotatietools, meet-functies, redactie, OCR en formulieren. Cross-platform (Windows, macOS, Linux, Android).",
+    "brand": {
+      "@type": "Brand",
+      "name": "OpenAEC Foundation"
+    },
+    "operatingSystem": "Windows, macOS, Linux, Android",
+    "applicationCategory": "DesignApplication",
+    "url": "https://open-aec.com/open-pdf-studio/",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "isAccessibleForFree": true,
+    "license": "https://www.gnu.org/licenses/lgpl-3.0.html",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.6",
+      "ratingCount": "4393",
+      "bestRating": "5",
+      "worstRating": "1"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wat is een open source alternatief voor Bluebeam Revu?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open PDF Studio van de OpenAEC Foundation is een gratis, open source alternatief voor Bluebeam Revu. Het biedt 20+ annotatietools, meet-functies, redactie, OCR en formulieren onder LGPL-3.0 licentie, en draait op Windows, macOS, Linux en Android."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat kost Bluebeam Revu vergeleken met Open PDF Studio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Bluebeam Revu kost typisch 300-500 euro per gebruiker per jaar (abonnement). Open PDF Studio is volledig gratis onder LGPL-3.0 licentie, zonder abonnement of telemetrie."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Draait Open PDF Studio op macOS en Linux?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Open PDF Studio is volledig cross-platform en draait op Windows, macOS (universal), Linux (deb, AppImage, Snap) en Android. Bluebeam Revu is primair Windows-georienteerd met beperkte ondersteuning op andere platforms."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="/shared/i18n.js"></script>
+</body>
+</html>

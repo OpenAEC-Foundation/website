@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actualités — OpenAEC Foundation</title>
+  <meta name="description" content="Suivi automatique : toutes les versions, nouveaux dépôts et activités de l'écosystème OpenAEC sur GitHub.">
+  <link rel="canonical" href="https://open-aec.com/fr/nieuws/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/nieuws/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/nieuws/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/nieuws/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/nieuws/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/nieuws/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Actualités — OpenAEC Foundation">
+  <meta property="og:description" content="Suivi automatique : toutes les versions, nouveaux dépôts et activités de l'écosystème OpenAEC sur GitHub.">
+  <meta property="og:url" content="https://open-aec.com/fr/nieuws/">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Nieuws">
+  <meta name="twitter:description" content="Suivi automatique : toutes les versions, nouveaux dépôts et activités de l'écosystème OpenAEC sur GitHub.">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="nieuws">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label {
+      color: var(--warm-gold);
+      margin-bottom: var(--sp-4);
+      display: block;
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      color: white;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-4);
+    }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p {
+      font-size: 1.125rem;
+      color: var(--scaffold-gray);
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Main content area */
+    .news-section {
+      background: var(--blueprint-white);
+      padding: var(--sp-12) var(--sp-6);
+      min-height: 400px;
+    }
+    .news-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Filter bar */
+    .filter-bar {
+      display: flex;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+      margin-bottom: var(--sp-8);
+      align-items: center;
+    }
+    .filter-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--scaffold-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: var(--sp-1);
+    }
+    .filter-btn {
+      background: white;
+      border: 1.5px solid #E7E5E4;
+      border-radius: var(--radius-full);
+      padding: 6px 16px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--deep-forge);
+      cursor: pointer;
+      font-family: var(--font-body);
+      transition: all 0.15s ease;
+    }
+    .filter-btn:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+    .filter-btn.active {
+      background: var(--amber);
+      border-color: var(--amber);
+      color: white;
+    }
+
+    /* Week group heading */
+    .week-group {
+      margin-bottom: var(--sp-8);
+    }
+    .week-label {
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--scaffold-gray);
+      margin-bottom: var(--sp-4);
+      padding-bottom: var(--sp-2);
+      border-bottom: 1px solid #E7E5E4;
+    }
+
+    /* News card */
+    .news-card {
+      background: var(--night-build);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-5) var(--sp-6);
+      margin-bottom: var(--sp-3);
+      display: flex;
+      gap: var(--sp-4);
+      align-items: flex-start;
+      transition: box-shadow 0.15s ease, transform 0.15s ease;
+      text-decoration: none;
+    }
+    .news-card:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+      transform: translateY(-1px);
+    }
+
+    /* Icon */
+    .news-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+    .news-icon.release {
+      background: rgba(217,119,6,0.15);
+      color: var(--amber);
+    }
+    .news-icon.new_repo {
+      background: rgba(245,158,11,0.12);
+      color: var(--warm-gold);
+    }
+    .news-icon.linkedin {
+      background: rgba(10,102,194,0.18);
+      color: #93C5FD;
+    }
+    .news-icon.announcement {
+      background: rgba(34,197,94,0.15);
+      color: #86EFAC;
+    }
+
+    /* Card body */
+    .news-body {
+      flex: 1;
+      min-width: 0;
+    }
+    .news-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-2);
+      flex-wrap: wrap;
+    }
+    .news-date {
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      color: var(--scaffold-gray);
+      white-space: nowrap;
+    }
+    .news-type-badge {
+      font-family: var(--font-code);
+      font-size: 0.65rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+    }
+    .news-type-badge.release {
+      background: rgba(217,119,6,0.2);
+      color: var(--warm-gold);
+    }
+    .news-type-badge.new_repo {
+      background: rgba(37,99,235,0.2);
+      color: #93C5FD;
+    }
+    .news-type-badge.linkedin {
+      background: rgba(10,102,194,0.25);
+      color: #93C5FD;
+    }
+    .news-type-badge.announcement {
+      background: rgba(34,197,94,0.18);
+      color: #86EFAC;
+    }
+    .news-title {
+      font-family: var(--font-heading);
+      font-weight: 600;
+      font-size: 0.975rem;
+      color: white;
+      line-height: 1.4;
+      margin-bottom: var(--sp-1);
+      word-break: break-word;
+    }
+    .news-title a {
+      color: white;
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+    .news-title a:hover { color: var(--amber); }
+    .news-desc {
+      font-size: 0.825rem;
+      color: var(--scaffold-gray);
+      line-height: 1.5;
+      max-width: none;
+    }
+
+    /* Arrow link */
+    .news-arrow {
+      color: var(--scaffold-gray);
+      font-size: 1.1rem;
+      align-self: center;
+      flex-shrink: 0;
+      transition: color 0.15s ease, transform 0.15s ease;
+    }
+    .news-card:hover .news-arrow {
+      color: var(--amber);
+      transform: translateX(3px);
+    }
+
+    /* Loading / empty states */
+    .news-loading {
+      text-align: center;
+      padding: var(--sp-16) 0;
+      color: var(--scaffold-gray);
+      font-size: 0.9rem;
+    }
+    .news-loading .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid rgba(217,119,6,0.2);
+      border-top-color: var(--amber);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto var(--sp-4);
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .news-empty {
+      text-align: center;
+      padding: var(--sp-16) 0;
+      color: var(--scaffold-gray);
+    }
+
+    /* Stats bar */
+    .stats-bar {
+      display: flex;
+      gap: var(--sp-6);
+      margin-bottom: var(--sp-8);
+      flex-wrap: wrap;
+    }
+    .stat-pill {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      font-size: 0.8rem;
+      color: var(--deep-forge);
+    }
+    .stat-pill strong {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      color: var(--amber);
+    }
+
+    /* Footer */
+    .page-footer.footer {
+      background: var(--deep-forge);
+      border-top: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--sp-4);
+    }
+    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .news-card { flex-direction: column; gap: var(--sp-3); }
+      .news-arrow { display: none; }
+      .stats-bar { gap: var(--sp-3); }
+      .filter-bar { gap: var(--sp-2); }
+      .page-header { padding: var(--sp-16) var(--sp-4) var(--sp-10); }
+      .news-section { padding: var(--sp-8) var(--sp-4); }
+    }
+    .featured-articles { margin: var(--sp-6) 0; }
+    .featured-articles h2 {
+      font-family: var(--font-heading); font-weight: 700; font-size: 1rem;
+      color: var(--deep-forge); margin-bottom: var(--sp-2);
+    }
+    .featured-articles ul { list-style: none; padding: 0; margin: 0; }
+    .featured-articles li { padding: 4px 0; }
+    .featured-articles a { color: var(--amber); text-decoration: none; font-size: 0.9rem; }
+    .featured-articles a:hover { text-decoration: underline; }
+  </style>
+  <meta name="i18n-static" content="fr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "fr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/fr/nieuws/#webpage",
+        "url": "https://open-aec.com/fr/nieuws/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "fr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/fr/nieuws/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/fr/nieuws/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Nieuws",
+            "item": "https://open-aec.com/fr/nieuws/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/fr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Écosystème</a></li>
+        <li><a href="/fr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Feuille de route</a></li>
+        <li><a href="/fr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Architecture</a></li>
+        <li><a href="/fr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">Statistiques</a></li>
+        <li><a href="/fr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Actualités</a></li>
+        <li><a href="/fr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Partenaires</a></li>
+        <li><a href="/fr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Nous soutenons</a></li>
+        <li><a href="/fr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Structure</a></li>
+        <li><a href="/fr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">Contact</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Commentaires</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/nieuws/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/nieuws/" hreflang="en">EN</a>
+        <a class="lang-btn active" data-lang="fr" href="/fr/nieuws/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/nieuws/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js?v=20260728"></script>
+
+  <header class="page-header">
+    <span class="section-label" data-i18n="header.label">Écosystème OpenAEC</span>
+    <h1 data-i18n="header.title">Actualités &amp; <span class="accent">mises à jour</span></h1>
+    <p data-i18n="header.desc">Suivi automatique : toutes les versions, nouveaux dépôts et activités de l'écosystème OpenAEC sur GitHub.</p>
+  </header>
+
+  <section class="news-section">
+    <div class="news-container">
+
+      <!-- Stats bar (filled by JS) -->
+      <div class="stats-bar" id="stats-bar"></div>
+
+      <!-- Uitgelichte artikelen. De nieuwslijst hieronder wordt door JavaScript
+           uit data/news.json gevuld; crawlers die geen JavaScript uitvoeren zagen
+           daardoor geen enkele link naar de artikelen zelf. Deze staan er wel. -->
+      <div class="featured-articles">
+        <h2 data-i18n="featured.title">Articles à la une</h2>
+        <ul>
+          <li><a href="/nieuws/open-cad-studio-launch/">Open CAD Studio gepresenteerd — open source DWG/DXF in Rust</a></li>
+          <li><a href="/nieuws/open-geotechniek-studio-v0-2-9/">Open Geotechniek Studio v0.2.9 live — testers gezocht</a></li>
+        </ul>
+      </div>
+
+      <!-- Filter buttons -->
+      <div class="filter-bar">
+        <span class="filter-label" data-i18n="filter.label">Filtrer :</span>
+        <button class="filter-btn active" data-filter="all" data-i18n="filter.all">Tous</button>
+        <button class="filter-btn" data-filter="release" data-i18n="filter.releases">Versions</button>
+        <button class="filter-btn" data-filter="new_repo" data-i18n="filter.new_repos">Nouveaux dépôts</button>
+        <button class="filter-btn" data-filter="linkedin">LinkedIn</button>
+      </div>
+
+      <!-- News feed -->
+      <div id="news-feed">
+        <div class="news-loading">
+          <div class="spinner"></div>
+          Nieuws laden&hellip;
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer page-footer" style="padding: var(--sp-6);">
+    <div class="footer-inner">
+      <a href="/fr/" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700; font-size: 1.125rem;">Open<span style="color: var(--amber);">AEC</span></a>
+      <div style="display: flex; gap: var(--sp-4); align-items: center;">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/company/23749451" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+      <p>&copy; 2026 OpenAEC Foundation</p>
+    </div>
+  </footer>
+
+  <script>
+    // Icons per type
+    const TYPE_ICON = {
+      release: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
+        <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
+        <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
+        <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
+      </svg>`,
+      new_repo: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>`,
+      linkedin: `<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+      </svg>`,
+      announcement: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 11l18-5v12L3 14v-3z"/>
+        <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
+      </svg>`
+    };
+
+    const TYPE_LABEL = {
+      release: 'Release',
+      new_repo: 'Nieuwe repo',
+      linkedin: 'LinkedIn',
+      announcement: 'Nieuws'
+    };
+    const TYPE_LABEL_EN = { release: 'Release', new_repo: 'New repo', linkedin: 'LinkedIn', announcement: 'News' };
+    const TYPE_LABEL_FR = { release: 'Version', new_repo: 'Nouveau dépôt', linkedin: 'LinkedIn', announcement: 'Actualité' };
+    const TYPE_LABEL_TR = { release: 'Sürüm', new_repo: 'Yeni depo', linkedin: 'LinkedIn', announcement: 'Haber' };
+    const TYPE_LABELS = { nl: TYPE_LABEL, en: TYPE_LABEL_EN, fr: TYPE_LABEL_FR, tr: TYPE_LABEL_TR };
+
+    // Current language (nl/en/fr/tr).
+    function newsLang() { try { if (window.getCurrentLang) return getCurrentLang(); } catch (e) {} return localStorage.getItem('openaec-lang') || 'nl'; }
+    function localeTag(l) { return l === 'nl' ? 'nl-NL' : l === 'fr' ? 'fr-FR' : l === 'tr' ? 'tr-TR' : 'en-GB'; }
+
+    // UI strings (labels not tied to individual news items).
+    const UI = {
+      empty:      { nl: 'Geen items gevonden.', en: 'No items found.', fr: 'Aucun élément trouvé.', tr: 'Öğe bulunamadı.' },
+      error:      { nl: 'Kon nieuws niet laden. Probeer het later opnieuw.', en: 'Could not load news. Please try again later.', fr: 'Impossible de charger les actualités. Réessayez plus tard.', tr: 'Haberler yüklenemedi. Lütfen daha sonra tekrar deneyin.' },
+      itemsTotal: { nl: 'items totaal', en: 'items total', fr: 'éléments au total', tr: 'toplam öğe' },
+      releases:   { nl: 'releases', en: 'releases', fr: 'versions', tr: 'sürüm' },
+      newRepos:   { nl: 'nieuwe repositories', en: 'new repositories', fr: 'nouveaux dépôts', tr: 'yeni depo' }
+    };
+    function ui(key) { const l = newsLang(); const s = UI[key] || {}; return s[l] || s.en || ''; }
+
+    // Pattern-translate the formulaic Dutch generated-news titles/descriptions.
+    function tGenTitle(t, l) {
+      t = String(t);
+      if (l === 'fr') return t.replace(/\buitgebracht\b/g, 'publié').replace(/^Nieuwe repository:/, 'Nouveau dépôt :').replace(/(\d+) releases\b/g, '$1 versions');
+      if (l === 'tr') return t.replace(/\buitgebracht\b/g, 'yayınlandı').replace(/^Nieuwe repository:/, 'Yeni depo:').replace(/(\d+) releases\b/g, '$1 sürüm');
+      if (l === 'en') return t.replace(/\buitgebracht\b/g, 'released').replace(/^Nieuwe repository:/, 'New repository:');
+      return t;
+    }
+    function tGenDesc(d, l) {
+      d = String(d);
+      if (l === 'fr') return d.replace(/^Versies:/, 'Versions :').replace(/^Nieuw project gestart$/, 'Nouveau projet lancé');
+      if (l === 'tr') return d.replace(/^Versies:/, 'Sürümler:').replace(/^Nieuw project gestart$/, 'Yeni proje başlatıldı');
+      if (l === 'en') return d.replace(/^Versies:/, 'Versions:').replace(/^Nieuw project gestart$/, 'New project started');
+      return d;
+    }
+    // Pick the right title/description/badge for the current language.
+    function localize(item) {
+      const l = newsLang();
+      const labels = TYPE_LABELS[l] || TYPE_LABEL_EN;
+      if (l === 'nl') return { title: item.title, description: item.description, badge: (TYPE_LABEL[item.type] || item.type) };
+      // Manual items carry explicit per-language fields; fall back to EN, then to
+      // pattern-translated generated content.
+      return {
+        title: item['title_' + l] || item.title_en || tGenTitle(item.title, l),
+        description: item['description_' + l] || item.description_en || tGenDesc(item.description, l),
+        badge: (labels[item.type] || item.type)
+      };
+    }
+
+    // Format date in the current language
+    function formatDate(dateStr) {
+      const d = new Date(dateStr + 'T00:00:00');
+      return d.toLocaleDateString(localeTag(newsLang()), { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    // Get ISO week label
+    function getWeekLabel(dateStr) {
+      const d = new Date(dateStr + 'T00:00:00');
+      const day = d.getDay(); // 0=Sun, 1=Mon
+      const diff = d.getDate() - day + (day === 0 ? -6 : 1);
+      const mon = new Date(d.setDate(diff));
+      const sun = new Date(mon);
+      sun.setDate(mon.getDate() + 6);
+      const l = newsLang();
+      const opts = { day: 'numeric', month: 'long' };
+      const prefix = l === 'nl' ? 'Week van' : l === 'fr' ? 'Semaine du' : l === 'tr' ? 'Hafta' : 'Week of';
+      return `${prefix} ${mon.toLocaleDateString(localeTag(l), opts)} – ${sun.toLocaleDateString(localeTag(l), opts)}`;
+    }
+
+    // Group items by week
+    function groupByWeek(items) {
+      const groups = new Map();
+      for (const item of items) {
+        const key = getWeekLabel(item.date);
+        if (!groups.has(key)) groups.set(key, []);
+        groups.get(key).push(item);
+      }
+      return groups;
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function renderCard(item) {
+      const icon = TYPE_ICON[item.type] || TYPE_ICON.release;
+      const loc = localize(item);
+      return `
+        <a class="news-card" href="${escapeHtml(item.url)}"${/^https?:\/\//.test(item.url) ? ' target="_blank" rel="noopener"' : ''}>
+          <div class="news-icon ${escapeHtml(item.type)}">${icon}</div>
+          <div class="news-body">
+            <div class="news-meta">
+              <span class="news-date">${escapeHtml(formatDate(item.date))}</span>
+              <span class="news-type-badge ${escapeHtml(item.type)}">${escapeHtml(loc.badge)}</span>
+            </div>
+            <div class="news-title">${escapeHtml(loc.title)}</div>
+            <p class="news-desc">${escapeHtml(loc.description)}</p>
+          </div>
+          <span class="news-arrow">&rarr;</span>
+        </a>
+      `;
+    }
+
+    function renderFeed(items) {
+      if (!items.length) {
+        return `<div class="news-empty"><p>${ui('empty')}</p></div>`;
+      }
+      const groups = groupByWeek(items);
+      let html = '';
+      for (const [weekLabel, weekItems] of groups) {
+        html += `<div class="week-group">
+          <div class="week-label">${escapeHtml(weekLabel)}</div>
+          ${weekItems.map(renderCard).join('')}
+        </div>`;
+      }
+      return html;
+    }
+
+    // Filter state
+    let allNews = [];
+    let activeFilter = 'all';
+
+    function applyFilter() {
+      const feed = document.getElementById('news-feed');
+      const filtered = activeFilter === 'all'
+        ? allNews
+        : allNews.filter(item => item.type === activeFilter);
+      feed.innerHTML = renderFeed(filtered);
+    }
+
+    // Filter button wiring
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeFilter = btn.dataset.filter;
+        applyFilter();
+      });
+    });
+
+    // Render the stats bar in the current language.
+    function renderStats() {
+      const statsBar = document.getElementById('stats-bar');
+      if (!statsBar) return;
+      const releases = allNews.filter(i => i.type === 'release').length;
+      const newRepos = allNews.filter(i => i.type === 'new_repo').length;
+      statsBar.innerHTML = `
+        <div class="stat-pill"><strong>${allNews.length}</strong> ${ui('itemsTotal')}</div>
+        <div class="stat-pill"><strong>${releases}</strong> ${ui('releases')}</div>
+        <div class="stat-pill"><strong>${newRepos}</strong> ${ui('newRepos')}</div>
+      `;
+    }
+
+    // Re-render the feed + stats in the new language when the user switches language.
+    document.addEventListener('click', (e) => {
+      if (e.target.closest && e.target.closest('.lang-btn')) setTimeout(() => { applyFilter(); renderStats(); }, 60);
+    });
+
+    // Fetch and render
+    Promise.all([
+      fetch('/data/news.json').then(r => r.ok ? r.json() : []),
+      fetch('/data/manual-news.json').then(r => r.ok ? r.json() : []).catch(() => [])
+    ])
+      .then(([autoNews, manualNews]) => {
+        // Merge, drop nightly builds (not newsworthy), sort by date (newest first)
+        const news = [...manualNews, ...autoNews]
+          .filter(i => !/nightly/i.test((i.title || '') + ' ' + (i.description || '')))
+          .sort((a, b) => b.date.localeCompare(a.date));
+        allNews = news;
+
+        renderStats();
+        applyFilter();
+      })
+      .catch(() => {
+        document.getElementById('news-feed').innerHTML =
+          `<div class="news-empty"><p>${ui('error')}</p></div>`;
+      });
+  </script>
+  <script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>

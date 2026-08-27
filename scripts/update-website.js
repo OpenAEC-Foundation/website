@@ -32,6 +32,14 @@ const STEPS = [
   // versienummers, aantal tools) die eerder met de hand werden ingetypt en
   // daardoor achterliepen op de rest van de site.
   { name: 'Fill in-text figures (downloads, versions, tool count)',       cmd: 'node scripts/build-figures.js' },
+  // Vindbaarheid. Deze drie moeten ná alle inhoudelijke stappen draaien:
+  // ze bakken de uitkomst daarvan in de HTML en in llms.txt.
+  { name: 'Refresh the generated key facts in llms.txt',                  cmd: 'node scripts/build-llms-txt.js' },
+  { name: 'Write the shared nav statically into every page',              cmd: 'node scripts/build-nav-static.js' },
+  { name: 'Generate /en/, /fr/, /tr/ pages + hreflang + sitemap entries',  cmd: 'node scripts/build-i18n-pages.js' },
+  // Als laatste: zet WebSite, BreadcrumbList en dateModified op elke pagina,
+  // inclusief de zojuist gegenereerde taalversies, met hun eigen URL en taal.
+  { name: 'Inject WebSite + BreadcrumbList + dateModified schema',        cmd: 'node scripts/build-schema.js' },
 ];
 
 const args = process.argv.slice(2);

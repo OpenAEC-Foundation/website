@@ -340,7 +340,13 @@ async function main() {
       });
 
       // Create one news item per repo per day
-      Object.entries(releasesByDate).forEach(([date, rels]) => {
+      Object.entries(releasesByDate).forEach(([date, relsRaw]) => {
+        // Expliciet op publicatietijd sorteren, oudste eerst. De API-volgorde is
+        // niet gegarandeerd wanneer releases dezelfde tijdstempel delen, en dan
+        // draaide het bereik om: "2 releases (v0.2.0 → v0.1.8)".
+        const rels = relsRaw.slice().sort(
+          (a, b) => String(a.published_at || '').localeCompare(String(b.published_at || ''))
+        );
         const tags = rels.map(r => r.tag_name);
         if (rels.length === 1) {
           newsItems.push({
@@ -353,16 +359,16 @@ async function main() {
             count: 1,
           });
         } else {
-          // Multiple releases on same day
-          const first = tags[tags.length - 1];
-          const last = tags[0];
+          // Multiple releases on same day — oudste links van de pijl, nieuwste rechts.
+          const first = tags[0];
+          const last = tags[tags.length - 1];
           newsItems.push({
             type: 'release',
             repo: repo.name,
             title: `${repo.name}: ${rels.length} releases (${first} \u2192 ${last})`,
-            description: `Versies: ${tags.reverse().join(', ')}`,
+            description: `Versies: ${tags.slice().reverse().join(', ')}`,
             date: date,
-            url: rels[0].html_url,
+            url: rels[rels.length - 1].html_url,
             count: rels.length,
           });
         }

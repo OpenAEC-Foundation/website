@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chronologie et statistiques — OpenAEC Foundation</title>
+  <meta name="description" content="L'histoire et les chiffres derrière l'écosystème OpenAEC. De la première idée à une plateforme open source complète.">
+  <link rel="canonical" href="https://open-aec.com/fr/statistieken/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/statistieken/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/statistieken/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/statistieken/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/statistieken/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/statistieken/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Chronologie et statistiques — OpenAEC Foundation">
+  <meta property="og:description" content="L'histoire et les chiffres derrière l'écosystème OpenAEC. De la première idée à une plateforme open source complète.">
+  <meta property="og:url" content="https://open-aec.com/fr/statistieken/">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tijdlijn & Statistieken">
+  <meta name="twitter:description" content="L'histoire et les chiffres derrière l'écosystème OpenAEC. De la première idée à une plateforme open source complète.">
+  <meta name="i18n-page" content="statistieken">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: white;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-4);
+    }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p {
+      font-size: 1.125rem;
+      color: var(--scaffold-gray);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* Highlight stat cards */
+    .highlight-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-6);
+      margin: var(--sp-8) auto;
+      max-width: 900px;
+    }
+    .highlight-card {
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      text-align: center;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+      transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .highlight-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(217, 119, 6, 0) 0%, rgba(217, 119, 6, 0) 60%, rgba(217, 119, 6, 0.08) 100%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      pointer-events: none;
+    }
+    .highlight-card:hover {
+      box-shadow: 0 14px 30px -10px rgba(217, 119, 6, 0.28), 0 4px 12px -4px rgba(0,0,0,0.06);
+      border-color: var(--amber);
+      transform: translateY(-4px) scale(1.01);
+    }
+    .highlight-card:hover::before { opacity: 1; }
+    .highlight-card .number {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.25rem;
+      color: var(--amber);
+      transition: transform 0.25s ease;
+      font-variant-numeric: tabular-nums;
+    }
+    .highlight-card:hover .number { transform: scale(1.06); }
+    .highlight-card .label {
+      font-size: 0.875rem;
+      color: var(--scaffold-gray);
+      margin-top: var(--sp-1);
+    }
+
+    /* Chart tooltip (shared by all SVG charts) */
+    .chart-tip {
+      position: fixed;
+      pointer-events: none;
+      background: var(--deep-forge);
+      color: white;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      line-height: 1.4;
+      box-shadow: 0 12px 28px -6px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.15);
+      border: 1px solid rgba(217, 119, 6, 0.5);
+      opacity: 0;
+      transform: translate(-50%, -120%);
+      transition: opacity 0.12s ease, transform 0.12s ease;
+      z-index: 9999;
+      white-space: nowrap;
+    }
+    .chart-tip.visible { opacity: 1; transform: translate(-50%, -135%); }
+    .chart-tip .tip-key { color: var(--amber); font-weight: 700; }
+    .chart-tip .tip-val { color: white; font-weight: 700; }
+    .chart-tip .tip-row { display: flex; gap: 10px; align-items: center; }
+    .chart-tip .tip-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+    /* Chart bar interactivity */
+    .chart-bar { transition: filter 0.18s ease, opacity 0.18s ease; cursor: pointer; }
+    .chart-bar:hover { filter: brightness(1.15) drop-shadow(0 4px 10px rgba(0,0,0,0.18)); }
+    .chart-grid { pointer-events: none; }
+    .chart-tick { fill: #A1A1AA; font-family: var(--font-code); font-size: 10px; }
+    .chart-tick-light { fill: rgba(255,255,255,0.6); }
+
+    /* Horizontal bar chart row */
+    .hbar-row {
+      display: grid;
+      grid-template-columns: 130px 1fr 70px;
+      align-items: center;
+      gap: var(--sp-3);
+      padding: 8px 0;
+      border-bottom: 1px solid #E7E5E4;
+      transition: background-color 0.18s ease, padding-left 0.18s ease;
+    }
+    .hbar-row:hover { background: rgba(217, 119, 6, 0.06); padding-left: 6px; }
+    .hbar-row:last-child { border-bottom: none; }
+    .hbar-label {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-heading); font-weight: 600;
+      font-size: 0.875rem; color: var(--deep-forge);
+    }
+    .hbar-label .lang-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .hbar-track {
+      position: relative;
+      height: 22px;
+      background: #F5F5F4;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .hbar-fill {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 0;
+      border-radius: 999px;
+      transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hbar-fill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: transform 1.2s ease 0.4s;
+    }
+    .hbar-row:hover .hbar-fill::after { transform: translateX(100%); }
+    .hbar-value {
+      text-align: right;
+      font-family: var(--font-code);
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--deep-forge);
+    }
+    .hbar-value .hbar-pct {
+      font-weight: 400;
+      color: var(--scaffold-gray);
+      font-size: 0.75rem;
+      margin-left: 4px;
+    }
+
+    /* Timeline */
+    .timeline-section {
+      background: var(--night-build);
+      padding: var(--sp-16) var(--sp-6);
+    }
+    .timeline-section h2 {
+      text-align: center;
+      color: white;
+      font-size: 2rem;
+      margin-bottom: var(--sp-12);
+    }
+    .timeline-section h2 .accent { color: var(--amber); }
+
+    .timeline {
+      position: relative;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: var(--sp-6) 0;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: rgba(217, 119, 6, 0.3);
+      transform: translateX(-50%);
+    }
+
+    .timeline-item {
+      position: relative;
+      width: 50%;
+      padding: 0 var(--sp-8) var(--sp-10);
+    }
+    .timeline-item:nth-child(odd) {
+      left: 0;
+      padding-right: var(--sp-10);
+      text-align: right;
+    }
+    .timeline-item:nth-child(even) {
+      left: 50%;
+      padding-left: var(--sp-10);
+      text-align: left;
+    }
+
+    /* Dot on the line */
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--amber);
+      border: 3px solid var(--night-build);
+      box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.3);
+      z-index: 2;
+    }
+    .timeline-item:nth-child(odd)::before {
+      right: -8px;
+    }
+    .timeline-item:nth-child(even)::before {
+      left: -8px;
+    }
+
+    .timeline-item.planned .timeline-card {
+      border-style: dashed;
+      opacity: 0.8;
+    }
+    .timeline-item.planned::before {
+      background: var(--scaffold-gray);
+      box-shadow: 0 0 0 3px rgba(161, 161, 170, 0.3);
+    }
+
+    .timeline-card {
+      background: var(--deep-forge);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+      text-align: left;
+    }
+    .timeline-date {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--amber);
+      margin-bottom: var(--sp-2);
+    }
+    .timeline-card h3 {
+      color: white;
+      font-size: 1.125rem;
+      margin-bottom: var(--sp-3);
+    }
+    .timeline-card ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .timeline-card ul li {
+      position: relative;
+      padding: var(--sp-1) 0 var(--sp-1) var(--sp-5);
+      color: var(--scaffold-gray);
+      font-size: 0.875rem;
+      line-height: 1.6;
+    }
+    .timeline-card ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+    }
+    .timeline-item.planned .timeline-card ul li::before {
+      background: var(--scaffold-gray);
+    }
+    .planned-badge {
+      display: inline-block;
+      font-family: var(--font-code);
+      font-size: 0.625rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: rgba(161, 161, 170, 0.2);
+      color: var(--scaffold-gray);
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      margin-left: var(--sp-2);
+      vertical-align: middle;
+    }
+
+    /* Stats table section */
+    .stats-section { max-width: 1000px; margin: 0 auto; }
+    .stats-section h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-6);
+      padding-bottom: var(--sp-3);
+      border-bottom: 2px solid var(--amber);
+      display: inline-block;
+    }
+
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: var(--sp-8);
+    }
+    .stats-table thead th {
+      background: var(--concrete);
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--deep-forge);
+      padding: var(--sp-3) var(--sp-4);
+      text-align: left;
+      border-bottom: 2px solid #E7E5E4;
+    }
+    .stats-table thead th:not(:first-child) { text-align: right; }
+    .stats-table tbody td {
+      padding: var(--sp-3) var(--sp-4);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      border-bottom: 1px solid #E7E5E4;
+      vertical-align: middle;
+    }
+    .stats-table tbody td:not(:first-child) {
+      text-align: right;
+      font-family: var(--font-code);
+      font-size: 0.8125rem;
+      color: #57534E;
+    }
+    .stats-table tbody td:first-child {
+      font-weight: 600;
+      color: var(--deep-forge);
+    }
+    .stats-table tbody td:first-child a {
+      color: var(--deep-forge);
+      text-decoration: none;
+    }
+    .stats-table tbody td:first-child a:hover {
+      color: var(--amber);
+    }
+    .stats-table tbody tr:hover { background: var(--concrete); }
+
+    .lang-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .lang-rust { background: #DEA584; }
+    .lang-ts { background: #3178C6; }
+    .lang-js { background: #F1E05A; }
+    .lang-python { background: #3572A5; }
+    .lang-html { background: #E34C26; }
+    .lang-css { background: #563D7C; }
+    .lang-markdown { background: #083FA1; }
+    .lang-shell { background: #89E051; }
+
+    /* Top repos */
+    .top-repos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-6);
+      margin-top: var(--sp-8);
+    }
+    .top-repo-card {
+      background: var(--night-build);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+    }
+    .top-repo-card h4 {
+      color: var(--amber);
+      font-size: 0.875rem;
+      font-family: var(--font-code);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--sp-3);
+    }
+    .top-repo-card ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: rank;
+    }
+    .top-repo-card ol li {
+      counter-increment: rank;
+      padding: var(--sp-2) 0;
+      color: var(--scaffold-gray);
+      font-size: 0.875rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-repo-card ol li::before {
+      content: counter(rank) ".";
+      font-family: var(--font-code);
+      font-weight: 700;
+      color: var(--amber);
+      margin-right: var(--sp-2);
+      font-size: 0.75rem;
+    }
+    .top-repo-card ol li:last-child { border-bottom: none; }
+    .top-repo-card ol li span.repo-name { flex: 1; color: white; font-weight: 500; }
+    .top-repo-card ol li span.repo-val {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--scaffold-gray);
+    }
+
+    /* Footer */
+    .page-footer.footer {
+      background: var(--deep-forge);
+      border-top: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--sp-4);
+    }
+    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 2rem; }
+      .highlight-cards { grid-template-columns: repeat(2, 1fr); }
+
+      .timeline::before { left: 20px; }
+      .timeline-item,
+      .timeline-item:nth-child(odd),
+      .timeline-item:nth-child(even) {
+        left: 0;
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 0;
+        text-align: left;
+      }
+      .timeline-item::before,
+      .timeline-item:nth-child(odd)::before,
+      .timeline-item:nth-child(even)::before {
+        left: 12px;
+        right: auto;
+      }
+
+      .stats-table { font-size: 0.75rem; }
+      .stats-table thead th,
+      .stats-table tbody td { padding: var(--sp-2); }
+      .top-repos { grid-template-columns: 1fr; }
+      .trend-grid { grid-template-columns: 1fr !important; }
+    }
+    @media (max-width: 480px) {
+      .highlight-cards { grid-template-columns: 1fr; }
+    }
+  </style>
+  <meta name="i18n-static" content="fr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "fr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/fr/statistieken/#webpage",
+        "url": "https://open-aec.com/fr/statistieken/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "fr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/fr/statistieken/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/fr/statistieken/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Statistieken",
+            "item": "https://open-aec.com/fr/statistieken/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/fr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Écosystème</a></li>
+        <li><a href="/fr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Feuille de route</a></li>
+        <li><a href="/fr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Architecture</a></li>
+        <li><a href="/fr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">Statistiques</a></li>
+        <li><a href="/fr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Actualités</a></li>
+        <li><a href="/fr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Partenaires</a></li>
+        <li><a href="/fr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Nous soutenons</a></li>
+        <li><a href="/fr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Structure</a></li>
+        <li><a href="/fr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">Contact</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Commentaires</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/statistieken/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/statistieken/" hreflang="en">EN</a>
+        <a class="lang-btn active" data-lang="fr" href="/fr/statistieken/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/statistieken/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20260728"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">OpenAEC Foundation</p>
+    <h1 data-i18n="header.title">Chronologie &amp; <span class="accent">statistiques</span></h1>
+    <p data-i18n="header.desc">L'histoire et les chiffres derrière l'écosystème OpenAEC. De la première idée à une plateforme open source complète.</p>
+  </header>
+
+  <!-- Section 1: Highlight stats -->
+  <section class="section" style="background: var(--blueprint-white);">
+    <div class="highlight-cards" style="grid-template-columns: repeat(4, 1fr);">
+      <div class="highlight-card"><div class="number" id="s-repos">—</div><div class="label" data-i18n="stats.repos">Dépôts</div></div>
+      <div class="highlight-card"><div class="number" id="s-commits">—</div><div class="label" data-i18n="stats.commits">Commits</div></div>
+      <div class="highlight-card"><div class="number" id="s-stars">—</div><div class="label" data-i18n="stats.stars">Étoiles</div></div>
+      <div class="highlight-card"><div class="number" id="s-releases">—</div><div class="label" data-i18n="stats.releases">Versions</div></div>
+      <div class="highlight-card"><div class="number" id="s-contributors">—</div><div class="label" data-i18n="stats.contributors">Contributeurs</div></div>
+      <div class="highlight-card"><div class="number" id="s-loc">—</div><div class="label" data-i18n="stats.loc">Lignes de code (est.)</div></div>
+      <div class="highlight-card"><div class="number" id="s-languages">—</div><div class="label" data-i18n="stats.languages">Langages de programmation</div></div>
+      <div class="highlight-card"><div class="number" id="s-issues">—</div><div class="label" data-i18n="stats.open_issues">Tickets ouverts</div></div>
+      <div class="highlight-card"><div class="number" id="s-closed-issues">—</div><div class="label" data-i18n="stats.closed_issues">Tickets fermés</div></div>
+      <div class="highlight-card"><div class="number" id="s-merged-prs">—</div><div class="label" data-i18n="stats.merged_prs">PR fusionnées</div></div>
+      <div class="highlight-card"><div class="number" id="s-closed-prs">—</div><div class="label" data-i18n="stats.closed_prs">PR fermées</div></div>
+      <div class="highlight-card"><div class="number" id="s-downloads">—</div><div class="label" data-i18n="stats.downloads">Téléchargements</div></div>
+    </div>
+    <p id="stats-updated" style="text-align:center;font-size:0.75rem;color:var(--scaffold-gray);margin-top:var(--sp-2);"></p>
+  </section>
+
+  <!-- Trend charts -->
+  <section class="section" style="background: var(--night-build);">
+    <div class="stats-section" style="max-width:1000px;margin:0 auto;">
+      <h2 style="color:white;" data-i18n="growth.title">Croissance dans le <span class="accent">temps</span></h2>
+      <div class="trend-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-6);margin-top:var(--sp-6);">
+        <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
+          <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="charts.cum_repos">Dépôts cumulés</h4>
+          <div id="chart-cum-repos" style="height:250px;"></div>
+        </div>
+        <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
+          <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="charts.cum_commits">Commits cumulés</h4>
+          <div id="chart-cum-commits" style="height:250px;"></div>
+        </div>
+        <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
+          <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="charts.issues_combined">Issues — ouvertes, fermées, total</h4>
+          <div style="display:flex;gap:var(--sp-3);margin-bottom:var(--sp-2);font-family:var(--font-code);font-size:0.7rem;color:#A1A1AA;">
+            <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#22D3EE;margin-right:4px;vertical-align:middle;"></span>Open</span>
+            <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#34D399;margin-right:4px;vertical-align:middle;"></span>Closed</span>
+            <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#F59E0B;margin-right:4px;vertical-align:middle;"></span>Totaal</span>
+          </div>
+          <div id="chart-cum-issues" style="height:225px;"></div>
+        </div>
+        <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
+          <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="charts.loc">Lignes de code (estimées)</h4>
+          <div id="chart-cum-loc" style="height:250px;"></div>
+        </div>
+        <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
+          <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="charts.cum_contributors">Contributeurs cumulés</h4>
+          <div id="chart-cum-contributors" style="height:250px;"></div>
+        </div>
+        <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
+          <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="charts.cum_stars">Étoiles cumulées</h4>
+          <div id="chart-cum-stars" style="height:250px;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: white;">
+    <div class="stats-section">
+      <h2 data-i18n="charts.repos_month">Dépôts par <span class="accent">mois</span></h2>
+      <div id="chart-monthly" style="height: 250px;"></div>
+    </div>
+  </section>
+  <section class="section" style="background: var(--concrete);">
+    <div class="stats-section">
+      <h2 data-i18n="charts.lang_dist">Répartition par <span class="accent">langage</span></h2>
+      <p style="color:#57534E;font-size:0.875rem;margin-bottom:var(--sp-4);">Aantal repositories per primaire programmeertaal van het OpenAEC-ecosysteem.</p>
+      <div id="chart-langs" style="max-width:700px;"></div>
+    </div>
+  </section>
+
+  <!-- News activity -->
+  <section class="section" style="background: var(--night-build);">
+    <div class="stats-section" style="max-width:1000px;margin:0 auto;">
+      <h2 style="color:white;" data-i18n="news.title">Activité <span class="accent">actualités</span></h2>
+      <p style="color:var(--scaffold-gray);margin-bottom:var(--sp-6);" data-i18n="news.subtitle">Toutes les publications et nouveaux dépôts depuis le 1er janvier 2026.</p>
+      <div class="highlight-cards" style="grid-template-columns: repeat(3, 1fr); margin-bottom: var(--sp-6);">
+        <div class="highlight-card" style="background:var(--deep-forge);border-color:rgba(255,255,255,0.1);"><div class="number" id="s-news-total">—</div><div class="label" style="color:var(--scaffold-gray);" data-i18n="news.items">Éléments d'actualité</div></div>
+        <div class="highlight-card" style="background:var(--deep-forge);border-color:rgba(255,255,255,0.1);"><div class="number" id="s-news-releases">—</div><div class="label" style="color:var(--scaffold-gray);">Releases</div></div>
+        <div class="highlight-card" style="background:var(--deep-forge);border-color:rgba(255,255,255,0.1);"><div class="number" id="s-news-repos">—</div><div class="label" style="color:var(--scaffold-gray);" data-i18n="news.new_repos">Nouveaux dépôts</div></div>
+      </div>
+      <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
+        <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="news.chart_title">Publications &amp; nouveaux dépôts par semaine</h4>
+        <div id="chart-news-activity" style="height:250px;"></div>
+      </div>
+      <div style="text-align:center;margin-top:var(--sp-6);">
+        <a href="/fr/nieuws/" class="btn btn-primary btn-lg" data-i18n="news.view_all">Voir toutes les actualités &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Downloads activity -->
+  <section class="section" style="background: var(--blueprint-white);">
+    <div class="stats-section" style="max-width:1000px;margin:0 auto;">
+      <h2>Installer <span class="accent">downloads</span></h2>
+      <p style="color:#57534E;margin-bottom:var(--sp-6);">Aantal downloads per platform en per tool, live opgehaald van GitHub Releases.</p>
+
+      <div class="highlight-cards" style="grid-template-columns: repeat(3, 1fr); margin-bottom: var(--sp-6);">
+        <div class="highlight-card"><div class="number" id="s-dl-total">—</div><div class="label">Totaal downloads</div></div>
+        <div class="highlight-card"><div class="number" id="s-dl-tools">—</div><div class="label">Tools met downloads</div></div>
+        <div class="highlight-card"><div class="number" id="s-dl-top-platform">—</div><div class="label">Populairste platform</div></div>
+      </div>
+
+      <div style="background:white;border:1px solid #E7E5E4;border-radius:var(--radius-lg);padding:var(--sp-6);margin-bottom:var(--sp-6);">
+        <h4 style="color:var(--deep-forge);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);">Downloads per platform</h4>
+        <div id="chart-dl-platform" style="height:250px;"></div>
+      </div>
+
+      <div style="background:white;border:1px solid #E7E5E4;border-radius:var(--radius-lg);padding:var(--sp-6);">
+        <h4 style="color:var(--deep-forge);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);">Top tools — meeste downloads</h4>
+        <div id="dl-ranking"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI / GEO readiness -->
+  <section class="section" style="background: var(--night-build);">
+    <div class="stats-section" style="max-width:1000px;margin:0 auto;">
+      <h2 style="color:white;"><span class="accent">AI</span>-vindbaarheid</h2>
+      <p style="color:var(--scaffold-gray);margin-bottom:var(--sp-6);">Onze strategie om AI-assistenten zoals Claude, ChatGPT, Grok, Perplexity en Gemini de OpenAEC-tools te laten aanbevelen aan hun gebruikers. Dit heet <em>Generative Engine Optimization (GEO)</em>.</p>
+
+      <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);margin-bottom:var(--sp-4);">
+        <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);">Geïmplementeerd</h4>
+        <ul style="list-style:none;padding:0;margin:0;">
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/llms.txt" style="color:var(--amber);">/llms.txt</a> — LLM-vriendelijke site-samenvatting (emerging standaard)</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/robots.txt" style="color:var(--amber);">/robots.txt</a> — Expliciete allow voor 18 AI-bots (ClaudeBot, GPTBot, PerplexityBot, etc.)</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/sitemap.xml" style="color:var(--amber);">/sitemap.xml</a> — Volledige URL-index voor crawlers</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/api/tools.json" style="color:var(--amber);">/api/tools.json</a> — Machine-readable tool catalogus (17 tools)</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> Schema.org JSON-LD op homepage (Organization + 10 SoftwareApplication)</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/fr/faq/" style="color:var(--amber);">FAQPage JSON-LD</a> — direct gebruikt in Google AI Overview</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/fr/aan-de-slag/" style="color:var(--amber);">HowTo JSON-LD</a> — getting-started stappen voor AI Overview</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> Open Graph + Twitter Cards — rich previews op LinkedIn, Slack, Twitter</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/fr/vs/" style="color:var(--amber);">Comparison-pagina's</a> — vs Bluebeam, Solibri, AutoCAD, BIMcollab, Bouwprijs (hoge AI-zoekintent)</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/md/index.md" style="color:var(--amber);">Markdown mirrors</a> — Claude/Cursor/Continue lezen .md schoner dan HTML</li>
+        </ul>
+      </div>
+
+      <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
+        <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);">Volgende stappen</h4>
+        <ul style="list-style:none;padding:0;margin:0;">
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:var(--scaffold-gray);font-weight:700;">○</span> Sitemap submitten aan Google Search Console + Bing Webmaster Tools</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:var(--scaffold-gray);font-weight:700;">○</span> Backlinks vanuit autoritaire bronnen (buildingSMART, OSArch, awesome-bim, awesome-rust lists)</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:var(--scaffold-gray);font-weight:700;">○</span> Per tool eigen Markdown documentation pages (uitgebreidere SDK + examples)</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:var(--scaffold-gray);font-weight:700;">○</span> MCP servers voor elke tool — directe AI tool-use integratie (Open Calc Studio heeft er al een)</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:var(--scaffold-gray);font-weight:700;">○</span> Engelstalige blog/case-studies — internationale AI-zichtbaarheid</li>
+          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:var(--scaffold-gray);font-weight:700;">○</span> Stack Overflow / Reddit / Hacker News presence — AI-trainingsdata bron</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Timeline -->
+  <section class="timeline-section">
+    <h2 data-i18n="timeline.title">Le <span class="accent">parcours</span></h2>
+    <div class="timeline">
+
+      <!-- Januari 2026 -->
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-date">Januari 2026</div>
+          <h3>Start OpenAEC Foundation</h3>
+          <ul>
+            <li>Eerste repository's aangemaakt</li>
+            <li>Open PDF Studio en Open 2D Studio gestart</li>
+            <li>Frappe Claude Skill Package gepubliceerd (55 stars)</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Februari 2026 -->
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-date">Februari 2026</div>
+          <h3>Ecosysteem groeit</h3>
+          <ul>
+            <li>Open Pointcloud Studio, Open Energy Studio, Open Heatloss Studio gestart</li>
+            <li>Dynlex (196 commits), OpenAEC Reports (255 commits)</li>
+            <li>IFC Factory voor IFCX-ontwikkeling</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Maart 2026 -->
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-date">Maart 2026</div>
+          <h3>Validatie & documentatie</h3>
+          <ul>
+            <li>OpenAEC BIM Validator (207 commits)</li>
+            <li>Open Field Studio gelanceerd (v0.1.3)</li>
+            <li>Open Speech Studio (v0.5.0)</li>
+            <li>19 Claude Skill Packages gepubliceerd</li>
+            <li>BCF Platform en OpenAEC Docs gestart</li>
+            <li>Website live op open-aec.com</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- April 2026 -->
+      <div class="timeline-item">
+        <div class="timeline-card">
+          <div class="timeline-date">April 2026</div>
+          <h3>Stichting in oprichting</h3>
+          <ul>
+            <li>Stichting OpenAEC Foundation i.o. — oprichting in voorbereiding</li>
+            <li>50 repositories, 2.428+ commits</li>
+            <li>10+ live demo's beschikbaar</li>
+            <li>Offerte-systeem en supporters programma gelanceerd</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Juni 2026 (gepland) -->
+      <div class="timeline-item planned">
+        <div class="timeline-card">
+          <div class="timeline-date">Juni 2026 <span class="planned-badge">gepland</span></div>
+          <h3>BIM Modeller start</h3>
+          <ul>
+            <li>Start ontwikkeling open source BIM-modelleertool</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- December 2026 (gepland) -->
+      <div class="timeline-item planned">
+        <div class="timeline-card">
+          <div class="timeline-date">December 2026 <span class="planned-badge">gepland</span></div>
+          <h3>Ecosysteem compleet</h3>
+          <ul>
+            <li>Alle tools in productie</li>
+            <li>IFCX namespaces voltooid</li>
+            <li>End-to-end open source AEC-keten</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Section 3: Repository statistics -->
+  <section class="section" style="background: var(--blueprint-white);">
+    <div class="stats-section">
+      <h2 data-i18n="repos.title">Aperçu des dépôts</h2>
+      <div class="table-wrapper" style="overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; display: block;">
+        <table class="stats-table">
+          <thead>
+            <tr>
+              <th>Repository</th>
+              <th data-i18n="repos.language">Langage</th>
+              <th>Commits</th>
+              <th>Releases</th>
+              <th>Stars</th>
+              <th data-i18n="repos.created">Créé</th>
+            </tr>
+          </thead>
+          <tbody id="repo-tbody">
+            <tr><td colspan="6" style="text-align:center;color:var(--scaffold-gray);padding:var(--sp-8);">Laden...</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Top repos by metric -->
+      <div class="top-repos">
+        <div class="top-repo-card"><h4 data-i18n="top.stars">Plus d'étoiles</h4><ol id="top-stars"></ol></div>
+        <div class="top-repo-card"><h4 data-i18n="top.commits">Plus de commits</h4><ol id="top-commits"></ol></div>
+        <div class="top-repo-card"><h4 data-i18n="top.size">Plus gros dépôts</h4><ol id="top-size"></ol></div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="footer page-footer" style="padding: var(--sp-6);">
+    <div class="footer-inner">
+      <a href="/fr/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
+      <div style="display: flex; gap: var(--sp-4); align-items: center;">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg> GitHub</a>
+        <a href="https://www.linkedin.com/company/23749451" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+      </div>
+      <p>&copy; 2026 OpenAEC Foundation</p>
+    </div>
+  </footer>
+
+<script>
+const LANG_COLORS = {
+  TypeScript:'#3178C6', JavaScript:'#F1E05A', Python:'#3572A5',
+  Rust:'#DEA584', HTML:'#E34C26', CSS:'#563D7C', 'C++':'#F34B7D'
+};
+
+fetch('/data/stats.json')
+  .then(r => r.json())
+  .then(renderStats)
+  .catch(() => {
+    document.getElementById('s-repos').textContent = '50+';
+    document.getElementById('s-stars').textContent = '139+';
+    document.getElementById('s-commits').textContent = '2.400+';
+    document.getElementById('s-contributors').textContent = '10+';
+    document.getElementById('s-loc').textContent = '—';
+    document.getElementById('s-languages').textContent = '7+';
+    document.getElementById('s-releases').textContent = '100+';
+    document.getElementById('s-issues').textContent = '—';
+    document.getElementById('s-closed-issues').textContent = '—';
+    document.getElementById('s-merged-prs').textContent = '—';
+    document.getElementById('s-closed-prs').textContent = '—';
+  });
+
+// Count-up animation: ticks the number from 0 to the final value over `dur` ms.
+// Respects prefers-reduced-motion; only triggers when the element is visible.
+function countUp(id, value, opts) {
+  const el = document.getElementById(id);
+  if (!el || value == null) return;
+  const target = typeof value === 'number' ? value : Number(String(value).replace(/[^\d.-]/g, ''));
+  if (!isFinite(target)) { el.textContent = value; return; }
+  const dur = (opts && opts.dur) || 1200;
+  const fmt = (opts && opts.fmt) || ((n) => Math.round(n).toLocaleString('nl-NL'));
+  // Write the final value immediately so the number is correct even when
+  // requestAnimationFrame is throttled (e.g. hidden tab) or never fires.
+  // The animation below will smoothly count up to this value when raf runs.
+  el.textContent = fmt(target);
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  const start = performance.now();
+  function tick(now) {
+    const t = Math.min(1, (now - start) / dur);
+    const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+    el.textContent = fmt(target * eased);
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function renderStats(data) {
+  const s = data.summary;
+  countUp('s-repos', s.publicRepos);
+  countUp('s-commits', s.totalCommits);
+  countUp('s-stars', s.totalStars);
+  countUp('s-contributors', s.uniqueContributors);
+  countUp('s-loc', s.estimatedLinesOfCode);
+  countUp('s-languages', s.languages, { dur: 700 });
+  countUp('s-releases', data.repos.reduce((acc, r) => acc + r.releases, 0));
+  // Prefer split-by-search-API fields, fall back to the legacy GitHub field
+  // (which inflates because it also counts open PRs)
+  countUp('s-issues', s.openIssues != null ? s.openIssues : s.totalOpenIssues);
+  countUp('s-closed-issues', s.closedIssues != null ? s.closedIssues : 0);
+  countUp('s-merged-prs',    s.mergedPRs    != null ? s.mergedPRs    : 0);
+  countUp('s-closed-prs',    s.closedPRs    != null ? s.closedPRs    : 0);
+  document.getElementById('stats-updated').textContent = 'Laatste update: ' + data.generated.substring(0, 10);
+
+  // Table
+  const tbody = document.getElementById('repo-tbody');
+  tbody.innerHTML = data.repos.map(r => `<tr>
+    <td><a href="${r.url}" target="_blank">${r.name}</a></td>
+    <td><span class="lang-dot" style="background:${LANG_COLORS[r.language]||'#999'}"></span>${r.language||'—'}</td>
+    <td>${r.commits}</td>
+    <td>${r.releases}${r.latestRelease ? ' ('+r.latestRelease+')' : ''}</td>
+    <td>${r.stars}</td>
+    <td>${r.createdAt}</td>
+  </tr>`).join('');
+
+  // Top repos
+  function topList(id, items) {
+    document.getElementById(id).innerHTML = items.map(i =>
+      `<li><span class="repo-name">${i.name}</span><span class="repo-val">${i.value}</span></li>`
+    ).join('');
+  }
+  topList('top-stars', data.topByStars);
+  topList('top-commits', data.topByCommits);
+  topList('top-size', data.topBySize);
+
+  // Load news data for activity chart
+  fetch('/data/news.json')
+    .then(r => r.json())
+    .then(news => {
+      countUp('s-news-total', news.length);
+      countUp('s-news-releases', news.filter(n => n.type === 'release').length);
+      countUp('s-news-repos', news.filter(n => n.type === 'new_repo').length);
+
+      // Group by week for bar chart
+      const byWeek = {};
+      news.forEach(item => {
+        const d = new Date(item.date);
+        const weekStart = new Date(d);
+        weekStart.setDate(d.getDate() - d.getDay() + 1); // Monday
+        // Volledige datum als sleutel. Met alleen MM-DD sorteerde barChart
+        // alfabetisch, en belandde de week van 29 december 2025 achter die van
+        // 24 augustus 2026. Het label blijft MM-DD via labelFmt.
+        const weekKey = weekStart.toISOString().substring(0, 10); // YYYY-MM-DD
+        byWeek[weekKey] = (byWeek[weekKey] || 0) + 1;
+      });
+      barChart('chart-news-activity', byWeek, 'var(--amber)', {
+        labelFmt: (k) => k.substring(5),
+      });
+    })
+    .catch(() => {});
+
+  // Load downloads data
+  fetch('/data/downloads.json')
+    .then(r => r.json())
+    .then(dl => {
+      if (document.getElementById('s-downloads')) countUp('s-downloads', dl.grandTotal);
+      if (document.getElementById('s-dl-total'))  countUp('s-dl-total', dl.grandTotal);
+      if (document.getElementById('s-dl-tools'))  countUp('s-dl-tools', dl.rankedByDownloads.filter(t => t.downloads > 0).length);
+      const topPlatform = Object.entries(dl.platformTotals).sort((a, b) => b[1] - a[1])[0];
+      const dlTopP = document.getElementById('s-dl-top-platform');
+      if (dlTopP && topPlatform) dlTopP.textContent = topPlatform[0];
+
+      // Platform bar chart
+      barChart('chart-dl-platform', dl.platformTotals, 'var(--amber)');
+
+      // Top tools ranking
+      const ranking = document.getElementById('dl-ranking');
+      if (ranking) {
+        const ranked = dl.rankedByDownloads.filter(t => t.downloads > 0);
+        const max = ranked[0]?.downloads || 1;
+        ranking.innerHTML = ranked.map(t => {
+          const pct = (t.downloads / max * 100).toFixed(0);
+          return `<div style="display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-2) 0;border-bottom:1px solid #F5F5F4;">
+            <span style="flex:0 0 200px;font-weight:600;color:var(--deep-forge);font-size:0.875rem;">${t.repo}</span>
+            <div style="flex:1;background:#F5F5F4;border-radius:4px;height:8px;position:relative;overflow:hidden;">
+              <div style="position:absolute;left:0;top:0;bottom:0;width:${pct}%;background:var(--amber);"></div>
+            </div>
+            <span style="flex:0 0 80px;text-align:right;font-family:var(--font-code);font-size:0.875rem;color:var(--deep-forge);">${t.downloads.toLocaleString('nl-NL')}</span>
+          </div>`;
+        }).join('');
+      }
+    })
+    .catch(() => {});
+
+  // Bar charts
+  // Monthly repos: nicer NL month labels (2026-01 -> jan '26)
+  const MONTHS_NL_SHORT = ['jan','feb','mrt','apr','mei','jun','jul','aug','sep','okt','nov','dec'];
+  barChart('chart-monthly', data.monthlyRepoCreation, 'var(--amber)', {
+    labelFmt: (k) => {
+      const m = k.match(/^(\d{4})-(\d{2})/);
+      return m ? MONTHS_NL_SHORT[+m[2] - 1] + " '" + m[1].slice(2) : k;
+    },
+  });
+  // Languages: switch to clean horizontal bars
+  barChartH('chart-langs', data.languageDistribution, LANG_COLORS);
+
+  // Line charts (time series)
+  if (data.timeSeries) {
+    const ts = data.timeSeries;
+    dailyLineChart('chart-cum-repos', ts, 'repos', '#D97706');
+    dailyLineChart('chart-cum-commits', ts, 'commits', '#16A34A');
+    // Combined issues chart: open + closed + total on one axis
+    multiDailyLineChart('chart-cum-issues', ts, [
+      { field: 'openIssues',   color: '#22D3EE', label: 'Open' },
+      { field: 'closedIssues', color: '#34D399', label: 'Closed' },
+      { field: 'totalIssues',  color: '#F59E0B', label: 'Totaal' },
+    ]);
+    dailyLineChart('chart-cum-contributors', ts, 'contributors', '#16A34A');
+    dailyLineChart('chart-cum-stars', ts, 'stars', '#F59E0B');
+    dailyLineChart('chart-cum-loc', ts, 'loc', '#3178C6', true);
+  }
+}
+
+function dailyLineChart(id, ts, field, color, formatLarge) {
+  const el = document.getElementById(id);
+  if (!el || !ts.days) return;
+
+  const days = ts.days;
+  const values = days.map(d => ts.data[d] ? ts.data[d][field] : 0);
+  const max = Math.max(...values) || 1;
+
+  function fmt(v) {
+    if (!formatLarge) return v.toLocaleString('nl-NL');
+    if (v >= 1000000) return (v / 1000000).toFixed(1) + 'M';
+    if (v >= 1000) return (v / 1000).toFixed(0) + 'K';
+    return v;
+  }
+
+  const svgW = 600, svgH = 220;
+  const padL = 65, padR = 15, padT = 25, padB = 35;
+  const chartW = svgW - padL - padR;
+  const chartH = svgH - padT - padB;
+
+  // Build SVG path from daily points
+  const points = values.map((v, i) => ({
+    x: padL + (i / Math.max(1, days.length - 1)) * chartW,
+    y: padT + chartH - ((v / max) * chartH),
+    v
+  }));
+
+  const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+  const areaPath = linePath + ` L${points[points.length-1].x.toFixed(1)},${padT + chartH} L${points[0].x.toFixed(1)},${padT + chartH} Z`;
+
+  // Y-axis grid
+  const yGrid = [0, 0.25, 0.5, 0.75, 1].map(f => {
+    const y = padT + chartH - f * chartH;
+    return `<line x1="${padL}" y1="${y}" x2="${svgW - padR}" y2="${y}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <text x="${padL - 8}" y="${y + 4}" fill="#A1A1AA" font-size="10" font-family="JetBrains Mono, monospace" text-anchor="end">${fmt(Math.round(max * f))}</text>`;
+  }).join('');
+
+  // X-axis: only show month labels (first day of each month)
+  const monthEntries = Object.entries(ts.monthLabels);
+  const xLabels = monthEntries.map(([month, firstDay]) => {
+    const idx = days.indexOf(firstDay);
+    if (idx < 0) return '';
+    const x = padL + (idx / Math.max(1, days.length - 1)) * chartW;
+    return `<line x1="${x}" y1="${padT}" x2="${x}" y2="${padT + chartH}" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <text x="${x}" y="${svgH - 8}" fill="#A1A1AA" font-size="10" font-family="JetBrains Mono, monospace" text-anchor="middle">${month.replace('20',"'")}</text>`;
+  }).join('');
+
+  // Show value at last point
+  const last = points[points.length - 1];
+  const first = points[0];
+  const endLabel = `<text x="${last.x - 4}" y="${last.y - 8}" fill="${color}" font-size="12" font-weight="700" font-family="JetBrains Mono, monospace" text-anchor="end">${fmt(last.v)}</text>
+    <circle cx="${last.x}" cy="${last.y}" r="4" fill="${color}" stroke="var(--deep-forge)" stroke-width="2"/>`;
+
+  el.innerHTML = `
+    <svg viewBox="0 0 ${svgW} ${svgH}" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="overflow:visible;">
+      ${yGrid}
+      ${xLabels}
+      <path d="${areaPath}" fill="${color}" fill-opacity="0.1"/>
+      <path d="${linePath}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+      ${endLabel}
+      <g class="hover-layer">
+        <line class="hover-crosshair" x1="0" y1="${padT}" x2="0" y2="${padT + chartH}" stroke="${color}" stroke-width="1" stroke-dasharray="3 3" style="display:none;"/>
+        <circle class="hover-dot" r="5" fill="${color}" stroke="var(--deep-forge)" stroke-width="2" style="display:none;"/>
+        <rect class="hover-track" x="${padL}" y="${padT}" width="${chartW}" height="${chartH}" fill="transparent" style="cursor:crosshair;"/>
+      </g>
+    </svg>
+  `;
+  // Hover interactivity — show date + value at nearest point
+  const svg = el.querySelector('svg');
+  const track = el.querySelector('.hover-track');
+  const cross = el.querySelector('.hover-crosshair');
+  const dot   = el.querySelector('.hover-dot');
+  if (!track) return;
+  track.addEventListener('mousemove', (e) => {
+    const r = svg.getBoundingClientRect();
+    const sx = (e.clientX - r.left) / r.width * svgW;
+    const ratio = Math.min(1, Math.max(0, (sx - padL) / chartW));
+    const idx = Math.round(ratio * (days.length - 1));
+    const p = points[idx];
+    cross.setAttribute('x1', p.x);
+    cross.setAttribute('x2', p.x);
+    cross.style.display = '';
+    dot.setAttribute('cx', p.x);
+    dot.setAttribute('cy', p.y);
+    dot.style.display = '';
+    const html = `
+      <div class="tip-row"><span class="tip-dot" style="background:${color}"></span><span class="tip-key">${days[idx]}</span></div>
+      <div class="tip-val">${fmt(p.v)}</div>`;
+    // anchor tooltip at the SVG point's screen position
+    const sxScreen = r.left + (p.x / svgW) * r.width;
+    const syScreen = r.top  + (p.y / svgH) * r.height;
+    showTip(html, sxScreen, syScreen);
+  });
+  track.addEventListener('mouseleave', () => {
+    cross.style.display = 'none';
+    dot.style.display = 'none';
+    hideTip();
+  });
+}
+
+// Multi-series version of dailyLineChart — same axes/grid, N lines overlaid.
+// `series` = [{ field, color, label }, ...]
+function multiDailyLineChart(id, ts, series) {
+  const el = document.getElementById(id);
+  if (!el || !ts.days) return;
+  const days = ts.days;
+  const seriesValues = series.map(s => days.map(d => (ts.data[d] && ts.data[d][s.field] != null) ? ts.data[d][s.field] : 0));
+  const max = Math.max(1, ...seriesValues.flat());
+
+  const svgW = 600, svgH = 220;
+  const padL = 65, padR = 60, padT = 25, padB = 35;
+  const chartW = svgW - padL - padR;
+  const chartH = svgH - padT - padB;
+
+  function pointsFor(values) {
+    return values.map((v, i) => ({
+      x: padL + (i / Math.max(1, days.length - 1)) * chartW,
+      y: padT + chartH - ((v / max) * chartH),
+      v,
+    }));
+  }
+
+  // Y-axis grid + labels (5 ticks)
+  const yGrid = [0, 0.25, 0.5, 0.75, 1].map(f => {
+    const y = padT + chartH - f * chartH;
+    return `<line x1="${padL}" y1="${y}" x2="${svgW - padR}" y2="${y}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <text x="${padL - 8}" y="${y + 4}" fill="#A1A1AA" font-size="10" font-family="JetBrains Mono, monospace" text-anchor="end">${Math.round(max * f).toLocaleString('nl-NL')}</text>`;
+  }).join('');
+
+  // X-axis: month labels
+  const monthEntries = Object.entries(ts.monthLabels);
+  const xLabels = monthEntries.map(([month, firstDay]) => {
+    const idx = days.indexOf(firstDay);
+    if (idx < 0) return '';
+    const x = padL + (idx / Math.max(1, days.length - 1)) * chartW;
+    return `<line x1="${x}" y1="${padT}" x2="${x}" y2="${padT + chartH}" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <text x="${x}" y="${svgH - 8}" fill="#A1A1AA" font-size="10" font-family="JetBrains Mono, monospace" text-anchor="middle">${month.replace('20',"'")}</text>`;
+  }).join('');
+
+  // Render each series — area + line + end-label
+  const seriesSvg = series.map((s, si) => {
+    const pts = pointsFor(seriesValues[si]);
+    const linePath = pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+    const last = pts[pts.length - 1];
+    return `
+      <path d="${linePath}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="${last.x}" cy="${last.y}" r="3.5" fill="${s.color}" stroke="var(--deep-forge)" stroke-width="2"/>
+      <text x="${last.x + 6}" y="${last.y + 4}" fill="${s.color}" font-size="11" font-weight="700" font-family="JetBrains Mono, monospace">${last.v.toLocaleString('nl-NL')}</text>
+    `;
+  }).join('');
+
+  el.innerHTML = `
+    <svg viewBox="0 0 ${svgW} ${svgH}" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="overflow:visible;">
+      ${yGrid}
+      ${xLabels}
+      ${seriesSvg}
+      <g class="hover-layer">
+        <line class="hover-crosshair" x1="0" y1="${padT}" x2="0" y2="${padT + chartH}" stroke="rgba(255,255,255,0.4)" stroke-width="1" stroke-dasharray="3 3" style="display:none;"/>
+        <rect class="hover-track" x="${padL}" y="${padT}" width="${chartW}" height="${chartH}" fill="transparent" style="cursor:crosshair;"/>
+      </g>
+    </svg>
+  `;
+  const svg = el.querySelector('svg');
+  const track = el.querySelector('.hover-track');
+  const cross = el.querySelector('.hover-crosshair');
+  if (!track) return;
+  track.addEventListener('mousemove', (e) => {
+    const r = svg.getBoundingClientRect();
+    const sx = (e.clientX - r.left) / r.width * svgW;
+    const ratio = Math.min(1, Math.max(0, (sx - padL) / chartW));
+    const idx = Math.round(ratio * (days.length - 1));
+    const x = padL + (idx / Math.max(1, days.length - 1)) * chartW;
+    cross.setAttribute('x1', x);
+    cross.setAttribute('x2', x);
+    cross.style.display = '';
+    const rows = series.map((s, si) => `
+      <div class="tip-row"><span class="tip-dot" style="background:${s.color}"></span><span class="tip-key">${s.label}</span> <span class="tip-val">${(seriesValues[si][idx] || 0).toLocaleString('nl-NL')}</span></div>
+    `).join('');
+    const html = `<div style="color:var(--scaffold-gray);margin-bottom:4px;">${days[idx]}</div>${rows}`;
+    const sxScreen = r.left + (x / svgW) * r.width;
+    const syScreen = r.top  + (padT / svgH) * r.height;
+    showTip(html, sxScreen, syScreen);
+  });
+  track.addEventListener('mouseleave', () => {
+    cross.style.display = 'none';
+    hideTip();
+  });
+}
+
+function lineChart(id, months, dataObj, color, formatLarge) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const values = months.map(m => dataObj[m] || 0);
+  const max = Math.max(...values) || 1;
+  const min = Math.min(...values);
+
+  function fmt(v) {
+    if (!formatLarge) return v.toLocaleString('nl-NL');
+    if (v >= 1000000) return (v / 1000000).toFixed(1) + 'M';
+    if (v >= 1000) return (v / 1000).toFixed(0) + 'K';
+    return v;
+  }
+
+  // SVG line chart
+  const svgW = 500;
+  const svgH = 220;
+  const padL = 60, padR = 20, padT = 30, padB = 40;
+  const chartW = svgW - padL - padR;
+  const chartH = svgH - padT - padB;
+
+  const points = values.map((v, i) => ({
+    x: padL + (i / Math.max(1, values.length - 1)) * chartW,
+    y: padT + chartH - ((v - 0) / (max || 1)) * chartH,
+    v, label: months[i]
+  }));
+
+  const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ');
+  const areaPath = linePath + ` L${points[points.length-1].x},${padT + chartH} L${points[0].x},${padT + chartH} Z`;
+
+  // Y-axis grid lines
+  const yTicks = [0, 0.25, 0.5, 0.75, 1];
+  const yGrid = yTicks.map(f => {
+    const y = padT + chartH - f * chartH;
+    const val = Math.round(max * f);
+    return `<line x1="${padL}" y1="${y}" x2="${svgW - padR}" y2="${y}" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <text x="${padL - 8}" y="${y + 4}" fill="#A1A1AA" font-size="11" font-family="JetBrains Mono, monospace" text-anchor="end">${fmt(val)}</text>`;
+  }).join('');
+
+  // X-axis labels
+  const xLabels = points.map(p =>
+    `<text x="${p.x}" y="${padT + chartH + 20}" fill="#A1A1AA" font-size="11" font-family="JetBrains Mono, monospace" text-anchor="middle">${p.label.replace('20','\'')}</text>`
+  ).join('');
+
+  // Data point dots + value labels
+  const dots = points.map(p =>
+    `<circle cx="${p.x}" cy="${p.y}" r="5" fill="${color}" stroke="var(--deep-forge)" stroke-width="2"/>
+     <text x="${p.x}" y="${p.y - 12}" fill="${color}" font-size="12" font-weight="700" font-family="JetBrains Mono, monospace" text-anchor="middle">${fmt(p.v)}</text>`
+  ).join('');
+
+  el.innerHTML = `
+    <svg viewBox="0 0 ${svgW} ${svgH}" width="100%" height="100%" style="overflow:visible;">
+      ${yGrid}
+      <path d="${areaPath}" fill="${color}" fill-opacity="0.1"/>
+      <path d="${linePath}" fill="none" stroke="${color}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+      ${dots}
+      ${xLabels}
+    </svg>
+  `;
+}
+
+// ───────────────────────────────────────────────────────────────────
+//  Chart tooltip — one shared instance, positioned with mouse events
+// ───────────────────────────────────────────────────────────────────
+function ensureChartTip() {
+  let tip = document.querySelector('.chart-tip');
+  if (!tip) {
+    tip = document.createElement('div');
+    tip.className = 'chart-tip';
+    document.body.appendChild(tip);
+  }
+  return tip;
+}
+function showTip(html, x, y) {
+  const tip = ensureChartTip();
+  tip.innerHTML = html;
+  tip.style.left = x + 'px';
+  tip.style.top  = y + 'px';
+  tip.classList.add('visible');
+}
+function hideTip() {
+  const tip = document.querySelector('.chart-tip');
+  if (tip) tip.classList.remove('visible');
+}
+
+// ───────────────────────────────────────────────────────────────────
+//  Bar chart — SVG, vertical, hover-tooltip, axis grid, value labels
+// ───────────────────────────────────────────────────────────────────
+function barChart(id, dataObj, colors, opts) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const labelFmt = (opts && opts.labelFmt) || ((k) => k);
+  const valFmt   = (opts && opts.valFmt)   || ((v) => v.toLocaleString('nl-NL'));
+  const entries  = Object.entries(dataObj).sort((a, b) => a[0].localeCompare(b[0]));
+  const max = Math.max(1, ...entries.map(e => e[1]));
+
+  const W = Math.max(600, entries.length * 60);
+  const H = 240;
+  const padL = 50, padR = 20, padT = 24, padB = 50;
+  const chartW = W - padL - padR;
+  const chartH = H - padT - padB;
+  const barW = (chartW / entries.length) * 0.62;
+  const step = chartW / entries.length;
+
+  // Y-axis grid (5 ticks)
+  const yGrid = [0, 0.25, 0.5, 0.75, 1].map(f => {
+    const y = padT + chartH - f * chartH;
+    return `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#E7E5E4" stroke-width="1"/>
+      <text x="${padL - 8}" y="${y + 4}" text-anchor="end" class="chart-tick">${Math.round(max * f).toLocaleString('nl-NL')}</text>`;
+  }).join('');
+
+  // Bars
+  const bars = entries.map(([k, v], i) => {
+    const cx = padL + step * (i + 0.5);
+    const h = (v / max) * chartH;
+    const y = padT + chartH - h;
+    const x = cx - barW / 2;
+    const c = (typeof colors === 'object' && colors[k]) ? colors[k] : colors;
+    const tipKey = labelFmt(k);
+    const tipVal = valFmt(v);
+    return `
+      <g class="chart-bar-group" data-key="${k}" data-val="${v}" data-tipkey="${tipKey}" data-tipval="${tipVal}" data-color="${c}">
+        <rect class="chart-bar" x="${x}" y="${y}" width="${barW}" height="${h}" fill="${c}" rx="4" ry="4"/>
+        <text x="${cx}" y="${y - 6}" text-anchor="middle" font-family="var(--font-code)" font-size="10" font-weight="700" fill="var(--deep-forge)">${tipVal}</text>
+        <text x="${cx}" y="${H - padB + 16}" text-anchor="middle" class="chart-tick" font-size="10">${labelFmt(k)}</text>
+      </g>
+    `;
+  }).join('');
+
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="overflow:visible;">
+    <g class="chart-grid">${yGrid}</g>
+    <line x1="${padL}" y1="${padT + chartH}" x2="${W - padR}" y2="${padT + chartH}" stroke="#A8A29E" stroke-width="1"/>
+    ${bars}
+  </svg>`;
+
+  // Hover-tooltip wiring
+  el.querySelectorAll('.chart-bar-group').forEach(g => {
+    g.addEventListener('mouseenter', (e) => {
+      const rect = g.getBoundingClientRect();
+      const html = `
+        <div class="tip-row"><span class="tip-dot" style="background:${g.dataset.color}"></span><span class="tip-key">${g.dataset.tipkey}</span></div>
+        <div class="tip-val">${g.dataset.tipval}</div>`;
+      showTip(html, rect.left + rect.width / 2, rect.top);
+    });
+    g.addEventListener('mouseleave', hideTip);
+  });
+}
+
+// ───────────────────────────────────────────────────────────────────
+//  Horizontal bar chart — better for category lists like programming
+//  languages. Renders DOM rows with animated track-fills + percent.
+// ───────────────────────────────────────────────────────────────────
+function barChartH(id, dataObj, colors) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const entries = Object.entries(dataObj).sort((a, b) => b[1] - a[1]);
+  const total = entries.reduce((s, e) => s + e[1], 0) || 1;
+  const max = Math.max(...entries.map(e => e[1]));
+
+  el.innerHTML = entries.map(([k, v]) => {
+    const c = (typeof colors === 'object' && colors[k]) ? colors[k] : (colors || 'var(--amber)');
+    const widthPct = ((v / max) * 100).toFixed(1);
+    const sharePct = ((v / total) * 100).toFixed(1);
+    return `
+      <div class="hbar-row" data-key="${k}" data-val="${v}">
+        <div class="hbar-label"><span class="lang-dot" style="background:${c}"></span>${k}</div>
+        <div class="hbar-track"><div class="hbar-fill" style="background:${c};" data-target-width="${widthPct}%"></div></div>
+        <div class="hbar-value">${v.toLocaleString('nl-NL')}<span class="hbar-pct">${sharePct}%</span></div>
+      </div>
+    `;
+  }).join('');
+
+  // Animate fills in after a tick (gives CSS transition something to play with)
+  requestAnimationFrame(() => {
+    el.querySelectorAll('.hbar-fill').forEach(b => {
+      b.style.width = b.dataset.targetWidth;
+    });
+  });
+}
+</script>
+  <script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>

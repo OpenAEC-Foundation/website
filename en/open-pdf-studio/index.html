@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open PDF Studio — OpenAEC Foundation</title>
+  <meta name="description" content="Professional-grade PDF annotation, markup, and editing without subscriptions, telemetry, or bloatware. Built with Tauri 2 and SolidJS.">
+  <link rel="canonical" href="https://open-aec.com/en/open-pdf-studio/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-pdf-studio/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/open-pdf-studio/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/open-pdf-studio/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/open-pdf-studio/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/open-pdf-studio/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Open PDF Studio">
+  <meta property="og:description" content="Professional-grade PDF annotation, markup, and editing without subscriptions, telemetry, or bloatware. Built with Tauri 2 and SolidJS.">
+  <meta property="og:url" content="https://open-aec.com/en/open-pdf-studio/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-pdf-studio.jpeg">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open PDF Studio">
+  <meta name="twitter:description" content="Professional-grade PDF annotation, markup, and editing without subscriptions, telemetry, or bloatware. Built with Tauri 2 and SolidJS.">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-pdf-studio.jpeg">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="open-pdf-studio">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open PDF Studio",
+    "applicationCategory": "EngineeringApplication",
+    "applicationSubCategory": "PDF / Document",
+    "operatingSystem": "Windows, macOS, Linux, Android",
+    "url": "https://open-aec.com/open-pdf-studio/",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-pdf-studio/releases",
+    "license": "https://www.gnu.org/licenses/lgpl-3.0.html",
+    "description": "Open-source PDF editor and annotator with custom Rust PDF engine. 20+ annotation tools, measurement, redaction, OCR, forms. Vector PDF rendering optimized for CAD drawings.",
+    "featureList": [
+      "20+ annotation tools",
+      "Measurement tools",
+      "Signatures and stamps",
+      "Page management",
+      "Redaction",
+      "Forms support",
+      "Watermarks and headers/footers",
+      "Export and print",
+      "Multi-tab and sessions",
+      "39 languages"
+    ],
+    "screenshot": "https://open-aec.com/shared/assets/screenshots/open-pdf-studio.jpeg",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "isAccessibleForFree": true,
+    "keywords": "PDF, annotation, markup, CAD, vector, OCR, redaction, forms, Bluebeam alternative, Foxit alternative, Adobe Acrobat alternative",
+    "sameAs": [
+      "https://github.com/OpenAEC-Foundation/open-pdf-studio",
+      "https://open-pdf-studio.open-aec.com/"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "OpenAEC Foundation",
+      "url": "https://open-aec.com"
+    }
+  }
+  </script>
+  <style>
+    .media-slider { max-width: 900px; margin: 0 auto var(--sp-8); position: relative; }
+    .slider-container { position: relative; overflow: hidden; border-radius: 12px; background: #2A2A32; }
+    .slider-track { display: flex; transition: transform 0.4s ease; }
+    .slider-slide { min-width: 100%; }
+    .slider-slide img { width: 100%; display: block; border-radius: 12px; }
+    .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.25rem; display: flex; align-items: center; justify-content: center; z-index: 2; }
+    .slider-btn:hover { background: rgba(0,0,0,0.7); }
+    .slider-prev { left: 12px; }
+    .slider-next { right: 12px; }
+    .slider-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0; }
+    .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: #D6D3D1; border: none; cursor: pointer; }
+    .slider-dot.active { background: #D97706; }
+  </style>
+  <meta name="i18n-static" content="en">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/en/open-pdf-studio/#webpage",
+        "url": "https://open-aec.com/en/open-pdf-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "en",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/en/open-pdf-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/en/open-pdf-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/en/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Open PDF Studio",
+            "item": "https://open-aec.com/en/open-pdf-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/en/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/en/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Ecosystem</a></li>
+        <li><a href="/en/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Roadmap</a></li>
+        <li><a href="/en/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Architecture</a></li>
+        <li><a href="/en/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">Statistics</a></li>
+        <li><a href="/en/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">News</a></li>
+        <li><a href="/en/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Supporters</a></li>
+        <li><a href="/en/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">We support</a></li>
+        <li><a href="/en/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Structure</a></li>
+        <li><a href="/en/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">Contact</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Feedback</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/open-pdf-studio/" hreflang="nl">NL</a>
+        <a class="lang-btn active" data-lang="en" href="/en/open-pdf-studio/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/open-pdf-studio/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/open-pdf-studio/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20260728"></script>
+
+  <section class="hero">
+    <span class="section-label" data-i18n="header.label">Open-source PDF editor</span>
+    <h1 data-i18n="header.title">Open <span class="accent">PDF</span> Studio</h1>
+    <p class="tagline" data-i18n="header.desc">Professional-grade PDF annotation, markup, and editing without subscriptions, telemetry, or bloatware. Built with Tauri 2 and SolidJS.</p>
+    <div class="btn-group">
+      <a href="#download" class="btn btn-primary btn-lg" data-i18n="header.downloadBtn" data-opdf-ver>Download v1.82.0</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pdf-studio" class="btn btn-ghost btn-lg" data-i18n="header.sourceBtn">View source</a>
+    </div>
+  </section>
+
+    <div class="media-slider">
+      <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pdf-studio.jpeg" alt="Open PDF Studio screenshot"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pdf-studio-2.jpeg" alt="Open PDF Studio screenshot 2"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pdf-studio-3.png" alt="Open PDF Studio screenshot 3"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pdf-studio-4.png" alt="Open PDF Studio screenshot 4"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pdf-studio-5.png" alt="Open PDF Studio screenshot 5"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pdf-studio-6.jpeg" alt="Open PDF Studio screenshot 6"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pdf-studio-7.jpeg" alt="Open PDF Studio screenshot 7"></div>
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideMove(-1)">&lsaquo;</button>
+        <button class="slider-btn slider-next" onclick="slideMove(1)">&rsaquo;</button>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+
+    <!-- Rust PDF performance highlight -->
+    <section class="section" style="background: var(--night-build); padding: 3rem 1.5rem;">
+      <div style="max-width: 900px; margin: 0 auto; text-align: center;">
+        <p style="font-family: var(--font-code); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--warm-gold); margin-bottom: var(--sp-4);" data-i18n="performance.label">Rust PDF Engine</p>
+        <h2 style="color: white; font-family: var(--font-heading); font-size: 1.75rem; margin-bottom: var(--sp-4);" data-i18n="performance.title">Blazing-fast <span style="color: var(--amber);">vector PDFs</span></h2>
+        <p style="color: var(--scaffold-gray); font-size: 1rem; line-height: 1.7; max-width: 700px; margin: 0 auto;" data-i18n="performance.desc">Open PDF Studio uses its own Rust PDF engine for maximum performance. Vector PDF files — technical drawings, floor plans and complex diagrams — render instantly, even at hundreds of pages. No JavaScript bottleneck, no waiting for rendering.</p>
+      </div>
+    </section>
+
+  <section class="section" id="download"><div class="container">
+    <div class="download-section">
+      <h3 data-i18n="download.title" data-opdf-ver>Download v1.82.0</h3>
+      <div class="download-grid">
+        <div class="download-item"><div class="os">Windows</div><div class="size" data-opdf-size="windows">19.7 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v1.82.0/Open.PDF.Studio_1.82.0_x64-setup.exe" data-opdf-dl="windows" class="btn btn-primary btn-sm">Download .exe</a></div>
+        <div class="download-item"><div class="os">Linux (deb)</div><div class="size" data-opdf-size="linux-deb">23.9 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v1.82.0/Open.PDF.Studio_1.82.0_amd64.deb" data-opdf-dl="linux-deb" class="btn btn-primary btn-sm">Download .deb</a></div>
+        <div class="download-item"><div class="os">Linux (AppImage)</div><div class="size" data-opdf-size="linux-appimage">96.4 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v1.82.0/Open.PDF.Studio_1.82.0_amd64.AppImage" data-opdf-dl="linux-appimage" class="btn btn-primary btn-sm">Download AppImage</a></div>
+        <div class="download-item"><div class="os">Android</div><div class="size" data-opdf-size="android">40.4 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v1.82.0/open-pdf-studio-release.apk" data-opdf-dl="android" class="btn btn-primary btn-sm">Download .apk</a></div>
+        <div class="download-item"><div class="os">Linux (snap)</div><div class="size">via Snap Store</div>
+          <a href="https://snapcraft.io/open-pdf-studio" class="btn btn-primary btn-sm">Snap Store</a></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section section-alt"><div class="container">
+    <h2 data-i18n="features.heading">Features</h2>
+    <div class="features" style="margin-top:var(--sp-8)">
+      <div class="feature">
+        <h4 data-i18n="features.annotations.title">20+ annotation tools</h4>
+        <p data-i18n="features.annotations.desc">Highlight, underline, strikethrough, shapes (rectangle, ellipse, polygon, cloud, arrow), freehand pen, text boxes, callouts, sticky notes, stamps, and image insertion.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.measurement.title">Measurement tools</h4>
+        <p data-i18n="features.measurement.desc">Distance, area, and perimeter measurement with scale calibration (mm, cm, inches, points). Object snapping to endpoints, midpoints, centers, and edges.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.signatures.title">Signatures and stamps</h4>
+        <p data-i18n="features.signatures.desc">Draw multi-stroke signatures and save up to 5 for quick reuse. 10 built-in stamps including Approved, Rejected, Draft, Confidential, and Final.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.pages.title">Page management</h4>
+        <p data-i18n="features.pages.desc">Insert, delete, extract, replace, and reorder pages via drag-and-drop thumbnails. Merge multiple PDFs. Rotate pages 90/180/270 degrees.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.redaction.title">Redaction</h4>
+        <p data-i18n="features.redaction.desc">Mark areas and apply to permanently remove sensitive content from documents.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.forms.title">Forms support</h4>
+        <p data-i18n="features.forms.desc">Fill interactive PDF forms (AcroForms and XFA). Create text fields, checkboxes, and radio buttons with JavaScript validation.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.watermarks.title">Watermarks and headers/footers</h4>
+        <p data-i18n="features.watermarks.desc">Text and image watermarks with opacity, rotation, and position control. Headers and footers with page number, date, time, and filename variables.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.export.title">Export and print</h4>
+        <p data-i18n="features.export.desc">Export pages as PNG or JPEG at 72-600 DPI. Full print dialog with live preview, page range, scaling, and print-as-image option. XFDF annotation export/import.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.multitab.title">Multi-tab and sessions</h4>
+        <p data-i18n="features.multitab.desc">Work with multiple PDFs in tabs. Save and restore named workspace snapshots. Recent files with pin/unpin.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.languages.title">39 languages</h4>
+        <p data-i18n="features.languages.desc">Full interface translation including RTL support for Arabic, Hebrew, Farsi, and Urdu. 5 themes: Dark, Light, Blue, High Contrast, and System.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <h2 data-i18n="tech.heading">Tech stack</h2>
+    <div class="features" style="margin-top:var(--sp-8)">
+      <div class="feature"><h4 data-i18n="tech.tauri.title">Tauri 2</h4><p data-i18n="tech.tauri.desc">Rust backend for native performance and small binary size.</p></div>
+      <div class="feature"><h4 data-i18n="tech.solid.title">SolidJS</h4><p data-i18n="tech.solid.desc">Reactive UI framework with fine-grained updates.</p></div>
+      <div class="feature"><h4 data-i18n="tech.pdfjs.title">PDF.js + pdf-lib</h4><p data-i18n="tech.pdfjs.desc">Mozilla PDF.js for rendering, pdf-lib for document manipulation.</p></div>
+    </div>
+  </div></section>
+
+  <!-- Release Notes (shared component) -->
+  <div data-release-notes="open-pdf-studio"></div>
+  <script src="/shared/release-notes.js?v=20260728"></script>
+
+  <section style="background: var(--concrete); padding: 3rem 1.5rem; text-align: center;">
+    <div style="max-width: 900px; margin: 0 auto; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="https://open-pdf-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-i18n="cta.demo">Live demo &rarr;</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pdf-studio" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-i18n="cta.github">GitHub &rarr;</a>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="footer-container">
+    <a href="/en/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <span data-i18n="footer.slogan">Build free. Build together.</span>
+    <a href="https://github.com/OpenAEC-Foundation">GitHub</a>
+  </div></footer>
+  <script>
+    (function(){
+      const track = document.getElementById('sliderTrack');
+      const dots = document.getElementById('sliderDots');
+      if (!track || !dots) return;
+      const slides = track.children.length;
+      let current = 0;
+      for(let i=0;i<slides;i++){
+        const d = document.createElement('button');
+        d.className = 'slider-dot' + (i===0?' active':'');
+        d.onclick = ()=>slideTo(i);
+        dots.appendChild(d);
+      }
+      window.slideMove = function(dir){slideTo(current+dir);};
+      window.slideTo = function(i){
+        current = (i+slides)%slides;
+        track.style.transform = 'translateX(-'+current*100+'%)';
+        dots.querySelectorAll('.slider-dot').forEach((d,idx)=>d.classList.toggle('active',idx===current));
+      };
+    })();
+  </script>
+  <script>
+  // Always-latest downloads + live version label for Open PDF Studio.
+  // Progressive enhancement: without JS the buttons already point at the
+  // newest release assets baked into the HTML above.
+  (function () {
+    var REPO = 'OpenAEC-Foundation/open-pdf-studio';
+    var LATEST = 'https://github.com/' + REPO + '/releases/latest';
+    var state = { tag: null };
+    var match = {
+      windows: /_x64-setup\.exe$/i,
+      'linux-deb': /_amd64\.deb$/i,
+      'linux-appimage': /_amd64\.AppImage$/i,
+      android: /\.apk$/i
+    };
+
+    function patch() {
+      if (!state.tag) return;
+      document.querySelectorAll('[data-opdf-ver]').forEach(function (el) {
+        var want = el.innerHTML.replace(/v\d+\.\d+\.\d+/g, state.tag);
+        if (el.innerHTML !== want) el.innerHTML = want;
+      });
+    }
+
+    function fmtSize(bytes) { return (bytes / 1048576).toFixed(1) + ' MB'; }
+
+    function apply(rel) {
+      state.tag = rel.tag_name;
+      var assets = rel.assets || [];
+      Object.keys(match).forEach(function (key) {
+        var re = match[key];
+        var hit = assets.filter(function (x) { return re.test(x.name); })[0];
+        document.querySelectorAll('[data-opdf-dl="' + key + '"]').forEach(function (a) {
+          a.href = hit ? hit.browser_download_url : LATEST;
+        });
+        if (hit) {
+          document.querySelectorAll('[data-opdf-size="' + key + '"]').forEach(function (el) {
+            el.textContent = fmtSize(hit.size);
+          });
+        }
+      });
+      patch();
+    }
+
+    function start() {
+      try {
+        var obs = new MutationObserver(patch);
+        document.querySelectorAll('[data-opdf-ver]').forEach(function (el) {
+          obs.observe(el, { childList: true, subtree: true, characterData: true });
+        });
+      } catch (e) {}
+
+      fetch('https://api.github.com/repos/' + REPO + '/releases/latest')
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (rel) { if (rel && rel.tag_name) apply(rel); })
+        .catch(function () {});
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+    else start();
+  })();
+  </script>
+  <script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>

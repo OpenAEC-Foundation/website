@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IFCX — OpenAEC Foundation</title>
+  <meta name="description" content="Tüm OpenAEC araçları IFCX'te iletişim kurar. Tam bina modelini IFCX'te saklamak için gereken tüm ad alanlarını kendimiz ekliyoruz.">
+  <link rel="canonical" href="https://open-aec.com/tr/ifcx/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/ifcx/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/ifcx/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/ifcx/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/ifcx/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/ifcx/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="IFCX">
+  <meta property="og:description" content="Tüm OpenAEC araçları IFCX'te iletişim kurar. Tam bina modelini IFCX'te saklamak için gereken tüm ad alanlarını kendimiz ekliyoruz.">
+  <meta property="og:url" content="https://open-aec.com/tr/ifcx/">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="IFCX">
+  <meta name="twitter:description" content="Tüm OpenAEC araçları IFCX'te iletişim kurar. Tam bina modelini IFCX'te saklamak için gereken tüm ad alanlarını kendimiz ekliyoruz.">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="ifcx">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: white;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-4);
+    }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p {
+      font-size: 1.125rem;
+      color: var(--scaffold-gray);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .content-section { max-width: 800px; margin: 0 auto; }
+    .content-section h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-4);
+    }
+    .content-section h2 .accent { color: var(--amber); }
+    .content-section p {
+      font-size: 1rem;
+      color: #57534E;
+      line-height: 1.7;
+      margin-bottom: var(--sp-4);
+    }
+    .content-section + .content-section { margin-top: var(--sp-12); }
+
+    .highlight-block {
+      background: var(--night-build);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-8);
+      margin: var(--sp-8) 0;
+      border-left: 4px solid var(--amber);
+    }
+    .highlight-block h3 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: white;
+      margin-bottom: var(--sp-3);
+    }
+    .highlight-block p {
+      color: var(--scaffold-gray);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      margin-bottom: 0;
+    }
+
+    .namespace-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--sp-4);
+      margin: var(--sp-6) 0;
+    }
+    .namespace-card {
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-md);
+      padding: var(--sp-4) var(--sp-5);
+      box-shadow: var(--shadow-sm);
+    }
+    .namespace-card h4 {
+      font-family: var(--font-code);
+      font-weight: 500;
+      font-size: 0.875rem;
+      color: var(--amber);
+      margin-bottom: var(--sp-1);
+    }
+    .namespace-card p {
+      font-size: 0.8125rem;
+      color: #57534E;
+      line-height: 1.5;
+      margin-bottom: 0;
+    }
+
+    .tool-list {
+      list-style: none;
+      padding: 0;
+      margin: var(--sp-6) 0;
+    }
+    .tool-list li {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp-3);
+      padding: var(--sp-3) 0;
+      border-bottom: 1px solid #E7E5E4;
+      font-size: 0.9375rem;
+    }
+    .tool-list li:last-child { border-bottom: none; }
+    .tool-list .tool-name {
+      font-weight: 600;
+      color: var(--deep-forge);
+      min-width: 180px;
+    }
+    .tool-list .tool-desc { color: #57534E; }
+
+    .cta-section {
+      background: var(--deep-forge);
+      color: var(--blueprint-white);
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: white;
+      margin-bottom: var(--sp-4);
+    }
+    .cta-section p {
+      color: var(--scaffold-gray);
+      font-size: 1rem;
+      max-width: 600px;
+      margin: 0 auto var(--sp-6);
+      line-height: 1.6;
+    }
+
+    .page-footer.footer {
+      background: var(--deep-forge);
+      border-top: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--sp-4);
+    }
+    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
+
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 2rem; }
+      .namespace-grid { grid-template-columns: 1fr; }
+      .tool-list .tool-name { min-width: auto; }
+      .tool-list li { flex-direction: column; gap: var(--sp-1); }
+    }
+  </style>
+  <meta name="i18n-static" content="tr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "tr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/tr/ifcx/#webpage",
+        "url": "https://open-aec.com/tr/ifcx/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "tr",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/tr/ifcx/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/tr/ifcx/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/tr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "IFCX",
+            "item": "https://open-aec.com/tr/ifcx/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/tr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/tr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem">Ekosistem</a></li>
+        <li><a href="/tr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası">Yol haritası</a></li>
+        <li><a href="/tr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari">Mimari</a></li>
+        <li><a href="/tr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler">İstatistikler</a></li>
+        <li><a href="/tr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler">Haberler</a></li>
+        <li><a href="/tr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler">Destekçiler</a></li>
+        <li><a href="/tr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz">Desteklerimiz</a></li>
+        <li><a href="/tr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı">Yapı</a></li>
+        <li><a href="/tr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim">İletişim</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim">Geri bildirim</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/ifcx/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/ifcx/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/ifcx/" hreflang="fr">FR</a>
+        <a class="lang-btn active" data-lang="tr" href="/tr/ifcx/" hreflang="tr">TR</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20260728"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">OpenAEC ekosistemi</p>
+    <h1>IFC<span class="accent">X</span></h1>
+    <p data-i18n="header.desc">Tüm OpenAEC araçları IFCX'te iletişim kurar. Tam bina modelini IFCX'te saklamak için gereken tüm ad alanlarını kendimiz ekliyoruz.</p>
+  </header>
+
+  <section class="section" style="background: var(--blueprint-white);">
+    <div class="content-section">
+      <h2 data-i18n="why.title">Neden <span class="accent">IFCX</span>?</h2>
+      <p data-i18n="why.p1">IFCX, IFC veri formatının yeni neslidir. Klasik IFC (IFC2x3, IFC4) sabit bir şema kullanırken, IFCX ad alanlarına dayalı esnek, genişletilebilir bir model sunar. Bu, çekirdek şemayı değiştirmeden alana özgü bilgiler eklemeyi mümkün kılar.</p>
+      <p data-i18n="why.p2">OpenAEC Foundation için IFCX mantıklı bir seçimdir: açık, genişletilebilir ve tüm AEC ekosisteminin açık standartlarda çalışması gerektiği vizyonumuzla uyumludur.</p>
+
+      <div class="highlight-block">
+        <h3 data-i18n="universal.title">Evrensel dil olarak IFCX</h3>
+        <p data-i18n="universal.desc">OpenAEC ekosistemi içinde IFCX merkezi veri formatıdır. Her araç — maliyet tahmininden doğrulamaya, 2D çizimlerden 3D görüntüleyicilere kadar — IFCX okur ve yazar. Bu sayede veriler, dönüştürme veya veri kaybı olmadan AEC zincirinin tüm bölümleri arasında sorunsuz akar.</p>
+      </div>
+
+      <div class="highlight-block" style="margin-top: var(--sp-6);">
+        <h3 data-i18n="civil.title">IFC 4.3: binalardan altyapıya</h3>
+        <p data-i18n="civil.desc">IFCX, yalnızca binaları değil, tam sivil altyapıyı da destekleyen IFC 4.3'ün üzerine inşa edilmiştir. Bu, OpenAEC'nin konut ve ticari binaların yanı sıra yolları, köprüleri, tünelleri, demiryollarını, su altyapısını ve deniz tesislerini de kapsadığı anlamına gelir.</p>
+        <ul style="list-style: none; padding: 0; margin: var(--sp-4) 0 0 0;">
+          <li style="position: relative; padding: var(--sp-2) 0 var(--sp-2) var(--sp-5); color: var(--scaffold-gray); font-size: 0.875rem;" data-i18n="civil.list.building"><code style="background: rgba(217, 119, 6, 0.15); color: var(--amber); padding: 1px 6px; border-radius: 3px; font-family: var(--font-code);">IfcBuilding</code> — binalar (konut/ticari): evler, ofisler, okullar, hastaneler</li>
+          <li style="position: relative; padding: var(--sp-2) 0 var(--sp-2) var(--sp-5); color: var(--scaffold-gray); font-size: 0.875rem;" data-i18n="civil.list.road"><code style="background: rgba(217, 119, 6, 0.15); color: var(--amber); padding: 1px 6px; border-radius: 3px; font-family: var(--font-code);">IfcRoad</code> — yollar, kavşaklar, dönel kavşaklar, bisiklet yolları</li>
+          <li style="position: relative; padding: var(--sp-2) 0 var(--sp-2) var(--sp-5); color: var(--scaffold-gray); font-size: 0.875rem;" data-i18n="civil.list.rail"><code style="background: rgba(217, 119, 6, 0.15); color: var(--amber); padding: 1px 6px; border-radius: 3px; font-family: var(--font-code);">IfcRail</code> — demiryolları, istasyonlar, peronlar, makaslar</li>
+          <li style="position: relative; padding: var(--sp-2) 0 var(--sp-2) var(--sp-5); color: var(--scaffold-gray); font-size: 0.875rem;" data-i18n="civil.list.bridge"><code style="background: rgba(217, 119, 6, 0.15); color: var(--amber); padding: 1px 6px; border-radius: 3px; font-family: var(--font-code);">IfcBridge</code> — köprüler, viyadükler, üst geçitler</li>
+          <li style="position: relative; padding: var(--sp-2) 0 var(--sp-2) var(--sp-5); color: var(--scaffold-gray); font-size: 0.875rem;" data-i18n="civil.list.tunnel"><code style="background: rgba(217, 119, 6, 0.15); color: var(--amber); padding: 1px 6px; border-radius: 3px; font-family: var(--font-code);">IfcTunnel</code> — tüneller (kara yolu, demiryolu, boru hattı)</li>
+          <li style="position: relative; padding: var(--sp-2) 0 var(--sp-2) var(--sp-5); color: var(--scaffold-gray); font-size: 0.875rem;" data-i18n="civil.list.marine"><code style="background: rgba(217, 119, 6, 0.15); color: var(--amber); padding: 1px 6px; border-radius: 3px; font-family: var(--font-code);">IfcMarineFacility</code> — limanlar, kilit havuzları, rıhtım duvarları, bentler</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2 data-i18n="model.title">Her şey <span class="accent">tek bir modelde</span></h2>
+      <p data-i18n="model.desc">Her şeyi IFC'de saklıyoruz. Yalnızca geometri değil, BIM modeliyle herhangi bir ilişkisi olan tüm veriler bu formatta saklanır:</p>
+
+      <div class="namespace-grid">
+        <div class="namespace-card">
+          <h4 data-i18n="model.items.standards.title">Standartlar</h4>
+          <p data-i18n="model.items.standards.desc">Hollanda Yapı Yönetmeliği, Eurocode, NL BIM Basis ILS ve diğer yönetmelikler doğrudan modelde</p>
+        </div>
+        <div class="namespace-card">
+          <h4 data-i18n="model.items.formulas.title">Formüller ve hesaplamalar</h4>
+          <p data-i18n="model.items.formulas.desc">Taşıyıcı sistem hesaplamaları, enerji hesaplamaları ve boyutlandırma formülleri</p>
+        </div>
+        <div class="namespace-card">
+          <h4 data-i18n="model.items.assumptions.title">Tasarım esasları</h4>
+          <p data-i18n="model.items.assumptions.desc">Proje varsayımları, tasarım kararları ve gereksinim programı</p>
+        </div>
+        <div class="namespace-card">
+          <h4 data-i18n="model.items.reports.title">Raporlar</h4>
+          <p data-i18n="model.items.reports.desc">Denetim raporları, doğrulama raporları ve danışmanlık raporları</p>
+        </div>
+        <div class="namespace-card">
+          <h4 data-i18n="model.items.photos.title">Fotoğraflar</h4>
+          <p data-i18n="model.items.photos.desc">Elemanlara bağlı saha fotoğrafları, ilerleme görüntüleri ve keşif fotoğrafları</p>
+        </div>
+        <div class="namespace-card">
+          <h4 data-i18n="model.items.signatures.title">İmzalar</h4>
+          <p data-i18n="model.items.signatures.desc">Onaylar, teslimler ve mutabakatlar için dijital imzalar</p>
+        </div>
+        <div class="namespace-card">
+          <h4 data-i18n="model.items.drawings.title">Çizimler</h4>
+          <p data-i18n="model.items.drawings.desc">Modelin bir parçası olarak 2D çizimler, detay çizimleri ve uygulama çizimleri</p>
+        </div>
+        <div class="namespace-card">
+          <h4 data-i18n="model.items.physics.title">Yapı fiziği verileri</h4>
+          <p data-i18n="model.items.physics.desc">Isıl özellikler, akustik, gün ışığı ve nem davranışı</p>
+        </div>
+        <div class="namespace-card">
+          <h4 data-i18n="model.items.quotes.title">Teklifler ve tahminler</h4>
+          <p data-i18n="model.items.quotes.desc">Maliyet tahminleri, teklifler, miktarlar ve birim fiyatlar</p>
+        </div>
+        <div class="namespace-card">
+          <h4 data-i18n="model.items.management.title">Tesis yönetimi verileri</h4>
+          <p data-i18n="model.items.management.desc">Bakım programları, garantiler, kurulum verileri ve yönetim bilgileri</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <h2 data-i18n="tools.title"><span class="accent">IFCX</span> konuşan araçlar</h2>
+      <p data-i18n="tools.desc">OpenAEC ekosistemindeki tüm araçlar IFCX'i merkezi format olarak alarak inşa edilmiştir:</p>
+
+      <ul class="tool-list">
+        <li><span class="tool-name">Open Calc Studio</span><span class="tool-desc" data-i18n="tools.items.calc">IFCX miktarlarını okur, maliyet verilerini openaec:cost ad alanı olarak geri yazar</span></li>
+        <li><span class="tool-name">Open 2D Studio</span><span class="tool-desc" data-i18n="tools.items.twod">IFCX geometrisinden doğrudan 2D çizimler üretir</span></li>
+        <li><span class="tool-name">Open PDF Studio</span><span class="tool-desc" data-i18n="tools.items.pdf">IFCX model verilerine dayalı teknik dokümanlar üretir</span></li>
+        <li><span class="tool-name">Open Energy Studio</span><span class="tool-desc" data-i18n="tools.items.energy">openaec:energy ad alanından enerji performansını hesaplar</span></li>
+        <li><span class="tool-name">Open Planner Studio</span><span class="tool-desc" data-i18n="tools.items.planner">4D görselleştirme için planlamayı IFCX elemanlarına bağlar</span></li>
+        <li><span class="tool-name">Open Pointcloud Studio</span><span class="tool-desc" data-i18n="tools.items.pointcloud">Yapılan işin doğrulanması için nokta bulutu verilerini IFCX modelleriyle karşılaştırır</span></li>
+        <li><span class="tool-name">Open Field Studio</span><span class="tool-desc" data-i18n="tools.items.field">IFCX elemanlarına bağlı saha denetimlerini kaydeder</span></li>
+        <li><span class="tool-name">Monty IFC Viewer</span><span class="tool-desc" data-i18n="tools.items.monty">Tüm özel ad alanları dahil IFCX modellerini görselleştirir</span></li>
+        <li><span class="tool-name">BIM Validator</span><span class="tool-desc" data-i18n="tools.items.validator">IFCX modellerini IDS spesifikasyonlarına ve Hollanda standartlarına karşı doğrular</span></li>
+      </ul>
+    </div>
+
+    <div class="content-section">
+      <h2 data-i18n="standard.title">Açık <span class="accent">standart</span></h2>
+      <p data-i18n="standard.p1">Tüm OpenAEC ad alanları açık olarak yayınlanır ve açık lisans altında ücretsiz kullanılabilir. Ad alanlarımızı uluslararası standartlarla uyumlu hale getirmek için buildingSMART ve Hollanda BIM topluluğuyla birlikte çalışıyoruz.</p>
+      <p data-i18n="standard.p2">Gerekli tüm ad alanlarını kendimiz geliştirip sürdürerek, IFCX'in gerçekten tam bir bina modelini içerebileceğini garanti ediyoruz — ilk eskizden teslime ve yönetime kadar.</p>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container" style="text-align: center;">
+      <h2 data-i18n="cta.title">Katılmak ister misiniz?</h2>
+      <p data-i18n="cta.desc">IFCX ad alanlarının geliştirilmesine katkıda bulunmak veya aracınızı OpenAEC ekosistemine bağlamak ister misiniz? Bize ulaşın.</p>
+      <a href="/tr/#contact" class="btn btn-primary btn-lg" data-i18n="cta.button">Bize ulaşın</a>
+    </div>
+  </section>
+
+  <footer class="footer page-footer" style="padding: var(--sp-6);">
+    <div class="footer-inner">
+      <a href="/tr/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
+      <a href="https://www.linkedin.com/company/23749451" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+      <p>&copy; 2026 OpenAEC Foundation</p>
+    </div>
+  </footer>
+  <script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>

@@ -20,6 +20,11 @@
     return 'en';
   }
 
+  // Statisch vertaalde pagina's (en/, fr/, tr/ — zie scripts/build-i18n-pages.js)
+  // dragen hun taal in de URL en in de HTML. Daar mag JavaScript niets meer
+  // omzetten: de taal hoort bij het adres, niet bij een voorkeur in localStorage.
+  const STATIC_LANG = (document.querySelector('meta[name="i18n-static"]') || {}).content || null;
+
   function setLanguage(lang) {
     localStorage.setItem(STORAGE_KEY, lang);
     document.documentElement.lang = lang;
@@ -43,6 +48,7 @@
   }
 
   function applyTranslations(lang) {
+    if (STATIC_LANG) return;   // de HTML is al vertaald
     if (lang === 'nl') {
       // Dutch is the default — restore original content from data-i18n-nl
       document.title = ORIGINAL_TITLE;
@@ -147,16 +153,29 @@
   // ───────────────────────────────────────────────────────────────────────
   document.addEventListener('click', (e) => {
     const btn = e.target.closest && e.target.closest('.lang-btn');
-    if (btn) setLanguage(btn.getAttribute('data-lang'));
+    if (!btn) return;
+    // Op statische pagina's is de schakelaar een gewone link naar de andere
+    // taalversie; die laten we het werk doen.
+    if (STATIC_LANG || btn.tagName === 'A') return;
+    setLanguage(btn.getAttribute('data-lang'));
   });
 
   document.addEventListener('nav:loaded', () => {
+    if (STATIC_LANG) { updateButtons(STATIC_LANG); return; }
     const lang = getCurrentLang();
     if (lang !== 'nl') applyInlineTranslations(lang);
     updateButtons(lang);
   });
 
   function init() {
+    // Op een statisch vertaalde pagina bepaalt de URL de taal, niet de
+    // opgeslagen voorkeur. Anders zou een bezoeker met 'nl' in localStorage
+    // op /fr/over-ons.html een pagina krijgen die zichzelf Nederlands noemt.
+    if (STATIC_LANG) {
+      document.documentElement.lang = STATIC_LANG;
+      updateButtons(STATIC_LANG);
+      return;
+    }
     const lang = getCurrentLang();
     document.documentElement.lang = lang;
     if (lang !== 'nl') applyTranslations(lang);
