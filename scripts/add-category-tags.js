@@ -27,7 +27,7 @@ const CATS = {
   'open-2d-studio':             ['A','E'],
   'opencadstudio':              ['A','E','C'],
   'open-energy-studio':         ['E'],
-  'open-planner-studio':        ['C'],
+  'open-planner-studio':        ['A','C','I'],
   'open-pointcloud-studio':     ['E','C','I'],
   'openaec-bim-validator':      ['E','C'],
   'openaec-docs':               ['A','E','C','I'],
