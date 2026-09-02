@@ -17,8 +17,8 @@
 - Forks: **1**
 - Open issues: **1**
 - Releases: **9**
-- Total downloads: **84**
-- Downloads by platform: Windows (61), Linux (AppImage) (15), Windows (MSI) (5), Linux (rpm) (2), Linux (deb) (1)
+- Total downloads: **109**
+- Downloads by platform: Windows (79), Linux (AppImage) (16), Linux (deb) (6), Windows (MSI) (6), Linux (rpm) (2)
 
 ## Key features
 
@@ -59,13 +59,13 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 ## Direct downloads (most popular)
 
 - [Windows · Open.Frame.Studio_0.6.0_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_x64_user-setup.exe) (v0.6.0 — 4.6 MB)
-- [Windows · Open.Frame.Studio_0.2.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.2.0/Open.Frame.Studio_0.2.0_x64-setup.exe) (v0.2.0 — 4.4 MB)
 - [Windows · Open.Frame.Studio_0.6.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_x64-setup.exe) (v0.6.0 — 4.6 MB)
+- [Windows · Open.Frame.Studio_0.2.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.2.0/Open.Frame.Studio_0.2.0_x64-setup.exe) (v0.2.0 — 4.4 MB)
 - [Linux (AppImage) · Open.Frame.Studio_0.2.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.2.0/Open.Frame.Studio_0.2.0_amd64.AppImage) (v0.2.0 — 80.4 MB)
 - [Linux (AppImage) · Open.Frame.Studio_0.6.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_amd64.AppImage) (v0.6.0 — 80.6 MB)
+- [Linux (deb) · Open.Frame.Studio_0.6.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_amd64.deb) (v0.6.0 — 7.1 MB)
 - [Windows · Open.Frame.Studio_0.1.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.1.0/Open.Frame.Studio_0.1.0_x64-setup.exe) (v0.1.0 — 4.3 MB)
-- [Windows · Open.Frame.Studio_0.5.2_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.5.2/Open.Frame.Studio_0.5.2_x64_user-setup.exe) (v0.5.2 — 4.7 MB)
-- [Windows · Open.Frame.Studio_0.4.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.4.0/Open.Frame.Studio_0.4.0_x64-setup.exe) (v0.4.0 — 4.6 MB)
+- [Windows (MSI) · Open.Frame.Studio_0.6.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_x64_en-US.msi) (v0.6.0 — 6.6 MB)
 
 ---
 
