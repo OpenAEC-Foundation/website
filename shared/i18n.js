@@ -155,6 +155,10 @@
   document.addEventListener('click', (e) => {
     const btn = e.target.closest && e.target.closest('.lang-btn');
     if (!btn) return;
+    // De keuze altijd onthouden, ook als de knop een link is: de Nederlandse
+    // pagina's passen bij het laden de opgeslagen taal toe, dus zonder dit
+    // brengt NL je vanaf /tr/ terug op een pagina die zich weer Turks maakt.
+    try { localStorage.setItem(STORAGE_KEY, btn.getAttribute('data-lang')); } catch (err) {}
     // Op statische pagina's is de schakelaar een gewone link naar de andere
     // taalversie; die laten we het werk doen.
     if (STATIC_LANG || btn.tagName === 'A') return;

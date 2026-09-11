@@ -3066,6 +3066,12 @@
           document.documentElement.lang = STATIC_LANG;
           document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.classList.toggle('active', btn.getAttribute('data-lang') === STATIC_LANG);
+            // De link doet het navigeren; de keuze onthouden, anders vertaalt
+            // de Nederlandse homepage zich na een klik op NL terug naar de
+            // eerder opgeslagen taal.
+            btn.addEventListener('click', () => {
+              try { localStorage.setItem('openaec-lang', btn.getAttribute('data-lang')); } catch (e) {}
+            });
           });
           return;
         }
