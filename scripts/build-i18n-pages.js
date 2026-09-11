@@ -43,9 +43,9 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const ORIGIN = 'https://open-aec.com';
-const LANGS = ['en', 'fr', 'tr'];
+const LANGS = ['en', 'fr', 'tr', 'es'];
 const ALL = ['nl', ...LANGS];
-const OG_LOCALE = { nl: 'nl_NL', en: 'en_US', fr: 'fr_FR', tr: 'tr_TR' };
+const OG_LOCALE = { nl: 'nl_NL', en: 'en_US', fr: 'fr_FR', tr: 'tr_TR', es: 'es_ES' };
 const SKIP_DIRS = new Set(['old', 'presentation foundation', '.git', '.claude', 'node_modules', ...LANGS]);
 
 // ── helpers ────────────────────────────────────────────────────────────────
@@ -128,7 +128,7 @@ function translateElements(html, translations) {
 /** Nav-links en knoppen gebruiken data-i18n-en/fr/tr in plaats van een sleutel. */
 function translateInlineAttrs(html, lang) {
   return html.replace(
-    /<([a-zA-Z][a-zA-Z0-9]*)\b([^>]*\bdata-i18n-(?:en|fr|tr)="[^"]*"[^>]*)>([^<]*)<\/\1>/g,
+    /<([a-zA-Z][a-zA-Z0-9]*)\b([^>]*\bdata-i18n-(?:en|fr|tr|es)="[^"]*"[^>]*)>([^<]*)<\/\1>/g,
     (whole, tag, attrs, body) => {
       const own = new RegExp(`\\bdata-i18n-${lang}="([^"]*)"`).exec(attrs);
       const en = /\bdata-i18n-en="([^"]*)"/.exec(attrs);
@@ -287,11 +287,16 @@ function setHead(html, { lang, url, title, description }) {
   return html;
 }
 
-/** Taalknoppen worden echte links — anders honoreert Google de hreflang niet. */
+/**
+ * Taalknoppen worden echte links — anders honoreert Google de hreflang niet.
+ * Ook al gelinkte knoppen (<a>) opnieuw opbouwen: rewriteLinks heeft de
+ * NL-link dan al naar de huidige taal omgezet, en de actieve markering hoort
+ * bij de taal van deze versie, niet bij die van de bron.
+ */
 function linkifySwitcher(html, url, current) {
   return html.replace(
-    /<button class="lang-btn([^"]*)" data-lang="([a-z]{2})">([^<]*)<\/button>/g,
-    (whole, cls, l, label) => {
+    /<(button|a) class="lang-btn([^"]*)" data-lang="([a-z]{2})"[^>]*>([^<]*)<\/\1>/g,
+    (whole, tag, cls, l, label) => {
       const href = l === 'nl' ? url : `/${l}${url}`;
       const active = l === current ? ' active' : '';
       const base = cls.replace(/\s*active\s*/, '');

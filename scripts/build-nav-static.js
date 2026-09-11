@@ -25,10 +25,10 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-// en/, fr/ en tr/ zijn gegenereerde uitvoer van build-i18n-pages.js en dragen
-// een vertaalde nav. Die hier overschrijven met de Nederlandse zou het werk van
-// dat script ongedaan maken.
-const SKIP_DIRS = new Set(['old', 'presentation foundation', '.git', '.claude', 'node_modules', 'en', 'fr', 'tr']);
+// en/, fr/, tr/ en es/ zijn gegenereerde uitvoer van build-i18n-pages.js en
+// dragen een vertaalde nav. Die hier overschrijven met de Nederlandse zou het
+// werk van dat script ongedaan maken.
+const SKIP_DIRS = new Set(['old', 'presentation foundation', '.git', '.claude', 'node_modules', 'en', 'fr', 'tr', 'es']);
 
 function htmlFiles(dir, out = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {

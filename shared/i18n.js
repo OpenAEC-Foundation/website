@@ -5,11 +5,17 @@
   // hem kunnen terugzetten als de bezoeker naar Nederlands schakelt.
   const ORIGINAL_TITLE = document.title;
 
-  // Stored preference > browser language (nl/en/fr/tr) > English.
+  // Statisch vertaalde pagina's (en/, fr/, tr/, es/ — zie scripts/build-i18n-pages.js)
+  // dragen hun taal in de URL en in de HTML. Daar mag JavaScript niets meer
+  // omzetten: de taal hoort bij het adres, niet bij een voorkeur in localStorage.
+  const STATIC_LANG = (document.querySelector('meta[name="i18n-static"]') || {}).content || null;
+
+  // URL-taal > stored preference > browser language > English.
   function getCurrentLang() {
+    if (STATIC_LANG) return STATIC_LANG;
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) return stored;
-    const supported = ['nl', 'en', 'fr', 'tr'];
+    const supported = ['nl', 'en', 'fr', 'tr', 'es'];
     const list = (navigator.languages && navigator.languages.length)
       ? navigator.languages
       : [navigator.language || 'en'];
@@ -19,11 +25,6 @@
     }
     return 'en';
   }
-
-  // Statisch vertaalde pagina's (en/, fr/, tr/ — zie scripts/build-i18n-pages.js)
-  // dragen hun taal in de URL en in de HTML. Daar mag JavaScript niets meer
-  // omzetten: de taal hoort bij het adres, niet bij een voorkeur in localStorage.
-  const STATIC_LANG = (document.querySelector('meta[name="i18n-static"]') || {}).content || null;
 
   function setLanguage(lang) {
     localStorage.setItem(STORAGE_KEY, lang);
@@ -128,7 +129,7 @@
   function applyInlineTranslations(lang) {
     // Apply translations from data-i18n-<lang> attributes (used by nav links).
     // Non-EN, non-NL languages fall back to EN if their own attribute is missing.
-    document.querySelectorAll('[data-i18n-en], [data-i18n-fr], [data-i18n-tr]').forEach(el => {
+    document.querySelectorAll('[data-i18n-en], [data-i18n-fr], [data-i18n-tr], [data-i18n-es]').forEach(el => {
       if (!el.getAttribute('data-i18n-nl')) {
         el.setAttribute('data-i18n-nl', el.innerHTML);
       }

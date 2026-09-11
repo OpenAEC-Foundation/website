@@ -1,0 +1,118 @@
+{
+  "header": {
+    "label": "Ecosistema OpenAEC",
+    "title": "Open <span class=\"accent\">Calculations</span> Studio",
+    "desc": "App de escritorio de código abierto para cálculos estructurales — <strong style=\"color: white;\">inspirada en CalcPAD</strong>, con exportación directa a <strong style=\"color: white;\">IFC4x3 STEP</strong> e <strong style=\"color: white;\">IFCX JSON-LD</strong>. Anteriormente Ifc-Calc, reconstruida bajo la OpenAEC Foundation.",
+    "badge": "En desarrollo"
+  },
+  "screenshot": {
+    "caption": "Editor con sintaxis CalcPAD y vista previa en vivo · cálculo de carga de viento · dibujo SVG paramétrico"
+  },
+  "what": {
+    "title": "¿Qué es Open Calculations Studio?",
+    "desc": "Open Calculations Studio es una herramienta moderna de código abierto para cálculos estructurales — <strong style=\"color: white;\">inspirada en CalcPAD</strong>, la herramienta muy extendida entre los ingenieros estructurales neerlandeses y europeos. Reconstruimos todo el motor de cálculo en TypeScript con compatibilidad con la sintaxis CalcPAD, y añadimos exportación IFC e IFCX en vivo para que los cálculos se integren directamente con los modelos BIM.",
+    "list1": "<strong style=\"color: white;\">Compatible con CalcPAD</strong> — los archivos <code>.cpd</code> existentes funcionan sin cambios",
+    "list2": "<strong style=\"color: white;\">Consciente de unidades</strong> — <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> mediante mathjs",
+    "list3": "<strong style=\"color: white;\">Exportación en vivo a IFCX + IFC4x3 STEP</strong> — un cálculo se convierte de inmediato en un elemento BIM",
+    "list4": "<strong style=\"color: white;\">Renderizado KaTeX</strong> — fórmulas matemáticas con fracciones reales, subíndices y superíndices y letras griegas",
+    "list5": "<strong style=\"color: white;\">Dibujos SVG</strong> — diagramas paramétricos directamente dentro del cálculo",
+    "list6": "<strong style=\"color: white;\">Casos de carga</strong> — SLS / ULS / sísmico en pestañas separadas",
+    "list7": "<strong style=\"color: white;\">Utilizable como biblioteca</strong> — intégrala en aplicaciones FEM o comprobaciones normativas"
+  },
+  "why": {
+    "title": "¿Por qué Open <span class=\"accent\">Calculations</span> Studio?",
+    "desc1": "CalcPAD lleva años siendo utilizado por ingenieros estructurales neerlandeses para cálculos manuales. Pero es de código cerrado, solo funciona en Windows y no tiene integración BIM incorporada. Open Calculations Studio lleva la funcionalidad de CalcPAD a la tecnología web moderna: multiplataforma, de código abierto y con exportación IFC directa.",
+    "desc2": "El archivo de regresión <code>2259-Intertek-units.cpd</code>, de 1094 líneas, se evalúa con <strong>0 errores</strong> y renderiza <strong>6 dibujos SVG</strong>. Suficiente para cálculos de proyectos reales."
+  },
+  "example": {
+    "title": "<span class=\"accent\">Documento</span> de ejemplo",
+    "desc": "Un documento CalcPAD resulta natural para un ingeniero — fórmulas, unidades, lógica condicional y dibujos, todo junto:"
+  },
+  "features": {
+    "title": "Funciones",
+    "units": {
+      "title": "Fórmulas con unidades",
+      "desc": "Trabaja con <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> y todas las unidades del SI. Mathjs se encarga de la aritmética consciente de unidades y la simplificación automática (<code>b*h</code> → <code>mm²</code>)."
+    },
+    "katex": {
+      "title": "Composición matemática",
+      "desc": "Renderizado KaTeX con fracciones reales, superíndices, subíndices y letras griegas (σ, ε, ρ, Φ, ψ). Las fórmulas muestran <code>nombre = fórmula = valores sustituidos = resultado</code> en una sola línea."
+    },
+    "editor": {
+      "title": "Vista previa en vivo",
+      "desc": "Editor de panel dividido (CodeMirror 6) con resaltado de sintaxis para <code>.cpd</code>. La vista previa con debounce se vuelve a renderizar mientras escribes."
+    },
+    "loadcases": {
+      "title": "Casos de carga",
+      "desc": "Pestañas para SLS / ULS / sismo, etc., cada una con sus propios valores de entrada para las variables. Un documento, múltiples escenarios."
+    },
+    "calcpad": {
+      "title": "Compatible con CalcPAD",
+      "desc": "Totalmente compatible con archivos <code>.cpd</code> existentes: <code>#if/#else if/#end if</code>, <code>#repeat</code>, <code>#for</code>, macros <code>#def</code>, <code>#include</code>, <code>$Plot</code>, matrices, búsquedas."
+    },
+    "ifc": {
+      "title": "Exportación IFC4x3 STEP",
+      "desc": "Detecta elementos estructurales mediante nombres de variable convencionales (<code>b_fdn</code>, <code>l_fdn</code>, <code>D_paal</code>, <code>M_Ed</code>, <code>R_c_d</code>). Genera un esqueleto válido Project → Site → Building → Storey."
+    },
+    "ifcx": {
+      "title": "IFCX JSON-LD",
+      "desc": "Exportación IFCX (borrador) en vivo — la próxima generación de IFC con espacios de nombres para cálculos, normas y metadatos. Cálculo y modelo BIM en un solo formato."
+    },
+    "svg": {
+      "title": "Dibujos SVG",
+      "desc": "Macros SVG paramétricas con interpolación de valores. <code>@img(file.svg)</code> incrusta dibujos externos en línea. <code>@svg ... @end</code> para SVG escrito a mano."
+    },
+    "viewer": {
+      "title": "Pestaña IFC",
+      "desc": "Visor STEP integrado y visor IFCX JSON con resaltado de sintaxis. Los tipos de entidad clicables enlazan directamente con la documentación de buildingSMART."
+    },
+    "gef": {
+      "title": "Carga de GEF",
+      "desc": "Carga con <code>@gef nombre</code> — usa los datos de sondeos directamente en los cálculos de cimentación. Se integra con Open Geotechniek Studio."
+    },
+    "themes": {
+      "title": "5 temas",
+      "desc": "Light, Forge, OpenAEC, Blueprint y Contrast — todos construidos sobre los design tokens de OpenAEC. Elige el que mejor funcione en tu entorno."
+    },
+    "pdf": {
+      "title": "Exportación a PDF",
+      "desc": "Exportación a PDF lista para imprimir mediante el shell de Tauri con vista previa headless. Lista para el expediente del proyecto o la revisión de terceros."
+    },
+    "library": {
+      "title": "Modo biblioteca",
+      "desc": "Usa <code>@ifc-calc/core</code> como biblioteca TypeScript: analiza, evalúa, renderiza y genera IFC/IFCX desde apps FEM o comprobaciones normativas."
+    }
+  },
+  "compat": {
+    "title": "Compatibilidad con CalcPAD",
+    "desc": "Totalmente <em>compatible como subconjunto</em> con archivos CalcPAD reales. Funciona de inmediato con tus documentos <code>.cpd</code> existentes:"
+  },
+  "useCases": {
+    "title": "Perfiles de usuario",
+    "structural": {
+      "title": "Ingenieros estructurales",
+      "desc": "Cálculos manuales de vigas, pilares y cimentaciones — directamente en un documento legible. Abre tus archivos CalcPAD existentes sin migración."
+    },
+    "bim": {
+      "title": "Modeladores BIM",
+      "desc": "Vincula los cálculos directamente a elementos IFC. Sin transferencia manual de valores — la comprobación vive en el modelo."
+    },
+    "education": {
+      "title": "Educación &amp; formación",
+      "desc": "Los estudiantes de ingeniería estructural aprenden a calcular con la sintaxis real que encontrarán en la práctica. Código abierto — sin costes de licencia."
+    },
+    "fem": {
+      "title": "Desarrolladores FEM",
+      "desc": "Integra <code>@ifc-calc/core</code> en tu propia aplicación FEM para preprocesado/posprocesado o comprobaciones normativas. Biblioteca TypeScript, instalable con npm."
+    }
+  },
+  "tech": {
+    "title": "Tecnología",
+    "desc": "Monorepo con tres paquetes: <code>@ifc-calc/core</code> (parser + evaluador + generador IFC como biblioteca TypeScript), <code>@openaec/calculations-studio</code> (app de escritorio Tauri 2 con UI en React 19) y <code>@ifc-calc/web</code> (compilación solo para navegador). Multiplataforma: Windows, macOS, Linux."
+  },
+  "cta": {
+    "liveDemo": "🚀 Abrir la demo en vivo",
+    "github": "Repositorio en GitHub",
+    "releases": "Versiones &amp; descargas"
+  }
+}

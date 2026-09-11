@@ -101,12 +101,38 @@
       showMore: 'Daha fazla göster',
       showLess: 'Daha az göster',
     },
+    es: {
+      title: 'Notas de la versión',
+      desc: (n) => `${n} cambios, agrupados por versión menor. Obtenidos en directo desde GitHub.`,
+      loading: 'Cargando versiones...',
+      latest: 'Última',
+      nightly: 'Nightly',
+      version: 'Versión',
+      versions: 'Versiones',
+      releases: 'versiones',
+      changes: 'cambios',
+      change: 'cambio',
+      release: 'versión',
+      from: 'de',
+      until: 'a',
+      viewGitHub: 'Ver en GitHub →',
+      viewAll: 'Ver todas las versiones en GitHub →',
+      error: 'No se pudieron cargar las notas de la versión.',
+      noReleases: 'Todavía no hay versiones disponibles.',
+      published: 'Publicada',
+      totalReleases: 'versiones en total',
+      totalChanges: 'cambios en total',
+      showMore: 'Mostrar más',
+      showLess: 'Mostrar menos',
+    },
   };
 
   function getLang() {
+    const staticLang = (document.querySelector('meta[name="i18n-static"]') || {}).content;
+    if (staticLang) return staticLang;
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) return stored;
-    const supported = ['nl', 'en', 'fr', 'tr'];
+    const supported = ['nl', 'en', 'fr', 'tr', 'es'];
     const list = (navigator.languages && navigator.languages.length)
       ? navigator.languages
       : [navigator.language || 'en'];

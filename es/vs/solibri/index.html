@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAEC vs Solibri Model Checker — validación IFC y comprobación BIM de código abierto</title>
+  <meta name="description" content="Validación BIM de código abierto con BIM Validator, BCF Manager Studio y Monty IFC Viewer — construida sobre estándares abiertos como IDS, NL-BIM Basis ILS…">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="OpenAEC vs Solibri Model Checker — validación IFC y comprobación BIM de código abierto">
+  <meta property="og:description" content="Validación BIM de código abierto con BIM Validator, BCF Manager Studio y Monty IFC Viewer — construida sobre estándares abiertos como IDS, NL-BIM Basis ILS…">
+  <meta property="og:url" content="https://open-aec.com/es/vs/solibri/">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="OpenAEC vs Solibri Model Checker — open source IFC-validatie en BIM checking">
+  <meta name="twitter:description" content="Validación BIM de código abierto con BIM Validator, BCF Manager Studio y Monty IFC Viewer — construida sobre estándares abiertos como IDS, NL-BIM Basis ILS…">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="vs-solibri">
+  <meta name="keywords" content="Solibri alternatief, open source IFC validator, BIM model checker, IDS, NL-BIM Basis ILS, RVB BIM Norm">
+  <link rel="canonical" href="https://open-aec.com/es/vs/solibri/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/vs/solibri/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/vs/solibri/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/vs/solibri/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/vs/solibri/">
+  <link rel="alternate" hreflang="es" href="https://open-aec.com/es/vs/solibri/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/vs/solibri/">
+  <!-- hreflang:end -->
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <style>
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-20) var(--sp-6) var(--sp-12);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 { font-family: var(--font-heading); font-weight: 700; font-size: 2.25rem; color: white; letter-spacing: -0.02em; margin-bottom: var(--sp-4); }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p { font-size: 1.0625rem; color: var(--scaffold-gray); max-width: 720px; margin: 0 auto; line-height: 1.6; }
+    .compare-table { width: 100%; border-collapse: collapse; background: white; border: 1px solid #E7E5E4; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); font-size: 0.9375rem; }
+    .compare-table th, .compare-table td { padding: var(--sp-4); text-align: left; border-bottom: 1px solid #E7E5E4; vertical-align: top; }
+    .compare-table thead th { background: var(--night-build); color: white; font-family: var(--font-heading); font-size: 0.95rem; }
+    .compare-table thead th:first-child { width: 30%; }
+    .compare-table thead th .badge { display: block; font-family: var(--font-code); font-size: 0.65rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em; color: var(--warm-gold); margin-top: 4px; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .feat { font-weight: 600; color: var(--deep-forge); background: var(--concrete); }
+    .yes { color: #15803D; font-weight: 600; }
+    .no { color: #B91C1C; font-weight: 600; }
+    .partial { color: var(--amber); font-weight: 600; }
+    .choose-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--sp-6); margin-top: var(--sp-6); }
+    .choose-card { background: white; border: 1px solid #E7E5E4; border-radius: var(--radius-lg); padding: var(--sp-6); box-shadow: var(--shadow-sm); }
+    .choose-card.openaec { border-top: 4px solid var(--amber); }
+    .choose-card.competitor { border-top: 4px solid #57534E; }
+    .choose-card h3 { font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: var(--sp-4); color: var(--deep-forge); }
+    .choose-card ul { list-style: none; padding: 0; margin: 0; }
+    .choose-card li { padding: var(--sp-2) 0 var(--sp-2) var(--sp-6); position: relative; font-size: 0.9375rem; line-height: 1.55; color: #44403C; }
+    .choose-card li::before { content: "→"; position: absolute; left: 0; color: var(--amber); font-weight: 700; }
+    .choose-card.competitor li::before { color: #57534E; }
+    .cta-block { background: var(--night-build); color: white; border-radius: var(--radius-lg); padding: var(--sp-10) var(--sp-6); text-align: center; max-width: 800px; margin: 0 auto; }
+    .cta-block h2 { color: white; margin-bottom: var(--sp-4); }
+    .cta-block p { color: var(--scaffold-gray); max-width: 600px; margin: 0 auto var(--sp-6); line-height: 1.6; }
+    .summary-lead { max-width: 780px; margin: 0 auto; font-size: 1.0625rem; line-height: 1.7; color: #44403C; }
+    .summary-lead p { margin-bottom: var(--sp-4); }
+    .tool-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--sp-4); margin-top: var(--sp-6); max-width: 1000px; margin-left: auto; margin-right: auto; }
+    .tool-card { background: white; border: 1px solid #E7E5E4; border-radius: var(--radius-lg); padding: var(--sp-5); box-shadow: var(--shadow-sm); }
+    .tool-card h4 { font-family: var(--font-heading); margin-bottom: var(--sp-2); color: var(--deep-forge); }
+    .tool-card p { font-size: 0.875rem; color: #57534E; line-height: 1.55; }
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 1.75rem; }
+      .compare-table { font-size: 0.8125rem; }
+      .compare-table th, .compare-table td { padding: var(--sp-3); }
+    }
+  </style>
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "nl",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/vs/solibri/#webpage",
+        "url": "https://open-aec.com/vs/solibri/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "nl",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/vs/solibri/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/vs/solibri/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Vs",
+            "item": "https://open-aec.com/vs"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Solibri",
+            "item": "https://open-aec.com/vs/solibri/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+  <meta name="i18n-static" content="es">
+</head>
+<body>
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/es/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/es/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Ecosistema</a></li>
+        <li><a href="/es/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Hoja de ruta</a></li>
+        <li><a href="/es/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Arquitectura</a></li>
+        <li><a href="/es/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Estadísticas</a></li>
+        <li><a href="/es/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Noticias</a></li>
+        <li><a href="/es/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Colaboradores</a></li>
+        <li><a href="/es/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">Apoyamos</a></li>
+        <li><a href="/es/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Estructura</a></li>
+        <li><a href="/es/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim" data-i18n-es="Contacto">Contacto</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Comentarios</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/vs/solibri/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/vs/solibri/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/vs/solibri/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/vs/solibri/" hreflang="tr">TR</a>
+        <a class="lang-btn active" data-lang="es" href="/es/vs/solibri/" hreflang="es">ES</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">Comparativa</p>
+    <h1 data-i18n="header.title">OpenAEC <span class="accent">vs Solibri</span></h1>
+    <p data-i18n="header.desc">Validación BIM de código abierto con BIM Validator, BCF Manager Studio y Monty IFC Viewer — construida sobre estándares abiertos como IDS, NL-BIM Basis ILS y la RVB BIM Norm.</p>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="summary-lead">
+        <p data-i18n="intro.p1"><strong>Solibri Office</strong> es desde el año 2000 uno de los nombres consolidados en la validación y comprobación de modelos BIM. Ofrece una extensa biblioteca de reglas para detección de colisiones, cumplimiento normativo y QA/QC, con flujos de trabajo refinados durante décadas. Solibri Office suele costar entre 2.000 y 5.000 € por usuario al año (suscripción o licencia perpetua + mantenimiento), según la edición y el país.</p>
+        <p data-i18n="intro.p2"><strong>OpenAEC</strong> ofrece un stack de código abierto para la validación BIM: <a href="/es/bim-validator/">BIM Validator</a> para la validación IFC e IDS, <a href="/es/bcf-manager-studio/">BCF Manager Studio</a> para la gestión de incidencias y <a href="/es/monty-ifc-viewer/">Monty IFC Viewer</a> para la inspección de modelos. Las herramientas funcionan en el navegador o de forma nativa, son gratuitas y están construidas sobre estándares abiertos como IDS (buildingSMART), NL-BIM Basis ILS y la RVB BIM Norm.</p>
+      </div>
+
+      <div class="tool-grid">
+        <div class="tool-card">
+          <h4>BIM Validator</h4>
+          <p data-i18n="tools.bimValidator.desc">Valida modelos IFC frente a especificaciones IDS, NL-BIM Basis ILS y la RVB BIM Norm. Funciona en el navegador, sin instalación.</p>
+        </div>
+        <div class="tool-card">
+          <h4>BCF Manager Studio</h4>
+          <p data-i18n="tools.bcfManager.desc">Gestión de incidencias con BCF 2.1 y BCF API 3.0. Autoalojado o local, con integración fluida con BIM Validator.</p>
+        </div>
+        <div class="tool-card">
+          <h4>Monty IFC Viewer</h4>
+          <p data-i18n="tools.montyViewer.desc">Visor IFC ligero para inspeccionar geometría, propiedades y relaciones. De código abierto y multiplataforma.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom: var(--sp-8);" data-i18n="comparison.title">Comparativa de funciones</h2>
+      <div style="overflow-x: auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th data-i18n="comparison.table.feature">Función</th>
+              <th data-i18n="comparison.table.openaecHeader">Stack de OpenAEC<span class="badge">BIM Validator + BCF Manager + Monty</span></th>
+              <th>Solibri Office<span class="badge">Solibri Inc. (Nemetschek)</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="feat" data-i18n="comparison.rows.price.label">Precio</td><td class="yes" data-i18n="comparison.rows.price.openaec">Gratis</td><td data-i18n="comparison.rows.price.solibri">~2.000-5.000 €/usuario/año</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.license.label">Licencia</td><td data-i18n="comparison.rows.license.openaec">LGPL-3.0 / código abierto</td><td data-i18n="comparison.rows.license.solibri">Comercial, propietaria</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.licenseCost.label">Coste de licencia por usuario</td><td class="yes">€0</td><td data-i18n="comparison.rows.licenseCost.solibri">Alto, anual</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.platforms.label">Plataformas</td><td data-i18n="comparison.rows.platforms.openaec">Navegador, Windows, macOS, Linux</td><td>Windows, macOS</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.ifcSupport.label">Soporte IFC</td><td class="yes">IFC2x3, IFC4, IFC4.3</td><td class="yes">IFC2x3, IFC4</td></tr>
+            <tr><td class="feat">IDS (buildingSMART)</td><td class="yes" data-i18n="comparison.rows.idsSupport.openaec">Nativo</td><td class="partial" data-i18n="comparison.rows.idsSupport.solibri">Mediante exportación/reglas</td></tr>
+            <tr><td class="feat">NL-BIM Basis ILS</td><td class="yes" data-i18n="comparison.rows.nlBimIls.openaec">Validación integrada</td><td class="partial" data-i18n="comparison.rows.nlBimIls.solibri">Posible mediante reglas personalizadas</td></tr>
+            <tr><td class="feat">RVB BIM Norm</td><td class="yes" data-i18n="comparison.rows.rvbBimNorm.openaec">Validación integrada</td><td class="partial" data-i18n="comparison.rows.rvbBimNorm.solibri">Reglas personalizadas</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.clashDetection.label">Detección de colisiones</td><td class="partial" data-i18n="comparison.rows.clashDetection.openaec">Básica (en el visor + comprobador)</td><td class="yes" data-i18n="comparison.rows.clashDetection.solibri">Madura, refinada durante años</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.ruleLibrary.label">Biblioteca de reglas</td><td class="partial" data-i18n="comparison.rows.ruleLibrary.openaec">En crecimiento, basada en estándares abiertos</td><td class="yes" data-i18n="comparison.rows.ruleLibrary.solibri">Extensa, décadas de refinamiento</td></tr>
+            <tr><td class="feat">BCF 2.1 / BCF API 3.0</td><td class="yes" data-i18n="comparison.rows.bcfSupport.openaec">Nativo, BCF Manager Studio</td><td class="yes" data-i18n="comparison.rows.bcfSupport.solibri">Sí</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.browserBased.label">Basado en navegador</td><td class="yes" data-i18n="comparison.rows.browserBased.openaec">Sí, BIM Validator funciona en el navegador</td><td class="no" data-i18n="comparison.rows.browserBased.solibri">No, requiere instalación de escritorio</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.selfHosted.label">Autoalojado</td><td class="yes" data-i18n="comparison.rows.selfHosted.openaec">Totalmente</td><td class="partial" data-i18n="comparison.rows.selfHosted.solibri">Limitado</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.sourceCode.label">Código fuente</td><td class="yes" data-i18n="comparison.rows.sourceCode.openaec">Público en GitHub</td><td class="no" data-i18n="comparison.rows.sourceCode.solibri">Cerrado</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.integration.label">Integración con otras herramientas</td><td data-i18n="comparison.rows.integration.openaec">Estándares abiertos, fácil de conectar</td><td data-i18n="comparison.rows.integration.solibri">Ecosistema Solibri, plugins</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.telemetry.label">Telemetría</td><td class="yes" data-i18n="comparison.rows.telemetry.openaec">Ninguna</td><td class="partial" data-i18n="comparison.rows.telemetry.solibri">Sí</td></tr>
+            <tr><td class="feat" data-i18n="comparison.rows.support.label">Soporte</td><td data-i18n="comparison.rows.support.openaec">Comunidad + incidencias en GitHub</td><td data-i18n="comparison.rows.support.solibri">Comercial, SLA posible</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 style="text-align:center;" data-i18n="choose.title">¿Cuándo elegir cada uno?</h2>
+      <div class="choose-grid">
+        <div class="choose-card openaec">
+          <h3 data-i18n="choose.openaec.title">Elige <span class="accent">OpenAEC</span> cuando...</h3>
+          <ul>
+            <li data-i18n="choose.openaec.list1">Trabajas en el mercado neerlandés y quieres soporte directo de NL-BIM Basis ILS o la RVB BIM Norm.</li>
+            <li data-i18n="choose.openaec.list2">Quieres usar IDS (el estándar abierto de buildingSMART) como tu mecanismo principal de validación.</li>
+            <li data-i18n="choose.openaec.list3">Quieres validación en el navegador: sin instalación, fácil de compartir con clientes y socios.</li>
+            <li data-i18n="choose.openaec.list4">No quieres pagar una suscripción anual de 2.000-5.000 €.</li>
+            <li data-i18n="choose.openaec.list5">Quieres trabajar de forma autoalojada sin depender de un proveedor.</li>
+            <li data-i18n="choose.openaec.list6">Quieres usar BCF API 3.0 de forma nativa para el intercambio de incidencias.</li>
+            <li data-i18n="choose.openaec.list7">Eres una organización pequeña o autónomo que necesita validación BIM profesional.</li>
+          </ul>
+        </div>
+        <div class="choose-card competitor">
+          <h3 data-i18n="choose.solibri.title">Elige Solibri cuando...</h3>
+          <ul>
+            <li data-i18n="choose.solibri.list1">Necesitas una biblioteca de reglas muy extensa y probada, con décadas de refinamiento.</li>
+            <li data-i18n="choose.solibri.list2">Ejecutas flujos avanzados de detección de colisiones y cumplimiento normativo.</li>
+            <li data-i18n="choose.solibri.list3">Tu organización lleva años trabajando con flujos de Solibri y conjuntos de reglas existentes.</li>
+            <li data-i18n="choose.solibri.list4">Necesitas soporte comercial con SLA, incluida consultoría.</li>
+            <li data-i18n="choose.solibri.list5">Usas plugins específicos de Solibri profundamente integrados en tu pipeline.</li>
+            <li data-i18n="choose.solibri.list6">El coste de la licencia no es un problema y prefieres la máxima cobertura y estabilidad.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-block">
+        <h2 data-i18n="cta.title">Empieza gratis con la validación BIM abierta</h2>
+        <p data-i18n="cta.desc">Prueba el OpenAEC BIM Validator directamente en tu navegador. Sin registro, sin cuenta, sin telemetría. O sumérgete en el código fuente en GitHub.</p>
+        <div class="btn-group">
+          <a href="/es/bim-validator/" class="btn btn-primary btn-lg">BIM Validator</a>
+          <a href="/es/bcf-manager-studio/" class="btn btn-primary btn-lg">BCF Manager Studio</a>
+          <a href="https://github.com/OpenAEC-Foundation" class="btn btn-ghost btn-lg" style="color:white;border-color:white;">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="footer-container">
+    <a href="/es/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <span data-i18n="footer.slogan">Build free. Build together.</span>
+    <p>&copy; 2026 OpenAEC Foundation</p>
+  </div></footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "OpenAEC BIM Validator",
+    "description": "Open source IFC- en IDS-validator van de OpenAEC Foundation. Gratis alternatief voor Solibri Model Checker met ingebouwde ondersteuning voor IDS (buildingSMART), NL-BIM Basis ILS en RVB BIM Norm. Browser-based, geen installatie nodig.",
+    "brand": { "@type": "Brand", "name": "OpenAEC Foundation" },
+    "operatingSystem": "Browser, Windows, macOS, Linux",
+    "applicationCategory": "DesignApplication",
+    "url": "https://open-aec.com/bim-validator/",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" },
+    "isAccessibleForFree": true,
+    "license": "https://www.gnu.org/licenses/lgpl-3.0.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wat is een open source alternatief voor Solibri Model Checker?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "De OpenAEC Foundation biedt een open source stack: BIM Validator voor IFC- en IDS-validatie, BCF Manager Studio voor issue management en Monty IFC Viewer voor model-inspectie. Allemaal gratis, met ingebouwde ondersteuning voor NL-BIM Basis ILS en RVB BIM Norm."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ondersteunt OpenAEC BIM Validator IDS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, BIM Validator ondersteunt IDS (Information Delivery Specification) van buildingSMART als primair validatiemechanisme — naast NL-BIM Basis ILS en de RVB BIM Norm."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat kost Solibri Office vergeleken met OpenAEC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Solibri Office kost typisch 2.000-5.000 euro per gebruiker per jaar, afhankelijk van editie. De OpenAEC tools (BIM Validator, BCF Manager Studio, Monty IFC Viewer) zijn volledig gratis en open source."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="/shared/i18n.js"></script>
+</body>
+</html>

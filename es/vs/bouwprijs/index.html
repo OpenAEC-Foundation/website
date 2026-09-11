@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OpenAEC Open Calc Studio vs Bouwprijs / IBIS-Trad — estimación de costes de construcción de código abierto</title>
+  <meta name="description" content="Open Calc Studio es una calculadora de costes de construcción neerlandesa de código abierto con soporte STABU/RAW e integración de IA mediante MCP.…">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="OpenAEC Open Calc Studio vs Bouwprijs / IBIS-Trad — estimación de costes de construcción de código abierto">
+  <meta property="og:description" content="Open Calc Studio es una calculadora de costes de construcción neerlandesa de código abierto con soporte STABU/RAW e integración de IA mediante MCP.…">
+  <meta property="og:url" content="https://open-aec.com/es/vs/bouwprijs/">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="OpenAEC Open Calc Studio vs Bouwprijs / IBIS-Trad — open source bouwkostencalculatie">
+  <meta name="twitter:description" content="Open Calc Studio es una calculadora de costes de construcción neerlandesa de código abierto con soporte STABU/RAW e integración de IA mediante MCP.…">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="vs-bouwprijs">
+  <meta name="keywords" content="Bouwprijs alternatief, IBIS-Trad alternatief, open source bouwkostencalculatie, Open Calc Studio, STABU, RAW, MCP server">
+  <link rel="canonical" href="https://open-aec.com/es/vs/bouwprijs/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/vs/bouwprijs/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/vs/bouwprijs/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/vs/bouwprijs/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/vs/bouwprijs/">
+  <link rel="alternate" hreflang="es" href="https://open-aec.com/es/vs/bouwprijs/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/vs/bouwprijs/">
+  <!-- hreflang:end -->
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <style>
+    .page-header { background: var(--night-build); padding: var(--sp-20) var(--sp-6) var(--sp-12); text-align: center; border-bottom: 3px solid transparent; border-image: var(--gradient-accent) 1; }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 { font-family: var(--font-heading); font-weight: 700; font-size: 2.25rem; color: white; letter-spacing: -0.02em; margin-bottom: var(--sp-4); }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header p { font-size: 1.0625rem; color: var(--scaffold-gray); max-width: 720px; margin: 0 auto; line-height: 1.6; }
+    .compare-table { width: 100%; border-collapse: collapse; background: white; border: 1px solid #E7E5E4; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm); font-size: 0.9375rem; }
+    .compare-table th, .compare-table td { padding: var(--sp-4); text-align: left; border-bottom: 1px solid #E7E5E4; vertical-align: top; }
+    .compare-table thead th { background: var(--night-build); color: white; font-family: var(--font-heading); font-size: 0.95rem; }
+    .compare-table thead th:first-child { width: 30%; }
+    .compare-table thead th .badge { display: block; font-family: var(--font-code); font-size: 0.65rem; font-weight: 400; text-transform: uppercase; letter-spacing: 0.08em; color: var(--warm-gold); margin-top: 4px; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table .feat { font-weight: 600; color: var(--deep-forge); background: var(--concrete); }
+    .yes { color: #15803D; font-weight: 600; }
+    .no { color: #B91C1C; font-weight: 600; }
+    .partial { color: var(--amber); font-weight: 600; }
+    .choose-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--sp-6); margin-top: var(--sp-6); }
+    .choose-card { background: white; border: 1px solid #E7E5E4; border-radius: var(--radius-lg); padding: var(--sp-6); box-shadow: var(--shadow-sm); }
+    .choose-card.openaec { border-top: 4px solid var(--amber); }
+    .choose-card.competitor { border-top: 4px solid #57534E; }
+    .choose-card h3 { font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: var(--sp-4); color: var(--deep-forge); }
+    .choose-card ul { list-style: none; padding: 0; margin: 0; }
+    .choose-card li { padding: var(--sp-2) 0 var(--sp-2) var(--sp-6); position: relative; font-size: 0.9375rem; line-height: 1.55; color: #44403C; }
+    .choose-card li::before { content: "→"; position: absolute; left: 0; color: var(--amber); font-weight: 700; }
+    .choose-card.competitor li::before { color: #57534E; }
+    .cta-block { background: var(--night-build); color: white; border-radius: var(--radius-lg); padding: var(--sp-10) var(--sp-6); text-align: center; max-width: 800px; margin: 0 auto; }
+    .cta-block h2 { color: white; margin-bottom: var(--sp-4); }
+    .cta-block p { color: var(--scaffold-gray); max-width: 600px; margin: 0 auto var(--sp-6); line-height: 1.6; }
+    .summary-lead { max-width: 780px; margin: 0 auto; font-size: 1.0625rem; line-height: 1.7; color: #44403C; }
+    .summary-lead p { margin-bottom: var(--sp-4); }
+    .highlight-mcp { background: var(--night-build); color: white; border-radius: var(--radius-lg); padding: var(--sp-8) var(--sp-6); max-width: 900px; margin: var(--sp-8) auto 0; }
+    .highlight-mcp .label { font-family: var(--font-code); font-size: 0.7rem; color: var(--warm-gold); text-transform: uppercase; letter-spacing: 0.08em; }
+    .highlight-mcp h3 { color: white; font-family: var(--font-heading); margin-top: var(--sp-2); margin-bottom: var(--sp-3); }
+    .highlight-mcp h3 .accent { color: var(--amber); }
+    .highlight-mcp p { color: var(--scaffold-gray); line-height: 1.65; }
+    @media (max-width: 768px) {
+      .page-header h1 { font-size: 1.75rem; }
+      .compare-table { font-size: 0.8125rem; }
+      .compare-table th, .compare-table td { padding: var(--sp-3); }
+    }
+  </style>
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "nl",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/vs/bouwprijs/#webpage",
+        "url": "https://open-aec.com/vs/bouwprijs/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "nl",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/vs/bouwprijs/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/vs/bouwprijs/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Vs",
+            "item": "https://open-aec.com/vs"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Bouwprijs",
+            "item": "https://open-aec.com/vs/bouwprijs/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+  <meta name="i18n-static" content="es">
+</head>
+<body>
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/es/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/es/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Ecosistema</a></li>
+        <li><a href="/es/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Hoja de ruta</a></li>
+        <li><a href="/es/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Arquitectura</a></li>
+        <li><a href="/es/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Estadísticas</a></li>
+        <li><a href="/es/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Noticias</a></li>
+        <li><a href="/es/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Colaboradores</a></li>
+        <li><a href="/es/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">Apoyamos</a></li>
+        <li><a href="/es/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Estructura</a></li>
+        <li><a href="/es/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim" data-i18n-es="Contacto">Contacto</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Comentarios</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/vs/bouwprijs/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/vs/bouwprijs/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/vs/bouwprijs/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/vs/bouwprijs/" hreflang="tr">TR</a>
+        <a class="lang-btn active" data-lang="es" href="/es/vs/bouwprijs/" hreflang="es">ES</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js"></script>
+
+  <header class="page-header">
+    <p class="section-label" data-i18n="header.label">Comparativa</p>
+    <h1 data-i18n="header.title">OpenAEC <span class="accent">vs Bouwprijs</span></h1>
+    <p data-i18n="header.desc">Open Calc Studio es una calculadora de costes de construcción neerlandesa de código abierto con soporte STABU/RAW e integración de IA mediante MCP. Compárala con Bouwprijs e IBIS-Trad.</p>
+  </header>
+
+  <section class="section">
+    <div class="container">
+      <div class="summary-lead">
+        <p data-i18n="intro.p1"><strong>Bouwprijs</strong> (Sdu/Bouwformatie) e <strong>IBIS-Trad</strong> son desde hace décadas nombres consolidados en la estimación de costes de construcción en los Países Bajos. Ofrecen amplios precios de referencia, vinculación con especificaciones STABU, la sistemática de especificaciones RAW y datos históricos de proyectos. Los precios varían mucho según la edición y el tamaño de la organización, pero para un solo puesto de trabajo suelen ir de unos cientos a unos miles de euros al año (incluida la suscripción a los datos).</p>
+        <p data-i18n="intro.p2"><strong>Open Calc Studio</strong> (<span data-figure="version:open-calc-studio">v0.10.0</span>) de la OpenAEC Foundation es una calculadora de costes de construcción de código abierto creada para el mercado neerlandés. Es compatible con STABU y RAW, ofrece cálculos jerárquicos, mediciones y presupuestos, y es única en su categoría: un <strong>servidor MCP</strong> integrado (Model Context Protocol) te permite manejar el cálculo directamente desde asistentes de IA como Claude.</p>
+      </div>
+
+      <div class="highlight-mcp">
+        <span class="label" data-i18n="mcpHighlight.label">Único: integración de IA</span>
+        <h3 data-i18n="mcpHighlight.title">Open Calc Studio como <span class="accent">servidor MCP</span></h3>
+        <p data-i18n="mcpHighlight.body">Open Calc Studio es una de las primeras herramientas neerlandesas de costes de construcción compatibles con el Model Context Protocol (MCP). Esto permite que un asistente de IA (Claude, ChatGPT con MCP, etc.) construya cálculos, introduzca cantidades, valide reglas o ejecute análisis por sí mismo, sin que tengas que teclearlo todo a mano. Un cambio fundamental en cómo funciona la estimación de costes de construcción: de la entrada manual a la estimación asistida por IA, auditable y abierta.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <h2 style="text-align:center; margin-bottom: var(--sp-8);" data-i18n="compare.title">Comparativa de funciones</h2>
+      <div style="overflow-x: auto;">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th data-i18n="compare.headers.feature">Función</th>
+              <th>Open Calc Studio<span class="badge">OpenAEC Foundation, <span data-figure="version:open-calc-studio">v0.10.0</span></span></th>
+              <th>Bouwprijs / IBIS-Trad<span class="badge">Sdu / Brink / KPD</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="feat" data-i18n="compare.rows.price.label">Precio</td><td class="yes" data-i18n="compare.rows.price.openaec">Gratis</td><td data-i18n="compare.rows.price.competitor">Comercial, suscripción anual</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.license.label">Licencia</td><td data-i18n="compare.rows.license.openaec">LGPL-3.0 (código abierto)</td><td data-i18n="compare.rows.license.competitor">Comercial, propietaria</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.licenseCost.label">Coste de licencia por usuario</td><td class="yes" data-i18n="compare.rows.licenseCost.openaec">0 €</td><td data-i18n="compare.rows.licenseCost.competitor">De cientos a miles de euros/año</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.stabu.label">Sistema de especificaciones STABU</td><td class="yes" data-i18n="compare.rows.stabu.openaec">Sí</td><td class="yes" data-i18n="compare.rows.stabu.competitor">Sí</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.raw.label">Sistema de especificaciones RAW</td><td class="yes" data-i18n="compare.rows.raw.openaec">Sí</td><td class="yes" data-i18n="compare.rows.raw.competitor">Sí</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.hierarchical.label">Cálculos jerárquicos</td><td class="yes" data-i18n="compare.rows.hierarchical.openaec">Sí</td><td class="yes" data-i18n="compare.rows.hierarchical.competitor">Sí</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.quantities.label">Mediciones</td><td class="yes" data-i18n="compare.rows.quantities.openaec">Sí</td><td class="yes" data-i18n="compare.rows.quantities.competitor">Sí</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.refPrices.label">Precios de referencia (mercado neerlandés)</td><td class="partial" data-i18n="compare.rows.refPrices.openaec">Limitados, impulsados por la comunidad</td><td class="yes" data-i18n="compare.rows.refPrices.competitor">Extensos, décadas de datos</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.historicalData.label">Datos históricos de proyectos</td><td class="partial" data-i18n="compare.rows.historicalData.openaec">Pendiente de desarrollo</td><td class="yes" data-i18n="compare.rows.historicalData.competitor">Extensos</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.mcpServer.label">Servidor MCP (integración de IA)</td><td class="yes" data-i18n="compare.rows.mcpServer.openaec">Nativo</td><td class="no" data-i18n="compare.rows.mcpServer.competitor">No disponible</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.aiEstimating.label">Estimación asistida por IA</td><td class="yes" data-i18n="compare.rows.aiEstimating.openaec">Mediante Claude / clientes MCP</td><td class="no" data-i18n="compare.rows.aiEstimating.competitor">No disponible</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.platforms.label">Plataformas</td><td data-i18n="compare.rows.platforms.openaec">Windows, macOS, Linux</td><td data-i18n="compare.rows.platforms.competitor">Windows (principal)</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.selfHosted.label">Autoalojado / local</td><td class="yes" data-i18n="compare.rows.selfHosted.openaec">Totalmente</td><td class="partial" data-i18n="compare.rows.selfHosted.competitor">Local, con conexión de datos en línea</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.sourceCode.label">Código fuente</td><td class="yes" data-i18n="compare.rows.sourceCode.openaec">GitHub, público</td><td class="no" data-i18n="compare.rows.sourceCode.competitor">Cerrado</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.telemetry.label">Telemetría</td><td class="yes" data-i18n="compare.rows.telemetry.openaec">Ninguna</td><td class="partial" data-i18n="compare.rows.telemetry.competitor">Variable</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.maturity.label">Madurez</td><td class="partial" data-i18n="compare.rows.maturity.openaec"><span data-figure="version:open-calc-studio">v0.10.0</span>, desarrollo activo</td><td class="yes" data-i18n="compare.rows.maturity.competitor">Décadas en el mercado</td></tr>
+            <tr><td class="feat" data-i18n="compare.rows.support.label">Soporte</td><td data-i18n="compare.rows.support.openaec">Comunidad + GitHub</td><td data-i18n="compare.rows.support.competitor">Comercial, servicio de asistencia</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 style="text-align:center;" data-i18n="choose.title">¿Cuándo elegir cada uno?</h2>
+      <div class="choose-grid">
+        <div class="choose-card openaec">
+          <h3 data-i18n="choose.openaec.title">Elige <span class="accent">Open Calc Studio</span> cuando...</h3>
+          <ul>
+            <li data-i18n="choose.openaec.item1">Quieres experimentar con la estimación asistida por IA mediante MCP: una combinación única de cálculo e IA.</li>
+            <li data-i18n="choose.openaec.item2">No quieres contratar una suscripción anual ni un contrato de datos.</li>
+            <li data-i18n="choose.openaec.item3">Trabajas en varias plataformas (macOS y Linux son compatibles).</li>
+            <li data-i18n="choose.openaec.item4">Como autónomo, técnico de costes o empresa pequeña, quieres elaborar cálculos STABU o RAW.</li>
+            <li data-i18n="choose.openaec.item5">Quieres añadir tus propios precios de referencia o reglas y gestionarlos tú mismo.</li>
+            <li data-i18n="choose.openaec.item6">Estás dispuesto a trabajar con una herramienta en desarrollo activo (<span data-figure="version:open-calc-studio">v0.10.0</span>) y quieres contribuir tú mismo.</li>
+            <li data-i18n="choose.openaec.item7">Quieres apoyar el código abierto y los estándares abiertos en el sector de la construcción neerlandés.</li>
+          </ul>
+        </div>
+        <div class="choose-card competitor">
+          <h3 data-i18n="choose.competitor.title">Elige Bouwprijs / IBIS-Trad cuando...</h3>
+          <ul>
+            <li data-i18n="choose.competitor.item1">Dependes a diario de precios de referencia extensos y validados para el mercado neerlandés.</li>
+            <li data-i18n="choose.competitor.item2">Necesitas acceso a datos históricos de proyectos que abarcan décadas de cálculos.</li>
+            <li data-i18n="choose.competitor.item3">Trabajas en una organización donde Bouwprijs o IBIS-Trad es el estándar y tu equipo ya está formado en él.</li>
+            <li data-i18n="choose.competitor.item4">Necesitas soporte comercial y mantenimiento de datos con SLA.</li>
+            <li data-i18n="choose.competitor.item5">Usas integraciones específicas de STABU y RAW profundamente arraigadas en tu flujo de licitación.</li>
+            <li data-i18n="choose.competitor.item6">La estabilidad y la completitud de funciones te importan más que el código abierto y la innovación en IA.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-block">
+        <h2 data-i18n="cta.title">Prueba Open Calc Studio</h2>
+        <p data-i18n="cta.desc">Estimación de costes de construcción neerlandesa con STABU, RAW y un servidor MCP. De código abierto, gratuita y especialmente indicada para la estimación asistida por IA. Para técnicos de costes que quieren mirar hacia adelante.</p>
+        <div class="btn-group">
+          <a href="/es/open-calc-studio/" class="btn btn-primary btn-lg">Open Calc Studio</a>
+          <a href="https://github.com/OpenAEC-Foundation/open-calc-studio" class="btn btn-ghost btn-lg" style="color:white;border-color:white;" data-i18n="cta.secondaryBtn">Ver el código fuente en GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="footer-container">
+    <a href="/es/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <span data-i18n="footer.slogan">Build free. Build together.</span>
+    <p>&copy; 2026 OpenAEC Foundation</p>
+  </div></footer>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "Open Calc Studio",
+    "alternateName": "OpenAEC Open Calc Studio",
+    "description": "Open source Nederlandse bouwkostencalculator van de OpenAEC Foundation met STABU- en RAW-ondersteuning. Gratis, LGPL-3.0 alternatief voor Bouwprijs en IBIS-Trad. Uniek: ingebouwde MCP-server (Model Context Protocol) voor AI-assisted estimating via Claude en andere MCP-clients.",
+    "brand": { "@type": "Brand", "name": "OpenAEC Foundation" },
+    "operatingSystem": "Windows, macOS, Linux",
+    "applicationCategory": "BusinessApplication",
+    "softwareVersion": "0.7.8",
+    "url": "https://open-aec.com/open-calc-studio/",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR", "availability": "https://schema.org/InStock" },
+    "isAccessibleForFree": true,
+    "license": "https://www.gnu.org/licenses/lgpl-3.0.html"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wat is een open source alternatief voor Bouwprijs of IBIS-Trad?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Open Calc Studio van de OpenAEC Foundation is een open source bouwkostencalculator voor de Nederlandse markt. Het ondersteunt STABU en RAW, biedt hierarchische calculaties en hoeveelheidstaten, en heeft een ingebouwde MCP-server voor AI-assisted estimating."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat is een MCP-server in bouwkostencalculatie?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "MCP (Model Context Protocol) is een open standaard waarmee AI-assistenten zoals Claude direct kunnen samenwerken met software. Open Calc Studio is een MCP-server: een AI-assistent kan zelfstandig calculaties opbouwen, hoeveelheden invoeren, regels controleren of analyses uitvoeren in Open Calc Studio."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Ondersteunt Open Calc Studio STABU en RAW?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja, Open Calc Studio ondersteunt zowel de STABU-bestekssystematiek (B&U) als de RAW-bestekssystematiek (GWW)."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script src="/shared/i18n.js"></script>
+</body>
+</html>

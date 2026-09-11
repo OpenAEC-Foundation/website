@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handleiding — Open PDF Studio — OpenAEC Foundation</title>
+  <meta name="description" content="Desde la instalación hasta medir a escala. Este manual sigue la disposición del programa: primero la ventana y después para qué sirve cada pestaña de la…">
+  <link rel="canonical" href="https://open-aec.com/es/open-pdf-studio/handleiding/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-pdf-studio/handleiding/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/open-pdf-studio/handleiding/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/open-pdf-studio/handleiding/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/open-pdf-studio/handleiding/">
+  <link rel="alternate" hreflang="es" href="https://open-aec.com/es/open-pdf-studio/handleiding/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/open-pdf-studio/handleiding/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Handleiding — Open PDF Studio">
+  <meta property="og:description" content="Desde la instalación hasta medir a escala. Este manual sigue la disposición del programa: primero la ventana y después para qué sirve cada pestaña de la…">
+  <meta property="og:url" content="https://open-aec.com/es/open-pdf-studio/handleiding/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-pdf-studio.jpeg">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Handleiding — Open PDF Studio">
+  <meta name="twitter:description" content="Desde la instalación hasta medir a escala. Este manual sigue la disposición del programa: primero la ventana y después para qué sirve cada pestaña de la…">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-pdf-studio.jpeg">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <meta name="i18n-page" content="open-pdf-studio-handleiding">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Handleiding Open PDF Studio",
+    "inLanguage": "nl",
+    "url": "https://open-aec.com/open-pdf-studio/handleiding/",
+    "about": { "@type": "SoftwareApplication", "name": "Open PDF Studio" },
+    "publisher": { "@type": "Organization", "name": "OpenAEC Foundation" }
+  }
+  </script>
+
+  <style>
+    /* Handleiding-specifiek: inhoudsopgave, stappen en toetsen. De rest
+       komt uit /shared/style.css zodat de pagina de site-stijl volgt. */
+    .doc-layout { display: grid; grid-template-columns: 260px 1fr; gap: var(--sp-8); align-items: start; }
+    @media (max-width: 900px) { .doc-layout { grid-template-columns: 1fr; } .doc-toc { position: static !important; } }
+
+    .doc-toc { position: sticky; top: 90px; border: 1px solid var(--concrete, #E7E5E4); padding: var(--sp-5); background: #fff; }
+    .doc-toc h3 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 var(--sp-3); }
+    .doc-toc ol { margin: 0; padding-left: 1.1rem; }
+    .doc-toc li { margin: 0.35rem 0; font-size: 0.9rem; }
+    .doc-toc a { text-decoration: none; }
+    .doc-toc a:hover { text-decoration: underline; }
+
+    .doc-chapter { scroll-margin-top: 90px; padding-bottom: var(--sp-6); }
+    .doc-chapter h2 { margin-bottom: var(--sp-3); }
+    .doc-chapter h3 { margin: var(--sp-6) 0 var(--sp-2); font-size: 1.05rem; }
+    .doc-chapter p, .doc-chapter li { line-height: 1.7; }
+    .doc-chapter ol.steps { padding-left: 1.2rem; }
+    .doc-chapter ol.steps li { margin: 0.4rem 0; }
+
+    kbd {
+      font-family: var(--font-code, monospace); font-size: 0.85em;
+      background: #F5F5F4; border: 1px solid #D6D3D1; border-bottom-width: 2px;
+      padding: 1px 6px; white-space: nowrap;
+    }
+    .doc-note { border-left: 3px solid var(--amber, #D97706); background: #FFFBEB; padding: var(--sp-4); margin: var(--sp-4) 0; }
+    .doc-note strong { display: block; margin-bottom: 0.25rem; }
+
+    table.doc-keys { width: 100%; border-collapse: collapse; margin-top: var(--sp-3); }
+    table.doc-keys th, table.doc-keys td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid #E7E5E4; font-size: 0.92rem; }
+    table.doc-keys th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; color: #57534E; }
+    table.doc-keys td:first-child { width: 34%; }
+
+    figure.doc-fig { margin: var(--sp-5) 0; }
+    figure.doc-fig img { width: 100%; border: 1px solid #E7E5E4; display: block; }
+    figure.doc-fig figcaption { font-size: 0.88rem; color: #57534E; margin-top: 0.5rem; }
+  </style>
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "nl",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/open-pdf-studio/handleiding/#webpage",
+        "url": "https://open-aec.com/open-pdf-studio/handleiding/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "nl",
+        "dateModified": "2026-09-02",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/open-pdf-studio/handleiding/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/open-pdf-studio/handleiding/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Open PDF Studio",
+            "item": "https://open-aec.com/open-pdf-studio"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Handleiding",
+            "item": "https://open-aec.com/open-pdf-studio/handleiding/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+  <meta name="i18n-static" content="es">
+</head>
+<body>
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/es/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/es/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Ecosistema</a></li>
+        <li><a href="/es/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Hoja de ruta</a></li>
+        <li><a href="/es/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Arquitectura</a></li>
+        <li><a href="/es/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Estadísticas</a></li>
+        <li><a href="/es/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Noticias</a></li>
+        <li><a href="/es/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Colaboradores</a></li>
+        <li><a href="/es/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">Apoyamos</a></li>
+        <li><a href="/es/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Estructura</a></li>
+        <li><a href="/es/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim" data-i18n-es="Contacto">Contacto</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Comentarios</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/open-pdf-studio/handleiding/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/open-pdf-studio/handleiding/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/open-pdf-studio/handleiding/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/open-pdf-studio/handleiding/" hreflang="tr">TR</a>
+        <a class="lang-btn active" data-lang="es" href="/es/open-pdf-studio/handleiding/" hreflang="es">ES</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js?v=20260728"></script>
+
+  <section class="hero" style="padding-bottom: var(--sp-6);">
+    <span class="section-label" data-i18n="header.label">Manual</span>
+    <h1 data-i18n="header.title">Open <span class="accent">PDF</span> Studio — manual</h1>
+    <p class="tagline" data-i18n="header.desc">Desde la instalación hasta medir a escala. Este manual sigue la disposición del programa: primero la ventana y después para qué sirve cada pestaña de la cinta.</p>
+    <div class="btn-group">
+      <a href="/es/open-pdf-studio/#download" class="btn btn-primary btn-lg" data-i18n="header.downloadBtn">Ir a descargas</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pdf-studio/issues" class="btn btn-ghost btn-lg" data-i18n="header.issueBtn">¿Algo no queda claro? Cuéntanoslo</a>
+    </div>
+  </section>
+
+  <section class="section"><div class="container">
+    <div class="doc-layout">
+
+      <!-- Inhoudsopgave -->
+      <nav class="doc-toc" aria-label="Inhoudsopgave">
+        <h3 data-i18n="toc.title">Contenido</h3>
+        <ol>
+          <li><a href="#installeren" data-i18n="toc.install">Instalación</a></li>
+          <li><a href="#venster" data-i18n="toc.window">La ventana</a></li>
+          <li><a href="#openen" data-i18n="toc.open">Abrir y navegar</a></li>
+          <li><a href="#annoteren" data-i18n="toc.annotate">Anotar</a></li>
+          <li><a href="#tekenen" data-i18n="toc.draw">Dibujar</a></li>
+          <li><a href="#meten" data-i18n="toc.measure">Medir y escala</a></li>
+          <li><a href="#symbolen" data-i18n="toc.symbols">Símbolos de construcción</a></li>
+          <li><a href="#paginas" data-i18n="toc.pages">Editar páginas</a></li>
+          <li><a href="#formulieren" data-i18n="toc.forms">Formularios</a></li>
+          <li><a href="#opslaan" data-i18n="toc.save">Guardar, exportar, imprimir</a></li>
+          <li><a href="#sneltoetsen" data-i18n="toc.keys">Atajos de teclado</a></li>
+          <li><a href="#instellingen" data-i18n="toc.settings">Configuración</a></li>
+        </ol>
+      </nav>
+
+      <div>
+
+        <!-- 1. Installeren -->
+        <article class="doc-chapter" id="installeren">
+          <h2 data-i18n="install.title">1. Instalación</h2>
+          <p data-i18n="install.intro">Open PDF Studio funciona en Windows, macOS, Linux y Android. Todas las versiones están en la <a href="/es/open-pdf-studio/#download">página de descargas</a>; no necesitas cuenta ni clave de licencia.</p>
+          <h3 data-i18n="install.windows.title">Windows</h3>
+          <p data-i18n="install.windows.desc">Hay dos instaladores. El <em>instalador de usuario</em> (<code>*_x64_user-setup.exe</code>) instala solo para tu cuenta y no necesita permisos de administrador — muy útil en un portátil de empresa gestionado. El <em>instalador de sistema</em> (<code>*_x64-setup.exe</code>) instala para todos los usuarios y sí pide permisos de administrador.</p>
+          <h3 data-i18n="install.linux.title">Linux</h3>
+          <p data-i18n="install.linux.desc">Elige el paquete <code>.deb</code> para Debian y Ubuntu, el <code>.AppImage</code> si prefieres no instalar nada, o la versión de la Snap Store. Para imprimir se necesitan las herramientas cliente de CUPS (<code>lp</code> y <code>lpstat</code>); las versiones Snap y Flatpak ya incluyen ese acceso.</p>
+          <h3 data-i18n="install.macos.title">macOS</h3>
+          <p data-i18n="install.macos.desc">El <code>.dmg</code> funciona tanto en Macs con Intel como con Apple Silicon.</p>
+          <div class="doc-note">
+            <strong data-i18n="install.update.title">Actualizaciones</strong>
+            <span data-i18n="install.update.desc">El programa comprueba si hay nuevas versiones y se actualiza solo. Para volver a la versión anterior, usa <em>Versión anterior</em> en la pestaña Inicio.</span>
+          </div>
+        </article>
+
+        <!-- 2. Het venster -->
+        <article class="doc-chapter" id="venster">
+          <h2 data-i18n="window.title">2. La ventana</h2>
+          <p data-i18n="window.intro">La ventana tiene cinco partes. En cuanto las reconozcas, lo encontrarás todo.</p>
+          <ul>
+            <li data-i18n="window.ribbon"><strong>La cinta</strong> en la parte superior, con las pestañas Archivo, Inicio, Vista, Dibujar, Comentar, Editar &amp; combinar PDF y Ayuda. Selecciona una anotación y aparecen las pestañas adicionales Formato y Organizar.</li>
+            <li data-i18n="window.tabs"><strong>Las pestañas de documento</strong> justo debajo: cada PDF abierto tiene su propia pestaña.</li>
+            <li data-i18n="window.left"><strong>El panel de navegación</strong> a la izquierda, con miniaturas de páginas, marcadores, comentarios, adjuntos, capas, campos de formulario y enlaces. Actívalo o desactívalo con <kbd>F9</kbd>.</li>
+            <li data-i18n="window.canvas"><strong>El lienzo</strong> en el centro, donde se muestra el PDF.</li>
+            <li data-i18n="window.right"><strong>El panel de propiedades</strong> a la derecha, que muestra todos los ajustes del objeto seleccionado. Actívalo o desactívalo con <kbd>F12</kbd>.</li>
+          </ul>
+          <p data-i18n="window.status">La barra de estado en la parte inferior muestra la herramienta activa, el número de anotaciones, el número de página y el nivel de zoom.</p>
+          <figure class="doc-fig">
+            <img src="/shared/assets/handleiding/01-venster.png" alt="Het venster van Open PDF Studio met het navigatiepaneel links, de tekening in het midden en het eigenschappenpaneel rechts" loading="lazy">
+            <figcaption data-i18n="window.fig">La ventana: panel de navegación a la izquierda, el plano en el centro, el panel de propiedades a la derecha y la barra de estado abajo.</figcaption>
+          </figure>
+
+        </article>
+
+        <!-- 3. Openen en navigeren -->
+        <article class="doc-chapter" id="openen">
+          <h2 data-i18n="open.title">3. Abrir y navegar</h2>
+          <p data-i18n="open.intro">Abre un PDF con <strong>Archivo → Abrir</strong> (<kbd>Ctrl</kbd>+<kbd>O</kbd>) o arrastrando el archivo a la ventana. Puedes abrir varios a la vez; cada uno tiene su propia pestaña.</p>
+          <h3 data-i18n="open.zoom.title">Zoom y ajuste</h3>
+          <p data-i18n="open.zoom.desc">Haz zoom con <kbd>Ctrl</kbd>+<kbd>+</kbd> y <kbd>Ctrl</kbd>+<kbd>−</kbd>, o mantén pulsado <kbd>Ctrl</kbd> y gira la rueda del ratón — la vista hace zoom hacia el puntero. <kbd>Ctrl</kbd>+<kbd>0</kbd> muestra el tamaño real, <kbd>Ctrl</kbd>+<kbd>1</kbd> ajusta al ancho y <kbd>Ctrl</kbd>+<kbd>2</kbd> a la página completa.</p>
+          <h3 data-i18n="open.view.title">Presentación de página</h3>
+          <p data-i18n="open.view.desc">En la pestaña <strong>Vista</strong> eliges entre página única, desplazamiento continuo, vista de libro y dos páginas lado a lado. Los documentos nuevos se abren en página única.</p>
+          <h3 data-i18n="open.search.title">Buscar</h3>
+          <p data-i18n="open.search.desc"><kbd>Ctrl</kbd>+<kbd>F</kbd> busca en el texto del documento y resalta las coincidencias en la página.</p>
+        </article>
+
+        <!-- 4. Annoteren -->
+        <article class="doc-chapter" id="annoteren">
+          <h2 data-i18n="annotate.title">4. Anotar</h2>
+          <p data-i18n="annotate.intro">Las herramientas de anotación están en la pestaña <strong>Comentar</strong>. Elige una herramienta, dibuja en la página y ajusta después las propiedades a la derecha — color, grosor de línea, opacidad y tamaño de fuente.</p>
+          <figure class="doc-fig">
+            <img src="/shared/assets/handleiding/02-annoteren.png" alt="Een wolk, een pijl en een tekstvak als opmerking op een technische tekening" loading="lazy">
+            <figcaption data-i18n="annotate.fig">Una nube de revisión, una flecha y un cuadro de texto sobre un plano de instalaciones — todo sigue siendo editable después.</figcaption>
+          </figure>
+
+          <h3 data-i18n="annotate.text.title">Marcar texto</h3>
+          <p data-i18n="annotate.text.desc">Resaltar, subrayar, tachar y subrayado ondulado funcionan sobre el texto real del PDF: selecciona el texto y haz clic en la herramienta.</p>
+          <h3 data-i18n="annotate.shapes.title">Formas y líneas</h3>
+          <p data-i18n="annotate.shapes.desc">Rectángulo, elipse, polígono, nube, línea, flecha, polilínea, spline y flecha curva. Termina una polilínea, spline o área rellena con un doble clic (o con el botón derecho del ratón para un área rellena).</p>
+          <h3 data-i18n="annotate.notes.title">Notas, cuadros de texto y sellos</h3>
+          <p data-i18n="annotate.notes.desc">Una nota adhesiva (<kbd>N</kbd>) coloca un comentario que se abre al hacer clic. Un cuadro de texto (<kbd>T</kbd>) pone el texto directamente sobre el plano. Los sellos incluyen Aprobado, Rechazado, Borrador y Confidencial; dibuja una firma una vez y reutilízala.</p>
+          <h3 data-i18n="annotate.select.title">Seleccionar y modificar</h3>
+          <p data-i18n="annotate.select.desc">Con la herramienta de selección (<kbd>V</kbd>) haces clic en una anotación; arrastra un recuadro para capturar varias a la vez. Los tiradores redimensionan y el asa redonda superior rota. <kbd>Supr</kbd> elimina la selección y <kbd>Ctrl</kbd>+<kbd>Z</kbd> deshace.</p>
+          <div class="doc-note">
+            <strong data-i18n="annotate.tip.title">Todos los comentarios en una lista</strong>
+            <span data-i18n="annotate.tip.desc">La lista de anotaciones (<kbd>F11</kbd>) muestra todas las anotaciones del documento. Haz clic en una fila para saltar a ella; desde ahí también puedes exportarlas como XFDF para intercambiarlas con un compañero.</span>
+          </div>
+        </article>
+
+        <!-- 5. Tekenen -->
+        <article class="doc-chapter" id="tekenen">
+          <h2 data-i18n="draw.title">5. Dibujar</h2>
+          <p data-i18n="draw.intro">La pestaña <strong>Dibujar</strong> sirve para dibujar sobre el propio plano: a mano alzada, tramas, áreas rellenas y la paleta de herramientas con símbolos.</p>
+          <h3 data-i18n="draw.snap.title">Referencia a objetos</h3>
+          <p data-i18n="draw.snap.desc">Mientras dibujas, el puntero se ajusta a puntos finales, puntos medios, intersecciones y centros de lo que ya existe. Así el trabajo de conexión resulta preciso sin necesidad de ampliar.</p>
+          <h3 data-i18n="draw.continue.title">Dibujo continuo</h3>
+          <p data-i18n="draw.continue.desc">Los muros y las vigas se dibujan de forma continua: tras cada clic, el siguiente segmento empieza en el punto anterior. Termina la secuencia con <kbd>Esc</kbd> o con el botón derecho del ratón.</p>
+          <h3 data-i18n="draw.eraser.title">Borrador</h3>
+          <p data-i18n="draw.eraser.desc">El borrador elimina los trazos a mano alzada; las demás anotaciones se eliminan con <kbd>Supr</kbd>.</p>
+        </article>
+
+        <!-- 6. Meten -->
+        <article class="doc-chapter" id="meten">
+          <h2 data-i18n="measure.title">6. Medir y escala</h2>
+          <p data-i18n="measure.intro">Medir siempre empieza por la escala. Sin ella, el programa mide en puntos en lugar de en milímetros o metros.</p>
+          <figure class="doc-fig">
+            <img src="/shared/assets/handleiding/03-meten.png" alt="Een maatlijn en een oppervlaktemeting op een tekening, met de schaal ingesteld" loading="lazy">
+            <figcaption data-i18n="measure.fig">Con la escala definida, una línea de cota y una medición de área devuelven valores reales al instante.</figcaption>
+          </figure>
+
+          <h3 data-i18n="measure.calibrate.title">Definir la escala</h3>
+          <ol class="steps">
+            <li data-i18n="measure.calibrate.s1">Ve a la pestaña <strong>Medir</strong> y elige <strong>Definir escala</strong>.</li>
+            <li data-i18n="measure.calibrate.s2">Haz clic en dos puntos cuya distancia real conozcas — por ejemplo, una línea de cota del plano.</li>
+            <li data-i18n="measure.calibrate.s3">Introduce esa longitud real y confirma. La escala actual se muestra entonces en la cinta.</li>
+          </ol>
+          <h3 data-i18n="measure.region.title">Regiones de escala</h3>
+          <p data-i18n="measure.region.desc">Si una hoja contiene varias escalas — por ejemplo, una planta a 1:100 con un detalle a 1:20 — dibuja una <strong>región de escala</strong> alrededor del detalle y asígnale su propia escala. Todo lo que midas o dibujes dentro de esa región usa esa escala automáticamente.</p>
+          <h3 data-i18n="measure.tools.title">Medir</h3>
+          <p data-i18n="measure.tools.desc">Mide distancia, área, perímetro o ángulo. Una línea de cota se hace con tres clics: inicio, fin y dónde va el texto. Para el área y el perímetro haces clic en el contorno y terminas con un doble clic.</p>
+          <h3 data-i18n="measure.schedule.title">Mediciones</h3>
+          <p data-i18n="measure.schedule.desc">Todas las mediciones se reúnen en el estado de mediciones, que puedes exportar para un presupuesto o una medición de obra.</p>
+        </article>
+
+        <!-- 7. Symbolen -->
+        <article class="doc-chapter" id="symbolen">
+          <h2 data-i18n="symbols.title">7. Símbolos de construcción</h2>
+          <p data-i18n="symbols.intro">La paleta de herramientas (pestaña <strong>Vista</strong> → Paleta de herramientas) contiene bibliotecas de símbolos: NL IFC Bouw, NL Elektra, NL Bouwplaats y los conjuntos NEN 1414 para protección contra incendios, ventilación y rociadores.</p>
+          <figure class="doc-fig">
+            <img src="/shared/assets/handleiding/04-symbolen.png" alt="Het gereedschapspalet met de symbolenbibliotheken opengeklapt" loading="lazy">
+            <figcaption data-i18n="symbols.fig">La paleta de herramientas con las bibliotecas incluidas; abre un grupo y haz clic en un símbolo para colocarlo.</figcaption>
+          </figure>
+
+          <h3 data-i18n="symbols.parametric.title">Símbolos paramétricos</h3>
+          <p data-i18n="symbols.parametric.desc">Muchos símbolos son paramétricos: después de colocar uno, cambias sus dimensiones, tipo o texto en el panel de propiedades y el dibujo se adapta. Piensa en muros, vigas de hormigón, retículas, cotas de nivel, apoyos y cargas.</p>
+          <h3 data-i18n="symbols.scale.title">A tamaño real</h3>
+          <p data-i18n="symbols.scale.desc">Los símbolos con un tamaño real — una grúa con su radio de giro, una plaza de aparcamiento, una caseta de obra — se colocan al tamaño correcto en cuanto se conoce la escala del plano.</p>
+          <h3 data-i18n="symbols.corners.title">Las esquinas se cierran solas</h3>
+          <p data-i18n="symbols.corners.desc">Dibuja muros o vigas que se encuentran en una esquina y las esquinas se ingletean automáticamente. Esto también se aplica cuando los dos elementos simplemente se cruzan o se quedan un poco cortos: el programa encuentra la esquina prevista y la remata limpiamente.</p>
+          <figure class="doc-fig">
+            <img src="/shared/assets/handleiding/05-wandhoeken.png" alt="Drie los getekende wanden waarvan de hoeken automatisch in verstek zijn afgewerkt" loading="lazy">
+            <figcaption data-i18n="symbols.fig2">Tres muros dibujados por separado: las esquinas se ingletearon automáticamente, incluso donde las piezas se cruzaban.</figcaption>
+          </figure>
+
+          <h3 data-i18n="symbols.own.title">Tus propios símbolos</h3>
+          <p data-i18n="symbols.own.desc">Además de las bibliotecas incluidas, puedes crear tus propios grupos y añadir símbolos SVG, o importar un catálogo de fabricante con tamaños intercambiables.</p>
+        </article>
+
+        <!-- 8. Pagina's -->
+        <article class="doc-chapter" id="paginas">
+          <h2 data-i18n="pages.title">8. Editar páginas</h2>
+          <p data-i18n="pages.intro">En la pestaña <strong>Editar &amp; combinar PDF</strong> trabajas sobre el propio documento.</p>
+          <ul>
+            <li data-i18n="pages.manage"><strong>Las páginas</strong> se pueden insertar, eliminar, extraer, reemplazar y rotar. Reordena arrastrando las miniaturas en el panel de navegación.</li>
+            <li data-i18n="pages.merge"><strong>Combinar</strong> une varios PDF en un solo documento.</li>
+            <li data-i18n="pages.watermark"><strong>Marcas de agua</strong> y encabezados/pies de página con variables para número de página, fecha y nombre de archivo.</li>
+            <li data-i18n="pages.redact"><strong>Censura</strong>: marca las zonas y aplica. Atención — al aplicar, el contenido se elimina del archivo de forma permanente.</li>
+            <li data-i18n="pages.compress"><strong>Comprimir</strong> reduce el tamaño del archivo.</li>
+          </ul>
+        </article>
+
+        <!-- 9. Formulieren -->
+        <article class="doc-chapter" id="formulieren">
+          <h2 data-i18n="forms.title">9. Formularios</h2>
+          <p data-i18n="forms.desc">Rellena formularios PDF interactivos (AcroForms y XFA) directamente; los valores se conservan al guardar. También puedes añadir campos tú mismo: campos de texto, casillas de verificación y botones de opción. Cuando un documento contiene campos de formulario, el programa lo indica en la parte superior.</p>
+        </article>
+
+        <!-- 10. Opslaan -->
+        <article class="doc-chapter" id="opslaan">
+          <h2 data-i18n="save.title">10. Guardar, exportar e imprimir</h2>
+          <h3 data-i18n="save.save.title">Guardar</h3>
+          <p data-i18n="save.save.desc"><kbd>Ctrl</kbd>+<kbd>S</kbd> guarda en el mismo archivo; <em>Guardar como</em> crea una copia. Las anotaciones se escriben como anotaciones PDF reales, de modo que otros lectores de PDF también las muestran.</p>
+          <h3 data-i18n="save.export.title">Exportar</h3>
+          <p data-i18n="save.export.desc">Exporta páginas como PNG o JPEG de 72 a 600 ppp, o como PDF rasterizado. Intercambia anotaciones con otros programas mediante XFDF.</p>
+          <h3 data-i18n="save.print.title">Imprimir</h3>
+          <p data-i18n="save.print.desc">El diálogo de impresión (<kbd>Ctrl</kbd>+<kbd>P</kbd>) muestra una vista previa en directo con rango de páginas, escalado y una opción de imprimir como imagen. El trabajo de impresión toma el nombre del archivo PDF.</p>
+        </article>
+
+        <!-- 11. Sneltoetsen -->
+        <article class="doc-chapter" id="sneltoetsen">
+          <h2 data-i18n="keys.title">11. Atajos de teclado</h2>
+          <table class="doc-keys">
+            <thead><tr><th data-i18n="keys.thKey">Tecla</th><th data-i18n="keys.thAction">Acción</th></tr></thead>
+            <tbody>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>N</kbd></td><td data-i18n="keys.new">Nuevo documento</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>O</kbd></td><td data-i18n="keys.open">Abrir PDF</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>S</kbd></td><td data-i18n="keys.saveKey">Guardar</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>P</kbd></td><td data-i18n="keys.print">Imprimir</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>W</kbd></td><td data-i18n="keys.close">Cerrar pestaña</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd></td><td data-i18n="keys.undo">Deshacer</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>Y</kbd></td><td data-i18n="keys.redo">Rehacer</td></tr>
+              <tr><td><kbd>Delete</kbd></td><td data-i18n="keys.delete">Eliminar la anotación seleccionada</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>F</kbd></td><td data-i18n="keys.find">Buscar</td></tr>
+              <tr><td><kbd>Ctrl</kbd>+<kbd>0</kbd> / <kbd>1</kbd> / <kbd>2</kbd></td><td data-i18n="keys.zoomFit">Tamaño real / ajustar ancho / ajustar página</td></tr>
+              <tr><td><kbd>F9</kbd> / <kbd>F11</kbd> / <kbd>F12</kbd></td><td data-i18n="keys.panels">Panel de navegación / lista de anotaciones / propiedades</td></tr>
+              <tr><td><kbd>V</kbd></td><td data-i18n="keys.select">Herramienta de selección</td></tr>
+              <tr><td><kbd>1</kbd> – <kbd>5</kbd></td><td data-i18n="keys.tools">Resaltado, mano alzada, línea, rectángulo, elipse</td></tr>
+              <tr><td><kbd>T</kbd> / <kbd>N</kbd></td><td data-i18n="keys.textNote">Cuadro de texto / nota</td></tr>
+              <tr><td><kbd>Esc</kbd></td><td data-i18n="keys.esc">Terminar la secuencia de dibujo o anular la selección</td></tr>
+            </tbody>
+          </table>
+          <div class="doc-note">
+            <strong data-i18n="keys.overlay.title">Pulsaciones en pantalla</strong>
+            <span data-i18n="keys.overlay.desc">¿Grabando un tutorial? Activa <em>Vista → Pulsaciones de teclado</em>: cada tecla que pulses aparece en grande en la esquina inferior derecha del lienzo para que los espectadores puedan seguirte.</span>
+          </div>
+        </article>
+
+        <!-- 12. Instellingen -->
+        <article class="doc-chapter" id="instellingen">
+          <h2 data-i18n="settings.title">12. Configuración</h2>
+          <p data-i18n="settings.desc">En <strong>Preferencias</strong> configuras el idioma (39 idiomas, incluidos los de escritura de derecha a izquierda), el tema (oscuro, claro, azul, alto contraste o del sistema), el autor de anotaciones predeterminado y los valores predeterminados de las herramientas de dibujo.</p>
+          <p data-i18n="settings.session">Tu trabajo se conserva: las pestañas abiertas vuelven tras un reinicio, y puedes guardar espacios de trabajo con nombre y volver a ellos más tarde.</p>
+          <div class="doc-note">
+            <strong data-i18n="settings.privacy.title">Sin telemetría</strong>
+            <span data-i18n="settings.privacy.desc">Open PDF Studio no envía datos de uso. Solo la comprobación de actualizaciones sale de tu equipo; tus documentos se quedan donde están.</span>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </div></section>
+
+  <script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>

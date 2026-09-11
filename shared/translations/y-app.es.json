@@ -1,0 +1,344 @@
+{
+  "header": {
+    "label": "OpenAEC Ecosystem",
+    "desc": "La Everything-app para tu empresa: correo, ERP, facturas, registro de horas, proyectos, comunicación y mucho más en una sola herramienta. <strong style=\"color: white;\">Multi-tenant: una cuenta, varias instancias de ERPNext.</strong>",
+    "badge": "Beta",
+    "category": "Everything-app"
+  },
+  "explainer1": {
+    "title": "¿Qué es Y-app?",
+    "intro": "Y-app no es una herramienta de chat ni un frontend de ERP independiente. Es una <strong style=\"color: white;\">\"Everything-app\"</strong>: un espacio de trabajo multi-tenant de ERPNext que reúne toda la pila de tu empresa en una sola aplicación web. Correo (IMAP/SMTP + Office 365), ERP (ERPNext), archivos (NextCloud), chat (Teams, NextCloud Talk, Telegram), calendario, un asistente de IA (Claude) y decenas de módulos de negocio, todo accesible desde una sola pestaña del navegador.",
+    "li1": "<strong style=\"color: white;\">Multi-tenant</strong> — conecta varias instancias de ERPNext a una sola cuenta de Y-app",
+    "li2": "<strong style=\"color: white;\">Bóveda cifrada</strong> — credenciales en una base de datos SQLite del lado del servidor con AES-256-GCM y PBKDF2-SHA256 (210 000 iteraciones)",
+    "li3": "<strong style=\"color: white;\">Sin pestañas del navegador</strong> — cambia entre instancias mediante pestañas dentro de la app, cada una con su propio enrutamiento y sesión",
+    "li4": "<strong style=\"color: white;\">Modo empleador o empleado</strong> — restringe módulos por instancia mediante un desplegable",
+    "li5": "<strong style=\"color: white;\">i18n completa NL/EN</strong> — más de 1190 traducciones, conmutables en tiempo de ejecución"
+  },
+  "howitworks": {
+    "title": "Cómo <span class=\"accent\">funciona</span>",
+    "intro": "Y-app se ejecuta en tu propio servidor (o a través de impertio.app). El autorregistro, la gestión de instancias y el cambio de modo se hacen dentro de la app, sin tickets de TI.",
+    "step1": {
+      "title": "Crea una cuenta de Y-app",
+      "desc": "Autorregistro con correo y contraseña. Bcrypt con 12 rondas, cookies de sesión HttpOnly y caché de credenciales limitada a la sesión."
+    },
+    "step2": {
+      "title": "Añade instancias de ERPNext",
+      "desc": "Para cada empresa o cliente: URL, nombre, color y credenciales. Se cifran de inmediato en la bóveda del lado del servidor."
+    },
+    "step3": {
+      "title": "Cambia mediante pestañas en la app",
+      "desc": "Sin pestañas del navegador: cambia entre instancias dentro de Y-app. Cada pestaña conserva su propio estado de enrutamiento, sesión de ERPNext y caché."
+    },
+    "step4": {
+      "title": "Modo empleador o empleado",
+      "desc": "Cambia por instancia entre el conjunto completo de módulos (empleador) o un conjunto restringido para el personal (empleado)."
+    }
+  },
+  "explainer2": {
+    "title": "Multi-tenant y cifrado: ni siquiera el host puede leer tus credenciales",
+    "intro": "Y-app funciona con un principio de conocimiento cero para tus credenciales de ERPNext. Cada combinación de correo, clave de ERPNext y token OAuth2 se cifra en una bóveda SQLite del lado del servidor con una clave maestra que <strong style=\"color: white;\">solo puede descifrarse con tu contraseña de Y-app</strong>.",
+    "li1": "<strong style=\"color: white;\">AES-256-GCM</strong> — cifrado autenticado para cada credencial",
+    "li2": "<strong style=\"color: white;\">PBKDF2-SHA256, 210 000 iteraciones</strong> — la recomendación actual de OWASP para la derivación de claves",
+    "li3": "<strong style=\"color: white;\">Archivo de clave maestra con modo 600</strong> — legible únicamente por el proceso de Y-app",
+    "li4": "<strong style=\"color: white;\">AsyncLocalStorage por petición</strong> — las credenciales nunca se comparten entre usuarios dentro del mismo proceso de Node",
+    "li5": "<strong style=\"color: white;\">Ni siquiera el host puede ver tus datos</strong> — sin tu inicio de sesión, la bóveda es un blob de bytes aleatorios",
+    "li6": "<strong style=\"color: white;\">Una cuenta, varias empresas</strong> — ideal para asesorías, consultores, holdings y organizaciones de franquicia"
+  },
+  "modules": {
+    "title": "¿Qué incluye? — <span class=\"accent\">los módulos</span>",
+    "intro": "Y-app reúne decenas de módulos en siete dominios. Cada módulo se conecta directamente a la instancia activa de ERPNext: sin inicios de sesión separados, sin URL separadas.",
+    "communicatie": {
+      "title": "Comunicación &amp; colaboración",
+      "webmail": {
+        "title": "Webmail",
+        "desc": "Cliente IMAP/SMTP completo con caché, gestión de carpetas, adjuntos, editor de texto enriquecido, plantillas y firmas. Autenticación por contraseña u OAuth2 de Office 365."
+      },
+      "messenger": {
+        "title": "Messenger",
+        "desc": "Chat multiplataforma: NextCloud Talk, MS Teams (Graph API), Telegram (Bot API). Una sola vista para todas las conversaciones."
+      },
+      "contacten": {
+        "title": "Contactos",
+        "desc": "Base de datos de contactos fusionada a partir de ERPNext y el historial de correo. Una única fuente para clientes, proveedores y compañeros."
+      },
+      "brieven": {
+        "title": "Cartas",
+        "desc": "Generación de documentos con plantillas: carta estándar, presupuesto, confirmación de pedido, recordatorio de pago."
+      },
+      "vergadernotulen": {
+        "title": "Actas de reunión",
+        "desc": "Almacenamiento local con orden del día, puntos de acción, plazos y enlaces a proyectos y tareas."
+      }
+    },
+    "projecten": {
+      "title": "Proyectos &amp; tareas",
+      "kaartweergave": {
+        "title": "Proyectos con vista de mapa",
+        "desc": "Mapa Leaflet con las ubicaciones de los proyectos, seguimiento de estado y contadores de tareas por proyecto."
+      },
+      "taken": {
+        "title": "Tareas",
+        "desc": "CRUD completo con estado, prioridad, ordenación, filtrado y asignación al personal."
+      },
+      "subtaken": {
+        "title": "Subtareas",
+        "desc": "Estructura de tareas anidada para desglosar paquetes de trabajo más complejos."
+      },
+      "planning": {
+        "title": "Planificación (Gantt)",
+        "desc": "Vista semanal o multisemanal con arrastrar y soltar, filtro por empleado, colores por prioridad e integración de vacaciones."
+      },
+      "offertes": {
+        "title": "Presupuestos",
+        "desc": "Vista de presupuestos con filtros y vista de detalle, conectada directamente a Quotation de ERPNext."
+      },
+      "verkooporders": {
+        "title": "Pedidos de venta",
+        "desc": "Confirmaciones de pedido y seguimiento de estado: del presupuesto al albarán."
+      },
+      "leveringsnotas": {
+        "title": "Albaranes",
+        "desc": "Estado de entrega y vinculación de clientes para la planificación de envíos y logística."
+      },
+      "leads": {
+        "title": "Leads",
+        "desc": "Gestión y cualificación de leads, con acciones de seguimiento y conversión en oportunidad."
+      },
+      "todo": {
+        "title": "Todo",
+        "desc": "Lista de tareas personal por usuario, separada de las tareas de proyecto."
+      }
+    },
+    "hr": {
+      "title": "RR. HH. &amp; personal",
+      "medewerkers": {
+        "title": "Empleados",
+        "desc": "Vista completa del personal con foto, datos de contacto, contratos y asignaciones de vacaciones."
+      },
+      "vakantieplanning": {
+        "title": "Planificación de vacaciones",
+        "desc": "Solicitudes y asignaciones de vacaciones en vista de calendario, con registro de horas extra."
+      },
+      "declaraties": {
+        "title": "Notas de gastos",
+        "desc": "Presenta, aprueba y abona notas de gastos, incluidos los adjuntos."
+      },
+      "tijdregistratie": {
+        "title": "Registro de horas",
+        "desc": "Registra horas con vinculación a proyectos, facturable/no facturable, un botón \"Ahora\" y un flujo de aprobación."
+      },
+      "loonadministratie": {
+        "title": "Nóminas",
+        "desc": "Informes de retenciones y salarios por periodo."
+      }
+    },
+    "financieel": {
+      "title": "Finanzas &amp; contabilidad",
+      "dashboard": {
+        "title": "Panel financiero",
+        "desc": "Gráficos de ingresos por proyecto o empleado, % facturable, principales clientes y tendencias mensuales."
+      },
+      "omzet": {
+        "title": "Ingresos",
+        "desc": "Tendencias de ingresos mensuales con comparación interanual."
+      },
+      "verkoopfacturen": {
+        "title": "Facturas de venta",
+        "desc": "Facturas pendientes con análisis de antigüedad (0-30, 31-60, 61-90, 90+ días) y recordatorios por correo."
+      },
+      "inkoopfacturen": {
+        "title": "Facturas de compra",
+        "desc": "Registra, aprueba y paga facturas de proveedores."
+      },
+      "openstaand": {
+        "title": "Pendientes",
+        "desc": "Análisis de cuentas por cobrar con plazos de pago y estado de los recordatorios."
+      },
+      "kostinzicht": {
+        "title": "Visión de costes",
+        "desc": "Análisis y tendencias de costes por centro de coste o proyecto."
+      },
+      "grootboek": {
+        "title": "Libro mayor",
+        "desc": "Plan contable y asientos: un plan de cuentas navegable."
+      },
+      "banktransacties": {
+        "title": "Transacciones bancarias",
+        "desc": "Extractos bancarios y conciliación con las partidas pendientes."
+      },
+      "boekprogramma": {
+        "title": "Programa de contabilización",
+        "desc": "Introduce asientos contables y apuntes de diario directamente."
+      },
+      "btw": {
+        "title": "Declaración de IVA",
+        "desc": "Cálculo trimestral del IVA a partir de las cuentas de impuestos."
+      },
+      "jaarrekening": {
+        "title": "Cuentas anuales",
+        "desc": "Cierre del ejercicio, balance y cuenta de pérdidas y ganancias."
+      },
+      "rentabiliteit": {
+        "title": "Rentabilidad",
+        "desc": "Análisis de rentabilidad por proyecto y por cliente."
+      },
+      "liquiditeit": {
+        "title": "Liquidez",
+        "desc": "Previsión de flujo de caja basada en partidas pendientes y pagos esperados."
+      }
+    },
+    "bestanden": {
+      "title": "Archivos &amp; conocimiento",
+      "nextcloudfiles": {
+        "title": "NextCloud Files",
+        "desc": "Explorador de archivos WebDAV con navegación por carpetas, vista previa, subida/descarga y enlaces compartidos."
+      },
+      "wiki": {
+        "title": "Wiki",
+        "desc": "Base de conocimiento en Markdown con búsqueda, publicar/despublicar y renderizado enriquecido."
+      }
+    },
+    "agenda": {
+      "title": "Calendario",
+      "multisource": {
+        "title": "Calendario multifuente",
+        "desc": "Eventos, tareas, vacaciones y partes de horas de ERPNext, además de feeds iCalendar (ICS) y OAuth2 de Office 365: todo en un solo calendario."
+      },
+      "view": {
+        "title": "Vista mensual, semanal o diaria",
+        "desc": "Cambia entre vistas, filtra por fuente y programa reuniones con un clic."
+      },
+      "jitsimeeting": {
+        "title": "Videollamadas con Jitsi",
+        "desc": "Genera un enlace de Jitsi Meet directamente en la invitación, sin cuentas adicionales."
+      }
+    },
+    "systeem": {
+      "title": "Sistema &amp; DevOps",
+      "aiagent": {
+        "title": "Agente de IA (Claude)",
+        "desc": "Asistente de IA Claude con contexto sobre tus datos de ERPNext. Streaming SSE, contexto de archivos y conversaciones de varios turnos."
+      },
+      "terminal": {
+        "title": "Terminal",
+        "desc": "Shell por WebSocket (PowerShell o bash) por instancia activa, práctico para administradores y desarrolladores."
+      },
+      "health": {
+        "title": "Comprobación de estado",
+        "desc": "Monitorización de estado por instancia, validación de IMAP y de tokens OAuth2."
+      },
+      "search": {
+        "title": "Búsqueda global (Ctrl+K)",
+        "desc": "Busca en todos los registros de ERPNext de la instancia activa, desde cualquier pantalla."
+      },
+      "instance": {
+        "title": "Gestión de instancias",
+        "desc": "Añade, edita o elimina instancias tú mismo. Sin tickets de TI."
+      },
+      "i18n": {
+        "title": "i18n NL / EN",
+        "desc": "Totalmente traducido con más de 1190 traducciones y cambio de idioma en tiempo de ejecución mediante react-i18next."
+      }
+    }
+  },
+  "modetable": {
+    "title": "<span class=\"accent\">Modo</span> empleador vs. empleado",
+    "intro": "Por instancia eliges en un desplegable si el usuario obtiene acceso de empleador (todos los módulos) o de empleado (un conjunto restringido, centrado en sus propias tareas).",
+    "th": {
+      "module": "Módulo",
+      "employer": "Empleador",
+      "employee": "Empleado"
+    },
+    "row1": {
+      "module": "Webmail, Messenger, Contactos",
+      "employer": "Sí",
+      "employee": "Sí"
+    },
+    "row2": {
+      "module": "Proyectos &amp; tareas &amp; planificación",
+      "employer": "Sí",
+      "employee": "Sí"
+    },
+    "row3": {
+      "module": "Registro de horas &amp; notas de gastos",
+      "employer": "Sí",
+      "employee": "Sí"
+    },
+    "row4": {
+      "module": "Calendario &amp; actas de reunión",
+      "employer": "Sí",
+      "employee": "Sí"
+    },
+    "row5": {
+      "module": "NextCloud Files &amp; Wiki",
+      "employer": "Sí",
+      "employee": "Sí"
+    },
+    "row6": {
+      "module": "Presupuestos, pedidos de venta, entregas, leads",
+      "employer": "Sí",
+      "employee": "Limitado"
+    },
+    "row7": {
+      "module": "Empleados, planificación de vacaciones, nóminas",
+      "employer": "Sí",
+      "employee": "No"
+    },
+    "row8": {
+      "module": "Panel financiero, facturas de venta/compra, pendientes",
+      "employer": "Sí",
+      "employee": "No"
+    },
+    "row9": {
+      "module": "Libro mayor, transacciones bancarias, IVA, cuentas anuales",
+      "employer": "Sí",
+      "employee": "No"
+    },
+    "row10": {
+      "module": "Rentabilidad &amp; liquidez",
+      "employer": "Sí",
+      "employee": "No"
+    },
+    "row11": {
+      "module": "Terminal &amp; agente de IA",
+      "employer": "Sí",
+      "employee": "No"
+    }
+  },
+  "integrations": {
+    "title": "Integraciones",
+    "intro": "Y-app se comunica con las herramientas que probablemente ya usas: sin lock-in, sin migración.",
+    "erpnext": {
+      "desc": "API REST y puente de sesión: todos los DocType disponibles."
+    },
+    "office365": {
+      "desc": "OAuth2 + Microsoft Graph API para correo y calendario."
+    },
+    "nextcloud": {
+      "desc": "WebDAV + API OCS para archivos, chat y enlaces compartidos."
+    },
+    "telegram": {
+      "desc": "Bot API para chat de empresa y notificaciones."
+    },
+    "jitsi": {
+      "desc": "Generación de URL para videollamadas, sin necesidad de cuenta."
+    },
+    "claudeai": {
+      "desc": "Lanzamiento de CLI + streaming SSE con contexto de ERPNext."
+    },
+    "ical": {
+      "desc": "Lee feeds externos en el calendario de Y-app."
+    }
+  },
+  "techstack": {
+    "title": "Tecnología",
+    "summary": "React 19 + TypeScript + Vite 7 + TailwindCSS 4 en el frontend, Node.js 20 + Express 4 + WebSocket en el backend. Autenticación mediante bcryptjs (12 rondas), cookies HttpOnly y AsyncLocalStorage para el aislamiento de credenciales por petición. Cifrado con AES-256-GCM y PBKDF2-SHA256 (210 000 iteraciones), datos en una base de datos SQLite (modo WAL). En producción se ejecuta bajo PM2, detrás de un proxy inverso nginx con terminación TLS, actualización a WebSocket y servido estático de dist. Desarrollo mediante tsx --watch."
+  },
+  "cta": {
+    "demo": "Demo en vivo &rarr;",
+    "github": "Repositorio de GitHub"
+  },
+  "meta": {
+    "title": "Y-app — La everything-app para tu empresa — OpenAEC Foundation"
+  }
+}

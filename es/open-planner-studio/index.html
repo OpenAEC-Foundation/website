@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Planner Studio — OpenAEC Foundation</title>
+  <meta name="description" content="Planificación de obra de código abierto con diagramas de Gantt, camino crítico, recursos y nivelación, líneas base y avance — y con IFC 4.3 nativo como…">
+  <link rel="canonical" href="https://open-aec.com/es/open-planner-studio/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-planner-studio/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/open-planner-studio/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/open-planner-studio/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/open-planner-studio/">
+  <link rel="alternate" hreflang="es" href="https://open-aec.com/es/open-planner-studio/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/open-planner-studio/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Open Planner Studio">
+  <meta property="og:description" content="Planificación de obra de código abierto con diagramas de Gantt, camino crítico, recursos y nivelación, líneas base y avance — y con IFC 4.3 nativo como…">
+  <meta property="og:url" content="https://open-aec.com/es/open-planner-studio/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-planner-studio-gantt.png">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open Planner Studio">
+  <meta name="twitter:description" content="Planificación de obra de código abierto con diagramas de Gantt, camino crítico, recursos y nivelación, líneas base y avance — y con IFC 4.3 nativo como…">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-planner-studio-gantt.png">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="open-planner-studio">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="stylesheet" href="/shared/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open Planner Studio",
+    "applicationCategory": "EngineeringApplication",
+    "applicationSubCategory": "Project Planning",
+    "operatingSystem": "Windows, macOS, Linux, Web",
+    "softwareVersion": "2026.9.0",
+    "url": "https://open-aec.com/open-planner-studio/",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-planner-studio/releases",
+    "license": "https://www.gnu.org/licenses/lgpl-3.0.html",
+    "description": "Open-source construction scheduling with Gantt charts, critical path (CPM), WBS, resource levelling, baselines and progress tracking. One task grid powers both the Gantt task list and the full Table view: keyboard cell navigation, multi-cell paste from a spreadsheet, dependency editing in the cell, and a per-task duration unit of days or hours. Opens Microsoft Project (.mpp) files natively — date-faithful to the minute across a 216-file test corpus, with split tasks, resource leveling, timephased assignments and manually scheduled tasks read from the file and drawn as interrupted bars in the Gantt. Uses IFC 4.3 as its native file format and ships a built-in MCP server so an AI assistant can read and edit the schedule. Runs on Windows, macOS and Linux and fully in the browser.",
+    "featureList": [
+      "AI-assistent via MCP",
+      "Gantt-diagrammen",
+      "Kritiek pad (CPM)",
+      "WBS & tabelweergave",
+      "Eigen taaktypen",
+      "Native IFC 4.3",
+      "MS Project (.mpp)-import",
+      "Resources & nivellering",
+      "Resource-bibliotheken",
+      "Bezettingsoverzicht over projecten",
+      "Baselines & voortgang",
+      "Kalenders & urenplanning",
+      "Automatisch opslaan",
+      "Desktop én browser",
+      "Uitwisseling",
+      "4D BIM-ready",
+      "Rapportage & printen",
+      "Handleiding in de app",
+      "Sneltoetsen & contextmenu's",
+      "14 talen",
+      "Lint-werkbalk"
+    ],
+    "screenshot": "https://open-aec.com/shared/assets/screenshots/open-planner-studio-gantt.png",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "availability": "https://schema.org/InStock"
+    },
+    "isAccessibleForFree": true,
+    "keywords": "project planning, construction scheduling, bouwplanning, werkvoorbereiding, Gantt, critical path, CPM, WBS, resource levelling, baseline, 4D BIM, IFC 4.3, MS Project import, .mpp import, MCP server, AI assistant, MS Project alternative, Primavera P6 alternative, Asta Powerproject alternative",
+    "sameAs": [
+      "https://github.com/OpenAEC-Foundation/open-planner-studio",
+      "https://open-planner-studio.open-aec.com/"
+    ],
+    "publisher": {
+      "@type": "Organization",
+      "name": "OpenAEC Foundation",
+      "url": "https://open-aec.com"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Kan ik bestanden uit Microsoft Project of Primavera P6 openen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Open Planner Studio opent MS Project (.mpp)-bestanden rechtstreeks — zonder Microsoft Project of een externe converter — en is daarbij datumgetrouw tot op de minuut over een testcorpus van 216 bestanden; gesplitste taken, nivelleringsvertraging, urenverdelingen en handmatig geplande taken worden gelezen en getoond. Daarnaast importeert en exporteert de app MS Project (.xml) en Primavera P6 (.xml) rechtstreeks, zonder tussenstap of conversietool. Ook IFC en CSV worden ondersteund."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Moet ik iets installeren?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Nee. De volledige applicatie draait in de browser, inclusief bestanden openen en opslaan, auto-save en crash-herstel. In Chromium-browsers (Chrome, Edge, Brave, Opera, Vivaldi) sla je met Ctrl+S over hetzelfde bestand op, net als op de desktop; in Firefox en Safari is er een terugval via de bestandskiezer. Wil je wel installeren, dan zijn er versies voor Windows, macOS en Linux."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "In welk bestandsformaat wordt mijn planning opgeslagen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In IFC 4.3, de open standaard van buildingSMART. Je planning ís een IFC-bestand — er is geen eigen, gesloten formaat. Daardoor blijft je data leesbaar buiten deze applicatie, en kan BIM-software je planning rechtstreeks naast een IFC-gebouwmodel leggen voor 4D-analyse van de bouwvolgorde."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat kan een AI-assistent precies met mijn planning?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sinds v2026.7.13 zit er een MCP-server in de app. Een AI-client zoals Claude Code kan daarmee je planning uitlezen — projectoverzicht, taken, kritiek pad, resources, histogram, kalenders en baselines — en ook aanpassen. Je zet de koppeling aan in het AI-tabblad en houdt de controle: er is een pauzeknop, een alleen-lezen-stand, automatische back-ups en een activiteitenpaneel dat elke aanroep laat zien."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat kost Open Planner Studio?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Niets. De applicatie is gratis en open source onder de LGPL-3.0-licentie. Geen abonnement, geen licentiekosten per gebruiker."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Op welke systemen draait het?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Windows (.exe), macOS (universal .dmg, zowel Intel als Apple Silicon) en Linux (.deb, .rpm, AppImage en snap). Daarnaast volledig in de browser."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Sluit het aan op de Nederlandse bouwpraktijk?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Je stelt bouw-specifieke kalenders in met feestdagen, bouwvak, vorstverlet, keuringsmomenten en fasering, en je plant tot op uurniveau. De interface is beschikbaar in veertien talen, waaronder Nederlands."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan ik zien welke taken de einddatum bepalen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. Het kritieke pad wordt automatisch berekend, met speling, bijna-kritiek werk, meerdere kritieke paden en deadline-analyse. Resources krijgen een histogram met automatische nivellering van overbelasting, en met meerdere baselines volg je afwijkingen ten opzichte van het oorspronkelijke plan."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    /* Zelfde contentbreedte als .download-section en .features hieronder,
+       anders staan er drie verschillende breedtes onder elkaar. */
+    .media-slider { max-width: 1152px; margin: 0 auto var(--sp-8); position: relative; }
+    /* Huisstijl-uitlichtblok, gelijk aan .explainer op de Pile Plan- en
+       Geotechniek-pagina: donker met amber accent, geen losse hex-waarden. */
+    .explainer {
+      background: var(--night-build);
+      border-radius: var(--radius-lg);
+      border-left: 4px solid var(--amber);
+      padding: var(--sp-8);
+    }
+    .explainer .section-label { color: var(--warm-gold); display: block; margin-bottom: var(--sp-3); }
+    .explainer h2 { color: var(--amber); font-family: var(--font-heading); font-size: 1.5rem; margin: 0 0 var(--sp-4); }
+    .explainer p { color: var(--scaffold-gray); font-size: 0.95rem; line-height: 1.7; margin: 0 0 var(--sp-4); max-width: 72ch; }
+    .explainer strong { color: var(--blueprint-white); font-weight: 600; }
+    .explainer ul { list-style: none; padding: 0; margin: 0 0 var(--sp-5); max-width: 72ch; }
+    .explainer ul li {
+      position: relative;
+      padding: var(--sp-2) 0 var(--sp-2) var(--sp-5);
+      color: var(--scaffold-gray);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+    .explainer ul li::before {
+      content: ''; position: absolute; left: 0; top: 14px;
+      width: 6px; height: 6px; border-radius: 50%; background: var(--amber);
+    }
+    /* Geen eigen achtergrond: de flex-track neemt de hoogte van de langste
+       slide, dus onder een bredere screenshot bleef er anders een donkere
+       balk staan. De screenshots zitten nu bovendien allemaal tussen 1.90 en
+       2.00, waardoor het verschil hooguit een paar pixels wit is. */
+    .slider-container { position: relative; overflow: hidden; border-radius: 12px; background: transparent; }
+    .slider-track { display: flex; transition: transform 0.4s ease; }
+    .slider-slide { min-width: 100%; }
+    /* height:auto is nodig zodra de img een height-attribuut heeft, anders
+       neemt de browser die letterlijk over in plaats van de verhouding. */
+    .slider-slide img { width: 100%; height: auto; display: block; border-radius: 12px; }
+    .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.25rem; display: flex; align-items: center; justify-content: center; z-index: 2; }
+    .slider-btn:hover { background: rgba(0,0,0,0.7); }
+    .slider-prev { left: 12px; }
+    .slider-next { right: 12px; }
+    .slider-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0; }
+    .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: #D6D3D1; border: none; cursor: pointer; }
+    .slider-dot.active { background: #D97706; }
+    .faq-list { max-width: 800px; margin: var(--sp-8) auto 0; }
+    .faq-item { border-bottom: 1px solid #E7E5E4; padding: var(--sp-6) 0; }
+    .faq-item:last-child { border-bottom: none; }
+    .faq-q {
+      font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem;
+      color: var(--deep-forge); margin-bottom: var(--sp-3);
+      display: flex; align-items: flex-start; gap: var(--sp-3);
+    }
+    .faq-q::before {
+      content: ''; display: block; width: 8px; height: 8px; border-radius: 50%;
+      background: var(--amber); margin-top: 8px; flex-shrink: 0;
+    }
+    .faq-a { padding-left: 20px; color: #57534E; font-size: 1rem; line-height: 1.7; }
+    .faq-a p { margin: 0; }
+    @media (max-width: 768px) {
+      /* var(--sp-8) rondom laat op 375px maar ~215px tekst over */
+      .explainer { padding: var(--sp-6) var(--sp-5); }
+      .explainer h2 { font-size: 1.25rem; }
+    }
+  </style>
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "nl",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/23749451"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/open-planner-studio/#webpage",
+        "url": "https://open-aec.com/open-planner-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "nl",
+        "dateModified": "2026-08-27",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/open-planner-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/open-planner-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Open Planner Studio",
+            "item": "https://open-aec.com/open-planner-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+  <meta name="i18n-static" content="es">
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/es/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu">
+      <ul class="nav-links">
+        <li><a href="/es/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Ecosistema</a></li>
+        <li><a href="/es/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Hoja de ruta</a></li>
+        <li><a href="/es/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Arquitectura</a></li>
+        <li><a href="/es/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Estadísticas</a></li>
+        <li><a href="/es/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Noticias</a></li>
+        <li><a href="/es/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Colaboradores</a></li>
+        <li><a href="/es/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">Apoyamos</a></li>
+        <li><a href="/es/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Estructura</a></li>
+        <li><a href="/es/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim" data-i18n-es="Contacto">Contacto</a></li>
+      </ul>
+      <a href="/feedback/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Comentarios</a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/open-planner-studio/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/open-planner-studio/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/open-planner-studio/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/open-planner-studio/" hreflang="tr">TR</a>
+        <a class="lang-btn active" data-lang="es" href="/es/open-planner-studio/" hreflang="es">ES</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20260728"></script>
+
+  <section class="hero">
+    <span class="section-label" data-i18n="header.label">Planificación de obra</span>
+    <h1 data-i18n="header.title">Open <span class="accent">Planner</span> Studio</h1>
+    <p class="tagline" data-i18n="header.desc">Planificación de obra de código abierto con diagramas de Gantt, camino crítico, recursos y nivelación, líneas base y avance — y con IFC 4.3 nativo como formato de archivo. Una sola tabla de tareas para toda tu planificación: junto al Gantt y como vista de tabla completa, editada como una hoja de cálculo. También abre archivos de MS Project (.mpp) de forma nativa. En tu escritorio y directamente en el navegador.</p>
+    <div class="btn-group">
+      <a href="#download" class="btn btn-primary btn-lg" data-i18n="header.downloadBtn" data-opl-ver>Descargar v2026.9.0</a>
+      <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-i18n="header.demoBtn">Abrir en tu navegador</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-planner-studio" class="btn btn-ghost btn-lg" data-i18n="header.sourceBtn">Ver código fuente</a>
+    </div>
+  </section>
+
+    <section class="section" style="padding: 0 var(--sp-6);"><div class="container"><div class="media-slider">
+      <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-planner-studio-gantt.png" alt="Open Planner Studio — Gantt-planning met WBS-structuur, relatiepijlen en voortgangsbalken, drie projecten tegelijk open en het eigenschappenpaneel met CPM-resultaat rechts" width="1920" height="1048" decoding="async" fetchpriority="high"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-planner-studio-tabel.png" alt="Open Planner Studio — de volledige tabelweergave met WBS, duur, geplande start en einde, taaktype, kritiek pad, totale speling en voortgang naast elkaar, met drie projecten open en het eigenschappenpaneel rechts" width="1920" height="1048" decoding="async" loading="lazy"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-planner-studio-mpp-import.png" alt="Open Planner Studio — Gantt met werkonderbrekingen als losse blokken met verbindingslijn, zoals gelezen uit een MS Project (.mpp)-bestand, met kritiek pad en eigenschappenpaneel" width="1920" height="1048" decoding="async" loading="lazy"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-planner-studio-resource-library.png" alt="Open Planner Studio — resource-bibliotheek die als bron boven meerdere projecten staat, met arbeid, materieel en onderaannemers" width="1920" height="1048" decoding="async" loading="lazy"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-planner-studio-occupancy.png" alt="Open Planner Studio — bezettingsoverzicht van de resource-bibliotheek over meerdere geopende projecten, met dubbelgeboekte dagen gemarkeerd en een histogram per resource" width="1920" height="1048" decoding="async" loading="lazy"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-planner-studio-histogram.png" alt="Open Planner Studio — resource-histogram onder de Gantt, met overallocatie en nivellering" width="1920" height="1048" decoding="async" loading="lazy"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-planner-studio-rapport.png" alt="Open Planner Studio — Rapport-tab met papierformaat, lettergrootte en afdrukvoorbeeld van de Gantt" width="1920" height="1048" decoding="async" loading="lazy"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-planner-studio-handleiding.png" alt="Open Planner Studio — ingebouwde handleiding met quick-start en praktijkgidsen, waaronder het koppelen van een AI-assistent" width="1644" height="927" decoding="async" loading="lazy"></div>
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideMove(-1)">&lsaquo;</button>
+        <button class="slider-btn slider-next" onclick="slideMove(1)">&rsaquo;</button>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div></div></section>
+
+  <section class="section" style="padding: var(--sp-6) var(--sp-6);"><div class="container">
+    <div class="explainer">
+      <span class="section-label" data-i18n="whatsnew.label">Nuevo en v2026.9.0 · se buscan testers</span>
+      <h2 data-i18n="whatsnew.title">Una sola tabla para toda tu planificación — y la editas como una hoja de cálculo</h2>
+      <p data-i18n="whatsnew.desc">La lista de tareas junto al Gantt y la vista de Tabla completa ahora son <strong>la misma tabla</strong>: las mismas columnas, los mismos atajos, la misma forma de editar — trabajes donde trabajes. Sigue siendo fluida con miles de tareas, te mueves de celda en celda con el teclado y pegas bloques enteros desde tu hoja de cálculo de una sola vez. Las dependencias ahora se editan directamente en la celda; la pestaña de Relaciones separada había quedado redundante y se ha retirado.</p>
+      <ul data-i18n="whatsnew.list"><li><strong>Una tabla, dos lugares</strong> — las mismas columnas, atajos y ediciones junto al Gantt y en la vista de Tabla. Tu elección de columnas, anchos y orden se recuerda por lugar.</li><li><strong>Pega desde tu hoja de cálculo</strong> — varias celdas a la vez, aplicadas por completo o no aplicadas. Los valores siguen siendo valores en lugar de aplanarse a texto, y las celdas de solo lectura se omiten.</li><li><strong>Dependencias en la celda</strong> — edita relaciones y salta a la tarea vinculada sin salir de la tabla. Por ello la pestaña de Relaciones separada se ha retirado.</li><li><strong>Días y horas</strong> — eliges por tarea si su duración cuenta en días o en horas. Una tarea en horas consume minutos de trabajo reales en su propio calendario, incluso cuando ese calendario tiene una pausa.</li><li><strong>También nuevo:</strong> tus propios tipos de tarea, informes en A2 con superposición de línea base y línea de estado, guardado automático en tu propio archivo y una interfaz que puede seguir el tema del sistema.</li></ul>
+      <p data-i18n="whatsnew.testers">Buscamos <strong>testers</strong>: planificadores de obra, programadores, jefes de proyecto y coordinadores BIM. Prueba Open Planner Studio directamente en tu navegador y cuéntanos qué te parece — tus comentarios ayudan a definir su rumbo.</p>
+      <div style="display:flex; gap:var(--sp-3); flex-wrap:wrap; margin-top:var(--sp-6);">
+        <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="whatsnew.ctaDemo">Prueba la demo en vivo →</a>
+        <a href="mailto:maarten@open-aec.com?subject=Tester%20Open%20Planner%20Studio" class="btn btn-ghost" data-i18n="whatsnew.ctaJoin">Únete como tester</a>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section" id="download"><div class="container">
+    <div class="download-section">
+      <h3 data-i18n="download.title" data-opl-ver>Descargar v2026.9.0</h3>
+      <div class="download-grid">
+        <div class="download-item"><div class="os">Windows</div><div class="size" data-opl-size="windows">7.3 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_x64-setup.exe" data-opl-dl="windows" class="btn btn-primary btn-sm">Download .exe</a></div>
+        <div class="download-item"><div class="os">macOS (universal)</div><div class="size" data-opl-size="macos">15.4 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_universal.dmg" data-opl-dl="macos" class="btn btn-primary btn-sm">Download .dmg</a></div>
+        <div class="download-item"><div class="os">Linux (deb)</div><div class="size" data-opl-size="linux-deb">8.3 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.deb" data-opl-dl="linux-deb" class="btn btn-primary btn-sm">Download .deb</a></div>
+        <div class="download-item"><div class="os">Linux (rpm)</div><div class="size" data-opl-size="linux-rpm">8.3 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio-2026.9.0-1.x86_64.rpm" data-opl-dl="linux-rpm" class="btn btn-primary btn-sm">Download .rpm</a></div>
+        <div class="download-item"><div class="os">Linux (AppImage)</div><div class="size" data-opl-size="linux-appimage">82.2 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.AppImage" data-opl-dl="linux-appimage" class="btn btn-primary btn-sm">Download AppImage</a></div>
+        <div class="download-item"><div class="os">Linux (snap)</div><div class="size" data-opl-size="linux-snap">7.5 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/open-planner-studio_2026.9.0_amd64.snap" data-opl-dl="linux-snap" class="btn btn-primary btn-sm">Download .snap</a></div>
+      </div>
+      <p style="color:var(--scaffold-gray); font-size:0.85rem; margin-top:var(--sp-4);" data-i18n="download.browserNote">¿Prefieres no instalar nada? Open Planner Studio también funciona <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener" style="color:var(--amber);">completamente en tu navegador</a> — incluyendo abrir y guardar archivos.</p>
+    </div>
+  </div></section>
+
+  <section class="section section-alt"><div class="container">
+    <h2 data-i18n="features.heading">Funciones</h2>
+    <div class="features" style="margin-top:var(--sp-8)">
+      <div class="feature">
+        <h4 data-i18n="features.ai.title">Asistente de IA vía MCP</h4>
+        <p data-i18n="features.ai.desc">La app incorpora un servidor MCP, de modo que un cliente de IA como Claude Code puede leer y editar tu planificación directamente. Actívalo en la pestaña IA, con botón de pausa, modo de solo lectura y copias de seguridad automáticas.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.gantt.title">Diagramas de Gantt</h4>
+        <p data-i18n="features.gantt.desc">Gantt interactivo en HTML5 Canvas con arrastrar y soltar, zoom y navegación por la línea de tiempo. Arrastra una selección completa en vertical, contrae los días no laborables fuera de la línea de tiempo y selecciona con Ctrl+clic. Números de semana en la cabecera.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.cpm.title">Camino crítico (CPM)</h4>
+        <p data-i18n="features.cpm.desc">Cálculo automático del camino crítico con holguras, trabajo casi crítico, múltiples caminos críticos y análisis de plazos. Una vista de "fechas tal como se registraron" muestra un archivo exactamente como registró sus propias fechas, cuando estas difieren del recálculo.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.wbs.title">WBS &amp; vista de tabla</h4>
+        <p data-i18n="features.wbs.desc">Estructura jerárquica de tareas con capítulos plegables. Junto al Gantt y en la vista de Tabla completa trabajas en la misma tabla: de celda en celda con el teclado, bloques pegados desde tu hoja de cálculo, dependencias en la celda, columnas que eliges y fijas, filas que arrastras. Sigue siendo fluida incluso con miles de tareas.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.tasktypes.title">Tus propios tipos de tarea</h4>
+        <p data-i18n="features.tasktypes.desc">Además de los tipos integrados puedes definir tus propios tipos de tarea. Son reutilizables en tu instalación, y su nombre e identidad viajan con el proyecto — así lo que es una tarea sigue siendo legible tras un intercambio IFC o en otra máquina.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.autosave.title">Guardado automático</h4>
+        <p data-i18n="features.autosave.desc">Una vez que tu proyecto tiene un archivo en el que la app puede escribir, puedes hacer que se guarde periódicamente — sin ningún diálogo. Se mantiene deliberadamente separado de la recuperación tras fallos: un documento que nunca se ha guardado jamás se sobrescribe silenciosamente, y la instantánea de recuperación sigue funcionando en paralelo.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.ifc.title">IFC 4.3 nativo</h4>
+        <p data-i18n="features.ifc.desc">Tu planificación <em>es</em> un archivo IFC (estándar de buildingSMART). Con un editor de código IFC integrado para generar y aplicar.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.resources.title">Recursos &amp; nivelación</h4>
+        <p data-i18n="features.resources.desc">Mano de obra, maquinaria y subcontratistas con histograma y nivelación automática de la sobreasignación. Mueve asignaciones conservando unidades y curva.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.library.title">Bibliotecas de recursos</h4>
+        <p data-i18n="features.library.desc">Comparte un mismo conjunto de recursos entre varios proyectos. La biblioteca es la fuente, el proyecto muestra lo que realmente utiliza, y las desviaciones se señalan para que puedas resolverlas. El resumen de ocupación suma todos los proyectos abiertos — como tabla y como histograma — y marca los días en que la carga comprometida supera la capacidad disponible.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.baselines.title">Líneas base &amp; avance</h4>
+        <p data-i18n="features.baselines.desc">Captura múltiples líneas base y registra el avance con una fecha de estado, inicio real y una línea de progreso depurada.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.calendars.title">Calendarios &amp; planificación por horas</h4>
+        <p data-i18n="features.calendars.desc">Calendarios específicos de la construcción: festivos, cierre por vacaciones de obra, parada por heladas, momentos de inspección y fases, además de una pausa configurable en el patrón diario. Por cada tarea eliges si la duración cuenta en días o en horas; una tarea en horas consume minutos de trabajo reales en su propio calendario en lugar de convertirse silenciosamente en días completos.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.browser.title">Escritorio y navegador</h4>
+        <p data-i18n="features.browser.desc">Funciona de forma nativa en Windows, macOS y Linux, pero también completamente en el navegador — incluyendo abrir, guardar, autoguardado y recuperación tras fallos.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.exchange.title">Intercambio</h4>
+        <p data-i18n="features.exchange.desc">Importa y exporta IFC, CSV, MS Project (.xml) y Primavera P6 (.xml) — sin pasos intermedios ni herramientas de conversión.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.mpp.title">Importación de MS Project (.mpp)</h4>
+        <p data-i18n="features.mpp.desc">Abre archivos .mpp de forma nativa, sin Microsoft Project ni conversores — fiel a las fechas al minuto en un corpus de prueba de 216 archivos. Las tareas divididas, la nivelación de recursos, las asignaciones distribuidas en el tiempo y las tareas programadas manualmente se leen y se muestran como barras interrumpidas en el Gantt, la vista previa de impresión y la exportación a PDF; no se pierde nada del archivo original, incluso después de editarlo.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.bim4d.title">Preparado para BIM 4D</h4>
+        <p data-i18n="features.bim4d.desc">Tu planificación es un archivo IFC 4.3 abierto. El software BIM puede colocarla directamente junto a tu modelo del edificio para un análisis 4D de la secuencia constructiva, sin necesidad de conversión.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.reporting.title">Informes &amp; impresión</h4>
+        <p data-i18n="features.reporting.desc">Vista previa de impresión en vivo en la cinta y exportación a un PDF real de alta resolución (±220 DPI). Papel hasta A2, superposición de línea base, línea de estado o de avance, barras coloreadas por tarea, categoría o recurso, y días no laborables que puedes comprimir. Tamaño de fuente configurable, una cabecera que se repite en cada página y una línea de tiempo que puede abarcar varias páginas. Tus ajustes se recuerdan.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.docs.title">Manual dentro de la app</h4>
+        <p data-i18n="features.docs.desc">Pulsa F1 para un manual sin conexión, disponible en los catorce idiomas: inicio rápido, quince guías prácticas — incluyendo bibliotecas de recursos y la conexión de un asistente de IA — y dieciséis páginas de referencia, además de ocho proyectos de ejemplo para practicar.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.shortcuts.title">Atajos &amp; menús contextuales</h4>
+        <p data-i18n="features.shortcuts.desc">Resumen completo con Ctrl+/ y menús de clic derecho completos en la fila de tarea, la barra del Gantt, el lienzo y la cabecera de banda. Notas por tarea con una lista de verificación marcable.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.multilingual.title">14 idiomas</h4>
+        <p data-i18n="features.multilingual.desc">Nederlands, English, Fran&ccedil;ais, Deutsch, Espa&ntilde;ol, Italiano, Portugu&ecirc;s, Polski, T&uuml;rk&ccedil;e, 中文, 日本語, 한국어 y compatibilidad RTL para العربية y فارسی.</p>
+      </div>
+      <div class="feature">
+        <h4 data-i18n="features.ribbon.title">Cinta de opciones</h4>
+        <p data-i18n="features.ribbon.desc">Cinta familiar de estilo Office con pestañas: Inicio, Planificación, Recursos, Vista, Ajustes, Tabla, IFC e Informe — además de una pestaña IA cuando el modo IA está activado. Las acciones de relaciones están en los propios grupos de tareas.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <h2 data-i18n="tech.heading">Tecnología</h2>
+    <div class="features" style="margin-top:var(--sp-8)">
+      <div class="feature"><h4 data-i18n="tech.tauri.title">Tauri 2</h4><p data-i18n="tech.tauri.desc">App de escritorio nativa con backend en Rust para Windows, macOS y Linux.</p></div>
+      <div class="feature"><h4 data-i18n="tech.react.title">React 19 + TypeScript</h4><p data-i18n="tech.react.desc">UI basada en componentes con Zustand + Immer para la gestión del estado.</p></div>
+      <div class="feature"><h4 data-i18n="tech.canvas.title">HTML5 Canvas 2D</h4><p data-i18n="tech.canvas.desc">Renderizado del Gantt. TailwindCSS 4 para los estilos, Vite 7 como build.</p></div>
+    </div>
+  </div></section>
+
+  <section class="section section-alt" id="faq"><div class="container">
+    <h2 data-i18n="faq.heading">Preguntas frecuentes</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq.import.q">¿Puedo abrir archivos de Microsoft Project o Primavera P6?</div>
+        <div class="faq-a"><p data-i18n="faq.import.a">Sí. Open Planner Studio abre archivos de MS Project (.mpp) de forma nativa — sin necesidad de Microsoft Project ni de un conversor externo — y es fiel a las fechas al minuto en un corpus de prueba de 216 archivos; las tareas divididas, el retraso de nivelación, las asignaciones distribuidas en el tiempo y las tareas programadas manualmente se leen y se muestran. La app también importa y exporta MS Project (.xml) y Primavera P6 (.xml) directamente, sin pasos intermedios ni herramientas de conversión. IFC y CSV también son compatibles.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq.browser.q">¿Tengo que instalar algo?</div>
+        <div class="faq-a"><p data-i18n="faq.browser.a">No. La aplicación completa funciona en el navegador, incluyendo abrir y guardar archivos, autoguardado y recuperación tras fallos. En navegadores Chromium (Chrome, Edge, Brave, Opera, Vivaldi) Ctrl+S guarda sobre el mismo archivo, igual que en el escritorio; Firefox y Safari recurren al selector de archivos. Si aun así quieres instalar, hay compilaciones para Windows, macOS y Linux.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq.formaat.q">¿En qué formato de archivo se guarda mi planificación?</div>
+        <div class="faq-a"><p data-i18n="faq.formaat.a">IFC 4.3, el estándar abierto de buildingSMART. Tu planificación *es* un archivo IFC — no hay ningún formato propietario y cerrado. Así tus datos siguen siendo legibles fuera de esta aplicación, y el software BIM puede colocar tu planificación directamente junto a un modelo IFC del edificio para un análisis 4D de la secuencia constructiva.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq.ai.q">¿Qué puede hacer exactamente un asistente de IA con mi planificación?</div>
+        <div class="faq-a"><p data-i18n="faq.ai.a">Desde la v2026.7.13 la app incluye un servidor MCP integrado. Un cliente de IA como Claude Code puede leer tu planificación a través de él — resumen del proyecto, tareas, camino crítico, recursos, histograma, calendarios y líneas base — y también editarla. Activas el puente en la pestaña IA y mantienes el control: hay un botón de pausa, un modo de solo lectura, copias de seguridad automáticas y un panel de actividad que lista cada llamada realizada por el asistente.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq.prijs.q">¿Cuánto cuesta Open Planner Studio?</div>
+        <div class="faq-a"><p data-i18n="faq.prijs.a">Nada. La aplicación es gratuita y de código abierto bajo la licencia LGPL-3.0. Sin suscripción, sin cuotas de licencia por puesto.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq.platforms.q">¿En qué sistemas funciona?</div>
+        <div class="faq-a"><p data-i18n="faq.platforms.a">Windows (.exe), macOS (.dmg universal, tanto Intel como Apple Silicon) y Linux (.deb, .rpm, AppImage y snap). Y además completamente en el navegador.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq.bouwpraktijk.q">¿Se adapta a la práctica de la construcción?</div>
+        <div class="faq-a"><p data-i18n="faq.bouwpraktijk.a">Sí. Configuras calendarios específicos de la construcción con festivos, cierre por vacaciones de obra, parada por heladas, momentos de inspección y fases, y puedes planificar hasta el nivel de horas. La interfaz está disponible en catorce idiomas.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" data-i18n="faq.analyse.q">¿Puedo ver qué tareas determinan la fecha final?</div>
+        <div class="faq-a"><p data-i18n="faq.analyse.a">Sí. El camino crítico se calcula automáticamente, con holguras, trabajo casi crítico, múltiples caminos críticos y análisis de plazos. Los recursos tienen un histograma con nivelación automática de la sobreasignación, y múltiples líneas base te permiten seguir las desviaciones respecto al plan original.</p></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section style="background: var(--concrete); padding: 3rem 1.5rem; text-align: center;">
+    <div style="max-width: 900px; margin: 0 auto; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-i18n="cta.demo">Demo en vivo &rarr;</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-i18n="cta.releases">Todas las versiones &rarr;</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-planner-studio" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-i18n="cta.github">GitHub &rarr;</a>
+    </div>
+  </section>
+
+  <!-- Release Notes (shared component) -->
+  <div data-release-notes="open-planner-studio" data-release-notes-latest>
+<!-- rn:start Gegenereerd door scripts/build-release-notes-static.js — niet met de hand bewerken -->
+<section class="rn-section"><div class="rn-container">
+<div class="rn-header-block">
+<h2 class="rn-title">Release notes</h2>
+<p class="rn-desc"><strong>v2026.9.0</strong> &middot; 2026-09-02</p>
+</div>
+<div class="rn-groups"><div class="rn-group latest expanded"><div class="rn-group-body">
+<div class="rn-changelog"><p>This is a substantial planning-workflow release: 287 commits since v2026.8.1 concentrate on a single, accessible task grid; explicit day and hour work; more capable reporting; safer extension handling; and reliable saving and resource leveling. The headline features are backed by browser, planning, library and MCP regression coverage rather than being isolated interface changes.</p>
+<h4>Added</h4>
+<ul><li><strong>One virtual, accessible task grid now powers both the Gantt&#39;s task list and the full Table view.</strong> It virtualizes large task sets while keeping keyboard cell navigation, selection, editing, pinning and row operations consistent between the two surfaces. The grid has a complete column registry, a column chooser with recently used fields, and personal per-surface column and scroll preferences.</li><li><strong>Spreadsheet-style task editing is now available in that grid.</strong> Multi-cell TSV copy/paste is planned and applied atomically, preserves supported values instead of flattening them to text, repeats a pasted tile where appropriate, and skips read-only cells. Task assignments, scheduling and progress fields can be edited from the same surface.</li><li><strong>Dependencies can be edited directly in a task-grid cell.</strong> The relation editor supports the relation details and linked-task navigation needed by the former dedicated Relationships surface; it also preserves external relation tokens rather than turning them into unstable local links.</li><li><strong>Projects can define and use personal task types.</strong> A type is reusable on the local installation while its stable identity and readable name are stored with the project, so tasks remain intelligible after IFC exchange or on another installation.</li><li><strong>Task duration has an explicit per-task unit: Days or Hours.</strong> Mixed day/hour projects keep the unit that the planner chose; an hour task consumes real working minutes in its effective calendar instead of being silently converted to a day count. The same unit survives IFC, MSPDI and P6 round-trips; CSV remains day-based and does not claim to preserve it.</li><li><strong>Calendars can now express a configurable intra-day break from their simple shift pattern.</strong> The resulting working-time bands are used by hour scheduling, resource loading and leveling; users can therefore model, for example, a lunch break without manually constructing every weekday band.</li><li><strong>The resource-leveling core gained controlled interruption and shared-capacity foundations.</strong> It can insert calendar-valid pauses into work (including hour-mode tasks), level a chosen task scope while treating the rest as fixed load, apply per-task overrun ceilings, and take an external pool ledger into account. A headless resource-library distributor can use that ledger to place document inputs sequentially against their remaining shared capacity; this release does not yet expose that cross-document distributor as a user-facing screen or write-back action.</li><li><strong>Gantt reports gained clearer planning controls.</strong> Reports can use A2 paper, show a baseline overlay, follow the current filtered/grouped view, display a status or progress line, colour bars by task/category/resource/automatic mode, and optionally compress non-working days. The compressed timeline also uses alternate week bands so adjacent weeks remain readable.</li><li><strong>Saved filter presets</strong> are available from the filter workflow, and the resource panel can limit its displayed resources to the current task selection.</li><li><strong>Document-bound AutoSave is now available next to Save.</strong> Once a project has a known writable IFC file, the user may enable periodic writes back to that file. It deliberately remains separate from crash recovery: unsaved documents are never overwritten and recovery snapshots continue to protect changed open documents.</li><li><strong>The interface can now follow the operating system or browser colour scheme.</strong> A new opt-in switch in Settings and the welcome dialog resolves the system preference to Light or Dark, reacts live while the app is open, and keeps the resolved theme through the first paint so the transition does not reintroduce a startup flash. High Contrast remains an explicit manual choice.</li></ul>
+<h4>Changed</h4>
+<ul><li><strong>The Table view is no longer a separate editor with different interaction rules.</strong> It reuses the Gantt task-grid core, and the old Relations tab was retired after relationship editing and navigation reached parity in both grid surfaces.</li><li><strong>The Gantt is easier to navigate and reposition.</strong> Arrow-key navigation now works in the Gantt and histogram, bars can be moved vertically to another task row, the ribbon exposes Fit to project, and hour-bar dragging follows calendar working bands rather than a purely elapsed-time grid.</li><li><strong>The report preview was redesigned as a bounded, progressive page renderer.</strong> It renders pages locally at a selected quality, keeps a compact control strip and scroll position, and avoids creating one unbounded set of data URLs for a large report.</li><li><strong>Undo/redo, document activation and grid preferences now use a session event model with document-aware boundaries.</strong> This keeps a document&#39;s history from being offered against another open document while still allowing deliberate personal grid-preference changes to be undone.</li><li><strong>Extensions and their stored catalog data are now validated before they can become runnable.</strong> Invalid manifests, JavaScript, ZIP packages and corrupt IndexedDB records are classified and shown in quarantine instead of being treated as installed extensions; repaired storage replaces the matching quarantine entry atomically.</li><li><strong>The post-update experience is now driven by a local, versioned highlight catalog.</strong> Its fixed primary/secondary-card structure, localized copy and measured release statistics have explicit verification, so an update can show curated product changes without depending on a live release page.</li></ul>
+<h4>Fixed</h4>
+<ul><li><strong>Hour-mode scheduling and leveling now measure work on the task&#39;s real calendar.</strong> Fixes cover split tasks, calendar-aware delays and lags, effective hour bands, non-working gaps and the distinction between calendar feasibility and capacity. Started and completed tasks are correctly retained as fixed load instead of being shifted by leveling.</li><li><strong>The task grid received a focused usability and accessibility repair pass.</strong> Tab, Shift+Tab and Escape no longer trap keyboard users; AltGr and macOS Option can still start cell editing; the active cell follows the selected task; dropdowns show their full choices; and selection/drop indicators remain visible above cells.</li><li><strong>Grid geometry now remains usable at narrow sizes.</strong> Column resizing and dragging cover the intended interaction area, the chooser is constrained to the window, the last header is not obscured by its add control, and the Gantt/table splitter reserves sensible column space.</li><li><strong>Report preview quality switches no longer race stale image work.</strong> Pages are rasterized and cached locally with per-page budgets, object URLs are replaced safely, and the preview remains sharp without growing without bound on long reports.</li><li><strong>The MPP reader stops immediately when its monthly cursor cannot advance</strong>, preventing a stationary cursor from continuing through an invalid month traversal.</li><li><strong>Undo and snapshot handling now crosses Immer&#39;s draft boundary explicitly.</strong> The shared helper preserves the distinction between a producer&#39;s original state and its current draft, with a behavioral regression test for the invariant. Immer is also pinned to the exact reviewed version so local dependency updates cannot silently test different state semantics than CI.</li><li><strong>Collapsed ribbon groups retain readable labels</strong>, and long tooltips wrap instead of escaping the application window.</li></ul>
+<h4>Documentation</h4>
+<ul><li>Added English and Dutch in-app guides for personal task types, and updated the calendar/hour planning guide to describe explicit units, safe conversion, working-time bands and breaks.</li><li>Updated the English and Dutch recovery guide to distinguish always-on crash recovery from the opt-in writable-file AutoSave switch, including its browser permission boundary.</li><li>Expanded the report, resource/histogram, filter and shortcut guides to cover the new controls and navigation. The release also adds regression documentation for the shared grid, Gantt interaction boundaries, extension validation and release-highlight contract.</li></ul></div>
+</div></div></div>
+<p class="rn-viewall"><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases" target="_blank" rel="noopener">Bekijk alle releases op GitHub &rarr;</a></p>
+</div></section>
+<!-- rn:end -->
+</div>
+  <script src="/shared/release-notes.js?v=20260728"></script>
+
+  <footer class="footer"><div class="footer-container">
+    <a href="/es/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <span data-i18n="footer.slogan">Build free. Build together.</span>
+    <a href="https://github.com/OpenAEC-Foundation">GitHub</a>
+  </div></footer>
+  <script>
+    (function(){
+      const track = document.getElementById('sliderTrack');
+      const dots = document.getElementById('sliderDots');
+      if (!track || !dots) return;
+      const slides = track.children.length;
+      let current = 0;
+      for(let i=0;i<slides;i++){
+        const d = document.createElement('button');
+        d.className = 'slider-dot' + (i===0?' active':'');
+        d.onclick = ()=>slideTo(i);
+        dots.appendChild(d);
+      }
+      // De track schuift met transform, en daar reageert loading="lazy" niet
+      // op: de browser blijft de oorspronkelijke layoutpositie gebruiken en
+      // laadt de afbeelding nooit, waardoor de slide leeg blijft. Daarom de
+      // doelslide en zijn buur hier zelf ophalen vlak voordat ze in beeld
+      // komen. De eerste slide staat op eager en is er dus altijd meteen.
+      function laad(i){
+        const img = track.children[(i+slides)%slides]?.querySelector('img');
+        if (img && img.loading === 'lazy') img.loading = 'eager';
+      }
+      window.slideMove = function(dir){slideTo(current+dir);};
+      window.slideTo = function(i){
+        current = (i+slides)%slides;
+        laad(current); laad(current+1);
+        track.style.transform = 'translateX(-'+current*100+'%)';
+        dots.querySelectorAll('.slider-dot').forEach((d,idx)=>d.classList.toggle('active',idx===current));
+      };
+      laad(1); // buur van de startslide alvast klaarzetten
+    })();
+  </script>
+  <script>
+  // Always-latest downloads + live version label for Open Planner Studio.
+  // Progressive enhancement: without JS the buttons already point at the
+  // newest release assets baked into the HTML above.
+  (function () {
+    var REPO = 'OpenAEC-Foundation/open-planner-studio';
+    var LATEST = 'https://github.com/' + REPO + '/releases/latest';
+    var state = { tag: null };
+    var match = {
+      windows: /_x64-setup\.exe$/i,
+      macos: /_universal\.dmg$/i,
+      'linux-deb': /_amd64\.deb$/i,
+      'linux-rpm': /\.x86_64\.rpm$/i,
+      'linux-appimage': /_amd64\.AppImage$/i,
+      'linux-snap': /_amd64\.snap$/i
+    };
+
+    // Re-apply the version into the i18n-managed labels. Runs on load and again
+    // whenever i18n rewrites them (language switch) via the observer below.
+    function patch() {
+      if (!state.tag) return;
+      document.querySelectorAll('[data-opl-ver]').forEach(function (el) {
+        var want = el.innerHTML.replace(/v\d+\.\d+\.\d+/g, state.tag);
+        if (el.innerHTML !== want) el.innerHTML = want;
+      });
+    }
+
+    function fmtSize(bytes) {
+      return (bytes / 1048576).toFixed(1) + ' MB';
+    }
+
+    function apply(rel) {
+      state.tag = rel.tag_name;
+      var assets = rel.assets || [];
+      Object.keys(match).forEach(function (key) {
+        var re = match[key];
+        var hit = assets.filter(function (x) { return re.test(x.name); })[0];
+        document.querySelectorAll('[data-opl-dl="' + key + '"]').forEach(function (a) {
+          a.href = hit ? hit.browser_download_url : LATEST;
+        });
+        if (hit) {
+          document.querySelectorAll('[data-opl-size="' + key + '"]').forEach(function (el) {
+            el.textContent = fmtSize(hit.size);
+          });
+        }
+      });
+      patch();
+    }
+
+    function start() {
+      try {
+        var obs = new MutationObserver(patch);
+        document.querySelectorAll('[data-opl-ver]').forEach(function (el) {
+          obs.observe(el, { childList: true, subtree: true, characterData: true });
+        });
+      } catch (e) {}
+
+      fetch('https://api.github.com/repos/' + REPO + '/releases/latest')
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (rel) { if (rel && rel.tag_name) apply(rel); })
+        .catch(function () {});
+    }
+
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+    else start();
+  })();
+</script>
+<script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>
