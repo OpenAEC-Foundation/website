@@ -129,4 +129,20 @@ for (const cls of ['.rn-tl-plain', '.rn-tl-plain-list']) {
   assert.ok(withChanges >= 1, 'geen enkele oudere release met punten in de pre-render');
 }
 
+// 8. De tijdlijn-iconen krijgen expliciete afmetingen mee. Zonder die
+//    attributen renderen ze paginabreed zodra shared/style.css uit de cache
+//    achterloopt — de link daarnaartoe heeft geen versie-query.
+for (const page of PAGES) {
+  const html = read(page);
+  const icons = html.match(/<svg class="rn-tl-icon"[^>]*>/g) || [];
+  assert.ok(icons.length, `${page}: geen tijdlijn-iconen in de pre-render`);
+  for (const svg of icons) {
+    assert.ok(/ width="20"/.test(svg) && / height="20"/.test(svg), `${page}: rn-tl-icon zonder width/height`);
+  }
+}
+assert.ok(
+  read('shared/release-notes.js').includes('<svg class="rn-tl-icon" width="20" height="20"'),
+  'shared/release-notes.js: rn-tl-icon zonder width/height',
+);
+
 console.log('Release timeline: OK');
