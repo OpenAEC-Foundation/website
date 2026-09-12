@@ -592,7 +592,7 @@
 
   function iconSvg(name) {
     const body = ICON_PATHS[name] || '<circle cx="12" cy="12" r="4"/>';
-    return `<svg class="rn-tl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
+    return `<svg class="rn-tl-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
   }
 
   function formatNumber(n) {

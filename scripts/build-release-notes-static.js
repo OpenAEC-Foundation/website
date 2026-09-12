@@ -128,7 +128,7 @@ const ICON_PATHS = {
 };
 
 const iconSvg = (name) =>
-  `<svg class="rn-tl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${ICON_PATHS[name] || '<circle cx="12" cy="12" r="4"/>'}</svg>`;
+  `<svg class="rn-tl-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${ICON_PATHS[name] || '<circle cx="12" cy="12" r="4"/>'}</svg>`;
 
 const slug = (s) => String(s).replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-|-$/g, '');
 
