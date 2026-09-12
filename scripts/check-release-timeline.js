@@ -69,4 +69,64 @@ for (const cls of ['.rn-timeline', '.rn-tl-card', '.rn-tl-primary-title', '.rn-t
   assert.ok(css.includes(cls), `shared/style.css mist ${cls}`);
 }
 
+// 7. Releases van vóór de hoogtepunten tonen hun eerste vijf bullets als
+//    platte tekst. Een release met changes moet er dus minstens één laten
+//    zien, en hoogstens vijf zonder dat er een "Meer"-knop bij staat.
+for (const cls of ['.rn-tl-plain', '.rn-tl-plain-list']) {
+  assert.ok(css.includes(cls), `shared/style.css mist ${cls}`);
+}
+
+{
+  const plainTags = [];
+  for (const group of notes.groups || []) {
+    for (const rel of group.releases || []) {
+      if (highlights.releases.some((h) => h.tag === rel.tag)) continue;
+      plainTags.push(rel);
+    }
+  }
+  assert.ok(plainTags.length, 'geen enkele release zonder hoogtepunten — check 7 test niets');
+
+  const slug = (s) => String(s).replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-|-$/g, '');
+  const html = read(`${REPO}/index.html`);
+  const pre = html.slice(html.indexOf('<!-- rn:start'), html.indexOf('<!-- rn:end -->'));
+  assert.ok(pre.includes('<ul class="rn-tl-plain-list">'), 'pre-render mist de platte puntenlijst');
+
+  let withChanges = 0;
+  for (const rel of plainTags) {
+    const dedup = [...new Set((rel.changes || []).map((c) => String(c).trim()).filter(Boolean))];
+    // De pre-render zet elk tijdlijn-item op zijn eigen regel, dus de regel
+    // met deze tag ís het hele item.
+    const item = pre.split('\n').find((l) => l.includes(`<span class="rn-tl-version">${rel.tag}</span>`));
+    assert.ok(item, `pre-render mist release ${rel.tag}`);
+    const bullets = (item.match(/<li>/g) || []).length;
+    if (!dedup.length) {
+      assert.equal(bullets, 0, `${rel.tag}: heeft geen changes maar toont toch punten`);
+      continue;
+    }
+    withChanges++;
+    const shown = Math.min(dedup.length, 5);
+    assert.ok(bullets >= 1, `${rel.tag}: toont geen enkel punt terwijl er ${dedup.length} zijn`);
+    assert.ok(
+      item.includes(`<ul class="rn-tl-plain-list">`),
+      `${rel.tag}: mist de platte puntenlijst`,
+    );
+    const listPart = item.split('<ul class="rn-tl-plain-list">')[1].split('</ul>')[0];
+    assert.equal(
+      (listPart.match(/<li>/g) || []).length,
+      shown,
+      `${rel.tag}: toont niet de eerste ${shown} punten`,
+    );
+    const hasMore = item.includes('data-rn-more');
+    assert.equal(
+      hasMore,
+      dedup.length > 5,
+      `${rel.tag}: "Meer"-knop hoort ${dedup.length > 5 ? 'er te staan' : 'weg te blijven'} bij ${dedup.length} punten`,
+    );
+    if (hasMore) {
+      assert.ok(item.includes(`id="rn-more-${slug(rel.tag)}"`), `${rel.tag}: "Meer"-paneel mist`);
+    }
+  }
+  assert.ok(withChanges >= 1, 'geen enkele oudere release met punten in de pre-render');
+}
+
 console.log('Release timeline: OK');

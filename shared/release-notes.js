@@ -672,13 +672,73 @@
     `;
   }
 
+  // Releases van vóór de hoogtepunten-catalogus hebben geen redactionele
+  // koppen, maar wél de bullets uit de GitHub-releasebody. Die tonen we als
+  // platte tekst: de eerste vijf, de rest achter "Meer". Bewust geen kaartje —
+  // dat is voorbehouden aan releases met redactionele koppen.
+  const PLAIN_MAX = 5;
+  const PLAIN_CHARS = 160;
+
+  // De bron heeft een Nederlandse en (soms) een Engelse lijst. De vier
+  // niet-Nederlandse sitetalen lezen liever Engels dan Nederlands.
+  function plainChanges(release) {
+    const useEn = getLang() !== 'nl' && Array.isArray(release.changesEn) && release.changesEn.length;
+    return dedupe(useEn ? release.changesEn : (release.changes || []));
+  }
+
+  // Afkappen op een heel woord. Markdown-vet mag niet halverwege afgebroken
+  // worden, anders blijft er een los "**" in de tekst staan; een oneven aantal
+  // sluiten we daarom alsnog.
+  function truncateChange(s, max) {
+    const str = String(s).trim().replace(/\s+/g, ' ');
+    if (str.length <= max) return str;
+    let cut = str.slice(0, max);
+    const sp = cut.lastIndexOf(' ');
+    if (sp > max * 0.6) cut = cut.slice(0, sp);
+    cut = cut.replace(/[\s.,;:\u2013\u2014-]+$/, '');
+    if ((cut.match(/\*\*/g) || []).length % 2 === 1) cut += '**';
+    return cut + '\u2026';
+  }
+
   function renderTimelineRow(release) {
-    return `
+    const head = `
+          <div class="rn-tl-row">
+            <span class="rn-tl-version">${escapeHtml(release.tag)}</span>
+            <span class="rn-tl-date">${escapeHtml(release.date || '')}</span>
+          </div>`;
+    const changes = plainChanges(release);
+
+    // Zonder bullets blijft het bij de bestaande compacte regel.
+    if (!changes.length) {
+      return `
       <li class="rn-tl-item">
         <div class="rn-tl-row">
           <span class="rn-tl-version">${escapeHtml(release.tag)}</span>
           <span class="rn-tl-date">${escapeHtml(release.date || '')}</span>
           <a href="${escapeHtml(release.url || '')}" target="_blank" rel="noopener">${t('viewGitHub')}</a>
+        </div>
+      </li>
+    `;
+    }
+
+    const shown = changes.slice(0, PLAIN_MAX);
+    const rest = changes.slice(PLAIN_MAX);
+    const id = `rn-more-${slug(release.tag)}`;
+    // De rest staat er meteen in (het zijn hooguit een stuk of twintig regels),
+    // zodat de knop alleen nog hoeft te tonen en te verbergen.
+    const more = rest.length
+      ? `
+          <button type="button" class="rn-toggle" data-rn-more aria-expanded="false" aria-controls="${id}">${t('more')}</button>`
+      : '';
+
+    return `
+      <li class="rn-tl-item">
+        <div class="rn-tl-plain">${head}
+          <ul class="rn-tl-plain-list">${shown.map(c => `<li>${inline(truncateChange(c, PLAIN_CHARS))}</li>`).join('')}</ul>
+          <div class="rn-tl-actions">${more}
+            <a class="rn-tl-gh" href="${escapeHtml(release.url || '')}" target="_blank" rel="noopener">${t('viewGitHub')}</a>
+          </div>
+          ${rest.length ? `<div class="rn-tl-more" id="${id}" hidden><ol class="rn-changes-list">${rest.map(c => `<li>${inline(c)}</li>`).join('')}</ol></div>` : ''}
         </div>
       </li>
     `;
@@ -734,8 +794,11 @@
         const panel = container.querySelector(`#${CSS.escape(btn.getAttribute('aria-controls'))}`);
         if (!panel) return;
         const open = btn.getAttribute('aria-expanded') === 'true';
-        if (!open && !panel.innerHTML.trim()) {
-          const tag = btn.closest('.rn-tl-card').querySelector('.rn-tl-version').textContent.trim();
+        // Bij een kaartje wordt de inhoud pas bij de eerste klik opgebouwd.
+        // Bij een platte regel staat de rest er al in, dan slaan we dit over.
+        const card = btn.closest('.rn-tl-card');
+        if (!open && card && !panel.innerHTML.trim()) {
+          const tag = card.querySelector('.rn-tl-version').textContent.trim();
           const rel = releases.find(r => r.tag === tag);
           if (rel) panel.innerHTML = releaseNotesBody(data, rel);
         }

@@ -172,6 +172,77 @@ function notesBody(data, release, lang) {
   return `<ol class="rn-changes-list">${changes.map((c) => `<li>${inline(c)}</li>`).join('')}</ol>`;
 }
 
+// ── Releases zonder redactionele koppen ────────────────────────────────────
+// Dezelfde platte lijst als shared/release-notes.js rendert: de eerste vijf
+// bullets uit de GitHub-releasebody, de rest achter "Meer".
+const PLAIN_MAX = 5;
+const PLAIN_CHARS = 160;
+
+const inlineMd = (s) => escapeHtml(s)
+  .replace(/`([^`]+)`/g, '<code>$1</code>')
+  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
+  .replace(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>');
+
+function plainChanges(release, lang) {
+  const useEn = lang !== 'nl' && Array.isArray(release.changesEn) && release.changesEn.length;
+  const source = useEn ? release.changesEn : (release.changes || []);
+  const seen = new Set();
+  return source.filter((c) => {
+    const k = String(c).trim();
+    if (!k || seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+}
+
+// Afkappen op een heel woord; een oneven aantal "**" alsnog sluiten, anders
+// blijft er markdown zichtbaar in de tekst staan.
+function truncateChange(s, max) {
+  const str = String(s).trim().replace(/\s+/g, ' ');
+  if (str.length <= max) return str;
+  let cut = str.slice(0, max);
+  const sp = cut.lastIndexOf(' ');
+  if (sp > max * 0.6) cut = cut.slice(0, sp);
+  cut = cut.replace(/[\s.,;:\u2013\u2014-]+$/, '');
+  if ((cut.match(/\*\*/g) || []).length % 2 === 1) cut += '**';
+  return cut + '\u2026';
+}
+
+function plainItem(rel, lang) {
+  const tr = T[lang] || T.nl;
+  const changes = plainChanges(rel, lang);
+  if (!changes.length) {
+    return [
+      '<li class="rn-tl-item">',
+      '<div class="rn-tl-row">',
+      `<span class="rn-tl-version">${escapeHtml(rel.tag)}</span>`,
+      `<span class="rn-tl-date">${escapeHtml(rel.date || '')}</span>`,
+      `<a href="${escapeHtml(rel.url || '')}" target="_blank" rel="noopener">${escapeHtml(tr.viewGitHub)}</a>`,
+      '</div>',
+      '</li>',
+    ].join('');
+  }
+  const shown = changes.slice(0, PLAIN_MAX);
+  const rest = changes.slice(PLAIN_MAX);
+  const id = `rn-more-${slug(rel.tag)}`;
+  return [
+    '<li class="rn-tl-item">',
+    '<div class="rn-tl-plain">',
+    '<div class="rn-tl-row">',
+    `<span class="rn-tl-version">${escapeHtml(rel.tag)}</span>`,
+    `<span class="rn-tl-date">${escapeHtml(rel.date || '')}</span>`,
+    '</div>',
+    `<ul class="rn-tl-plain-list">${shown.map((c) => `<li>${inlineMd(truncateChange(c, PLAIN_CHARS))}</li>`).join('')}</ul>`,
+    '<div class="rn-tl-actions">',
+    rest.length ? `<button type="button" class="rn-toggle" data-rn-more aria-expanded="false" aria-controls="${id}">${escapeHtml(tr.more)}</button>` : '',
+    `<a class="rn-tl-gh" href="${escapeHtml(rel.url || '')}" target="_blank" rel="noopener">${escapeHtml(tr.viewGitHub)}</a>`,
+    '</div>',
+    rest.length ? `<div class="rn-tl-more" id="${id}" hidden><ol class="rn-changes-list">${rest.map((c) => `<li>${inlineMd(c)}</li>`).join('')}</ol></div>` : '',
+    '</div>',
+    '</li>',
+  ].join('');
+}
+
 function flattenReleases(data) {
   const all = [];
   (data.groups || []).forEach((g) => (g.releases || []).forEach((r) => all.push(r)));
@@ -190,17 +261,7 @@ function timelineBlock(data, highlights, lang) {
   const items = releases.map((rel) => {
     const hl = byTag[rel.tag];
     const copy = hl && hl.highlights ? (hl.highlights[lang] || hl.highlights.en) : null;
-    if (!copy) {
-      return [
-        '<li class="rn-tl-item">',
-        '<div class="rn-tl-row">',
-        `<span class="rn-tl-version">${escapeHtml(rel.tag)}</span>`,
-        `<span class="rn-tl-date">${escapeHtml(rel.date || '')}</span>`,
-        `<a href="${escapeHtml(rel.url || '')}" target="_blank" rel="noopener">${escapeHtml(tr.viewGitHub)}</a>`,
-        '</div>',
-        '</li>',
-      ].join('');
-    }
+    if (!copy) return plainItem(rel, lang);
     const isLatest = !latestSeen;
     latestSeen = true;
     const id = `rn-more-${slug(rel.tag)}`;
