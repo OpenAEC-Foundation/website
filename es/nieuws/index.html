@@ -13,7 +13,8 @@
   <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/nieuws/">
   <link rel="alternate" hreflang="es" href="https://open-aec.com/es/nieuws/">
   <link rel="alternate" hreflang="x-default" href="https://open-aec.com/nieuws/">
-  <!-- hreflang:end -->
+  <!-- hreflang:end -->
+
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -133,6 +134,17 @@
       margin-bottom: var(--sp-4);
       padding-bottom: var(--sp-2);
       border-bottom: 1px solid #E7E5E4;
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+    .week-label::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      flex-shrink: 0;
     }
 
     /* News card */
@@ -151,6 +163,7 @@
     .news-card:hover {
       box-shadow: 0 8px 24px rgba(0,0,0,0.25);
       transform: translateY(-1px);
+      border-color: rgba(217,119,6,0.45);
     }
 
     /* Icon */
@@ -242,9 +255,16 @@
     .news-desc {
       font-size: 0.825rem;
       color: var(--scaffold-gray);
-      line-height: 1.5;
+      line-height: 1.55;
       max-width: none;
+      /* Sommige aankondigingen zijn lange alinea's; drie regels houdt de
+         lijst leesbaar. De volledige tekst staat op de doelpagina. */
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
+    .news-card.is-milestone .news-desc { -webkit-line-clamp: 4; }
 
     /* Arrow link */
     .news-arrow {
@@ -257,6 +277,51 @@
     .news-card:hover .news-arrow {
       color: var(--amber);
       transform: translateX(3px);
+    }
+
+    /* Milestone card — accent frame, optional thumbnail */
+    .news-card.is-milestone {
+      background: linear-gradient(135deg, #35353F 0%, var(--night-build) 60%);
+      border: 1px solid rgba(217,119,6,0.45);
+      box-shadow: 0 6px 20px rgba(217,119,6,0.10);
+      align-items: center;
+    }
+    .news-card.is-milestone:hover {
+      border-color: var(--amber);
+      box-shadow: 0 10px 28px rgba(217,119,6,0.18);
+    }
+    .news-card.is-milestone .news-title { font-size: 1.075rem; }
+    .news-icon.milestone {
+      background: rgba(217,119,6,0.22);
+      color: var(--warm-gold);
+    }
+    .news-type-badge.milestone {
+      background: var(--amber);
+      color: white;
+    }
+
+    /* Thumbnail (video or image) */
+    .news-thumb {
+      flex-shrink: 0;
+      width: 168px;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      position: relative;
+      line-height: 0;
+      background: #000;
+    }
+    .news-thumb img { width: 100%; height: auto; display: block; opacity: 0.92; transition: opacity 0.15s ease; }
+    .news-card:hover .news-thumb img { opacity: 1; }
+    .news-thumb .play {
+      position: absolute; inset: 0; margin: auto;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(217,119,6,0.92);
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 0.9rem; padding-left: 3px;
+    }
+    @media (max-width: 640px) {
+      .news-card.is-milestone { flex-wrap: wrap; }
+      .news-thumb { width: 100%; order: -1; }
     }
 
     /* Loading / empty states */
@@ -345,7 +410,6 @@
     .featured-articles a:hover { text-decoration: underline; }
   </style>
 
-  <meta name="i18n-static" content="es">
   <!-- schema:start -->
   <script type="application/ld+json">
   {
@@ -356,7 +420,7 @@
         "@id": "https://open-aec.com/#website",
         "url": "https://open-aec.com/",
         "name": "OpenAEC Foundation",
-        "inLanguage": "es",
+        "inLanguage": "nl",
         "publisher": {
           "@id": "https://open-aec.com/#organization"
         }
@@ -373,19 +437,19 @@
       },
       {
         "@type": "WebPage",
-        "@id": "https://open-aec.com/es/nieuws/#webpage",
-        "url": "https://open-aec.com/es/nieuws/",
+        "@id": "https://open-aec.com/nieuws/#webpage",
+        "url": "https://open-aec.com/nieuws/",
         "isPartOf": {
           "@id": "https://open-aec.com/#website"
         },
-        "inLanguage": "es",
+        "inLanguage": "nl",
         "dateModified": "2026-09-11",
         "breadcrumb": {
-          "@id": "https://open-aec.com/es/nieuws/#breadcrumb"
+          "@id": "https://open-aec.com/nieuws/#breadcrumb"
         }
       },
       {
-        "@id": "https://open-aec.com/es/nieuws/#breadcrumb",
+        "@id": "https://open-aec.com/nieuws/#breadcrumb",
         "@type": "BreadcrumbList",
         "itemListElement": [
           {
@@ -397,14 +461,8 @@
           {
             "@type": "ListItem",
             "position": 2,
-            "name": "Es",
-            "item": "https://open-aec.com/es"
-          },
-          {
-            "@type": "ListItem",
-            "position": 3,
             "name": "Nieuws",
-            "item": "https://open-aec.com/es/nieuws/"
+            "item": "https://open-aec.com/nieuws/"
           }
         ]
       }
@@ -412,6 +470,7 @@
   }
   </script>
   <!-- schema:end -->
+  <meta name="i18n-static" content="es">
 </head>
 <body>
 
@@ -477,6 +536,7 @@
         <button class="filter-btn active" data-filter="all" data-i18n="filter.all">Todo</button>
         <button class="filter-btn" data-filter="release" data-i18n="filter.releases">Lanzamientos</button>
         <button class="filter-btn" data-filter="new_repo" data-i18n="filter.new_repos">Nuevos repos</button>
+        <button class="filter-btn" data-filter="milestone" data-i18n="filter.milestones">Hitos</button>
         <button class="filter-btn" data-filter="linkedin">LinkedIn</button>
       </div>
 
@@ -526,6 +586,11 @@
       announcement: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M3 11l18-5v12L3 14v-3z"/>
         <path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/>
+      </svg>`,
+      milestone: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M8 21h8"/><path d="M12 17v4"/>
+        <path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/>
+        <path d="M17 5h3v2a3 3 0 0 1-3 3"/><path d="M7 5H4v2a3 3 0 0 0 3 3"/>
       </svg>`
     };
 
@@ -533,12 +598,13 @@
       release: 'Release',
       new_repo: 'Nieuwe repo',
       linkedin: 'LinkedIn',
-      announcement: 'Nieuws'
+      announcement: 'Nieuws',
+      milestone: 'Mijlpaal'
     };
-    const TYPE_LABEL_EN = { release: 'Release', new_repo: 'New repo', linkedin: 'LinkedIn', announcement: 'News' };
-    const TYPE_LABEL_FR = { release: 'Version', new_repo: 'Nouveau dépôt', linkedin: 'LinkedIn', announcement: 'Actualité' };
-    const TYPE_LABEL_TR = { release: 'Sürüm', new_repo: 'Yeni depo', linkedin: 'LinkedIn', announcement: 'Haber' };
-    const TYPE_LABEL_ES = { release: 'Versión', new_repo: 'Nuevo repositorio', linkedin: 'LinkedIn', announcement: 'Noticia' };
+    const TYPE_LABEL_EN = { release: 'Release', new_repo: 'New repo', linkedin: 'LinkedIn', announcement: 'News', milestone: 'Milestone' };
+    const TYPE_LABEL_FR = { release: 'Version', new_repo: 'Nouveau dépôt', linkedin: 'LinkedIn', announcement: 'Actualité', milestone: 'Jalon' };
+    const TYPE_LABEL_TR = { release: 'Sürüm', new_repo: 'Yeni depo', linkedin: 'LinkedIn', announcement: 'Haber', milestone: 'Kilometre taşı' };
+    const TYPE_LABEL_ES = { release: 'Versión', new_repo: 'Nuevo repositorio', linkedin: 'LinkedIn', announcement: 'Noticia', milestone: 'Hito' };
     const TYPE_LABELS = { nl: TYPE_LABEL, en: TYPE_LABEL_EN, fr: TYPE_LABEL_FR, tr: TYPE_LABEL_TR, es: TYPE_LABEL_ES };
 
     // Current language (nl/en/fr/tr/es).
@@ -628,8 +694,13 @@
     function renderCard(item) {
       const icon = TYPE_ICON[item.type] || TYPE_ICON.release;
       const loc = localize(item);
+      const milestone = item.type === 'milestone' ? ' is-milestone' : '';
+      // Een mijlpaal mag een beeld dragen (bv. de miniatuur van een video).
+      const thumb = item.image
+        ? `<div class="news-thumb"><img src="${escapeHtml(item.image)}" alt="" loading="lazy">${item.video ? '<span class="play">&#9654;</span>' : ''}</div>`
+        : '';
       return `
-        <a class="news-card" href="${escapeHtml(item.url)}"${/^https?:\/\//.test(item.url) ? ' target="_blank" rel="noopener"' : ''}>
+        <a class="news-card${milestone}" href="${escapeHtml(item.url)}"${/^https?:\/\//.test(item.url) ? ' target="_blank" rel="noopener"' : ''}>
           <div class="news-icon ${escapeHtml(item.type)}">${icon}</div>
           <div class="news-body">
             <div class="news-meta">
@@ -639,6 +710,7 @@
             <div class="news-title">${escapeHtml(loc.title)}</div>
             <p class="news-desc">${escapeHtml(loc.description)}</p>
           </div>
+          ${thumb}
           <span class="news-arrow">&rarr;</span>
         </a>
       `;
