@@ -241,7 +241,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "nl",
-        "dateModified": "2026-09-11",
+        "dateModified": "2026-09-12",
         "breadcrumb": {
           "@id": "https://open-aec.com/structuur/#breadcrumb"
         }
@@ -487,25 +487,10 @@
           zet('stars', nl(stats.summary.totalStars));
           zet('commits', nl(stats.summary.totalCommits));
         }
-        // Open CAD Studio staat buiten de organisatie en telt niet mee in
-        // downloads.json. Het telt wel mee in het ecosysteem, dus dat getal
-        // halen we er live bij; lukt dat niet, dan tonen we de rest zonder.
+        // Open CAD Studio telt sinds kort mee in downloads.json, dus het
+        // totaal bevat het hele ecosysteem.
         if (downloads && downloads.grandTotal) {
-          var toon = function (extra) {
-            zet('downloads', nl(Math.round((downloads.grandTotal + extra) / 1000)) + 'k');
-          };
-          fetch('https://api.github.com/repos/HakanSeven12/OpenCADStudio/releases?per_page=100')
-            .then(function (r) { return r.ok ? r.json() : []; })
-            .then(function (releases) {
-              var som = 0;
-              (releases || []).forEach(function (rel) {
-                (rel.assets || []).forEach(function (a) {
-                  if (!/\.(sig|pem|asc|json)$/i.test(a.name)) som += a.download_count || 0;
-                });
-              });
-              toon(som);
-            })
-            .catch(function () { toon(0); });
+          zet('downloads', nl(Math.round(downloads.grandTotal / 1000)) + 'k');
         }
       }).catch(function () {});
     })();

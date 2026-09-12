@@ -16,9 +16,9 @@
 - Commits: **89**
 - Forks: **6**
 - Open issues: **2**
-- Releases: **23**
-- Total downloads: **424**
-- Downloads by platform: Windows (286), Linux (deb) (45), macOS (38), Windows (MSI) (34), Linux (rpm) (15), Linux (snap) (6)
+- Releases: **25**
+- Total downloads: **465**
+- Downloads by platform: Windows (299), Linux (deb) (49), macOS (43), Windows (MSI) (39), Linux (rpm) (19), Linux (snap) (8), Linux (AppImage) (8)
 
 ## Key features
 
@@ -67,8 +67,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Linux (deb) · Open.Calc.Studio_0.10.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.10.0/Open.Calc.Studio_0.10.0_amd64.deb) (v0.10.0 — 31.2 MB)
 - [Windows · Open.Calc.Studio_0.7.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.7.8/Open.Calc.Studio_0.7.8_x64-setup.exe) (v0.7.8 — 18.8 MB)
 - [Windows (MSI) · Open.Calc.Studio_0.10.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.10.0/Open.Calc.Studio_0.10.0_x64_en-US.msi) (v0.10.0 — 30.4 MB)
-- [Windows · Open.Calc.Studio_0.8.6_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.8.6/Open.Calc.Studio_0.8.6_x64-setup.exe) (v0.8.6 — 22.2 MB)
 - [macOS · Open.Calc.Studio_0.10.0_aarch64.dmg](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.10.0/Open.Calc.Studio_0.10.0_aarch64.dmg) (v0.10.0 — 44.5 MB)
+- [Windows · Open.Calc.Studio_0.8.6_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.8.6/Open.Calc.Studio_0.8.6_x64-setup.exe) (v0.8.6 — 22.2 MB)
 - [Windows · Open.Calc.Studio_0.8.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.8.8/Open.Calc.Studio_0.8.8_x64-setup.exe) (v0.8.8 — 22.3 MB)
 
 ---

@@ -53,7 +53,11 @@ for (let i = 1; i < weeks.length; i++) {
   const cur = weekSnapshots[weeks[i]];
   const perRepo = {};
   Object.keys(cur.perRepo).forEach(repo => {
-    const before = prev.perRepo[repo] || 0;
+    // Een repo die in de vorige momentopname nog niet werd gevolgd, levert
+    // anders zijn hele historie als "groei van deze week" op. Zulke repo's
+    // tellen pas mee vanaf de eerste week waarin ze in beide metingen staan.
+    if (!(repo in prev.perRepo)) return;
+    const before = prev.perRepo[repo];
     const after = cur.perRepo[repo];
     const delta = after - before;
     if (delta !== 0) perRepo[repo] = delta;
@@ -72,7 +76,8 @@ const first = snapshots[0];
 const last = snapshots[snapshots.length - 1];
 const totalDelta = {};
 Object.keys(last.perRepo).forEach(repo => {
-  const before = first.perRepo[repo] || 0;
+  if (!(repo in first.perRepo)) return;   // pas volgen vanaf de eerste meting
+  const before = first.perRepo[repo];
   const after = last.perRepo[repo];
   totalDelta[repo] = after - before;
 });

@@ -208,6 +208,7 @@
     .community-disclaimer { font-size: 0.8rem; color: #A8A29E; line-height: 1.6; margin: var(--sp-4) 0 0; padding-top: var(--sp-4); border-top: 1px solid #E7E5E4; }
   </style>
 
+  <meta name="i18n-static" content="en">
   <!-- schema:start -->
   <script type="application/ld+json">
   {
@@ -218,7 +219,7 @@
         "@id": "https://open-aec.com/#website",
         "url": "https://open-aec.com/",
         "name": "OpenAEC Foundation",
-        "inLanguage": "nl",
+        "inLanguage": "en",
         "publisher": {
           "@id": "https://open-aec.com/#organization"
         }
@@ -235,32 +236,32 @@
       },
       {
         "@type": "WebPage",
-        "@id": "https://open-aec.com/structuur/#webpage",
-        "url": "https://open-aec.com/structuur/",
+        "@id": "https://open-aec.com/en/structuur/#webpage",
+        "url": "https://open-aec.com/en/structuur/",
         "isPartOf": {
           "@id": "https://open-aec.com/#website"
         },
-        "inLanguage": "nl",
-        "dateModified": "2026-09-11",
+        "inLanguage": "en",
+        "dateModified": "2026-09-12",
         "breadcrumb": {
-          "@id": "https://open-aec.com/structuur/#breadcrumb"
+          "@id": "https://open-aec.com/en/structuur/#breadcrumb"
         }
       },
       {
-        "@id": "https://open-aec.com/structuur/#breadcrumb",
+        "@id": "https://open-aec.com/en/structuur/#breadcrumb",
         "@type": "BreadcrumbList",
         "itemListElement": [
           {
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://open-aec.com/"
+            "item": "https://open-aec.com/en/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Structuur",
-            "item": "https://open-aec.com/structuur/"
+            "item": "https://open-aec.com/en/structuur/"
           }
         ]
       }
@@ -268,7 +269,6 @@
   }
   </script>
   <!-- schema:end -->
-  <meta name="i18n-static" content="en">
 </head>
 <body>
     <div id="shared-nav"><!-- nav:start -->
@@ -486,25 +486,10 @@
           zet('stars', nl(stats.summary.totalStars));
           zet('commits', nl(stats.summary.totalCommits));
         }
-        // Open CAD Studio staat buiten de organisatie en telt niet mee in
-        // downloads.json. Het telt wel mee in het ecosysteem, dus dat getal
-        // halen we er live bij; lukt dat niet, dan tonen we de rest zonder.
+        // Open CAD Studio telt sinds kort mee in downloads.json, dus het
+        // totaal bevat het hele ecosysteem.
         if (downloads && downloads.grandTotal) {
-          var toon = function (extra) {
-            zet('downloads', nl(Math.round((downloads.grandTotal + extra) / 1000)) + 'k');
-          };
-          fetch('https://api.github.com/repos/HakanSeven12/OpenCADStudio/releases?per_page=100')
-            .then(function (r) { return r.ok ? r.json() : []; })
-            .then(function (releases) {
-              var som = 0;
-              (releases || []).forEach(function (rel) {
-                (rel.assets || []).forEach(function (a) {
-                  if (!/\.(sig|pem|asc|json)$/i.test(a.name)) som += a.download_count || 0;
-                });
-              });
-              toon(som);
-            })
-            .catch(function () { toon(0); });
+          zet('downloads', nl(Math.round(downloads.grandTotal / 1000)) + 'k');
         }
       }).catch(function () {});
     })();

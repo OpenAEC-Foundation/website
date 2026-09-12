@@ -32,6 +32,8 @@ const TOOL_REPOS = [
   'openaec-docs',
   'openaec-cloud',
   'Y-app',
+  // Community-project buiten de organisatie, telt wel mee in het ecosysteem.
+  'HakanSeven12/OpenCADStudio',
 ];
 
 // Classify asset filename into platform/format
@@ -64,7 +66,9 @@ async function fetchAllReleases(repo) {
   const all = [];
   let page = 1;
   while (true) {
-    const data = await ghFetch(`https://api.github.com/repos/${ORG}/${repo}/releases?per_page=100&page=${page}`);
+    // Een repo mag 'eigenaar/naam' zijn; zonder schuine streep hoort hij bij de organisatie.
+    const pad = repo.includes('/') ? repo : `${ORG}/${repo}`;
+    const data = await ghFetch(`https://api.github.com/repos/${pad}/releases?per_page=100&page=${page}`);
     if (!Array.isArray(data) || data.length === 0) break;
     all.push(...data);
     page++;
@@ -72,8 +76,11 @@ async function fetchAllReleases(repo) {
   return all;
 }
 
-async function processRepo(repo) {
-  const releases = await fetchAllReleases(repo);
+async function processRepo(repoPad) {
+  const releases = await fetchAllReleases(repoPad);
+  // In de uitvoer staat alleen de repo-naam, ook bij een externe eigenaar,
+  // zodat de rest van de site (statistieken, api/tools.json) blijft matchen.
+  const repo = repoPad.includes('/') ? repoPad.split('/').pop() : repoPad;
 
   let totalDownloads = 0;
   let totalAssets = 0;
