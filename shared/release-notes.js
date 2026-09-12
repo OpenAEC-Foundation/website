@@ -28,6 +28,13 @@
       totalChanges: 'wijzigingen in totaal',
       showMore: 'Toon meer',
       showLess: 'Toon minder',
+      tlDesc: 'De hoofdpunten per versie. Klik op Meer voor de volledige notities.',
+      tlDays: (n) => `${n} ${n === '1' ? 'dag' : 'dagen'}`,
+      tlCommits: (n) => `${n} commits`,
+      tlLines: (n) => `+${n} regels code`,
+      more: 'Meer',
+      less: 'Minder',
+      noNotes: 'Geen notities beschikbaar voor deze versie.',
     },
     en: {
       title: 'Release notes',
@@ -52,6 +59,13 @@
       totalChanges: 'total changes',
       showMore: 'Show more',
       showLess: 'Show less',
+      tlDesc: 'The headlines per version. Use More for the full notes.',
+      tlDays: (n) => `${n} ${n === '1' ? 'day' : 'days'}`,
+      tlCommits: (n) => `${n} commits`,
+      tlLines: (n) => `+${n} lines of code`,
+      more: 'More',
+      less: 'Less',
+      noNotes: 'No notes available for this version.',
     },
     fr: {
       title: 'Notes de version',
@@ -76,6 +90,13 @@
       totalChanges: 'modifications au total',
       showMore: 'Afficher plus',
       showLess: 'Afficher moins',
+      tlDesc: 'Les points forts par version. Cliquez sur Plus pour les notes complètes.',
+      tlDays: (n) => `${n} ${n === '1' ? 'jour' : 'jours'}`,
+      tlCommits: (n) => `${n} commits`,
+      tlLines: (n) => `+${n} lignes de code`,
+      more: 'Plus',
+      less: 'Moins',
+      noNotes: 'Aucune note disponible pour cette version.',
     },
     tr: {
       title: 'Sürüm notları',
@@ -100,6 +121,13 @@
       totalChanges: 'toplam değişiklik',
       showMore: 'Daha fazla göster',
       showLess: 'Daha az göster',
+      tlDesc: 'Sürüm başına öne çıkanlar. Tüm notlar için Daha fazla\'ya tıklayın.',
+      tlDays: (n) => `${n} gün`,
+      tlCommits: (n) => `${n} commit`,
+      tlLines: (n) => `+${n} kod satırı`,
+      more: 'Daha fazla',
+      less: 'Daha az',
+      noNotes: 'Bu sürüm için not bulunmuyor.',
     },
     es: {
       title: 'Notas de la versión',
@@ -124,6 +152,13 @@
       totalChanges: 'cambios en total',
       showMore: 'Mostrar más',
       showLess: 'Mostrar menos',
+      tlDesc: 'Los puntos clave por versión. Pulse Más para ver las notas completas.',
+      tlDays: (n) => `${n} ${n === '1' ? 'día' : 'días'}`,
+      tlCommits: (n) => `${n} commits`,
+      tlLines: (n) => `+${n} líneas de código`,
+      more: 'Más',
+      less: 'Menos',
+      noNotes: 'No hay notas disponibles para esta versión.',
     },
   };
 
@@ -518,8 +553,202 @@
     `;
   }
 
-  function renderAll(container, data, latestOnly) {
-    if (latestOnly) return renderLatestOnly(container, data);
+  // ── Tijdlijn-modus ────────────────────────────────────────────────────────
+  // Opt-in per pagina via <div data-release-notes="repo" data-release-notes-timeline>.
+  // Toont per release één kaartje met de redactionele koppen uit
+  // /data/release-highlights/<repo>.json (dezelfde bron als de "Wat is er
+  // nieuw"-dialoog in de app). Releases van vóór die catalogus krijgen een
+  // compacte regel. De volledige notities zitten achter "Meer".
+
+  async function fetchHighlights(repo) {
+    const cacheKey = `rh-${repo}`;
+    try {
+      const cached = sessionStorage.getItem(cacheKey);
+      if (cached) {
+        const { data, ts } = JSON.parse(cached);
+        if (Date.now() - ts < CACHE_TTL) return data;
+      }
+    } catch (e) {}
+
+    const res = await fetch(`/data/release-highlights/${repo}.json`);
+    if (!res.ok) throw new Error('No highlights file');
+    const data = await res.json();
+    try {
+      sessionStorage.setItem(cacheKey, JSON.stringify({ data, ts: Date.now() }));
+    } catch (e) {}
+    return data;
+  }
+
+  // Kleine, vaste iconenset — dezelfde namen als de app gebruikt. Onbekende
+  // naam valt terug op een neutrale stip, zodat een nieuwe icoonnaam in de
+  // bron nooit een leeg gat oplevert.
+  const ICON_PATHS = {
+    tasks: '<path d="M4 6h10M4 12h10M4 18h10"/><path d="M18 5l2 2 3-3"/>',
+    import: '<path d="M12 3v11"/><path d="M8 10l4 4 4-4"/><path d="M4 17v3h16v-3"/>',
+    library: '<path d="M4 4h4v16H4z"/><path d="M10 4h4v16h-4z"/><path d="M16.5 5l3.5 1-3 15-3.5-1z"/>',
+    relations: '<circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 6H14a2 2 0 0 1 2 2v7.5"/>',
+    examples: '<path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4"/><path d="M9 13h6M9 17h4"/>',
+  };
+
+  function iconSvg(name) {
+    const body = ICON_PATHS[name] || '<circle cx="12" cy="12" r="4"/>';
+    return `<svg class="rn-tl-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">${body}</svg>`;
+  }
+
+  function formatNumber(n) {
+    try { return new Intl.NumberFormat(getLang()).format(n); } catch (e) { return String(n); }
+  }
+
+  function slug(s) {
+    return String(s).replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-|-$/g, '');
+  }
+
+  // De copy staat per locale in de bron. De site kent vijf talen, de app
+  // veertien; wat de bron niet heeft valt terug op Engels.
+  function highlightCopy(release) {
+    if (!release || !release.highlights) return null;
+    return release.highlights[getLang()] || release.highlights.en || null;
+  }
+
+  // De volledige notities van één release: voor de nieuwste versie de
+  // uitgebreide changelog uit de repo, anders de losse regels uit de
+  // release-body op GitHub.
+  function releaseNotesBody(data, release) {
+    const lang = getLang();
+    const isLatest = data.latestStable && data.latestStable.tag === release.tag;
+    if (isLatest && data.latestChangelog) {
+      return `<div class="rn-changelog">${renderMarkdown(data.latestChangelog)}</div>`;
+    }
+    const changes = dedupe((lang === 'en' && Array.isArray(release.changesEn) && release.changesEn.length)
+      ? release.changesEn
+      : release.changes);
+    if (!changes.length) return `<p class="rn-loading">${t('noNotes')}</p>`;
+    return `<ol class="rn-changes-list">${changes.map(c => `<li>${inline(c)}</li>`).join('')}</ol>`;
+  }
+
+  function statsLine(stats) {
+    if (!stats) return '';
+    const parts = [];
+    if (typeof stats.daysSincePrevious === 'number') parts.push(t('tlDays')(formatNumber(stats.daysSincePrevious)));
+    if (typeof stats.commitsSincePrevious === 'number') parts.push(t('tlCommits')(formatNumber(stats.commitsSincePrevious)));
+    if (typeof stats.addedCodeLines === 'number') parts.push(t('tlLines')(formatNumber(stats.addedCodeLines)));
+    if (!parts.length) return '';
+    return `<p class="rn-tl-stats">${parts.map(escapeHtml).join(' &middot; ')}</p>`;
+  }
+
+  function renderTimelineCard(release, copy, isLatest) {
+    const id = `rn-more-${slug(release.tag)}`;
+    const secondary = (copy.secondary || []).slice(0, 4).map(h => `
+      <li class="rn-tl-sec">
+        ${iconSvg(h.icon)}
+        <span>
+          <span class="rn-tl-cat">${escapeHtml(h.category)}</span>
+          <span class="rn-tl-sec-title">${escapeHtml(h.title)}</span>
+        </span>
+      </li>`).join('');
+
+    return `
+      <li class="rn-tl-item${isLatest ? ' latest' : ''}">
+        <article class="rn-tl-card">
+          <header class="rn-tl-head">
+            <h3 class="rn-tl-version">${escapeHtml(release.tag)}</h3>
+            <span class="rn-tl-date"><time datetime="${escapeHtml(release.date || '')}">${escapeHtml(release.date || '')}</time></span>
+            ${isLatest ? `<span class="rn-group-badge">${t('latest')}</span>` : ''}
+          </header>
+          ${statsLine(release.stats)}
+          <div class="rn-tl-primary">
+            <span class="rn-tl-cat">${escapeHtml(copy.primary.category)}</span>
+            <h4 class="rn-tl-primary-title">${escapeHtml(copy.primary.title)}</h4>
+            <p class="rn-tl-primary-desc">${escapeHtml(copy.primary.description)}</p>
+          </div>
+          <ul class="rn-tl-secondary">${secondary}</ul>
+          <div class="rn-tl-actions">
+            <button type="button" class="rn-toggle" data-rn-more aria-expanded="false" aria-controls="${id}">${t('more')}</button>
+            <a class="rn-tl-gh" href="${escapeHtml(release.url || '')}" target="_blank" rel="noopener">${t('viewGitHub')}</a>
+          </div>
+          <div class="rn-tl-more" id="${id}" hidden></div>
+        </article>
+      </li>
+    `;
+  }
+
+  function renderTimelineRow(release) {
+    return `
+      <li class="rn-tl-item">
+        <div class="rn-tl-row">
+          <span class="rn-tl-version">${escapeHtml(release.tag)}</span>
+          <span class="rn-tl-date">${escapeHtml(release.date || '')}</span>
+          <a href="${escapeHtml(release.url || '')}" target="_blank" rel="noopener">${t('viewGitHub')}</a>
+        </div>
+      </li>
+    `;
+  }
+
+  // Alle releases uit de release-notes-data, nieuwste eerst. De groepering per
+  // minor versie is hier niet interessant: de tijdlijn is chronologisch.
+  function flattenReleases(data) {
+    const all = [];
+    (data.groups || []).forEach(g => (g.releases || []).forEach(r => all.push(r)));
+    return all.sort((a, b) => String(b.date || '').localeCompare(String(a.date || '')));
+  }
+
+  function renderTimeline(container, data, highlights) {
+    const releases = flattenReleases(data);
+    if (!releases.length) {
+      container.innerHTML = `<p class="rn-loading">${t('noReleases')}</p>`;
+      return;
+    }
+
+    const byTag = {};
+    ((highlights && highlights.releases) || []).forEach(r => { byTag[r.tag] = r; });
+
+    let latestSeen = false;
+    const items = releases.map(rel => {
+      const hl = byTag[rel.tag];
+      const copy = highlightCopy(hl);
+      if (!copy) return renderTimelineRow(rel);
+      const isLatest = !latestSeen;
+      latestSeen = true;
+      return renderTimelineCard({ ...rel, stats: hl.stats }, copy, isLatest);
+    }).join('');
+
+    const latest = data.latestStable || releases[0];
+
+    container.innerHTML = `
+      <div class="rn-header-block">
+        <h2 class="rn-title" data-rn-title>${t('title')}</h2>
+        <p class="rn-desc" data-rn-desc>
+          <strong>${escapeHtml(latest.tag)}</strong> &middot; ${escapeHtml(latest.date || '')} &middot; ${t('tlDesc')}
+        </p>
+      </div>
+      <ol class="rn-timeline">${items}</ol>
+      <p class="rn-viewall">
+        <a href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll')}</a>
+      </p>
+    `;
+
+    // "Meer" klapt de volledige notities uit; de inhoud wordt pas bij de
+    // eerste klik opgebouwd.
+    container.querySelectorAll('[data-rn-more]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const panel = container.querySelector(`#${CSS.escape(btn.getAttribute('aria-controls'))}`);
+        if (!panel) return;
+        const open = btn.getAttribute('aria-expanded') === 'true';
+        if (!open && !panel.innerHTML.trim()) {
+          const tag = btn.closest('.rn-tl-card').querySelector('.rn-tl-version').textContent.trim();
+          const rel = releases.find(r => r.tag === tag);
+          if (rel) panel.innerHTML = releaseNotesBody(data, rel);
+        }
+        btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+        btn.textContent = open ? t('more') : t('less');
+        panel.hidden = open;
+      });
+    });
+  }
+
+  function renderAll(container, data, latestOnly, timeline, highlights) {
+    if (timeline && highlights) return renderTimeline(container, data, highlights);
+    if (latestOnly || timeline) return renderLatestOnly(container, data);
     const totalChanges = data.totalChanges;
     const totalReleases = data.totalReleases;
 
@@ -586,6 +815,7 @@
     for (const placeholder of placeholders) {
       const repo = placeholder.getAttribute('data-release-notes');
       const latestOnly = placeholder.hasAttribute('data-release-notes-latest');
+      const timeline = placeholder.hasAttribute('data-release-notes-timeline');
 
       placeholder.innerHTML = `
         <section class="rn-section">
@@ -606,8 +836,16 @@
           placeholder.style.display = 'none';
           return;
         }
-        renderAll(container, data, latestOnly);
+        // Ontbreken de hoogtepunten (nog), dan valt de tijdlijn terug op het
+        // bestaande blok met alleen de nieuwste release — liever dat dan een
+        // kale lijst tags.
+        let highlights = null;
+        if (timeline) {
+          try { highlights = await fetchHighlights(repo); } catch (e) { highlights = null; }
+        }
+        renderAll(container, data, latestOnly, timeline, highlights);
         placeholder._rnData = data;
+        placeholder._rnHighlights = highlights;
       } catch (err) {
         // De data ontbreekt (nog). Een foutmelding tonen aan bezoekers helpt niemand.
         placeholder.style.display = 'none';
@@ -621,7 +859,13 @@
           document.querySelectorAll('[data-release-notes]').forEach(p => {
             const container = p.querySelector('.rn-container');
             if (p._rnData && container) {
-              renderAll(container, p._rnData, p.hasAttribute('data-release-notes-latest'));
+              renderAll(
+                container,
+                p._rnData,
+                p.hasAttribute('data-release-notes-latest'),
+                p.hasAttribute('data-release-notes-timeline'),
+                p._rnHighlights
+              );
             }
           });
         }, 50);

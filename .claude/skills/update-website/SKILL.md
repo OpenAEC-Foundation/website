@@ -40,6 +40,7 @@ Run in this exact order — later scripts depend on outputs of earlier ones:
 |---|--------|-------|--------|---------|
 | 1 | `node scripts/generate-stats.js` | GitHub API | `data/stats.json` | Per-repo stars, commits, contributors, latest release |
 | 2 | `node scripts/generate-release-notes.js` | GitHub API | `data/news.json` (partial) | Release notes feed for /nieuws/ |
+| 2b | `node scripts/generate-release-highlights.js` | `https://open-planner-studio.open-aec.com/release-highlights.json` | `data/release-highlights/<repo>.json` | Redactionele koppen per release voor de releasetijdlijn; laat bij een netwerkfout de bestaande file staan |
 | 3 | `node scripts/generate-downloads.js` | GitHub API | `data/downloads.json`, `data/history-downloads/YYYY-MM-DD.json` | Per-tool download totals + daily snapshot |
 | 4 | `node scripts/compute-download-trends.js` | `data/history-downloads/` | `data/download-trends.json` | Weekly delta per tool |
 | 5 | `node scripts/build-homepage-stats.js` | `data/stats.json` | `index.html` (mutated) | Injects tool-stats into each `<article class="tool-card" data-repo>` block |

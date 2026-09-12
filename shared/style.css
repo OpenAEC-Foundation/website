@@ -555,3 +555,209 @@ pre code {
     min-width: 600px;
   }
 }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Releasetijdlijn (shared/release-notes.js, data-release-notes-timeline)
+   Staat hier en niet in de injectStyles() van het script, zodat de statisch
+   voorgerenderde variant (scripts/build-release-notes-static.js) er ook
+   zonder JavaScript uitziet zoals bedoeld.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* De omlijsting van het blok stond alleen in de injectStyles() van het
+   script. Dezelfde waarden staan hier ook, zodat de statische pre-render al
+   vóór (en zonder) JavaScript goed staat. */
+.rn-section { background: white; padding: 3rem 1.5rem; }
+.rn-container { max-width: 900px; margin: 0 auto; }
+.rn-header-block { margin-bottom: var(--sp-6); }
+.rn-title { font-family: var(--font-heading); font-weight: 700; font-size: 1.75rem; color: var(--deep-forge); margin-bottom: var(--sp-2); }
+.rn-desc { color: #57534E; font-size: 0.95rem; }
+.rn-group-badge {
+  font-family: var(--font-code); font-size: 0.65rem;
+  font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;
+  padding: 2px 8px; border-radius: var(--radius-full);
+  background: #FED7AA; color: #9A3412;
+}
+.rn-toggle {
+  background: none;
+  border: 1px solid var(--amber);
+  color: var(--amber);
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  padding: 6px 14px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+.rn-toggle:hover { background: var(--amber); color: white; }
+.rn-viewall { margin-top: var(--sp-6); font-size: 0.8125rem; text-align: center; }
+.rn-viewall a { color: var(--amber); text-decoration: none; }
+.rn-viewall a:hover { text-decoration: underline; }
+
+.rn-timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 0 var(--sp-6);
+  border-left: 2px solid #E7E5E4;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-5);
+}
+
+.rn-tl-item { position: relative; }
+
+.rn-tl-item::before {
+  content: "";
+  position: absolute;
+  left: calc(-1 * var(--sp-6) - 7px);
+  top: 1.15rem;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--radius-full);
+  background: white;
+  border: 2px solid var(--scaffold-gray);
+}
+
+.rn-tl-item.latest::before {
+  background: var(--amber);
+  border-color: var(--amber);
+  box-shadow: 0 0 0 4px #FEF3C7;
+}
+
+.rn-tl-card {
+  border: 1px solid #E7E5E4;
+  border-radius: var(--radius-lg);
+  background: white;
+  padding: var(--sp-4) var(--sp-5);
+}
+
+.rn-tl-item.latest .rn-tl-card { border-color: var(--amber); }
+
+.rn-tl-head {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.rn-tl-version {
+  font-family: var(--font-code);
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--deep-forge);
+  margin: 0;
+}
+
+.rn-tl-date { font-size: 0.8125rem; color: var(--scaffold-gray); }
+
+.rn-tl-stats {
+  font-family: var(--font-code);
+  font-size: 0.7rem;
+  color: var(--scaffold-gray);
+  margin: var(--sp-2) 0 0;
+  letter-spacing: 0.02em;
+}
+
+.rn-tl-primary { margin-top: var(--sp-3); }
+
+.rn-tl-cat {
+  display: block;
+  font-family: var(--font-code);
+  font-size: 0.65rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--amber);
+}
+
+.rn-tl-primary-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  color: var(--deep-forge);
+  margin: 2px 0 var(--sp-1);
+}
+
+.rn-tl-primary-desc {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #57534E;
+  max-width: 70ch;
+}
+
+.rn-tl-secondary {
+  list-style: none;
+  margin: var(--sp-4) 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-3);
+}
+
+.rn-tl-sec {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: flex-start;
+  background: var(--blueprint-white);
+  border: 1px solid #F0EFED;
+  border-radius: var(--radius-md);
+  padding: var(--sp-3);
+}
+
+.rn-tl-icon {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  color: var(--amber);
+  margin-top: 1px;
+}
+
+.rn-tl-sec-title {
+  font-weight: 600;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--deep-forge);
+}
+
+.rn-tl-sec .rn-tl-cat { margin-bottom: 2px; }
+
+.rn-tl-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+  margin-top: var(--sp-4);
+}
+
+.rn-tl-actions .rn-toggle { margin-top: 0; }
+
+.rn-tl-gh { font-size: 0.8125rem; color: var(--amber); }
+
+.rn-tl-more {
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: 1px dashed #E7E5E4;
+}
+
+.rn-tl-more[hidden] { display: none; }
+
+/* Releases van vóór de hoogtepunten: één regel, geen kaart. */
+.rn-tl-row {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+  padding: var(--sp-2) 0;
+  font-size: 0.8125rem;
+}
+
+.rn-tl-row .rn-tl-version { font-size: 0.875rem; }
+.rn-tl-row a { color: var(--amber); }
+
+@media (max-width: 640px) {
+  .rn-timeline { padding-left: var(--sp-4); }
+  .rn-tl-item::before { left: calc(-1 * var(--sp-4) - 7px); }
+  .rn-tl-card { padding: var(--sp-3) var(--sp-4); }
+  .rn-tl-secondary { grid-template-columns: 1fr; }
+  .rn-tl-primary-title { font-size: 1rem; }
+}

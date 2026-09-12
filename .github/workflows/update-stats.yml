@@ -35,6 +35,12 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/generate-release-notes.js
 
+      # Redactionele koppen per release, opgehaald bij het product zelf.
+      # Voedt de releasetijdlijn op de productpagina. Faalt nooit hard: is de
+      # bron onbereikbaar, dan blijft de vorige data staan.
+      - name: Generate release highlights (product timeline copy)
+        run: node scripts/generate-release-highlights.js
+
       - name: Generate downloads stats (+ daily snapshot)
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

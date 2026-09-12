@@ -26,13 +26,13 @@ Add `--no-commit` to skip the commit. Requires `GITHUB_TOKEN` in the environment
 
 ### Tests
 
-There is no test runner. The two checker scripts are the only tests and are **not wired into CI** — run them by hand after touching the homepage, a product page, or the generators:
+There is no test runner. The three checker scripts are the only tests and are **not wired into CI** — run them by hand after touching the homepage, a product page, or the generators:
 
 ```bash
-node scripts/check-open-pile-plan-studio.js && node scripts/check-homepage-catalog-product-pages.js
+node scripts/check-open-pile-plan-studio.js && node scripts/check-homepage-catalog-product-pages.js && node scripts/check-release-timeline.js
 ```
 
-They use `node:assert/strict` and fail with a Dutch message. `check-open-pile-plan-studio.js` doubles as the executable checklist for adding a new tool (see below). `check-homepage-catalog-product-pages.js` pins several literal CSS colour values in `bim-validator/index.html` and the exact screenshot order in Open Speech Studio — those assertions are deliberate, not accidental.
+They use `node:assert/strict` and fail with a Dutch message. `check-open-pile-plan-studio.js` doubles as the executable checklist for adding a new tool (see below). `check-homepage-catalog-product-pages.js` pins several literal CSS colour values in `bim-validator/index.html` and the exact screenshot order in Open Speech Studio — those assertions are deliberate, not accidental. `check-release-timeline.js` guards the release timeline on the Open Planner Studio page: the placeholder mode, the static pre-render, the highlights contract and the join with `data/release-notes/`.
 
 ## Architecture
 
@@ -68,7 +68,7 @@ There is still no `hreflang` anywhere — language is a client-side toggle with 
 
 ### Generated vs hand-written
 
-Generated (committed, never hand-edit): `data/stats.json`, `data/news.json`, `data/downloads.json`, `data/download-trends.json`, `data/release-notes/*`, `data/history*/`, `api/tools.json`, `md/*`, and the `tool-stats` chips inside `index.html`.
+Generated (committed, never hand-edit): `data/stats.json`, `data/news.json`, `data/downloads.json`, `data/download-trends.json`, `data/release-notes/*`, `data/release-highlights/*`, `data/history*/`, `api/tools.json`, `md/*`, and the `tool-stats` chips inside `index.html`.
 
 Hand-written: `llms.txt` (an *input* to `build-markdown-mirrors.js`), `robots.txt`, `sitemap.xml` (adding a page means adding a `<url>` entry manually — the checker enforces it), `data/manual-news.json`, and the `TOOLS` array in `build-tools-api.js`.
 

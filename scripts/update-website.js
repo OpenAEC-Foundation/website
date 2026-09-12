@@ -18,6 +18,10 @@ const ROOT = path.join(__dirname, '..');
 const STEPS = [
   { name: 'Generate statistics (stars, commits, contributors, releases)', cmd: 'node scripts/generate-stats.js' },
   { name: 'Generate release notes',                                       cmd: 'node scripts/generate-release-notes.js' },
+  // Redactionele hoogtepunten per release, opgehaald bij het product zelf
+  // (release-highlights.json). Voedt de releasetijdlijn op de productpagina.
+  // Faalt nooit hard: bij netwerkproblemen blijft de vorige file staan.
+  { name: 'Generate release highlights (product timeline copy)',          cmd: 'node scripts/generate-release-highlights.js' },
   { name: 'Generate downloads stats (+ daily snapshot)',                  cmd: 'node scripts/generate-downloads.js' },
   { name: 'Compute download trends (weekly deltas)',                      cmd: 'node scripts/compute-download-trends.js' },
   { name: 'Update homepage tool stats (static HTML injection)',           cmd: 'node scripts/build-homepage-stats.js' },
@@ -37,6 +41,12 @@ const STEPS = [
   { name: 'Refresh the generated key facts in llms.txt',                  cmd: 'node scripts/build-llms-txt.js' },
   { name: 'Write the shared nav statically into every page',              cmd: 'node scripts/build-nav-static.js' },
   { name: 'Generate /en/, /fr/, /tr/ pages + hreflang + sitemap entries',  cmd: 'node scripts/build-i18n-pages.js' },
+  // Nogmaals, nu de taalversies bestaan: build-i18n-pages kopieert de
+  // Nederlandse pagina en vertaalt alleen data-i18n-elementen, dus het
+  // gegenereerde release-blok zou anders in elke taal Nederlands blijven.
+  // Het script leest <meta name="i18n-static"> en schrijft per pagina in de
+  // eigen taal; een tweede run is idempotent.
+  { name: 'Re-render the release block per language version',            cmd: 'node scripts/build-release-notes-static.js' },
   // Als laatste: zet WebSite, BreadcrumbList en dateModified op elke pagina,
   // inclusief de zojuist gegenereerde taalversies, met hun eigen URL en taal.
   { name: 'Inject WebSite + BreadcrumbList + dateModified schema',        cmd: 'node scripts/build-schema.js' },
