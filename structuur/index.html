@@ -13,7 +13,8 @@
   <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/structuur/">
   <link rel="alternate" hreflang="es" href="https://open-aec.com/es/structuur/">
   <link rel="alternate" hreflang="x-default" href="https://open-aec.com/structuur/">
-  <!-- hreflang:end -->
+  <!-- hreflang:end -->
+
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -105,6 +106,44 @@
       margin-bottom: var(--sp-3);
     }
     .part-card p:last-child { margin-bottom: 0; }
+
+    /* Ecosysteem in cijfers — waarden komen live uit data/stats.json
+       en data/downloads.json, zodat ze niet verouderen. */
+    .cijfers {
+      max-width: 1000px;
+      margin: var(--sp-12) auto 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: var(--sp-4);
+    }
+    .cijfer {
+      background: white;
+      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg);
+      padding: var(--sp-5);
+      text-align: center;
+      box-shadow: var(--shadow-sm);
+    }
+    .cijfer .getal {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.75rem;
+      color: var(--amber);
+      line-height: 1.2;
+    }
+    .cijfer .label {
+      font-size: 0.8rem;
+      color: #57534E;
+      margin-top: var(--sp-1);
+    }
+    .cijfers-bron {
+      max-width: 1000px;
+      margin: var(--sp-3) auto 0;
+      text-align: center;
+      font-family: var(--font-code);
+      font-size: 0.7rem;
+      color: var(--scaffold-gray);
+    }
 
     .highlight-wrapper { max-width: 1080px; margin: var(--sp-8) auto 0; }
     .highlight-box {
@@ -296,6 +335,15 @@
 
     </div>
 
+    <div class="cijfers" id="cijfers">
+      <div class="cijfer"><div class="getal" data-cijfer="repos">&mdash;</div><div class="label" data-i18n="cijfers.repos">repositories</div></div>
+      <div class="cijfer"><div class="getal" data-cijfer="contributors">&mdash;</div><div class="label" data-i18n="cijfers.contributors">bijdragers</div></div>
+      <div class="cijfer"><div class="getal" data-cijfer="stars">&mdash;</div><div class="label" data-i18n="cijfers.stars">GitHub-sterren</div></div>
+      <div class="cijfer"><div class="getal" data-cijfer="commits">&mdash;</div><div class="label" data-i18n="cijfers.commits">commits</div></div>
+      <div class="cijfer"><div class="getal" data-cijfer="downloads">&mdash;</div><div class="label" data-i18n="cijfers.downloads">downloads</div></div>
+    </div>
+    <p class="cijfers-bron"><a href="/statistieken/" style="color: inherit;" data-i18n="cijfers.bron">Alle cijfers per project op de statistiekenpagina &rarr;</a></p>
+
     <div class="highlight-wrapper">
       <div class="highlight-box" data-i18n="note">
         Deze structuur is <strong>volop in ontwikkeling</strong> — er wordt nog veel verder uitgewerkt. Meedenken of bijdragen? We horen graag van je.
@@ -415,6 +463,53 @@
       <p>&copy; 2026 OpenAEC Foundation</p>
     </div>
   </footer>
+  <script>
+    // De strook vult zich uit dezelfde bestanden als de statistiekenpagina.
+    // Lukt dat niet, dan blijven de streepjes staan — geen verouderde getallen.
+    (function () {
+      // Duizendtallen in de notatie van de paginataal: 2.562 in het
+      // Nederlands, 2,562 in het Engels.
+      var taal = document.documentElement.lang || 'nl';
+      var nl = function (n) { return n.toLocaleString(taal); };
+      function zet(sleutel, waarde) {
+        document.querySelectorAll('[data-cijfer="' + sleutel + '"]').forEach(function (el) {
+          el.textContent = waarde;
+        });
+      }
+      Promise.all([
+        fetch('/data/stats.json').then(function (r) { return r.ok ? r.json() : null; }),
+        fetch('/data/downloads.json').then(function (r) { return r.ok ? r.json() : null; })
+      ]).then(function (res) {
+        var stats = res[0], downloads = res[1];
+        if (stats && stats.summary) {
+          zet('repos', nl(stats.summary.totalRepos));
+          zet('contributors', nl(stats.summary.uniqueContributors));
+          zet('stars', nl(stats.summary.totalStars));
+          zet('commits', nl(stats.summary.totalCommits));
+        }
+        // Open CAD Studio staat buiten de organisatie en telt niet mee in
+        // downloads.json. Het telt wel mee in het ecosysteem, dus dat getal
+        // halen we er live bij; lukt dat niet, dan tonen we de rest zonder.
+        if (downloads && downloads.grandTotal) {
+          var toon = function (extra) {
+            zet('downloads', nl(Math.round((downloads.grandTotal + extra) / 1000)) + 'k');
+          };
+          fetch('https://api.github.com/repos/HakanSeven12/OpenCADStudio/releases?per_page=100')
+            .then(function (r) { return r.ok ? r.json() : []; })
+            .then(function (releases) {
+              var som = 0;
+              (releases || []).forEach(function (rel) {
+                (rel.assets || []).forEach(function (a) {
+                  if (!/\.(sig|pem|asc|json)$/i.test(a.name)) som += a.download_count || 0;
+                });
+              });
+              toon(som);
+            })
+            .catch(function () { toon(0); });
+        }
+      }).catch(function () {});
+    })();
+  </script>
   <script src="/shared/i18n.js?v=20260728"></script>
 </body>
 </html>
