@@ -15,13 +15,14 @@ assert.ok(homepage.includes('data-repo="pile-plan-studio"'), 'homepage mist de r
 assert.ok(homepage.includes('href="/open-pile-plan-studio/"'), 'homepage mist de productpaginalink');
 assert.ok(homepage.includes('https://pile-plan-studio.open-aec.com/'), 'homepage mist de live demo');
 assert.ok(homepage.includes('"name": "Pile Plan Studio"'), 'homepage mist Schema.org metadata');
-assert.equal((homepage.match(/openPilePlan:\s*\{/g) || []).length, 4, 'homepage mist één of meer taalitems');
+assert.equal((homepage.match(/openPilePlan:\s*\{/g) || []).length, 5, 'homepage mist één of meer taalitems');
 
 assert.ok(exists('open-pile-plan-studio/index.html'), 'productpagina ontbreekt');
 for (const file of [
   'shared/translations/open-pile-plan-studio.json',
   'shared/translations/open-pile-plan-studio.fr.json',
   'shared/translations/open-pile-plan-studio.tr.json',
+  'shared/translations/open-pile-plan-studio.es.json',
 ]) {
   assert.ok(exists(file), `${file} ontbreekt`);
   JSON.parse(read(file));

@@ -53,7 +53,7 @@ assert.ok(
 );
 assert.match(
   validator,
-  /<a href="https:\/\/github\.com\/OpenAEC-Foundation\/OpenAEC-BIM-validator" target="_blank" rel="noopener" class="btn btn-primary github-cta">/,
+  /<a href="https:\/\/github\.com\/OpenAEC-Foundation\/OpenAEC-BIM-validator" target="_blank" rel="noopener" class="btn btn-primary github-cta"[^>]*>/,
   'BIM Validator GitHub-link mist veilige attributen of toegankelijke knopstijl',
 );
 assert.ok(validator.includes('id="recent-developments"'), 'BIM Validator mist recente ontwikkelingen');
