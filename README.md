@@ -118,3 +118,16 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Initiator**: Maarten Vroegindeweij
 - **Location**: Dordrecht, The Netherlands
 - **Status**: in formation (stichting i.o.)
+
+## Public feedback page
+
+Feedback links point to https://open-feedback-studio.open-aec.com/. Its source
+and server deployment now live in `OpenAEC-Foundation/open-feedback-studio`,
+under `public-site/`. The old `feedback/index.html` only redirects visitors,
+preserving query parameters and fragments on static hosts such as GitHub Pages.
+
+On the OpenAEC server, `/etc/nginx/snippets/open-aec-feedback-redirect.conf`
+contains `deploy/feedback-redirect.conf`, included by the HTTPS virtual host for
+`open-aec.com` and `www.open-aec.com`. Nginx sends a permanent redirect for
+`/feedback`, `/feedback/`, and `/feedback/index.html`, preserving query parameters.
+The existing website deployment leaves this Nginx configuration in place.
