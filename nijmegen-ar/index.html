@@ -245,7 +245,7 @@
       <b>RD</b><span id="rdTxt">–</span>
       <b>Heading</b><span id="hdgTxt">–</span>
       <b>Stappen</b><span id="stepTxt">0</span>
-      <b>Versie</b><span>18-09 g</span>
+      <b>Versie</b><span>18-09 h</span>
     </div>
     <p class="note warn">Ooghoogte volgt het ingemeten maaiveld (standaard 1,7 m erboven). Het kompas van de telefoon wijkt vaak 10–30° af; corrigeer met de schuif tot de steiger op zijn plek staat. Een tablet zonder kompas (Heading: geen kompas) begint met de kijkrichting van het standpunt; draai dan met de schuif bij. Buiten stelt de app het kompas tijdens het lopen bij op je looprichting (GPS-koers): loop de eerste meters rechtuit met het scherm voor je. Lopen werkt via de stappenteller van de telefoon: elke stap verplaatst je direct 0,72 m in de kijkrichting, ook opzij en achteruit. Met Positie op GPS trekt de GPS-fix de positie langzaam bij (sneller bij een nauwkeurige fix), zodat je niet wegdrijft maar ook geen sprongen ziet. Kies opnieuw een standpunt om terug te springen.</p>
     </details>
@@ -1818,6 +1818,7 @@ function applyDetail() {
   const detMode = mode === '3d' || mode === 'tafel';
   const on = detMode && detOn && detLoaded && !iso; det.visible = on;
   env.visible = mode !== 'locatie' && !on; life.visible = !on;
+  for (const nm of ['autos', 'autos_glas', 'autos_wielen', 'drijflichaam']) site.traverse(o => { if (o.name === nm) o.visible = !on; });   /* ook de losse auto- en drijflichaammeshes van het lichte model uit */
   for (const k in hofGroups) hofGroups[k].visible = !on && (v === 'plan' || (hofOnly && +hofOnly[1] === +k));
   veg3d.visible = on && vegLoaded && vegOn;
   document.querySelectorAll('.detToggle').forEach(t => { t.checked = detOn; });
