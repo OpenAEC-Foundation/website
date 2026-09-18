@@ -309,7 +309,7 @@ kbd{border-color:var(--line);color:var(--ink);background:#fff}
       <b>RD</b><span id="rdTxt">–</span>
       <b>Heading</b><span id="hdgTxt">–</span>
       <b>Stappen</b><span id="stepTxt">0</span>
-      <b>Versie</b><span>18-09 f · huisstijl</span>
+      <b>Versie</b><span>18-09 g · huisstijl</span>
     </div>
     <p class="note warn">Ooghoogte volgt het ingemeten maaiveld (standaard 1,7 m erboven). Het kompas van de telefoon wijkt vaak 10–30° af; corrigeer met de schuif tot de steiger op zijn plek staat. Een tablet zonder kompas (Heading: geen kompas) begint met de kijkrichting van het standpunt; draai dan met de schuif bij. Buiten stelt de app het kompas tijdens het lopen bij op je looprichting (GPS-koers): loop de eerste meters rechtuit met het scherm voor je. Lopen werkt via de stappenteller van de telefoon: elke stap verplaatst je direct 0,72 m in de kijkrichting, ook opzij en achteruit. Met Positie op GPS trekt de GPS-fix de positie langzaam bij (sneller bij een nauwkeurige fix), zodat je niet wegdrijft maar ook geen sprongen ziet. Kies opnieuw een standpunt om terug te springen.</p>
     </details>
@@ -1867,6 +1867,14 @@ const VEG_BASE = MODEL3D_BASE + 'veg/';
 const IS_TOUCH = (navigator.maxTouchPoints > 1) && (/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) || navigator.platform === 'MacIntel');
 const det = new THREE.Group(); det.name = 'det'; det.visible = false; site.add(det);   // in de site-groep: schaalt mee in AR Maquette
 let detOn = true, detLoaded = false, detLoading = false;
+/* lagen van het gedetailleerde model (webLayer uit de Blender-export: houses, piers, terrain, context, cars, atmosphere) en van de
+   beplanting (veg:design_tree, veg:context_tree, veg:shrub, veg:reed, veg:low_grass); aan/uit via setLayer, ook vóór het laden. */
+const layerState = new Map(), vegHidden = new Set();
+function setLayer(name, on) { layerState.set(name, on);
+  if (name.startsWith('veg:')) { const k = name.slice(4); if (on) vegHidden.delete(k); else vegHidden.add(k); if (typeof vegCull === 'function') vegCull(true); }
+  else det.traverse(o => { if (o.userData && o.userData.webLayer === name) o.visible = on; }); }
+function applyLayers() { for (const [k, v] of layerState) setLayer(k, v); }
+Object.assign(window.__dbg, { det, setLayer });
 const DRACO_PATH = 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/libs/draco/';
 function applyDetail() {
   const v = $('#viewSel').value, iso = /^[ABCD]$/.test(v), hofOnly = /^hof(\d)$/.exec(v);
@@ -1885,7 +1893,7 @@ async function loadDetail() {
     const gltf = await loader.loadAsync(MODEL3D_BASE + 'core.glb', (ev) => { if (h && ev.total) h.textContent = 'Gedetailleerd model laden… ' + Math.round(ev.loaded / ev.total * 100) + '%'; });
     const root = gltf.scene; root.position.set(187100 - X0, -WATER_NAP, -(431900 - Y0));
     root.traverse(o => { if (o.isMesh) { o.castShadow = false; o.receiveShadow = false; const m = o.material; if (m && m.map && /Leaf|Flower|Grass|Riet/i.test(m.name || '')) { m.side = THREE.DoubleSide; if (!m.transparent) m.alphaTest = Math.max(m.alphaTest || 0, .3); } } });
-    det.add(root); detLoaded = true; applyDetail(); if (h) h.hidden = true; vegOn = true; await loadVeg3D(); applyDetail(); vegCull(true);
+    det.add(root); detLoaded = true; applyLayers(); applyDetail(); if (h) h.hidden = true; vegOn = true; await loadVeg3D(); applyDetail(); vegCull(true);
   } catch (e) { console.warn('gedetailleerd model niet geladen:', e); detOn = false; const t = $('#detToggle'); if (t) { t.checked = false; t.disabled = true; } if (h) { h.textContent = 'Gedetailleerd model kon niet laden'; setTimeout(() => { h.hidden = true; }, 4000); } applyDetail(); }
   detLoading = false;
 }
@@ -1925,7 +1933,7 @@ function vegCull(force) {
   if (!vegLoaded) return; const show = vegOn && det.visible; veg3d.visible = show; if (!show) return;
   const cam = mode === 'tafel' ? _vorigin : camera.position; if (!force && vegLastCam && vegLastCam.distanceToSquared(cam) < 64) return; vegLastCam = (vegLastCam || new THREE.Vector3()).copy(cam);
   const budget = mode === 'tafel' ? 800000 : IS_TOUCH ? 1500000 : 4000000, far = mode === 'tafel' ? .35 : 1;   // maquette: bomen rond het plan binnen een klein budget
-  const cand = []; for (const p of vegProtos) { const d2max = p.dist * p.dist * far; for (let i = 0; i < p.n; i++) { const dx = p.cx[i] - cam.x, dz = p.cz[i] - cam.z; const d2 = dx * dx + dz * dz; if (d2 < d2max) cand.push(d2 + p.pen, p, i); } }
+  const cand = []; for (const p of vegProtos) { if (vegHidden.has(p.kind)) continue; const d2max = p.dist * p.dist * far; for (let i = 0; i < p.n; i++) { const dx = p.cx[i] - cam.x, dz = p.cz[i] - cam.z; const d2 = dx * dx + dz * dz; if (d2 < d2max) cand.push(d2 + p.pen, p, i); } }
   const order = []; for (let k = 0; k < cand.length; k += 3) order.push(k); order.sort((a, b) => cand[a] - cand[b]);
   for (const p of vegProtos) p.sel.length = 0;
   let tri = 0; for (const k of order) { const p = cand[k + 1]; if (tri + p.tri > budget) continue; tri += p.tri; p.sel.push(cand[k + 2]); }
@@ -1935,4 +1943,102 @@ setInterval(() => vegCull(false), 500);
 document.querySelectorAll('.detToggle').forEach(t => { t.checked = detOn; t.onchange = (e) => { detOn = e.target.checked; applyDetail(); if (detOn && (mode === '3d' || mode === 'tafel')) loadDetail(); vegCull(true); }; });
 loadAll().then(() => { buildPlan(); setView('plan'); $('#loader').remove(); camera.position.set(...VIEWPOINTS[0].pos); controls.target.set(...VIEWPOINTS[0].tgt); flyTo(VIEWPOINTS[0]); applyDetail(); if (detOn) loadDetail(); })
   .catch((e) => { log.textContent = 'Laden mislukt: ' + e.message; log.style.color = 'var(--bad)'; console.error(e); });
+</script><!-- layout3d.html - indeling van de 3D-modus naar het voorbeeld van open-aec.com/nijmegen (18-09-2026): knop Lagen met paneel rechts,
+     standpuntenbalk onderaan met teller, kompas + camera-herstel rechtsonder, grote titel bij de start. Alleen in 3D-modus; AR Maquette en
+     AR locatie houden het bestaande menu. Bouwt op de bestaande bediening: de nieuwe knoppen sturen de bestaande elementen aan (viewSel,
+     lblToggle, .detToggle, #vpChips), dus geen dubbele logica. Wordt na de basispagina ingevoegd (variant "blauw"). -->
+<style id="layout3d">
+  body[data-mode="3d"] #sheet{display:none}
+  body[data-mode="3d"] #joy{bottom:112px}
+  #lagenBtn{display:none;border:1px solid rgba(255,255,255,.55);background:transparent;color:#fff;border-radius:0;height:34px;padding:0 14px;letter-spacing:.08em;text-transform:uppercase;font-size:11.5px;font-weight:500;align-items:center;gap:8px}
+  #lagenBtn::before{content:"";width:12px;height:12px;border:1.5px solid currentColor;transform:rotate(45deg) scale(.8)}
+  #lagenBtn[aria-pressed="true"]{background:#fff;color:#20212c;border-color:#fff}
+  body[data-mode="3d"] #lagenBtn{display:inline-flex}
+  #layers{position:fixed;top:64px;right:16px;width:min(92vw,320px);max-height:calc(100vh - 150px);overflow:auto;background:rgba(255,255,255,.96);border:1px solid var(--line);box-shadow:0 12px 40px rgba(32,33,44,.18);padding:18px 18px 16px;z-index:14;display:none;flex-direction:column;gap:14px}
+  body[data-mode="3d"] #layers.open{display:flex}
+  #layers h3{margin:0;font:400 20px/1.1 var(--font-serif);letter-spacing:.02em;color:#20212c}
+  #layers .lbl{display:block;margin-bottom:6px}
+  #layers .opt{display:flex;align-items:center;gap:10px;font-size:14px;color:#3a3b49;padding:6px 0;border-top:1px solid rgba(58,59,73,.1)}
+  #layers .opt input{accent-color:#c8b89a;width:16px;height:16px}
+  #layers select{width:100%}
+  #vpBar{position:fixed;left:0;right:0;bottom:0;display:none;align-items:stretch;background:rgba(255,255,255,.96);border-top:1px solid var(--line);z-index:13;padding-bottom:env(safe-area-inset-bottom)}
+  body[data-mode="3d"] #vpBar{display:flex}
+  #vpBar .count{flex:none;display:flex;flex-direction:column;justify-content:center;padding:10px 18px;border-right:1px solid var(--line);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#8a8b98;white-space:nowrap}
+  #vpBar .count b{font:400 15px/1.2 var(--font-serif);letter-spacing:.02em;color:#20212c;text-transform:none}
+  #vpTabs{flex:1;display:flex;overflow-x:auto;scrollbar-width:none}
+  #vpTabs::-webkit-scrollbar{display:none}
+  #vpTabs button{flex:none;border:0;border-right:1px solid rgba(58,59,73,.1);background:transparent;color:#3a3b49;padding:12px 16px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;cursor:pointer}
+  #vpTabs button[aria-pressed="true"]{background:#20212c;color:#fff}
+  #vpTabs button small{display:block;text-transform:none;letter-spacing:0;font-size:10.5px;color:#8a8b98;margin-top:2px}
+  #vpTabs button[aria-pressed="true"] small{color:rgba(255,255,255,.65)}
+  #camTools{position:fixed;right:16px;bottom:74px;display:none;flex-direction:column;gap:8px;z-index:13}
+  body[data-mode="3d"] #camTools{display:flex}
+  #camTools button{width:44px;height:44px;border:1px solid var(--line);background:rgba(255,255,255,.96);color:#20212c;border-radius:0;display:flex;align-items:center;justify-content:center;cursor:pointer}
+  #compassN{width:26px;height:26px;transition:transform .15s linear}
+  #bigTitle{position:fixed;left:24px;bottom:96px;z-index:12;pointer-events:none;color:#fff;text-shadow:0 2px 24px rgba(0,0,0,.45);display:none}
+  body[data-mode="3d"] #bigTitle.show{display:block}
+  #bigTitle .kicker{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#c8b89a;margin-bottom:6px}
+  #bigTitle h1{margin:0;font:400 clamp(44px,9vw,96px)/.95 var(--font-serif);letter-spacing:.01em}
+  #bigTitle p{margin:8px 0 0;font-size:15px;letter-spacing:.02em;color:rgba(255,255,255,.85)}
+  @media (max-width:600px){ #vpBar .count{display:none} #bigTitle{left:16px;bottom:88px} #bigTitle h1{font-size:44px} }
+</style>
+<div id="layers" aria-label="Lagen">
+  <h3>Lagen</h3>
+  <div><span class="lbl">Weergave</span><select id="lyView" class="sel"></select></div>
+  <div>
+    <label class="opt"><input type="checkbox" id="lyNum"> Huisnummers</label>
+    <label class="opt"><input type="checkbox" id="lyDet"> Gedetailleerd model</label>
+  </div>
+  <div id="lyLayers"><span class="lbl">Lagen (gedetailleerd model)</span>
+    <label class="opt"><input type="checkbox" data-layer="houses" checked> Woningen</label>
+    <label class="opt"><input type="checkbox" data-layer="piers" checked> Steigers en loopbruggen</label>
+    <label class="opt"><input type="checkbox" data-layer="terrain" checked> Terrein en water</label>
+    <label class="opt"><input type="checkbox" data-layer="context" checked> Omgeving: bebouwing, wegen, spoor</label>
+    <label class="opt"><input type="checkbox" data-layer="cars" checked> Auto’s</label>
+    <label class="opt"><input type="checkbox" data-layer="atmosphere" checked> Mensen, boten en eenden</label>
+    <label class="opt"><input type="checkbox" data-layer="veg:design_tree" checked> Ontwerpbomen</label>
+    <label class="opt"><input type="checkbox" data-layer="veg:context_tree" checked> Bomen in de omgeving</label>
+    <label class="opt"><input type="checkbox" data-layer="veg:shrub veg:reed veg:low_grass vegetation" checked> Struiken, riet en grassen</label>
+  </div>
+</div>
+<div id="vpBar" aria-label="Standpunten">
+  <div class="count"><b>30 woningen · 6 waterhoven</b><span>’t Blauw · Oosterhoutse Plas</span></div>
+  <div id="vpTabs" role="tablist"></div>
+</div>
+<div id="camTools">
+  <button id="compassBtn" aria-label="Kompas: kijkrichting; tik om naar het noorden te kijken"><svg id="compassN" viewBox="0 0 24 24" fill="none"><path d="M12 2 16 14H8L12 2Z" fill="#c8b89a"/><path d="M8 14h8l-4 8-4-8Z" fill="#20212c" opacity=".35"/></svg></button>
+  <button id="camReset" aria-label="Camera herstellen naar overzicht"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#20212c" stroke-width="1.6"><path d="M4 10V5h5M20 14v5h-5M4 5l6 6M20 19l-6-6"/></svg></button>
+</div>
+<div id="bigTitle" class="show"><div class="kicker">Interactief projectmodel</div><h1>’t Blauw.</h1><p>Dertig drijvende woningen aan de Oosterhoutse Plas, Nijmegen.</p></div>
+<script>
+(function () {
+  const $ = (s) => document.querySelector(s);
+  /* Lagen-knop in de kop, naast de moduskeuze */
+  const nav = $('nav.modes'); const btn = document.createElement('button'); btn.id = 'lagenBtn'; btn.textContent = 'Lagen'; btn.setAttribute('aria-pressed', 'false'); nav.after(btn);
+  const layers = $('#layers');
+  btn.onclick = () => { const open = !layers.classList.contains('open'); layers.classList.toggle('open', open); btn.setAttribute('aria-pressed', String(open)); };
+  /* weergave, nummers en gedetailleerd model sturen de bestaande bediening aan */
+  const viewSel = $('#viewSel'), lyView = $('#lyView'); lyView.innerHTML = viewSel.innerHTML; lyView.value = viewSel.value;
+  lyView.onchange = () => { viewSel.value = lyView.value; viewSel.dispatchEvent(new Event('change')); };
+  viewSel.addEventListener('change', () => { lyView.value = viewSel.value; });
+  const lbl = $('#lblToggle'), lyNum = $('#lyNum'); lyNum.checked = lbl.checked; lyNum.onchange = () => { if (lbl.checked !== lyNum.checked) lbl.click(); };
+  const det = document.querySelector('.detToggle'), lyDet = $('#lyDet'); if (det) { lyDet.checked = det.checked; lyDet.onchange = () => { if (det.checked !== lyDet.checked) det.click(); }; setInterval(() => { lyDet.checked = det.checked; lyNum.checked = lbl.checked; }, 800); } else lyDet.parentElement.style.display = 'none';
+  /* lagen: elk vinkje kan meerdere laagnamen dragen (spaties); setLayer onthoudt de stand ook vóór het laden van het model */
+  document.querySelectorAll('#lyLayers input[data-layer]').forEach(cb => { cb.onchange = () => { const d = window.__dbg; if (!d || !d.setLayer) return; for (const name of cb.dataset.layer.split(' ')) d.setLayer(name, cb.checked); }; });
+  /* standpuntenbalk: één tab per bestaande chip, klik gaat door naar de chip (flyTo + impressie) */
+  const chips = $('#vpChips'), tabs = $('#vpTabs'), title = $('#bigTitle');
+  const build = () => { tabs.innerHTML = ''; [...chips.children].forEach((c) => { const t = document.createElement('button'); t.setAttribute('role', 'tab'); t.innerHTML = c.innerHTML; t.setAttribute('aria-pressed', c.getAttribute('aria-pressed')); t.onclick = () => { c.click(); sync(); title.classList.remove('show'); }; tabs.appendChild(t); }); };
+  const sync = () => { [...tabs.children].forEach((t, i) => t.setAttribute('aria-pressed', chips.children[i] ? chips.children[i].getAttribute('aria-pressed') : 'false')); };
+  build(); new MutationObserver((muts) => { if (muts.some(m => m.type === 'childList')) build(); else sync(); }).observe(chips, { attributes: true, childList: true, subtree: true, attributeFilter: ['aria-pressed'] });   /* de chips worden pas na het laden gemaakt */
+  /* camera herstellen = eerste standpunt; kompas draait met de kijkrichting mee, tik = naar het noorden kijken */
+  $('#camReset').onclick = () => { if (chips.firstElementChild) chips.firstElementChild.click(); title.classList.remove('show'); };
+  const nIcon = $('#compassN'); const fwd = { x: 0, z: -1 };
+  function tick() { const d = window.__dbg; if (d && d.camera && document.body.dataset.mode === '3d') { const v = d.camera.getWorldDirection(new d.camera.position.constructor()); const hdg = Math.atan2(v.x, -v.z); nIcon.style.transform = 'rotate(' + (-hdg * 180 / Math.PI).toFixed(1) + 'deg)'; } requestAnimationFrame(tick); } tick();
+  $('#compassBtn').onclick = () => { const d = window.__dbg; if (!d || !d.controls) return; const c = d.controls, cam = d.camera; const r = cam.position.distanceTo(c.target); const dy = c.target.y - cam.position.y; const h = Math.sqrt(Math.max(0, r * r - dy * dy)); cam.position.set(c.target.x, cam.position.y, c.target.z + h); c.update(); };
+  /* grote titel verdwijnt bij de eerste interactie met het beeld */
+  const hide = () => title.classList.remove('show'); const stage = $('#stage'); ['pointerdown', 'wheel', 'touchstart'].forEach(ev => stage.addEventListener(ev, hide, { once: true, passive: true })); window.addEventListener('keydown', hide, { once: true });
+  document.querySelectorAll('nav.modes button').forEach(b => b.addEventListener('click', () => { if (b.dataset.mode !== '3d') { hide(); layers.classList.remove('open'); btn.setAttribute('aria-pressed', 'false'); } }));
+})();
 </script>
+
+

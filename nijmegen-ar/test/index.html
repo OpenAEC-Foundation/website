@@ -245,7 +245,7 @@
       <b>RD</b><span id="rdTxt">–</span>
       <b>Heading</b><span id="hdgTxt">–</span>
       <b>Stappen</b><span id="stepTxt">0</span>
-      <b>Versie</b><span>18-09 f</span>
+      <b>Versie</b><span>18-09 g</span>
     </div>
     <p class="note warn">Ooghoogte volgt het ingemeten maaiveld (standaard 1,7 m erboven). Het kompas van de telefoon wijkt vaak 10–30° af; corrigeer met de schuif tot de steiger op zijn plek staat. Lopen werkt via de stappenteller van de telefoon: elke stap verplaatst je direct 0,72 m in de kijkrichting, ook opzij en achteruit. Met Positie op GPS trekt de GPS-fix de positie langzaam bij (sneller bij een nauwkeurige fix), zodat je niet wegdrijft maar ook geen sprongen ziet. Kies opnieuw een standpunt om terug te springen.</p>
     </details>
@@ -1804,6 +1804,14 @@ const VEG_BASE = MODEL3D_BASE + 'veg/';
 const IS_TOUCH = (navigator.maxTouchPoints > 1) && (/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) || navigator.platform === 'MacIntel');
 const det = new THREE.Group(); det.name = 'det'; det.visible = false; site.add(det);   // in de site-groep: schaalt mee in AR Maquette
 let detOn = true, detLoaded = false, detLoading = false;
+/* lagen van het gedetailleerde model (webLayer uit de Blender-export: houses, piers, terrain, context, cars, atmosphere) en van de
+   beplanting (veg:design_tree, veg:context_tree, veg:shrub, veg:reed, veg:low_grass); aan/uit via setLayer, ook vóór het laden. */
+const layerState = new Map(), vegHidden = new Set();
+function setLayer(name, on) { layerState.set(name, on);
+  if (name.startsWith('veg:')) { const k = name.slice(4); if (on) vegHidden.delete(k); else vegHidden.add(k); if (typeof vegCull === 'function') vegCull(true); }
+  else det.traverse(o => { if (o.userData && o.userData.webLayer === name) o.visible = on; }); }
+function applyLayers() { for (const [k, v] of layerState) setLayer(k, v); }
+Object.assign(window.__dbg, { det, setLayer });
 const DRACO_PATH = 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/libs/draco/';
 function applyDetail() {
   const v = $('#viewSel').value, iso = /^[ABCD]$/.test(v), hofOnly = /^hof(\d)$/.exec(v);
@@ -1822,7 +1830,7 @@ async function loadDetail() {
     const gltf = await loader.loadAsync(MODEL3D_BASE + 'core.glb', (ev) => { if (h && ev.total) h.textContent = 'Gedetailleerd model laden… ' + Math.round(ev.loaded / ev.total * 100) + '%'; });
     const root = gltf.scene; root.position.set(187100 - X0, -WATER_NAP, -(431900 - Y0));
     root.traverse(o => { if (o.isMesh) { o.castShadow = false; o.receiveShadow = false; const m = o.material; if (m && m.map && /Leaf|Flower|Grass|Riet/i.test(m.name || '')) { m.side = THREE.DoubleSide; if (!m.transparent) m.alphaTest = Math.max(m.alphaTest || 0, .3); } } });
-    det.add(root); detLoaded = true; applyDetail(); if (h) h.hidden = true; vegOn = true; await loadVeg3D(); applyDetail(); vegCull(true);
+    det.add(root); detLoaded = true; applyLayers(); applyDetail(); if (h) h.hidden = true; vegOn = true; await loadVeg3D(); applyDetail(); vegCull(true);
   } catch (e) { console.warn('gedetailleerd model niet geladen:', e); detOn = false; const t = $('#detToggle'); if (t) { t.checked = false; t.disabled = true; } if (h) { h.textContent = 'Gedetailleerd model kon niet laden'; setTimeout(() => { h.hidden = true; }, 4000); } applyDetail(); }
   detLoading = false;
 }
@@ -1862,7 +1870,7 @@ function vegCull(force) {
   if (!vegLoaded) return; const show = vegOn && det.visible; veg3d.visible = show; if (!show) return;
   const cam = mode === 'tafel' ? _vorigin : camera.position; if (!force && vegLastCam && vegLastCam.distanceToSquared(cam) < 64) return; vegLastCam = (vegLastCam || new THREE.Vector3()).copy(cam);
   const budget = mode === 'tafel' ? 800000 : IS_TOUCH ? 1500000 : 4000000, far = mode === 'tafel' ? .35 : 1;   // maquette: bomen rond het plan binnen een klein budget
-  const cand = []; for (const p of vegProtos) { const d2max = p.dist * p.dist * far; for (let i = 0; i < p.n; i++) { const dx = p.cx[i] - cam.x, dz = p.cz[i] - cam.z; const d2 = dx * dx + dz * dz; if (d2 < d2max) cand.push(d2 + p.pen, p, i); } }
+  const cand = []; for (const p of vegProtos) { if (vegHidden.has(p.kind)) continue; const d2max = p.dist * p.dist * far; for (let i = 0; i < p.n; i++) { const dx = p.cx[i] - cam.x, dz = p.cz[i] - cam.z; const d2 = dx * dx + dz * dz; if (d2 < d2max) cand.push(d2 + p.pen, p, i); } }
   const order = []; for (let k = 0; k < cand.length; k += 3) order.push(k); order.sort((a, b) => cand[a] - cand[b]);
   for (const p of vegProtos) p.sel.length = 0;
   let tri = 0; for (const k of order) { const p = cand[k + 1]; if (tri + p.tri > budget) continue; tri += p.tri; p.sel.push(cand[k + 2]); }
