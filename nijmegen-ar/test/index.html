@@ -192,7 +192,7 @@
         <option value="A">Los type A</option><option value="B">Los type B</option><option value="C">Los type C</option><option value="D">Los type D</option>
       </select>
       <label class="chk"><input type="checkbox" id="lblToggle" checked> nummers</label>
-      <label class="chk"><input type="checkbox" id="vegToggle" checked> bomen 3D-model</label>
+      <label class="chk"><input type="checkbox" id="vegToggle"> bomen 3D-model</label>
     </div>
 
     <div class="row m3d mode-only">
@@ -244,7 +244,7 @@
       <b>RD</b><span id="rdTxt">–</span>
       <b>Heading</b><span id="hdgTxt">–</span>
       <b>Stappen</b><span id="stepTxt">0</span>
-      <b>Versie</b><span>18-09 c</span>
+      <b>Versie</b><span>18-09 d</span>
     </div>
     <p class="note warn">Ooghoogte volgt het ingemeten maaiveld (standaard 1,7 m erboven). Het kompas van de telefoon wijkt vaak 10–30° af; corrigeer met de schuif tot de steiger op zijn plek staat. Lopen werkt via de stappenteller van de telefoon: elke stap verplaatst je direct 0,72 m in de kijkrichting, ook opzij en achteruit. Met Positie op GPS trekt de GPS-fix de positie langzaam bij (sneller bij een nauwkeurige fix), zodat je niet wegdrijft maar ook geen sprongen ziet. Kies opnieuw een standpunt om terug te springen.</p>
     </details>
@@ -1795,7 +1795,7 @@ window.__dbg = { VIEWPOINTS, scene, env, plan, life, H, N, terrainH, toLocal, re
    Vervangt de eigen (abstracte) beplanting van de verkenner; uit te zetten met 'bomen 3D-model'. Niet in tafel-AR (maquette). */
 const VEG_BASE = /^https?:$/.test(location.protocol) ? (/\/test[^/]*\/$/.test(location.pathname) ? '../veg/' : 'veg/') : HOSTED_URL + 'veg/';
 const veg3d = new THREE.Group(); veg3d.name = 'veg3d'; scene.add(veg3d);
-let vegOn = true, vegLoaded = false, vegLoading = false; const vegProtos = [];
+let vegOn = false, vegLoaded = false, vegLoading = false; const vegProtos = [];
 const _vm = new THREE.Matrix4(), _vq = new THREE.Quaternion(), _vp = new THREE.Vector3(), _vs = new THREE.Vector3(), _vup = new THREE.Vector3(0, 1, 0);
 function vegOwnPlanting(show) { env.traverse(o => { if (o.name && o.name.startsWith('beplanting_')) o.visible = show; }); }
 async function loadVeg3D() {
@@ -1837,7 +1837,7 @@ function vegCull(force) {
   for (const p of vegProtos) for (const im of p.meshes) { const loc = im.userData.local; for (let k = 0; k < p.sel.length; k++) { _vm.fromArray(p.mats, p.sel[k] * 16).multiply(loc); im.setMatrixAt(k, _vm); } im.count = p.sel.length; im.instanceMatrix.needsUpdate = true; }
 }
 setInterval(() => vegCull(false), 500);
-{ const t = $('#vegToggle'); if (t) t.onchange = (e) => { vegOn = e.target.checked; vegOwnPlanting(!vegOn); vegCull(true); }; }
-loadAll().then(() => { buildPlan(); setView('plan'); $('#loader').remove(); camera.position.set(...VIEWPOINTS[0].pos); controls.target.set(...VIEWPOINTS[0].tgt); flyTo(VIEWPOINTS[0]); loadVeg3D(); })
+{ const t = $('#vegToggle'); if (t) t.onchange = (e) => { vegOn = e.target.checked; if (vegOn && !vegLoaded) loadVeg3D(); vegOwnPlanting(!vegOn); vegCull(true); }; }
+loadAll().then(() => { buildPlan(); setView('plan'); $('#loader').remove(); camera.position.set(...VIEWPOINTS[0].pos); controls.target.set(...VIEWPOINTS[0].tgt); flyTo(VIEWPOINTS[0]); if (vegOn) loadVeg3D(); })
   .catch((e) => { log.textContent = 'Laden mislukt: ' + e.message; log.style.color = 'var(--bad)'; console.error(e); });
 </script>
