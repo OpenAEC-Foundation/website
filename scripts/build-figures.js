@@ -32,7 +32,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const SKIP_DIRS = new Set(['old', 'presentation foundation', '.git', '.claude', 'node_modules']);
+const SKIP_DIRS = new Set(['old', 'presentation foundation', '.git', '.claude', 'node_modules', 'nijmegen']);
 
 function readJson(rel) {
   const p = path.join(ROOT, rel);

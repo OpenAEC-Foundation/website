@@ -39,7 +39,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const SKIP_DIRS = new Set(['old', 'presentation foundation', '.git', '.claude', 'node_modules']);
+const SKIP_DIRS = new Set(['old', 'presentation foundation', '.git', '.claude', 'node_modules', 'nijmegen']);
 
 function htmlFiles(dir, out = []) {
   for (const e of fs.readdirSync(dir, { withFileTypes: true })) {

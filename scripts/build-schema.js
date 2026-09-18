@@ -32,7 +32,7 @@ const { execFileSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const ORIGIN = 'https://open-aec.com';
-const SKIP_DIRS = new Set(['old', 'presentation foundation', '.git', '.claude', 'node_modules']);
+const SKIP_DIRS = new Set(['old', 'presentation foundation', '.git', '.claude', 'node_modules', 'nijmegen']);
 // De taalmappen worden wél meegenomen: dit script draait ná build-i18n-pages.js
 // en zet daar de juiste URL, taal en kruimelpad, in plaats van de Nederlandse
 // die uit het origineel meekwamen.

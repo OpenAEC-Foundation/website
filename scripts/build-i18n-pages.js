@@ -46,7 +46,7 @@ const ORIGIN = 'https://open-aec.com';
 const LANGS = ['en', 'fr', 'tr', 'es'];
 const ALL = ['nl', ...LANGS];
 const OG_LOCALE = { nl: 'nl_NL', en: 'en_US', fr: 'fr_FR', tr: 'tr_TR', es: 'es_ES' };
-const SKIP_DIRS = new Set(['old', 'presentation foundation', '.git', '.claude', 'node_modules', ...LANGS]);
+const SKIP_DIRS = new Set(['old', 'presentation foundation', '.git', '.claude', 'node_modules', 'nijmegen', ...LANGS]);
 
 // ── helpers ────────────────────────────────────────────────────────────────
 

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Unlisted page: not in the sitemap, not linked, not indexed. -->
+    <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+    <meta name="googlebot" content="noindex, nofollow" />
+    <meta name="theme-color" content="#f4f1e9" />
+    <title>Oosterhoutse Baai — Interactief projectmodel</title>
+    <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg" />
+    <script>
+      // core.glb is stored as byte-exact parts because the repository cannot
+      // hold files above 100 MB. This shim answers the viewer's request for
+      // model/core.glb with one continuous stream of those parts, including a
+      // content-length so the viewer's progress bar keeps working.
+      (function () {
+        var SPLIT = {
+          'core.glb': {
+            size: 280130420,
+            parts: [
+              'core.glb.part01', 'core.glb.part02', 'core.glb.part03',
+              'core.glb.part04', 'core.glb.part05', 'core.glb.part06'
+            ]
+          }
+        };
+        var nativeFetch = window.fetch.bind(window);
+
+        window.fetch = function (input, init) {
+          var raw = input && input.url ? input.url : String(input);
+          var url;
+          try { url = new URL(raw, document.baseURI); } catch (e) { return nativeFetch(input, init); }
+          var name = url.pathname.split('/').pop();
+          var spec = /\/model\/[^/]+$/.test(url.pathname) ? SPLIT[name] : null;
+          if (!spec) return nativeFetch(input, init);
+
+          var base = url.href.slice(0, url.href.lastIndexOf('/') + 1);
+          var signal = init && init.signal;
+          var partInit = signal ? { signal: signal } : undefined;
+
+          // Fetch the first part up front so a missing file surfaces as a
+          // normal failed response instead of a stream error.
+          return nativeFetch(base + spec.parts[0], partInit).then(function (first) {
+            if (!first.ok) return first;
+            var index = 1;
+            var reader = first.body.getReader();
+            var stream = new ReadableStream({
+              pull: function (controller) {
+                return reader.read().then(function step(chunk) {
+                  if (!chunk.done) { controller.enqueue(chunk.value); return; }
+                  if (index >= spec.parts.length) { controller.close(); return; }
+                  return nativeFetch(base + spec.parts[index++], partInit).then(function (res) {
+                    if (!res.ok) throw new Error('Modeldeel ontbreekt (' + res.status + ')');
+                    reader = res.body.getReader();
+                    return reader.read().then(step);
+                  });
+                });
+              },
+              cancel: function (reason) { return reader.cancel(reason); }
+            });
+            return new Response(stream, {
+              status: 200,
+              headers: {
+                'content-type': 'model/gltf-binary',
+                'content-length': String(spec.size)
+              }
+            });
+          });
+        };
+      })();
+    </script>
+    <script type="module" crossorigin src="./assets/index-CiTuTWMH.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/three-CF8rwLT4.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-B7baSjP9.css">
+  </head>
+  <body><div id="root"></div></body>
+</html>
