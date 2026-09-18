@@ -71,6 +71,7 @@
   .note.bad{color:var(--bad)}
   [hidden]{display:none!important}
   .mode-only{display:none}
+  body.posxr .row.mloc:has(#locChips){display:none}
   details.mloc{flex-direction:column;gap:6px} details.mloc summary{cursor:pointer;font-size:12px;color:var(--ink-2)}
   body[data-mode="3d"] .m3d, body[data-mode="tafel"] .mtafel, body[data-mode="locatie"] .mloc{display:flex}
 
@@ -309,7 +310,7 @@ kbd{border-color:var(--line);color:var(--ink);background:#fff}
       <b>RD</b><span id="rdTxt">–</span>
       <b>Heading</b><span id="hdgTxt">–</span>
       <b>Stappen</b><span id="stepTxt">0</span>
-      <b>Versie</b><span>18-09 k</span>
+      <b>Versie</b><span>18-09 l</span>
     </div>
     <p class="note warn">Ooghoogte volgt het ingemeten maaiveld (standaard 1,7 m erboven). Het kompas van de telefoon wijkt vaak 10–30° af; corrigeer met de schuif tot de steiger op zijn plek staat. Een tablet zonder kompas (Heading: geen kompas) begint met de kijkrichting van het standpunt; draai dan met de schuif bij. Buiten stelt de app het kompas tijdens het lopen bij op je looprichting (GPS-koers): loop de eerste meters rechtuit met het scherm voor je. Lopen werkt via de stappenteller van de telefoon: elke stap verplaatst je direct 0,72 m in de kijkrichting, ook opzij en achteruit. Met Positie op GPS trekt de GPS-fix de positie langzaam bij (sneller bij een nauwkeurige fix), zodat je niet wegdrijft maar ook geen sprongen ziet. Kies opnieuw een standpunt om terug te springen.</p>
     </details>
@@ -1585,7 +1586,7 @@ const video = $('#video'); let stream = null, geoWatch = null, orientOn = false,
 const gpsTxt = $('#gpsTxt'), rdTxt = $('#rdTxt'), hdgTxt = $('#hdgTxt'); const gpsLocal = new THREE.Vector3(); let haveGps = false;
 $('#headingFix').oninput = (e) => { const nv = +e.target.value; if (xrLoc) xrLocYawT += THREE.MathUtils.degToRad(nv - headingFix); headingFix = nv; $('#headingOut').value = (headingFix >= 0 ? '+' : '') + headingFix + '°'; };
 $('#eyeH').oninput = (e) => { eyeOff = +e.target.value; $('#eyeOut').value = eyeOff.toFixed(1) + ' m'; if (xrLoc && !xrLocFloor) xrLocNeedInit = true; };
-$('#posSeg').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; [...e.currentTarget.children].forEach(c => c.setAttribute('aria-pressed', c === b)); posMode = b.dataset.pos; fusedInit = false; };
+$('#posSeg').onclick = (e) => { const b = e.target.closest('button'); if (!b) return; [...e.currentTarget.children].forEach(c => c.setAttribute('aria-pressed', c === b)); posMode = b.dataset.pos; fusedInit = false; document.body.classList.toggle('posxr', posMode === 'xr'); };   /* ARCore: standpunten verbergen (start op GPS) */
 const devQ = new THREE.Quaternion(); let haveOrient = false;
 /* lopen: stapdetectie op de versnellingsmeter; per stap 0,72 m in de kijkrichting (horizontaal). GPS is te grof voor stappen.
    Drempel 1,0 m/s2 boven het lopend gemiddelde (was 1,6: een tablet in twee handen schokt minder dan een telefoon); bij Live GPS 0,6,
@@ -1691,7 +1692,7 @@ function xrLocInit(frame) {
   if (!ft || ft.lengthSq() < 1e-4) { const vp = VIEWPOINTS.find(v => v.id === locPoint.id); ft = vp ? new THREE.Vector3(vp.tgt[0] - base.x, 0, vp.tgt[2] - base.z) : new THREE.Vector3(0, 0, -1); }
   const yaw = Math.atan2(-ft.x, -ft.z) - Math.atan2(-fx.x, -fx.z) + THREE.MathUtils.degToRad(headingFix);
   const xa = new THREE.Vector3(pp.x, pp.y, pp.z), wa = new THREE.Vector3(base.x, standY(base.x, base.z, !useGps) + (xrLocFloor ? pp.y : eyeOff), base.z);   // jouw plek = standpunt; vloer = sta-hoogte
-  xrLocYawT = yaw; xrLocSet(yaw, xa, wa); xrHc.length = 0; xrPrevT = 0; xrTrackV = 0; xrLocNeedInit = false; hideLocHint(); logFlush('XRLOC INIT kompas=' + (haveOrient && absSeen) + ' yaw=' + Math.round(THREE.MathUtils.radToDeg(yaw)) + ' gps=' + useGps + ' acc=' + xrGpsAcc + ' pos=' + base.x.toFixed(1) + ',' + base.z.toFixed(1) + ' y=' + wa.y.toFixed(2));
+  xrLocYawT = yaw; xrLocSet(yaw, xa, wa); xrHc.length = 0; xrPrevT = 0; xrTrackV = 0; xrLocNeedInit = false; { const h = $('#locHint'); if (h) { h.textContent = 'Loop nu 10 m rechtuit met het scherm voor je: dan draait het model in de juiste richting'; h.hidden = false; clearTimeout(locHintT); locHintT = setTimeout(hideLocHint, 20000); } } logFlush('XRLOC INIT kompas=' + (haveOrient && absSeen) + ' yaw=' + Math.round(THREE.MathUtils.radToDeg(yaw)) + ' gps=' + useGps + ' acc=' + xrGpsAcc + ' pos=' + base.x.toFixed(1) + ',' + base.z.toFixed(1) + ' y=' + wa.y.toFixed(2));
 }
 /* per frame: huidige XR-positie bijhouden; een draaicorrectie (schuif of GPS-koers) gaat geleidelijk (20 gr/s) en om je eigen positie heen: de wereld
    draait om jou, niet om het startpunt. Loopsnelheid en -richting komen uit de tracking (venster 1 s) en voeden de GPS-ijking en de diagnoseregel. */
@@ -1707,7 +1708,7 @@ const xrGpsPos = new THREE.Vector3(); let xrGpsHave = false, xrStartT = 0;
 function xrGpsFix(p) { xrGpsAcc = Math.round(p.coords.accuracy || 99); { let [gx, gy] = wgsToRd(p.coords.longitude, p.coords.latitude); if (TEST_SHIFT) { gx -= TEST_SHIFT[0]; gy -= TEST_SHIFT[1]; } xrGpsPos.copy(toLocal(gx, gy)); xrGpsHave = true; } xrGpsCrs = Number.isFinite(p.coords.heading) ? p.coords.heading : null; xrGpsSpd = Number.isFinite(p.coords.speed) ? p.coords.speed : 0;
   if (xrGpsCrs == null || xrGpsSpd < 0.8 || xrGpsAcc > 12 || xrTrackV < 0.6) { xrHc.length = 0; return; }
   const ht = THREE.MathUtils.radToDeg(Math.atan2(xrTrackDir.x, -xrTrackDir.z)); const wr = (v) => ((v % 360) + 540) % 360 - 180; xrHc.push(wr(xrGpsCrs - ht)); if (xrHc.length > 4) xrHc.shift();
-  if (xrHc.length >= 3) { const m = xrHc.reduce((a, b) => a + b, 0) / xrHc.length; const spread = Math.max(...xrHc.map(v => Math.abs(wr(v - m)))); if (spread < 20 && Math.abs(m) > 3) { xrLocYawT -= THREE.MathUtils.degToRad(m * (xrHc.applied ? .25 : .6)); xrHc.applied = true; xrHc.length = 0; logFlush('XRLOC GPSFIX ' + Math.round(m)); } } }
+  if (xrHc.length >= 3) { const m = xrHc.reduce((a, b) => a + b, 0) / xrHc.length; const spread = Math.max(...xrHc.map(v => Math.abs(wr(v - m)))); if (spread < 20 && Math.abs(m) > 3) { xrLocYawT -= THREE.MathUtils.degToRad(m * (xrHc.applied ? .25 : .6)); xrHc.applied = true; xrHc.length = 0; hideLocHint(); logFlush('XRLOC GPSFIX ' + Math.round(m)); } } }
 (async () => { const ok = !!(navigator.xr && await navigator.xr.isSessionSupported('immersive-ar').catch(() => false)); const b = $('#posXR'); if (b && ok && !arBlockedReason()) b.hidden = false; })();
 $('#startLoc').onclick = startLoc; $('#stopLoc').onclick = stopLoc;
 /* bediening voor niet-ingewijden: korte aanwijzing in beeld na Start, statusregel in gewone taal, knop om de richting opnieuw te bepalen. De technische regels staan onder Details. */
