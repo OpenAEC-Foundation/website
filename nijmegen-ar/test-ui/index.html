@@ -309,7 +309,7 @@ kbd{border-color:var(--line);color:var(--ink);background:#fff}
       <b>RD</b><span id="rdTxt">–</span>
       <b>Heading</b><span id="hdgTxt">–</span>
       <b>Stappen</b><span id="stepTxt">0</span>
-      <b>Versie</b><span>18-09 j</span>
+      <b>Versie</b><span>18-09 k</span>
     </div>
     <p class="note warn">Ooghoogte volgt het ingemeten maaiveld (standaard 1,7 m erboven). Het kompas van de telefoon wijkt vaak 10–30° af; corrigeer met de schuif tot de steiger op zijn plek staat. Een tablet zonder kompas (Heading: geen kompas) begint met de kijkrichting van het standpunt; draai dan met de schuif bij. Buiten stelt de app het kompas tijdens het lopen bij op je looprichting (GPS-koers): loop de eerste meters rechtuit met het scherm voor je. Lopen werkt via de stappenteller van de telefoon: elke stap verplaatst je direct 0,72 m in de kijkrichting, ook opzij en achteruit. Met Positie op GPS trekt de GPS-fix de positie langzaam bij (sneller bij een nauwkeurige fix), zodat je niet wegdrijft maar ook geen sprongen ziet. Kies opnieuw een standpunt om terug te springen.</p>
     </details>
@@ -1667,7 +1667,7 @@ async function startXRLoc() {
   try { renderer.xr.setReferenceSpaceType('local'); renderer.xr.setFramebufferScaleFactor(0.55); await renderer.xr.setSession(s);
     try { xrLocBase = await s.requestReferenceSpace('local-floor'); xrLocFloor = true; } catch (e) { xrLocBase = await s.requestReferenceSpace('local'); xrLocFloor = false; } }
   catch (e) { plainErr = 'AR kon niet starten: ' + e.message; try { await s.end(); } catch (e2) {} return; }
-  xrLoc = s; xrLocNeedInit = true; orientOn = true; absSeen = false; absOffInit = false; relSeen = false; haveOrient = false;
+  xrLoc = s; xrLocNeedInit = true; xrStartT = performance.now(); xrGpsHave = false; orientOn = true; absSeen = false; absOffInit = false; relSeen = false; haveOrient = false;
   window.addEventListener('deviceorientationabsolute', onOrient, true); window.addEventListener('deviceorientation', onOrient, true);
   $('#startLoc').hidden = true; $('#stopLoc').hidden = false; $('#resetHdg').hidden = false; controls.enabled = false; showLocHint(); logFlush('XRLOC START ' + locPoint.id + ' floor=' + xrLocFloor);
   xrGpsCrs = null; xrGpsAcc = 99; xrHc.length = 0; xrHc.applied = false; try { xrGeo = navigator.geolocation.watchPosition(xrGpsFix, () => {}, { enableHighAccuracy: true, maximumAge: 0, timeout: 15000 }); } catch (e) { xrGeo = null; }
@@ -1684,11 +1684,14 @@ function xrLocInit(frame) {
   const o = pose.transform.orientation, pp = pose.transform.position; const fx = new THREE.Vector3(0, 0, -1).applyQuaternion(new THREE.Quaternion(o.x, o.y, o.z, o.w)); fx.y = 0; if (fx.lengthSq() < 1e-4) return;
   let ft = null;   // gewenste kijkrichting in de wereld: kompas (gyro+kompas) als dat er is, anders de kijkrichting van het standpunt
   if (haveOrient && absSeen) { ft = new THREE.Vector3(0, 0, -1).applyQuaternion(devQ); ft.y = 0; }
-  const base = toLocal(locPoint.rd[0], locPoint.rd[1]);
+  /* startpositie: de GPS (buiten 3-5 m), niet het gekozen standpunt: je staat nooit exact op een standpunt, en ARCore neemt de plek onder je
+     voeten als anker. Wacht tot 8 s op een fix < 15 m; daarna valt hij terug op het standpunt. Hoogte: terrein op die plek (nooit onder water). */
+  const useGps = xrGpsHave && xrGpsAcc < 15; if (!useGps && performance.now() - xrStartT < 8000) return;
+  const base = useGps ? xrGpsPos.clone() : toLocal(locPoint.rd[0], locPoint.rd[1]);
   if (!ft || ft.lengthSq() < 1e-4) { const vp = VIEWPOINTS.find(v => v.id === locPoint.id); ft = vp ? new THREE.Vector3(vp.tgt[0] - base.x, 0, vp.tgt[2] - base.z) : new THREE.Vector3(0, 0, -1); }
   const yaw = Math.atan2(-ft.x, -ft.z) - Math.atan2(-fx.x, -fx.z) + THREE.MathUtils.degToRad(headingFix);
-  const xa = new THREE.Vector3(pp.x, pp.y, pp.z), wa = new THREE.Vector3(base.x, standY(base.x, base.z, true) + (xrLocFloor ? pp.y : eyeOff), base.z);   // jouw plek = standpunt; vloer = sta-hoogte
-  xrLocYawT = yaw; xrLocSet(yaw, xa, wa); xrHc.length = 0; xrPrevT = 0; xrTrackV = 0; xrLocNeedInit = false; hideLocHint(); logFlush('XRLOC INIT kompas=' + (haveOrient && absSeen) + ' yaw=' + Math.round(THREE.MathUtils.radToDeg(yaw)));
+  const xa = new THREE.Vector3(pp.x, pp.y, pp.z), wa = new THREE.Vector3(base.x, standY(base.x, base.z, !useGps) + (xrLocFloor ? pp.y : eyeOff), base.z);   // jouw plek = standpunt; vloer = sta-hoogte
+  xrLocYawT = yaw; xrLocSet(yaw, xa, wa); xrHc.length = 0; xrPrevT = 0; xrTrackV = 0; xrLocNeedInit = false; hideLocHint(); logFlush('XRLOC INIT kompas=' + (haveOrient && absSeen) + ' yaw=' + Math.round(THREE.MathUtils.radToDeg(yaw)) + ' gps=' + useGps + ' acc=' + xrGpsAcc + ' pos=' + base.x.toFixed(1) + ',' + base.z.toFixed(1) + ' y=' + wa.y.toFixed(2));
 }
 /* per frame: huidige XR-positie bijhouden; een draaicorrectie (schuif of GPS-koers) gaat geleidelijk (20 gr/s) en om je eigen positie heen: de wereld
    draait om jou, niet om het startpunt. Loopsnelheid en -richting komen uit de tracking (venster 1 s) en voeden de GPS-ijking en de diagnoseregel. */
@@ -1700,7 +1703,8 @@ function xrLocFrame(frame, time, dt) {
 }
 /* GPS-koers ijkt de richting ook in ARCore-modus (buiten; het kompas zit er vaak tientallen graden naast): looprichting uit de tracking vs. koers uit de GPS,
    alleen bij > 0,8 m/s en nauwkeurigheid < 12 m, drie consistente metingen (spreiding < 20 gr); eerste keer 60%, daarna 25%; daarna geleidelijk bijdraaien. */
-function xrGpsFix(p) { xrGpsAcc = Math.round(p.coords.accuracy || 99); xrGpsCrs = Number.isFinite(p.coords.heading) ? p.coords.heading : null; xrGpsSpd = Number.isFinite(p.coords.speed) ? p.coords.speed : 0;
+const xrGpsPos = new THREE.Vector3(); let xrGpsHave = false, xrStartT = 0;
+function xrGpsFix(p) { xrGpsAcc = Math.round(p.coords.accuracy || 99); { let [gx, gy] = wgsToRd(p.coords.longitude, p.coords.latitude); if (TEST_SHIFT) { gx -= TEST_SHIFT[0]; gy -= TEST_SHIFT[1]; } xrGpsPos.copy(toLocal(gx, gy)); xrGpsHave = true; } xrGpsCrs = Number.isFinite(p.coords.heading) ? p.coords.heading : null; xrGpsSpd = Number.isFinite(p.coords.speed) ? p.coords.speed : 0;
   if (xrGpsCrs == null || xrGpsSpd < 0.8 || xrGpsAcc > 12 || xrTrackV < 0.6) { xrHc.length = 0; return; }
   const ht = THREE.MathUtils.radToDeg(Math.atan2(xrTrackDir.x, -xrTrackDir.z)); const wr = (v) => ((v % 360) + 540) % 360 - 180; xrHc.push(wr(xrGpsCrs - ht)); if (xrHc.length > 4) xrHc.shift();
   if (xrHc.length >= 3) { const m = xrHc.reduce((a, b) => a + b, 0) / xrHc.length; const spread = Math.max(...xrHc.map(v => Math.abs(wr(v - m)))); if (spread < 20 && Math.abs(m) > 3) { xrLocYawT -= THREE.MathUtils.degToRad(m * (xrHc.applied ? .25 : .6)); xrHc.applied = true; xrHc.length = 0; logFlush('XRLOC GPSFIX ' + Math.round(m)); } } }
@@ -1717,11 +1721,11 @@ function logSample(time) { if (!LOG_ON || !orientOn || time - logT < 200) return
 function logFlush(note) { if (!LOG_ON) return; const body = JSON.stringify({ sess: logSess, when: new Date().toISOString(), ua: navigator.userAgent, note: note || null, samples: logBuf }); logBuf = []; fetch(LOG_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: true }).catch(() => {}); }
 const logMarkBtn = $('#logMark'); if (logMarkBtn) { if (!LOG_ON) logMarkBtn.remove(); else logMarkBtn.onclick = () => { const n = prompt('Wat gaat er mis? (kort)'); logFlush('MARKER: ' + (n || '(geen tekst)')); logMarkBtn.textContent = 'Gemarkeerd ✓'; setTimeout(() => logMarkBtn.textContent = 'Markeer probleem', 1500); }; }
 let locHintT = 0, plainErr = '', plainLast = '';
-function showLocHint() { const h = $('#locHint'); if (!h) return; h.textContent = posMode === 'xr' ? 'Even stilhouden… het model wordt neergezet' : posMode === 'gps' ? 'Loop 5 meter rechtuit met het scherm voor je' : 'Kijk rond. Gedraaid? Loop 5 m rechtuit, dan stelt de richting zich bij.'; h.hidden = false; clearTimeout(locHintT); locHintT = setTimeout(hideLocHint, 15000); }
+function showLocHint() { const h = $('#locHint'); if (!h) return; h.textContent = posMode === 'xr' ? 'Even stilhouden… GPS en model worden gezet' : posMode === 'gps' ? 'Loop 5 meter rechtuit met het scherm voor je' : 'Kijk rond. Gedraaid? Loop 5 m rechtuit, dan stelt de richting zich bij.'; h.hidden = false; clearTimeout(locHintT); locHintT = setTimeout(hideLocHint, 15000); }
 function hideLocHint() { const h = $('#locHint'); if (h) h.hidden = true; clearTimeout(locHintT); }
 function updatePlain() { const el = $('#locPlain'); if (!el) return; let t, cls = 'note mloc mode-only';
-  if (!orientOn) { if (plainErr) { t = plainErr; cls += ' bad'; } else t = posMode === 'xr' ? 'Ga op het gekozen standpunt staan en druk op Start AR. ARCore houdt het model daarna op zijn plek terwijl je loopt.' : posMode === 'gps' ? 'Live GPS werkt alleen op de locatie zelf. Druk op Start AR.' : 'Kies een standpunt en druk op Start AR.'; }
-  else if (xrLoc) t = xrLocNeedInit ? 'Even stilhouden…' : 'Loop vrij rond. Staat het model gedraaid? Gebruik de kompas-schuif of tik op Richting opnieuw.';
+  if (!orientOn) { if (plainErr) { t = plainErr; cls += ' bad'; } else t = posMode === 'xr' ? 'Ga ergens op het terrein staan (open lucht, voor de GPS) en druk op Start AR. ARCore houdt het model daarna op zijn plek terwijl je loopt.' : posMode === 'gps' ? 'Live GPS werkt alleen op de locatie zelf. Druk op Start AR.' : 'Kies een standpunt en druk op Start AR.'; }
+  else if (xrLoc) t = xrLocNeedInit ? (xrGpsHave ? 'Even stilhouden…' : 'GPS zoeken… even stilhouden (max. 8 s)') : 'Loop vrij rond. Gedraaid? Loop 5 m rechtuit of gebruik de kompas-schuif. Verschoven? Tik op Richting opnieuw (neemt de GPS opnieuw).';
   else if (posMode === 'gps') { if (!haveGps) { t = 'GPS zoeken… ga naar buiten.'; cls += ' warn'; } else { t = gpsAcc <= 8 ? 'GPS goed. ' : gpsAcc <= 20 ? 'GPS matig, ga naar open terrein. ' : 'GPS slecht, ga naar open terrein. '; if (gpsAcc > 8) cls += ' warn'; t += autoFix ? 'Richting bepaald.' : 'Loop 5 m rechtuit om de richting te bepalen.'; } }
   else t = 'Kijk rond. Elke stap verplaatst je 0,7 m in de kijkrichting. ' + (autoFix ? 'Richting bepaald.' : 'Staat het model gedraaid? Loop 5 m rechtuit (buiten) of gebruik de kompas-schuif onder Details.');
   if (t !== plainLast) { plainLast = t; el.textContent = t; el.className = cls; } }
