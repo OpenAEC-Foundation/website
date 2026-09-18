@@ -1,7 +1,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0c161d">
-<title>’t Blauw AR-verkenner (huisstijl)</title>
+<title>’t Blauw AR-verkenner</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
   :root{
@@ -309,7 +309,7 @@ kbd{border-color:var(--line);color:var(--ink);background:#fff}
       <b>RD</b><span id="rdTxt">–</span>
       <b>Heading</b><span id="hdgTxt">–</span>
       <b>Stappen</b><span id="stepTxt">0</span>
-      <b>Versie</b><span>18-09 h · huisstijl</span>
+      <b>Versie</b><span>18-09 i</span>
     </div>
     <p class="note warn">Ooghoogte volgt het ingemeten maaiveld (standaard 1,7 m erboven). Het kompas van de telefoon wijkt vaak 10–30° af; corrigeer met de schuif tot de steiger op zijn plek staat. Een tablet zonder kompas (Heading: geen kompas) begint met de kijkrichting van het standpunt; draai dan met de schuif bij. Buiten stelt de app het kompas tijdens het lopen bij op je looprichting (GPS-koers): loop de eerste meters rechtuit met het scherm voor je. Lopen werkt via de stappenteller van de telefoon: elke stap verplaatst je direct 0,72 m in de kijkrichting, ook opzij en achteruit. Met Positie op GPS trekt de GPS-fix de positie langzaam bij (sneller bij een nauwkeurige fix), zodat je niet wegdrijft maar ook geen sprongen ziet. Kies opnieuw een standpunt om terug te springen.</p>
     </details>
@@ -1944,7 +1944,8 @@ setInterval(() => vegCull(false), 500);
 document.querySelectorAll('.detToggle').forEach(t => { t.checked = detOn; t.onchange = (e) => { detOn = e.target.checked; applyDetail(); if (detOn && (mode === '3d' || mode === 'tafel')) loadDetail(); vegCull(true); }; });
 loadAll().then(() => { buildPlan(); setView('plan'); $('#loader').remove(); camera.position.set(...VIEWPOINTS[0].pos); controls.target.set(...VIEWPOINTS[0].tgt); flyTo(VIEWPOINTS[0]); applyDetail(); if (detOn) loadDetail(); })
   .catch((e) => { log.textContent = 'Laden mislukt: ' + e.message; log.style.color = 'var(--bad)'; console.error(e); });
-</script><!-- layout3d.html - indeling van de 3D-modus naar het voorbeeld van open-aec.com/nijmegen (18-09-2026): knop Lagen met paneel rechts,
+</script>
+<!-- layout3d.html - indeling van de 3D-modus naar het voorbeeld van open-aec.com/nijmegen (18-09-2026): knop Lagen met paneel rechts,
      standpuntenbalk onderaan met teller, kompas + camera-herstel rechtsonder, grote titel bij de start. Alleen in 3D-modus; AR Maquette en
      AR locatie houden het bestaande menu. Bouwt op de bestaande bediening: de nieuwe knoppen sturen de bestaande elementen aan (viewSel,
      lblToggle, .detToggle, #vpChips), dus geen dubbele logica. Wordt na de basispagina ingevoegd (variant "blauw"). -->
@@ -2041,5 +2042,4 @@ loadAll().then(() => { buildPlan(); setView('plan'); $('#loader').remove(); came
   document.querySelectorAll('nav.modes button').forEach(b => b.addEventListener('click', () => { if (b.dataset.mode !== '3d') { hide(); layers.classList.remove('open'); btn.setAttribute('aria-pressed', 'false'); } }));
 })();
 </script>
-
 
