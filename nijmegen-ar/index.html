@@ -292,7 +292,7 @@ kbd{border-color:var(--line);color:var(--ink);background:#fff}
       </div>
       <button class="primary" id="startLoc">Start AR</button>
       <button class="ghost" id="resetHdg" hidden>Richting opnieuw</button>
-      <button class="ghost" id="stopLoc" hidden>Stop</button>
+      <button class="ghost" id="stopLoc" hidden>Stop AR</button>
       <button class="ghost" id="logMark">Markeer probleem</button>
     </div>
     <p class="note mloc mode-only" id="locPlain">Kies een standpunt en druk op Start AR.</p>
@@ -314,7 +314,7 @@ kbd{border-color:var(--line);color:var(--ink);background:#fff}
       <b>RD</b><span id="rdTxt">–</span>
       <b>Heading</b><span id="hdgTxt">–</span>
       <b>Stappen</b><span id="stepTxt">0</span>
-      <b>Versie</b><span>18-09 o</span>
+      <b>Versie</b><span>18-09 p</span>
     </div>
     <p class="note warn">Ooghoogte volgt het ingemeten maaiveld (standaard 1,7 m erboven). Het kompas van de telefoon wijkt vaak 10–30° af; corrigeer met de schuif tot de steiger op zijn plek staat. Een tablet zonder kompas (Heading: geen kompas) begint met de kijkrichting van het standpunt; draai dan met de schuif bij. Buiten stelt de app het kompas tijdens het lopen bij op je looprichting (GPS-koers): loop de eerste meters rechtuit met het scherm voor je. Lopen werkt via de stappenteller van de telefoon: elke stap verplaatst je direct 0,72 m in de kijkrichting, ook opzij en achteruit. Met Positie op GPS trekt de GPS-fix de positie langzaam bij (sneller bij een nauwkeurige fix), zodat je niet wegdrijft maar ook geen sprongen ziet. Kies opnieuw een standpunt om terug te springen.</p>
     </details>
@@ -1674,7 +1674,7 @@ async function startXRLoc() {
   catch (e) { plainErr = 'AR kon niet starten: ' + e.message; try { await s.end(); } catch (e2) {} return; }
   xrLoc = s; xrLocNeedInit = true; xrStartT = performance.now(); xrGpsHave = false; orientOn = true; absSeen = false; absOffInit = false; relSeen = false; haveOrient = false;
   window.addEventListener('deviceorientationabsolute', onOrient, true); window.addEventListener('deviceorientation', onOrient, true);
-  $('#startLoc').hidden = true; $('#stopLoc').hidden = false; $('#resetHdg').hidden = false; $('#resetHdg').textContent = 'Opnieuw plaatsen'; if ($('#nudge')) $('#nudge').hidden = false; controls.enabled = false; showLocHint(); logFlush('XRLOC START ' + locPoint.id + ' floor=' + xrLocFloor);
+  $('#startLoc').hidden = true; $('#stopLoc').hidden = false; $('#resetHdg').hidden = true;   /* ARCore: alleen Start AR / Stop; verplaatsen = Stop, lopen, Start AR */ if ($('#nudge')) $('#nudge').hidden = false; controls.enabled = false; showLocHint(); logFlush('XRLOC START ' + locPoint.id + ' floor=' + xrLocFloor);
   xrGpsCrs = null; xrGpsAcc = 99; xrHc.length = 0; xrHc.applied = false; xrHc.n = 0; xrHc.lastT = 0; try { xrGeo = navigator.geolocation.watchPosition(xrGpsFix, () => {}, { enableHighAccuracy: true, maximumAge: 0, timeout: 15000 }); } catch (e) { xrGeo = null; }
   s.addEventListener('end', () => { logFlush('XRLOC END'); xrLoc = null; xrLocBase = null; if (xrGeo != null) { navigator.geolocation.clearWatch(xrGeo); xrGeo = null; } stopLoc(); });
 }
@@ -1734,7 +1734,7 @@ function showLocHint() { const h = $('#locHint'); if (!h) return; h.textContent 
 function hideLocHint() { const h = $('#locHint'); if (h) h.hidden = true; clearTimeout(locHintT); }
 function updatePlain() { const el = $('#locPlain'); if (!el) return; let t, cls = 'note mloc mode-only';
   if (!orientOn) { if (plainErr) { t = plainErr; cls += ' bad'; } else t = posMode === 'xr' ? 'Ga ergens op het terrein staan (open lucht, voor de GPS) en druk op Start AR. ARCore houdt het model daarna op zijn plek terwijl je loopt.' : posMode === 'gps' ? 'Live GPS werkt alleen op de locatie zelf. Druk op Start AR.' : 'Kies een standpunt en druk op Start AR.'; }
-  else if (xrLoc) t = xrLocNeedInit ? (xrGpsHave ? 'Even stilhouden…' : 'GPS zoeken… even stilhouden (max. 8 s)') : 'Zet het model op zijn plek met de kompas-schuif en Model schuiven, en loop dan rond. Ga je verder weg? Tik op Stop, loop, en tik weer op Start AR (of Opnieuw plaatsen).';
+  else if (xrLoc) t = xrLocNeedInit ? (xrGpsHave ? 'Even stilhouden…' : 'GPS zoeken… even stilhouden (max. 8 s)') : 'Zet het model op zijn plek met de kompas-schuif en Model schuiven (onder Details) en loop dan rond. Andere plek? Tik op Stop, loop erheen, tik op Start AR.';
   else if (posMode === 'gps') { if (!haveGps) { t = 'GPS zoeken… ga naar buiten.'; cls += ' warn'; } else { t = gpsAcc <= 8 ? 'GPS goed. ' : gpsAcc <= 20 ? 'GPS matig, ga naar open terrein. ' : 'GPS slecht, ga naar open terrein. '; if (gpsAcc > 8) cls += ' warn'; t += autoFix ? 'Richting bepaald.' : 'Loop 5 m rechtuit om de richting te bepalen.'; } }
   else t = 'Kijk rond. Elke stap verplaatst je 0,7 m in de kijkrichting. ' + (autoFix ? 'Richting bepaald.' : 'Staat het model gedraaid? Loop 5 m rechtuit (buiten) of gebruik de kompas-schuif onder Details.');
   if (t !== plainLast) { plainLast = t; el.textContent = t; el.className = cls; } }
