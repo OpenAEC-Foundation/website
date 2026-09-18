@@ -256,7 +256,7 @@ kbd{border-color:var(--line);color:var(--ink);background:#fff}
         <option value="A">Los type A</option><option value="B">Los type B</option><option value="C">Los type C</option><option value="D">Los type D</option>
       </select>
       <label class="chk"><input type="checkbox" id="lblToggle" checked> nummers</label>
-      <label class="chk m3d mode-only"><input type="checkbox" id="detToggle"> gedetailleerd model</label>
+      <label class="chk m3d mode-only"><input type="checkbox" class="detToggle" checked> gedetailleerd model</label>
     </div>
 
     <div class="row m3d mode-only">
@@ -271,6 +271,7 @@ kbd{border-color:var(--line);color:var(--ink);background:#fff}
         <button data-scale="500" aria-pressed="true">1:500</button>
         <button data-scale="1000" aria-pressed="false">1:1000</button>
       </div>
+      <label class="chk"><input type="checkbox" class="detToggle" checked> gedetailleerd model</label>
       <button class="primary" id="startXR">Start AR Maquette</button>
       <button class="ghost" id="stopXR" hidden>Stop</button>
       <a id="qlLink" rel="ar" hidden href="#"><img id="qlImg" alt="Bekijk in AR" width="220" height="48"></a>
@@ -308,7 +309,7 @@ kbd{border-color:var(--line);color:var(--ink);background:#fff}
       <b>RD</b><span id="rdTxt">–</span>
       <b>Heading</b><span id="hdgTxt">–</span>
       <b>Stappen</b><span id="stepTxt">0</span>
-      <b>Versie</b><span>18-09 e · huisstijl</span>
+      <b>Versie</b><span>18-09 f · huisstijl</span>
     </div>
     <p class="note warn">Ooghoogte volgt het ingemeten maaiveld (standaard 1,7 m erboven). Het kompas van de telefoon wijkt vaak 10–30° af; corrigeer met de schuif tot de steiger op zijn plek staat. Een tablet zonder kompas (Heading: geen kompas) begint met de kijkrichting van het standpunt; draai dan met de schuif bij. Buiten stelt de app het kompas tijdens het lopen bij op je looprichting (GPS-koers): loop de eerste meters rechtuit met het scherm voor je. Lopen werkt via de stappenteller van de telefoon: elke stap verplaatst je direct 0,72 m in de kijkrichting, ook opzij en achteruit. Met Positie op GPS trekt de GPS-fix de positie langzaam bij (sneller bij een nauwkeurige fix), zodat je niet wegdrijft maar ook geen sprongen ziet. Kies opnieuw een standpunt om terug te springen.</p>
     </details>
@@ -1500,7 +1501,7 @@ function setMode(m) {
   controls.enabled = m === '3d';
   if (m === '3d') { site.scale.setScalar(1); site.position.set(0, 0, 0); flyTo(VIEWPOINTS[0]); }
   if (m === 'tafel') checkXR();
-  updateJoy(); if (typeof applyDetail === 'function') { applyDetail(); if (m === '3d' && detOn && !detLoaded) loadDetail(); vegCull(true); }
+  updateJoy(); if (typeof applyDetail === 'function') { applyDetail(); if ((m === '3d' || m === 'tafel') && detOn && !detLoaded) loadDetail(); vegCull(true); }
 }
 document.querySelectorAll('nav.modes button').forEach(b => b.onclick = () => setMode(b.dataset.mode));
 document.body.dataset.mode = '3d';
@@ -1864,14 +1865,18 @@ window.__dbg = { VIEWPOINTS, scene, env, plan, life, H, N, terrainH, toLocal, re
 const MODEL3D_BASE = /^https?:$/.test(location.protocol) ? (/\/test[^/]*\/$/.test(location.pathname) ? '../model3d/' : 'model3d/') : HOSTED_URL + 'model3d/';
 const VEG_BASE = MODEL3D_BASE + 'veg/';
 const IS_TOUCH = (navigator.maxTouchPoints > 1) && (/Android|iPhone|iPad|Mobile/i.test(navigator.userAgent) || navigator.platform === 'MacIntel');
-const det = new THREE.Group(); det.name = 'det'; det.visible = false; scene.add(det);
-let detOn = !IS_TOUCH, detLoaded = false, detLoading = false;
+const det = new THREE.Group(); det.name = 'det'; det.visible = false; site.add(det);   // in de site-groep: schaalt mee in AR Maquette
+let detOn = true, detLoaded = false, detLoading = false;
 const DRACO_PATH = 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/libs/draco/';
 function applyDetail() {
   const v = $('#viewSel').value, iso = /^[ABCD]$/.test(v), hofOnly = /^hof(\d)$/.exec(v);
-  const on = detOn && detLoaded && mode === '3d' && !iso; det.visible = on;
-  if (mode === '3d') { env.visible = !on; life.visible = !on; for (const k in hofGroups) hofGroups[k].visible = !on && (v === 'plan' || (hofOnly && +hofOnly[1] === +k)); }
+  /* HARDE REGEL: het gedetailleerde model (Blender-export) alleen in 3D en AR Maquette; AR Locatie gebruikt ALTIJD het lichte eigen model. */
+  const detMode = mode === '3d' || mode === 'tafel';
+  const on = detMode && detOn && detLoaded && !iso; det.visible = on;
+  env.visible = mode !== 'locatie' && !on; life.visible = !on;
+  for (const k in hofGroups) hofGroups[k].visible = !on && (v === 'plan' || (hofOnly && +hofOnly[1] === +k));
   veg3d.visible = on && vegLoaded && vegOn;
+  document.querySelectorAll('.detToggle').forEach(t => { t.checked = detOn; });
 }
 async function loadDetail() {
   if (detLoaded || detLoading) return; detLoading = true; const h = $('#locHint');
@@ -1884,7 +1889,7 @@ async function loadDetail() {
   } catch (e) { console.warn('gedetailleerd model niet geladen:', e); detOn = false; const t = $('#detToggle'); if (t) { t.checked = false; t.disabled = true; } if (h) { h.textContent = 'Gedetailleerd model kon niet laden'; setTimeout(() => { h.hidden = true; }, 4000); } applyDetail(); }
   detLoading = false;
 }
-const veg3d = new THREE.Group(); veg3d.name = 'veg3d'; scene.add(veg3d);
+const veg3d = new THREE.Group(); veg3d.name = 'veg3d'; site.add(veg3d);
 let vegOn = false, vegLoaded = false, vegLoading = false; const vegProtos = [];   // bomen horen bij het gedetailleerde model
 const _vm = new THREE.Matrix4(), _vq = new THREE.Quaternion(), _vp = new THREE.Vector3(), _vs = new THREE.Vector3(), _vup = new THREE.Vector3(0, 1, 0);
 function vegOwnPlanting(show) { env.traverse(o => { if (o.name && o.name.startsWith('beplanting_')) o.visible = show; }); }
@@ -1915,11 +1920,11 @@ async function loadVeg3D() {
   } catch (e) { console.warn('bomen 3D-model niet geladen:', e); vegOn = false; }
   vegLoading = false;
 }
-let vegLastCam = null;
+let vegLastCam = null; const _vorigin = new THREE.Vector3();
 function vegCull(force) {
-  if (!vegLoaded) return; const show = vegOn && mode === '3d' && det.visible; veg3d.visible = show; if (!show) return;
-  const cam = camera.position; if (!force && vegLastCam && vegLastCam.distanceToSquared(cam) < 64) return; vegLastCam = (vegLastCam || new THREE.Vector3()).copy(cam);
-  const budget = IS_TOUCH ? 1500000 : 4000000, far = 1;
+  if (!vegLoaded) return; const show = vegOn && det.visible; veg3d.visible = show; if (!show) return;
+  const cam = mode === 'tafel' ? _vorigin : camera.position; if (!force && vegLastCam && vegLastCam.distanceToSquared(cam) < 64) return; vegLastCam = (vegLastCam || new THREE.Vector3()).copy(cam);
+  const budget = mode === 'tafel' ? 800000 : IS_TOUCH ? 1500000 : 4000000, far = mode === 'tafel' ? .35 : 1;   // maquette: bomen rond het plan binnen een klein budget
   const cand = []; for (const p of vegProtos) { const d2max = p.dist * p.dist * far; for (let i = 0; i < p.n; i++) { const dx = p.cx[i] - cam.x, dz = p.cz[i] - cam.z; const d2 = dx * dx + dz * dz; if (d2 < d2max) cand.push(d2 + p.pen, p, i); } }
   const order = []; for (let k = 0; k < cand.length; k += 3) order.push(k); order.sort((a, b) => cand[a] - cand[b]);
   for (const p of vegProtos) p.sel.length = 0;
@@ -1927,7 +1932,7 @@ function vegCull(force) {
   for (const p of vegProtos) for (const im of p.meshes) { const loc = im.userData.local; for (let k = 0; k < p.sel.length; k++) { _vm.fromArray(p.mats, p.sel[k] * 16).multiply(loc); im.setMatrixAt(k, _vm); } im.count = p.sel.length; im.instanceMatrix.needsUpdate = true; }
 }
 setInterval(() => vegCull(false), 500);
-{ const t = $('#detToggle'); if (t) { t.checked = detOn; t.onchange = (e) => { detOn = e.target.checked; applyDetail(); if (detOn && mode === '3d') loadDetail(); vegCull(true); }; } }
+document.querySelectorAll('.detToggle').forEach(t => { t.checked = detOn; t.onchange = (e) => { detOn = e.target.checked; applyDetail(); if (detOn && (mode === '3d' || mode === 'tafel')) loadDetail(); vegCull(true); }; });
 loadAll().then(() => { buildPlan(); setView('plan'); $('#loader').remove(); camera.position.set(...VIEWPOINTS[0].pos); controls.target.set(...VIEWPOINTS[0].tgt); flyTo(VIEWPOINTS[0]); applyDetail(); if (detOn) loadDetail(); })
   .catch((e) => { log.textContent = 'Laden mislukt: ' + e.message; log.style.color = 'var(--bad)'; console.error(e); });
 </script>
