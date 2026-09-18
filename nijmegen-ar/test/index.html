@@ -301,6 +301,10 @@ kbd{border-color:var(--line);color:var(--ink);background:#fff}
       <span class="lbl">Kompas</span>
       <label class="slider"><input type="range" id="headingFix" min="-180" max="180" step="1" value="0"><output id="headingOut">+0°</output></label>
     </div>
+    <div class="row" id="nudge" hidden>
+      <span class="lbl">Model schuiven</span>
+      <button class="ghost" data-f="1">verder 1 m</button><button class="ghost" data-f="-1">dichterbij 1 m</button><button class="ghost" data-r="-1">naar links 1 m</button><button class="ghost" data-r="1">naar rechts 1 m</button>
+    </div>
     <div class="row">
       <span class="lbl">Ooghoogte</span>
       <label class="slider"><input type="range" id="eyeH" min="-1" max="8" step="0.1" value="1.7"><output id="eyeOut">1.7 m</output></label>
@@ -310,7 +314,7 @@ kbd{border-color:var(--line);color:var(--ink);background:#fff}
       <b>RD</b><span id="rdTxt">–</span>
       <b>Heading</b><span id="hdgTxt">–</span>
       <b>Stappen</b><span id="stepTxt">0</span>
-      <b>Versie</b><span>18-09 l</span>
+      <b>Versie</b><span>18-09 m</span>
     </div>
     <p class="note warn">Ooghoogte volgt het ingemeten maaiveld (standaard 1,7 m erboven). Het kompas van de telefoon wijkt vaak 10–30° af; corrigeer met de schuif tot de steiger op zijn plek staat. Lopen werkt via de stappenteller van de telefoon: elke stap verplaatst je direct 0,72 m in de kijkrichting, ook opzij en achteruit. Met Positie op GPS trekt de GPS-fix de positie langzaam bij (sneller bij een nauwkeurige fix), zodat je niet wegdrijft maar ook geen sprongen ziet. Kies opnieuw een standpunt om terug te springen.</p>
     </details>
@@ -1650,7 +1654,7 @@ async function startLoc() {
     /* voorzichtig: alleen als je een paar fixes achtereen rechtuit loopt (koers stabiel) en de tablet stil houdt (kijkrichting stabiel); drie consistente metingen nodig; eerste keer 60%, daarna 25%. Anders draait het model weg zodra je opzij kijkt. */ if (posMode !== 'xr' && haveOrient && Number.isFinite(p.coords.heading) && p.coords.speed > 0.8 && gpsAcc < 12) { /* ook bij Vast standpunt: de GPS-koers ijkt het kompas, de positie blijft van het standpunt/de stappen */ _f.set(0, 0, -1).applyQuaternion(devQ); const hDev = THREE.MathUtils.radToDeg(Math.atan2(_f.x, -_f.z)); const wr = (v) => ((v % 360) + 540) % 360 - 180; const steady = hcPrevDev != null && Math.abs(wr(hDev - hcPrevDev)) < 15 && Math.abs(wr(p.coords.heading - hcPrevCrs)) < 20; hcPrevDev = hDev; hcPrevCrs = p.coords.heading; if (steady) { hcBuf.push(wr(p.coords.heading - hDev)); if (hcBuf.length > 4) hcBuf.shift(); if (hcBuf.length >= 3) { const m = hcBuf.reduce((a, b) => a + b, 0) / hcBuf.length; const spread = Math.max(...hcBuf.map(v => Math.abs(wr(v - m)))); if (spread < 20 && Math.abs(m) > 3) { autoFixT += m * (autoFix ? .25 : .6); hcBuf.length = 0; hideLocHint(); } } } else hcBuf.length = 0; } else { hcPrevDev = null; hcBuf.length = 0; } gpsTxt.textContent = `${p.coords.latitude.toFixed(6)}, ${p.coords.longitude.toFixed(6)} ±${Math.round(p.coords.accuracy)} m`; rdTxt.textContent = `${x.toFixed(1)} / ${y.toFixed(1)}  (${gpsLocal.length().toFixed(0)} m van nulpunt)`; }, (err) => { gpsTxt.textContent = 'GPS: ' + err.message; }, { enableHighAccuracy: true, maximumAge: 0, timeout: 15000 });
   $('#startLoc').hidden = true; $('#stopLoc').hidden = false; $('#resetHdg').hidden = false; controls.enabled = false; showLocHint(); logFlush('START ' + posMode + ' ' + locPoint.id);
 }
-function stopLoc() { if (xrLoc) { const s = xrLoc; xrLoc = null; xrLocBase = null; try { s.end(); } catch (e) {} } if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; video.srcObject = null; } if (geoWatch != null) { navigator.geolocation.clearWatch(geoWatch); geoWatch = null; } window.removeEventListener('deviceorientationabsolute', onOrient, true); window.removeEventListener('deviceorientation', onOrient, true); orientOn = false; haveOrient = false; window.removeEventListener('devicemotion', onMotion, true); motionOn = false; resetWalk(); document.body.classList.remove('cam'); renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.setSize(innerWidth, innerHeight); $('#startLoc').hidden = false; $('#stopLoc').hidden = true; $('#resetHdg').hidden = true; hideLocHint(); logFlush('STOP'); }
+function stopLoc() { if (xrLoc) { const s = xrLoc; xrLoc = null; xrLocBase = null; try { s.end(); } catch (e) {} } if (stream) { stream.getTracks().forEach(t => t.stop()); stream = null; video.srcObject = null; } if (geoWatch != null) { navigator.geolocation.clearWatch(geoWatch); geoWatch = null; } window.removeEventListener('deviceorientationabsolute', onOrient, true); window.removeEventListener('deviceorientation', onOrient, true); orientOn = false; haveOrient = false; window.removeEventListener('devicemotion', onMotion, true); motionOn = false; resetWalk(); document.body.classList.remove('cam'); renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.setSize(innerWidth, innerHeight); $('#startLoc').hidden = false; $('#stopLoc').hidden = true; $('#resetHdg').hidden = true; if ($('#nudge')) $('#nudge').hidden = true; hideLocHint(); logFlush('STOP'); }
 /* ---------- AR locatie met ARCore (WebXR, 1:1) ----------
    De wereld wordt zo in de XR-ruimte gezet dat het gekozen standpunt samenvalt met de plek waar je staat (positie én maaiveld);
    ARCore houdt het model daarna op zijn plek terwijl je loopt (visuele tracking, geen GPS). Richting: bij de start de kompasrichting
@@ -1671,14 +1675,17 @@ async function startXRLoc() {
   catch (e) { plainErr = 'AR kon niet starten: ' + e.message; try { await s.end(); } catch (e2) {} return; }
   xrLoc = s; xrLocNeedInit = true; xrStartT = performance.now(); xrGpsHave = false; orientOn = true; absSeen = false; absOffInit = false; relSeen = false; haveOrient = false;
   window.addEventListener('deviceorientationabsolute', onOrient, true); window.addEventListener('deviceorientation', onOrient, true);
-  $('#startLoc').hidden = true; $('#stopLoc').hidden = false; $('#resetHdg').hidden = false; controls.enabled = false; showLocHint(); logFlush('XRLOC START ' + locPoint.id + ' floor=' + xrLocFloor);
+  $('#startLoc').hidden = true; $('#stopLoc').hidden = false; $('#resetHdg').hidden = false; if ($('#nudge')) $('#nudge').hidden = false; controls.enabled = false; showLocHint(); logFlush('XRLOC START ' + locPoint.id + ' floor=' + xrLocFloor);
   xrGpsCrs = null; xrGpsAcc = 99; xrHc.length = 0; xrHc.applied = false; try { xrGeo = navigator.geolocation.watchPosition(xrGpsFix, () => {}, { enableHighAccuracy: true, maximumAge: 0, timeout: 15000 }); } catch (e) { xrGeo = null; }
   s.addEventListener('end', () => { logFlush('XRLOC END'); xrLoc = null; xrLocBase = null; if (xrGeo != null) { navigator.geolocation.clearWatch(xrGeo); xrGeo = null; } stopLoc(); });
 }
+let xrCompassBias = 0;   // som van de GPS-koerscorrecties (rad): tabletkompas zit er structureel naast; blijft bewaard over 'Richting opnieuw'
 const xrLocT = new THREE.Vector3(), xrCur = new THREE.Vector3(), xrPrev = new THREE.Vector3(), xrTrackDir = new THREE.Vector3(); let xrLocYawT = 0, xrPrevT = 0, xrTrackV = 0, xrGeo = null, xrGpsCrs = null, xrGpsSpd = 0, xrGpsAcc = 99; const xrHc = [];
 const _rotY = (a) => new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(0, 1, 0), a);
 function xrWorldOf(x) { return x.clone().applyQuaternion(_rotY(xrLocYaw)).add(xrLocT); }   // XR-basisruimte -> wereld: w = R x + T
 function xrLocSet(yaw, xa, wa) { xrLocYaw = yaw; xrLocT.copy(wa).sub(xa.clone().applyQuaternion(_rotY(yaw))); xrLocApply(); }   // draaiing yaw met anker: XR-punt xa valt op wereldpunt wa
+function xrNudge(fwd, right) { if (!xrLoc) return; const f = camera.getWorldDirection(new THREE.Vector3()); f.y = 0; if (f.lengthSq() < 1e-4) return; f.normalize(); const r = new THREE.Vector3(f.z, 0, -f.x); xrLocT.addScaledVector(f, fwd).addScaledVector(r, right); xrLocApply(); logFlush('XRLOC NUDGE ' + fwd + ',' + right); }
+$('#nudge') && $('#nudge').addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; xrNudge(+b.dataset.f || 0, +b.dataset.r || 0); });
 function xrLocApply() { if (!xrLoc || !xrLocBase) return; const qi = _rotY(-xrLocYaw); const p = xrLocT.clone().applyQuaternion(qi).negate();   // wereldoorsprong in XR-coördinaten
   renderer.xr.setReferenceSpace(xrLocBase.getOffsetReferenceSpace(new XRRigidTransform({ x: p.x, y: p.y, z: p.z, w: 1 }, { x: qi.x, y: qi.y, z: qi.z, w: qi.w }))); }
 function xrLocInit(frame) {
@@ -1691,7 +1698,7 @@ function xrLocInit(frame) {
   const useGps = xrGpsHave && xrGpsAcc < 15; if (!useGps && performance.now() - xrStartT < 8000) return;
   const base = useGps ? xrGpsPos.clone() : toLocal(locPoint.rd[0], locPoint.rd[1]);
   if (!ft || ft.lengthSq() < 1e-4) { const vp = VIEWPOINTS.find(v => v.id === locPoint.id); ft = vp ? new THREE.Vector3(vp.tgt[0] - base.x, 0, vp.tgt[2] - base.z) : new THREE.Vector3(0, 0, -1); }
-  const yaw = Math.atan2(-ft.x, -ft.z) - Math.atan2(-fx.x, -fx.z) + THREE.MathUtils.degToRad(headingFix);
+  const yaw = Math.atan2(-ft.x, -ft.z) - Math.atan2(-fx.x, -fx.z) + THREE.MathUtils.degToRad(headingFix) + ((haveOrient && absSeen) ? xrCompassBias : 0);
   const xa = new THREE.Vector3(pp.x, pp.y, pp.z), wa = new THREE.Vector3(base.x, standY(base.x, base.z, !useGps) + (xrLocFloor ? pp.y : eyeOff), base.z);   // jouw plek = standpunt; vloer = sta-hoogte
   xrLocYawT = yaw; xrLocSet(yaw, xa, wa); xrHc.length = 0; xrPrevT = 0; xrTrackV = 0; xrLocNeedInit = false; { const h = $('#locHint'); if (h) { h.textContent = 'Loop nu 10 m rechtuit met het scherm voor je: dan draait het model in de juiste richting'; h.hidden = false; clearTimeout(locHintT); locHintT = setTimeout(hideLocHint, 20000); } } logFlush('XRLOC INIT kompas=' + (haveOrient && absSeen) + ' yaw=' + Math.round(THREE.MathUtils.radToDeg(yaw)) + ' gps=' + useGps + ' acc=' + xrGpsAcc + ' pos=' + base.x.toFixed(1) + ',' + base.z.toFixed(1) + ' y=' + wa.y.toFixed(2));
 }
@@ -1709,7 +1716,7 @@ const xrGpsPos = new THREE.Vector3(); let xrGpsHave = false, xrStartT = 0;
 function xrGpsFix(p) { xrGpsAcc = Math.round(p.coords.accuracy || 99); { let [gx, gy] = wgsToRd(p.coords.longitude, p.coords.latitude); if (TEST_SHIFT) { gx -= TEST_SHIFT[0]; gy -= TEST_SHIFT[1]; } xrGpsPos.copy(toLocal(gx, gy)); xrGpsHave = true; } xrGpsCrs = Number.isFinite(p.coords.heading) ? p.coords.heading : null; xrGpsSpd = Number.isFinite(p.coords.speed) ? p.coords.speed : 0;
   if (xrGpsCrs == null || xrGpsSpd < 0.8 || xrGpsAcc > 12 || xrTrackV < 0.6) { xrHc.length = 0; return; }
   const ht = THREE.MathUtils.radToDeg(Math.atan2(xrTrackDir.x, -xrTrackDir.z)); const wr = (v) => ((v % 360) + 540) % 360 - 180; xrHc.push(wr(xrGpsCrs - ht)); if (xrHc.length > 4) xrHc.shift();
-  if (xrHc.length >= 3) { const m = xrHc.reduce((a, b) => a + b, 0) / xrHc.length; const spread = Math.max(...xrHc.map(v => Math.abs(wr(v - m)))); if (spread < 20 && Math.abs(m) > 3) { xrLocYawT -= THREE.MathUtils.degToRad(m * (xrHc.applied ? .25 : .6)); xrHc.applied = true; xrHc.length = 0; hideLocHint(); logFlush('XRLOC GPSFIX ' + Math.round(m)); } } }
+  if (xrHc.length >= 3) { const m = xrHc.reduce((a, b) => a + b, 0) / xrHc.length; const spread = Math.max(...xrHc.map(v => Math.abs(wr(v - m)))); if (spread < 20 && Math.abs(m) > 3) { { const dy = THREE.MathUtils.degToRad(m * (xrHc.applied ? .25 : .6)); xrLocYawT -= dy; xrCompassBias -= dy; } xrHc.applied = true; xrHc.length = 0; hideLocHint(); logFlush('XRLOC GPSFIX ' + Math.round(m)); } } }
 (async () => { const ok = !!(navigator.xr && await navigator.xr.isSessionSupported('immersive-ar').catch(() => false)); const b = $('#posXR'); if (b && ok && !arBlockedReason()) b.hidden = false; })();
 $('#startLoc').onclick = startLoc; $('#stopLoc').onclick = stopLoc;
 /* bediening voor niet-ingewijden: korte aanwijzing in beeld na Start, statusregel in gewone taal, knop om de richting opnieuw te bepalen. De technische regels staan onder Details. */
@@ -1883,13 +1890,17 @@ function setLayer(name, on) { layerState.set(name, on);
 function applyLayers() { for (const [k, v] of layerState) setLayer(k, v); }
 Object.assign(window.__dbg, { det, setLayer });
 const DRACO_PATH = 'https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/libs/draco/';
+const WATER_CLIP = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
 function applyDetail() {
   const v = $('#viewSel').value, iso = /^[ABCD]$/.test(v), hofOnly = /^hof(\d)$/.exec(v);
   /* HARDE REGEL: het gedetailleerde model (Blender-export) alleen in 3D en AR Maquette; AR Locatie gebruikt ALTIJD het lichte eigen model. */
   const detMode = mode === '3d' || mode === 'tafel';
   const on = detMode && detOn && detLoaded && !iso; det.visible = on;
   env.visible = mode !== 'locatie' && !on; life.visible = !on;
-  for (const nm of ['autos', 'autos_glas', 'autos_wielen', 'drijflichaam']) site.traverse(o => { if (o.name === nm) o.visible = !on; });   /* ook de losse auto- en drijflichaammeshes van het lichte model uit */
+  for (const nm of ['autos', 'autos_glas', 'autos_wielen']) site.traverse(o => { if (o.name === nm) o.visible = !on && mode !== 'locatie'; });   /* auto's: niet bij gedetailleerd model en niet in AR locatie */
+  site.traverse(o => { if (o.name === 'drijflichaam') o.visible = !on; });
+  /* AR locatie: het echte water zit in het camerabeeld; alles onder het waterpeil (y = 0) wegsnijden, anders steken palen en drijflichamen door het water */
+  renderer.clippingPlanes = mode === 'locatie' ? [WATER_CLIP] : [];   /* ook de losse auto- en drijflichaammeshes van het lichte model uit */
   for (const k in hofGroups) hofGroups[k].visible = !on && (v === 'plan' || (hofOnly && +hofOnly[1] === +k));
   veg3d.visible = on && vegLoaded && vegOn;
   document.querySelectorAll('.detToggle').forEach(t => { t.checked = detOn; });
