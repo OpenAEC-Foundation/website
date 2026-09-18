@@ -36,6 +36,7 @@
   nav.modes{margin-left:auto;display:flex;background:var(--panel);border:1px solid var(--line);border-radius:999px;padding:3px;backdrop-filter:blur(8px)}
   nav.modes button{border:0;background:transparent;color:var(--ink-2);padding:6px 12px;border-radius:999px;font-weight:500;font-size:13px;white-space:nowrap}
   nav.modes button[aria-pressed="true"]{background:var(--water);color:#07131a;font-weight:700}
+  #fsBtn{border:1px solid var(--line);background:var(--panel);color:var(--ink);width:34px;height:34px;border-radius:50%;font-size:16px;flex:none}
   #infoBtn{border:1px solid var(--line);background:var(--panel);color:var(--ink);width:34px;height:34px;border-radius:50%;font-weight:700;backdrop-filter:blur(8px);flex:none}
 
   /* bottom sheet */
@@ -314,7 +315,7 @@ kbd{border-color:var(--line);color:var(--ink);background:#fff}
       <b>RD</b><span id="rdTxt">–</span>
       <b>Heading</b><span id="hdgTxt">–</span>
       <b>Stappen</b><span id="stepTxt">0</span>
-      <b>Versie</b><span>18-09 q</span>
+      <b>Versie</b><span>18-09 r</span>
     </div>
     <p class="note warn">Ooghoogte volgt het ingemeten maaiveld (standaard 1,7 m erboven). Het kompas van de telefoon wijkt vaak 10–30° af; corrigeer met de schuif tot de steiger op zijn plek staat. Lopen werkt via de stappenteller van de telefoon: elke stap verplaatst je direct 0,72 m in de kijkrichting, ook opzij en achteruit. Met Positie op GPS trekt de GPS-fix de positie langzaam bij (sneller bij een nauwkeurige fix), zodat je niet wegdrijft maar ook geen sprongen ziet. Kies opnieuw een standpunt om terug te springen.</p>
     </details>
@@ -1720,6 +1721,10 @@ function xrGpsFix(p) { xrGpsAcc = Math.round(p.coords.accuracy || 99); { let [gx
   if (xrHc.length >= 5 && (xrHc.n || 0) < 2 && performance.now() - (xrHc.lastT || 0) > 15000) { const m = xrHc.reduce((a, b) => a + b, 0) / xrHc.length; const spread = Math.max(...xrHc.map(v => Math.abs(wr(v - m)))); if (spread < 12 && Math.abs(m) > 3) { const dy = THREE.MathUtils.degToRad(THREE.MathUtils.clamp(m * .6, -10, 10)); xrLocYawT -= dy; xrCompassBias -= dy; xrHc.n = (xrHc.n || 0) + 1; xrHc.lastT = performance.now(); xrHc.length = 0; hideLocHint(); logFlush('XRLOC GPSFIX ' + Math.round(m)); } } }
 (async () => { const ok = !!(navigator.xr && await navigator.xr.isSessionSupported('immersive-ar').catch(() => false)); const b = $('#posXR'); if (b && ok && !arBlockedReason()) { b.hidden = false; b.click(); } })();   /* ARCore standaard als het kan */
 $('#startLoc').onclick = startLoc; $('#stopLoc').onclick = stopLoc;
+/* volledig scherm: bij de eerste tik op de pagina (browsers staan het alleen toe na een gebaar); knop ⛶ rechtsboven om te wisselen */
+const goFull = () => { const el = document.documentElement; if (!document.fullscreenElement && el.requestFullscreen) el.requestFullscreen({ navigationUI: 'hide' }).catch(() => {}); };
+document.addEventListener('pointerdown', goFull, { once: true, capture: true });
+{ const b = document.createElement('button'); b.id = 'fsBtn'; b.title = 'Volledig scherm'; b.textContent = '⛶'; b.setAttribute('aria-label', 'Volledig scherm'); b.onclick = () => { if (document.fullscreenElement) document.exitFullscreen(); else goFull(); }; const ib = $('#infoBtn'); if (ib) ib.before(b); }
 /* bediening voor niet-ingewijden: korte aanwijzing in beeld na Start, statusregel in gewone taal, knop om de richting opnieuw te bepalen. De technische regels staan onder Details. */
 $('#resetHdg').onclick = () => { resetWalk(); showLocHint(); if (xrLoc) xrLocNeedInit = true; };
 /* diagnose-log: alleen op de tijdelijke testserver (trycloudflare/localhost), niet op de echte host. 5x/s sensor- en GPS-toestand, elke 50 monsters naar POST /log; knop 'Markeer probleem' zet een marker met opmerking. */
