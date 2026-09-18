@@ -192,6 +192,7 @@
         <option value="A">Los type A</option><option value="B">Los type B</option><option value="C">Los type C</option><option value="D">Los type D</option>
       </select>
       <label class="chk"><input type="checkbox" id="lblToggle" checked> nummers</label>
+      <label class="chk"><input type="checkbox" id="vegToggle" checked> bomen 3D-model</label>
     </div>
 
     <div class="row m3d mode-only">
@@ -243,7 +244,7 @@
       <b>RD</b><span id="rdTxt">–</span>
       <b>Heading</b><span id="hdgTxt">–</span>
       <b>Stappen</b><span id="stepTxt">0</span>
-      <b>Versie</b><span>18-09 b</span>
+      <b>Versie</b><span>18-09 c</span>
     </div>
     <p class="note warn">Ooghoogte volgt het ingemeten maaiveld (standaard 1,7 m erboven). Het kompas van de telefoon wijkt vaak 10–30° af; corrigeer met de schuif tot de steiger op zijn plek staat. Lopen werkt via de stappenteller van de telefoon: elke stap verplaatst je direct 0,72 m in de kijkrichting, ook opzij en achteruit. Met Positie op GPS trekt de GPS-fix de positie langzaam bij (sneller bij een nauwkeurige fix), zodat je niet wegdrijft maar ook geen sprongen ziet. Kies opnieuw een standpunt om terug te springen.</p>
     </details>
@@ -738,6 +739,7 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 const merge = (list) => mergeGeometries(list.map(g => g.index ? g.toNonIndexed() : g), false);
 
@@ -1434,7 +1436,7 @@ function setMode(m) {
   controls.enabled = m === '3d';
   if (m === '3d') { site.scale.setScalar(1); site.position.set(0, 0, 0); flyTo(VIEWPOINTS[0]); }
   if (m === 'tafel') checkXR();
-  updateJoy();
+  updateJoy(); if (typeof vegCull === 'function') vegCull(true);
 }
 document.querySelectorAll('nav.modes button').forEach(b => b.onclick = () => setMode(b.dataset.mode));
 document.body.dataset.mode = '3d';
@@ -1786,6 +1788,56 @@ function loopBody(time, frame) {
 window.__dbg = { VIEWPOINTS, scene, env, plan, life, H, N, terrainH, toLocal, renderer, camera, controls, flyTo, HOUSES, lib, dims, updateQuickLook, usdzFor };
 
 /* ---------- start ---------- */
-loadAll().then(() => { buildPlan(); setView('plan'); $('#loader').remove(); camera.position.set(...VIEWPOINTS[0].pos); controls.target.set(...VIEWPOINTS[0].tgt); flyTo(VIEWPOINTS[0]); })
+/* ---------- bomen en beplanting uit het Oosterhoutse Baai-model (open-aec.com/nijmegen), bladkaarten 50% uitgedund ----------
+   veg/veg.json (instanties, AR-lokaal; gemaakt met veg_ar_pack.mjs) + veg/vegetation_NN.glb (Draco, prototypes; thin_leaves.mjs).
+   Per prototype een InstancedMesh per onderdeel (stam, blad). Om de halve seconde worden de zichtbare instanties gekozen op afstand tot
+   de camera binnen een driehoekenbudget (3D 2,5 mln, AR 1,2 mln), bomen vóór struiken/riet/gras, zodat een tablet het volhoudt.
+   Vervangt de eigen (abstracte) beplanting van de verkenner; uit te zetten met 'bomen 3D-model'. Niet in tafel-AR (maquette). */
+const VEG_BASE = /^https?:$/.test(location.protocol) ? (/\/test[^/]*\/$/.test(location.pathname) ? '../veg/' : 'veg/') : HOSTED_URL + 'veg/';
+const veg3d = new THREE.Group(); veg3d.name = 'veg3d'; scene.add(veg3d);
+let vegOn = true, vegLoaded = false, vegLoading = false; const vegProtos = [];
+const _vm = new THREE.Matrix4(), _vq = new THREE.Quaternion(), _vp = new THREE.Vector3(), _vs = new THREE.Vector3(), _vup = new THREE.Vector3(0, 1, 0);
+function vegOwnPlanting(show) { env.traverse(o => { if (o.name && o.name.startsWith('beplanting_')) o.visible = show; }); }
+async function loadVeg3D() {
+  if (vegLoaded || vegLoading) return; vegLoading = true;
+  try {
+    const cfg = await (await fetch(VEG_BASE + 'veg.json')).json();
+    const draco = new DRACOLoader(); draco.setDecoderPath('https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/libs/draco/');
+    const loader = new GLTFLoader(); loader.setDRACOLoader(draco);
+    const files = new Map(); for (const p of cfg.prototypes) if (!files.has(p.file)) files.set(p.file, loader.loadAsync(VEG_BASE + p.file));
+    const scenes = new Map(); for (const [f, pr] of files) scenes.set(f, (await pr).scene);
+    const prio = { design_tree: 0, context_tree: 0, shrub: 150 * 150, reed: 250 * 250, low_grass: 250 * 250 };
+    for (const p of cfg.prototypes) {
+      const root = scenes.get(p.file); root.updateMatrixWorld(true); const node = root.getObjectByName(p.node); if (!node) continue;
+      const parts = []; node.traverse(o => { if (o.isMesh) parts.push(o); }); if (!parts.length) continue;
+      const nodeInv = node.matrixWorld.clone().invert();
+      const n = p.inst.length; const mats = new Float32Array(n * 16), cx = new Float32Array(n), cz = new Float32Array(n);
+      for (let i = 0; i < n; i++) { const a = p.inst[i];
+        if (a.length === 5) { const y = terrainH(a[0], a[2]); _vm.compose(_vp.set(a[0], y > 0.3 ? y : a[1], a[2]), _vq.setFromAxisAngle(_vup, a[3]), _vs.setScalar(a[4])); }
+        else _vm.set(a[0], a[3], a[6], a[9], a[1], a[4], a[7], a[10], a[2], a[5], a[8], a[11], 0, 0, 0, 1);
+        _vm.toArray(mats, i * 16); cx[i] = mats[i * 16 + 12]; cz[i] = mats[i * 16 + 14]; }
+      const meshes = [];
+      for (const part of parts) { const mat = part.material; mat.side = THREE.DoubleSide; if (mat.map && !mat.transparent) mat.alphaTest = Math.max(mat.alphaTest || 0, .3);
+        const im = new THREE.InstancedMesh(part.geometry, mat, n); im.frustumCulled = false; im.count = 0; im.userData.local = nodeInv.clone().multiply(part.matrixWorld); im.castShadow = false; veg3d.add(im); meshes.push(im); }
+      vegProtos.push({ id: p.id, kind: p.kind, tri: p.tri || 5000, dist: p.dist || 300, pen: prio[p.kind] || 0, n, mats, cx, cz, meshes, sel: [] });
+    }
+    vegLoaded = true; vegOwnPlanting(!vegOn); vegCull(); console.log('bomen 3D-model:', vegProtos.reduce((a, p) => a + p.n, 0), 'instanties,', vegProtos.length, 'prototypes');
+  } catch (e) { console.warn('bomen 3D-model niet geladen:', e); vegOn = false; const t = $('#vegToggle'); if (t) { t.checked = false; t.disabled = true; } }
+  vegLoading = false;
+}
+let vegLastCam = null;
+function vegCull(force) {
+  if (!vegLoaded) return; const show = vegOn && mode !== 'tafel'; veg3d.visible = show; if (!show) return;
+  const cam = camera.position; if (!force && vegLastCam && vegLastCam.distanceToSquared(cam) < 4) return; vegLastCam = (vegLastCam || new THREE.Vector3()).copy(cam);
+  const budget = mode === '3d' ? 2500000 : 1200000, far = mode === '3d' ? 1 : .5;
+  const cand = []; for (const p of vegProtos) { const d2max = p.dist * p.dist * far; for (let i = 0; i < p.n; i++) { const dx = p.cx[i] - cam.x, dz = p.cz[i] - cam.z; const d2 = dx * dx + dz * dz; if (d2 < d2max) cand.push(d2 + p.pen, p, i); } }
+  const order = []; for (let k = 0; k < cand.length; k += 3) order.push(k); order.sort((a, b) => cand[a] - cand[b]);
+  for (const p of vegProtos) p.sel.length = 0;
+  let tri = 0; for (const k of order) { const p = cand[k + 1]; if (tri + p.tri > budget) continue; tri += p.tri; p.sel.push(cand[k + 2]); }
+  for (const p of vegProtos) for (const im of p.meshes) { const loc = im.userData.local; for (let k = 0; k < p.sel.length; k++) { _vm.fromArray(p.mats, p.sel[k] * 16).multiply(loc); im.setMatrixAt(k, _vm); } im.count = p.sel.length; im.instanceMatrix.needsUpdate = true; }
+}
+setInterval(() => vegCull(false), 500);
+{ const t = $('#vegToggle'); if (t) t.onchange = (e) => { vegOn = e.target.checked; vegOwnPlanting(!vegOn); vegCull(true); }; }
+loadAll().then(() => { buildPlan(); setView('plan'); $('#loader').remove(); camera.position.set(...VIEWPOINTS[0].pos); controls.target.set(...VIEWPOINTS[0].tgt); flyTo(VIEWPOINTS[0]); loadVeg3D(); })
   .catch((e) => { log.textContent = 'Laden mislukt: ' + e.message; log.style.color = 'var(--bad)'; console.error(e); });
 </script>
