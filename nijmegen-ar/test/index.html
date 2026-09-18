@@ -309,7 +309,7 @@ kbd{border-color:var(--line);color:var(--ink);background:#fff}
       <b>RD</b><span id="rdTxt">–</span>
       <b>Heading</b><span id="hdgTxt">–</span>
       <b>Stappen</b><span id="stepTxt">0</span>
-      <b>Versie</b><span>18-09 i</span>
+      <b>Versie</b><span>18-09 j</span>
     </div>
     <p class="note warn">Ooghoogte volgt het ingemeten maaiveld (standaard 1,7 m erboven). Het kompas van de telefoon wijkt vaak 10–30° af; corrigeer met de schuif tot de steiger op zijn plek staat. Lopen werkt via de stappenteller van de telefoon: elke stap verplaatst je direct 0,72 m in de kijkrichting, ook opzij en achteruit. Met Positie op GPS trekt de GPS-fix de positie langzaam bij (sneller bij een nauwkeurige fix), zodat je niet wegdrijft maar ook geen sprongen ziet. Kies opnieuw een standpunt om terug te springen.</p>
     </details>
@@ -1710,11 +1710,12 @@ $('#startLoc').onclick = startLoc; $('#stopLoc').onclick = stopLoc;
 /* bediening voor niet-ingewijden: korte aanwijzing in beeld na Start, statusregel in gewone taal, knop om de richting opnieuw te bepalen. De technische regels staan onder Details. */
 $('#resetHdg').onclick = () => { resetWalk(); showLocHint(); if (xrLoc) xrLocNeedInit = true; };
 /* diagnose-log: alleen op de tijdelijke testserver (trycloudflare/localhost), niet op de echte host. 5x/s sensor- en GPS-toestand, elke 50 monsters naar POST /log; knop 'Markeer probleem' zet een marker met opmerking. */
-const LOG_ON = /trycloudflare.com$|^127.0.0.1$|^localhost$/.test(location.hostname); let logBuf = [], logT = 0; const logSess = Date.now().toString(36);
+const LOG_URL = /^open-aec.com$|^www.open-aec.com$/.test(location.hostname) ? 'https://disciplines-hansen-hip-shoe.trycloudflare.com/log' : '/log';   /* tijdelijk (18-09): live site logt naar de pc via een tunnel; leeg laten = uit */
+const LOG_ON = /trycloudflare.com$|^127.0.0.1$|^localhost$/.test(location.hostname) || LOG_URL.startsWith('https://'); let logBuf = [], logT = 0; const logSess = Date.now().toString(36);
 function logSample(time) { if (!LOG_ON || !orientOn || time - logT < 200) return; logT = time; _f.set(0, 0, -1).applyQuaternion(devQ);
   logBuf.push({ t: Math.round(time), mode: posMode, x: +camera.position.x.toFixed(2), y: +camera.position.y.toFixed(2), z: +camera.position.z.toFixed(2), hdg: Math.round(THREE.MathUtils.radToDeg(Math.atan2(_f.x, -_f.z))), gx: +gpsLocal.x.toFixed(2), gz: +gpsLocal.z.toFixed(2), acc: Math.round(gpsAcc), spd: +gpsSpeed.toFixed(2), spdS: +spdS.toFixed(2), crs: gpsCourse == null ? null : Math.round(gpsCourse), fixAge: Math.round(time - gpsFixT), walk: time - lastMoveT < 1000 ? 1 : 0, autoFix: Math.round(autoFix), absOff: Math.round(absOff), relFix: Math.round(relFix), fps, steps: stepCount });
   if (logBuf.length >= 50) logFlush(); }
-function logFlush(note) { if (!LOG_ON) return; const body = JSON.stringify({ sess: logSess, when: new Date().toISOString(), ua: navigator.userAgent, note: note || null, samples: logBuf }); logBuf = []; fetch('/log', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: true }).catch(() => {}); }
+function logFlush(note) { if (!LOG_ON) return; const body = JSON.stringify({ sess: logSess, when: new Date().toISOString(), ua: navigator.userAgent, note: note || null, samples: logBuf }); logBuf = []; fetch(LOG_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body, keepalive: true }).catch(() => {}); }
 const logMarkBtn = $('#logMark'); if (logMarkBtn) { if (!LOG_ON) logMarkBtn.remove(); else logMarkBtn.onclick = () => { const n = prompt('Wat gaat er mis? (kort)'); logFlush('MARKER: ' + (n || '(geen tekst)')); logMarkBtn.textContent = 'Gemarkeerd ✓'; setTimeout(() => logMarkBtn.textContent = 'Markeer probleem', 1500); }; }
 let locHintT = 0, plainErr = '', plainLast = '';
 function showLocHint() { const h = $('#locHint'); if (!h) return; h.textContent = posMode === 'xr' ? 'Even stilhouden… het model wordt neergezet' : posMode === 'gps' ? 'Loop 5 meter rechtuit met het scherm voor je' : 'Kijk rond. Gedraaid? Loop 5 m rechtuit, dan stelt de richting zich bij.'; h.hidden = false; clearTimeout(locHintT); locHintT = setTimeout(hideLocHint, 15000); }
