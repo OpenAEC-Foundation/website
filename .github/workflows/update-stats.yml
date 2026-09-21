@@ -52,6 +52,13 @@ jobs:
       - name: Update homepage tool stats (static)
         run: node scripts/build-homepage-stats.js
 
+      # Sorteert de kaarten in #ecosysteem op volwassenheid en activiteit.
+      # Leest stats, downloads en release-notes, dus na de stappen hierboven.
+      # Schrijft index.html plus de vier taalversies, want deze workflow
+      # draait build-i18n-pages niet.
+      - name: Order the #ecosysteem cards by maturity and activity
+        run: node scripts/build-ecosystem-order.js
+
       # Schrijft de changelog van de nieuwste versie als statische HTML in de
       # productpagina's en stempelt softwareVersion in de JSON-LD. Zonder deze
       # stap staat die tekst alleen via JavaScript in de DOM en loopt de

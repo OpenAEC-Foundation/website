@@ -66,9 +66,11 @@ There is still no `hreflang` anywhere — language is a client-side toggle with 
 
 `<article class="tool-card" data-repo="…" data-categories="A|E|C|I">` in `index.html`. The `<div class="tool-stats">` chips are **generated** — `build-homepage-stats.js` regex-matches each card and re-inserts the block immediately after the `<p data-i18n="tools.items.*.desc">`, so that `<p>` and its exact attribute must survive any edit. Never hand-edit `tool-stats`. `data-repo="OpenCADStudio"` is deliberately skipped (that card self-updates in the browser). Stat chips are bilingual via CSS (`.lang-nl` / `.lang-en`), not JS.
 
+**The card order is generated too.** `build-ecosystem-order.js` sorts the cards in the `tools-grid` by a 50/50 maturity + activity score computed from `data/stats.json`, `data/downloads.json` and `data/release-notes/*.json`, and writes the same order into `index.html` and all four `<lang>/index.html` copies. Cards are keyed by `data-i18n="tools.items.<key>.title"`, so every card needs that attribute. The IFCX card is pinned to position 1 (it is the data format, not an application, and carries the amber border); cards with no measurable data land at the bottom. Scores are computed against the timestamp inside the data files, not the wall clock, so re-running without fresh data is a no-op. Hand-editing the order is pointless — the next pipeline run undoes it. Change `PINNED_FIRST` or `WEIGHTS` in the script instead.
+
 ### Generated vs hand-written
 
-Generated (committed, never hand-edit): `data/stats.json`, `data/news.json`, `data/downloads.json`, `data/download-trends.json`, `data/release-notes/*`, `data/release-highlights/*`, `data/history*/`, `api/tools.json`, `md/*`, and the `tool-stats` chips inside `index.html`.
+Generated (committed, never hand-edit): `data/stats.json`, `data/news.json`, `data/downloads.json`, `data/download-trends.json`, `data/release-notes/*`, `data/release-highlights/*`, `data/history*/`, `api/tools.json`, `md/*`, and the `tool-stats` chips **plus the card order** inside `index.html`.
 
 Hand-written: `llms.txt` (an *input* to `build-markdown-mirrors.js`), `robots.txt`, `sitemap.xml` (adding a page means adding a `<url>` entry manually — the checker enforces it), `data/manual-news.json`, and the `TOOLS` array in `build-tools-api.js`.
 
@@ -91,6 +93,8 @@ News feed: `nieuws/index.html` merges `manual-news.json` (editorial, NL fields p
 7. `id: '<slug>'` in `scripts/build-tools-api.js` and `scripts/build-markdown-mirrors.js`
 8. `'<repo>':` in the `CATS` map of `scripts/add-category-tags.js` (a one-off maintenance script, not part of the update pipeline)
 9. Regenerate so `api/tools.json`, `md/<slug>.md` and `md/index.json` pick it up
+
+Where you drop the new card in the grid does not matter — `build-ecosystem-order.js` sorts it into place on the next run. It does need a `data-i18n="tools.items.<key>.title"` attribute, or the script throws.
 
 When changing a tool description, update **all four** locations: the `<p data-i18n>` in the HTML body, the NL translation object, the EN translation object, and the Schema.org JSON-LD.
 
