@@ -102,10 +102,10 @@ const TOOLS = [
   {
     id: 'open-pile-plan-studio',
     repo: 'pile-plan-studio',
-    name: 'Pile Plan Studio',
+    name: 'Open Pile Plan Studio',
     category: 'Foundation Engineering',
     status: 'beta',
-    description: 'Open-source engineering tool for assigning pile configurations to structural load points, comparing utilization and estimated cost, and saving complete IFCPP projects.',
+    description: 'Open-source engineering tool for comparing, assigning and optimizing pile configurations across practical pile-plan variants.',
     keywords: ['pile plan', 'foundation engineering', 'CPT', 'load points', 'pile optimization', 'IFCPP'],
     alternatives: [],
     license: 'LGPL-3.0-or-later',

@@ -329,7 +329,7 @@ for (const page of pages) {
 
     const out = path.join(ROOT, lang, page.rel);
     fs.mkdirSync(path.dirname(out), { recursive: true });
-    fs.writeFileSync(out, html);
+    fs.writeFileSync(out, html.replace(/\r\n?/g, '\n'));
     written++;
     generated.push(`/${lang}${page.url}`);
   }
@@ -337,7 +337,7 @@ for (const page of pages) {
   // Het Nederlandse origineel krijgt dezelfde hreflang-verwijzingen terug.
   let nl = setHead(page.html, { lang: 'nl', url: page.url, title: null, description: null });
   nl = linkifySwitcher(nl, page.url, 'nl');
-  if (nl !== page.html) fs.writeFileSync(page.file, nl);
+  fs.writeFileSync(page.file, nl.replace(/\r\n?/g, '\n'));
 }
 
 console.log(`  ${pages.length} pagina's × ${LANGS.length} talen → ${written} bestanden geschreven`);
@@ -353,6 +353,6 @@ if (fs.existsSync(smPath)) {
     .map(u => `  <url><loc>${ORIGIN}${u}</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>`)
     .join('\n');
   sm = sm.replace(/(\n)?<\/urlset>/, `\n  <!-- i18n:start -->\n${rows}\n  <!-- i18n:end -->\n</urlset>`);
-  fs.writeFileSync(smPath, sm);
+  fs.writeFileSync(smPath, sm.replace(/\r\n?/g, '\n'));
   console.log(`  sitemap.xml: ${generated.length} taal-URL's toegevoegd`);
 }
