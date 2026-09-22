@@ -26,13 +26,13 @@ Add `--no-commit` to skip the commit. Requires `GITHUB_TOKEN` in the environment
 
 ### Tests
 
-There is no test runner. The three checker scripts are the only tests and are **not wired into CI** — run them by hand after touching the homepage, a product page, or the generators:
+There is no test runner. These four checker scripts are the test suite; the release-note generator check also runs in the daily update workflow. Run all four by hand after touching the homepage, a product page, or the generators:
 
 ```bash
-node scripts/check-open-pile-plan-studio.js && node scripts/check-homepage-catalog-product-pages.js && node scripts/check-release-timeline.js
+node scripts/check-open-pile-plan-studio.js && node scripts/check-homepage-catalog-product-pages.js && node scripts/check-release-timeline.js && node scripts/check-release-notes-generator.js
 ```
 
-They use `node:assert/strict` and fail with a Dutch message. `check-open-pile-plan-studio.js` doubles as the executable checklist for adding a new tool (see below). `check-homepage-catalog-product-pages.js` pins several literal CSS colour values in `bim-validator/index.html` and the exact screenshot order in Open Speech Studio — those assertions are deliberate, not accidental. `check-release-timeline.js` guards the release timeline on the Open Planner Studio page: the placeholder mode, the static pre-render, the highlights contract and the join with `data/release-notes/`.
+They use `node:assert/strict` and fail with a Dutch message. `check-open-pile-plan-studio.js` doubles as the executable checklist for adding a new tool (see below). `check-homepage-catalog-product-pages.js` pins several literal CSS colour values in `bim-validator/index.html` and the exact screenshot order in Open Speech Studio — those assertions are deliberate, not accidental. `check-release-timeline.js` guards the release timeline on the Open Planner Studio page: the placeholder mode, the static pre-render, the highlights contract and the join with `data/release-notes/`. `check-release-notes-generator.js` covers release bodies with Windows line endings and the `RELEASE_NOTES.md` fallback.
 
 ## Architecture
 

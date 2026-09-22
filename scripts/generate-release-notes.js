@@ -37,12 +37,12 @@ const TOOL_REPOS = [
 // Sommige repo's onderhouden een uitgebreide changelog met een sectie per
 // uitgebrachte versie. Die tekst is de inhoudelijke tegenhanger van de korte
 // release-body en is wat we op de productpagina willen tonen.
-const CHANGELOG_PATHS = ['docs/CHANGELOG.md', 'CHANGELOG.md'];
+const CHANGELOG_PATHS = ['docs/CHANGELOG.md', 'CHANGELOG.md', 'RELEASE_NOTES.md'];
 
-async function fetchChangelog(repo) {
+async function fetchChangelog(repo, fetchImpl = fetch) {
   for (const p of CHANGELOG_PATHS) {
     try {
-      const res = await fetch(
+      const res = await fetchImpl(
         `https://api.github.com/repos/${ORG}/${repo}/contents/${p}`,
         { headers: { ...headers, Accept: 'application/vnd.github.v3.raw' } }
       );
@@ -103,7 +103,7 @@ function parseChanges(body) {
     .replace(/^Build version: .*$/gm, '');
 
   // Find bullet items (- or * at start of line)
-  const lines = cleaned.split('\n');
+  const lines = cleaned.split(/\r?\n/);
   for (const line of lines) {
     const match = line.match(/^[\s]*[-*]\s+(.+)$/);
     if (match) {
@@ -222,8 +222,8 @@ async function processRepo(repo) {
       date: latestStable.published_at?.substring(0, 10),
       url: latestStable.html_url,
     } : null,
-    // Uitgebreide beschrijving van de nieuwste versie, uit docs/CHANGELOG.md.
-    // null wanneer de repo geen changelog heeft of er geen sectie voor deze tag is.
+    // Uitgebreide beschrijving van de nieuwste versie, uit het changelogdocument.
+    // null wanneer de repo geen ondersteunde bron of sectie voor deze tag heeft.
     latestChangelog: latestChangelog,
     nightly: nightly ? {
       tag: nightly.tag_name,
@@ -254,7 +254,11 @@ async function main() {
   console.log('\nDone!');
 }
 
-main().catch(err => {
-  console.error('Fatal:', err);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch(err => {
+    console.error('Fatal:', err);
+    process.exit(1);
+  });
+}
+
+module.exports = { fetchChangelog, parseChanges };
