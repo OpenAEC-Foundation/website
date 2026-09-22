@@ -45,7 +45,11 @@ if (!fs.existsSync(navPath)) {
   console.error('shared/nav.html niet gevonden');
   process.exit(1);
 }
-const nav = fs.readFileSync(navPath, 'utf8').trim();
+// Normalize the fragment before inserting it. On Windows the checkout uses
+// CRLF, while generated pages are compared and committed with LF. Keeping the
+// fragment's checkout line endings would otherwise add a stray CR to every
+// generated navigation line.
+const nav = fs.readFileSync(navPath, 'utf8').replace(/\r\n?/g, '\n').trim();
 
 // Match de al-statische versie (voor een herhaalde run) of de lege placeholder.
 // De markers zijn nodig omdat de nav zelf </div> bevat.
@@ -73,13 +77,14 @@ for (const file of htmlFiles(ROOT)) {
 
   const block = `<div id="shared-nav"><!-- nav:start -->\n${nav}\n<!-- nav:end --></div>`;
   const out = html.replace(PLACEHOLDER, block);
+  const normalized = out.replace(/\r\n?/g, '\n');
 
-  if (out !== html) {
-    fs.writeFileSync(file, out);
+  if (normalized !== html) {
     changed++;
   } else {
     unchanged++;
   }
+  fs.writeFileSync(file, normalized);
 }
 
 console.log(`\n${changed} pagina('s) bijgewerkt, ${unchanged} al actueel, ${skipped} overgeslagen.`);
