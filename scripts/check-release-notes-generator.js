@@ -22,6 +22,24 @@ assert.deepEqual(
   'release bullets met CRLF-regeleinden worden niet herkend',
 );
 
+const wrappedChanges = [...parseChanges([
+  '### Added',
+  '',
+  '- Minimize pile-plan costs within configurable tip-level, size and configuration',
+  '  limits, or minimize differences between neighboring units within a cost budget.',
+  '  The default additional-cost budget is 5%; configuration limits default to unlimited.',
+  '- Refresh application dependencies.',
+].join('\n'))];
+
+assert.deepEqual(
+  wrappedChanges,
+  [
+    'Minimize pile-plan costs within configurable tip-level, size and configuration limits, or minimize differences between neighboring units within a cost budget. The default additional-cost budget is 5%; configuration limits default to unlimited.',
+    'Refresh application dependencies.',
+  ],
+  'doorlopende regels van release bullets worden niet samengevoegd',
+);
+
 (async () => {
   const changelog = await fetchChangelog('pile-plan-studio', fetchFixture);
   assert.equal(changelog, '# Release notes', 'RELEASE_NOTES.md wordt niet als changelogbron gebruikt');

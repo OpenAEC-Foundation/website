@@ -23,6 +23,16 @@ includes('open-pile-plan-studio/index.html', 'v0.4.0-alpha');
 includes('open-pile-plan-studio/index.html', 'https://github.com/OpenAEC-Foundation/pile-plan-studio/releases');
 includes('open-pile-plan-studio/index.html', 'content="open-pile-plan-studio"');
 includes('open-pile-plan-studio/index.html', 'data-release-notes="pile-plan-studio"');
+includes(
+  'open-pile-plan-studio/index.html',
+  '<h1 data-i18n="header.title">Open <span class="accent">Pile Plan</span> Studio</h1>',
+);
+for (const language of ['en', 'fr', 'tr', 'es']) {
+  includes(
+    `${language}/open-pile-plan-studio/index.html`,
+    '<h1 data-i18n="header.title">Open <span class="accent">Pile Plan</span> Studio</h1>',
+  );
+}
 for (const file of [
   'shared/translations/open-pile-plan-studio.json',
   'shared/translations/open-pile-plan-studio.fr.json',
@@ -30,7 +40,12 @@ for (const file of [
   'shared/translations/open-pile-plan-studio.es.json',
 ]) {
   assert.ok(exists(file), `${file} ontbreekt`);
-  JSON.parse(read(file));
+  const translations = JSON.parse(read(file));
+  assert.equal(
+    translations.header.title,
+    'Open <span class="accent">Pile Plan</span> Studio',
+    `${file} heeft niet de juiste titelkleuren`,
+  );
 }
 
 for (const asset of [

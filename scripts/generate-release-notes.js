@@ -102,18 +102,30 @@ function parseChanges(body) {
     .replace(/^Source: .*$/gm, '')
     .replace(/^Build version: .*$/gm, '');
 
-  // Find bullet items (- or * at start of line)
+  // Find bullet items (- or * at start of line) and preserve Markdown
+  // continuation lines, which are indented beneath the bullet.
   const lines = cleaned.split(/\r?\n/);
+  let currentItem = null;
+  const flushCurrentItem = () => {
+    if (currentItem && currentItem.length >= 4) changes.push(currentItem);
+    currentItem = null;
+  };
+
   for (const line of lines) {
     const match = line.match(/^[\s]*[-*]\s+(.+)$/);
     if (match) {
       const item = match[1].trim();
+      flushCurrentItem();
       // Skip download lines
       if (/^\*?\*?(Windows|macOS|Linux|Android|Snap|Download)/.test(item)) continue;
-      if (item.length < 4) continue;
-      changes.push(item);
+      currentItem = item;
+    } else if (currentItem && /^\s+\S/.test(line)) {
+      currentItem += ` ${line.trim()}`;
+    } else {
+      flushCurrentItem();
     }
   }
+  flushCurrentItem();
 
   return changes;
 }
