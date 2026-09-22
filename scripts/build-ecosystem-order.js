@@ -15,10 +15,16 @@
  *                                      releases in de laatste 90 dagen,
  *                                      commits per maand sinds start
  *
- * Beide tellen even zwaar (50/50). Binnen een groep is elk onderdeel een
- * score van 0..1; ontbrekende gegevens tellen niet mee als een nul, maar
- * vallen uit de weging (de resterende gewichten worden genormaliseerd).
- * Een tool zonder enige meetbare data zakt naar de onderkant.
+ * Volwassenheid weegt 62%, activiteit 38%; downloads zijn met 30% van het
+ * geheel het zwaarste onderdeel (zie WEIGHTS). Elk onderdeel is een score
+ * van 0..1; ontbrekende gegevens tellen niet mee als een nul, maar vallen
+ * uit de weging (de resterende gewichten worden genormaliseerd). Een tool
+ * zonder enige meetbare data zakt naar de onderkant.
+ *
+ * Kanttekening bij die regel: een tool zonder downloadcijfer wordt niet
+ * geraakt door het downloadgewicht en stijgt daardoor relatief ten opzichte
+ * van tools met weinig downloads. Hou daarom de repolijst in
+ * scripts/generate-downloads.js compleet voor elke kaart op de homepage.
  *
  * Alles wordt gerekend ten opzichte van de peildatum in de databestanden,
  * niet ten opzichte van vandaag. Het script is daarmee idempotent: opnieuw
@@ -128,19 +134,23 @@ function velocityScore(repo) {
   return logScale(repo.commits / months, 150);
 }
 
-// Gewichten. De twee blokken tellen elk 0,50 op.
+// Gewichten, samen 1,00. Downloads tellen bewust het zwaarst: daaraan zie je
+// of een tool echt gebruikt wordt. Bij 10% veranderde de volgorde nauwelijks,
+// omdat downloads op een logaritmische schaal staan; pas vanaf ~30% van het
+// geheel gaan ze merkbaar mee. De overige gewichten zijn naar verhouding
+// verlaagd, waardoor volwassenheid nu 62% weegt en activiteit 38%.
 const WEIGHTS = {
-  // volwassenheid — 0,50
-  version: 0.15,
-  releases: 0.15,
-  downloads: 0.10,
-  commits: 0.05,
-  contributors: 0.05,
-  // activiteit — 0,50
-  lastPush: 0.15,
-  lastRelease: 0.10,
-  cadence: 0.15,
-  velocity: 0.10,
+  // volwassenheid — 0,62
+  version: 0.12,
+  releases: 0.12,
+  downloads: 0.30,
+  commits: 0.04,
+  contributors: 0.04,
+  // activiteit — 0,38
+  lastPush: 0.11,
+  lastRelease: 0.08,
+  cadence: 0.11,
+  velocity: 0.08,
 };
 
 /** Meest recente versie uit downloads.json, voor repo's die niet in stats.json staan. */

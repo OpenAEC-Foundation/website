@@ -32,6 +32,11 @@ const TOOL_REPOS = [
   'openaec-docs',
   'openaec-cloud',
   'Y-app',
+  'openaec-installer',
+  // Geen releases, dus 0 downloads — maar gemeten 0 is iets anders dan
+  // ontbrekend: build-ecosystem-order.js laat ontbrekende data buiten de
+  // weging, waardoor deze kaart anders onterecht zou stijgen.
+  'open-books',
   // Community-project buiten de organisatie, telt wel mee in het ecosysteem.
   'HakanSeven12/OpenCADStudio',
 ];
