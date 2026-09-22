@@ -63,6 +63,16 @@ const PAGES = ['index.html', 'en/index.html', 'fr/index.html', 'tr/index.html', 
 // De kaart die altijd bovenaan blijft: het dataformaat, geen applicatie.
 const PINNED_FIRST = ['ifcx'];
 
+// Repo's waarvan de downloads niet meetellen. Y-app is een privé-repo: de
+// release-assets zijn alleen te downloaden voor wie toegang heeft, dus het
+// aantal zegt niets over publiek gebruik en is niet te vergelijken met de
+// andere tools. Bovendien kan de dagelijkse workflow de repo niet lezen
+// (404) terwijl een lokale run met een persoonlijk token dat wel kan —
+// zonder deze uitzondering zou Y-app verspringen afhankelijk van wie de
+// pijplijn draait. Het downloadgewicht valt voor deze repo's uit de weging;
+// de score komt dan uit versie, releases en activiteit.
+const SKIP_DOWNLOADS = new Set(['y-app']);
+
 // ── data ───────────────────────────────────────────────────────────────────
 
 const stats = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/stats.json'), 'utf8'));
@@ -193,7 +203,7 @@ function scoreCard(repoName) {
   const parts = {
     version: versionScore(version),
     releases: releases == null ? null : logScale(releases, 90),
-    downloads: dl ? logScale(dl.totalDownloads, 37000) : null,
+    downloads: dl && !SKIP_DOWNLOADS.has(repoKey) ? logScale(dl.totalDownloads, 37000) : null,
     commits: repo ? logScale(repo.commits, 3400) : null,
     contributors: repo ? clamp01((repo.contributors || 0) / 10) : null,
     lastPush: repo ? decay(daysBefore(repo.updatedAt), 60) : null,
