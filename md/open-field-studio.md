@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux, Android, iOS
 **Category:** Field / Inspection
-**Current version:** v0.3.3 (2026-08-25)
+**Current version:** v0.3.6 (2026-08-25)
 **Tool ID:** `open-field-studio`
 **GitHub repo:** `OpenAEC-Foundation/Open-Field-Studio`
 
 ## Live stats
 
 - Stars: **0**
-- Commits: **34**
+- Commits: **35**
 - Forks: **1**
 - Open issues: **0**
-- Releases: **14**
-- Total downloads: **161**
-- Downloads by platform: Windows (100), Android (28), Linux (AppImage) (17), Linux (deb) (9), Windows (MSI) (6), Linux (rpm) (1)
+- Releases: **13**
+- Total downloads: **162**
+- Downloads by platform: Windows (101), Android (28), Linux (AppImage) (17), Linux (deb) (9), Windows (MSI) (6), Linux (rpm) (1)
 
 ## Key features
 

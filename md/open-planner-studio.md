@@ -13,12 +13,12 @@
 ## Live stats
 
 - Stars: **23**
-- Commits: **1979**
+- Commits: **1986**
 - Forks: **8**
 - Open issues: **9**
 - Releases: **21**
-- Total downloads: **1,313**
-- Downloads by platform: Windows (714), Linux (AppImage) (194), Linux (deb) (188), macOS (107), Linux (rpm) (41), Linux (snap) (36), Archive (33)
+- Total downloads: **1,337**
+- Downloads by platform: Windows (731), Linux (AppImage) (197), Linux (deb) (189), macOS (110), Linux (rpm) (41), Linux (snap) (36), Archive (33)
 
 ## Key features
 
@@ -81,11 +81,11 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows · Open.Planner.Studio_2026.9.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_x64-setup.exe) (v2026.9.0 — 7.8 MB)
 - [Linux (AppImage) · Open.Planner.Studio_2026.9.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.AppImage) (v2026.9.0 — 82.7 MB)
 - [Windows · Open.Planner.Studio_2026.8.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.8.1/Open.Planner.Studio_2026.8.1_x64-setup.exe) (v2026.8.1 — 7.6 MB)
-- [Linux (deb) · Open.Planner.Studio_2026.9.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.deb) (v2026.9.0 — 8.9 MB)
 - [macOS · Open.Planner.Studio_2026.9.0_universal.dmg](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_universal.dmg) (v2026.9.0 — 16.3 MB)
+- [Linux (deb) · Open.Planner.Studio_2026.9.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.deb) (v2026.9.0 — 8.9 MB)
 - [Windows · Open.Planner.Studio_2026.7.14_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.7.14/Open.Planner.Studio_2026.7.14_x64-setup.exe) (v2026.7.14 — 7.4 MB)
+- [Windows · Open.Planner.Studio_2026.9.0_x64-setup.nsis.zip](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_x64-setup.nsis.zip) (v2026.9.0 — 7.4 MB)
 - [macOS · Open.Planner.Studio_2026.7.13_universal.dmg](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.7.13/Open.Planner.Studio_2026.7.13_universal.dmg) (v2026.7.13 — 15.4 MB)
-- [Windows · Open.Planner.Studio_2026.6.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.6.0/Open.Planner.Studio_2026.6.0_x64-setup.exe) (v2026.6.0 — 4.6 MB)
 
 ---
 

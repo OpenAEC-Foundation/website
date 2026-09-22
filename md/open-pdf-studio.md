@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux, Android
 **Category:** PDF / Document
-**Current version:** untagged-24ce96b638316519e47f (2026-09-19)
+**Current version:** v2.5.0 (2026-09-22)
 **Tool ID:** `open-pdf-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-pdf-studio`
 
 ## Live stats
 
-- Stars: **817**
-- Commits: **1037**
+- Stars: **821**
+- Commits: **1047**
 - Forks: **69**
-- Open issues: **49**
+- Open issues: **50**
 - Releases: **66**
-- Total downloads: **22,296**
-- Downloads by platform: Windows (11948), Android (4196), Linux (AppImage) (1897), Linux (deb) (1893), macOS (1780), Archive (286), Linux (snap) (197), Linux (rpm) (52), Windows (MSI) (35), Other (12)
+- Total downloads: **22,408**
+- Downloads by platform: Windows (12010), Android (4212), Linux (AppImage) (1914), Linux (deb) (1898), macOS (1792), Archive (285), Linux (snap) (197), Linux (rpm) (52), Windows (MSI) (35), Other (13)
 
 ## Key features
 

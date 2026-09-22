@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux, Web
 **Category:** Cost Estimation
-**Current version:** v0.9.0 (2026-09-12)
+**Current version:** v0.13.0 (2026-09-12)
 **Tool ID:** `open-calc-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-calc-studio`
 
 ## Live stats
 
 - Stars: **11**
-- Commits: **94**
+- Commits: **95**
 - Forks: **7**
 - Open issues: **3**
-- Releases: **25**
-- Total downloads: **655**
-- Downloads by platform: Windows (417), Linux (deb) (59), Windows (MSI) (56), macOS (50), Linux (AppImage) (40), Linux (rpm) (22), Linux (snap) (11)
+- Releases: **23**
+- Total downloads: **663**
+- Downloads by platform: Windows (423), Linux (deb) (59), Windows (MSI) (57), macOS (50), Linux (AppImage) (41), Linux (rpm) (22), Linux (snap) (11)
 
 ## Key features
 
@@ -67,8 +67,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows · Open.Calc.Studio_0.7.3_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.7.3/Open.Calc.Studio_0.7.3_x64-setup.exe) (v0.7.3 — 32.6 MB)
 - [Linux (AppImage) · Open.Calc.Studio_0.13.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_amd64.AppImage) (v0.13.0 — 122.7 MB)
 - [Linux (deb) · Open.Calc.Studio_0.10.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.10.0/Open.Calc.Studio_0.10.0_amd64.deb) (v0.10.0 — 31.2 MB)
-- [Windows · Open.Calc.Studio_0.7.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.7.8/Open.Calc.Studio_0.7.8_x64-setup.exe) (v0.7.8 — 18.8 MB)
 - [Windows (MSI) · Open.Calc.Studio_0.13.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_x64_en-US.msi) (v0.13.0 — 46.1 MB)
+- [Windows · Open.Calc.Studio_0.7.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.7.8/Open.Calc.Studio_0.7.8_x64-setup.exe) (v0.7.8 — 18.8 MB)
 - [Windows (MSI) · Open.Calc.Studio_0.10.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.10.0/Open.Calc.Studio_0.10.0_x64_en-US.msi) (v0.10.0 — 30.4 MB)
 
 ---

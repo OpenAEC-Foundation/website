@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux
 **Category:** Productivity
-**Current version:** v0.10.2 (2026-07-13)
+**Current version:** v0.10.3 (2026-07-13)
 **Tool ID:** `open-speech-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-speech-studio`
 
 ## Live stats
 
 - Stars: **7**
-- Commits: **90**
+- Commits: **91**
 - Forks: **3**
 - Open issues: **11**
-- Releases: **7**
-- Total downloads: **252**
-- Downloads by platform: Windows (183), Linux (deb) (43), Windows (MSI) (24), macOS (2)
+- Releases: **5**
+- Total downloads: **253**
+- Downloads by platform: Windows (184), Linux (deb) (43), Windows (MSI) (24), macOS (2)
 
 ## Key features
 

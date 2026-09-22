@@ -6,17 +6,17 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux
 **Category:** Structural Engineering
-**Current version:** v0.1.0 (2026-07-14)
+**Current version:** v0.6.0 (2026-07-14)
 **Tool ID:** `open-frame-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-frame-studio`
 
 ## Live stats
 
 - Stars: **9**
-- Commits: **121**
+- Commits: **122**
 - Forks: **3**
 - Open issues: **1**
-- Releases: **9**
+- Releases: **8**
 - Total downloads: **185**
 - Downloads by platform: Windows (125), Linux (AppImage) (31), Windows (MSI) (15), Linux (deb) (7), Linux (rpm) (5), macOS (1), Archive (1)
 

@@ -2,10 +2,6 @@
 
 > Open-source software ecosystem for the entire Architecture, Engineering & Construction (AEC) industry — buildings (B&U), civil infrastructure (GWW), and civil engineering (bridges, tunnels, roads, railways, water works). Mission: make all AEC software open source by end of 2026.
 
-# OpenAEC Foundation
-
-> Open-source software ecosystem for the entire Architecture, Engineering & Construction (AEC) industry — including buildings (B&U), civil infrastructure (GWW), and civil engineering (bridges, tunnels, roads, railways, water works). Mission: make all AEC software open source by end of 2026.
-
 ## ⭐ Featured tool
 
 **Open Speech Studio v0.9.0** — Free, local, open-source speech-to-text built on Whisper AI. Press CTRL+Win or CTRL+Shift+Space to dictate in ANY Windows application (chat, email, terminal, IDE, OpenAEC tools). 100% local — your voice never leaves your computer. Cross-platform: Windows, macOS, Linux. Free alternative to Dragon NaturallySpeaking (~€500-700 one-time) and Otter.ai (~€20/month). Single .exe installer, ready in 30 seconds. GPU acceleration via CUDA. Supports 99 languages via Whisper AI. Real-time meeting transcription, audio file batch processing. Privacy-first, GDPR-safe automatically.
@@ -112,14 +108,14 @@ Most tools are LGPL-3.0 licensed. Some are LGPL-2.1. The Foundation does clean-r
 <!-- stats:start -->
 ## Key facts (generated, do not edit by hand)
 
-Last updated: 2026-09-11
+Last updated: 2026-09-22
 
-- 67 public repositories on GitHub (128 total including private)
-- 12,002 commits by 43 contributors
-- 2,562 GitHub stars, 295 forks
-- 1,276 issues closed, 608 pull requests merged
+- 67 public repositories on GitHub (129 total including private)
+- 13,166 commits by 59 contributors
+- 3,245 GitHub stars, 363 forks
+- 1,366 issues closed, 789 pull requests merged
 - 18 tools in the catalog — machine-readable at https://open-aec.com/api/tools.json
-- 24,318 downloads across 19 released tools
+- 79,708 downloads across 20 released tools
 - All tools LGPL-3.0 or LGPL-2.1, built with Rust + Tauri 2 + TypeScript
 - Cross-platform: Windows, macOS, Linux, web
 

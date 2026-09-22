@@ -16,7 +16,7 @@
 - Commits: **0**
 - Forks: **0**
 - Open issues: **0**
-- Releases: **2**
+- Releases: **0**
 - Total downloads: **0**
 
 ## Key features
