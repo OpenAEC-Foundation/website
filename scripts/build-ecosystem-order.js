@@ -10,13 +10,14 @@
  * Dit script sorteert die kaarten op twee dingen die we wél kunnen meten:
  *
  *   VOLWASSENHEID  hoe af is het?      versienummer, aantal releases,
- *                                      downloads, commits, bijdragers
+ *                                      downloads, GitHub-sterren, commits,
+ *                                      bijdragers
  *   ACTIVITEIT     wordt eraan gewerkt? laatste push, laatste release,
  *                                      releases in de laatste 90 dagen,
  *                                      commits per maand sinds start
  *
- * Volwassenheid weegt 62%, activiteit 38%; downloads zijn met 30% van het
- * geheel het zwaarste onderdeel (zie WEIGHTS). Elk onderdeel is een score
+ * Volwassenheid weegt 66%, activiteit 34%; downloads zijn met 30% van het
+ * geheel het zwaarste onderdeel, sterren tellen 10% (zie WEIGHTS). Elk onderdeel is een score
  * van 0..1; ontbrekende gegevens tellen niet mee als een nul, maar vallen
  * uit de weging (de resterende gewichten worden genormaliseerd). Een tool
  * zonder enige meetbare data zakt naar de onderkant.
@@ -30,9 +31,10 @@
  * niet ten opzichte van vandaag. Het script is daarmee idempotent: opnieuw
  * draaien zonder verse data geeft exact dezelfde volgorde.
  *
- * Uitzondering: de IFCX-kaart staat vast op plek 1. IFCX is geen applicatie
- * maar het dataformaat waar de rest op draait, en de kaart is daarom
- * visueel uitgelicht (amber rand).
+ * Uitzonderingen staan in PINNED: de IFCX-kaart staat vast op plek 1 (het
+ * dataformaat waar de rest op draait, geen applicatie; de kaart is daarom
+ * visueel uitgelicht met een amber rand) en Y-app vast op plek 6 (een
+ * privé-repo, dus te weinig publieke gegevens voor een eerlijke score).
  *
  * Bronnen, in volgorde van betrouwbaarheid voor versie en releasedatum:
  * data/release-notes/<repo>.json (de echte releasegeschiedenis) en pas
@@ -60,8 +62,16 @@ const path = require('path');
 const ROOT = path.resolve(__dirname, '..');
 const PAGES = ['index.html', 'en/index.html', 'fr/index.html', 'tr/index.html', 'es/index.html'];
 
-// De kaart die altijd bovenaan blijft: het dataformaat, geen applicatie.
-const PINNED_FIRST = ['ifcx'];
+// Kaarten met een vaste plek (1 = bovenaan); de rest vult de overige plekken
+// op volgorde van score.
+// - ifcx: het dataformaat waar de rest op draait, geen applicatie.
+// - yapp: handmatig op 6 gezet. Y-app is een privé-repo, dus sterren,
+//   commits en downloads zijn er niet (publiek) te meten; de score leunt
+//   daardoor op te weinig gegevens om de plek zelf te bepalen.
+const PINNED = new Map([
+  ['ifcx', 1],
+  ['yapp', 6],
+]);
 
 // Repo's waarvan de downloads niet meetellen. Y-app is een privé-repo: de
 // release-assets zijn alleen te downloaden voor wie toegang heeft, dus het
@@ -147,20 +157,22 @@ function velocityScore(repo) {
 // Gewichten, samen 1,00. Downloads tellen bewust het zwaarst: daaraan zie je
 // of een tool echt gebruikt wordt. Bij 10% veranderde de volgorde nauwelijks,
 // omdat downloads op een logaritmische schaal staan; pas vanaf ~30% van het
-// geheel gaan ze merkbaar mee. De overige gewichten zijn naar verhouding
-// verlaagd, waardoor volwassenheid nu 62% weegt en activiteit 38%.
+// geheel gaan ze merkbaar mee. GitHub-sterren tellen 10% mee als tweede
+// maat voor publieke belangstelling. De overige gewichten zijn naar
+// verhouding verlaagd, waardoor volwassenheid nu 66% weegt en activiteit 34%.
 const WEIGHTS = {
-  // volwassenheid — 0,62
-  version: 0.12,
-  releases: 0.12,
+  // volwassenheid — 0,66
+  version: 0.10,
+  releases: 0.10,
   downloads: 0.30,
-  commits: 0.04,
-  contributors: 0.04,
-  // activiteit — 0,38
-  lastPush: 0.11,
-  lastRelease: 0.08,
-  cadence: 0.11,
-  velocity: 0.08,
+  stars: 0.10,
+  commits: 0.03,
+  contributors: 0.03,
+  // activiteit — 0,34
+  lastPush: 0.10,
+  lastRelease: 0.07,
+  cadence: 0.10,
+  velocity: 0.07,
 };
 
 /** Meest recente versie uit downloads.json, voor repo's die niet in stats.json staan. */
@@ -197,13 +209,15 @@ function scoreCard(repoName) {
 
   // De tweede parameter van logScale is het plafond: de waarde waarbij het
   // onderdeel 1,0 scoort. Die zijn gekozen op de koploper van nu
-  // (Open CAD Studio: 90 releases, 3.400 commits; 37.000 downloads). Groeit
+  // (Open CAD Studio: 90 releases, 3.400 commits, 37.000 downloads, 2.000
+  // sterren). Groeit
   // die verder, dan loopt hij simpelweg tegen 1,0 aan — de rangorde blijft
   // kloppen, alleen de onderlinge afstand bovenin wordt kleiner.
   const parts = {
     version: versionScore(version),
     releases: releases == null ? null : logScale(releases, 90),
     downloads: dl && !SKIP_DOWNLOADS.has(repoKey) ? logScale(dl.totalDownloads, 37000) : null,
+    stars: repo ? logScale(repo.stars, 2000) : null,
     commits: repo ? logScale(repo.commits, 3400) : null,
     contributors: repo ? clamp01((repo.contributors || 0) / 10) : null,
     lastPush: repo ? decay(daysBefore(repo.updatedAt), 60) : null,
@@ -307,13 +321,18 @@ const scored = nlGrid.cards.map((card, index) => ({
   ...scoreCard(card.repo),
 }));
 
-const pinnedRank = new Map(PINNED_FIRST.map((key, i) => [key, i]));
+// Eerst de vrije kaarten op score sorteren, dan de vaste kaarten op hun plek
+// ertussen zetten. Een vaste plek voorbij het einde komt achteraan.
+const taken = new Set();
+for (const [key, pos] of PINNED) {
+  if (!scored.some((c) => c.key === key)) throw new Error(`vaste kaart "${key}" staat niet in het grid`);
+  if (taken.has(pos)) throw new Error(`twee kaarten op vaste plek ${pos}`);
+  taken.add(pos);
+}
 
-const order = [...scored]
+const free = scored
+  .filter((c) => !PINNED.has(c.key))
   .sort((a, b) => {
-    const pa = pinnedRank.has(a.key) ? pinnedRank.get(a.key) : Infinity;
-    const pb = pinnedRank.has(b.key) ? pinnedRank.get(b.key) : Infinity;
-    if (pa !== pb) return pa - pb;
     // Kaarten zonder meetbare data onderaan, onderling in de oude volgorde.
     if (a.total == null && b.total == null) return a.index - b.index;
     if (a.total == null) return 1;
@@ -322,13 +341,25 @@ const order = [...scored]
   })
   .map((c) => c.key);
 
+const pinnedByPos = new Map([...PINNED].map(([key, pos]) => [pos, key]));
+const order = [];
+for (let pos = 1; order.length < scored.length; pos++) {
+  if (pinnedByPos.has(pos)) order.push(pinnedByPos.get(pos));
+  else if (free.length) order.push(free.shift());
+  else {
+    // Alleen nog vaste kaarten over met een plek voorbij het einde.
+    const rest = [...pinnedByPos].filter(([p]) => p > pos).sort((x, y) => x[0] - y[0]);
+    order.push(...rest.map(([, key]) => key));
+  }
+}
+
 const byKey = new Map(scored.map((c) => [c.key, c]));
 console.log(`Peildatum: ${ASOF.toISOString().slice(0, 10)}\n`);
 console.log('  #  score  tool                       repo');
 order.forEach((key, i) => {
   const c = byKey.get(key);
   const score = c.total == null ? '  —  ' : c.total.toFixed(3);
-  const pin = pinnedRank.has(key) ? ' (vast)' : '';
+  const pin = PINNED.has(key) ? ' (vast)' : '';
   console.log(`${String(i + 1).padStart(3)}  ${score}  ${key.padEnd(18)} ${(c.repo || '—').padEnd(26)}${pin}`);
 });
 
