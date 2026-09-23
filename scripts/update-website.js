@@ -25,6 +25,11 @@ const STEPS = [
   { name: 'Generate downloads stats (+ daily snapshot)',                  cmd: 'node scripts/generate-downloads.js' },
   { name: 'Compute download trends (weekly deltas)',                      cmd: 'node scripts/compute-download-trends.js' },
   { name: 'Update homepage tool stats (static HTML injection)',           cmd: 'node scripts/build-homepage-stats.js' },
+  // Na stats, release-notes en downloads: sorteert de kaarten in de sectie
+  // #ecosysteem op volwassenheid en activiteit. Draait vóór build-i18n-pages,
+  // zodat de taalversies de nieuwe volgorde overnemen; het script schrijft ze
+  // ook zelf, zodat het los van de pijplijn gedraaid kan worden.
+  { name: 'Order the #ecosysteem cards by maturity and activity',        cmd: 'node scripts/build-ecosystem-order.js' },
   // Na generate-release-notes: leest data/release-notes/*.json en schrijft de
   // changelog van de nieuwste versie als statische HTML in de productpagina's,
   // plus softwareVersion in de JSON-LD. Zonder deze stap is die tekst alleen
