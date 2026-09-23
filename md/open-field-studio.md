@@ -12,7 +12,7 @@
 
 ## Live stats
 
-- Stars: **0**
+- Stars: **1**
 - Commits: **35**
 - Forks: **1**
 - Open issues: **0**
