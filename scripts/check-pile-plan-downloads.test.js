@@ -72,3 +72,15 @@ test('download block follows the screenshots and full introduction in every lang
       `${language || 'nl/'}: download should follow the introduction and precede Why`);
   }
 });
+
+test('all download pages request a versioned stylesheet so old cached anchor styles are bypassed', () => {
+  const stylesheetUrls = [];
+  for (const language of ['', 'en/', 'fr/', 'tr/', 'es/']) {
+    const html = fs.readFileSync(path.join(root, language, 'open-pile-plan-studio', 'index.html'), 'utf8');
+    const stylesheetUrl = html.match(/<link rel="stylesheet" href="([^"]*\/shared\/style\.css[^"]*)">/)?.[1];
+    assert.match(stylesheetUrl || '', /^\/shared\/style\.css\?v=[a-z0-9-]+$/i,
+      `${language || 'nl/'}: stylesheet URL must change when anchor styling changes`);
+    stylesheetUrls.push(stylesheetUrl);
+  }
+  assert.equal(new Set(stylesheetUrls).size, 1, 'all language pages must load the same stylesheet version');
+});
