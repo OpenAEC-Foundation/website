@@ -19,8 +19,8 @@ assert.equal((homepage.match(/openPilePlan:\s*\{/g) || []).length, 5, 'homepage 
 
 assert.ok(exists('open-pile-plan-studio/index.html'), 'productpagina ontbreekt');
 includes('open-pile-plan-studio/index.html', '<title>Open Pile Plan Studio — OpenAEC Foundation</title>');
-includes('open-pile-plan-studio/index.html', 'v0.4.0-alpha');
-includes('open-pile-plan-studio/index.html', 'https://github.com/OpenAEC-Foundation/pile-plan-studio/releases');
+includes('open-pile-plan-studio/index.html', 'v0.4.1-alpha');
+includes('open-pile-plan-studio/index.html', 'https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v0.4.1-alpha/');
 includes('open-pile-plan-studio/index.html', 'content="open-pile-plan-studio"');
 includes('open-pile-plan-studio/index.html', 'data-release-notes="pile-plan-studio"');
 includes(
