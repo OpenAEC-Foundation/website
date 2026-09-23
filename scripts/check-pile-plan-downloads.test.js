@@ -56,3 +56,19 @@ test('every language page works without JavaScript and links to the installer, n
     assert.ok(html.includes('href="#download"'), `${language || 'nl/'}: download navigation missing`);
   }
 });
+
+test('download block follows the screenshots and full introduction in every language', () => {
+  for (const language of ['', 'en/', 'fr/', 'tr/', 'es/']) {
+    const html = fs.readFileSync(path.join(root, language, 'open-pile-plan-studio', 'index.html'), 'utf8');
+    const screenshots = html.indexOf('class="media-slider"');
+    const introduction = html.indexOf('class="explainer"');
+    const introductionEnd = html.indexOf('</div>', introduction);
+    const download = html.indexOf('id="download"');
+    const why = html.indexOf('data-i18n="why.title"');
+
+    assert.ok(screenshots >= 0 && introduction >= 0 && introductionEnd >= 0 &&
+      download >= 0 && why >= 0, `${language || 'nl/'}: required page section missing`);
+    assert.ok(screenshots < introduction && introductionEnd < download && download < why,
+      `${language || 'nl/'}: download should follow the introduction and precede Why`);
+  }
+});
