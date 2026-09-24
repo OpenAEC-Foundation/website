@@ -1,20 +1,37 @@
 {
   "repo": "pile-plan-studio",
-  "generated": "2026-09-23T06:08:12.428Z",
-  "totalReleases": 16,
-  "totalChanges": 144,
+  "generated": "2026-09-24T06:08:08.004Z",
+  "totalReleases": 17,
+  "totalChanges": 152,
   "latestStable": {
-    "tag": "v0.4.0-alpha",
-    "name": "Pile Plan Studio v0.4.0-alpha",
-    "date": "2026-09-21",
-    "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v0.4.0-alpha"
+    "tag": "v0.4.1-alpha",
+    "name": "Open Pile Plan Studio v0.4.1-alpha",
+    "date": "2026-09-23",
+    "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v0.4.1-alpha"
   },
-  "latestChangelog": "This alpha introduces HiGHS optimization in both the browser and Windows app,\nwith live results and more control over practical pile-plan coherence. It also\nmakes the inspection panels and pile-option tables easier to customize.\n\n### Added\n\n- Minimize pile-plan costs within configurable tip-level, size and configuration\n  limits, or minimize differences between neighboring units within a cost budget.\n  The default additional-cost budget is 5%; configuration limits default to unlimited.\n- Use Quick improve for a local improvement without waiting for a full spatial\n  solve. Feasible current plans and improved starting solutions help warm-start\n  the solver.\n- Follow the best validated solution live, with its score, lower bound and gap.\n  View another pile plan while optimization continues, stop and use the best\n  result, or cancel and discard the preview. Completed results belong to the plan.\n- Choose specific candidate configurations using a matrix with row and column\n  selection, and optionally skip locations that have no valid configuration.\n- Inspect load points and CPTs together using the optional split view, with\n  compact CPT details and a resizable divider whose position is remembered.\n- Show, hide and drag-reorder pile-option columns. Preferences are remembered\n  separately for single-location and multiple-location selections.\n- Return from input sources to the active pile plan with a close button, keeping\n  the current selection and viewport.\n\n### Improved and fixed\n\n- Replace the former greedy optimizer with one optimization panel. Use collapsible\n  settings, clearer result quality, named output plans and preserved selections.\n- Reject non-positive net design resistance as an unavailable pile option rather\n  than accepting negative utilization.\n- Improve warning text and link contrast, themed controls, numeric field stepping,\n  validation styling and compact panel spacing.\n- Refresh application dependencies.\n\n### Compatibility and limitations\n\n- Supported older IFCPP projects continue to open; legacy optimizer settings are\n  normalized. New projects and saved optimizer outcomes use the current project format.\n- Browser and desktop use the same Rust optimization model, solved by HiGHS.\n  Search progress and run time can differ between platforms.\n- Quick improvement does not prove global optimality. A solver stopped early or\n  at its time limit returns the best validated result available, with its quality\n  reported separately from the cost reference.\n- This remains an alpha release; engineering results require professional review.",
+  "latestChangelog": "This alpha makes load-point groups explicit planning and optimization units,\nwith automatic grouping and project-saved manual overrides. It also improves\nviewer alignment and stability across zoom, window resizing, and display scales.\n\n### Added\n\n- Select a whole group by clicking one member, or inspect an individual member\n  from the selection list. Group and ungroup selected locations in the selection\n  panel or grouping settings, with explanations when an edit is unavailable.\n- Show group contours from the View ribbon. The contour follows Gabriel-connected\n  group members rather than a convex hull. Conflicting assignments use a red\n  contour and warning marker; complete selections use an orange contour.\n- Review the number of manual grouping changes in Grouping settings and undo all\n  of them. Manual groups and explicit separations are saved with the project and\n  participate in undo and redo.\n\n### Improved and fixed\n\n- Use complete, transitive groups as optimization units with one pile\n  configuration per group. Block disconnected manual groups and retain valid\n  overrides when refreshing load-point source data.\n- Preserve the project point at the viewer centre when resizing the window or\n  moving it between displays. Render symbols, rings, contours, CPT labels, and\n  tip-level regions in one SVG coordinate system, and stabilize grid lines on\n  the physical-pixel lattice.\n- Keep hover feedback on the pointed-at group member. Inspecting only one member\n  shows its orange ring and one gray group contour instead of overlapping\n  selection and related-member rings.\n\n### Compatibility and limitations\n\n- IFCPP schema version 5 stores manual grouping changes and group visibility.\n  Supported older projects migrate when opened.\n- This remains an alpha release; engineering results and assignment conflicts\n  require professional review.",
   "nightly": null,
   "groups": [
     {
       "minorVersion": "0.4",
       "releases": [
+        {
+          "tag": "v0.4.1-alpha",
+          "name": "Open Pile Plan Studio v0.4.1-alpha",
+          "date": "2026-09-23",
+          "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v0.4.1-alpha",
+          "changes": [
+            "Select a whole group by clicking one member, or inspect an individual member from the selection list. Group and ungroup selected locations in the selection panel or grouping settings, with explanations when an edit is unavailable.",
+            "Show group contours from the View ribbon. The contour follows Gabriel-connected group members rather than a convex hull. Conflicting assignments use a red contour and warning marker; complete selections use an orange contour.",
+            "Review the number of manual grouping changes in Grouping settings and undo all of them. Manual groups and explicit separations are saved with the project and participate in undo and redo.",
+            "Use complete, transitive groups as optimization units with one pile configuration per group. Block disconnected manual groups and retain valid overrides when refreshing load-point source data.",
+            "Preserve the project point at the viewer centre when resizing the window or moving it between displays. Render symbols, rings, contours, CPT labels, and tip-level regions in one SVG coordinate system, and stabilize grid lines on the physical-pixel lattice.",
+            "Keep hover feedback on the pointed-at group member. Inspecting only one member shows its orange ring and one gray group contour instead of overlapping selection and related-member rings.",
+            "IFCPP schema version 5 stores manual grouping changes and group visibility. Supported older projects migrate when opened.",
+            "This remains an alpha release; engineering results and assignment conflicts require professional review."
+          ],
+          "patchNum": 1
+        },
         {
           "tag": "v0.4.0-alpha",
           "name": "Pile Plan Studio v0.4.0-alpha",
@@ -41,6 +58,14 @@
         }
       ],
       "allChanges": [
+        "Select a whole group by clicking one member, or inspect an individual member from the selection list. Group and ungroup selected locations in the selection panel or grouping settings, with explanations when an edit is unavailable.",
+        "Show group contours from the View ribbon. The contour follows Gabriel-connected group members rather than a convex hull. Conflicting assignments use a red contour and warning marker; complete selections use an orange contour.",
+        "Review the number of manual grouping changes in Grouping settings and undo all of them. Manual groups and explicit separations are saved with the project and participate in undo and redo.",
+        "Use complete, transitive groups as optimization units with one pile configuration per group. Block disconnected manual groups and retain valid overrides when refreshing load-point source data.",
+        "Preserve the project point at the viewer centre when resizing the window or moving it between displays. Render symbols, rings, contours, CPT labels, and tip-level regions in one SVG coordinate system, and stabilize grid lines on the physical-pixel lattice.",
+        "Keep hover feedback on the pointed-at group member. Inspecting only one member shows its orange ring and one gray group contour instead of overlapping selection and related-member rings.",
+        "IFCPP schema version 5 stores manual grouping changes and group visibility. Supported older projects migrate when opened.",
+        "This remains an alpha release; engineering results and assignment conflicts require professional review.",
         "Minimize pile-plan costs within configurable tip-level, size and configuration limits, or minimize differences between neighboring units within a cost budget. The default additional-cost budget is 5%; configuration limits default to unlimited.",
         "Use Quick improve for a local improvement without waiting for a full spatial solve. Feasible current plans and improved starting solutions help warm-start the solver.",
         "Follow the best validated solution live, with its score, lower bound and gap. View another pile plan while optimization continues, stop and use the best result, or cancel and discard the preview. Completed results belong to the plan.",
@@ -58,9 +83,9 @@
         "This remains an alpha release; engineering results require professional review."
       ],
       "firstDate": "2026-09-21",
-      "lastDate": "2026-09-21",
-      "releaseCount": 1,
-      "changeCount": 15
+      "lastDate": "2026-09-23",
+      "releaseCount": 2,
+      "changeCount": 23
     },
     {
       "minorVersion": "0.3",
