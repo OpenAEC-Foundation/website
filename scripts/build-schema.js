@@ -108,6 +108,9 @@ for (const file of htmlFiles(ROOT)) {
 
   const html = fs.readFileSync(file, 'utf8');
   if (!/<\/head>/.test(html)) continue;
+  // Een noindex-pagina (zoals 404.html) hoort geen kruimelpad of
+  // dateModified te krijgen: zoekmachines mogen hem juist niet oppikken.
+  if (/<meta name="robots" content="noindex/.test(html)) continue;
 
   const url = urlFor(rel);
   const lang = (/<html[^>]*lang="([^"]+)"/.exec(html) || [, 'nl'])[1];
