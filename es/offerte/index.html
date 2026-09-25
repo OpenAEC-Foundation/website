@@ -34,7 +34,9 @@
   <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
   <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
   <meta name="i18n-page" content="offerte">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/shared/style.css">
   <style>
     .page-header {
@@ -293,6 +295,14 @@
       margin-top: var(--sp-6);
     }
 
+    /* Foutmelding bij een stap die nog niet compleet is */
+    .form-error {
+      color: var(--error);
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-top: var(--sp-4);
+    }
+
     /* Success message */
     .success-message {
       text-align: center;
@@ -377,7 +387,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "es",
-        "dateModified": "2026-09-17",
+        "dateModified": "2026-09-22",
         "breadcrumb": {
           "@id": "https://open-aec.com/es/offerte/#breadcrumb"
         }
@@ -416,10 +426,10 @@
 <nav class="navbar">
   <div class="nav-container">
     <a href="/es/" class="nav-brand">Open<span class="accent">AEC</span></a>
-    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <div class="nav-menu">
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
       <ul class="nav-links">
         <li><a href="/es/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Ecosistema</a></li>
         <li><a href="/es/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Hoja de ruta</a></li>
@@ -466,6 +476,7 @@
         <div class="form-section">
           <h2 data-i18n="step1.title">Selecciona tus herramientas</h2>
           <div class="tool-select-grid" id="toolGrid"></div>
+          <p class="form-error" id="quoteErrorTools" role="alert" hidden data-i18n="errors.noTool">Selecciona al menos una herramienta.</p>
         </div>
         <div class="form-nav">
           <div></div>
@@ -501,6 +512,7 @@
             <label for="q-notes" data-i18n="form.notes">Comentarios</label>
             <textarea id="q-notes" placeholder="Beschrijf uw situatie of specifieke wensen..."></textarea>
           </div>
+          <p class="form-error" id="quoteErrorContact" role="alert" hidden data-i18n="errors.contact">Introduce tu nombre y una dirección de correo electrónico válida.</p>
         </div>
         <div class="form-nav">
           <button class="btn btn-secondary" onclick="goToStep(1)" data-i18n="nav.back">&larr; Atrás</button>
@@ -594,7 +606,9 @@
       const cb = row.querySelector('input[type="checkbox"]');
       const uc = row.querySelector('input[type="number"]');
       row.addEventListener('click', (e) => {
-        if (e.target.type === 'number') return;
+        // Een klik op het vinkje zelf zet de browser al om (en 'change'
+        // hieronder regelt de rest); hier nogmaals omzetten draaide dat terug.
+        if (e.target.type === 'number' || e.target === cb) return;
         cb.checked = !cb.checked;
         row.classList.toggle('selected', cb.checked);
         uc.disabled = !cb.checked;
@@ -617,17 +631,25 @@
     }
 
     function goToStep(n) {
+      // Foutmeldingen staan in de pagina (en worden vertaald), niet in een
+      // alert(). De ids beginnen bewust niet met "step": die worden hieronder
+      // allemaal verborgen of getoond.
+      const toolsError = document.getElementById('quoteErrorTools');
+      const contactError = document.getElementById('quoteErrorContact');
+
       // Validate step 1
-      if (n === 2 && getSelectedTools().length === 0) {
-        alert('Selecteer minimaal een tool.');
-        return;
+      if (n === 2) {
+        toolsError.hidden = getSelectedTools().length > 0;
+        if (!toolsError.hidden) return;
       }
       // Validate step 2
       if (n === 3) {
-        const name = document.getElementById('q-name').value.trim();
-        const email = document.getElementById('q-email').value.trim();
-        if (!name || !email) {
-          alert('Vul uw naam en e-mailadres in.');
+        const nameInput = document.getElementById('q-name');
+        const emailInput = document.getElementById('q-email');
+        const invalid = [nameInput, emailInput].find(el => !el.value.trim() || !el.checkValidity());
+        contactError.hidden = !invalid;
+        if (invalid) {
+          invalid.focus();
           return;
         }
       }
@@ -641,10 +663,12 @@
         ).join('');
 
         const contact = document.getElementById('summaryContact');
-        const name = document.getElementById('q-name').value;
-        const company = document.getElementById('q-company').value;
-        const email = document.getElementById('q-email').value;
-        const phone = document.getElementById('q-phone').value;
+        // Invoer van de bezoeker als tekst tonen, niet als HTML.
+        const esc = v => v.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+        const name = esc(document.getElementById('q-name').value);
+        const company = esc(document.getElementById('q-company').value);
+        const email = esc(document.getElementById('q-email').value);
+        const phone = esc(document.getElementById('q-phone').value);
         let items = `<li><span class="tool-name">Naam</span><span>${name}</span></li>`;
         if (company) items += `<li><span class="tool-name">Bedrijf</span><span>${company}</span></li>`;
         items += `<li><span class="tool-name">E-mail</span><span>${email}</span></li>`;

@@ -34,7 +34,9 @@
   <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
   <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
   <meta name="i18n-page" content="statuten">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/shared/style.css">
   <style>
     .page-header {
@@ -50,7 +52,7 @@
     .page-header p { font-size: 1.125rem; color: var(--scaffold-gray); max-width: 600px; margin: 0 auto; line-height: 1.6; }
     .concept-badge { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-code); font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; padding: 4px 14px; border-radius: var(--radius-full); background: #FEF3C7; color: #92400E; margin-top: var(--sp-4); }
 
-    .doc-content { max-width: 800px; margin: 0 auto; }
+    .doc-content { max-width: 800px; margin: 0 auto; overflow-wrap: break-word; hyphens: auto; }
     .doc-content h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem; color: var(--deep-forge); margin: var(--sp-8) 0 var(--sp-3); padding-bottom: var(--sp-2); border-bottom: 1px solid #E7E5E4; }
     .doc-content p { font-size: 0.9375rem; color: #57534E; line-height: 1.7; margin-bottom: var(--sp-3); }
     .doc-content ol, .doc-content ul { padding-left: var(--sp-6); margin-bottom: var(--sp-4); }
@@ -99,7 +101,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "fr",
-        "dateModified": "2026-09-17",
+        "dateModified": "2026-09-22",
         "breadcrumb": {
           "@id": "https://open-aec.com/fr/statuten/#breadcrumb"
         }
@@ -132,10 +134,10 @@
 <nav class="navbar">
   <div class="nav-container">
     <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
-    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <div class="nav-menu">
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
       <ul class="nav-links">
         <li><a href="/fr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Écosystème</a></li>
         <li><a href="/fr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Feuille de route</a></li>
@@ -185,7 +187,7 @@
 
   <script>
     // Simple markdown to HTML renderer for the statuten
-    fetch('oprichtingsakte.md')
+    fetch('/statuten/oprichtingsakte.md')
       .then(r => r.text())
       .then(md => {
         const html = md
@@ -201,7 +203,7 @@
         document.getElementById('docContent').innerHTML = '<p>' + html + '</p>';
       })
       .catch(() => {
-        document.getElementById('docContent').innerHTML = '<p>Het document kon niet geladen worden. <a href="oprichtingsakte.md">Download het markdown bestand</a>.</p>';
+        document.getElementById('docContent').innerHTML = '<p>Het document kon niet geladen worden. <a href="/statuten/oprichtingsakte.md">Download het markdown bestand</a>.</p>';
       });
   </script>
   <script src="/shared/i18n.js?v=20260728"></script>

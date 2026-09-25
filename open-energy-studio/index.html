@@ -36,7 +36,9 @@
   <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
   <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
   <meta name="i18n-page" content="open-energy-studio">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/shared/style.css">
   <script type="application/ld+json">
   {
@@ -128,7 +130,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "nl",
-        "dateModified": "2026-09-17",
+        "dateModified": "2026-09-22",
         "breadcrumb": {
           "@id": "https://open-aec.com/open-energy-studio/#breadcrumb"
         }
@@ -161,10 +163,10 @@
 <nav class="navbar">
   <div class="nav-container">
     <a href="/" class="nav-brand">Open<span class="accent">AEC</span></a>
-    <button class="hamburger" onclick="this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active');" aria-label="Menu">
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
-    <div class="nav-menu">
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
       <ul class="nav-links">
         <li><a href="/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Ecosysteem</a></li>
         <li><a href="/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Roadmap</a></li>
@@ -195,7 +197,7 @@
     <h1 data-i18n="header.title">Open <span class="accent">Energy</span> Studio</h1>
     <p class="tagline" data-i18n="header.desc">Open source rekenprogramma voor de energieprestatie van gebouwen volgens NTA 8800. BENG-berekeningen, U-waarde-analyse, dimensionering van warmtepompen en beoordeling van koudebruggen.</p>
     <div class="btn-group">
-      <a href="#download" class="btn btn-primary btn-lg" data-i18n="header.downloadBtn">Download v2026.2.0</a>
+      <a href="#download" class="btn btn-primary btn-lg" data-i18n="header.downloadBtn">Download</a>
       <a href="https://github.com/OpenAEC-Foundation/open-energy-studio" class="btn btn-ghost btn-lg" data-i18n="header.sourceBtn">Bekijk de broncode</a>
     </div>
   </section>
@@ -214,17 +216,8 @@
 
   <section class="section" id="download"><div class="container">
     <div class="download-section">
-      <h3 data-i18n="download.title">Download v2026.2.0</h3>
-      <div class="download-grid">
-        <div class="download-item"><div class="os">Windows</div><div class="size">1.4 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v2026.2.0/Open.Energy.Studio_2026.2.0_x64-setup.exe" class="btn btn-primary btn-sm">Download .exe</a></div>
-        <div class="download-item"><div class="os">macOS (universal)</div><div class="size">3.6 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v2026.2.0/Open.Energy.Studio_2026.2.0_universal.dmg" class="btn btn-primary btn-sm">Download .dmg</a></div>
-        <div class="download-item"><div class="os">Linux (deb)</div><div class="size">1.7 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v2026.2.0/Open.Energy.Studio_2026.2.0_amd64.deb" class="btn btn-primary btn-sm">Download .deb</a></div>
-        <div class="download-item"><div class="os">Linux (AppImage)</div><div class="size">75.9 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v2026.2.0/Open.Energy.Studio_2026.2.0_amd64.AppImage" class="btn btn-primary btn-sm">Download AppImage</a></div>
-      </div>
+      <h3 data-i18n="download.title">Download</h3>
+      <a href="https://github.com/OpenAEC-Foundation/open-energy-studio/releases" class="btn btn-primary" target="_blank" rel="noopener">GitHub releases</a>
     </div>
   </div></section>
 
@@ -289,6 +282,7 @@
     <a href="/" class="nav-brand">Open<span class="accent">AEC</span></a>
     <span data-i18n="footer.slogan">Build free. Build together.</span>
     <a href="https://github.com/OpenAEC-Foundation">GitHub</a>
+    <span>&copy; 2026 OpenAEC Foundation</span>
   </div></footer>
   <script>
     (function(){
