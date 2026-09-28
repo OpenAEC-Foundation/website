@@ -237,9 +237,10 @@ const TOOLS = [
       'Grouped load points, locks and multiple pile-plan variants',
       'IFCPP project save and reopen',
       'Shared Rust calculation core in browser and desktop',
+      'Local MCP access for AI assistants in the Windows desktop app',
     ],
     whenToUse: 'Exploring and assigning pile configurations across structural load points while keeping input data, engineering choices and cost estimates in one traceable project.',
-    standards: ['IFCPP'],
+    standards: ['IFCPP', 'MCP (Windows desktop)'],
   },
   {
     id: 'open-pointcloud-studio',

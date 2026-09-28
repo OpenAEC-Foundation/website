@@ -106,7 +106,7 @@ const TOOLS = [
     category: 'Foundation Engineering',
     status: 'beta',
     description: 'Open-source engineering tool for comparing, assigning and optimizing pile configurations across practical pile-plan variants.',
-    keywords: ['pile plan', 'foundation engineering', 'CPT', 'load points', 'pile optimization', 'IFCPP'],
+    keywords: ['pile plan', 'foundation engineering', 'CPT', 'load points', 'pile optimization', 'IFCPP', 'MCP'],
     alternatives: [],
     license: 'LGPL-3.0-or-later',
     techStack: ['Rust', 'WebAssembly', 'React', 'TypeScript', 'Tauri 2'],

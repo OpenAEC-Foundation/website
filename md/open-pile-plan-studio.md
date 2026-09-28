@@ -30,6 +30,7 @@
 - Grouped load points, locks and multiple pile-plan variants
 - IFCPP project save and reopen
 - Shared Rust calculation core in browser and desktop
+- Local MCP access for AI assistants in the Windows desktop app
 
 ## Tech stack
 
@@ -42,6 +43,7 @@ Exploring and assigning pile configurations across structural load points while 
 ## Standards & integration
 
 - IFCPP
+- MCP (Windows desktop)
 
 All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 
@@ -50,7 +52,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-pile-plan-studio/
 - Live demo: https://open-pile-plan-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/pile-plan-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v0.4.1-alpha
+- Latest stable release: https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v0.4.2-alpha
 - Nightly builds: https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)

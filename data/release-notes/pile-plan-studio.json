@@ -1,20 +1,40 @@
 {
   "repo": "pile-plan-studio",
-  "generated": "2026-09-28T06:10:39.442Z",
-  "totalReleases": 17,
-  "totalChanges": 152,
+  "generated": "2026-09-28T12:34:38.562Z",
+  "totalReleases": 18,
+  "totalChanges": 163,
   "latestStable": {
-    "tag": "v0.4.1-alpha",
-    "name": "Open Pile Plan Studio v0.4.1-alpha",
-    "date": "2026-09-23",
-    "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v0.4.1-alpha"
+    "tag": "v0.4.2-alpha",
+    "name": "Open Pile Plan Studio v0.4.2-alpha",
+    "date": "2026-09-28",
+    "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v0.4.2-alpha"
   },
-  "latestChangelog": "This alpha makes load-point groups explicit planning and optimization units,\nwith automatic grouping and project-saved manual overrides. It also improves\nviewer alignment and stability across zoom, window resizing, and display scales.\n\n### Added\n\n- Select a whole group by clicking one member, or inspect an individual member\n  from the selection list. Group and ungroup selected locations in the selection\n  panel or grouping settings, with explanations when an edit is unavailable.\n- Show group contours from the View ribbon. The contour follows Gabriel-connected\n  group members rather than a convex hull. Conflicting assignments use a red\n  contour and warning marker; complete selections use an orange contour.\n- Review the number of manual grouping changes in Grouping settings and undo all\n  of them. Manual groups and explicit separations are saved with the project and\n  participate in undo and redo.\n\n### Improved and fixed\n\n- Use complete, transitive groups as optimization units with one pile\n  configuration per group. Block disconnected manual groups and retain valid\n  overrides when refreshing load-point source data.\n- Preserve the project point at the viewer centre when resizing the window or\n  moving it between displays. Render symbols, rings, contours, CPT labels, and\n  tip-level regions in one SVG coordinate system, and stabilize grid lines on\n  the physical-pixel lattice.\n- Keep hover feedback on the pointed-at group member. Inspecting only one member\n  shows its orange ring and one gray group contour instead of overlapping\n  selection and related-member rings.\n\n### Compatibility and limitations\n\n- IFCPP schema version 5 stores manual grouping changes and group visibility.\n  Supported older projects migrate when opened.\n- This remains an alpha release; engineering results and assignment conflicts\n  require professional review.",
+  "latestChangelog": "This alpha adds an MCP connection to the Windows desktop app. A local AI client\nsuch as ChatGPT Desktop or Claude Desktop can inspect the open project, propose\nedits, run optimization, and work with project files through the same Rust\nengineering rules used by the interface.\n\n### Added\n\n- Enable a local, token-protected MCP connection in Settings. Reading and\n  editing have separate session controls; editing starts disabled.\n- Read project settings, load points, CPTs, advice, groups, plans, costs,\n  technical assessments, and optimization results through MCP. Compare two\n  named plans without changing the active one.\n- Apply assignments, locks, manual CPT selections, grouping changes, settings,\n  legend styles, project properties, and targeted source corrections. Bulk\n  changes use Rust validation and one Undo step.\n- Start, monitor, stop, or cancel optimization through MCP. The same time-limit\n  preference is available in the app, including an explicit unlimited option.\n- Create or refresh a project from converted CSV source data, import an existing\n  pile plan, open or save IFCPP projects, and export a chosen plan to CSV/XLSX.\n  Native file dialogs require the user's choice for local files.\n\n### Improved and fixed\n\n- Keep foundation advice when only CPT positions or identifiers change and\n  equivalent CPTs can be reconciled during source refresh.\n- Clarify that the coherence cost allowance is measured against the optimizer's\n  cost reference, not the current pile plan.\n- Keep MCP work tied to the currently open project revision and reject stale\n  operations rather than applying them after the project changes.\n\n### Compatibility and limitations\n\n- MCP is available in the Windows desktop app. The browser app still uses the\n  same Rust engineering core but does not expose an MCP listener.\n- The MCP address stays local to this computer. Its access token is renewed\n  each time the bridge starts and must be updated in the AI client.\n- IFCPP project schema remains compatible with supported older projects.\n  Engineering results still require professional review.",
   "nightly": null,
   "groups": [
     {
       "minorVersion": "0.4",
       "releases": [
+        {
+          "tag": "v0.4.2-alpha",
+          "name": "Open Pile Plan Studio v0.4.2-alpha",
+          "date": "2026-09-28",
+          "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v0.4.2-alpha",
+          "changes": [
+            "Enable a local, token-protected MCP connection in Settings. Reading and editing have separate session controls; editing starts disabled.",
+            "Read project settings, load points, CPTs, advice, groups, plans, costs, technical assessments, and optimization results through MCP. Compare two named plans without changing the active one.",
+            "Apply assignments, locks, manual CPT selections, grouping changes, settings, legend styles, project properties, and targeted source corrections. Bulk changes use Rust validation and one Undo step.",
+            "Start, monitor, stop, or cancel optimization through MCP. The same time-limit preference is available in the app, including an explicit unlimited option.",
+            "Create or refresh a project from converted CSV source data, import an existing pile plan, open or save IFCPP projects, and export a chosen plan to CSV/XLSX. Native file dialogs require the user's choice for local files.",
+            "Keep foundation advice when only CPT positions or identifiers change and equivalent CPTs can be reconciled during source refresh.",
+            "Clarify that the coherence cost allowance is measured against the optimizer's cost reference, not the current pile plan.",
+            "Keep MCP work tied to the currently open project revision and reject stale operations rather than applying them after the project changes.",
+            "MCP is available in the Windows desktop app. The browser app still uses the same Rust engineering core but does not expose an MCP listener.",
+            "The MCP address stays local to this computer. Its access token is renewed each time the bridge starts and must be updated in the AI client.",
+            "IFCPP project schema remains compatible with supported older projects. Engineering results still require professional review."
+          ],
+          "patchNum": 2
+        },
         {
           "tag": "v0.4.1-alpha",
           "name": "Open Pile Plan Studio v0.4.1-alpha",
@@ -58,6 +78,17 @@
         }
       ],
       "allChanges": [
+        "Enable a local, token-protected MCP connection in Settings. Reading and editing have separate session controls; editing starts disabled.",
+        "Read project settings, load points, CPTs, advice, groups, plans, costs, technical assessments, and optimization results through MCP. Compare two named plans without changing the active one.",
+        "Apply assignments, locks, manual CPT selections, grouping changes, settings, legend styles, project properties, and targeted source corrections. Bulk changes use Rust validation and one Undo step.",
+        "Start, monitor, stop, or cancel optimization through MCP. The same time-limit preference is available in the app, including an explicit unlimited option.",
+        "Create or refresh a project from converted CSV source data, import an existing pile plan, open or save IFCPP projects, and export a chosen plan to CSV/XLSX. Native file dialogs require the user's choice for local files.",
+        "Keep foundation advice when only CPT positions or identifiers change and equivalent CPTs can be reconciled during source refresh.",
+        "Clarify that the coherence cost allowance is measured against the optimizer's cost reference, not the current pile plan.",
+        "Keep MCP work tied to the currently open project revision and reject stale operations rather than applying them after the project changes.",
+        "MCP is available in the Windows desktop app. The browser app still uses the same Rust engineering core but does not expose an MCP listener.",
+        "The MCP address stays local to this computer. Its access token is renewed each time the bridge starts and must be updated in the AI client.",
+        "IFCPP project schema remains compatible with supported older projects. Engineering results still require professional review.",
         "Select a whole group by clicking one member, or inspect an individual member from the selection list. Group and ungroup selected locations in the selection panel or grouping settings, with explanations when an edit is unavailable.",
         "Show group contours from the View ribbon. The contour follows Gabriel-connected group members rather than a convex hull. Conflicting assignments use a red contour and warning marker; complete selections use an orange contour.",
         "Review the number of manual grouping changes in Grouping settings and undo all of them. Manual groups and explicit separations are saved with the project and participate in undo and redo.",
@@ -83,9 +114,9 @@
         "This remains an alpha release; engineering results require professional review."
       ],
       "firstDate": "2026-09-21",
-      "lastDate": "2026-09-23",
-      "releaseCount": 2,
-      "changeCount": 23
+      "lastDate": "2026-09-28",
+      "releaseCount": 3,
+      "changeCount": 34
     },
     {
       "minorVersion": "0.3",
