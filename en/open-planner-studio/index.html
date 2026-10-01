@@ -270,7 +270,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "en",
-        "dateModified": "2026-09-25",
+        "dateModified": "2026-09-26",
         "breadcrumb": {
           "@id": "https://open-aec.com/en/open-planner-studio/#breadcrumb"
         }
@@ -632,7 +632,6 @@
   // newest release assets baked into the HTML above.
   (function () {
     var REPO = 'OpenAEC-Foundation/open-planner-studio';
-    var LATEST = 'https://github.com/' + REPO + '/releases/latest';
     var state = { tag: null };
     var match = {
       windows: /_x64-setup\.exe$/i,
@@ -664,7 +663,7 @@
         var re = match[key];
         var hit = assets.filter(function (x) { return re.test(x.name); })[0];
         document.querySelectorAll('[data-opl-dl="' + key + '"]').forEach(function (a) {
-          a.href = hit ? hit.browser_download_url : LATEST;
+          if (hit) a.href = hit.browser_download_url;
         });
         if (hit) {
           document.querySelectorAll('[data-opl-size="' + key + '"]').forEach(function (el) {

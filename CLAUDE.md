@@ -34,6 +34,8 @@ node scripts/check-open-pile-plan-studio.js && node scripts/check-homepage-catal
 
 They use `node:assert/strict` and fail with a Dutch message. `check-open-pile-plan-studio.js` doubles as the executable checklist for adding a new tool (see below). `check-homepage-catalog-product-pages.js` pins several literal CSS colour values in `bim-validator/index.html` and the exact screenshot order in Open Speech Studio — those assertions are deliberate, not accidental. `check-release-timeline.js` guards the release timeline on the Open Planner Studio page: the placeholder mode, the static pre-render, the highlights contract and the join with `data/release-notes/`. `check-release-notes-generator.js` covers release bodies with Windows line endings and the `RELEASE_NOTES.md` fallback.
 
+Download buttons must start the download, never open a GitHub release page. Use `<a href="<direct installer URL>" data-gh-download="owner/repo">` (optionally `data-platform="windows"` etc.) and load `/shared/downloads.js`: the baked-in href is the no-JS fallback, the script swaps in the newest release and the file for the visitor's OS. `node --test scripts/check-direct-downloads.test.js` guards this site-wide (plus the older `check-pile-plan-downloads.test.js` for Pile Plan Studio's own script).
+
 ## Architecture
 
 ### Two name spaces per tool

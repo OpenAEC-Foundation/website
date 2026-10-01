@@ -51,7 +51,7 @@
     "operatingSystem": "Windows, macOS, Linux",
     "softwareVersion": "2026.37",
     "license": "https://www.gnu.org/licenses/gpl-3.0.html",
-    "downloadUrl": "https://github.com/HakanSeven12/OpenCADStudio/releases/download/v2026.37/OpenCADStudio-v2026.37-windows-x86_64-portable.exe",
+    "downloadUrl": "https://github.com/HakanSeven12/OpenCADStudio/releases/download/v2026.39/OpenCADStudio-v2026.39-windows-x86_64-portable.exe",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
     "url": "https://open-aec.com/open-cad-studio/",
     "author": { "@type": "Person", "name": "Hakan Seven", "url": "https://github.com/HakanSeven12" },
@@ -219,7 +219,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "es",
-        "dateModified": "2026-09-25",
+        "dateModified": "2026-09-28",
         "breadcrumb": {
           "@id": "https://open-aec.com/es/open-cad-studio/#breadcrumb"
         }
@@ -293,7 +293,7 @@
     <p data-i18n="header.desc">Una <strong style="color: white;">aplicación CAD 2D + 3D</strong> completa construida en Rust con renderizado acelerado por GPU. Lectura y escritura nativas de <strong style="color: white;">DWG &amp; DXF</strong>, espacio papel, sólidos ACIS, cotas, presentaciones. Un proyecto comunitario de código abierto de Hakan Seven, reconocido y promovido por la OpenAEC Foundation.</p>
     <div>
       <span class="status-badge" data-i18n="header.community">Proyecto comunitario</span>
-      <span class="status-badge beta" data-i18n="header.beta" data-ocs-ver>Beta · v2026.37</span>
+      <span class="status-badge beta" data-i18n="header.beta" data-ocs-ver>Beta · v2026.39</span>
     </div>
     <div class="version-info">Rust · iced · wgpu · GPL-3.0 · 3402 commits · <span data-ocs-rel>90 releases</span> · <span data-ocs-stars>1912</span> stars</div>
     <div style="margin-top: var(--sp-4);">
@@ -305,29 +305,29 @@
   <section class="section" id="download" style="background: var(--blueprint-white); padding-top: var(--sp-8); padding-bottom: var(--sp-2);">
     <div class="content">
       <div class="content-block" style="margin-top: 0;">
-        <h2 data-i18n="download.title" data-ocs-ver>Descargar <span class="accent">v2026.37</span></h2>
+        <h2 data-i18n="download.title" data-ocs-ver>Descargar <span class="accent">v2026.39</span></h2>
         <p data-i18n="download.desc">Publicada en junio de 2026. Tres binarios nativos — Windows, macOS (Apple Silicon) y Linux (AppImage). Elige el de tu plataforma y estarás trabajando en segundos.</p>
         <div class="download-section">
           <div class="download-grid">
             <div class="download-item">
               <div class="os">Windows (portable)</div>
               <div class="size">~30 MB</div>
-              <a href="https://github.com/HakanSeven12/OpenCADStudio/releases/latest" data-ocs-dl="windows" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Download .exe</a>
+              <a href="https://github.com/HakanSeven12/OpenCADStudio/releases/download/v2026.39/OpenCADStudio-v2026.39-windows-x86_64-portable.exe" data-ocs-dl="windows" class="btn btn-primary btn-sm">Download .exe</a>
             </div>
             <div class="download-item">
               <div class="os">Windows (installer)</div>
               <div class="size">~30 MB</div>
-              <a href="https://github.com/HakanSeven12/OpenCADStudio/releases/latest" data-ocs-dl="windows-msi" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Download .msi</a>
+              <a href="https://github.com/HakanSeven12/OpenCADStudio/releases/download/v2026.39/OpenCADStudio-v2026.39-windows-x86_64-installer.msi" data-ocs-dl="windows-msi" class="btn btn-primary btn-sm">Download .msi</a>
             </div>
             <div class="download-item">
               <div class="os">macOS (Apple Silicon)</div>
               <div class="size">~13 MB</div>
-              <a href="https://github.com/HakanSeven12/OpenCADStudio/releases/latest" data-ocs-dl="macos" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Download .dmg</a>
+              <a href="https://github.com/HakanSeven12/OpenCADStudio/releases/download/v2026.39/OpenCADStudio-v2026.39-macos-arm64.dmg" data-ocs-dl="macos" class="btn btn-primary btn-sm">Download .dmg</a>
             </div>
             <div class="download-item">
               <div class="os">Linux (AppImage)</div>
               <div class="size">~15 MB</div>
-              <a href="https://github.com/HakanSeven12/OpenCADStudio/releases/latest" data-ocs-dl="linux" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Download AppImage</a>
+              <a href="https://github.com/HakanSeven12/OpenCADStudio/releases/download/v2026.39/OpenCADStudio-v2026.39-linux-x86_64.AppImage" data-ocs-dl="linux" class="btn btn-primary btn-sm">Download AppImage</a>
             </div>
           </div>
         </div>
@@ -637,7 +637,6 @@
   <script>
     (function () {
       var REPO = 'HakanSeven12/OpenCADStudio';
-      var LATEST = 'https://github.com/' + REPO + '/releases/latest';
       var state = { tag: null, releases: null };
 
       // Re-apply version + release-count into the i18n-managed labels. Runs on
@@ -646,7 +645,7 @@
       function patch() {
         if (state.tag) {
           document.querySelectorAll('[data-ocs-ver]').forEach(function (el) {
-            var want = el.innerHTML.replace(/v\d+\.\d+\.\d+/g, state.tag);
+            var want = el.innerHTML.replace(/v\d+(?:\.\d+)+/g, state.tag);
             if (el.innerHTML !== want) el.innerHTML = want;
           });
         }
@@ -668,7 +667,7 @@
         document.querySelectorAll('[data-ocs-dl]').forEach(function (a) {
           var re = match[a.getAttribute('data-ocs-dl')];
           var hit = re && assets.filter(function (x) { return re.test(x.name); })[0];
-          a.href = hit ? hit.browser_download_url : LATEST;
+          if (hit) a.href = hit.browser_download_url;
         });
       }
 
