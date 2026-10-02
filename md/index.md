@@ -2,11 +2,11 @@
 
 > Machine-readable Markdown mirrors of the OpenAEC product pages. Use these when feeding the OpenAEC catalog to AI assistants (Claude, Continue, Cursor, etc).
 
-Generated: 2026-10-02T06:08:34.113Z
+Generated: 2026-10-02T15:22:53.256Z
 
-**Foundation totals:** 62 public repos · 3468 stars · 14609 commits · 62 contributors.
+**Foundation totals:** 62 public repos · 3477 stars · 14821 commits · 64 contributors.
 
-**Total downloads across tools:** 97,030 (20 repos).
+**Total downloads across tools:** 97,676 (20 repos).
 
 ## Beta
 
@@ -14,8 +14,8 @@ Generated: 2026-10-02T06:08:34.113Z
 - [Open 2D Studio](./open-2d-studio.md) — 2D CAD application with drawing tools, DXF import/export, layers and dimensions. (`n/a`)
 - [Open Calc Studio](./open-calc-studio.md) — Cost estimation and budgeting for buildings, civil infrastructure and GWW projects. STABU/RAW support, IFCX integration, MCP server for AI control. (`v0.13.0`)
 - [Open Planner Studio](./open-planner-studio.md) — Open-source construction scheduling with Gantt charts, critical path (CPM), WBS, resource levelling, baselines and progress tracking. One task grid for the whole schedule: it powers both the Gantt task list and the full Table view, with keyboard cell navigation, multi-cell paste from a spreadsheet, dependency editing in the cell, a column chooser, and a per-task duration unit of days or hours. Opens Microsoft Project (.mpp) files natively — date-faithful to the minute across a 216-file test corpus, with split tasks, resource leveling, timephased assignments and manually scheduled tasks read from the file and drawn as interrupted Gantt bars. Uses IFC 4.3 as its native file format and ships a built-in MCP server so an AI assistant can read and edit the schedule. (`v2026.9.0`)
-- [Open Pile Plan Studio](./open-pile-plan-studio.md) — Interactive pile-plan variants with load points, CPT selection, pile options, utilization, estimated costs and IFCPP project files. (`v0.4.2-alpha`)
-- [Open Pointcloud Studio](./open-pointcloud-studio.md) — Point cloud viewer for LAS / LAZ with RGB, elevation and classification rendering. EDL and octree LoD for large datasets. (`v0.3.0`)
+- [Open Pile Plan Studio](./open-pile-plan-studio.md) — Interactive pile-plan variants with load points, CPT selection, pile options, utilization, estimated costs and IFCPP project files. (`v0.4.3-alpha`)
+- [Open Pointcloud Studio](./open-pointcloud-studio.md) — Point cloud viewer for LAS / LAZ with RGB, elevation and classification rendering. EDL and octree LoD for large datasets. (`v0.4.2`)
 - [Open Speech Studio](./open-speech-studio.md) — Local speech-to-text using Whisper AI. CTRL+Win shortcut for OS-wide dictation. Privacy-first, no cloud. (`v0.10.3`)
 - [Monty IFC Viewer](./monty-ifc-viewer.md) — Lightweight IFC viewer for quick BIM model inspection. (`v1.0.1`)
 

@@ -1,20 +1,37 @@
 {
   "repo": "pile-plan-studio",
-  "generated": "2026-10-02T06:08:18.348Z",
-  "totalReleases": 18,
-  "totalChanges": 163,
+  "generated": "2026-10-02T15:22:37.771Z",
+  "totalReleases": 19,
+  "totalChanges": 171,
   "latestStable": {
-    "tag": "v0.4.2-alpha",
-    "name": "Open Pile Plan Studio v0.4.2-alpha",
-    "date": "2026-09-28",
-    "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v0.4.2-alpha"
+    "tag": "v0.4.3-alpha",
+    "name": "Open Pile Plan Studio v0.4.3-alpha",
+    "date": "2026-10-02",
+    "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v0.4.3-alpha"
   },
-  "latestChangelog": "This alpha adds an MCP connection to the Windows desktop app. A local AI client\nsuch as ChatGPT Desktop or Claude Desktop can inspect the open project, propose\nedits, run optimization, and work with project files through the same Rust\nengineering rules used by the interface.\n\n### Added\n\n- Enable a local, token-protected MCP connection in Settings. Reading and\n  editing have separate session controls; editing starts disabled.\n- Read project settings, load points, CPTs, advice, groups, plans, costs,\n  technical assessments, and optimization results through MCP. Compare two\n  named plans without changing the active one.\n- Apply assignments, locks, manual CPT selections, grouping changes, settings,\n  legend styles, project properties, and targeted source corrections. Bulk\n  changes use Rust validation and one Undo step.\n- Start, monitor, stop, or cancel optimization through MCP. The same time-limit\n  preference is available in the app, including an explicit unlimited option.\n- Create or refresh a project from converted CSV source data, import an existing\n  pile plan, open or save IFCPP projects, and export a chosen plan to CSV/XLSX.\n  Native file dialogs require the user's choice for local files.\n\n### Improved and fixed\n\n- Keep foundation advice when only CPT positions or identifiers change and\n  equivalent CPTs can be reconciled during source refresh.\n- Clarify that the coherence cost allowance is measured against the optimizer's\n  cost reference, not the current pile plan.\n- Keep MCP work tied to the currently open project revision and reject stale\n  operations rather than applying them after the project changes.\n\n### Compatibility and limitations\n\n- MCP is available in the Windows desktop app. The browser app still uses the\n  same Rust engineering core but does not expose an MCP listener.\n- The MCP address stays local to this computer. Its access token is renewed\n  each time the bridge starts and must be updated in the AI client.\n- IFCPP project schema remains compatible with supported older projects.\n  Engineering results still require professional review.",
+  "latestChangelog": "This maintenance alpha simplifies project-session, import, and MCP orchestration\nand strengthens regression coverage while preserving the engineering model and\nsupported project formats.\n\n### Improved and fixed\n\n- Show a specific duplicate-size message when adding a pile cost entry whose\n  size is already saved, instead of reporting an invalid number.\n- Centralize cost validation, immutable project edits, and shared browser/native\n  request models. Remove obsolete helpers and an unused optimizer result route.\n- Separate project editing, import previews, and MCP session lifecycles into\n  focused modules with the existing revision and editing-permission checks.\n- Add interaction tests for imports, costs, settings, tables, shortcuts, and\n  application controls, replacing tests tied to implementation text.\n- Verify the signed Windows installer's installation and launch on the build\n  server before creating the release draft.\n\n### Compatibility and limitations\n\n- Supported IFCPP project versions and engineering calculations are unchanged.\n- MCP remains available only in the Windows desktop app.\n- This remains an alpha release; engineering results require professional review.",
   "nightly": null,
   "groups": [
     {
       "minorVersion": "0.4",
       "releases": [
+        {
+          "tag": "v0.4.3-alpha",
+          "name": "Open Pile Plan Studio v0.4.3-alpha",
+          "date": "2026-10-02",
+          "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v0.4.3-alpha",
+          "changes": [
+            "Show a specific duplicate-size message when adding a pile cost entry whose size is already saved, instead of reporting an invalid number.",
+            "Centralize cost validation, immutable project edits, and shared browser/native request models. Remove obsolete helpers and an unused optimizer result route.",
+            "Separate project editing, import previews, and MCP session lifecycles into focused modules with the existing revision and editing-permission checks.",
+            "Add interaction tests for imports, costs, settings, tables, shortcuts, and application controls, replacing tests tied to implementation text.",
+            "Verify the signed Windows installer's installation and launch on the build server before creating the release draft.",
+            "Supported IFCPP project versions and engineering calculations are unchanged.",
+            "MCP remains available only in the Windows desktop app.",
+            "This remains an alpha release; engineering results require professional review."
+          ],
+          "patchNum": 3
+        },
         {
           "tag": "v0.4.2-alpha",
           "name": "Open Pile Plan Studio v0.4.2-alpha",
@@ -78,6 +95,14 @@
         }
       ],
       "allChanges": [
+        "Show a specific duplicate-size message when adding a pile cost entry whose size is already saved, instead of reporting an invalid number.",
+        "Centralize cost validation, immutable project edits, and shared browser/native request models. Remove obsolete helpers and an unused optimizer result route.",
+        "Separate project editing, import previews, and MCP session lifecycles into focused modules with the existing revision and editing-permission checks.",
+        "Add interaction tests for imports, costs, settings, tables, shortcuts, and application controls, replacing tests tied to implementation text.",
+        "Verify the signed Windows installer's installation and launch on the build server before creating the release draft.",
+        "Supported IFCPP project versions and engineering calculations are unchanged.",
+        "MCP remains available only in the Windows desktop app.",
+        "This remains an alpha release; engineering results require professional review.",
         "Enable a local, token-protected MCP connection in Settings. Reading and editing have separate session controls; editing starts disabled.",
         "Read project settings, load points, CPTs, advice, groups, plans, costs, technical assessments, and optimization results through MCP. Compare two named plans without changing the active one.",
         "Apply assignments, locks, manual CPT selections, grouping changes, settings, legend styles, project properties, and targeted source corrections. Bulk changes use Rust validation and one Undo step.",
@@ -114,9 +139,9 @@
         "This remains an alpha release; engineering results require professional review."
       ],
       "firstDate": "2026-09-21",
-      "lastDate": "2026-09-28",
-      "releaseCount": 3,
-      "changeCount": 34
+      "lastDate": "2026-10-02",
+      "releaseCount": 4,
+      "changeCount": 42
     },
     {
       "minorVersion": "0.3",
