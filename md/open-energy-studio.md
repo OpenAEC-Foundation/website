@@ -17,7 +17,8 @@
 - Forks: **0**
 - Open issues: **2**
 - Releases: **2**
-- Total downloads: **0**
+- Total downloads: **1**
+- Downloads by platform: Windows (1)
 
 ## Key features
 
@@ -55,6 +56,10 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-energy-studio
 - Latest stable release: https://github.com/OpenAEC-Foundation/open-energy-studio/releases/tag/v0.1.6-alpha
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-energy-studio/releases/tag/nightly
+
+## Direct downloads (most popular)
+
+- [Windows · Open.Energy.Studio_0.1.6-alpha_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.6-alpha/Open.Energy.Studio_0.1.6-alpha_x64-setup.exe) (v0.1.6-alpha — 1.5 MB)
 
 ---
 
