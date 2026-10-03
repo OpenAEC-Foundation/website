@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Pointcloud Studio — OpenAEC Foundation</title>
-  <meta name="description" content="Desktopapplicatie voor het bekijken, meten, bewerken en omzetten van laserscans en puntenwolken: LAS, LAZ, E57 en meer. Voor Windows, macOS en Linux.">
+  <meta name="description" content="Desktopapplicatie voor laserscans en puntenwolken (LAS, LAZ, E57): bekijken, meten, omzetten, snedetekeningen in DXF en DWG, meshes. Windows, macOS, Linux.">
   <link rel="canonical" href="https://open-aec.com/open-pointcloud-studio/">
   <!-- hreflang:start -->
   <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-pointcloud-studio/">
@@ -21,7 +21,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenAEC Foundation">
   <meta property="og:title" content="Open Pointcloud Studio">
-  <meta property="og:description" content="Desktopapplicatie voor het bekijken, meten, bewerken en omzetten van laserscans en puntenwolken: LAS, LAZ, E57 en meer. Voor Windows, macOS en Linux.">
+  <meta property="og:description" content="Desktopapplicatie voor laserscans en puntenwolken (LAS, LAZ, E57): bekijken, meten, omzetten, snedetekeningen in DXF en DWG, meshes. Windows, macOS, Linux.">
   <meta property="og:url" content="https://open-aec.com/open-pointcloud-studio/">
   <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
   <meta property="og:locale" content="nl_NL">
@@ -30,7 +30,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Open Pointcloud Studio">
-  <meta name="twitter:description" content="Desktopapplicatie voor het bekijken, meten, bewerken en omzetten van laserscans en puntenwolken: LAS, LAZ, E57 en meer. Voor Windows, macOS en Linux.">
+  <meta name="twitter:description" content="Desktopapplicatie voor laserscans en puntenwolken (LAS, LAZ, E57): bekijken, meten, omzetten, snedetekeningen in DXF en DWG, meshes. Windows, macOS, Linux.">
   <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
 
   <!-- AI / LLM discoverability -->
@@ -50,10 +50,10 @@
     "applicationSubCategory": "Point Cloud",
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://open-aec.com/open-pointcloud-studio/",
-    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe",
-    "softwareVersion": "0.7.0",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe",
+    "softwareVersion": "0.8.0",
     "license": "https://www.gnu.org/licenses/gpl-3.0.html",
-    "description": "Desktop application for viewing, measuring, editing and converting laser scans and other point clouds. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.",
+    "description": "Desktop application for viewing, measuring, editing and converting laser scans and other point clouds, and for turning them into section drawings, meshes and the flat faces of a building. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.",
     "featureList": [
       "Opens LAS, LAZ, E57, PLY, PCD, PTX, PTS and text point clouds",
       "Opens a whole scan project from its folder or its scan project file (.rcp)",
@@ -65,6 +65,9 @@
       "Box selection, delete with undo, thin, move and scale",
       "Export as LAS, LAZ, E57, PLY, XYZ, PTS or CSV and merging of LAS and LAZ scans",
       "Terrain mesh and 3D surface, saved as OBJ, PLY or STL",
+      "Section drawing: what the section box cuts as a 2D drawing in DXF or DWG, with a filled cut and a preview",
+      "Closed mesh of a room or region, with the measured distance between the points and the mesh",
+      "Detected faces: planes with their outlines, and cylinders, exported as JSON or OBJ",
       "3D BAG building models of the Netherlands",
       "Local command API and MCP server",
       "Interface in Dutch and English"
@@ -77,7 +80,7 @@
       "availability": "https://schema.org/InStock"
     },
     "isAccessibleForFree": true,
-    "keywords": "point cloud, laser scan, LAS, LAZ, E57, PLY, PCD, PTX, section box, measuring, BCF, mesh, MCP server",
+    "keywords": "point cloud, laser scan, LAS, LAZ, E57, PLY, PCD, PTX, section box, section drawing, DXF, DWG, measuring, BCF, mesh, closed mesh, plane detection, MCP server",
     "sameAs": [
       "https://github.com/OpenAEC-Foundation/open-pointcloud-studio"
     ],
@@ -128,6 +131,9 @@
     .slider-track { display: flex; transition: transform 0.4s ease; }
     .slider-slide { min-width: 100%; }
     .slider-slide img { width: 100%; height: auto; display: block; }
+    /* The pictures of the generated test rooms have other proportions than the scans before them.
+       Each is shown whole in a frame as tall as the tallest of those, so the slider keeps its height. */
+    .slider-slide.slide-framed img { aspect-ratio: 1920 / 1146; object-fit: contain; }
     .slider-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: rgba(0,0,0,0.5); color: white; border: none;
@@ -149,6 +155,13 @@
     .download-item .btn { justify-content: center; margin-bottom: var(--sp-2); }
     .download-item .download-alt { font-size: 0.75rem; color: var(--scaffold-gray); margin-top: auto; padding-top: var(--sp-2); }
     .download-item .download-alt a { color: var(--warm-gold); }
+    /* The experimental packages: plain links under the grid, not buttons */
+    .download-section .download-arm { color: var(--scaffold-gray); font-size: 0.8rem; line-height: 1.6; margin: var(--sp-4) 0 0; }
+    .download-section .download-arm a { color: var(--warm-gold); }
+    .exp-tag {
+      display: inline-block; font-family: var(--font-code); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 2px 8px; border-radius: var(--radius-full); background: #FEF3C7; color: #92400E; margin-right: 2px; vertical-align: middle;
+    }
     .download-notes { list-style: none; padding: 0; margin: var(--sp-6) 0 0; }
     .download-notes li { color: var(--scaffold-gray); font-size: 0.85rem; line-height: 1.6; padding: var(--sp-1) 0; }
     .download-notes strong { color: var(--blueprint-white); }
@@ -241,7 +254,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "nl",
-        "dateModified": "2026-10-03",
+        "dateModified": "2026-10-04",
         "breadcrumb": {
           "@id": "https://open-aec.com/open-pointcloud-studio/#breadcrumb"
         }
@@ -306,15 +319,15 @@
   <header class="page-header">
     <span class="section-label" data-i18n="header.label">Puntenwolken bekijken, meten en bewerken</span>
     <h1 data-i18n="header.title">Open <span class="accent">Pointcloud</span> Studio</h1>
-    <p class="lead" data-i18n="header.desc">Een desktopapplicatie voor het bekijken, meten, bewerken en omzetten van laserscans en andere puntenwolken. Draait op Windows, macOS en Linux, is geschreven in Rust en heeft geen browser of webview nodig.</p>
+    <p class="lead" data-i18n="header.desc">Een desktopapplicatie voor het bekijken, meten, bewerken en omzetten van laserscans en andere puntenwolken. Uit een scan haal je een snedetekening in DXF of DWG, een gesloten mesh en de vlakken en cilinders van een ruimte. Draait op Windows, macOS en Linux, is geschreven in Rust en heeft geen browser of webview nodig.</p>
     <div class="header-meta">
       <span class="status-badge" data-i18n="header.badge">Beta</span>
-      <span class="version-info">v0.7.0 &middot; Windows &middot; macOS &middot; Linux</span>
+      <span class="version-info">v0.8.0 &middot; Windows &middot; macOS &middot; Linux</span>
     </div>
     <div class="hero-downloads">
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary" data-i18n="header.dlWindows">Windows-installer</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-macos.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos-tar" class="btn btn-primary" data-i18n="header.dlMac">macOS (.tar.gz)</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-linux.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-tar" class="btn btn-primary" data-i18n="header.dlLinux">Linux (.tar.gz)</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary" data-i18n="header.dlWindows">Windows-installer</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos" class="btn btn-primary" data-i18n="header.dlMac">macOS (.dmg)</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-appimage" class="btn btn-primary" data-i18n="header.dlLinux">Linux (AppImage)</a>
     </div>
     <a href="#download" class="hero-more" data-i18n="header.allFiles">Alle bestanden, controlesommen en uitleg bij het installeren &darr;</a>
   </header>
@@ -327,6 +340,9 @@
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio.jpeg" width="1920" height="1048" alt="Open Pointcloud Studio in isometrisch overzicht: een scan van 455 miljoen punten van een pand met tuin en bloeiende bomen, links het projectpaneel en rechts het paneel Eigenschappen" data-i18n="slides.one" data-i18n-attr="alt"></div>
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-2.jpg" width="1920" height="1046" loading="lazy" alt="Dezelfde scan met de snedebox tot 11% van de hoogte, zodat de kamers van bovenaf zichtbaar worden, en een afstandsmeting van 26,774 meter tussen twee punten" data-i18n="slides.two" data-i18n-attr="alt"></div>
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-3.jpg" width="1920" height="1146" loading="lazy" alt="De snedebox beperkt tot een schijf tussen 4% en 31% van de hoogte, waardoor de gevel met de ramen vrijkomt; rechts de opgeslagen view en de schuiven van de snedebox" data-i18n="slides.three" data-i18n-attr="alt"></div>
+          <div class="slider-slide slide-framed"><img src="/shared/assets/screenshots/open-pointcloud-studio-4.jpg" width="1302" height="806" loading="lazy" alt="Snedetekening van twee gegenereerde testkamers: de plattegrond van bovenaf, met het voorbeeld van de gevulde snede (de tussenwand met een open deuropening en een ronde kolom als gevulde vlakken) en rechts het blok Snedetekening in Eigenschappen" data-i18n="slides.four" data-i18n-attr="alt"></div>
+          <div class="slider-slide slide-framed"><img src="/shared/assets/screenshots/open-pointcloud-studio-5.jpg" width="1302" height="806" loading="lazy" alt="Gesloten mesh van dezelfde gegenereerde testkamers: het oppervlak van de twee kamers met een open deuropening in een buitenwand, en rechts het blok Gesloten mesh met het resultaat: 15.868 hoekpunten, 30.563 driehoeken en een gemiddelde afwijking van 1,6 mm" data-i18n="slides.five" data-i18n-attr="alt"></div>
+          <div class="slider-slide slide-framed"><img src="/shared/assets/screenshots/open-pointcloud-studio-6.jpg" width="1302" height="806" loading="lazy" alt="Herkende vlakken van dezelfde gegenereerde testkamers, elk type in een eigen kleur (plafonds blauw, wanden zandkleurig), en rechts het blok Vlakken herkennen met de aantallen: 2 vloeren, 2 plafonds, 10 wanden en 1 kolom" data-i18n="slides.six" data-i18n-attr="alt"></div>
         </div>
         <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Vorige afbeelding" data-i18n="slides.prev" data-i18n-attr="aria-label">&lsaquo;</button>
         <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Volgende afbeelding" data-i18n="slides.next" data-i18n-attr="aria-label">&rsaquo;</button>
@@ -336,31 +352,35 @@
 
     <div class="content">
       <div class="download-section" id="download">
-        <h3 data-i18n="download.title">Download v0.7.0</h3>
+        <h3 data-i18n="download.title">Download v0.8.0</h3>
         <p class="download-intro" data-i18n="download.intro">Elke knop start de download meteen. Je hebt er geen account voor nodig en er komt geen tussenpagina aan te pas.</p>
         <div class="download-grid">
           <div class="download-item">
             <div class="os">Windows</div>
-            <div class="size" data-i18n="download.win.req">Windows 10 en 11, 64-bit &middot; 8,7 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary btn-sm" data-i18n="download.win.primary">Installer (.exe)</a>
-            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows.zip" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows-zip" data-i18n="download.win.zip">Zip zonder installer (9,9 MB)</a></div>
+            <div class="size" data-i18n="download.win.req">Windows 10 en 11, 64-bit</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary btn-sm" data-i18n="download.win.primary">Installer (.exe)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_windows-x64.zip" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows-zip" data-i18n="download.win.zip">Zip zonder installer</a></div>
           </div>
           <div class="download-item">
             <div class="os">macOS</div>
-            <div class="size" data-i18n="download.mac.req">Apple- en Intel-processors &middot; 9,7 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-macos.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos-tar" class="btn btn-primary btn-sm" data-i18n="download.mac.primary">Archief (.tar.gz)</a>
+            <div class="size" data-i18n="download.mac.req">macOS 11 en nieuwer, Apple- en Intel-processors</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos" class="btn btn-primary btn-sm" data-i18n="download.mac.primary">Schijfkopie (.dmg)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos-tar" data-i18n="download.mac.tar">Alleen het programma (.tar.gz)</a></div>
           </div>
           <div class="download-item">
             <div class="os">Linux</div>
-            <div class="size" data-i18n="download.linux.req">x86-64 &middot; 13,6 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-linux.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-tar" class="btn btn-primary btn-sm" data-i18n="download.linux.primary">Archief (.tar.gz)</a>
+            <div class="size" data-i18n="download.linux.req">x86-64; Ubuntu 22.04, Debian 12, Fedora 36 of nieuwer</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-appimage" class="btn btn-primary btn-sm" data-i18n="download.linux.primary">AppImage (elke distributie)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.deb" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-deb" data-i18n="download.linux.deb">.deb (Debian, Ubuntu)</a><br><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-amd64.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-tar" data-i18n="download.linux.tar">Alleen het programma (.tar.gz)</a></div>
           </div>
         </div>
+        <p class="download-arm"><span class="exp-tag" data-i18n="download.arm.tag">experimenteel</span> <span data-i18n="download.arm.label">Linux op 64-bit ARM:</span> <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-appimage">AppImage</a> &middot; <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.deb" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-deb">.deb</a> &middot; <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-arm64.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-tar">.tar.gz</a></p>
         <ul class="download-notes">
-          <li data-i18n="download.note.win"><strong>Windows:</strong> de installer is niet ondertekend, dus Windows kan waarschuwen voor een onbekende uitgever: kies dan <em>Meer informatie</em> en <em>Toch uitvoeren</em>. Wil je niets installeren, pak dan de zip uit en start het programma daaruit.</li>
-          <li data-i18n="download.note.mac"><strong>macOS:</strong> pak het archief uit en zet de applicatie in Programma's. De applicatie is niet genotariseerd, dus macOS weigert de eerste start: open hem die ene keer met de rechtermuisknop en kies <em>Open</em>.</li>
-          <li data-i18n="download.note.linux"><strong>Linux:</strong> pak het archief uit en start het programma eruit. Installeren is niet nodig.</li>
-          <li data-i18n="download.note.sha">Naast elk bestand staat een gelijknamig <code>.sha256</code>-bestand met de controlesom, zodat je de download kunt controleren.</li>
+          <li data-i18n="download.note.win"><strong>Windows:</strong> de installer installeert voor de huidige gebruiker, zonder beheerdersrechten, of voor alle gebruikers. Heeft de release geen code-ondertekening, dan kan Windows waarschuwen voor een onbekende uitgever: kies dan <em>Meer informatie</em> en <em>Toch uitvoeren</em>. Wil je niets installeren, pak dan de zip uit en start het programma daaruit.</li>
+          <li data-i18n="download.note.mac"><strong>macOS:</strong> open de schijfkopie en sleep de applicatie naar de map Apps. De applicatie is niet genotariseerd, dus macOS weigert de eerste start. Sta die één keer toe: op macOS 15 en nieuwer start je de applicatie, sluit je de melding en kies je <em>Open toch</em> onder <em>Privacy en beveiliging</em> in Systeeminstellingen; op macOS 11 tot en met 14 Control-klik je op de applicatie en kies je <em>Open</em>.</li>
+          <li data-i18n="download.note.linux"><strong>Linux:</strong> maak de AppImage één keer uitvoerbaar met <code>chmod +x</code> en start hem daarna. De AppImage koppelt zichzelf aan via FUSE (<code>fusermount3</code> of <code>fusermount</code>); zonder FUSE start je hem met <code>--appimage-extract-and-run</code> achter de bestandsnaam. Het .deb-pakket installeer je met <code>sudo apt install ./open-pointcloud-studio_*_amd64.deb</code>, uitgevoerd in de map met de download. Linux heeft een C-bibliotheek van versie 2.35 of nieuwer nodig (Ubuntu 22.04, Debian 12, Fedora 36 of nieuwer), X11 of Wayland, en een Vulkan-driver of OpenGL ES 3. De vensters waarin je een bestand kiest, gebruiken het desktopportaal, of <code>zenity</code> waar dat er niet is.</li>
+          <li data-i18n="download.note.arm"><strong>Linux op 64-bit ARM:</strong> experimenteel. Deze pakketten zijn alleen gebouwd en getest op buildmachines met softwarerendering, nog niet op echte ARM-borden of -laptops.</li>
+          <li data-i18n="download.note.sha">Naast elk bestand staat in de release een gelijknamig <code>.sha256</code>-bestand met de controlesom: zet <code>.sha256</code> achter het adres van een download om het op te halen. De README beschrijft <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#checking-a-download" target="_blank" rel="noopener">hoe je een download ermee controleert</a> (Engels).</li>
         </ul>
       </div>
     </div>
@@ -384,7 +404,7 @@
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.lod.title">Detail waar je kijkt</h3>
-          <p data-i18n="features.lod.desc">Voor wolken vanaf een miljoen punten bouwt de applicatie automatisch een index op schijf, een octree. Die levert het detail voor het huidige camerastandpunt, tot het puntbudget dat je instelt: hoogstens tien miljoen punten. De index blijft bewaard en wordt opnieuw gebruikt als je het bestand later weer opent.</p>
+          <p data-i18n="features.lod.desc">Voor wolken vanaf een miljoen punten bouwt de applicatie automatisch een index op schijf, een octree. Die levert het detail voor het huidige camerastandpunt, tot het puntbudget dat je instelt: hoogstens tien miljoen punten. Terwijl de camera beweegt, blijven de punten op het scherm staan; het detail van het nieuwe beeld neemt hun plaats in zodra het is gelezen. De index blijft bewaard en wordt opnieuw gebruikt als je het bestand later weer opent.</p>
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.display.title">Weergave</h3>
@@ -392,7 +412,7 @@
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.section.title">Snedebox</h3>
-          <p data-i18n="features.section.desc">Een box met zes versleepbare vlakken begrenst wat wordt getoond, geselecteerd en tot mesh verwerkt. Zo snijd je een plattegrond of een doorsnede uit een scan; de inhoud van de box exporteer je apart. De box volgt de X-, Y- en Z-as van de scan en kan niet worden gedraaid.</p>
+          <p data-i18n="features.section.desc">Een box met zes versleepbare vlakken begrenst wat wordt getoond, geselecteerd, tot mesh verwerkt en op vlakken doorzocht. Zo snijd je een plattegrond of een doorsnede uit een scan; de inhoud van de box exporteer je apart of teken je als 2D-tekening. De box volgt de X-, Y- en Z-as van de scan en kan niet worden gedraaid.</p>
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.measure.title">Meten</h3>
@@ -416,11 +436,23 @@
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.mesh.title">Meshes</h3>
-          <p data-i18n="features.mesh.desc"><em>Terreinmesh</em> maakt een 2,5D-oppervlak van de laagste punten in een raster. <em>3D-oppervlak</em> volgt ook wanden en overstekken; het resultaat heeft gaten en is niet waterdicht. Elke mesh, ook een geopend meshbestand, sla je op als OBJ, binaire PLY of binaire STL. Eigenschappen toont de hoekpunten, de driehoeken, de open randen en het aantal samenhangende delen.</p>
+          <p data-i18n="features.mesh.desc"><em>Terreinmesh</em> maakt een 2,5D-oppervlak van de laagste punten in een raster. <em>3D-oppervlak</em> volgt ook wanden en overstekken; het resultaat heeft gaten en is niet waterdicht. <em>Mesh exporteren…</em> slaat elke mesh, of hij nu hier is gemaakt, uit een bestand is geopend of uit de 3D BAG is gedownload, op als OBJ, binaire PLY of binaire STL. Eigenschappen toont de hoekpunten, de driehoeken, de open randen en het aantal samenhangende delen.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.drawing.title">Snedetekening</h3>
+          <p data-i18n="features.drawing.desc"><em>Snedetekening</em> maakt een 2D-tekening op schaal 1:1 van wat de snedebox snijdt en slaat die op als DXF of DWG: een plattegrond van de plak onder het bovenvlak van de box, of een verticale doorsnede van de plak achter een van de vier zijden. De tekening bevat de punten van die plak uit alle zichtbare scans, uitgedund tot één punt per 5 mm. <em>Gevulde snede</em> tekent de wanden, kolommen en vloeren waar de plak doorheen snijdt als gevulde vlakken met een omtrek en laat deur- en raamopeningen open. <em>Voorbeeld</em> toont die vlakken over de punten voordat je een bestand opslaat.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.closedMesh.title">Gesloten mesh</h3>
+          <p data-i18n="features.closedMesh.desc"><em>Gesloten mesh</em> maakt van alle punten binnen de snedebox, of van de hele scan, een oppervlak zonder overlap: gesloten waar de scan punten heeft of een gat smaller dan de ingestelde grens (0,25 m bij de start), met deur- en raamopeningen open. Zet de box om een ruimte en kies <em>Starten</em>; het blok in Eigenschappen zegt vooraf hoe groot het gebied is en ongeveer hoeveel driehoeken het geeft, en waarschuwt als dat meer is dan een mesh mag bevatten. Na afloop geeft het de gemiddelde, de 95%- en de grootste afstand tussen de punten en de mesh, de open randen en de samenhangende delen. Een mesh heeft hoogstens vier miljoen hoekpunten en acht miljoen driehoeken en is op te slaan als OBJ, PLY of STL.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.faces.title">Vlakken herkennen</h3>
+          <p data-i18n="features.faces.desc"><em>Vlakken herkennen</em> vindt in de snedebox, of in de hele scan, de platte vlakken (vloeren, plafonds, wanden en schuine vlakken) en de ronde kolommen en leidingen. Een plat vlak is één vlak met zijn omtrek, waarin een raam een gat is en een deur een inkeping; een kolom of leiding is één cilinder met zijn as, straal en gescande lengte, zonder omtrek. Het is geen mesh van het oppervlak. De lijst geeft per vlak het type, de oppervlakte en de restfout van de punten (RMS); een klik markeert het vlak in de scène. <em>Vlakken exporteren…</em> schrijft ze als JSON met de parameters van elk vlak en elke cilinder, of als OBJ met een groep per vlak.</p>
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.bag.title">3D BAG-gebouwen</h3>
-          <p data-i18n="features.bag.desc">Download gebouwmodellen van Nederland uit het openbare 3D BAG-register voor een gebied in RD-coördinaten en toon ze bij een scan. Eén download beslaat hoogstens 2 bij 2 km en ongeveer 5.000 gebouwen en heeft een internetverbinding nodig. Het is een ingebouwde extensie die je kunt uitschakelen.</p>
+          <p data-i18n="features.bag.desc"><em>3D BAG-gebouwen…</em> onder <em>Bestand</em> downloadt gebouwmodellen van Nederland uit het openbare 3D BAG-register voor een gebied in RD-coördinaten en toont ze bij een scan. Eén download beslaat hoogstens 2 bij 2 km en ongeveer 5.000 gebouwen en heeft een internetverbinding nodig. Het is een ingebouwde extensie die je op de pagina <em>Extensies</em> kunt uitschakelen.</p>
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.language.title">Nederlands en Engels</h3>
@@ -453,11 +485,13 @@
               <tr><td>PTX</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.ptx">Met de scannerpositie van elke scan</td></tr>
               <tr><td>PTS</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td></td></tr>
               <tr><td>XYZ, ASC, TXT, CSV</td><td data-i18n="formats.yes">ja</td><td>XYZ, CSV</td><td data-i18n="formats.text">Tekst met één punt per regel</td></tr>
-              <tr><td>OBJ</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.obj">Mesh met kleuren en normalen; materiaalkleuren worden gelezen, textuurafbeeldingen niet</td></tr>
+              <tr><td>OBJ</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.obj">Mesh met kleuren en normalen; materiaalkleuren worden gelezen, textuurafbeeldingen niet. Herkende vlakken worden ook als OBJ geschreven, met een groep per vlak</td></tr>
               <tr><td data-i18n="formats.plyMeshName">PLY als mesh</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.plyMesh">Getoond als vlakken. Geschreven als binaire PLY met coördinaten in dubbele precisie, en met kleuren en normalen als de mesh die heeft</td></tr>
-              <tr><td>STL</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.stl">Getoond als vlakken. Geschreven als binaire STL: alleen driehoeken, zonder kleuren</td></tr>
+              <tr><td>STL</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.stl">Getoond als vlakken. Geschreven als binaire STL: alleen driehoeken, zonder kleuren. Een mesh die meer dan 2.048 m van nul ligt, wordt geschreven ten opzichte van een oorsprong in hele meters die de bestandsheader noemt</td></tr>
               <tr><td>OFF</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.off">Getoond als vlakken; op te slaan als OBJ, PLY of STL</td></tr>
-              <tr><td>DXF</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.dxf">Alleen ASCII-DXF. POINT-entiteiten openen als punten, 3DFACE-entiteiten als vlakken; andere entiteiten worden overgeslagen</td></tr>
+              <tr><td>DXF</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.asDrawing">ja, als tekening</td><td data-i18n="formats.dxf">Lezen: alleen ASCII-DXF. POINT-entiteiten openen als punten, 3DFACE-entiteiten als vlakken die als OBJ, PLY of STL op te slaan zijn; andere entiteiten worden overgeslagen. Schrijven: de 2D-tekening van een snedebox, met punten, gevulde vlakken, omtrekken en een regel tekst; geen formaat van de puntexports</td></tr>
+              <tr><td>DWG</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.asDrawing">ja, als tekening</td><td data-i18n="formats.dwg">De 2D-tekening van een snedebox, zoals bij DXF, in de versie R2004, R2010, R2013 of R2018. DWG-bestanden worden niet geopend</td></tr>
+              <tr><td data-i18n="formats.facesName">Vlakken als JSON (.json)</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.faces">De herkende vlakken van een scan: elk plat vlak met zijn parameters, zijn omtrek en de restfouten van zijn punten, elke cilinder met zijn as, zijn straal en zijn restfouten, en de randen tussen platte vlakken. De <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#the-json-file" target="_blank" rel="noopener">gebruikershandleiding</a> beschrijft elk veld (Engels)</td></tr>
               <tr><td data-i18n="formats.rcpName">Scanprojectbestand (.rcp)</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.rcp">Alleen de lijst met scans wordt gelezen. De geïndexeerde scankopieën (.rcs) van een project zijn een gesloten formaat en worden niet gelezen</td></tr>
               <tr><td>BCF 2.1 (.bcf)</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.bcf">Opgeslagen views met notities en afbeeldingen</td></tr>
               <tr><td>PNG</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.png">Afbeelding van het 3D-beeld, via de commando-API</td></tr>
@@ -468,9 +502,9 @@
 
       <div class="content-block explainer">
         <h2 data-i18n="automation.title">Commando-API en MCP-server</h2>
-        <p data-i18n="automation.api">Elk venster start een commandoserver op <code>127.0.0.1</code>. De commando's openen en sluiten scans, stellen de camera, de snedebox en de weergave in, selecteren, verwijderen, meten, bewaren views, exporteren, maken meshes en maken afbeeldingen van het 3D-beeld. De server luistert alleen op het loopback-adres en weigert een commando zonder token.</p>
+        <p data-i18n="automation.api">Elk venster start een commandoserver op <code>127.0.0.1</code>. De commando's openen en sluiten scans, stellen de camera, de snedebox en de weergave in, selecteren, verwijderen, meten, bewaren views, exporteren, tekenen sneden, maken meshes, herkennen vlakken, downloaden 3D BAG-gebouwen en maken afbeeldingen van het 3D-beeld. De server luistert alleen op het loopback-adres en weigert een commando zonder token.</p>
         <p data-i18n="automation.mcp"><code>open-pointcloud-studio --mcp</code> start een server voor het Model Context Protocol. Die biedt een tool voor elk commando van de API, tools die op lange taken wachten, een tool die het 3D-beeld als afbeelding teruggeeft en tools om vensters op te sommen, te kiezen en te starten.</p>
-        <p data-i18n="automation.cli">Vanaf de opdrachtregel werkt de applicatie ook zonder venster: omzetten naar een ander formaat, de punten binnen een box exporteren, scans samenvoegen, een index bouwen en meshes maken.</p>
+        <p data-i18n="automation.cli">Vanaf de opdrachtregel werkt de applicatie ook zonder venster: omzetten naar een ander formaat, de punten binnen een box exporteren, scans samenvoegen, een index bouwen, een snede als DXF of DWG tekenen, meshes maken en vlakken herkennen.</p>
         <ul class="plain">
           <li data-i18n="automation.linkApi"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/API.md" target="_blank" rel="noopener">API.md</a>: alle commando's (Engels)</li>
           <li data-i18n="automation.linkMcp"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/MCP.md" target="_blank" rel="noopener">MCP.md</a>: alle tools en de configuratie voor een clientprogramma (Engels)</li>
@@ -485,7 +519,14 @@
           <li data-i18n="limits.units">Lengtes en oppervlakten staan in meters. De coördinaten van een scan worden als meters gelezen en niet omgerekend.</li>
           <li data-i18n="limits.measure">Een meting wordt niet met de scan opgeslagen.</li>
           <li data-i18n="limits.surface">Een 3D-oppervlak heeft gaten en is niet waterdicht.</li>
-          <li data-i18n="limits.meshSize">Een mesh in de scène heeft hoogstens een miljoen hoekpunten en twee miljoen driehoeken per bestand.</li>
+          <li data-i18n="limits.meshSize">Een mesh heeft hoogstens vier miljoen hoekpunten en acht miljoen driehoeken, of hij nu uit een bestand komt of in de applicatie is gemaakt.</li>
+          <li data-i18n="limits.session">Een gesloten mesh en herkende vlakken bestaan alleen in de lopende sessie: exporteer ze om ze te bewaren. Een scan bevat één mesh; een nieuwe mesh vervangt de vorige.</li>
+          <li data-i18n="limits.drawingPoints">De puntlimiet van een snedetekening is standaard 150.000 punten en hoogstens 400.000; blijven er na het uitdunnen tot 5 mm meer punten over, dan verdubbelt de puntafstand tot ze passen.</li>
+          <li data-i18n="limits.fill">De gevulde snede van een snedetekening is uit de punten afgeleid: een wand die van één kant is gescand wordt een smalle strook, openingen smaller dan ongeveer een halve meter worden gedicht, en meubels in de plak worden meegetekend tenzij je hun punten eerst verwijdert.</li>
+          <li data-i18n="limits.closedMesh">Een gesloten mesh rondt hoeken af met ongeveer een kwart voxel, laat voorwerpen dunner dan twee of drie voxels versmelten of gaten krijgen en laat sommige gaten naast een ander oppervlak open. Zonder scannerstations kan een oppervlak dat vanuit het midden van het gebied precies van opzij wordt gezien, gescheurd uitkomen.</li>
+          <li data-i18n="limits.faces">Vlakken herkennen meldt geen stroken smaller dan 0,15 m, zoals deurneggen. Een gebied dat te groot is voor het werkbudget wordt met grotere voxels doorzocht, scans met ver uit elkaar liggende punten geven minder vlakken of geen, ronde kolommen breder dan ongeveer 0,7 m komen uit als stroken wand, en zonder scannerstations is de kant waar een vlak naar kijkt een schatting.</li>
+          <li data-i18n="limits.drawingCheck">De DXF- en DWG-bestanden zijn nog niet met een reeks tekenprogramma's getest. Weigert een programma een DWG-bestand, probeer dan DXF of een andere bestandsversie.</li>
+          <li data-i18n="limits.generated">De gevulde snede, Gesloten mesh en Vlakken herkennen zijn gemeten op gegenereerde kamers, nog niet op een scan van een echt gebouw. De gebruikershandleiding noemt de grenzen van <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#the-filled-cut-and-its-limits" target="_blank" rel="noopener">de gevulde snede</a>, <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-a-closed-mesh" target="_blank" rel="noopener">Gesloten mesh</a> en <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-detected-faces" target="_blank" rel="noopener">Vlakken herkennen</a> (Engels).</li>
           <li data-i18n="limits.index">Een index kan voor een grote opname meerdere gigabytes op schijf innemen.</li>
         </ul>
       </div>
@@ -550,7 +591,7 @@
       };
     })();
   </script>
-  <script src="/shared/downloads.js?v=20261001"></script>
-  <script src="/shared/i18n.js?v=20260728"></script>
+  <script src="/shared/downloads.js?v=20261004"></script>
+  <script src="/shared/i18n.js?v=20261004"></script>
 </body>
 </html>

@@ -10,6 +10,20 @@
   // omzetten: de taal hoort bij het adres, niet bij een voorkeur in localStorage.
   const STATIC_LANG = (document.querySelector('meta[name="i18n-static"]') || {}).content || null;
 
+  // The server lets a browser keep a translation file for a week without
+  // asking again. The requests therefore carry the ?v= of this script's own
+  // address: a page that loads i18n.js under a new value gets its texts fresh,
+  // and not the ones the browser kept from before the page changed.
+  const VERSION = (function () {
+    try {
+      const src = document.currentScript && document.currentScript.src;
+      return (src && new URL(src, document.baseURI).searchParams.get('v')) || '';
+    } catch (e) {
+      return '';
+    }
+  })();
+  const VERSION_QUERY = VERSION ? '?v=' + encodeURIComponent(VERSION) : '';
+
   // URL-taal > stored preference > browser language > English.
   function getCurrentLang() {
     if (STATIC_LANG) return STATIC_LANG;
@@ -76,8 +90,8 @@
       return;
     }
 
-    const urls = [`/shared/translations/${pageId}.json`];
-    if (lang !== 'en') urls.push(`/shared/translations/${pageId}.${lang}.json`);
+    const urls = [`/shared/translations/${pageId}.json${VERSION_QUERY}`];
+    if (lang !== 'en') urls.push(`/shared/translations/${pageId}.${lang}.json${VERSION_QUERY}`);
 
     function loadJson(url) {
       return fetch(url)
