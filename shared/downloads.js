@@ -12,20 +12,23 @@
   'use strict';
 
   const formats = {
-    windows: /_x64-setup\.exe$/i,
+    windows: /(_x64-setup|-windows-setup)\.exe$/i,
     'windows-msi': /\.msi$/i,
+    'windows-zip': /-windows\.zip$/i,
     macos: /\.dmg$/i,
+    'macos-tar': /-macos\.tar\.gz$/i,
     'linux-appimage': /\.appimage$/i,
     'linux-deb': /_amd64\.deb$/i,
     'linux-rpm': /\.rpm$/i,
+    'linux-tar': /-linux\.tar\.gz$/i,
     android: /\.apk$/i,
   };
 
   // Per detected OS: the formats to try, in order.
   const preference = {
-    windows: ['windows', 'windows-msi'],
-    macos: ['macos'],
-    linux: ['linux-appimage', 'linux-deb', 'linux-rpm'],
+    windows: ['windows', 'windows-msi', 'windows-zip'],
+    macos: ['macos', 'macos-tar'],
+    linux: ['linux-appimage', 'linux-deb', 'linux-rpm', 'linux-tar'],
     android: ['android'],
   };
 

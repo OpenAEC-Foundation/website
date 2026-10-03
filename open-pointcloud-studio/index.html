@@ -16,6 +16,7 @@
   <!-- hreflang:end -->
 
 
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenAEC Foundation">
@@ -49,7 +50,8 @@
     "applicationSubCategory": "Point Cloud",
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://open-aec.com/open-pointcloud-studio/",
-    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe",
+    "softwareVersion": "0.7.0",
     "license": "https://www.gnu.org/licenses/gpl-3.0.html",
     "description": "Desktop application for viewing, measuring, editing and converting laser scans and other point clouds. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.",
     "featureList": [
@@ -147,10 +149,6 @@
     .download-item .btn { justify-content: center; margin-bottom: var(--sp-2); }
     .download-item .download-alt { font-size: 0.75rem; color: var(--scaffold-gray); margin-top: auto; padding-top: var(--sp-2); }
     .download-item .download-alt a { color: var(--warm-gold); }
-    .exp-tag {
-      display: inline-block; font-family: var(--font-code); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em;
-      padding: 2px 8px; border-radius: var(--radius-full); background: #FEF3C7; color: #92400E; margin-left: 6px; vertical-align: middle;
-    }
     .download-notes { list-style: none; padding: 0; margin: var(--sp-6) 0 0; }
     .download-notes li { color: var(--scaffold-gray); font-size: 0.85rem; line-height: 1.6; padding: var(--sp-1) 0; }
     .download-notes strong { color: var(--blueprint-white); }
@@ -200,9 +198,6 @@
       background: var(--concrete); color: var(--deep-forge);
     }
 
-    @media (min-width: 769px) {
-      .download-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    }
     @media (max-width: 768px) {
       .page-header { padding: var(--sp-10) var(--sp-4) var(--sp-8); }
       .page-header .lead { font-size: 1rem; }
@@ -246,7 +241,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "nl",
-        "dateModified": "2026-09-25",
+        "dateModified": "2026-10-03",
         "breadcrumb": {
           "@id": "https://open-aec.com/open-pointcloud-studio/#breadcrumb"
         }
@@ -314,15 +309,14 @@
     <p class="lead" data-i18n="header.desc">Een desktopapplicatie voor het bekijken, meten, bewerken en omzetten van laserscans en andere puntenwolken. Draait op Windows, macOS en Linux, is geschreven in Rust en heeft geen browser of webview nodig.</p>
     <div class="header-meta">
       <span class="status-badge" data-i18n="header.badge">Beta</span>
-      <span class="version-info">v0.8.0 &middot; Windows &middot; macOS &middot; Linux</span>
+      <span class="version-info">v0.7.0 &middot; Windows &middot; macOS &middot; Linux</span>
     </div>
     <div class="hero-downloads">
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" class="btn btn-primary" data-i18n="header.dlWindows">Windows-installer</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" class="btn btn-primary" data-i18n="header.dlMac">macOS-schijfkopie</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" class="btn btn-primary" data-i18n="header.dlAppImage">Linux AppImage</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.deb" class="btn btn-primary" data-i18n="header.dlDeb">Linux .deb</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary" data-i18n="header.dlWindows">Windows-installer</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-macos.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos-tar" class="btn btn-primary" data-i18n="header.dlMac">macOS (.tar.gz)</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-linux.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-tar" class="btn btn-primary" data-i18n="header.dlLinux">Linux (.tar.gz)</a>
     </div>
-    <a href="#download" class="hero-more" data-i18n="header.allFiles">Alle bestanden, ARM-pakketten en uitleg bij het installeren &darr;</a>
+    <a href="#download" class="hero-more" data-i18n="header.allFiles">Alle bestanden, controlesommen en uitleg bij het installeren &darr;</a>
   </header>
 
   <section class="section" style="background: var(--blueprint-white);">
@@ -330,10 +324,9 @@
     <div class="media-slider">
       <div class="slider-container">
         <div class="slider-track" id="sliderTrack">
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio.jpeg" width="1920" height="1047" alt="Het venster van Open Pointcloud Studio met een scan van een kantoorgebouw van 455 miljoen punten in overzicht, met het lint boven, het projectpaneel links en Eigenschappen rechts" data-i18n="slides.one" data-i18n-attr="alt"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-2.jpg" width="1920" height="1046" loading="lazy" alt="Dezelfde scan opengesneden met de snedebox op vloerniveau, zodat de kamers van bovenaf te zien zijn, met een afstandsmeting van 26,774 m" data-i18n="slides.two" data-i18n-attr="alt"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-3.jpg" width="1920" height="1080" loading="lazy" alt="De loopweergave: op ooghoogte langs de gevel van het gebouw, met de ramen en een haag in de puntenwolk" data-i18n="slides.three" data-i18n-attr="alt"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-4.jpg" width="1920" height="1080" loading="lazy" alt="Vliegend naar het gebouw toe: de camera nadert vanuit de lucht, met bomen aan beide kanten" data-i18n="slides.four" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio.jpeg" width="1920" height="1048" alt="Open Pointcloud Studio in isometrisch overzicht: een scan van 455 miljoen punten van een pand met tuin en bloeiende bomen, links het projectpaneel en rechts het paneel Eigenschappen" data-i18n="slides.one" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-2.jpg" width="1920" height="1046" loading="lazy" alt="Dezelfde scan met de snedebox tot 11% van de hoogte, zodat de kamers van bovenaf zichtbaar worden, en een afstandsmeting van 26,774 meter tussen twee punten" data-i18n="slides.two" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-3.jpg" width="1920" height="1146" loading="lazy" alt="De snedebox beperkt tot een schijf tussen 4% en 31% van de hoogte, waardoor de gevel met de ramen vrijkomt; rechts de opgeslagen view en de schuiven van de snedebox" data-i18n="slides.three" data-i18n-attr="alt"></div>
         </div>
         <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Vorige afbeelding" data-i18n="slides.prev" data-i18n-attr="aria-label">&lsaquo;</button>
         <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Volgende afbeelding" data-i18n="slides.next" data-i18n-attr="aria-label">&rsaquo;</button>
@@ -343,42 +336,31 @@
 
     <div class="content">
       <div class="download-section" id="download">
-        <h3 data-i18n="download.title">Download v0.8.0</h3>
-        <p class="download-intro" data-i18n="download.intro">Elke knop haalt het bestand rechtstreeks van de release op GitHub.</p>
+        <h3 data-i18n="download.title">Download v0.7.0</h3>
+        <p class="download-intro" data-i18n="download.intro">Elke knop start de download meteen. Je hebt er geen account voor nodig en er komt geen tussenpagina aan te pas.</p>
         <div class="download-grid">
           <div class="download-item">
             <div class="os">Windows</div>
-            <div class="size" data-i18n="download.win.req">Windows 10 en 11, x64</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" class="btn btn-primary btn-sm" data-i18n="download.win.primary">Installer (.exe)</a>
-            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_windows-x64.zip" data-i18n="download.win.zip">Zip zonder installer</a></div>
+            <div class="size" data-i18n="download.win.req">Windows 10 en 11, 64-bit &middot; 8,7 MB</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary btn-sm" data-i18n="download.win.primary">Installer (.exe)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows.zip" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows-zip" data-i18n="download.win.zip">Zip zonder installer (9,9 MB)</a></div>
           </div>
           <div class="download-item">
             <div class="os">macOS</div>
-            <div class="size" data-i18n="download.mac.req">macOS 11 en nieuwer, Apple- en Intel-processors</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" class="btn btn-primary btn-sm" data-i18n="download.mac.primary">Schijfkopie (.dmg)</a>
-            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.tar.gz" data-i18n="download.mac.tar">Alleen het programma (.tar.gz)</a></div>
+            <div class="size" data-i18n="download.mac.req">Apple- en Intel-processors &middot; 9,7 MB</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-macos.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos-tar" class="btn btn-primary btn-sm" data-i18n="download.mac.primary">Archief (.tar.gz)</a>
           </div>
           <div class="download-item">
             <div class="os">Linux</div>
-            <div class="size" data-i18n="download.linux.req">x86-64; Ubuntu 22.04, Debian 12, Fedora 36 of nieuwer</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" class="btn btn-primary btn-sm" data-i18n="download.linux.appimage">AppImage (elke distributie)</a>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.deb" class="btn btn-primary btn-sm" data-i18n="download.linux.deb">.deb (Debian, Ubuntu)</a>
-            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-amd64.tar.gz" data-i18n="download.linux.tar">Alleen het programma (.tar.gz)</a></div>
-          </div>
-          <div class="download-item">
-            <div class="os">Linux ARM <span class="exp-tag" data-i18n="download.arm.tag">experimenteel</span></div>
-            <div class="size" data-i18n="download.arm.req">64-bit ARM (arm64)</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.AppImage" class="btn btn-ghost btn-sm">AppImage</a>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.deb" class="btn btn-ghost btn-sm">.deb</a>
-            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-arm64.tar.gz" data-i18n="download.arm.tar">Alleen het programma (.tar.gz)</a></div>
+            <div class="size" data-i18n="download.linux.req">x86-64 &middot; 13,6 MB</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-linux.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-tar" class="btn btn-primary btn-sm" data-i18n="download.linux.primary">Archief (.tar.gz)</a>
           </div>
         </div>
         <ul class="download-notes">
-          <li data-i18n="download.note.win"><strong>Windows:</strong> de installer installeert voor de huidige gebruiker, zonder beheerdersrechten, of voor alle gebruikers. Heeft de release geen code-ondertekening, dan kan Windows waarschuwen voor een onbekende uitgever: kies dan <em>Meer informatie</em> en <em>Toch uitvoeren</em>.</li>
-          <li data-i18n="download.note.mac"><strong>macOS:</strong> de applicatie is niet genotariseerd, dus macOS weigert de eerste start; <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#macos" target="_blank" rel="noopener">de README beschrijft hoe je die één keer toestaat</a> (Engels).</li>
-          <li data-i18n="download.note.linux"><strong>Linux:</strong> maak de AppImage één keer uitvoerbaar met <code>chmod +x</code> en start hem daarna. Het .deb-pakket installeer je met <code>sudo apt install ./open-pointcloud-studio_0.8.0_amd64.deb</code>.</li>
-          <li data-i18n="download.note.arm"><strong>64-bit ARM:</strong> experimenteel. Deze pakketten zijn gebouwd en getest op buildservers met softwarerendering, nog niet op echte ARM-hardware.</li>
-          <li data-i18n="download.note.sha">Bij elk bestand staat op de <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v0.8.0" target="_blank" rel="noopener">releasepagina</a> een <code>.sha256</code>-bestand met de controlesom.</li>
+          <li data-i18n="download.note.win"><strong>Windows:</strong> de installer is niet ondertekend, dus Windows kan waarschuwen voor een onbekende uitgever: kies dan <em>Meer informatie</em> en <em>Toch uitvoeren</em>. Wil je niets installeren, pak dan de zip uit en start het programma daaruit.</li>
+          <li data-i18n="download.note.mac"><strong>macOS:</strong> pak het archief uit en zet de applicatie in Programma's. De applicatie is niet genotariseerd, dus macOS weigert de eerste start: open hem die ene keer met de rechtermuisknop en kies <em>Open</em>.</li>
+          <li data-i18n="download.note.linux"><strong>Linux:</strong> pak het archief uit en start het programma eruit. Installeren is niet nodig.</li>
+          <li data-i18n="download.note.sha">Naast elk bestand staat een gelijknamig <code>.sha256</code>-bestand met de controlesom, zodat je de download kunt controleren.</li>
         </ul>
       </div>
     </div>
@@ -436,18 +418,6 @@
           <h3 data-i18n="features.mesh.title">Meshes</h3>
           <p data-i18n="features.mesh.desc"><em>Terreinmesh</em> maakt een 2,5D-oppervlak van de laagste punten in een raster. <em>3D-oppervlak</em> volgt ook wanden en overstekken; het resultaat heeft gaten en is niet waterdicht. Elke mesh, ook een geopend meshbestand, sla je op als OBJ, binaire PLY of binaire STL. Eigenschappen toont de hoekpunten, de driehoeken, de open randen en het aantal samenhangende delen.</p>
         </div>
-        <!-- ============================================================
-             RESERVED FOR 0.8.0 FEATURES STILL IN PROGRESS — FEATURE CARDS
-             Add here, as one .feature-card each, the tools that ship in 0.8.0
-             and are not on this page yet. Describe only what the README of the
-             application describes.
-             Per card: a heading and a paragraph with the keys features.NAME.title
-             and features.NAME.desc, the Dutch text in this file and the
-             same two keys in shared/translations/open-pointcloud-studio.json,
-             .fr.json, .tr.json and .es.json. Then run
-             node scripts/build-i18n-pages.js. The matching format rows go at
-             the second RESERVED marker, in the formats table below.
-             ============================================================ -->
         <div class="feature-card">
           <h3 data-i18n="features.bag.title">3D BAG-gebouwen</h3>
           <p data-i18n="features.bag.desc">Download gebouwmodellen van Nederland uit het openbare 3D BAG-register voor een gebied in RD-coördinaten en toon ze bij een scan. Eén download beslaat hoogstens 2 bij 2 km en ongeveer 5.000 gebouwen en heeft een internetverbinding nodig. Het is een ingebouwde extensie die je kunt uitschakelen.</p>
@@ -488,14 +458,6 @@
               <tr><td>STL</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.stl">Getoond als vlakken. Geschreven als binaire STL: alleen driehoeken, zonder kleuren</td></tr>
               <tr><td>OFF</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.off">Getoond als vlakken; op te slaan als OBJ, PLY of STL</td></tr>
               <tr><td>DXF</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.dxf">Alleen ASCII-DXF. POINT-entiteiten openen als punten, 3DFACE-entiteiten als vlakken; andere entiteiten worden overgeslagen</td></tr>
-              <!-- ============================================================
-                   RESERVED FOR 0.8.0 FEATURES STILL IN PROGRESS — FORMAT ROWS
-                   Add or change the rows of the formats those features read
-                   or write here (and adjust the DXF row above if DXF gets a
-                   writer). Cells use formats.yes / formats.no; a note gets a
-                   new key formats.NAME in this file and in the four
-                   translation files.
-                   ============================================================ -->
               <tr><td data-i18n="formats.rcpName">Scanprojectbestand (.rcp)</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.rcp">Alleen de lijst met scans wordt gelezen. De geïndexeerde scankopieën (.rcs) van een project zijn een gesloten formaat en worden niet gelezen</td></tr>
               <tr><td>BCF 2.1 (.bcf)</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.bcf">Opgeslagen views met notities en afbeeldingen</td></tr>
               <tr><td>PNG</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.png">Afbeelding van het 3D-beeld, via de commando-API</td></tr>
@@ -588,6 +550,7 @@
       };
     })();
   </script>
+  <script src="/shared/downloads.js?v=20261001"></script>
   <script src="/shared/i18n.js?v=20260728"></script>
 </body>
 </html>
