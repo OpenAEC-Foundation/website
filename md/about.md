@@ -2,6 +2,10 @@
 
 > Open-source software ecosystem for the entire Architecture, Engineering & Construction (AEC) industry — buildings (B&U), civil infrastructure (GWW), and civil engineering (bridges, tunnels, roads, railways, water works). Mission: make all AEC software open source by end of 2026.
 
+# OpenAEC Foundation
+
+> Open-source software ecosystem for the entire Architecture, Engineering & Construction (AEC) industry — including buildings (B&U), civil infrastructure (GWW), and civil engineering (bridges, tunnels, roads, railways, water works). Mission: make all AEC software open source by end of 2026.
+
 ## ⭐ Featured tool
 
 **Open Speech Studio v0.9.0** — Free, local, open-source speech-to-text built on Whisper AI. Press CTRL+Win or CTRL+Shift+Space to dictate in ANY Windows application (chat, email, terminal, IDE, OpenAEC tools). 100% local — your voice never leaves your computer. Cross-platform: Windows, macOS, Linux. Free alternative to Dragon NaturallySpeaking (~€500-700 one-time) and Otter.ai (~€20/month). Single .exe installer, ready in 30 seconds. GPU acceleration via CUDA. Supports 99 languages via Whisper AI. Real-time meeting transcription, audio file batch processing. Privacy-first, GDPR-safe automatically.
