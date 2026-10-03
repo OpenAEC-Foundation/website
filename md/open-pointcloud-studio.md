@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux
 **Category:** Reality Capture
-**Current version:** v0.4.2 (2026-10-02)
+**Current version:** v0.7.0 (2026-10-03)
 **Tool ID:** `open-pointcloud-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-pointcloud-studio`
 
 ## Live stats
 
 - Stars: **4**
-- Commits: **154**
+- Commits: **166**
 - Forks: **1**
-- Open issues: **7**
-- Releases: **5**
-- Total downloads: **286**
-- Downloads by platform: Windows (155), Linux (AppImage) (39), macOS (34), Windows (MSI) (32), Linux (deb) (25), Archive (1)
+- Open issues: **12**
+- Releases: **8**
+- Total downloads: **296**
+- Downloads by platform: Windows (163), Linux (AppImage) (40), macOS (34), Windows (MSI) (33), Linux (deb) (25), Archive (1)
 
 ## Key features
 
@@ -54,7 +54,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-pointcloud-studio/
 - Live demo: https://open-pointcloud-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-pointcloud-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v0.4.2
+- Latest stable release: https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v0.7.0
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
@@ -64,9 +64,9 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [macOS · Open.Pointcloud.Studio_0.3.0_aarch64.dmg](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.3.0/Open.Pointcloud.Studio_0.3.0_aarch64.dmg) (v0.3.0 — 3.4 MB)
 - [Windows (MSI) · Open.Pointcloud.Studio_0.3.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.3.0/Open.Pointcloud.Studio_0.3.0_x64_en-US.msi) (v0.3.0 — 3.7 MB)
 - [Linux (deb) · Open.Pointcloud.Studio_0.3.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.3.0/Open.Pointcloud.Studio_0.3.0_amd64.deb) (v0.3.0 — 3.7 MB)
-- [Windows · Open.Pointcloud.Studio_0.2.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.2.0/Open.Pointcloud.Studio_0.2.0_x64-setup.exe) (v0.2.0 — 2.8 MB)
 - [Windows · open-pointcloud-studio-v0.4.2-windows.zip](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.4.2/open-pointcloud-studio-v0.4.2-windows.zip) (v0.4.2 — 9.2 MB)
-- [Windows · open-pointcloud-studio-v0.4.0-windows.zip](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.4.0/open-pointcloud-studio-v0.4.0-windows.zip) (v0.4.0 — 8.9 MB)
+- [Windows · Open.Pointcloud.Studio_0.2.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.2.0/Open.Pointcloud.Studio_0.2.0_x64-setup.exe) (v0.2.0 — 2.8 MB)
+- [Windows · open-pointcloud-studio-v0.7.0-windows-setup.exe](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe) (v0.7.0 — 8.7 MB)
 
 ---
 
