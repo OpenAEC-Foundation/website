@@ -248,20 +248,41 @@ const TOOLS = [
     repo: 'open-pointcloud-studio',
     category: 'Reality Capture',
     status: 'beta',
-    license: 'LGPL-3.0',
+    license: 'GPL-3.0-only (application), LGPL-3.0-or-later (point-cloud library)',
     platforms: ['Windows', 'macOS', 'Linux'],
-    techStack: ['Rust', 'WebGPU', 'Tauri 2'],
-    description: 'Point cloud viewer for LAS / LAZ with RGB, elevation and classification rendering. EDL and octree LoD for large datasets.',
-    alternatives: ['CloudCompare', 'Potree Desktop', 'Autodesk ReCap'],
+    techStack: ['Rust', 'iced', 'wgpu'],
+    description: 'Desktop application for viewing, measuring, editing and converting laser scans and other point clouds. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.',
+    alternatives: [],
+    // The web demo belonged to the earlier application and is retired.
+    liveDemo: false,
+    // The application has no nightly builds and reads or writes no IFCX, so
+    // the two shared template lines about those stay out of its mirror.
+    nightly: false,
+    ifcx: false,
+    // The installers of the earlier application (v0.2.0 and v0.3.0) are a
+    // different program; they and the checksum files stay out of the list of
+    // direct downloads.
+    assetFilter: (asset) => !/^Open\.Pointcloud\.Studio_|\.sha256$/.test(asset.name),
     features: [
-      'LAS and LAZ format support',
-      'RGB, elevation and classification colouring',
-      'Eye-Dome Lighting (EDL)',
-      'Octree level-of-detail for very large clouds',
-      'Cross-section and measurement tools',
+      'Opens point clouds in LAS, LAZ, E57, PLY, PCD, PTX, PTS and text formats, and meshes in OBJ, PLY, OFF and STL',
+      'Opens a whole scan project at once: a folder of scans, or the scans that a scan project file (.rcp) lists',
+      'Large files stay usable while they open: LAS and LAZ open from their header, an E57 file of 512 MiB or more first shows a sample spread through the file when its layout allows that',
+      'An octree index on disk supplies the detail for the current camera, up to a point budget of at most ten million points; built automatically from one million points',
+      'Four colour modes (stored colour, elevation, intensity, classification), eye-dome lighting, classes shown or hidden one by one',
+      'Section box with six draggable faces that limits what is shown, selected and meshed; its content can be exported on its own; aligned to the axes of the scan',
+      'Measuring: distance along a polyline (segments, total, horizontal length, height difference) and area of a polygon in its own plane',
+      'Saved views with notes and arrows, exported as one BCF 2.1 file with camera, clipping planes and a picture each',
+      'Scanner stations of E57, PCD and PTX scans, station photos to stand in and look around, walking with W A S D',
+      'Box selection and point picking, delete with undo and redo, thin, move and scale; the source file is never changed',
+      'Export of the whole cloud, the selection, the section box or every Nth point as LAS, LAZ, E57, PLY, XYZ, PTS or CSV; merging of visible LAS and LAZ scans',
+      'Terrain mesh and 3D surface (not watertight), saved as OBJ, binary PLY or binary STL, with open edges and connected parts reported',
+      '3D BAG building models of the Netherlands for an area in RD New coordinates',
+      'Local command API on the loopback address and an MCP server (open-pointcloud-studio --mcp)',
+      'Command-line modes without a window: converting a scan, exporting the points inside a box, merging scans, building an index and making meshes',
+      'Interface in Dutch and English',
     ],
-    whenToUse: 'Inspecting laser-scanned site captures, comparing scans against BIM, lightweight viewing without CloudCompare or ReCap.',
-    standards: ['LAS', 'LAZ'],
+    whenToUse: 'Opening and inspecting laser scans and whole scan projects, cutting floor plans and sections with the section box, measuring distances and areas, handing over viewpoints with notes as BCF, converting between point-cloud formats, and making meshes from scans.',
+    standards: ['LAS', 'LAZ', 'E57', 'PLY', 'PCD', 'PTX', 'BCF 2.1', 'MCP'],
   },
   {
     id: 'open-heatloss-studio',
@@ -546,8 +567,10 @@ function buildToolMarkdown(tool, stats, downloads, releaseInfo) {
     : null;
   const latestReleaseUrl = releaseInfo?.latestStable?.url
     || (tool.repo ? `https://github.com/OpenAEC-Foundation/${tool.repo}/releases` : null);
-  const nightlyUrl = releaseInfo?.nightly?.url
-    || (tool.repo ? `https://github.com/OpenAEC-Foundation/${tool.repo}/releases/tag/nightly` : null);
+  const nightlyUrl = tool.nightly === false
+    ? null
+    : (releaseInfo?.nightly?.url
+      || (tool.repo ? `https://github.com/OpenAEC-Foundation/${tool.repo}/releases/tag/nightly` : null));
 
   const lines = [];
 
@@ -620,25 +643,30 @@ function buildToolMarkdown(tool, stats, downloads, releaseInfo) {
     lines.push('');
     for (const s of tool.standards) lines.push(`- ${s}`);
     lines.push('');
-    lines.push('All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).');
-    lines.push('');
+    if (tool.ifcx !== false) {
+      lines.push('All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).');
+      lines.push('');
+    }
   }
 
   // Downloads / links
   lines.push(`## Download & links`);
   lines.push('');
   lines.push(`- Product page: ${productPage}`);
-  lines.push(`- Live demo: ${liveDemo}`);
+  if (tool.liveDemo !== false) lines.push(`- Live demo: ${liveDemo}`);
   if (githubRepo) lines.push(`- GitHub repo: ${githubRepo}`);
   if (latestReleaseUrl) lines.push(`- Latest stable release: ${latestReleaseUrl}`);
   if (nightlyUrl) lines.push(`- Nightly builds: ${nightlyUrl}`);
   lines.push('');
 
   // Top assets (download links)
-  if (dl && Array.isArray(dl.topAssets) && dl.topAssets.length) {
+  const topAssets = dl && Array.isArray(dl.topAssets)
+    ? dl.topAssets.filter(tool.assetFilter || (() => true))
+    : [];
+  if (topAssets.length) {
     lines.push(`## Direct downloads (most popular)`);
     lines.push('');
-    for (const a of dl.topAssets.slice(0, 8)) {
+    for (const a of topAssets.slice(0, 8)) {
       const size = a.sizeMB ? ` — ${a.sizeMB} MB` : '';
       lines.push(`- [${a.platform} · ${a.name}](${a.url}) (${a.tag}${size})`);
     }
@@ -648,7 +676,8 @@ function buildToolMarkdown(tool, stats, downloads, releaseInfo) {
   // Foundation footer
   lines.push(`---`);
   lines.push('');
-  lines.push(`Part of the [OpenAEC Foundation](${SITE_BASE}/) ecosystem — open-source software for buildings, civil infrastructure (GWW) and civil engineering. All tools communicate through **IFCX**.`);
+  const ifcxNote = tool.ifcx !== false ? ' All tools communicate through **IFCX**.' : '';
+  lines.push(`Part of the [OpenAEC Foundation](${SITE_BASE}/) ecosystem — open-source software for buildings, civil infrastructure (GWW) and civil engineering.${ifcxNote}`);
   lines.push('');
 
   return lines.join('\n');

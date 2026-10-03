@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Pointcloud Studio — OpenAEC Foundation</title>
-  <meta name="description" content="Tauri, React ve Three.js ile geliştirilmiş çapraz platform nokta bulutu görüntüleyici. Octree tabanlı LOD render ile LAS/LAZ dosyalarını içe aktarın.">
+  <meta name="description" content="Lazer taramalarını ve nokta bulutlarını görüntülemek, ölçmek, düzenlemek ve dönüştürmek için masaüstü uygulaması: LAS, LAZ, E57 ve daha fazlası. Windows…">
   <link rel="canonical" href="https://open-aec.com/tr/open-pointcloud-studio/">
   <!-- hreflang:start -->
   <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-pointcloud-studio/">
@@ -19,8 +19,8 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenAEC Foundation">
-  <meta property="og:title" content="Open Pointcloud Studio">
-  <meta property="og:description" content="Tauri, React ve Three.js ile geliştirilmiş çapraz platform nokta bulutu görüntüleyici. Octree tabanlı LOD render ile LAS/LAZ dosyalarını içe aktarın.">
+  <meta property="og:title" content="Open Pointcloud Studio — OpenAEC Foundation">
+  <meta property="og:description" content="Lazer taramalarını ve nokta bulutlarını görüntülemek, ölçmek, düzenlemek ve dönüştürmek için masaüstü uygulaması: LAS, LAZ, E57 ve daha fazlası. Windows…">
   <meta property="og:url" content="https://open-aec.com/tr/open-pointcloud-studio/">
   <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
   <meta property="og:locale" content="tr_TR">
@@ -29,7 +29,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Open Pointcloud Studio">
-  <meta name="twitter:description" content="Tauri, React ve Three.js ile geliştirilmiş çapraz platform nokta bulutu görüntüleyici. Octree tabanlı LOD render ile LAS/LAZ dosyalarını içe aktarın.">
+  <meta name="twitter:description" content="Lazer taramalarını ve nokta bulutlarını görüntülemek, ölçmek, düzenlemek ve dönüştürmek için masaüstü uygulaması: LAS, LAZ, E57 ve daha fazlası. Windows…">
   <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
 
   <!-- AI / LLM discoverability -->
@@ -50,14 +50,22 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://open-aec.com/open-pointcloud-studio/",
     "downloadUrl": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases",
-    "description": "Open-source point cloud viewer (LAS, LAZ) with RGB/elevation/classification rendering, EDL, octree LoD.",
+    "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+    "description": "Desktop application for viewing, measuring, editing and converting laser scans and other point clouds. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.",
     "featureList": [
-      "LAS/LAZ import",
-      "Color modes",
-      "Classification filtering",
-      "Eye-Dome Lighting",
-      "Octree-based LOD",
-      "Themes"
+      "Opens LAS, LAZ, E57, PLY, PCD, PTX, PTS and text point clouds",
+      "Opens a whole scan project from its folder or its scan project file (.rcp)",
+      "Octree index on disk with level of detail for the current view",
+      "Section box with six draggable faces",
+      "Distance and area measuring",
+      "Saved views with notes, exported as BCF 2.1",
+      "Station photos and walking through the scan",
+      "Box selection, delete with undo, thin, move and scale",
+      "Export as LAS, LAZ, E57, PLY, XYZ, PTS or CSV and merging of LAS and LAZ scans",
+      "Terrain mesh and 3D surface, saved as OBJ, PLY or STL",
+      "3D BAG building models of the Netherlands",
+      "Local command API and MCP server",
+      "Interface in Dutch and English"
     ],
     "screenshot": "https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg",
     "offers": {
@@ -67,10 +75,9 @@
       "availability": "https://schema.org/InStock"
     },
     "isAccessibleForFree": true,
-    "keywords": "point cloud, LAS, LAZ, scanning, survey, CloudCompare alternative",
+    "keywords": "point cloud, laser scan, LAS, LAZ, E57, PLY, PCD, PTX, section box, measuring, BCF, mesh, MCP server",
     "sameAs": [
-      "https://github.com/OpenAEC-Foundation/open-pointcloud-studio",
-      "https://open-pointcloud-studio.open-aec.com/"
+      "https://github.com/OpenAEC-Foundation/open-pointcloud-studio"
     ],
     "publisher": {
       "@type": "Organization",
@@ -80,18 +87,130 @@
   }
   </script>
   <style>
-    .media-slider { max-width: 900px; margin: 0 auto var(--sp-8); position: relative; }
-    .slider-container { position: relative; overflow: hidden; border-radius: 12px; background: #2A2A32; }
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-16) var(--sp-6) var(--sp-10);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 { font-family: var(--font-heading); font-weight: 700; font-size: 2.5rem; color: white; letter-spacing: -0.02em; margin-bottom: var(--sp-4); }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header .lead { font-size: 1.125rem; color: var(--scaffold-gray); max-width: 720px; margin: 0 auto; line-height: 1.6; }
+    .status-badge {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-code); font-size: 0.7rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 4px 14px; border-radius: var(--radius-full);
+      background: #FED7AA; color: #9A3412;
+    }
+    .header-meta { display: flex; gap: var(--sp-3); justify-content: center; align-items: center; flex-wrap: wrap; margin-top: var(--sp-4); }
+    .version-info { font-family: var(--font-code); font-size: 0.7rem; color: var(--scaffold-gray); }
+    .hero-downloads { display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap; margin-top: var(--sp-6); }
+    .hero-more { display: inline-block; margin-top: var(--sp-4); font-size: 0.8rem; color: var(--warm-gold); }
+    .hero-more:hover { color: white; }
+
+    .content { max-width: 900px; margin: 0 auto; }
+    .content h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; color: var(--deep-forge); margin-bottom: var(--sp-4); }
+    .content p { font-size: 1rem; color: #57534E; line-height: 1.7; margin-bottom: var(--sp-4); }
+    .content-block + .content-block { margin-top: var(--sp-12); }
+    .content ul.plain { margin: 0 0 var(--sp-4); padding-left: var(--sp-5); color: #57534E; line-height: 1.7; }
+    .content ul.plain li { margin-bottom: var(--sp-2); }
+    .content p a, .content ul.plain a { color: var(--signal-orange); }
+    .content code { font-family: var(--font-code); font-size: 0.85em; }
+
+    /* Slider */
+    .media-slider { max-width: 1100px; margin: 0 auto var(--sp-10); position: relative; }
+    .slider-container { position: relative; overflow: hidden; border-radius: var(--radius-lg); background: var(--night-build); box-shadow: var(--shadow-lg); }
     .slider-track { display: flex; transition: transform 0.4s ease; }
     .slider-slide { min-width: 100%; }
-    .slider-slide img { width: 100%; display: block; border-radius: 12px; }
-    .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.25rem; display: flex; align-items: center; justify-content: center; z-index: 2; }
+    .slider-slide img { width: 100%; height: auto; display: block; }
+    .slider-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); color: white; border: none;
+      width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+      font-size: 1.5rem; display: flex; align-items: center; justify-content: center;
+      z-index: 2;
+    }
     .slider-btn:hover { background: rgba(0,0,0,0.7); }
     .slider-prev { left: 12px; }
     .slider-next { right: 12px; }
     .slider-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0; }
-    .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: #D6D3D1; border: none; cursor: pointer; }
-    .slider-dot.active { background: #D97706; }
+    .slider-dot { width: 10px; height: 10px; border-radius: 50%; border: none; cursor: pointer; background: #D6D3D1; }
+    .slider-dot.active { background: var(--amber); }
+
+    /* Download block: the shared .download-section, with room for several links per system */
+    .download-section { margin: 0 0 var(--sp-4); }
+    .download-section .download-intro { color: var(--scaffold-gray); font-size: 0.9rem; margin-bottom: var(--sp-6); }
+    .download-item { display: flex; flex-direction: column; align-items: stretch; }
+    .download-item .btn { justify-content: center; margin-bottom: var(--sp-2); }
+    .download-item .download-alt { font-size: 0.75rem; color: var(--scaffold-gray); margin-top: auto; padding-top: var(--sp-2); }
+    .download-item .download-alt a { color: var(--warm-gold); }
+    .exp-tag {
+      display: inline-block; font-family: var(--font-code); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 2px 8px; border-radius: var(--radius-full); background: #FEF3C7; color: #92400E; margin-left: 6px; vertical-align: middle;
+    }
+    .download-notes { list-style: none; padding: 0; margin: var(--sp-6) 0 0; }
+    .download-notes li { color: var(--scaffold-gray); font-size: 0.85rem; line-height: 1.6; padding: var(--sp-1) 0; }
+    .download-notes strong { color: var(--blueprint-white); }
+    .download-notes a { color: var(--warm-gold); }
+    .download-notes code { font-family: var(--font-code); font-size: 0.85em; background: rgba(255,255,255,0.08); padding: 1px 5px; border-radius: var(--radius-sm); overflow-wrap: anywhere; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: var(--sp-6);
+      margin: var(--sp-8) 0 0;
+    }
+    .feature-card {
+      background: white; border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg); padding: var(--sp-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .feature-card h3 { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--deep-forge); margin-bottom: var(--sp-2); }
+    .feature-card p { font-size: 0.875rem; color: #57534E; line-height: 1.6; margin-bottom: 0; }
+
+    /* Formats table, inside a scroll container so a narrow screen scrolls the table and not the page */
+    .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+    .formats-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; background: white; }
+    .formats-table th {
+      text-align: left; font-family: var(--font-heading); font-weight: 600; color: var(--deep-forge);
+      padding: var(--sp-3) var(--sp-4); border-bottom: 2px solid var(--amber); white-space: nowrap;
+    }
+    .formats-table td { padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid #E7E5E4; color: #57534E; vertical-align: top; line-height: 1.5; }
+    .formats-table td:first-child { font-weight: 600; color: var(--deep-forge); white-space: nowrap; }
+    .formats-table td:nth-child(2), .formats-table td:nth-child(3) { white-space: nowrap; }
+
+    .explainer {
+      background: var(--night-build);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-8);
+    }
+    .explainer h2 { color: var(--amber); font-size: 1.25rem; }
+    .explainer p { color: var(--scaffold-gray); font-size: 0.9rem; }
+    .explainer code { background: rgba(255,255,255,0.08); padding: 1px 5px; border-radius: var(--radius-sm); color: var(--blueprint-white); }
+    .explainer ul.plain { color: var(--scaffold-gray); font-size: 0.9rem; margin-bottom: 0; }
+    .explainer p a, .explainer ul.plain a { color: var(--warm-gold); }
+
+    .tech-stack { display: flex; gap: var(--sp-3); flex-wrap: wrap; margin: var(--sp-4) 0; }
+    .tech-tag {
+      font-family: var(--font-code); font-size: 0.75rem; font-weight: 500;
+      padding: 4px 12px; border-radius: var(--radius-full);
+      background: var(--concrete); color: var(--deep-forge);
+    }
+
+    @media (min-width: 769px) {
+      .download-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 768px) {
+      .page-header { padding: var(--sp-10) var(--sp-4) var(--sp-8); }
+      .page-header .lead { font-size: 1rem; }
+      .hero-downloads .btn { flex: 1 1 100%; justify-content: center; }
+      .features-grid { grid-template-columns: 1fr; }
+      .explainer { padding: var(--sp-6); }
+      .formats-table td:first-child { white-space: normal; }
+    }
   </style>
 
   <meta name="i18n-static" content="tr">
@@ -190,79 +309,251 @@
 <!-- nav:end --></div>
 <script src="/shared/nav.js?v=20260728"></script>
 
-  <section class="hero">
-    <span class="section-label" data-i18n="header.label">Nokta bulutu görüntüleyici</span>
+  <header class="page-header">
+    <span class="section-label" data-i18n="header.label">Nokta bulutlarını görüntüleyin, ölçün ve düzenleyin</span>
     <h1 data-i18n="header.title">Open <span class="accent">Pointcloud</span> Studio</h1>
-    <p class="tagline" data-i18n="header.desc">Tauri, React ve Three.js ile geliştirilmiş çapraz platform nokta bulutu görüntüleyici. Octree tabanlı LOD render ile LAS/LAZ dosyalarını içe aktarın.</p>
-    <div class="btn-group">
-      <a href="#download" class="btn btn-primary btn-lg" data-i18n="header.downloadBtn">v0.3.0 indir</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" class="btn btn-ghost btn-lg" data-i18n="header.sourceBtn">Kaynak kodu görüntüle</a>
+    <p class="lead" data-i18n="header.desc">Lazer taramalarını ve diğer nokta bulutlarını görüntülemek, ölçmek, düzenlemek ve dönüştürmek için bir masaüstü uygulaması. Windows, macOS ve Linux'ta çalışır, Rust ile yazılmıştır; web tarayıcısına ya da webview'e ihtiyaç duymaz.</p>
+    <div class="header-meta">
+      <span class="status-badge" data-i18n="header.badge">Beta</span>
+      <span class="version-info">v0.8.0 &middot; Windows &middot; macOS &middot; Linux</span>
     </div>
-  </section>
+    <div class="hero-downloads">
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" class="btn btn-primary" data-i18n="header.dlWindows">Windows kurulum dosyası</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" class="btn btn-primary" data-i18n="header.dlMac">macOS disk görüntüsü</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" class="btn btn-primary" data-i18n="header.dlAppImage">Linux AppImage</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.deb" class="btn btn-primary" data-i18n="header.dlDeb">Linux .deb</a>
+    </div>
+    <a href="#download" class="hero-more" data-i18n="header.allFiles">Tüm dosyalar, ARM paketleri ve kurulum notları &darr;</a>
+  </header>
+
+  <section class="section" style="background: var(--blueprint-white);">
 
     <div class="media-slider">
       <div class="slider-container">
         <div class="slider-track" id="sliderTrack">
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio.jpeg" alt="Open Pointcloud Studio screenshot"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio.jpeg" width="1920" height="1047" alt="Open Pointcloud Studio penceresi: 455 milyon noktalık bir ofis binası taramasının genel görünümü; üstte şerit, solda proje paneli, sağda özellikler paneli" data-i18n="slides.one" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-2.jpg" width="1920" height="1046" loading="lazy" alt="Aynı tarama, kesit kutusuyla zemin seviyesinden açılmış; odalar üstten görünüyor ve 26,774 m'lik bir mesafe ölçümü var" data-i18n="slides.two" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-3.jpg" width="1920" height="1080" loading="lazy" alt="Yürüme görünümü: göz hizasında, binanın cephesi boyunca; nokta bulutunda pencereler ve bir çalı çit görünüyor" data-i18n="slides.three" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-4.jpg" width="1920" height="1080" loading="lazy" alt="Binaya doğru uçuş: kamera havadan yaklaşıyor, iki yanda ağaçlar var" data-i18n="slides.four" data-i18n-attr="alt"></div>
         </div>
-        <button class="slider-btn slider-prev" onclick="slideMove(-1)">&lsaquo;</button>
-        <button class="slider-btn slider-next" onclick="slideMove(1)">&rsaquo;</button>
+        <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Önceki görsel" data-i18n="slides.prev" data-i18n-attr="aria-label">&lsaquo;</button>
+        <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Sonraki görsel" data-i18n="slides.next" data-i18n-attr="aria-label">&rsaquo;</button>
       </div>
       <div class="slider-dots" id="sliderDots"></div>
     </div>
 
-  <section class="section" id="download"><div class="container">
-    <div class="download-section">
-      <h3 data-i18n="download.title">v0.3.0 indir</h3>
-      <div class="download-grid">
-        <div class="download-item"><div class="os">Windows (.exe)</div><div class="size">2.8 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.3.0/Open.Pointcloud.Studio_0.3.0_x64-setup.exe" class="btn btn-primary btn-sm">Download</a></div>
-        <div class="download-item"><div class="os">Windows (.msi)</div><div class="size">3.7 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.3.0/Open.Pointcloud.Studio_0.3.0_x64_en-US.msi" class="btn btn-primary btn-sm">Download</a></div>
-        <div class="download-item"><div class="os">macOS (Apple Silicon)</div><div class="size">3.4 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.3.0/Open.Pointcloud.Studio_0.3.0_aarch64.dmg" class="btn btn-primary btn-sm">Download</a></div>
-        <div class="download-item"><div class="os">Linux (deb)</div><div class="size">3.7 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.3.0/Open.Pointcloud.Studio_0.3.0_amd64.deb" class="btn btn-primary btn-sm">Download</a></div>
-        <div class="download-item"><div class="os">Linux (AppImage)</div><div class="size">77.6 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.3.0/Open.Pointcloud.Studio_0.3.0_amd64.AppImage" class="btn btn-primary btn-sm">Download</a></div>
+    <div class="content">
+      <div class="download-section" id="download">
+        <h3 data-i18n="download.title">v0.8.0 sürümünü indir</h3>
+        <p class="download-intro" data-i18n="download.intro">Her düğme dosyayı doğrudan GitHub'daki sürümden indirir.</p>
+        <div class="download-grid">
+          <div class="download-item">
+            <div class="os">Windows</div>
+            <div class="size" data-i18n="download.win.req">Windows 10 ve 11, x64</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" class="btn btn-primary btn-sm" data-i18n="download.win.primary">Kurulum dosyası (.exe)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_windows-x64.zip" data-i18n="download.win.zip">Kurulumsuz zip</a></div>
+          </div>
+          <div class="download-item">
+            <div class="os">macOS</div>
+            <div class="size" data-i18n="download.mac.req">macOS 11 ve sonrası, Apple ve Intel işlemciler</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" class="btn btn-primary btn-sm" data-i18n="download.mac.primary">Disk görüntüsü (.dmg)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.tar.gz" data-i18n="download.mac.tar">Yalnızca program (.tar.gz)</a></div>
+          </div>
+          <div class="download-item">
+            <div class="os">Linux</div>
+            <div class="size" data-i18n="download.linux.req">x86-64; Ubuntu 22.04, Debian 12, Fedora 36 veya daha yenisi</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" class="btn btn-primary btn-sm" data-i18n="download.linux.appimage">AppImage (her dağıtım)</a>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.deb" class="btn btn-primary btn-sm" data-i18n="download.linux.deb">.deb (Debian, Ubuntu)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-amd64.tar.gz" data-i18n="download.linux.tar">Yalnızca program (.tar.gz)</a></div>
+          </div>
+          <div class="download-item">
+            <div class="os">Linux ARM <span class="exp-tag" data-i18n="download.arm.tag">deneysel</span></div>
+            <div class="size" data-i18n="download.arm.req">64 bit ARM (arm64)</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.AppImage" class="btn btn-ghost btn-sm">AppImage</a>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.deb" class="btn btn-ghost btn-sm">.deb</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-arm64.tar.gz" data-i18n="download.arm.tar">Yalnızca program (.tar.gz)</a></div>
+          </div>
+        </div>
+        <ul class="download-notes">
+          <li data-i18n="download.note.win"><strong>Windows:</strong> kurulum dosyası uygulamayı yönetici hakları gerekmeden geçerli kullanıcı için ya da tüm kullanıcılar için kurar. Sürüm kod imzası taşımıyorsa Windows bilinmeyen yayımcı uyarısı gösterebilir: önce <em>Ek bilgi</em>'yi, sonra <em>Yine de çalıştır</em>'ı seçin.</li>
+          <li data-i18n="download.note.mac"><strong>macOS:</strong> uygulama Apple'ın onayından geçmediği (notarize edilmediği) için macOS ilk açılışı engeller; <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#macos" target="_blank" rel="noopener">buna bir kez nasıl izin verileceği README'de anlatılır</a> (İngilizce).</li>
+          <li data-i18n="download.note.linux"><strong>Linux:</strong> AppImage dosyasını bir kez <code>chmod +x</code> ile çalıştırılabilir yapın, sonra başlatın. .deb paketini <code>sudo apt install ./open-pointcloud-studio_0.8.0_amd64.deb</code> komutuyla kurun.</li>
+          <li data-i18n="download.note.arm"><strong>64 bit ARM:</strong> deneysel. Bu paketler yalnızca yazılımsal görüntü oluşturma kullanan derleme makinelerinde derlenip sınandı; gerçek ARM kartlarında ve dizüstü bilgisayarlarda henüz denenmedi.</li>
+          <li data-i18n="download.note.sha"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v0.8.0" target="_blank" rel="noopener">Sürüm sayfasında</a> her dosyanın yanında, sağlama toplamını içeren bir <code>.sha256</code> dosyası bulunur.</li>
+        </ul>
       </div>
     </div>
-  </div></section>
+  </section>
 
-  <section class="section section-alt"><div class="container">
-    <h2 data-i18n="features.heading">Özellikler</h2>
-    <div class="features" style="margin-top:var(--sp-8)">
-      <div class="feature">
-        <h4 data-i18n="features.laslaz.title">LAS/LAZ içe aktarma</h4>
-        <p data-i18n="features.laslaz.desc">Lazer tarayıcılardan ve fotogrametriden endüstri standardı LAS ve sıkıştırılmış LAZ nokta bulutu dosyalarını içe aktarın.</p>
-      </div>
-      <div class="feature">
-        <h4 data-i18n="features.colors.title">Renk modları</h4>
-        <p data-i18n="features.colors.desc">Nokta bulutlarını RGB, yükseklik, sınıflandırma veya yoğunluğa göre renklendirerek görüntüleyin.</p>
-      </div>
-      <div class="feature">
-        <h4 data-i18n="features.classification.title">Sınıflandırma filtresi</h4>
-        <p data-i18n="features.classification.desc">Noktaları ASPRS sınıflandırma kodlarına göre filtreleyin. Zeminin, binaların, bitki örtüsünün ve diğer sınıfların görünürlüğünü değiştirin.</p>
-      </div>
-      <div class="feature">
-        <h4 data-i18n="features.edl.title">Eye-Dome Lighting</h4>
-        <p data-i18n="features.edl.desc">Nokta bulutu yüzeylerinin derinlik algısı ve görsel netliği için EDL gölgelendirme.</p>
-      </div>
-      <div class="feature">
-        <h4 data-i18n="features.octree.title">Octree tabanlı LOD</h4>
-        <p data-i18n="features.octree.desc">Büyük veri kümelerinin akıcı navigasyonu için ayarlanabilir nokta boyutu ve nokta bütçesi ile detay düzeyi render.</p>
-      </div>
-      <div class="feature">
-        <h4 data-i18n="features.themes.title">Temalar</h4>
-        <p data-i18n="features.themes.desc">Koyu, Açık, Mavi ve Yüksek Kontrast temaları.</p>
+  <section class="section section-alt">
+    <div class="content">
+      <h2 data-i18n="features.title">Neler yapabilirsiniz</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3 data-i18n="features.open.title">Taramaları açma</h3>
+          <p data-i18n="features.open.desc">LAS, LAZ, E57, PLY, PCD, PTX, PTS ve metin biçimlerindeki nokta bulutları ile OBJ, PLY, OFF ve STL biçimindeki mesh'ler açılır. Dosyaları pencereye sürükleyip bırakın, birkaçını birlikte açın: her dosya gizleyebileceğiniz, gösterebileceğiniz veya kapatabileceğiniz bir katmandır.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.project.title">Bütün bir tarama projesi tek seferde</h3>
+          <p data-i18n="features.project.desc">Bir tarama klasörünü ya da projenin tarama projesi dosyasını (.rcp) açın: dosyanın listelediği ve yanında duran taramalar birlikte açılır. Klasörü ya da proje dosyasını pencereye sürükleyip bırakmak da olur.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.large.title">Büyük dosyalar</h3>
+          <p data-i18n="features.large.desc">LAS ve LAZ dosyaları başlık bilgisinden hemen açılır. 512 MiB veya daha büyük bir E57 dosyası, yapısı elverişliyse, önce dosyanın geneline yayılmış bir örneklem gösterir; bu boyuttaki diğer dosyalar o ana kadar okunan noktaları birkaç saniyede bir gösterir. Sahnenin üstündeki bir şerit ilerlemeyi ve kalan süreyi gösterir; iptal düğmesi de oradadır.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.lod.title">Baktığınız yerde ayrıntı</h3>
+          <p data-i18n="features.lod.desc">Bir milyon ve daha fazla noktalı bulutlar için uygulama diskte kendiliğinden bir dizin (octree) oluşturur. Bu dizin, belirlediğiniz nokta bütçesine kadar (en çok on milyon nokta) kameranın o anki konumuna uygun ayrıntıyı sağlar. Dizin saklanır ve dosyayı sonra yeniden açtığınızda tekrar kullanılır.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.display.title">Görüntüleme</h3>
+          <p data-i18n="features.display.desc">Dört renk modu (kayıtlı renk, yükseklik, yoğunluk ve sınıflandırma), eye-dome aydınlatma ve ayarlanabilir nokta boyutu. Bulutlarda bulunan sınıflar tek tek gösterilip gizlenebilir. Görünüm küpü ve yedi kamera yönü görünümü çevirir.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.section.title">Kesit kutusu</h3>
+          <p data-i18n="features.section.desc">Altı yüzü sürüklenebilen bir kutu, neyin gösterileceğini, seçileceğini ve mesh'e dönüştürüleceğini sınırlar. Bir taramadan kat planı ya da kesit böyle çıkarılır; kutunun içeriği ayrıca dışa aktarılabilir. Kutu taramanın X, Y ve Z eksenlerini izler ve döndürülemez.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.measure.title">Ölçüm</h3>
+          <p data-i18n="features.measure.desc"><em>Distance</em> seçilen iki veya daha fazla noktadan geçen bir çizgiyi ölçer: her parça, toplam uzunluk, yatay uzunluk ve yükseklik farkı. <em>Area</em> kapalı bir çokgeni kendi düzleminde ölçer; böylece bir duvar ya da eğimli bir çatı gerçek alanıyla ölçülür, üstten görünen alanı ve çevresi de verilir. Noktalar yalnızca ekrandakilerden değil, etkin taramanın bütün noktaları arasından seçilir.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.views.title">Görünümler, notlar ve BCF</h3>
+          <p data-i18n="features.views.desc">Kaydedilen bir görünüm kamerayı, kesit kutusunu, renk modunu ve açıklamaları saklar: seçilen bir noktaya not ya da iki nokta arasına ok. Bir taramanın bütün görünümleri tek bir BCF 2.1 dosyası olarak dışa aktarılır; her görünümün notları, kamerası, kesme düzlemleri ve bir sahne görüntüsü dosyada yer alır.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.stations.title">İstasyon fotoğrafları ve yürüme</h3>
+          <p data-i18n="features.stations.desc">E57, PCD ve PTX taramalarının tarama istasyonları sahnede işaretlerle gösterilir. Fotoğrafı olan istasyon bir küre olarak çizilir: tıklayınca o istasyonda durup çevrenize bakarsınız. Taramanın içinde W, A, S ve D ile yürüyün; Q ve E ile aşağı ve yukarı gidin, Shift ile hızlanın.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.edit.title">Seçme ve düzenleme</h3>
+          <p data-i18n="features.edit.desc">Bir dikdörtgenin içindeki bütün kaynak noktaları seçin ya da tek bir nokta seçip koordinatlarını ve özniteliklerini okuyun. Seçimi silin (sekiz silmeye kadar geri alınabilir), bulutu noktalarının tam bir yüzdesine seyreltin ya da taşıyıp ölçekleyin. Kaynak dosya hiçbir zaman değişmez: dışa aktarma düzenlenmiş sonucu yazar.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.export.title">Dışa aktarma ve birleştirme</h3>
+          <p data-i18n="features.export.desc">Bulutun tamamını, seçimi, seçim dışındaki her şeyi, kesit kutusunun içeriğini ya da her N'inci noktayı LAS, LAZ, E57, PLY, XYZ, PTS veya CSV olarak dışa aktarın. LAS ve LAZ dışa aktarımları özgün nokta kayıtlarını öznitelikleriyle korur. Görünür LAS ve LAZ taramaları tek dosyada birleştirilebilir. Her dışa aktarma kaynağın tamamını okur; ekranda görünmeyen noktalar da yazılır.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.mesh.title">Mesh'ler</h3>
+          <p data-i18n="features.mesh.desc"><em>Terrain mesh</em>, bir ızgaradaki en alçak noktalardan 2,5B bir yüzey oluşturur. <em>3D surface</em> duvarları ve çıkıntıları da izler; sonuçta delikler kalır ve yüzey su geçirmez (kapalı) değildir. Açılmış bir mesh dosyası dahil her mesh OBJ, ikili PLY veya ikili STL olarak kaydedilebilir. Özellikler paneli köşe noktalarını, üçgenleri, açık kenarları ve bağlantılı parça sayısını gösterir.</p>
+        </div>
+        <!-- ============================================================
+             RESERVED FOR 0.8.0 FEATURES STILL IN PROGRESS — FEATURE CARDS
+             Add here, as one .feature-card each, the tools that ship in 0.8.0
+             and are not on this page yet. Describe only what the README of the
+             application describes.
+             Per card: a heading and a paragraph with the keys features.NAME.title
+             and features.NAME.desc, the Dutch text in this file and the
+             same two keys in shared/translations/open-pointcloud-studio.json,
+             .fr.json, .tr.json and .es.json. Then run
+             node scripts/build-i18n-pages.js. The matching format rows go at
+             the second RESERVED marker, in the formats table below.
+             ============================================================ -->
+        <div class="feature-card">
+          <h3 data-i18n="features.bag.title">3D BAG binaları</h3>
+          <p data-i18n="features.bag.desc">Hollanda'nın bina modellerini, RD New koordinatlarıyla verilen bir alan için açık 3D BAG kaydından indirin ve bir taramayla birlikte gösterin. Tek indirme en çok 2 x 2 km'lik bir alanı ve yaklaşık 5.000 binayı kapsar ve internet bağlantısı gerektirir. Kapatılabilen yerleşik bir uzantıdır.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.language.title">Felemenkçe ve İngilizce</h3>
+          <p data-i18n="features.language.desc">Arayüz sistemin dilini izler: Felemenkçe ya da İngilizce. Dil, ayarlardan (Settings) değiştirilebilir. Türkçe arayüz yoktur. Durum çubuğundaki iletiler ve içinde sayı geçen metinlerin çoğu yalnızca İngilizcedir. Beş renk teması vardır.</p>
+        </div>
       </div>
     </div>
-  </div></section>
+  </section>
 
-  <section style="background: var(--concrete); padding: 3rem 1.5rem; text-align: center;">
-    <div style="max-width: 900px; margin: 0 auto; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-      <a href="https://open-pointcloud-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-i18n="cta.demo">Canlı demo &rarr;</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-i18n="cta.github">GitHub &rarr;</a>
+  <section class="section" style="background: var(--blueprint-white);">
+    <div class="content">
+
+      <div class="content-block">
+        <h2 data-i18n="formats.title">Dosya biçimleri</h2>
+        <div class="table-wrapper">
+          <table class="formats-table">
+            <thead>
+              <tr>
+                <th data-i18n="formats.th.format">Biçim</th>
+                <th data-i18n="formats.th.read">Okuma</th>
+                <th data-i18n="formats.th.write">Yazma</th>
+                <th data-i18n="formats.th.notes">Notlar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>LAS, LAZ</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.las">Başlık bilgisinden açılır; dışa aktarımlar özgün nokta kayıtlarını korur</td></tr>
+              <tr><td>E57</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.e57">Lazer tarayıcının konumları ve istasyon fotoğrafları okunur; küresel ve silindirik fotoğraflar gösterilmez</td></tr>
+              <tr><td>PLY</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.ply">ASCII ve little-endian ikili biçimi okur; ikisini de yazar</td></tr>
+              <tr><td>PCD</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.pcd">ASCII, ikili ve sıkıştırılmış ikili</td></tr>
+              <tr><td>PTX</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.ptx">Her taramanın lazer tarayıcı konumuyla birlikte</td></tr>
+              <tr><td>PTS</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.yes">evet</td><td></td></tr>
+              <tr><td>XYZ, ASC, TXT, CSV</td><td data-i18n="formats.yes">evet</td><td>XYZ, CSV</td><td data-i18n="formats.text">Her satırda bir nokta bulunan metin</td></tr>
+              <tr><td>OBJ</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.obj">Renkli ve normalli mesh; malzeme renkleri okunur, doku görselleri okunmaz</td></tr>
+              <tr><td data-i18n="formats.plyMeshName">Mesh olarak PLY</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.plyMesh">Yüzler olarak gösterilir. Çift duyarlıklı koordinatlarla, mesh'te varsa renk ve normallerle birlikte ikili PLY olarak yazılır</td></tr>
+              <tr><td>STL</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.stl">Yüzler olarak gösterilir. İkili STL olarak yazılır: yalnızca üçgenler, renk yok</td></tr>
+              <tr><td>OFF</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.off">Yüzler olarak gösterilir; OBJ, PLY veya STL olarak kaydedilebilir</td></tr>
+              <tr><td>DXF</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.dxf">Yalnızca ASCII DXF. POINT öğeleri nokta, 3DFACE öğeleri yüz olarak açılır; diğer öğeler atlanır</td></tr>
+              <!-- ============================================================
+                   RESERVED FOR 0.8.0 FEATURES STILL IN PROGRESS — FORMAT ROWS
+                   Add or change the rows of the formats those features read
+                   or write here (and adjust the DXF row above if DXF gets a
+                   writer). Cells use formats.yes / formats.no; a note gets a
+                   new key formats.NAME in this file and in the four
+                   translation files.
+                   ============================================================ -->
+              <tr><td data-i18n="formats.rcpName">Tarama projesi dosyası (.rcp)</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.rcp">Yalnızca tarama listesi okunur. Bir projenin dizinlenmiş tarama kopyaları (.rcs) kapalı bir biçimdedir ve okunmaz</td></tr>
+              <tr><td>BCF 2.1 (.bcf)</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.bcf">Notları ve görselleriyle kayıtlı görünümler</td></tr>
+              <tr><td>PNG</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.png">3B görünümün görseli, komut API'si üzerinden</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="content-block explainer">
+        <h2 data-i18n="automation.title">Komut API'si ve MCP sunucusu</h2>
+        <p data-i18n="automation.api">Her pencere <code>127.0.0.1</code> üzerinde bir komut sunucusu çalıştırır. Komutlar taramaları açıp kapatır, kamerayı, kesit kutusunu ve görüntülemeyi ayarlar, seçer, siler, ölçer, görünüm kaydeder, dışa aktarır, mesh oluşturur ve 3B görünümün görselini alır. Sunucu yalnızca geri döngü (loopback) adresini dinler ve belirteç (token) olmadan gelen komutu reddeder.</p>
+        <p data-i18n="automation.mcp"><code>open-pointcloud-studio --mcp</code> bir Model Context Protocol sunucusu çalıştırır. API'nin her komutu için bir araç, uzun işlerin bitmesini bekleyen araçlar, 3B görünümü görsel olarak döndüren bir araç ve pencereleri listeleyen, seçen ve başlatan araçlar sunar.</p>
+        <p data-i18n="automation.cli">Uygulama komut satırından pencere açmadan da çalışır: başka bir biçime dönüştürme, bir kutunun içindeki noktaları dışa aktarma, taramaları birleştirme, dizin oluşturma ve mesh üretme.</p>
+        <ul class="plain">
+          <li data-i18n="automation.linkApi"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/API.md" target="_blank" rel="noopener">API.md</a>: bütün komutlar (İngilizce)</li>
+          <li data-i18n="automation.linkMcp"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/MCP.md" target="_blank" rel="noopener">MCP.md</a>: bütün araçlar ve bir istemci program için yapılandırma (İngilizce)</li>
+          <li data-i18n="automation.linkCli"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#command-line" target="_blank" rel="noopener">README</a>: komut satırı modları (İngilizce)</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="limits.title">Bilmeniz gerekenler</h2>
+        <ul class="plain">
+          <li data-i18n="limits.box">Kesit kutusu döndürülemez. Taramanın eksenlerine açılı duran bir bina o açıyla kesilir.</li>
+          <li data-i18n="limits.units">Uzunluklar ve alanlar metre cinsindendir. Taramanın koordinatları metre olarak kabul edilir, dönüştürülmez.</li>
+          <li data-i18n="limits.measure">Ölçüm taramayla birlikte kaydedilmez.</li>
+          <li data-i18n="limits.surface">3D surface ile üretilen yüzeyde delikler kalır; yüzey su geçirmez değildir.</li>
+          <li data-i18n="limits.meshSize">Sahnede gösterilen bir mesh, dosya başına en çok bir milyon köşe noktası ve iki milyon üçgen içerir.</li>
+          <li data-i18n="limits.index">Büyük bir ölçümde dizin diskte birkaç gigabayt yer tutabilir.</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="docs.title">Kılavuz, değişiklikler ve kaynak kod</h2>
+        <ul class="plain">
+          <li data-i18n="docs.guide"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md" target="_blank" rel="noopener">Kullanıcı kılavuzu</a>: her araç ayrıntılı olarak (İngilizce).</li>
+          <li data-i18n="docs.readme"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#readme" target="_blank" rel="noopener">README</a>: sisteme göre kurulum, ilk beş dakika, ölçülmüş hızlar ve sınırlar (İngilizce).</li>
+          <li data-i18n="docs.changelog"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Değişiklik günlüğü</a>: her sürümde neyin değiştiği (İngilizce).</li>
+          <li data-i18n="docs.source"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" target="_blank" rel="noopener">GitHub'daki kaynak kod</a>; sorun bildirmek ya da istekte bulunmak için <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/issues" target="_blank" rel="noopener">issues</a> sayfası.</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="tech.title">Teknik ve lisans</h2>
+        <div class="tech-stack">
+          <span class="tech-tag">Rust</span>
+          <span class="tech-tag">iced</span>
+          <span class="tech-tag">wgpu</span>
+        </div>
+        <p data-i18n="tech.desc">Masaüstü uygulaması GPL-3.0-only, nokta bulutu kütüphanesi LGPL-3.0-or-later lisanslıdır. Her paket lisans metinlerini içerir.</p>
+        <div class="btn-group" style="justify-content: flex-start;">
+          <a href="#download" class="btn btn-primary" data-i18n="cta.download">İndir</a>
+          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md" target="_blank" rel="noopener" class="btn btn-secondary" data-i18n="cta.guide">Kılavuz</a>
+          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" target="_blank" rel="noopener" class="btn btn-secondary" data-i18n="cta.github">GitHub</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -270,7 +561,7 @@
   <div data-release-notes="open-pointcloud-studio"></div>
   <script src="/shared/release-notes.js?v=20260728"></script>
 
-  <footer class="footer"><div class="footer-container">
+  <footer class="footer page-footer"><div class="footer-container">
     <a href="/tr/" class="nav-brand">Open<span class="accent">AEC</span></a>
     <span data-i18n="footer.slogan">Özgürce inşa edin. Birlikte inşa edelim.</span>
     <a href="https://github.com/OpenAEC-Foundation">GitHub</a>
@@ -286,6 +577,7 @@
       for(let i=0;i<slides;i++){
         const d = document.createElement('button');
         d.className = 'slider-dot' + (i===0?' active':'');
+        d.setAttribute('aria-label', String(i+1));
         d.onclick = ()=>slideTo(i);
         dots.appendChild(d);
       }

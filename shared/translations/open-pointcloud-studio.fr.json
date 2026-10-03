@@ -1,44 +1,178 @@
 {
+  "meta": {
+    "title": "Open Pointcloud Studio — OpenAEC Foundation",
+    "description": "Application de bureau pour visualiser, mesurer, modifier et convertir des scans laser et des nuages de points : LAS, LAZ, E57 et plus. Pour Windows, macOS et Linux."
+  },
   "header": {
-    "label": "Visualiseur de nuages de points",
+    "label": "Visualiser, mesurer et modifier des nuages de points",
     "title": "Open <span class=\"accent\">Pointcloud</span> Studio",
-    "desc": "Visualiseur de nuages de points multiplateforme construit avec Tauri, React et Three.js. Importez des fichiers LAS/LAZ avec rendu LOD basé sur octree.",
-    "downloadBtn": "Télécharger v0.3.0",
-    "sourceBtn": "Voir le code source"
+    "desc": "Une application de bureau pour visualiser, mesurer, modifier et convertir des scans laser et d'autres nuages de points. Elle fonctionne sous Windows, macOS et Linux, est écrite en Rust et n'a besoin ni de navigateur ni de webview.",
+    "badge": "Beta",
+    "dlWindows": "Installateur Windows",
+    "dlMac": "Image disque macOS",
+    "dlAppImage": "AppImage Linux",
+    "dlDeb": ".deb Linux",
+    "allFiles": "Tous les fichiers, les paquets ARM et les notes d'installation &darr;"
+  },
+  "slides": {
+    "one": "La fenêtre d'Open Pointcloud Studio avec la vue d'ensemble du scan d'un immeuble de bureaux de 455 millions de points : le ruban en haut, le panneau du projet à gauche et les propriétés à droite",
+    "two": "Le même scan ouvert par la boîte de coupe au niveau du sol, ce qui laisse voir les pièces d'en haut, avec une mesure de distance de 26,774 m",
+    "three": "La vue à pied : à hauteur d'yeux le long de la façade du bâtiment, avec ses fenêtres et une haie dans le nuage de points",
+    "four": "En vol vers le bâtiment : la caméra s'approche par les airs, avec des arbres de part et d'autre",
+    "prev": "Image précédente",
+    "next": "Image suivante"
   },
   "download": {
-    "title": "Télécharger v0.3.0"
-  },
-  "features": {
-    "heading": "Fonctionnalités",
-    "laslaz": {
-      "title": "Import LAS/LAZ",
-      "desc": "Importez les fichiers de nuages de points LAS et LAZ compressés issus de scanners laser et de photogrammétrie."
+    "title": "Télécharger la v0.8.0",
+    "intro": "Chaque bouton récupère le fichier directement dans la version publiée sur GitHub.",
+    "win": {
+      "req": "Windows 10 et 11, x64",
+      "primary": "Installateur (.exe)",
+      "zip": "Zip sans installateur"
     },
-    "colors": {
-      "title": "Modes de couleur",
-      "desc": "Affichez les nuages de points colorés par RGB, altitude, classification ou intensité."
+    "mac": {
+      "req": "macOS 11 et versions ultérieures, processeurs Apple et Intel",
+      "primary": "Image disque (.dmg)",
+      "tar": "Le programme seul (.tar.gz)"
     },
-    "classification": {
-      "title": "Filtrage par classification",
-      "desc": "Filtrez les points par code de classification ASPRS. Activez/désactivez la visibilité du sol, des bâtiments, de la végétation et autres classes."
+    "linux": {
+      "req": "x86-64 ; Ubuntu 22.04, Debian 12, Fedora 36 ou plus récent",
+      "appimage": "AppImage (toute distribution)",
+      "deb": ".deb (Debian, Ubuntu)",
+      "tar": "Le programme seul (.tar.gz)"
     },
-    "edl": {
-      "title": "Eye-Dome Lighting",
-      "desc": "Ombrage EDL pour une meilleure perception de la profondeur et clarté visuelle des surfaces de nuages de points."
+    "arm": {
+      "tag": "expérimental",
+      "req": "ARM 64 bits (arm64)",
+      "tar": "Le programme seul (.tar.gz)"
     },
-    "octree": {
-      "title": "LOD basé sur octree",
-      "desc": "Rendu par niveau de détail avec taille de point et budget de points ajustables pour une navigation fluide dans de grands jeux de données."
-    },
-    "themes": {
-      "title": "Thèmes",
-      "desc": "Thèmes Foncé, Clair, Bleu et Contraste élevé."
+    "note": {
+      "win": "<strong>Windows :</strong> l'installateur installe l'application pour l'utilisateur courant, sans droits d'administrateur, ou pour tous les utilisateurs. Si la version ne porte pas de signature de code, Windows peut signaler un éditeur inconnu : choisissez <em>Informations complémentaires</em>, puis <em>Exécuter quand même</em>.",
+      "mac": "<strong>macOS :</strong> l'application n'est pas notarisée, macOS refuse donc le premier lancement ; <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio#macos\" target=\"_blank\" rel=\"noopener\">le README explique comment l'autoriser une fois</a> (en anglais).",
+      "linux": "<strong>Linux :</strong> rendez l'AppImage exécutable une fois avec <code>chmod +x</code>, puis lancez-la. Le paquet .deb s'installe avec <code>sudo apt install ./open-pointcloud-studio_0.8.0_amd64.deb</code>.",
+      "arm": "<strong>ARM 64 bits :</strong> expérimental. Ces paquets sont construits et testés sur des machines de compilation avec un rendu logiciel, pas encore sur de vraies cartes ARM ni de vrais ordinateurs portables ARM.",
+      "sha": "Sur la <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v0.8.0\" target=\"_blank\" rel=\"noopener\">page de la version</a>, chaque fichier est accompagné d'un fichier <code>.sha256</code> qui contient sa somme de contrôle."
     }
   },
+  "features": {
+    "title": "Ce que vous pouvez faire",
+    "open": {
+      "title": "Ouvrir des scans",
+      "desc": "Nuages de points aux formats LAS, LAZ, E57, PLY, PCD, PTX, PTS et texte, et maillages OBJ, PLY, OFF et STL. Déposez des fichiers sur la fenêtre et ouvrez-en plusieurs à la fois : chaque fichier est un calque que l'on masque, affiche ou ferme."
+    },
+    "project": {
+      "title": "Tout un projet de scan en une fois",
+      "desc": "Ouvrez un dossier de scans, ou le fichier de projet de scan (.rcp) d'un projet : les scans qu'il énumère et qui se trouvent à côté de lui s'ouvrent ensemble. On peut aussi déposer un dossier ou un fichier de projet sur la fenêtre."
+    },
+    "large": {
+      "title": "Gros fichiers",
+      "desc": "Les fichiers LAS et LAZ s'ouvrent aussitôt à partir de leur en-tête. Un fichier E57 de 512 Mio ou plus montre d'abord un échantillon réparti dans tout le fichier, lorsque sa structure le permet ; les autres fichiers de cette taille affichent toutes les quelques secondes les points déjà lus. Une barre au-dessus de la scène indique la progression et le temps restant, avec un bouton pour annuler."
+    },
+    "lod": {
+      "title": "Le détail là où vous regardez",
+      "desc": "Pour les nuages d'un million de points ou plus, l'application construit d'elle-même un index sur disque, un octree. Il fournit le détail qui correspond à la position de la caméra, jusqu'au budget de points que vous fixez : dix millions de points au plus. L'index est conservé et resservira à la prochaine ouverture du fichier."
+    },
+    "display": {
+      "title": "Affichage",
+      "desc": "Quatre modes de couleur (couleur enregistrée, altitude, intensité et classification), l'éclairage eye-dome et une taille de point réglable. Les classes présentes dans les nuages s'affichent ou se masquent une à une. Un cube de vue et sept directions de caméra orientent la vue."
+    },
+    "section": {
+      "title": "Boîte de coupe",
+      "desc": "Une boîte dont on fait glisser les six faces limite ce qui est affiché, sélectionné et maillé. C'est ainsi que l'on tire un plan d'étage ou une coupe d'un scan ; le contenu de la boîte s'exporte séparément. La boîte suit les axes X, Y et Z du scan et ne peut pas pivoter."
+    },
+    "measure": {
+      "title": "Mesurer",
+      "desc": "<em>Distance</em> mesure une ligne passant par deux points ou plus : chaque segment, la longueur totale, la longueur horizontale et la différence de hauteur. <em>Area</em> mesure un polygone fermé dans son propre plan, de sorte qu'un mur ou un toit en pente est mesuré en vraie grandeur, avec sa surface vue d'en haut et son périmètre. Les points sont choisis parmi tous les points du scan actif, pas seulement parmi ceux qui sont à l'écran."
+    },
+    "views": {
+      "title": "Vues, notes et BCF",
+      "desc": "Une vue enregistrée conserve la caméra, la boîte de coupe, le mode de couleur et les annotations : une note sur un point choisi ou une flèche entre deux points. Toutes les vues d'un scan s'exportent en un seul fichier BCF 2.1, chacune avec ses notes, sa caméra, ses plans de coupe et une image de la scène."
+    },
+    "stations": {
+      "title": "Photos de station et déplacement à pied",
+      "desc": "Les stations de scan des fichiers E57, PCD et PTX apparaissent comme des repères dans la scène. Une station qui a des photos est représentée par une boule : cliquez dessus pour vous placer à cette station et regarder autour de vous. Parcourez le scan avec W, A, S et D, descendez et montez avec Q et E, allez plus vite avec Maj."
+    },
+    "edit": {
+      "title": "Sélectionner et modifier",
+      "desc": "Sélectionnez tous les points source contenus dans un rectangle, ou choisissez un seul point pour lire ses coordonnées et ses attributs. Supprimez la sélection, avec annulation jusqu'à huit suppressions, réduisez un nuage à un pourcentage exact de ses points, ou déplacez-le et changez son échelle. Le fichier source n'est jamais modifié : un export écrit le résultat des modifications."
+    },
+    "export": {
+      "title": "Exporter et fusionner",
+      "desc": "Exportez le nuage entier, la sélection, tout sauf la sélection, le contenu de la boîte de coupe ou un point sur N en LAS, LAZ, E57, PLY, XYZ, PTS ou CSV. Les exports LAS et LAZ conservent les enregistrements de points d'origine avec leurs attributs. Les scans LAS et LAZ visibles peuvent être fusionnés en un seul fichier. Chaque export relit la source complète : aucun point n'est perdu parce qu'il n'était pas à l'écran."
+    },
+    "mesh": {
+      "title": "Maillages",
+      "desc": "<em>Terrain mesh</em> construit une surface 2,5D à partir des points les plus bas d'une grille. <em>3D surface</em> suit aussi les murs et les surplombs ; le résultat a des trous et n'est pas étanche. Tout maillage, y compris un fichier de maillage ouvert, s'enregistre en OBJ, en PLY binaire ou en STL binaire. Le panneau des propriétés indique les sommets, les triangles, les arêtes ouvertes et le nombre de parties connexes."
+    },
+    "bag": {
+      "title": "Bâtiments 3D BAG",
+      "desc": "Téléchargez des modèles de bâtiments des Pays-Bas depuis le registre public 3D BAG pour une zone en coordonnées RD New et affichez-les avec un scan. Un téléchargement couvre au plus 2 km sur 2 km et environ 5 000 bâtiments et demande une connexion internet. C'est une extension intégrée que l'on peut désactiver."
+    },
+    "language": {
+      "title": "Néerlandais et anglais",
+      "desc": "L'interface suit la langue du système, néerlandais ou anglais, et se change dans les réglages (Settings). Il n'y a pas d'interface en français. Les messages de la barre d'état et la plupart des textes qui contiennent un nombre n'existent qu'en anglais. Cinq thèmes de couleurs sont proposés."
+    }
+  },
+  "formats": {
+    "title": "Formats de fichier",
+    "th": {
+      "format": "Format",
+      "read": "Lecture",
+      "write": "Écriture",
+      "notes": "Remarques"
+    },
+    "yes": "oui",
+    "no": "non",
+    "las": "S'ouvre à partir de l'en-tête ; les exports conservent les enregistrements de points d'origine",
+    "e57": "Les positions du scanner et les photos de station sont lues ; les photos sphériques et cylindriques ne sont pas affichées",
+    "ply": "Lit l'ASCII et le binaire little-endian ; écrit les deux",
+    "pcd": "ASCII, binaire et binaire compressé",
+    "ptx": "Avec la position du scanner de chaque scan",
+    "text": "Texte, un point par ligne",
+    "obj": "Maillage avec couleurs et normales ; les couleurs de matériau sont lues, pas les images de texture",
+    "plyMeshName": "PLY (maillage)",
+    "plyMesh": "Affiché sous forme de faces. Écrit en PLY binaire avec des coordonnées en double précision, et avec les couleurs et les normales lorsque le maillage en a",
+    "stl": "Affiché sous forme de faces. Écrit en STL binaire : uniquement des triangles, sans couleurs",
+    "off": "Affiché sous forme de faces ; peut être enregistré en OBJ, PLY ou STL",
+    "dxf": "DXF ASCII uniquement. Les entités POINT s'ouvrent comme des points, les entités 3DFACE comme des faces ; les autres entités sont ignorées",
+    "rcpName": "Fichier de projet de scan (.rcp)",
+    "rcp": "Seule la liste des scans est lue. Les copies indexées des scans (.rcs) d'un projet sont dans un format fermé et ne sont pas lues",
+    "bcf": "Vues enregistrées avec leurs notes et leurs images",
+    "png": "Image de la vue 3D, par l'API de commandes"
+  },
+  "automation": {
+    "title": "API de commandes et serveur MCP",
+    "api": "Chaque fenêtre lance un serveur de commandes sur <code>127.0.0.1</code>. Les commandes ouvrent et ferment des scans, règlent la caméra, la boîte de coupe et l'affichage, sélectionnent, suppriment, mesurent, enregistrent des vues, exportent, créent des maillages et prennent des images de la vue 3D. Le serveur n'écoute que sur l'adresse de bouclage et refuse toute commande sans le jeton.",
+    "mcp": "<code>open-pointcloud-studio --mcp</code> lance un serveur Model Context Protocol. Il propose un outil pour chaque commande de l'API, des outils qui attendent la fin des tâches longues, un outil qui renvoie la vue 3D sous forme d'image et des outils pour lister, choisir et démarrer des fenêtres.",
+    "cli": "En ligne de commande, l'application fonctionne aussi sans fenêtre : conversion vers un autre format, export des points contenus dans une boîte, fusion de scans, construction d'un index et création de maillages.",
+    "linkApi": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/API.md\" target=\"_blank\" rel=\"noopener\">API.md</a> : toutes les commandes (en anglais)",
+    "linkMcp": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/MCP.md\" target=\"_blank\" rel=\"noopener\">MCP.md</a> : tous les outils et la configuration d'un programme client (en anglais)",
+    "linkCli": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio#command-line\" target=\"_blank\" rel=\"noopener\">README</a> : les modes de la ligne de commande (en anglais)"
+  },
+  "limits": {
+    "title": "Bon à savoir",
+    "box": "La boîte de coupe ne peut pas pivoter. Un bâtiment placé de biais par rapport aux axes du scan est coupé selon cet angle.",
+    "units": "Les longueurs et les surfaces sont en mètres. Les coordonnées d'un scan sont lues comme des mètres et ne sont pas converties.",
+    "measure": "Une mesure n'est pas enregistrée avec le scan.",
+    "surface": "Une surface créée avec 3D surface a des trous et n'est pas étanche.",
+    "meshSize": "Un maillage affiché dans la scène compte au plus un million de sommets et deux millions de triangles par fichier.",
+    "index": "Pour un grand relevé, un index peut occuper plusieurs gigaoctets sur le disque."
+  },
+  "docs": {
+    "title": "Guide, changements et code source",
+    "guide": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md\" target=\"_blank\" rel=\"noopener\">Guide de l'utilisateur</a> : chaque outil en détail (en anglais).",
+    "readme": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio#readme\" target=\"_blank\" rel=\"noopener\">README</a> : l'installation selon le système, les cinq premières minutes, les vitesses mesurées et les limites (en anglais).",
+    "changelog": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/CHANGELOG.md\" target=\"_blank\" rel=\"noopener\">Journal des modifications</a> : ce qui a changé dans chaque version (en anglais).",
+    "source": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio\" target=\"_blank\" rel=\"noopener\">Code source sur GitHub</a>, avec les <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/issues\" target=\"_blank\" rel=\"noopener\">tickets</a> pour signaler un problème ou faire une demande."
+  },
+  "tech": {
+    "title": "Technique et licence",
+    "desc": "L'application de bureau est sous licence GPL-3.0-only, la bibliothèque de nuages de points sous LGPL-3.0-or-later. Chaque paquet contient les textes des licences."
+  },
   "cta": {
-    "demo": "Démo en ligne &rarr;",
-    "github": "GitHub &rarr;"
+    "download": "Télécharger",
+    "guide": "Guide",
+    "github": "GitHub"
   },
   "footer": {
     "slogan": "Construisez librement. Construisons ensemble."

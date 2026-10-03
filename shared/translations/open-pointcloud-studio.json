@@ -1,44 +1,178 @@
 {
+  "meta": {
+    "title": "Open Pointcloud Studio — OpenAEC Foundation",
+    "description": "Desktop application for viewing, measuring, editing and converting laser scans and point clouds: LAS, LAZ, E57 and more. For Windows, macOS and Linux."
+  },
   "header": {
-    "label": "Point cloud viewer",
+    "label": "View, measure and edit point clouds",
     "title": "Open <span class=\"accent\">Pointcloud</span> Studio",
-    "desc": "A cross-platform pointcloud viewer built with Tauri, React, and Three.js. Import LAS/LAZ files with octree-based LOD rendering.",
-    "downloadBtn": "Download v0.3.0",
-    "sourceBtn": "View source"
+    "desc": "A desktop application for viewing, measuring, editing and converting laser scans and other point clouds. It runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.",
+    "badge": "Beta",
+    "dlWindows": "Windows installer",
+    "dlMac": "macOS disk image",
+    "dlAppImage": "Linux AppImage",
+    "dlDeb": "Linux .deb",
+    "allFiles": "All files, ARM packages and install notes &darr;"
+  },
+  "slides": {
+    "one": "The Open Pointcloud Studio window with an overview of an office building scan of 455 million points, with the ribbon at the top, the project panel at the left and Properties at the right",
+    "two": "The same scan cut open by the section box at floor level, so the rooms are seen from above, with a distance measurement of 26.774 m",
+    "three": "The walking view: at eye level along the facade of the building, with its windows and a hedge in the point cloud",
+    "four": "Flying towards the building: the camera approaches from the air, with trees on both sides",
+    "prev": "Previous picture",
+    "next": "Next picture"
   },
   "download": {
-    "title": "Download v0.3.0"
-  },
-  "features": {
-    "heading": "Features",
-    "laslaz": {
-      "title": "LAS/LAZ import",
-      "desc": "Import industry-standard LAS and compressed LAZ pointcloud files from laser scanners and photogrammetry."
+    "title": "Download v0.8.0",
+    "intro": "Each button fetches the file straight from the release on GitHub.",
+    "win": {
+      "req": "Windows 10 and 11, x64",
+      "primary": "Installer (.exe)",
+      "zip": "Zip without an installer"
     },
-    "colors": {
-      "title": "Color modes",
-      "desc": "View point clouds colored by RGB, elevation, classification, or intensity."
+    "mac": {
+      "req": "macOS 11 and later, Apple and Intel processors",
+      "primary": "Disk image (.dmg)",
+      "tar": "The program only (.tar.gz)"
     },
-    "classification": {
-      "title": "Classification filtering",
-      "desc": "Filter points by ASPRS classification codes. Toggle visibility of ground, buildings, vegetation, and other classes."
+    "linux": {
+      "req": "x86-64; Ubuntu 22.04, Debian 12, Fedora 36 or later",
+      "appimage": "AppImage (any distribution)",
+      "deb": ".deb (Debian, Ubuntu)",
+      "tar": "The program only (.tar.gz)"
     },
-    "edl": {
-      "title": "Eye-Dome Lighting",
-      "desc": "EDL shading for enhanced depth perception and visual clarity of point cloud surfaces."
+    "arm": {
+      "tag": "experimental",
+      "req": "64-bit ARM (arm64)",
+      "tar": "The program only (.tar.gz)"
     },
-    "octree": {
-      "title": "Octree-based LOD",
-      "desc": "Level-of-detail rendering with adjustable point size and point budget for smooth navigation of large datasets."
-    },
-    "themes": {
-      "title": "Themes",
-      "desc": "Dark, Light, Blue, and High Contrast themes."
+    "note": {
+      "win": "<strong>Windows:</strong> the installer installs for the current user, without administrator rights, or for all users. If the release carries no code signature, Windows may warn about an unknown publisher: choose <em>More info</em> and then <em>Run anyway</em>.",
+      "mac": "<strong>macOS:</strong> the application is not notarised, so macOS refuses the first start; <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio#macos\" target=\"_blank\" rel=\"noopener\">the README describes how to allow it once</a>.",
+      "linux": "<strong>Linux:</strong> make the AppImage executable once with <code>chmod +x</code> and then start it. Install the .deb package with <code>sudo apt install ./open-pointcloud-studio_0.8.0_amd64.deb</code>.",
+      "arm": "<strong>64-bit ARM:</strong> experimental. These packages are built and tested on build machines with software rendering, not yet on real ARM boards or laptops.",
+      "sha": "On the <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v0.8.0\" target=\"_blank\" rel=\"noopener\">release page</a> every file has a <code>.sha256</code> file with its checksum beside it."
     }
   },
+  "features": {
+    "title": "What you can do with it",
+    "open": {
+      "title": "Opening scans",
+      "desc": "Point clouds in LAS, LAZ, E57, PLY, PCD, PTX, PTS and text formats, and meshes in OBJ, PLY, OFF and STL. Drop files on the window and open several at once: each file is a layer that you can hide, show or close."
+    },
+    "project": {
+      "title": "A whole scan project at once",
+      "desc": "Open a folder of scans, or the scan project file (.rcp) of a project: the scans that the file lists and that lie beside it are opened together. Dropping a folder or a project file on the window works too."
+    },
+    "large": {
+      "title": "Large files",
+      "desc": "LAS and LAZ files open immediately from their header. An E57 file of 512 MiB or more first shows a sample spread through the file, when its layout allows that; other files of that size show the points read so far every few seconds. A strip above the scene shows the progress and the time left, with a button to cancel."
+    },
+    "lod": {
+      "title": "Detail where you look",
+      "desc": "For clouds of one million points or more the application automatically builds an index on disk, an octree. It supplies the detail for the current camera position, up to the point budget you set: at most ten million points. The index is kept and used again when you open the file later."
+    },
+    "display": {
+      "title": "Display",
+      "desc": "Four colour modes (stored colour, elevation, intensity and classification), eye-dome lighting and an adjustable point size. The classes that occur in the clouds can be shown or hidden one by one. A view cube and seven camera directions turn the view."
+    },
+    "section": {
+      "title": "Section box",
+      "desc": "A box with six draggable faces limits what is shown, selected and meshed. This is how you cut a floor plan or a section out of a scan; the content of the box can be exported on its own. The box follows the X, Y and Z axes of the scan and cannot be rotated."
+    },
+    "measure": {
+      "title": "Measuring",
+      "desc": "<em>Distance</em> measures a line through two or more picked points: each segment, the total length, the horizontal length and the height difference. <em>Area</em> measures a closed polygon in its own plane, so a wall or a sloped roof gets its real area, and also gives the area seen from above and the perimeter. Points are picked from all points of the active scan, not only from those on screen."
+    },
+    "views": {
+      "title": "Views, notes and BCF",
+      "desc": "A saved view keeps the camera, the section box, the colour mode and its annotations: a note on a picked point or an arrow between two points. All views of a scan export as one BCF 2.1 file, each with its notes, camera, clipping planes and a picture of the scene."
+    },
+    "stations": {
+      "title": "Station photos and walking",
+      "desc": "Scanner stations of E57, PCD and PTX scans are shown as markers in the scene. A station with photos is drawn as a ball: click it to stand in that station and look around. Walk through the scan with W, A, S and D, go down and up with Q and E, and faster with Shift."
+    },
+    "edit": {
+      "title": "Selecting and editing",
+      "desc": "Select every source point inside a rectangle, or pick one point and read its coordinates and attributes. Delete the selection, with undo for up to eight deletions, thin a cloud to an exact percentage of its points, or move and scale it. The source file is never changed: an export writes the edited result."
+    },
+    "export": {
+      "title": "Exporting and merging",
+      "desc": "Export the whole cloud, the selection, everything but the selection, the content of the section box or every Nth point as LAS, LAZ, E57, PLY, XYZ, PTS or CSV. LAS and LAZ exports keep the original point records with their attributes. Visible LAS and LAZ scans can be merged into one file. Every export reads the full source, so points that are not on screen are written too."
+    },
+    "mesh": {
+      "title": "Meshes",
+      "desc": "<em>Terrain mesh</em> builds a 2.5D surface from the lowest points of a grid. <em>3D surface</em> also follows walls and overhangs; it leaves holes and is not watertight. Any mesh, including an opened mesh file, can be saved as OBJ, binary PLY or binary STL. Properties shows the vertices, the triangles, the open edges and the number of connected parts."
+    },
+    "bag": {
+      "title": "3D BAG buildings",
+      "desc": "Download building models of the Netherlands from the public 3D BAG register for an area in RD New coordinates and show them with a scan. One download covers at most 2 by 2 km and about 5,000 buildings and needs an internet connection. It is a built-in extension that can be switched off."
+    },
+    "language": {
+      "title": "Dutch and English",
+      "desc": "The interface follows the language of the system, Dutch or English, and can be changed in Settings. The messages in the status bar and most texts with a count in them are in English only. There are five colour themes."
+    }
+  },
+  "formats": {
+    "title": "File formats",
+    "th": {
+      "format": "Format",
+      "read": "Read",
+      "write": "Write",
+      "notes": "Notes"
+    },
+    "yes": "yes",
+    "no": "no",
+    "las": "Opens from the header; exports keep the original point records",
+    "e57": "Scanner positions and station photos are read; spherical and cylindrical photos are not shown",
+    "ply": "Reads ASCII and little-endian binary; writes either",
+    "pcd": "ASCII, binary and compressed binary",
+    "ptx": "With the scanner position of each scan",
+    "text": "Text with one point per line",
+    "obj": "Mesh with colours and normals; material colours are read, texture images are not",
+    "plyMeshName": "PLY as mesh",
+    "plyMesh": "Shown as faces. Written as binary PLY with double-precision coordinates, and with colours and normals where the mesh has them",
+    "stl": "Shown as faces. Written as binary STL: triangles only, without colours",
+    "off": "Shown as faces; can be saved as OBJ, PLY or STL",
+    "dxf": "ASCII DXF only. POINT entities open as points, 3DFACE entities as faces; other entities are skipped",
+    "rcpName": "Scan project file (.rcp)",
+    "rcp": "Only the list of scans is read. The indexed scan copies (.rcs) of a project are a closed format and are not read",
+    "bcf": "Saved views with notes and pictures",
+    "png": "Picture of the 3D view, through the command API"
+  },
+  "automation": {
+    "title": "Command API and MCP server",
+    "api": "Every window runs a command server on <code>127.0.0.1</code>. The commands open and close scans, set the camera, the section box and the display, select, delete, measure, save views, export, mesh and take pictures of the 3D view. The server listens on the loopback address only and refuses a command without the token.",
+    "mcp": "<code>open-pointcloud-studio --mcp</code> runs a Model Context Protocol server. It offers a tool for every command of the API, tools that wait for long tasks, a tool that returns the 3D view as an image, and tools to list, choose and start windows.",
+    "cli": "From the command line the application also works without a window: converting to another format, exporting the points inside a box, merging scans, building an index and making meshes.",
+    "linkApi": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/API.md\" target=\"_blank\" rel=\"noopener\">API.md</a>: every command",
+    "linkMcp": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/MCP.md\" target=\"_blank\" rel=\"noopener\">MCP.md</a>: every tool and the configuration for a client program",
+    "linkCli": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio#command-line\" target=\"_blank\" rel=\"noopener\">README</a>: the command-line modes"
+  },
+  "limits": {
+    "title": "Good to know",
+    "box": "The section box cannot be rotated. A building that stands at an angle to the axes of the scan is cut at that angle.",
+    "units": "Lengths and areas are in metres. The coordinates of a scan are taken as metres and are not converted.",
+    "measure": "A measurement is not saved with the scan.",
+    "surface": "A 3D surface leaves holes and is not watertight.",
+    "meshSize": "A mesh in the scene has at most one million vertices and two million triangles per file.",
+    "index": "An index can take several gigabytes on disk for a large survey."
+  },
+  "docs": {
+    "title": "Guide, changes and source",
+    "guide": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md\" target=\"_blank\" rel=\"noopener\">User guide</a>: every tool in detail.",
+    "readme": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio#readme\" target=\"_blank\" rel=\"noopener\">README</a>: installing per system, the first five minutes, and measured speed and limits.",
+    "changelog": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/CHANGELOG.md\" target=\"_blank\" rel=\"noopener\">Changelog</a>: what changed in each release.",
+    "source": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio\" target=\"_blank\" rel=\"noopener\">Source code on GitHub</a>, with the <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/issues\" target=\"_blank\" rel=\"noopener\">issues</a> for a problem or a request."
+  },
+  "tech": {
+    "title": "Technology and licence",
+    "desc": "The desktop application is licensed under GPL-3.0-only, the point-cloud library under LGPL-3.0-or-later. Every package carries the licence texts."
+  },
   "cta": {
-    "demo": "Live demo &rarr;",
-    "github": "GitHub &rarr;"
+    "download": "Download",
+    "guide": "User guide",
+    "github": "GitHub"
   },
   "footer": {
     "slogan": "Build free. Build together."

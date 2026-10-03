@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Pointcloud Studio — OpenAEC Foundation</title>
-  <meta name="description" content="Cross-platform pointcloud viewer built with Tauri, React, and Three.js. Supports LAS/LAZ files with multiple color modes and octree-based LOD.">
+  <meta name="description" content="Desktopapplicatie voor het bekijken, meten, bewerken en omzetten van laserscans en puntenwolken: LAS, LAZ, E57 en meer. Voor Windows, macOS en Linux.">
   <link rel="canonical" href="https://open-aec.com/open-pointcloud-studio/">
   <!-- hreflang:start -->
   <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-pointcloud-studio/">
@@ -20,7 +20,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenAEC Foundation">
   <meta property="og:title" content="Open Pointcloud Studio">
-  <meta property="og:description" content="Cross-platform pointcloud viewer built with Tauri, React, and Three.js. Supports LAS/LAZ files with multiple color modes and octree-based LOD.">
+  <meta property="og:description" content="Desktopapplicatie voor het bekijken, meten, bewerken en omzetten van laserscans en puntenwolken: LAS, LAZ, E57 en meer. Voor Windows, macOS en Linux.">
   <meta property="og:url" content="https://open-aec.com/open-pointcloud-studio/">
   <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
   <meta property="og:locale" content="nl_NL">
@@ -29,7 +29,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Open Pointcloud Studio">
-  <meta name="twitter:description" content="Cross-platform pointcloud viewer built with Tauri, React, and Three.js. Supports LAS/LAZ files with multiple color modes and octree-based LOD.">
+  <meta name="twitter:description" content="Desktopapplicatie voor het bekijken, meten, bewerken en omzetten van laserscans en puntenwolken: LAS, LAZ, E57 en meer. Voor Windows, macOS en Linux.">
   <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
 
   <!-- AI / LLM discoverability -->
@@ -50,14 +50,22 @@
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://open-aec.com/open-pointcloud-studio/",
     "downloadUrl": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases",
-    "description": "Open-source point cloud viewer (LAS, LAZ) with RGB/elevation/classification rendering, EDL, octree LoD.",
+    "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+    "description": "Desktop application for viewing, measuring, editing and converting laser scans and other point clouds. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.",
     "featureList": [
-      "LAS/LAZ import",
-      "Color modes",
-      "Classification filtering",
-      "Eye-Dome Lighting",
-      "Octree-based LOD",
-      "Themes"
+      "Opens LAS, LAZ, E57, PLY, PCD, PTX, PTS and text point clouds",
+      "Opens a whole scan project from its folder or its scan project file (.rcp)",
+      "Octree index on disk with level of detail for the current view",
+      "Section box with six draggable faces",
+      "Distance and area measuring",
+      "Saved views with notes, exported as BCF 2.1",
+      "Station photos and walking through the scan",
+      "Box selection, delete with undo, thin, move and scale",
+      "Export as LAS, LAZ, E57, PLY, XYZ, PTS or CSV and merging of LAS and LAZ scans",
+      "Terrain mesh and 3D surface, saved as OBJ, PLY or STL",
+      "3D BAG building models of the Netherlands",
+      "Local command API and MCP server",
+      "Interface in Dutch and English"
     ],
     "screenshot": "https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg",
     "offers": {
@@ -67,10 +75,9 @@
       "availability": "https://schema.org/InStock"
     },
     "isAccessibleForFree": true,
-    "keywords": "point cloud, LAS, LAZ, scanning, survey, CloudCompare alternative",
+    "keywords": "point cloud, laser scan, LAS, LAZ, E57, PLY, PCD, PTX, section box, measuring, BCF, mesh, MCP server",
     "sameAs": [
-      "https://github.com/OpenAEC-Foundation/open-pointcloud-studio",
-      "https://open-pointcloud-studio.open-aec.com/"
+      "https://github.com/OpenAEC-Foundation/open-pointcloud-studio"
     ],
     "publisher": {
       "@type": "Organization",
@@ -80,18 +87,130 @@
   }
   </script>
   <style>
-    .media-slider { max-width: 900px; margin: 0 auto var(--sp-8); position: relative; }
-    .slider-container { position: relative; overflow: hidden; border-radius: 12px; background: #2A2A32; }
+    .page-header {
+      background: var(--night-build);
+      padding: var(--sp-16) var(--sp-6) var(--sp-10);
+      text-align: center;
+      border-bottom: 3px solid transparent;
+      border-image: var(--gradient-accent) 1;
+    }
+    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
+    .page-header h1 { font-family: var(--font-heading); font-weight: 700; font-size: 2.5rem; color: white; letter-spacing: -0.02em; margin-bottom: var(--sp-4); }
+    .page-header h1 .accent { color: var(--amber); }
+    .page-header .lead { font-size: 1.125rem; color: var(--scaffold-gray); max-width: 720px; margin: 0 auto; line-height: 1.6; }
+    .status-badge {
+      display: inline-flex; align-items: center;
+      font-family: var(--font-code); font-size: 0.7rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 4px 14px; border-radius: var(--radius-full);
+      background: #FED7AA; color: #9A3412;
+    }
+    .header-meta { display: flex; gap: var(--sp-3); justify-content: center; align-items: center; flex-wrap: wrap; margin-top: var(--sp-4); }
+    .version-info { font-family: var(--font-code); font-size: 0.7rem; color: var(--scaffold-gray); }
+    .hero-downloads { display: flex; gap: var(--sp-3); justify-content: center; flex-wrap: wrap; margin-top: var(--sp-6); }
+    .hero-more { display: inline-block; margin-top: var(--sp-4); font-size: 0.8rem; color: var(--warm-gold); }
+    .hero-more:hover { color: white; }
+
+    .content { max-width: 900px; margin: 0 auto; }
+    .content h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; color: var(--deep-forge); margin-bottom: var(--sp-4); }
+    .content p { font-size: 1rem; color: #57534E; line-height: 1.7; margin-bottom: var(--sp-4); }
+    .content-block + .content-block { margin-top: var(--sp-12); }
+    .content ul.plain { margin: 0 0 var(--sp-4); padding-left: var(--sp-5); color: #57534E; line-height: 1.7; }
+    .content ul.plain li { margin-bottom: var(--sp-2); }
+    .content p a, .content ul.plain a { color: var(--signal-orange); }
+    .content code { font-family: var(--font-code); font-size: 0.85em; }
+
+    /* Slider */
+    .media-slider { max-width: 1100px; margin: 0 auto var(--sp-10); position: relative; }
+    .slider-container { position: relative; overflow: hidden; border-radius: var(--radius-lg); background: var(--night-build); box-shadow: var(--shadow-lg); }
     .slider-track { display: flex; transition: transform 0.4s ease; }
     .slider-slide { min-width: 100%; }
-    .slider-slide img { width: 100%; display: block; border-radius: 12px; }
-    .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.25rem; display: flex; align-items: center; justify-content: center; z-index: 2; }
+    .slider-slide img { width: 100%; height: auto; display: block; }
+    .slider-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.5); color: white; border: none;
+      width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
+      font-size: 1.5rem; display: flex; align-items: center; justify-content: center;
+      z-index: 2;
+    }
     .slider-btn:hover { background: rgba(0,0,0,0.7); }
     .slider-prev { left: 12px; }
     .slider-next { right: 12px; }
     .slider-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0; }
-    .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: #D6D3D1; border: none; cursor: pointer; }
-    .slider-dot.active { background: #D97706; }
+    .slider-dot { width: 10px; height: 10px; border-radius: 50%; border: none; cursor: pointer; background: #D6D3D1; }
+    .slider-dot.active { background: var(--amber); }
+
+    /* Download block: the shared .download-section, with room for several links per system */
+    .download-section { margin: 0 0 var(--sp-4); }
+    .download-section .download-intro { color: var(--scaffold-gray); font-size: 0.9rem; margin-bottom: var(--sp-6); }
+    .download-item { display: flex; flex-direction: column; align-items: stretch; }
+    .download-item .btn { justify-content: center; margin-bottom: var(--sp-2); }
+    .download-item .download-alt { font-size: 0.75rem; color: var(--scaffold-gray); margin-top: auto; padding-top: var(--sp-2); }
+    .download-item .download-alt a { color: var(--warm-gold); }
+    .exp-tag {
+      display: inline-block; font-family: var(--font-code); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 2px 8px; border-radius: var(--radius-full); background: #FEF3C7; color: #92400E; margin-left: 6px; vertical-align: middle;
+    }
+    .download-notes { list-style: none; padding: 0; margin: var(--sp-6) 0 0; }
+    .download-notes li { color: var(--scaffold-gray); font-size: 0.85rem; line-height: 1.6; padding: var(--sp-1) 0; }
+    .download-notes strong { color: var(--blueprint-white); }
+    .download-notes a { color: var(--warm-gold); }
+    .download-notes code { font-family: var(--font-code); font-size: 0.85em; background: rgba(255,255,255,0.08); padding: 1px 5px; border-radius: var(--radius-sm); overflow-wrap: anywhere; }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: var(--sp-6);
+      margin: var(--sp-8) 0 0;
+    }
+    .feature-card {
+      background: white; border: 1px solid #E7E5E4;
+      border-radius: var(--radius-lg); padding: var(--sp-6);
+      box-shadow: var(--shadow-sm);
+    }
+    .feature-card h3 { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--deep-forge); margin-bottom: var(--sp-2); }
+    .feature-card p { font-size: 0.875rem; color: #57534E; line-height: 1.6; margin-bottom: 0; }
+
+    /* Formats table, inside a scroll container so a narrow screen scrolls the table and not the page */
+    .table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+    .formats-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; background: white; }
+    .formats-table th {
+      text-align: left; font-family: var(--font-heading); font-weight: 600; color: var(--deep-forge);
+      padding: var(--sp-3) var(--sp-4); border-bottom: 2px solid var(--amber); white-space: nowrap;
+    }
+    .formats-table td { padding: var(--sp-3) var(--sp-4); border-bottom: 1px solid #E7E5E4; color: #57534E; vertical-align: top; line-height: 1.5; }
+    .formats-table td:first-child { font-weight: 600; color: var(--deep-forge); white-space: nowrap; }
+    .formats-table td:nth-child(2), .formats-table td:nth-child(3) { white-space: nowrap; }
+
+    .explainer {
+      background: var(--night-build);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-8);
+    }
+    .explainer h2 { color: var(--amber); font-size: 1.25rem; }
+    .explainer p { color: var(--scaffold-gray); font-size: 0.9rem; }
+    .explainer code { background: rgba(255,255,255,0.08); padding: 1px 5px; border-radius: var(--radius-sm); color: var(--blueprint-white); }
+    .explainer ul.plain { color: var(--scaffold-gray); font-size: 0.9rem; margin-bottom: 0; }
+    .explainer p a, .explainer ul.plain a { color: var(--warm-gold); }
+
+    .tech-stack { display: flex; gap: var(--sp-3); flex-wrap: wrap; margin: var(--sp-4) 0; }
+    .tech-tag {
+      font-family: var(--font-code); font-size: 0.75rem; font-weight: 500;
+      padding: 4px 12px; border-radius: var(--radius-full);
+      background: var(--concrete); color: var(--deep-forge);
+    }
+
+    @media (min-width: 769px) {
+      .download-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 768px) {
+      .page-header { padding: var(--sp-10) var(--sp-4) var(--sp-8); }
+      .page-header .lead { font-size: 1rem; }
+      .hero-downloads .btn { flex: 1 1 100%; justify-content: center; }
+      .features-grid { grid-template-columns: 1fr; }
+      .explainer { padding: var(--sp-6); }
+      .formats-table td:first-child { white-space: normal; }
+    }
   </style>
 
   <!-- schema:start -->
@@ -189,79 +308,251 @@
 <!-- nav:end --></div>
 <script src="/shared/nav.js?v=20260728"></script>
 
-  <section class="hero">
-    <span class="section-label" data-i18n="header.label">Puntenwolk-viewer</span>
+  <header class="page-header">
+    <span class="section-label" data-i18n="header.label">Puntenwolken bekijken, meten en bewerken</span>
     <h1 data-i18n="header.title">Open <span class="accent">Pointcloud</span> Studio</h1>
-    <p class="tagline" data-i18n="header.desc">Een cross-platform puntenwolk-viewer, gebouwd met Tauri, React en Three.js. Importeer LAS/LAZ-bestanden met octree-gebaseerde LOD-rendering.</p>
-    <div class="btn-group">
-      <a href="#download" class="btn btn-primary btn-lg" data-i18n="header.downloadBtn">Download v0.3.0</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" class="btn btn-ghost btn-lg" data-i18n="header.sourceBtn">Bekijk de broncode</a>
+    <p class="lead" data-i18n="header.desc">Een desktopapplicatie voor het bekijken, meten, bewerken en omzetten van laserscans en andere puntenwolken. Draait op Windows, macOS en Linux, is geschreven in Rust en heeft geen browser of webview nodig.</p>
+    <div class="header-meta">
+      <span class="status-badge" data-i18n="header.badge">Beta</span>
+      <span class="version-info">v0.8.0 &middot; Windows &middot; macOS &middot; Linux</span>
     </div>
-  </section>
+    <div class="hero-downloads">
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" class="btn btn-primary" data-i18n="header.dlWindows">Windows-installer</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" class="btn btn-primary" data-i18n="header.dlMac">macOS-schijfkopie</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" class="btn btn-primary" data-i18n="header.dlAppImage">Linux AppImage</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.deb" class="btn btn-primary" data-i18n="header.dlDeb">Linux .deb</a>
+    </div>
+    <a href="#download" class="hero-more" data-i18n="header.allFiles">Alle bestanden, ARM-pakketten en uitleg bij het installeren &darr;</a>
+  </header>
+
+  <section class="section" style="background: var(--blueprint-white);">
 
     <div class="media-slider">
       <div class="slider-container">
         <div class="slider-track" id="sliderTrack">
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio.jpeg" alt="Open Pointcloud Studio screenshot"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio.jpeg" width="1920" height="1047" alt="Het venster van Open Pointcloud Studio met een scan van een kantoorgebouw van 455 miljoen punten in overzicht, met het lint boven, het projectpaneel links en Eigenschappen rechts" data-i18n="slides.one" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-2.jpg" width="1920" height="1046" loading="lazy" alt="Dezelfde scan opengesneden met de snedebox op vloerniveau, zodat de kamers van bovenaf te zien zijn, met een afstandsmeting van 26,774 m" data-i18n="slides.two" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-3.jpg" width="1920" height="1080" loading="lazy" alt="De loopweergave: op ooghoogte langs de gevel van het gebouw, met de ramen en een haag in de puntenwolk" data-i18n="slides.three" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-4.jpg" width="1920" height="1080" loading="lazy" alt="Vliegend naar het gebouw toe: de camera nadert vanuit de lucht, met bomen aan beide kanten" data-i18n="slides.four" data-i18n-attr="alt"></div>
         </div>
-        <button class="slider-btn slider-prev" onclick="slideMove(-1)">&lsaquo;</button>
-        <button class="slider-btn slider-next" onclick="slideMove(1)">&rsaquo;</button>
+        <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Vorige afbeelding" data-i18n="slides.prev" data-i18n-attr="aria-label">&lsaquo;</button>
+        <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Volgende afbeelding" data-i18n="slides.next" data-i18n-attr="aria-label">&rsaquo;</button>
       </div>
       <div class="slider-dots" id="sliderDots"></div>
     </div>
 
-  <section class="section" id="download"><div class="container">
-    <div class="download-section">
-      <h3 data-i18n="download.title">Download v0.3.0</h3>
-      <div class="download-grid">
-        <div class="download-item"><div class="os">Windows (.exe)</div><div class="size">2.8 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.3.0/Open.Pointcloud.Studio_0.3.0_x64-setup.exe" class="btn btn-primary btn-sm">Download</a></div>
-        <div class="download-item"><div class="os">Windows (.msi)</div><div class="size">3.7 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.3.0/Open.Pointcloud.Studio_0.3.0_x64_en-US.msi" class="btn btn-primary btn-sm">Download</a></div>
-        <div class="download-item"><div class="os">macOS (Apple Silicon)</div><div class="size">3.4 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.3.0/Open.Pointcloud.Studio_0.3.0_aarch64.dmg" class="btn btn-primary btn-sm">Download</a></div>
-        <div class="download-item"><div class="os">Linux (deb)</div><div class="size">3.7 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.3.0/Open.Pointcloud.Studio_0.3.0_amd64.deb" class="btn btn-primary btn-sm">Download</a></div>
-        <div class="download-item"><div class="os">Linux (AppImage)</div><div class="size">77.6 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.3.0/Open.Pointcloud.Studio_0.3.0_amd64.AppImage" class="btn btn-primary btn-sm">Download</a></div>
+    <div class="content">
+      <div class="download-section" id="download">
+        <h3 data-i18n="download.title">Download v0.8.0</h3>
+        <p class="download-intro" data-i18n="download.intro">Elke knop haalt het bestand rechtstreeks van de release op GitHub.</p>
+        <div class="download-grid">
+          <div class="download-item">
+            <div class="os">Windows</div>
+            <div class="size" data-i18n="download.win.req">Windows 10 en 11, x64</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" class="btn btn-primary btn-sm" data-i18n="download.win.primary">Installer (.exe)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_windows-x64.zip" data-i18n="download.win.zip">Zip zonder installer</a></div>
+          </div>
+          <div class="download-item">
+            <div class="os">macOS</div>
+            <div class="size" data-i18n="download.mac.req">macOS 11 en nieuwer, Apple- en Intel-processors</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" class="btn btn-primary btn-sm" data-i18n="download.mac.primary">Schijfkopie (.dmg)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.tar.gz" data-i18n="download.mac.tar">Alleen het programma (.tar.gz)</a></div>
+          </div>
+          <div class="download-item">
+            <div class="os">Linux</div>
+            <div class="size" data-i18n="download.linux.req">x86-64; Ubuntu 22.04, Debian 12, Fedora 36 of nieuwer</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" class="btn btn-primary btn-sm" data-i18n="download.linux.appimage">AppImage (elke distributie)</a>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.deb" class="btn btn-primary btn-sm" data-i18n="download.linux.deb">.deb (Debian, Ubuntu)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-amd64.tar.gz" data-i18n="download.linux.tar">Alleen het programma (.tar.gz)</a></div>
+          </div>
+          <div class="download-item">
+            <div class="os">Linux ARM <span class="exp-tag" data-i18n="download.arm.tag">experimenteel</span></div>
+            <div class="size" data-i18n="download.arm.req">64-bit ARM (arm64)</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.AppImage" class="btn btn-ghost btn-sm">AppImage</a>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.deb" class="btn btn-ghost btn-sm">.deb</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-arm64.tar.gz" data-i18n="download.arm.tar">Alleen het programma (.tar.gz)</a></div>
+          </div>
+        </div>
+        <ul class="download-notes">
+          <li data-i18n="download.note.win"><strong>Windows:</strong> de installer installeert voor de huidige gebruiker, zonder beheerdersrechten, of voor alle gebruikers. Heeft de release geen code-ondertekening, dan kan Windows waarschuwen voor een onbekende uitgever: kies dan <em>Meer informatie</em> en <em>Toch uitvoeren</em>.</li>
+          <li data-i18n="download.note.mac"><strong>macOS:</strong> de applicatie is niet genotariseerd, dus macOS weigert de eerste start; <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#macos" target="_blank" rel="noopener">de README beschrijft hoe je die één keer toestaat</a> (Engels).</li>
+          <li data-i18n="download.note.linux"><strong>Linux:</strong> maak de AppImage één keer uitvoerbaar met <code>chmod +x</code> en start hem daarna. Het .deb-pakket installeer je met <code>sudo apt install ./open-pointcloud-studio_0.8.0_amd64.deb</code>.</li>
+          <li data-i18n="download.note.arm"><strong>64-bit ARM:</strong> experimenteel. Deze pakketten zijn gebouwd en getest op buildservers met softwarerendering, nog niet op echte ARM-hardware.</li>
+          <li data-i18n="download.note.sha">Bij elk bestand staat op de <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v0.8.0" target="_blank" rel="noopener">releasepagina</a> een <code>.sha256</code>-bestand met de controlesom.</li>
+        </ul>
       </div>
     </div>
-  </div></section>
+  </section>
 
-  <section class="section section-alt"><div class="container">
-    <h2 data-i18n="features.heading">Functies</h2>
-    <div class="features" style="margin-top:var(--sp-8)">
-      <div class="feature">
-        <h4 data-i18n="features.laslaz.title">LAS/LAZ-import</h4>
-        <p data-i18n="features.laslaz.desc">Importeer LAS- en gecomprimeerde LAZ-puntenwolken uit laserscanners en fotogrammetrie — de standaard in de sector.</p>
-      </div>
-      <div class="feature">
-        <h4 data-i18n="features.colors.title">Kleurmodi</h4>
-        <p data-i18n="features.colors.desc">Bekijk puntenwolken gekleurd op RGB, hoogte, classificatie of intensiteit.</p>
-      </div>
-      <div class="feature">
-        <h4 data-i18n="features.classification.title">Filteren op classificatie</h4>
-        <p data-i18n="features.classification.desc">Filter punten op ASPRS-classificatiecodes. Zet maaiveld, gebouwen, vegetatie en andere klassen aan of uit.</p>
-      </div>
-      <div class="feature">
-        <h4 data-i18n="features.edl.title">Eye-Dome Lighting</h4>
-        <p data-i18n="features.edl.desc">EDL-shading voor meer dieptewerking en een scherper beeld van de oppervlakken in de puntenwolk.</p>
-      </div>
-      <div class="feature">
-        <h4 data-i18n="features.octree.title">Octree-gebaseerde LOD</h4>
-        <p data-i18n="features.octree.desc">Level-of-detail-rendering met instelbare puntgrootte en puntbudget, voor soepel navigeren door grote datasets.</p>
-      </div>
-      <div class="feature">
-        <h4 data-i18n="features.themes.title">Thema's</h4>
-        <p data-i18n="features.themes.desc">Thema's Dark, Light, Blue en High Contrast.</p>
+  <section class="section section-alt">
+    <div class="content">
+      <h2 data-i18n="features.title">Wat je ermee doet</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <h3 data-i18n="features.open.title">Scans openen</h3>
+          <p data-i18n="features.open.desc">Puntenwolken in LAS, LAZ, E57, PLY, PCD, PTX, PTS en tekstformaten, en meshes in OBJ, PLY, OFF en STL. Sleep bestanden naar het venster en open er meerdere tegelijk: elk bestand is een laag die je verbergt, toont of sluit.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.project.title">Een heel scanproject in één keer</h3>
+          <p data-i18n="features.project.desc">Open een map met scans, of het scanprojectbestand (.rcp) van een project: de scans die het noemt en die ernaast staan, gaan samen open. Slepen naar het venster werkt ook voor een map of een projectbestand.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.large.title">Grote bestanden</h3>
+          <p data-i18n="features.large.desc">LAS en LAZ openen meteen vanuit hun header. Een E57-bestand van 512 MiB of meer toont eerst een steekproef verspreid door het bestand, als de opbouw van het bestand dat toelaat; andere bestanden van die omvang tonen om de paar seconden de punten die al gelezen zijn. Een balk boven de scène toont de voortgang en de resterende tijd, met een knop om te annuleren.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.lod.title">Detail waar je kijkt</h3>
+          <p data-i18n="features.lod.desc">Voor wolken vanaf een miljoen punten bouwt de applicatie automatisch een index op schijf, een octree. Die levert het detail voor het huidige camerastandpunt, tot het puntbudget dat je instelt: hoogstens tien miljoen punten. De index blijft bewaard en wordt opnieuw gebruikt als je het bestand later weer opent.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.display.title">Weergave</h3>
+          <p data-i18n="features.display.desc">Vier kleurmodi (opgeslagen kleur, hoogte, intensiteit en classificatie), eye-dome-belichting en een instelbare puntgrootte. De klassen die in de wolken voorkomen zet je een voor een aan of uit. Een viewcube en zeven camerarichtingen draaien het beeld.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.section.title">Snedebox</h3>
+          <p data-i18n="features.section.desc">Een box met zes versleepbare vlakken begrenst wat wordt getoond, geselecteerd en tot mesh verwerkt. Zo snijd je een plattegrond of een doorsnede uit een scan; de inhoud van de box exporteer je apart. De box volgt de X-, Y- en Z-as van de scan en kan niet worden gedraaid.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.measure.title">Meten</h3>
+          <p data-i18n="features.measure.desc"><em>Afstand</em> meet een lijn door twee of meer gekozen punten: elk segment, de totale lengte, de horizontale lengte en het hoogteverschil. <em>Oppervlakte</em> meet een gesloten veelhoek in zijn eigen vlak, zodat ook een wand of een schuin dak klopt, met de oppervlakte van bovenaf gezien en de omtrek. Punten kies je uit alle punten van de actieve scan, niet alleen uit wat op het scherm staat.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.views.title">Views, notities en BCF</h3>
+          <p data-i18n="features.views.desc">Een opgeslagen view bewaart de camera, de snedebox, de kleurmodus en de aantekeningen: een notitie op een gekozen punt of een pijl tussen twee punten. Alle views van een scan exporteer je als één BCF 2.1-bestand, elk met zijn notities, camera, snijvlakken en een afbeelding van de scène.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.stations.title">Stationsfoto's en lopen</h3>
+          <p data-i18n="features.stations.desc">Scannerstations van E57-, PCD- en PTX-scans staan als markering in de scène. Een station met foto's is een bol: klik erop om op dat station te gaan staan en rond te kijken. Loop door de scan met W, A, S en D, omlaag en omhoog met Q en E, sneller met Shift.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.edit.title">Selecteren en bewerken</h3>
+          <p data-i18n="features.edit.desc">Selecteer met een rechthoek alle bronpunten die erin vallen, of kies één punt en lees de coördinaten en attributen af. Verwijder de selectie, met ongedaan maken tot acht stappen terug, dun een wolk uit tot een exact percentage, of verplaats en schaal hem. Het bronbestand verandert nooit: een export schrijft het bewerkte resultaat.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.export.title">Exporteren en samenvoegen</h3>
+          <p data-i18n="features.export.desc">Exporteer de hele wolk, de selectie, alles behalve de selectie, de inhoud van de snedebox of elk N-de punt als LAS, LAZ, E57, PLY, XYZ, PTS of CSV. LAS- en LAZ-exports behouden de oorspronkelijke puntrecords met hun attributen. Zichtbare LAS- en LAZ-scans voeg je samen tot één bestand. Elke export leest de volledige bron, dus ook de punten die niet op het scherm staan komen in het bestand.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.mesh.title">Meshes</h3>
+          <p data-i18n="features.mesh.desc"><em>Terreinmesh</em> maakt een 2,5D-oppervlak van de laagste punten in een raster. <em>3D-oppervlak</em> volgt ook wanden en overstekken; het resultaat heeft gaten en is niet waterdicht. Elke mesh, ook een geopend meshbestand, sla je op als OBJ, binaire PLY of binaire STL. Eigenschappen toont de hoekpunten, de driehoeken, de open randen en het aantal samenhangende delen.</p>
+        </div>
+        <!-- ============================================================
+             RESERVED FOR 0.8.0 FEATURES STILL IN PROGRESS — FEATURE CARDS
+             Add here, as one .feature-card each, the tools that ship in 0.8.0
+             and are not on this page yet. Describe only what the README of the
+             application describes.
+             Per card: a heading and a paragraph with the keys features.NAME.title
+             and features.NAME.desc, the Dutch text in this file and the
+             same two keys in shared/translations/open-pointcloud-studio.json,
+             .fr.json, .tr.json and .es.json. Then run
+             node scripts/build-i18n-pages.js. The matching format rows go at
+             the second RESERVED marker, in the formats table below.
+             ============================================================ -->
+        <div class="feature-card">
+          <h3 data-i18n="features.bag.title">3D BAG-gebouwen</h3>
+          <p data-i18n="features.bag.desc">Download gebouwmodellen van Nederland uit het openbare 3D BAG-register voor een gebied in RD-coördinaten en toon ze bij een scan. Eén download beslaat hoogstens 2 bij 2 km en ongeveer 5.000 gebouwen en heeft een internetverbinding nodig. Het is een ingebouwde extensie die je kunt uitschakelen.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.language.title">Nederlands en Engels</h3>
+          <p data-i18n="features.language.desc">De interface volgt de taal van het systeem, Nederlands of Engels, en is in Instellingen te wisselen. De meldingen in de statusbalk en de meeste teksten met een aantal erin zijn alleen Engels. Er zijn vijf kleurthema's.</p>
+        </div>
       </div>
     </div>
-  </div></section>
+  </section>
 
-  <section style="background: var(--concrete); padding: 3rem 1.5rem; text-align: center;">
-    <div style="max-width: 900px; margin: 0 auto; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-      <a href="https://open-pointcloud-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-i18n="cta.demo">Live demo &rarr;</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-i18n="cta.github">GitHub &rarr;</a>
+  <section class="section" style="background: var(--blueprint-white);">
+    <div class="content">
+
+      <div class="content-block">
+        <h2 data-i18n="formats.title">Bestandsformaten</h2>
+        <div class="table-wrapper">
+          <table class="formats-table">
+            <thead>
+              <tr>
+                <th data-i18n="formats.th.format">Formaat</th>
+                <th data-i18n="formats.th.read">Lezen</th>
+                <th data-i18n="formats.th.write">Schrijven</th>
+                <th data-i18n="formats.th.notes">Opmerking</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>LAS, LAZ</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.las">Opent vanuit de header; exports behouden de oorspronkelijke puntrecords</td></tr>
+              <tr><td>E57</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.e57">Scannerposities en stationsfoto's worden gelezen; sferische en cilindrische foto's worden niet getoond</td></tr>
+              <tr><td>PLY</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.ply">Leest ASCII en little-endian binair; schrijft beide</td></tr>
+              <tr><td>PCD</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.pcd">ASCII, binair en gecomprimeerd binair</td></tr>
+              <tr><td>PTX</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.ptx">Met de scannerpositie van elke scan</td></tr>
+              <tr><td>PTS</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td></td></tr>
+              <tr><td>XYZ, ASC, TXT, CSV</td><td data-i18n="formats.yes">ja</td><td>XYZ, CSV</td><td data-i18n="formats.text">Tekst met één punt per regel</td></tr>
+              <tr><td>OBJ</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.obj">Mesh met kleuren en normalen; materiaalkleuren worden gelezen, textuurafbeeldingen niet</td></tr>
+              <tr><td data-i18n="formats.plyMeshName">PLY als mesh</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.plyMesh">Getoond als vlakken. Geschreven als binaire PLY met coördinaten in dubbele precisie, en met kleuren en normalen als de mesh die heeft</td></tr>
+              <tr><td>STL</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.stl">Getoond als vlakken. Geschreven als binaire STL: alleen driehoeken, zonder kleuren</td></tr>
+              <tr><td>OFF</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.off">Getoond als vlakken; op te slaan als OBJ, PLY of STL</td></tr>
+              <tr><td>DXF</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.dxf">Alleen ASCII-DXF. POINT-entiteiten openen als punten, 3DFACE-entiteiten als vlakken; andere entiteiten worden overgeslagen</td></tr>
+              <!-- ============================================================
+                   RESERVED FOR 0.8.0 FEATURES STILL IN PROGRESS — FORMAT ROWS
+                   Add or change the rows of the formats those features read
+                   or write here (and adjust the DXF row above if DXF gets a
+                   writer). Cells use formats.yes / formats.no; a note gets a
+                   new key formats.NAME in this file and in the four
+                   translation files.
+                   ============================================================ -->
+              <tr><td data-i18n="formats.rcpName">Scanprojectbestand (.rcp)</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.rcp">Alleen de lijst met scans wordt gelezen. De geïndexeerde scankopieën (.rcs) van een project zijn een gesloten formaat en worden niet gelezen</td></tr>
+              <tr><td>BCF 2.1 (.bcf)</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.bcf">Opgeslagen views met notities en afbeeldingen</td></tr>
+              <tr><td>PNG</td><td data-i18n="formats.no">nee</td><td data-i18n="formats.yes">ja</td><td data-i18n="formats.png">Afbeelding van het 3D-beeld, via de commando-API</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="content-block explainer">
+        <h2 data-i18n="automation.title">Commando-API en MCP-server</h2>
+        <p data-i18n="automation.api">Elk venster start een commandoserver op <code>127.0.0.1</code>. De commando's openen en sluiten scans, stellen de camera, de snedebox en de weergave in, selecteren, verwijderen, meten, bewaren views, exporteren, maken meshes en maken afbeeldingen van het 3D-beeld. De server luistert alleen op het loopback-adres en weigert een commando zonder token.</p>
+        <p data-i18n="automation.mcp"><code>open-pointcloud-studio --mcp</code> start een server voor het Model Context Protocol. Die biedt een tool voor elk commando van de API, tools die op lange taken wachten, een tool die het 3D-beeld als afbeelding teruggeeft en tools om vensters op te sommen, te kiezen en te starten.</p>
+        <p data-i18n="automation.cli">Vanaf de opdrachtregel werkt de applicatie ook zonder venster: omzetten naar een ander formaat, de punten binnen een box exporteren, scans samenvoegen, een index bouwen en meshes maken.</p>
+        <ul class="plain">
+          <li data-i18n="automation.linkApi"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/API.md" target="_blank" rel="noopener">API.md</a>: alle commando's (Engels)</li>
+          <li data-i18n="automation.linkMcp"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/MCP.md" target="_blank" rel="noopener">MCP.md</a>: alle tools en de configuratie voor een clientprogramma (Engels)</li>
+          <li data-i18n="automation.linkCli"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#command-line" target="_blank" rel="noopener">README</a>: de modi van de opdrachtregel (Engels)</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="limits.title">Goed om te weten</h2>
+        <ul class="plain">
+          <li data-i18n="limits.box">De snedebox kan niet worden gedraaid. Een gebouw dat schuin op de assen van de scan staat, wordt onder die hoek gesneden.</li>
+          <li data-i18n="limits.units">Lengtes en oppervlakten staan in meters. De coördinaten van een scan worden als meters gelezen en niet omgerekend.</li>
+          <li data-i18n="limits.measure">Een meting wordt niet met de scan opgeslagen.</li>
+          <li data-i18n="limits.surface">Een 3D-oppervlak heeft gaten en is niet waterdicht.</li>
+          <li data-i18n="limits.meshSize">Een mesh in de scène heeft hoogstens een miljoen hoekpunten en twee miljoen driehoeken per bestand.</li>
+          <li data-i18n="limits.index">Een index kan voor een grote opname meerdere gigabytes op schijf innemen.</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="docs.title">Handleiding, wijzigingen en broncode</h2>
+        <ul class="plain">
+          <li data-i18n="docs.guide"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md" target="_blank" rel="noopener">Gebruikershandleiding</a>: elk gereedschap in detail (Engels).</li>
+          <li data-i18n="docs.readme"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#readme" target="_blank" rel="noopener">README</a>: installeren per systeem, de eerste vijf minuten, en gemeten snelheden en grenzen (Engels).</li>
+          <li data-i18n="docs.changelog"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a>: wat er per release is veranderd (Engels).</li>
+          <li data-i18n="docs.source"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" target="_blank" rel="noopener">Broncode op GitHub</a>, met de <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/issues" target="_blank" rel="noopener">issues</a> voor een probleem of een wens.</li>
+        </ul>
+      </div>
+
+      <div class="content-block">
+        <h2 data-i18n="tech.title">Techniek en licentie</h2>
+        <div class="tech-stack">
+          <span class="tech-tag">Rust</span>
+          <span class="tech-tag">iced</span>
+          <span class="tech-tag">wgpu</span>
+        </div>
+        <p data-i18n="tech.desc">De desktopapplicatie valt onder GPL-3.0-only, de puntenwolkbibliotheek onder LGPL-3.0-or-later. Elk pakket bevat de licentieteksten.</p>
+        <div class="btn-group" style="justify-content: flex-start;">
+          <a href="#download" class="btn btn-primary" data-i18n="cta.download">Download</a>
+          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md" target="_blank" rel="noopener" class="btn btn-secondary" data-i18n="cta.guide">Handleiding</a>
+          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" target="_blank" rel="noopener" class="btn btn-secondary" data-i18n="cta.github">GitHub</a>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -269,7 +560,7 @@
   <div data-release-notes="open-pointcloud-studio"></div>
   <script src="/shared/release-notes.js?v=20260728"></script>
 
-  <footer class="footer"><div class="footer-container">
+  <footer class="footer page-footer"><div class="footer-container">
     <a href="/" class="nav-brand">Open<span class="accent">AEC</span></a>
     <span data-i18n="footer.slogan">Build free. Build together.</span>
     <a href="https://github.com/OpenAEC-Foundation">GitHub</a>
@@ -285,6 +576,7 @@
       for(let i=0;i<slides;i++){
         const d = document.createElement('button');
         d.className = 'slider-dot' + (i===0?' active':'');
+        d.setAttribute('aria-label', String(i+1));
         d.onclick = ()=>slideTo(i);
         dots.appendChild(d);
       }
