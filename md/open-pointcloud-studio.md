@@ -6,19 +6,19 @@
 **License:** GPL-3.0-only (application), LGPL-3.0-or-later (point-cloud library)
 **Platforms:** Windows, macOS, Linux
 **Category:** Reality Capture
-**Current version:** v0.7.0 (2026-10-03)
+**Current version:** v0.8.0 (2026-10-03)
 **Tool ID:** `open-pointcloud-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-pointcloud-studio`
 
 ## Live stats
 
-- Stars: **4**
-- Commits: **166**
-- Forks: **1**
+- Stars: **5**
+- Commits: **189**
+- Forks: **2**
 - Open issues: **12**
-- Releases: **8**
-- Total downloads: **296**
-- Downloads by platform: Windows (163), Linux (AppImage) (40), macOS (34), Windows (MSI) (33), Linux (deb) (25), Archive (1)
+- Releases: **9**
+- Total downloads: **360**
+- Downloads by platform: Windows (188), Linux (AppImage) (46), macOS (37), Windows (MSI) (33), Linux (deb) (29), Other (17), Archive (10)
 
 ## Key features
 
@@ -62,13 +62,15 @@ Opening and inspecting laser scans and whole scan projects, cutting floor plans 
 
 - Product page: https://open-aec.com/open-pointcloud-studio/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-pointcloud-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v0.7.0
+- Latest stable release: https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v0.8.0
 
 ## Direct downloads (most popular)
 
-- [Windows · open-pointcloud-studio-v0.4.2-windows.zip](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.4.2/open-pointcloud-studio-v0.4.2-windows.zip) (v0.4.2 — 9.2 MB)
 - [Windows · open-pointcloud-studio-v0.7.0-windows-setup.exe](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe) (v0.7.0 — 8.7 MB)
-- [Windows · open-pointcloud-studio-v0.6.0-windows-setup.exe](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.6.0/open-pointcloud-studio-v0.6.0-windows-setup.exe) (v0.6.0 — 8.5 MB)
+- [Windows · open-pointcloud-studio_0.8.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe) (v0.8.0 — 10.3 MB)
+- [Linux (AppImage) · open-pointcloud-studio_0.8.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage) (v0.8.0 — 15.7 MB)
+- [Windows · open-pointcloud-studio_0.8.0_windows-x64.zip](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_windows-x64.zip) (v0.8.0 — 12.2 MB)
+- [Windows · open-pointcloud-studio-v0.4.2-windows.zip](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.4.2/open-pointcloud-studio-v0.4.2-windows.zip) (v0.4.2 — 9.2 MB)
 
 ---
 
