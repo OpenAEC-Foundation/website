@@ -251,7 +251,7 @@ const TOOLS = [
     license: 'GPL-3.0-only (application), LGPL-3.0-or-later (point-cloud library)',
     platforms: ['Windows', 'macOS', 'Linux'],
     techStack: ['Rust', 'iced', 'wgpu'],
-    description: 'Desktop application for viewing, measuring, editing and converting laser scans and other point clouds. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.',
+    description: 'Desktop application for viewing, measuring, editing and converting laser scans and other point clouds, and for turning them into section drawings, meshes and the flat faces of a building. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.',
     alternatives: [],
     // The web demo belonged to the earlier application and is retired.
     liveDemo: false,
@@ -263,26 +263,39 @@ const TOOLS = [
     // different program; they and the checksum files stay out of the list of
     // direct downloads.
     assetFilter: (asset) => !/^Open\.Pointcloud\.Studio_|\.sha256$/.test(asset.name),
+    // The mirror lists every package of the newest stable release, not the
+    // most downloaded files of all releases: that ranking keeps offering
+    // files of releases that have been superseded.
+    currentReleaseOnly: true,
+    // The Linux packages for 64-bit ARM are experimental. In the download
+    // data they carry the same platform as the x86-64 ones, so the list
+    // says which they are.
+    assetLabel: (asset) => /[_.-](arm64|aarch64)\.(appimage|deb|tar\.gz)$/i.test(asset.name)
+      ? `${asset.platform}, 64-bit ARM, experimental`
+      : asset.platform,
     features: [
       'Opens point clouds in LAS, LAZ, E57, PLY, PCD, PTX, PTS and text formats, and meshes in OBJ, PLY, OFF and STL',
       'Opens a whole scan project at once: a folder of scans, or the scans that a scan project file (.rcp) lists',
       'Large files stay usable while they open: LAS and LAZ open from their header, an E57 file of 512 MiB or more first shows a sample spread through the file when its layout allows that',
-      'An octree index on disk supplies the detail for the current camera, up to a point budget of at most ten million points; built automatically from one million points',
+      'An octree index on disk supplies the detail for the current camera, up to a point budget of at most ten million points; built automatically from one million points; the points on screen stay while the camera moves',
       'Four colour modes (stored colour, elevation, intensity, classification), eye-dome lighting, classes shown or hidden one by one',
-      'Section box with six draggable faces that limits what is shown, selected and meshed; its content can be exported on its own; aligned to the axes of the scan',
+      'Section box with six draggable faces that limits what is shown, selected, meshed and searched for faces; its content can be exported on its own or drawn as a 2D drawing; aligned to the axes of the scan',
       'Measuring: distance along a polyline (segments, total, horizontal length, height difference) and area of a polygon in its own plane',
       'Saved views with notes and arrows, exported as one BCF 2.1 file with camera, clipping planes and a picture each',
       'Scanner stations of E57, PCD and PTX scans, station photos to stand in and look around, walking with W A S D',
       'Box selection and point picking, delete with undo and redo, thin, move and scale; the source file is never changed',
       'Export of the whole cloud, the selection, the section box or every Nth point as LAS, LAZ, E57, PLY, XYZ, PTS or CSV; merging of visible LAS and LAZ scans',
-      'Terrain mesh and 3D surface (not watertight), saved as OBJ, binary PLY or binary STL, with open edges and connected parts reported',
-      '3D BAG building models of the Netherlands for an area in RD New coordinates',
+      'Terrain mesh and 3D surface (not watertight); any mesh, whether made here, opened from a file or downloaded from the 3D BAG, saved as OBJ, binary PLY or binary STL, with open edges and connected parts reported',
+      'Section drawing: a 2D drawing at scale 1:1 of what the section box cuts, a plan or a vertical section, saved as DXF or DWG (file version R2004, R2010, R2013 or R2018); a filled cut draws the walls, columns and floors that are cut as filled regions with outlines, with a preview before a file is saved',
+      'Closed mesh: a surface without overlaps from every point of a region, closed where the scan has points or a gap narrower than the hole limit, with door and window openings left open; reports the mean, 95% and largest distance between the points and the mesh; a mesh holds at most 4,000,000 vertices and 8,000,000 triangles',
+      'Detected faces: the flat faces (floors, ceilings, walls, sloped planes) and the round columns and pipes of a region; a flat face is a plane with its outline, a column or pipe a cylinder without an outline, each with its area and the residual of its points; exported as JSON or as OBJ with a group per face',
+      '3D BAG building models of the Netherlands for an area in RD New coordinates, at most 2 by 2 km and about 5,000 buildings per download',
       'Local command API on the loopback address and an MCP server (open-pointcloud-studio --mcp)',
-      'Command-line modes without a window: converting a scan, exporting the points inside a box, merging scans, building an index and making meshes',
+      'Command-line modes without a window: converting a scan, exporting the points inside a box, merging scans, building an index, drawing a section as DXF or DWG, making meshes and detecting faces',
       'Interface in Dutch and English',
     ],
-    whenToUse: 'Opening and inspecting laser scans and whole scan projects, cutting floor plans and sections with the section box, measuring distances and areas, handing over viewpoints with notes as BCF, converting between point-cloud formats, and making meshes from scans.',
-    standards: ['LAS', 'LAZ', 'E57', 'PLY', 'PCD', 'PTX', 'BCF 2.1', 'MCP'],
+    whenToUse: 'Opening and inspecting laser scans and whole scan projects, cutting floor plans and sections with the section box and saving them as 2D drawings in DXF or DWG, measuring distances and areas, handing over viewpoints with notes as BCF, converting between point-cloud formats, making meshes from scans, and finding the planes and cylinders of a room. The filled cut, the closed mesh and the detected faces were measured on generated rooms, not yet on a scan of a real building.',
+    standards: ['LAS', 'LAZ', 'E57', 'PLY', 'PCD', 'PTX', 'DXF', 'DWG', 'BCF 2.1', 'MCP'],
   },
   {
     id: 'open-heatloss-studio',
@@ -541,6 +554,24 @@ const TOOLS = [
 
 // ---------- markdown builders ----------
 
+// The files a mirror offers as direct downloads, with the heading they go
+// under. By default the most downloaded files of all releases. A tool with
+// `currentReleaseOnly` gets the packages of its newest stable release
+// instead, every one of them. Download data written before it held those
+// packages (latestAssets) has the ranking only; of that, the files of the
+// newest stable release are kept.
+function directDownloads(tool, dl, releaseInfo) {
+  const keep = tool.assetFilter || (() => true);
+  const ranked = dl && Array.isArray(dl.topAssets) ? dl.topAssets.filter(keep) : [];
+  if (!tool.currentReleaseOnly) {
+    return { heading: 'Direct downloads (most popular)', assets: ranked.slice(0, 8) };
+  }
+  const assets = dl && Array.isArray(dl.latestAssets)
+    ? dl.latestAssets.filter(keep)
+    : ranked.filter(a => a.tag === releaseInfo?.latestStable?.tag);
+  return { heading: 'Direct downloads (current release)', assets };
+}
+
 function buildToolMarkdown(tool, stats, downloads, releaseInfo) {
   const repoStats = tool.repo ? findRepoStats(stats, tool.repo) : null;
   const dl = tool.repo ? findDownloads(downloads, tool.repo) : null;
@@ -659,16 +690,15 @@ function buildToolMarkdown(tool, stats, downloads, releaseInfo) {
   if (nightlyUrl) lines.push(`- Nightly builds: ${nightlyUrl}`);
   lines.push('');
 
-  // Top assets (download links)
-  const topAssets = dl && Array.isArray(dl.topAssets)
-    ? dl.topAssets.filter(tool.assetFilter || (() => true))
-    : [];
-  if (topAssets.length) {
-    lines.push(`## Direct downloads (most popular)`);
+  // Download links
+  const direct = directDownloads(tool, dl, releaseInfo);
+  if (direct.assets.length) {
+    lines.push(`## ${direct.heading}`);
     lines.push('');
-    for (const a of topAssets.slice(0, 8)) {
+    for (const a of direct.assets) {
       const size = a.sizeMB ? ` — ${a.sizeMB} MB` : '';
-      lines.push(`- [${a.platform} · ${a.name}](${a.url}) (${a.tag}${size})`);
+      const label = tool.assetLabel ? tool.assetLabel(a) : a.platform;
+      lines.push(`- [${label} · ${a.name}](${a.url}) (${a.tag}${size})`);
     }
     lines.push('');
   }
@@ -851,4 +881,6 @@ function main() {
   console.log('');
 }
 
-main();
+if (require.main === module) main();
+
+module.exports = { TOOLS, buildToolMarkdown };

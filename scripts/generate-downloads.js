@@ -41,9 +41,15 @@ const TOOL_REPOS = [
   'HakanSeven12/OpenCADStudio',
 ];
 
+// A checksum file is published beside a release file (NAME.sha256). Its
+// downloads count for the repo, but it is no package for any system and no
+// file to offer as a download, whatever the name before the extension says.
+const isChecksum = (name) => /\.sha256$/i.test(name);
+
 // Classify asset filename into platform/format
 function classify(name) {
   const n = name.toLowerCase();
+  if (isChecksum(n)) return 'Other';
   if (n.endsWith('.exe') || n.includes('_x64-setup') || n.includes('windows')) return 'Windows';
   if (n.endsWith('.msi') || n.endsWith('.msix')) return 'Windows (MSI)';
   if (n.endsWith('.dmg')) return 'macOS';
@@ -81,8 +87,34 @@ async function fetchAllReleases(repo) {
   return all;
 }
 
+// The release whose packages are the current downloads: the first one the API
+// lists that is no draft, no pre-release and not the nightly build, which is
+// how generate-release-notes.js picks latestStable. A repo with pre-releases
+// only falls back to the first of those.
+function newestRelease(releases) {
+  const published = releases.filter(rel => !rel.draft && rel.tag_name !== 'nightly');
+  return published.find(rel => !rel.prerelease) || published[0] || null;
+}
+
+// One file of a release, as the lists of downloads hold it.
+function assetEntry(rel, asset, platform) {
+  return {
+    tag: rel.tag_name,
+    name: asset.name,
+    platform: platform,
+    downloads: asset.download_count,
+    sizeMB: Math.round(asset.size / 1024 / 1024 * 10) / 10,
+    date: asset.created_at?.substring(0, 10),
+    url: asset.browser_download_url,
+  };
+}
+
 async function processRepo(repoPad) {
-  const releases = await fetchAllReleases(repoPad);
+  return summarise(repoPad, await fetchAllReleases(repoPad));
+}
+
+// The download figures of one repo, from the releases the API returned.
+function summarise(repoPad, releases) {
   // In de uitvoer staat alleen de repo-naam, ook bij een externe eigenaar,
   // zodat de rest van de site (statistieken, api/tools.json) blijft matchen.
   const repo = repoPad.includes('/') ? repoPad.split('/').pop() : repoPad;
@@ -118,21 +150,21 @@ async function processRepo(repoPad) {
         downloads: asset.download_count,
       });
 
-      if (asset.download_count > 0) {
-        topAssets.push({
-          tag: rel.tag_name,
-          name: asset.name,
-          platform: platform,
-          downloads: asset.download_count,
-          sizeMB: Math.round(asset.size / 1024 / 1024 * 10) / 10,
-          date: asset.created_at?.substring(0, 10),
-          url: asset.browser_download_url,
-        });
+      if (asset.download_count > 0 && !isChecksum(asset.name)) {
+        topAssets.push(assetEntry(rel, asset, platform));
       }
     });
   });
 
   topAssets.sort((a, b) => b.downloads - a.downloads);
+
+  // Every package of the newest stable release, whatever its download count.
+  // topAssets ranks the files of all releases together, so files of a
+  // superseded release can fill it while the newest ones are still unknown.
+  const newest = newestRelease(releases);
+  const latestAssets = (newest?.assets || [])
+    .filter(asset => classify(asset.name) && !isChecksum(asset.name))
+    .map(asset => assetEntry(newest, asset, classify(asset.name)));
 
   return {
     repo,
@@ -142,6 +174,7 @@ async function processRepo(repoPad) {
     byPlatform,
     byVersion,
     topAssets: topAssets.slice(0, 10),
+    latestAssets,
     _allAssets: allAssets, // internal: for snapshot
   };
 }
@@ -228,7 +261,11 @@ async function main() {
   console.log(`\nWritten to data/downloads.json + data/history-downloads/${today}.json`);
 }
 
-main().catch(err => {
-  console.error('Fatal:', err);
-  process.exit(1);
-});
+if (require.main === module) {
+  main().catch(err => {
+    console.error('Fatal:', err);
+    process.exit(1);
+  });
+}
+
+module.exports = { classify, newestRelease, summarise };

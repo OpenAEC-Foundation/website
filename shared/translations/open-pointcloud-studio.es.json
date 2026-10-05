@@ -1,46 +1,57 @@
 {
   "meta": {
     "title": "Open Pointcloud Studio — OpenAEC Foundation",
-    "description": "Aplicación de escritorio para ver, medir, editar y convertir escaneos láser y nubes de puntos: LAS, LAZ, E57 y más. Para Windows, macOS y Linux."
+    "description": "Aplicación de escritorio para nubes de puntos (LAS, LAZ, E57): ver, medir, convertir, dibujos de sección en DXF y DWG, mallas. Windows, macOS, Linux."
   },
   "header": {
     "label": "Ver, medir y editar nubes de puntos",
     "title": "Open <span class=\"accent\">Pointcloud</span> Studio",
-    "desc": "Una aplicación de escritorio para ver, medir, editar y convertir escaneos láser y otras nubes de puntos. Funciona en Windows, macOS y Linux, está escrita en Rust y no necesita navegador ni webview.",
+    "desc": "Una aplicación de escritorio para ver, medir, editar y convertir escaneos láser y otras nubes de puntos. A partir de un escaneo crea un dibujo de sección en DXF o DWG, una malla cerrada y las caras planas y los cilindros de una habitación. Funciona en Windows, macOS y Linux, está escrita en Rust y no necesita navegador ni webview.",
     "badge": "Beta",
     "dlWindows": "Instalador de Windows",
-    "dlMac": "macOS (.tar.gz)",
+    "dlMac": "macOS (.dmg)",
     "allFiles": "Todos los archivos, las sumas de verificación y las notas de instalación &darr;",
-    "dlLinux": "Linux (.tar.gz)"
+    "dlLinux": "Linux (AppImage)"
   },
   "slides": {
     "one": "Open Pointcloud Studio en vista isométrica: un escaneo de 455 millones de puntos de un edificio con su jardín y sus árboles en flor, el panel de proyecto a la izquierda y el panel Propiedades a la derecha",
     "two": "El mismo escaneo con la caja de sección ajustada al 11 % de la altura, de modo que las habitaciones se ven desde arriba, y una medición de distancia de 26,774 metros entre dos puntos",
     "three": "La caja de sección reducida a una franja entre el 4 % y el 31 % de la altura, que deja a la vista la fachada con sus ventanas; a la derecha, la vista guardada y los deslizadores de la caja de sección",
+    "four": "Dibujo de sección de dos habitaciones de prueba generadas: la planta vista desde arriba, con la vista previa del corte relleno (el muro entre las habitaciones, con el hueco de la puerta abierto, y un pilar redondo, como regiones rellenas) y, a la derecha, el bloque Section drawing (Snedetekening en la interfaz en neerlandés) del panel de propiedades",
+    "five": "Malla cerrada de las mismas habitaciones de prueba generadas: la superficie de las dos habitaciones, con el hueco de una puerta abierto en un muro exterior, y, a la derecha, el bloque Closed mesh (Gesloten mesh en la interfaz en neerlandés) con su resultado: 15.868 vértices, 30.563 triángulos y una desviación media de 1,6 mm",
+    "six": "Caras detectadas de las mismas habitaciones de prueba generadas, cada tipo con su color (techos en azul, muros en color arena), y, a la derecha, el bloque Detect faces (Vlakken herkennen en la interfaz en neerlandés) con sus recuentos: 2 suelos, 2 techos, 10 muros y 1 pilar",
     "prev": "Imagen anterior",
     "next": "Imagen siguiente"
   },
   "download": {
-    "title": "Descargar la v0.7.0",
+    "title": "Descargar la v0.8.0",
     "intro": "Cada botón inicia la descarga de inmediato. No necesitas ninguna cuenta y no hay ninguna página intermedia.",
     "win": {
-      "req": "Windows 10 y 11, 64 bits &middot; 8,7 MB",
+      "req": "Windows 10 y 11, 64 bits",
       "primary": "Instalador (.exe)",
-      "zip": "Zip sin instalador (9,9 MB)"
+      "zip": "Zip sin instalador"
     },
     "mac": {
-      "req": "Procesadores Apple e Intel &middot; 9,7 MB",
-      "primary": "Archivo (.tar.gz)"
+      "req": "macOS 11 y posteriores, procesadores Apple e Intel",
+      "primary": "Imagen de disco (.dmg)",
+      "tar": "Solo el programa (.tar.gz)"
     },
     "linux": {
-      "req": "x86-64 &middot; 13,6 MB",
-      "primary": "Archivo (.tar.gz)"
+      "req": "x86-64; Ubuntu 22.04, Debian 12, Fedora 36 o posteriores",
+      "primary": "AppImage (cualquier distribución)",
+      "deb": ".deb (Debian, Ubuntu)",
+      "tar": "Solo el programa (.tar.gz)"
+    },
+    "arm": {
+      "tag": "experimental",
+      "label": "Linux en ARM de 64 bits:"
     },
     "note": {
-      "win": "<strong>Windows:</strong> el instalador no está firmado, por lo que Windows puede avisar de un editor desconocido: elige <em>Más información</em> y luego <em>Ejecutar de todas formas</em>. Si prefieres no instalar nada, descomprime el zip y arranca el programa desde ahí.",
-      "mac": "<strong>macOS:</strong> descomprime el archivo y coloca la aplicación en Aplicaciones. La aplicación no está notarizada, así que macOS rechaza el primer arranque: ábrela esa vez con el botón derecho y elige <em>Abrir</em>.",
-      "linux": "<strong>Linux:</strong> descomprime el archivo y arranca el programa desde él. No hace falta instalar nada.",
-      "sha": "Junto a cada archivo hay un archivo <code>.sha256</code> con el mismo nombre que contiene su suma de verificación, para que puedas comprobar la descarga."
+      "win": "<strong>Windows:</strong> el instalador instala la aplicación para el usuario actual, sin derechos de administrador, o para todos los usuarios. Si la versión no lleva firma de código, Windows puede avisar de un editor desconocido: elige <em>Más información</em> y luego <em>Ejecutar de todas formas</em>. Si prefieres no instalar nada, descomprime el zip y arranca el programa desde ahí.",
+      "mac": "<strong>macOS:</strong> abre la imagen de disco y arrastra la aplicación a Aplicaciones. La aplicación no está notarizada, por lo que macOS rechaza el primer arranque. Permítelo una vez: en macOS 15 y posteriores, inicia la aplicación, cierra el mensaje y elige <em>Abrir igualmente</em> en <em>Privacidad y seguridad</em>, dentro de Ajustes del Sistema; en macOS 11 a 14, haz clic en la aplicación con la tecla Control pulsada y elige <em>Abrir</em>.",
+      "linux": "<strong>Linux:</strong> haz ejecutable la AppImage una vez con <code>chmod +x</code> y después iníciala. La AppImage se monta a sí misma mediante FUSE (<code>fusermount3</code> o <code>fusermount</code>); sin FUSE, iníciala con <code>--appimage-extract-and-run</code> tras el nombre del archivo. El paquete .deb se instala con <code>sudo apt install ./open-pointcloud-studio_*_amd64.deb</code>, ejecutado en la carpeta de la descarga. Linux necesita una biblioteca de C en versión 2.35 o más reciente (Ubuntu 22.04, Debian 12, Fedora 36 o posteriores), X11 o Wayland, y un controlador Vulkan u OpenGL ES 3. Los cuadros de diálogo de archivos usan el portal de escritorio, o <code>zenity</code> donde no lo hay.",
+      "arm": "<strong>Linux en ARM de 64 bits:</strong> experimental. Estos paquetes solo se compilan y se prueban en máquinas de compilación con renderizado por software, todavía no en placas ni portátiles ARM reales.",
+      "sha": "En la versión publicada, junto a cada archivo hay un archivo <code>.sha256</code> con el mismo nombre que contiene su suma de verificación: añade <code>.sha256</code> al final de la dirección de una descarga para obtenerlo. El README explica <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio#checking-a-download\" target=\"_blank\" rel=\"noopener\">cómo comprobar una descarga con él</a> (en inglés)."
     }
   },
   "features": {
@@ -59,7 +70,7 @@
     },
     "lod": {
       "title": "Detalle donde miras",
-      "desc": "Para nubes de un millón de puntos o más, la aplicación crea por sí sola un índice en disco, un octree. De él sale el detalle para la posición actual de la cámara, hasta el presupuesto de puntos que fijes: diez millones de puntos como máximo. El índice se conserva y se vuelve a usar cuando abres el archivo más adelante."
+      "desc": "Para nubes de un millón de puntos o más, la aplicación crea por sí sola un índice en disco, un octree. De él sale el detalle para la posición actual de la cámara, hasta el presupuesto de puntos que fijes: diez millones de puntos como máximo. Mientras la cámara se mueve, los puntos en pantalla se mantienen; el detalle de la nueva vista ocupa su lugar en cuanto se ha leído. El índice se conserva y se vuelve a usar cuando abres el archivo más adelante."
     },
     "display": {
       "title": "Visualización",
@@ -67,7 +78,7 @@
     },
     "section": {
       "title": "Caja de sección",
-      "desc": "Una caja con seis caras que se arrastran limita lo que se muestra, se selecciona y se convierte en malla. Así se saca una planta o una sección de un escaneo; el contenido de la caja se exporta por separado. La caja sigue los ejes X, Y y Z del escaneo y no se puede girar."
+      "desc": "Una caja con seis caras que se arrastran limita lo que se muestra, se selecciona, se convierte en malla y se examina en busca de caras. Así se saca una planta o una sección de un escaneo; el contenido de la caja se exporta por separado o se dibuja en 2D. La caja sigue los ejes X, Y y Z del escaneo y no se puede girar."
     },
     "measure": {
       "title": "Medir",
@@ -91,11 +102,23 @@
     },
     "mesh": {
       "title": "Mallas",
-      "desc": "<em>Terrain mesh</em> crea una superficie 2,5D a partir de los puntos más bajos de una cuadrícula. <em>3D surface</em> sigue también muros y voladizos; deja huecos y no es estanca. Cualquier malla, también un archivo de malla abierto, se guarda como OBJ, PLY binario o STL binario. El panel de propiedades muestra los vértices, los triángulos, las aristas abiertas y el número de partes conectadas."
+      "desc": "<em>Terrain mesh</em> crea una superficie 2,5D a partir de los puntos más bajos de una cuadrícula. <em>3D surface</em> sigue también muros y voladizos; deja huecos y no es estanca. <em>Export mesh…</em> guarda cualquier malla, tanto si se ha creado aquí como si se ha abierto desde un archivo o se ha descargado de 3D BAG, como OBJ, PLY binario o STL binario. El panel de propiedades muestra los vértices, los triángulos, las aristas abiertas y el número de partes conectadas."
+    },
+    "drawing": {
+      "title": "Dibujo de sección",
+      "desc": "<em>Section drawing</em> crea un dibujo 2D a escala 1:1 de lo que corta la caja de sección y lo guarda como DXF o DWG: una planta a partir de la franja situada bajo la cara superior de la caja, o una sección vertical a partir de la franja situada detrás de uno de sus cuatro lados. El dibujo contiene los puntos de esa franja de todos los escaneos visibles, reducidos a un punto cada 5 mm. <em>Filled cut</em> dibuja los muros, pilares y forjados que atraviesa la franja como regiones rellenas con su contorno y deja abiertos los huecos de puertas y ventanas. <em>Preview</em> muestra esas regiones sobre los puntos antes de guardar un archivo."
+    },
+    "closedMesh": {
+      "title": "Malla cerrada",
+      "desc": "<em>Closed mesh</em> crea, a partir de todos los puntos que hay dentro de la caja de sección o de todo el escaneo, una superficie sin solapes: cerrada allí donde el escaneo tiene puntos o un hueco más estrecho que el límite fijado (0,25 m al inicio), con los huecos de puertas y ventanas abiertos. Coloca la caja alrededor de una habitación y elige <em>Start</em>; el bloque del panel de propiedades indica de antemano el tamaño de la región y cuántos triángulos dará aproximadamente, y avisa cuando son más de los que admite una malla. Al terminar da la distancia media, la del 95 % y la mayor entre los puntos y la malla, las aristas abiertas y las partes conectadas. Una malla tiene como máximo cuatro millones de vértices y ocho millones de triángulos y se guarda como OBJ, PLY o STL."
+    },
+    "faces": {
+      "title": "Caras detectadas",
+      "desc": "<em>Detect faces</em> encuentra, dentro de la caja de sección o en todo el escaneo, las caras planas (suelos, techos, muros y planos inclinados) y los pilares redondos y las tuberías. Una cara plana es un plano con su contorno, en el que una ventana es un agujero y una puerta una muesca; un pilar o una tubería es un cilindro con su eje, su radio y su longitud escaneada, sin contorno. No es una malla de la superficie. La lista da de cada cara el tipo, el área y el residuo de sus puntos (RMS); un clic resalta la cara en la escena. <em>Export faces…</em> las guarda como JSON, con los parámetros de cada plano y cada cilindro, o como OBJ, con un grupo por cara."
     },
     "bag": {
       "title": "Edificios de 3D BAG",
-      "desc": "Descarga modelos de edificios de los Países Bajos del registro público 3D BAG para una zona en coordenadas RD New y muéstralos junto a un escaneo. Una descarga abarca como máximo 2 por 2 km y unos 5.000 edificios y necesita conexión a internet. Es una extensión integrada que se puede desactivar."
+      "desc": "<em>3D BAG buildings…</em>, en la vista File, descarga modelos de edificios de los Países Bajos del registro público 3D BAG para una zona en coordenadas RD New y los muestra junto a un escaneo. Una descarga abarca como máximo 2 por 2 km y unos 5.000 edificios y necesita conexión a internet. Es una extensión integrada que se puede desactivar en la página Extensions."
     },
     "language": {
       "title": "Neerlandés e inglés",
@@ -112,18 +135,22 @@
     },
     "yes": "sí",
     "no": "no",
+    "asDrawing": "sí, como dibujo",
     "las": "Se abre a partir de la cabecera; las exportaciones conservan los registros de puntos originales",
     "e57": "Se leen las posiciones del escáner y las fotos de estación; las fotos esféricas y cilíndricas no se muestran",
     "ply": "Lee ASCII y binario little-endian; escribe ambos",
     "pcd": "ASCII, binario y binario comprimido",
     "ptx": "Con la posición del escáner de cada escaneo",
     "text": "Texto con un punto por línea",
-    "obj": "Malla con colores y normales; se leen los colores de material, no las imágenes de textura",
+    "obj": "Malla con colores y normales; se leen los colores de material, no las imágenes de textura. Las caras detectadas también se escriben como OBJ, con un grupo por cara",
     "plyMeshName": "PLY como malla",
     "plyMesh": "Se muestra como caras. Se escribe como PLY binario con coordenadas de doble precisión, y con colores y normales cuando la malla los tiene",
-    "stl": "Se muestra como caras. Se escribe como STL binario: solo triángulos, sin colores",
+    "stl": "Se muestra como caras. Se escribe como STL binario: solo triángulos, sin colores. Una malla situada a más de 2.048 m del cero se escribe respecto a un origen en metros enteros que se indica en la cabecera del archivo",
     "off": "Se muestra como caras; se puede guardar como OBJ, PLY o STL",
-    "dxf": "Solo DXF ASCII. Las entidades POINT se abren como puntos y las entidades 3DFACE como caras; las demás entidades se omiten",
+    "dxf": "Lectura: solo DXF ASCII. Las entidades POINT se abren como puntos y las entidades 3DFACE como caras que se pueden guardar como OBJ, PLY o STL; las demás entidades se omiten. Escritura: el dibujo 2D de una caja de sección, con puntos, regiones rellenas, contornos y una línea de texto; no es un formato de las exportaciones de puntos",
+    "dwg": "El dibujo 2D de una caja de sección, como en DXF, en la versión R2004, R2010, R2013 o R2018. Los archivos DWG no se abren",
+    "facesName": "Caras en JSON (.json)",
+    "faces": "Las caras detectadas de un escaneo: cada plano con sus parámetros, su contorno y los residuos de sus puntos, cada cilindro con su eje, su radio y sus residuos, y las aristas entre caras planas. La <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#the-json-file\" target=\"_blank\" rel=\"noopener\">guía del usuario</a> describe cada campo (en inglés)",
     "rcpName": "Archivo de proyecto de escaneo (.rcp)",
     "rcp": "Solo se lee la lista de escaneos. Las copias indexadas de los escaneos (.rcs) de un proyecto están en un formato cerrado y no se leen",
     "bcf": "Vistas guardadas con notas e imágenes",
@@ -131,9 +158,9 @@
   },
   "automation": {
     "title": "API de comandos y servidor MCP",
-    "api": "Cada ventana ejecuta un servidor de comandos en <code>127.0.0.1</code>. Los comandos abren y cierran escaneos, ajustan la cámara, la caja de sección y la visualización, seleccionan, eliminan, miden, guardan vistas, exportan, crean mallas y toman imágenes de la vista 3D. El servidor solo escucha en la dirección de bucle local y rechaza cualquier comando sin el token.",
+    "api": "Cada ventana ejecuta un servidor de comandos en <code>127.0.0.1</code>. Los comandos abren y cierran escaneos, ajustan la cámara, la caja de sección y la visualización, seleccionan, eliminan, miden, guardan vistas, exportan, dibujan secciones, crean mallas, detectan caras, descargan edificios de 3D BAG y toman imágenes de la vista 3D. El servidor solo escucha en la dirección de bucle local y rechaza cualquier comando sin el token.",
     "mcp": "<code>open-pointcloud-studio --mcp</code> ejecuta un servidor de Model Context Protocol. Ofrece una herramienta por cada comando de la API, herramientas que esperan a que terminen las tareas largas, una herramienta que devuelve la vista 3D como imagen y herramientas para listar, elegir e iniciar ventanas.",
-    "cli": "Desde la línea de comandos la aplicación también funciona sin ventana: convertir a otro formato, exportar los puntos que quedan dentro de una caja, combinar escaneos, crear un índice y generar mallas.",
+    "cli": "Desde la línea de comandos la aplicación también funciona sin ventana: convertir a otro formato, exportar los puntos que quedan dentro de una caja, combinar escaneos, crear un índice, dibujar una sección en DXF o DWG, generar mallas y detectar caras.",
     "linkApi": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/API.md\" target=\"_blank\" rel=\"noopener\">API.md</a>: todos los comandos (en inglés)",
     "linkMcp": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/MCP.md\" target=\"_blank\" rel=\"noopener\">MCP.md</a>: todas las herramientas y la configuración para un programa cliente (en inglés)",
     "linkCli": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio#command-line\" target=\"_blank\" rel=\"noopener\">README</a>: los modos de la línea de comandos (en inglés)"
@@ -144,7 +171,14 @@
     "units": "Las longitudes y las áreas están en metros. Las coordenadas de un escaneo se toman como metros y no se convierten.",
     "measure": "Una medición no se guarda con el escaneo.",
     "surface": "Una superficie creada con 3D surface deja huecos y no es estanca.",
-    "meshSize": "Una malla mostrada en la escena tiene como máximo un millón de vértices y dos millones de triángulos por archivo.",
+    "meshSize": "Una malla tiene como máximo cuatro millones de vértices y ocho millones de triángulos, tanto si viene de un archivo como si se crea en la aplicación.",
+    "session": "Una malla cerrada y las caras detectadas solo existen durante la sesión en curso: expórtalas para conservarlas. Un escaneo contiene una sola malla; una malla nueva sustituye a la anterior.",
+    "drawingPoints": "El límite de puntos de un dibujo de sección es de 150.000 puntos por defecto y de 400.000 como máximo; si tras reducir a 5 mm quedan más puntos, la separación entre puntos se duplica hasta que quepan.",
+    "fill": "El corte relleno de un dibujo de sección se traza a partir de los puntos: un muro escaneado por un solo lado se dibuja como una tira fina, los huecos de menos de medio metro aproximadamente se cierran y los muebles que hay en la franja se dibujan salvo que antes se eliminen sus puntos.",
+    "closedMesh": "Una malla cerrada redondea las esquinas en torno a un cuarto de vóxel, hace que los objetos más finos que dos o tres vóxeles se fundan o queden con huecos y deja abiertos algunos huecos situados junto a otra superficie. Sin estaciones de escaneo, una superficie que el centro de la región ve exactamente de canto puede salir rasgada.",
+    "faces": "Detect faces no informa de franjas de menos de 0,15 m de ancho, como las jambas de las puertas. Una región demasiado grande para el presupuesto de trabajo se examina con vóxeles más grandes, los escaneos poco densos dan menos caras o ninguna, los pilares redondos de más de unos 0,7 m de ancho salen como franjas de muro y, sin estaciones de escaneo, el lado hacia el que mira una cara es una estimación.",
+    "drawingCheck": "Los archivos DXF y DWG todavía no se han comprobado con una variedad de programas de dibujo. Si un programa rechaza un archivo DWG, prueba con DXF o con otra versión de archivo.",
+    "generated": "El corte relleno, Closed mesh y Detect faces se han medido en habitaciones generadas, todavía no en el escaneo de un edificio real. La guía del usuario enumera los límites de <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#the-filled-cut-and-its-limits\" target=\"_blank\" rel=\"noopener\">el corte relleno</a>, de <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-a-closed-mesh\" target=\"_blank\" rel=\"noopener\">Closed mesh</a> y de <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-detected-faces\" target=\"_blank\" rel=\"noopener\">Detect faces</a> (en inglés).",
     "index": "En un levantamiento grande, el índice puede ocupar varios gigabytes en disco."
   },
   "docs": {

@@ -14,14 +14,25 @@
   const formats = {
     windows: /(_x64-setup|-windows-setup)\.exe$/i,
     'windows-msi': /\.msi$/i,
-    'windows-zip': /-windows\.zip$/i,
+    'windows-zip': /(-windows|_windows-x64)\.zip$/i,
     macos: /\.dmg$/i,
-    'macos-tar': /-macos\.tar\.gz$/i,
+    'macos-tar': /(-macos|_macos-universal)\.tar\.gz$/i,
     'linux-appimage': /\.appimage$/i,
     'linux-deb': /_amd64\.deb$/i,
     'linux-rpm': /\.rpm$/i,
-    'linux-tar': /-linux\.tar\.gz$/i,
+    'linux-tar': /(-linux|_linux-amd64)\.tar\.gz$/i,
     android: /\.apk$/i,
+  };
+
+  // Linux packages for 64-bit ARM have keys of their own. A file with such a
+  // name is offered under its ARM key only, so a button for x86-64 never ends
+  // up on an ARM file, nor the other way round, whatever the order in which
+  // the API lists the files. No preference list holds these keys: a button
+  // gets an ARM file only when its data-platform asks for one.
+  const armFormats = {
+    'linux-arm64-appimage': /[_.-](arm64|aarch64)\.appimage$/i,
+    'linux-arm64-deb': /[_.-](arm64|aarch64)\.deb$/i,
+    'linux-arm64-tar': /[_-]linux-(arm64|aarch64)\.tar\.gz$/i,
   };
 
   // Per detected OS: the formats to try, in order.
@@ -32,6 +43,13 @@
     android: ['android'],
   };
 
+  // The one key a file name belongs to, or null for a file that is no
+  // download: a checksum, a signature, an updater manifest.
+  function platformFor(name) {
+    const matching = table => Object.keys(table).find(key => table[key].test(name));
+    return matching(armFormats) || matching(formats) || null;
+  }
+
   function downloadsForRelease(release, repo) {
     const assetPath = '/' + repo + '/releases/download/';
     const result = {};
@@ -41,11 +59,9 @@
       try { url = new URL(asset.browser_download_url); } catch (_) { continue; }
       if (url.protocol !== 'https:' || url.hostname !== 'github.com' ||
           !url.pathname.toLowerCase().startsWith(assetPath.toLowerCase())) continue;
-      for (const [platform, pattern] of Object.entries(formats)) {
-        if (pattern.test(asset.name) && !result[platform]) {
-          result[platform] = { url: url.href, name: asset.name, size: asset.size };
-          break;
-        }
+      const platform = platformFor(asset.name);
+      if (platform && !result[platform]) {
+        result[platform] = { url: url.href, name: asset.name, size: asset.size };
       }
     }
     return result;
@@ -111,7 +127,7 @@
   }
 
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { downloadsForRelease, selectLatestRelease, detectOS, pickAsset };
+    module.exports = { platformFor, downloadsForRelease, selectLatestRelease, detectOS, pickAsset };
   }
   if (typeof document !== 'undefined') {
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);

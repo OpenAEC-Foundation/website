@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Pointcloud Studio — OpenAEC Foundation</title>
-  <meta name="description" content="Aplicación de escritorio para ver, medir, editar y convertir escaneos láser y nubes de puntos: LAS, LAZ, E57 y más. Para Windows, macOS y Linux.">
+  <meta name="description" content="Aplicación de escritorio para nubes de puntos (LAS, LAZ, E57): ver, medir, convertir, dibujos de sección en DXF y DWG, mallas. Windows, macOS, Linux.">
   <link rel="canonical" href="https://open-aec.com/es/open-pointcloud-studio/">
   <!-- hreflang:start -->
   <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-pointcloud-studio/">
@@ -21,7 +21,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenAEC Foundation">
   <meta property="og:title" content="Open Pointcloud Studio — OpenAEC Foundation">
-  <meta property="og:description" content="Aplicación de escritorio para ver, medir, editar y convertir escaneos láser y nubes de puntos: LAS, LAZ, E57 y más. Para Windows, macOS y Linux.">
+  <meta property="og:description" content="Aplicación de escritorio para nubes de puntos (LAS, LAZ, E57): ver, medir, convertir, dibujos de sección en DXF y DWG, mallas. Windows, macOS, Linux.">
   <meta property="og:url" content="https://open-aec.com/es/open-pointcloud-studio/">
   <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
   <meta property="og:locale" content="es_ES">
@@ -30,7 +30,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Open Pointcloud Studio">
-  <meta name="twitter:description" content="Aplicación de escritorio para ver, medir, editar y convertir escaneos láser y nubes de puntos: LAS, LAZ, E57 y más. Para Windows, macOS y Linux.">
+  <meta name="twitter:description" content="Aplicación de escritorio para nubes de puntos (LAS, LAZ, E57): ver, medir, convertir, dibujos de sección en DXF y DWG, mallas. Windows, macOS, Linux.">
   <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
 
   <!-- AI / LLM discoverability -->
@@ -50,10 +50,10 @@
     "applicationSubCategory": "Point Cloud",
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://open-aec.com/open-pointcloud-studio/",
-    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe",
-    "softwareVersion": "0.7.0",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe",
+    "softwareVersion": "0.8.0",
     "license": "https://www.gnu.org/licenses/gpl-3.0.html",
-    "description": "Desktop application for viewing, measuring, editing and converting laser scans and other point clouds. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.",
+    "description": "Desktop application for viewing, measuring, editing and converting laser scans and other point clouds, and for turning them into section drawings, meshes and the flat faces of a building. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.",
     "featureList": [
       "Opens LAS, LAZ, E57, PLY, PCD, PTX, PTS and text point clouds",
       "Opens a whole scan project from its folder or its scan project file (.rcp)",
@@ -65,6 +65,9 @@
       "Box selection, delete with undo, thin, move and scale",
       "Export as LAS, LAZ, E57, PLY, XYZ, PTS or CSV and merging of LAS and LAZ scans",
       "Terrain mesh and 3D surface, saved as OBJ, PLY or STL",
+      "Section drawing: what the section box cuts as a 2D drawing in DXF or DWG, with a filled cut and a preview",
+      "Closed mesh of a room or region, with the measured distance between the points and the mesh",
+      "Detected faces: planes with their outlines, and cylinders, exported as JSON or OBJ",
       "3D BAG building models of the Netherlands",
       "Local command API and MCP server",
       "Interface in Dutch and English"
@@ -77,7 +80,7 @@
       "availability": "https://schema.org/InStock"
     },
     "isAccessibleForFree": true,
-    "keywords": "point cloud, laser scan, LAS, LAZ, E57, PLY, PCD, PTX, section box, measuring, BCF, mesh, MCP server",
+    "keywords": "point cloud, laser scan, LAS, LAZ, E57, PLY, PCD, PTX, section box, section drawing, DXF, DWG, measuring, BCF, mesh, closed mesh, plane detection, MCP server",
     "sameAs": [
       "https://github.com/OpenAEC-Foundation/open-pointcloud-studio"
     ],
@@ -128,6 +131,9 @@
     .slider-track { display: flex; transition: transform 0.4s ease; }
     .slider-slide { min-width: 100%; }
     .slider-slide img { width: 100%; height: auto; display: block; }
+    /* The pictures of the generated test rooms have other proportions than the scans before them.
+       Each is shown whole in a frame as tall as the tallest of those, so the slider keeps its height. */
+    .slider-slide.slide-framed img { aspect-ratio: 1920 / 1146; object-fit: contain; }
     .slider-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: rgba(0,0,0,0.5); color: white; border: none;
@@ -149,6 +155,13 @@
     .download-item .btn { justify-content: center; margin-bottom: var(--sp-2); }
     .download-item .download-alt { font-size: 0.75rem; color: var(--scaffold-gray); margin-top: auto; padding-top: var(--sp-2); }
     .download-item .download-alt a { color: var(--warm-gold); }
+    /* The experimental packages: plain links under the grid, not buttons */
+    .download-section .download-arm { color: var(--scaffold-gray); font-size: 0.8rem; line-height: 1.6; margin: var(--sp-4) 0 0; }
+    .download-section .download-arm a { color: var(--warm-gold); }
+    .exp-tag {
+      display: inline-block; font-family: var(--font-code); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 2px 8px; border-radius: var(--radius-full); background: #FEF3C7; color: #92400E; margin-right: 2px; vertical-align: middle;
+    }
     .download-notes { list-style: none; padding: 0; margin: var(--sp-6) 0 0; }
     .download-notes li { color: var(--scaffold-gray); font-size: 0.85rem; line-height: 1.6; padding: var(--sp-1) 0; }
     .download-notes strong { color: var(--blueprint-white); }
@@ -242,7 +255,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "es",
-        "dateModified": "2026-10-03",
+        "dateModified": "2026-10-04",
         "breadcrumb": {
           "@id": "https://open-aec.com/es/open-pointcloud-studio/#breadcrumb"
         }
@@ -313,15 +326,15 @@
   <header class="page-header">
     <span class="section-label" data-i18n="header.label">Ver, medir y editar nubes de puntos</span>
     <h1 data-i18n="header.title">Open <span class="accent">Pointcloud</span> Studio</h1>
-    <p class="lead" data-i18n="header.desc">Una aplicación de escritorio para ver, medir, editar y convertir escaneos láser y otras nubes de puntos. Funciona en Windows, macOS y Linux, está escrita en Rust y no necesita navegador ni webview.</p>
+    <p class="lead" data-i18n="header.desc">Una aplicación de escritorio para ver, medir, editar y convertir escaneos láser y otras nubes de puntos. A partir de un escaneo crea un dibujo de sección en DXF o DWG, una malla cerrada y las caras planas y los cilindros de una habitación. Funciona en Windows, macOS y Linux, está escrita en Rust y no necesita navegador ni webview.</p>
     <div class="header-meta">
       <span class="status-badge" data-i18n="header.badge">Beta</span>
-      <span class="version-info">v0.7.0 &middot; Windows &middot; macOS &middot; Linux</span>
+      <span class="version-info">v0.8.0 &middot; Windows &middot; macOS &middot; Linux</span>
     </div>
     <div class="hero-downloads">
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary" data-i18n="header.dlWindows">Instalador de Windows</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-macos.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos-tar" class="btn btn-primary" data-i18n="header.dlMac">macOS (.tar.gz)</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-linux.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-tar" class="btn btn-primary" data-i18n="header.dlLinux">Linux (.tar.gz)</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary" data-i18n="header.dlWindows">Instalador de Windows</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos" class="btn btn-primary" data-i18n="header.dlMac">macOS (.dmg)</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-appimage" class="btn btn-primary" data-i18n="header.dlLinux">Linux (AppImage)</a>
     </div>
     <a href="#download" class="hero-more" data-i18n="header.allFiles">Todos los archivos, las sumas de verificación y las notas de instalación &darr;</a>
   </header>
@@ -334,6 +347,9 @@
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio.jpeg" width="1920" height="1048" alt="Open Pointcloud Studio en vista isométrica: un escaneo de 455 millones de puntos de un edificio con su jardín y sus árboles en flor, el panel de proyecto a la izquierda y el panel Propiedades a la derecha" data-i18n="slides.one" data-i18n-attr="alt"></div>
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-2.jpg" width="1920" height="1046" loading="lazy" alt="El mismo escaneo con la caja de sección ajustada al 11 % de la altura, de modo que las habitaciones se ven desde arriba, y una medición de distancia de 26,774 metros entre dos puntos" data-i18n="slides.two" data-i18n-attr="alt"></div>
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-3.jpg" width="1920" height="1146" loading="lazy" alt="La caja de sección reducida a una franja entre el 4 % y el 31 % de la altura, que deja a la vista la fachada con sus ventanas; a la derecha, la vista guardada y los deslizadores de la caja de sección" data-i18n="slides.three" data-i18n-attr="alt"></div>
+          <div class="slider-slide slide-framed"><img src="/shared/assets/screenshots/open-pointcloud-studio-4.jpg" width="1302" height="806" loading="lazy" alt="Dibujo de sección de dos habitaciones de prueba generadas: la planta vista desde arriba, con la vista previa del corte relleno (el muro entre las habitaciones, con el hueco de la puerta abierto, y un pilar redondo, como regiones rellenas) y, a la derecha, el bloque Section drawing (Snedetekening en la interfaz en neerlandés) del panel de propiedades" data-i18n="slides.four" data-i18n-attr="alt"></div>
+          <div class="slider-slide slide-framed"><img src="/shared/assets/screenshots/open-pointcloud-studio-5.jpg" width="1302" height="806" loading="lazy" alt="Malla cerrada de las mismas habitaciones de prueba generadas: la superficie de las dos habitaciones, con el hueco de una puerta abierto en un muro exterior, y, a la derecha, el bloque Closed mesh (Gesloten mesh en la interfaz en neerlandés) con su resultado: 15.868 vértices, 30.563 triángulos y una desviación media de 1,6 mm" data-i18n="slides.five" data-i18n-attr="alt"></div>
+          <div class="slider-slide slide-framed"><img src="/shared/assets/screenshots/open-pointcloud-studio-6.jpg" width="1302" height="806" loading="lazy" alt="Caras detectadas de las mismas habitaciones de prueba generadas, cada tipo con su color (techos en azul, muros en color arena), y, a la derecha, el bloque Detect faces (Vlakken herkennen en la interfaz en neerlandés) con sus recuentos: 2 suelos, 2 techos, 10 muros y 1 pilar" data-i18n="slides.six" data-i18n-attr="alt"></div>
         </div>
         <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Imagen anterior" data-i18n="slides.prev" data-i18n-attr="aria-label">&lsaquo;</button>
         <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Imagen siguiente" data-i18n="slides.next" data-i18n-attr="aria-label">&rsaquo;</button>
@@ -343,31 +359,35 @@
 
     <div class="content">
       <div class="download-section" id="download">
-        <h3 data-i18n="download.title">Descargar la v0.7.0</h3>
+        <h3 data-i18n="download.title">Descargar la v0.8.0</h3>
         <p class="download-intro" data-i18n="download.intro">Cada botón inicia la descarga de inmediato. No necesitas ninguna cuenta y no hay ninguna página intermedia.</p>
         <div class="download-grid">
           <div class="download-item">
             <div class="os">Windows</div>
-            <div class="size" data-i18n="download.win.req">Windows 10 y 11, 64 bits &middot; 8,7 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary btn-sm" data-i18n="download.win.primary">Instalador (.exe)</a>
-            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows.zip" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows-zip" data-i18n="download.win.zip">Zip sin instalador (9,9 MB)</a></div>
+            <div class="size" data-i18n="download.win.req">Windows 10 y 11, 64 bits</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary btn-sm" data-i18n="download.win.primary">Instalador (.exe)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_windows-x64.zip" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows-zip" data-i18n="download.win.zip">Zip sin instalador</a></div>
           </div>
           <div class="download-item">
             <div class="os">macOS</div>
-            <div class="size" data-i18n="download.mac.req">Procesadores Apple e Intel &middot; 9,7 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-macos.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos-tar" class="btn btn-primary btn-sm" data-i18n="download.mac.primary">Archivo (.tar.gz)</a>
+            <div class="size" data-i18n="download.mac.req">macOS 11 y posteriores, procesadores Apple e Intel</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos" class="btn btn-primary btn-sm" data-i18n="download.mac.primary">Imagen de disco (.dmg)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos-tar" data-i18n="download.mac.tar">Solo el programa (.tar.gz)</a></div>
           </div>
           <div class="download-item">
             <div class="os">Linux</div>
-            <div class="size" data-i18n="download.linux.req">x86-64 &middot; 13,6 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-linux.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-tar" class="btn btn-primary btn-sm" data-i18n="download.linux.primary">Archivo (.tar.gz)</a>
+            <div class="size" data-i18n="download.linux.req">x86-64; Ubuntu 22.04, Debian 12, Fedora 36 o posteriores</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-appimage" class="btn btn-primary btn-sm" data-i18n="download.linux.primary">AppImage (cualquier distribución)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.deb" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-deb" data-i18n="download.linux.deb">.deb (Debian, Ubuntu)</a><br><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-amd64.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-tar" data-i18n="download.linux.tar">Solo el programa (.tar.gz)</a></div>
           </div>
         </div>
+        <p class="download-arm"><span class="exp-tag" data-i18n="download.arm.tag">experimental</span> <span data-i18n="download.arm.label">Linux en ARM de 64 bits:</span> <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-appimage">AppImage</a> &middot; <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.deb" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-deb">.deb</a> &middot; <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-arm64.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-tar">.tar.gz</a></p>
         <ul class="download-notes">
-          <li data-i18n="download.note.win"><strong>Windows:</strong> el instalador no está firmado, por lo que Windows puede avisar de un editor desconocido: elige <em>Más información</em> y luego <em>Ejecutar de todas formas</em>. Si prefieres no instalar nada, descomprime el zip y arranca el programa desde ahí.</li>
-          <li data-i18n="download.note.mac"><strong>macOS:</strong> descomprime el archivo y coloca la aplicación en Aplicaciones. La aplicación no está notarizada, así que macOS rechaza el primer arranque: ábrela esa vez con el botón derecho y elige <em>Abrir</em>.</li>
-          <li data-i18n="download.note.linux"><strong>Linux:</strong> descomprime el archivo y arranca el programa desde él. No hace falta instalar nada.</li>
-          <li data-i18n="download.note.sha">Junto a cada archivo hay un archivo <code>.sha256</code> con el mismo nombre que contiene su suma de verificación, para que puedas comprobar la descarga.</li>
+          <li data-i18n="download.note.win"><strong>Windows:</strong> el instalador instala la aplicación para el usuario actual, sin derechos de administrador, o para todos los usuarios. Si la versión no lleva firma de código, Windows puede avisar de un editor desconocido: elige <em>Más información</em> y luego <em>Ejecutar de todas formas</em>. Si prefieres no instalar nada, descomprime el zip y arranca el programa desde ahí.</li>
+          <li data-i18n="download.note.mac"><strong>macOS:</strong> abre la imagen de disco y arrastra la aplicación a Aplicaciones. La aplicación no está notarizada, por lo que macOS rechaza el primer arranque. Permítelo una vez: en macOS 15 y posteriores, inicia la aplicación, cierra el mensaje y elige <em>Abrir igualmente</em> en <em>Privacidad y seguridad</em>, dentro de Ajustes del Sistema; en macOS 11 a 14, haz clic en la aplicación con la tecla Control pulsada y elige <em>Abrir</em>.</li>
+          <li data-i18n="download.note.linux"><strong>Linux:</strong> haz ejecutable la AppImage una vez con <code>chmod +x</code> y después iníciala. La AppImage se monta a sí misma mediante FUSE (<code>fusermount3</code> o <code>fusermount</code>); sin FUSE, iníciala con <code>--appimage-extract-and-run</code> tras el nombre del archivo. El paquete .deb se instala con <code>sudo apt install ./open-pointcloud-studio_*_amd64.deb</code>, ejecutado en la carpeta de la descarga. Linux necesita una biblioteca de C en versión 2.35 o más reciente (Ubuntu 22.04, Debian 12, Fedora 36 o posteriores), X11 o Wayland, y un controlador Vulkan u OpenGL ES 3. Los cuadros de diálogo de archivos usan el portal de escritorio, o <code>zenity</code> donde no lo hay.</li>
+          <li data-i18n="download.note.arm"><strong>Linux en ARM de 64 bits:</strong> experimental. Estos paquetes solo se compilan y se prueban en máquinas de compilación con renderizado por software, todavía no en placas ni portátiles ARM reales.</li>
+          <li data-i18n="download.note.sha">En la versión publicada, junto a cada archivo hay un archivo <code>.sha256</code> con el mismo nombre que contiene su suma de verificación: añade <code>.sha256</code> al final de la dirección de una descarga para obtenerlo. El README explica <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#checking-a-download" target="_blank" rel="noopener">cómo comprobar una descarga con él</a> (en inglés).</li>
         </ul>
       </div>
     </div>
@@ -391,7 +411,7 @@
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.lod.title">Detalle donde miras</h3>
-          <p data-i18n="features.lod.desc">Para nubes de un millón de puntos o más, la aplicación crea por sí sola un índice en disco, un octree. De él sale el detalle para la posición actual de la cámara, hasta el presupuesto de puntos que fijes: diez millones de puntos como máximo. El índice se conserva y se vuelve a usar cuando abres el archivo más adelante.</p>
+          <p data-i18n="features.lod.desc">Para nubes de un millón de puntos o más, la aplicación crea por sí sola un índice en disco, un octree. De él sale el detalle para la posición actual de la cámara, hasta el presupuesto de puntos que fijes: diez millones de puntos como máximo. Mientras la cámara se mueve, los puntos en pantalla se mantienen; el detalle de la nueva vista ocupa su lugar en cuanto se ha leído. El índice se conserva y se vuelve a usar cuando abres el archivo más adelante.</p>
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.display.title">Visualización</h3>
@@ -399,7 +419,7 @@
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.section.title">Caja de sección</h3>
-          <p data-i18n="features.section.desc">Una caja con seis caras que se arrastran limita lo que se muestra, se selecciona y se convierte en malla. Así se saca una planta o una sección de un escaneo; el contenido de la caja se exporta por separado. La caja sigue los ejes X, Y y Z del escaneo y no se puede girar.</p>
+          <p data-i18n="features.section.desc">Una caja con seis caras que se arrastran limita lo que se muestra, se selecciona, se convierte en malla y se examina en busca de caras. Así se saca una planta o una sección de un escaneo; el contenido de la caja se exporta por separado o se dibuja en 2D. La caja sigue los ejes X, Y y Z del escaneo y no se puede girar.</p>
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.measure.title">Medir</h3>
@@ -423,11 +443,23 @@
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.mesh.title">Mallas</h3>
-          <p data-i18n="features.mesh.desc"><em>Terrain mesh</em> crea una superficie 2,5D a partir de los puntos más bajos de una cuadrícula. <em>3D surface</em> sigue también muros y voladizos; deja huecos y no es estanca. Cualquier malla, también un archivo de malla abierto, se guarda como OBJ, PLY binario o STL binario. El panel de propiedades muestra los vértices, los triángulos, las aristas abiertas y el número de partes conectadas.</p>
+          <p data-i18n="features.mesh.desc"><em>Terrain mesh</em> crea una superficie 2,5D a partir de los puntos más bajos de una cuadrícula. <em>3D surface</em> sigue también muros y voladizos; deja huecos y no es estanca. <em>Export mesh…</em> guarda cualquier malla, tanto si se ha creado aquí como si se ha abierto desde un archivo o se ha descargado de 3D BAG, como OBJ, PLY binario o STL binario. El panel de propiedades muestra los vértices, los triángulos, las aristas abiertas y el número de partes conectadas.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.drawing.title">Dibujo de sección</h3>
+          <p data-i18n="features.drawing.desc"><em>Section drawing</em> crea un dibujo 2D a escala 1:1 de lo que corta la caja de sección y lo guarda como DXF o DWG: una planta a partir de la franja situada bajo la cara superior de la caja, o una sección vertical a partir de la franja situada detrás de uno de sus cuatro lados. El dibujo contiene los puntos de esa franja de todos los escaneos visibles, reducidos a un punto cada 5 mm. <em>Filled cut</em> dibuja los muros, pilares y forjados que atraviesa la franja como regiones rellenas con su contorno y deja abiertos los huecos de puertas y ventanas. <em>Preview</em> muestra esas regiones sobre los puntos antes de guardar un archivo.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.closedMesh.title">Malla cerrada</h3>
+          <p data-i18n="features.closedMesh.desc"><em>Closed mesh</em> crea, a partir de todos los puntos que hay dentro de la caja de sección o de todo el escaneo, una superficie sin solapes: cerrada allí donde el escaneo tiene puntos o un hueco más estrecho que el límite fijado (0,25 m al inicio), con los huecos de puertas y ventanas abiertos. Coloca la caja alrededor de una habitación y elige <em>Start</em>; el bloque del panel de propiedades indica de antemano el tamaño de la región y cuántos triángulos dará aproximadamente, y avisa cuando son más de los que admite una malla. Al terminar da la distancia media, la del 95 % y la mayor entre los puntos y la malla, las aristas abiertas y las partes conectadas. Una malla tiene como máximo cuatro millones de vértices y ocho millones de triángulos y se guarda como OBJ, PLY o STL.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.faces.title">Caras detectadas</h3>
+          <p data-i18n="features.faces.desc"><em>Detect faces</em> encuentra, dentro de la caja de sección o en todo el escaneo, las caras planas (suelos, techos, muros y planos inclinados) y los pilares redondos y las tuberías. Una cara plana es un plano con su contorno, en el que una ventana es un agujero y una puerta una muesca; un pilar o una tubería es un cilindro con su eje, su radio y su longitud escaneada, sin contorno. No es una malla de la superficie. La lista da de cada cara el tipo, el área y el residuo de sus puntos (RMS); un clic resalta la cara en la escena. <em>Export faces…</em> las guarda como JSON, con los parámetros de cada plano y cada cilindro, o como OBJ, con un grupo por cara.</p>
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.bag.title">Edificios de 3D BAG</h3>
-          <p data-i18n="features.bag.desc">Descarga modelos de edificios de los Países Bajos del registro público 3D BAG para una zona en coordenadas RD New y muéstralos junto a un escaneo. Una descarga abarca como máximo 2 por 2 km y unos 5.000 edificios y necesita conexión a internet. Es una extensión integrada que se puede desactivar.</p>
+          <p data-i18n="features.bag.desc"><em>3D BAG buildings…</em>, en la vista File, descarga modelos de edificios de los Países Bajos del registro público 3D BAG para una zona en coordenadas RD New y los muestra junto a un escaneo. Una descarga abarca como máximo 2 por 2 km y unos 5.000 edificios y necesita conexión a internet. Es una extensión integrada que se puede desactivar en la página Extensions.</p>
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.language.title">Neerlandés e inglés</h3>
@@ -460,11 +492,13 @@
               <tr><td>PTX</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.no">no</td><td data-i18n="formats.ptx">Con la posición del escáner de cada escaneo</td></tr>
               <tr><td>PTS</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.yes">sí</td><td></td></tr>
               <tr><td>XYZ, ASC, TXT, CSV</td><td data-i18n="formats.yes">sí</td><td>XYZ, CSV</td><td data-i18n="formats.text">Texto con un punto por línea</td></tr>
-              <tr><td>OBJ</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.obj">Malla con colores y normales; se leen los colores de material, no las imágenes de textura</td></tr>
+              <tr><td>OBJ</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.obj">Malla con colores y normales; se leen los colores de material, no las imágenes de textura. Las caras detectadas también se escriben como OBJ, con un grupo por cara</td></tr>
               <tr><td data-i18n="formats.plyMeshName">PLY como malla</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.plyMesh">Se muestra como caras. Se escribe como PLY binario con coordenadas de doble precisión, y con colores y normales cuando la malla los tiene</td></tr>
-              <tr><td>STL</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.stl">Se muestra como caras. Se escribe como STL binario: solo triángulos, sin colores</td></tr>
+              <tr><td>STL</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.stl">Se muestra como caras. Se escribe como STL binario: solo triángulos, sin colores. Una malla situada a más de 2.048 m del cero se escribe respecto a un origen en metros enteros que se indica en la cabecera del archivo</td></tr>
               <tr><td>OFF</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.no">no</td><td data-i18n="formats.off">Se muestra como caras; se puede guardar como OBJ, PLY o STL</td></tr>
-              <tr><td>DXF</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.no">no</td><td data-i18n="formats.dxf">Solo DXF ASCII. Las entidades POINT se abren como puntos y las entidades 3DFACE como caras; las demás entidades se omiten</td></tr>
+              <tr><td>DXF</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.asDrawing">sí, como dibujo</td><td data-i18n="formats.dxf">Lectura: solo DXF ASCII. Las entidades POINT se abren como puntos y las entidades 3DFACE como caras que se pueden guardar como OBJ, PLY o STL; las demás entidades se omiten. Escritura: el dibujo 2D de una caja de sección, con puntos, regiones rellenas, contornos y una línea de texto; no es un formato de las exportaciones de puntos</td></tr>
+              <tr><td>DWG</td><td data-i18n="formats.no">no</td><td data-i18n="formats.asDrawing">sí, como dibujo</td><td data-i18n="formats.dwg">El dibujo 2D de una caja de sección, como en DXF, en la versión R2004, R2010, R2013 o R2018. Los archivos DWG no se abren</td></tr>
+              <tr><td data-i18n="formats.facesName">Caras en JSON (.json)</td><td data-i18n="formats.no">no</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.faces">Las caras detectadas de un escaneo: cada plano con sus parámetros, su contorno y los residuos de sus puntos, cada cilindro con su eje, su radio y sus residuos, y las aristas entre caras planas. La <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#the-json-file" target="_blank" rel="noopener">guía del usuario</a> describe cada campo (en inglés)</td></tr>
               <tr><td data-i18n="formats.rcpName">Archivo de proyecto de escaneo (.rcp)</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.no">no</td><td data-i18n="formats.rcp">Solo se lee la lista de escaneos. Las copias indexadas de los escaneos (.rcs) de un proyecto están en un formato cerrado y no se leen</td></tr>
               <tr><td>BCF 2.1 (.bcf)</td><td data-i18n="formats.no">no</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.bcf">Vistas guardadas con notas e imágenes</td></tr>
               <tr><td>PNG</td><td data-i18n="formats.no">no</td><td data-i18n="formats.yes">sí</td><td data-i18n="formats.png">Imagen de la vista 3D, mediante la API de comandos</td></tr>
@@ -475,9 +509,9 @@
 
       <div class="content-block explainer">
         <h2 data-i18n="automation.title">API de comandos y servidor MCP</h2>
-        <p data-i18n="automation.api">Cada ventana ejecuta un servidor de comandos en <code>127.0.0.1</code>. Los comandos abren y cierran escaneos, ajustan la cámara, la caja de sección y la visualización, seleccionan, eliminan, miden, guardan vistas, exportan, crean mallas y toman imágenes de la vista 3D. El servidor solo escucha en la dirección de bucle local y rechaza cualquier comando sin el token.</p>
+        <p data-i18n="automation.api">Cada ventana ejecuta un servidor de comandos en <code>127.0.0.1</code>. Los comandos abren y cierran escaneos, ajustan la cámara, la caja de sección y la visualización, seleccionan, eliminan, miden, guardan vistas, exportan, dibujan secciones, crean mallas, detectan caras, descargan edificios de 3D BAG y toman imágenes de la vista 3D. El servidor solo escucha en la dirección de bucle local y rechaza cualquier comando sin el token.</p>
         <p data-i18n="automation.mcp"><code>open-pointcloud-studio --mcp</code> ejecuta un servidor de Model Context Protocol. Ofrece una herramienta por cada comando de la API, herramientas que esperan a que terminen las tareas largas, una herramienta que devuelve la vista 3D como imagen y herramientas para listar, elegir e iniciar ventanas.</p>
-        <p data-i18n="automation.cli">Desde la línea de comandos la aplicación también funciona sin ventana: convertir a otro formato, exportar los puntos que quedan dentro de una caja, combinar escaneos, crear un índice y generar mallas.</p>
+        <p data-i18n="automation.cli">Desde la línea de comandos la aplicación también funciona sin ventana: convertir a otro formato, exportar los puntos que quedan dentro de una caja, combinar escaneos, crear un índice, dibujar una sección en DXF o DWG, generar mallas y detectar caras.</p>
         <ul class="plain">
           <li data-i18n="automation.linkApi"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/API.md" target="_blank" rel="noopener">API.md</a>: todos los comandos (en inglés)</li>
           <li data-i18n="automation.linkMcp"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/MCP.md" target="_blank" rel="noopener">MCP.md</a>: todas las herramientas y la configuración para un programa cliente (en inglés)</li>
@@ -492,7 +526,14 @@
           <li data-i18n="limits.units">Las longitudes y las áreas están en metros. Las coordenadas de un escaneo se toman como metros y no se convierten.</li>
           <li data-i18n="limits.measure">Una medición no se guarda con el escaneo.</li>
           <li data-i18n="limits.surface">Una superficie creada con 3D surface deja huecos y no es estanca.</li>
-          <li data-i18n="limits.meshSize">Una malla mostrada en la escena tiene como máximo un millón de vértices y dos millones de triángulos por archivo.</li>
+          <li data-i18n="limits.meshSize">Una malla tiene como máximo cuatro millones de vértices y ocho millones de triángulos, tanto si viene de un archivo como si se crea en la aplicación.</li>
+          <li data-i18n="limits.session">Una malla cerrada y las caras detectadas solo existen durante la sesión en curso: expórtalas para conservarlas. Un escaneo contiene una sola malla; una malla nueva sustituye a la anterior.</li>
+          <li data-i18n="limits.drawingPoints">El límite de puntos de un dibujo de sección es de 150.000 puntos por defecto y de 400.000 como máximo; si tras reducir a 5 mm quedan más puntos, la separación entre puntos se duplica hasta que quepan.</li>
+          <li data-i18n="limits.fill">El corte relleno de un dibujo de sección se traza a partir de los puntos: un muro escaneado por un solo lado se dibuja como una tira fina, los huecos de menos de medio metro aproximadamente se cierran y los muebles que hay en la franja se dibujan salvo que antes se eliminen sus puntos.</li>
+          <li data-i18n="limits.closedMesh">Una malla cerrada redondea las esquinas en torno a un cuarto de vóxel, hace que los objetos más finos que dos o tres vóxeles se fundan o queden con huecos y deja abiertos algunos huecos situados junto a otra superficie. Sin estaciones de escaneo, una superficie que el centro de la región ve exactamente de canto puede salir rasgada.</li>
+          <li data-i18n="limits.faces">Detect faces no informa de franjas de menos de 0,15 m de ancho, como las jambas de las puertas. Una región demasiado grande para el presupuesto de trabajo se examina con vóxeles más grandes, los escaneos poco densos dan menos caras o ninguna, los pilares redondos de más de unos 0,7 m de ancho salen como franjas de muro y, sin estaciones de escaneo, el lado hacia el que mira una cara es una estimación.</li>
+          <li data-i18n="limits.drawingCheck">Los archivos DXF y DWG todavía no se han comprobado con una variedad de programas de dibujo. Si un programa rechaza un archivo DWG, prueba con DXF o con otra versión de archivo.</li>
+          <li data-i18n="limits.generated">El corte relleno, Closed mesh y Detect faces se han medido en habitaciones generadas, todavía no en el escaneo de un edificio real. La guía del usuario enumera los límites de <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#the-filled-cut-and-its-limits" target="_blank" rel="noopener">el corte relleno</a>, de <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-a-closed-mesh" target="_blank" rel="noopener">Closed mesh</a> y de <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-detected-faces" target="_blank" rel="noopener">Detect faces</a> (en inglés).</li>
           <li data-i18n="limits.index">En un levantamiento grande, el índice puede ocupar varios gigabytes en disco.</li>
         </ul>
       </div>
@@ -557,7 +598,7 @@
       };
     })();
   </script>
-  <script src="/shared/downloads.js?v=20261001"></script>
-  <script src="/shared/i18n.js?v=20260728"></script>
+  <script src="/shared/downloads.js?v=20261004"></script>
+  <script src="/shared/i18n.js?v=20261004"></script>
 </body>
 </html>

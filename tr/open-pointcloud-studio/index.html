@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Pointcloud Studio — OpenAEC Foundation</title>
-  <meta name="description" content="Lazer taramalarını ve nokta bulutlarını görüntülemek, ölçmek, düzenlemek ve dönüştürmek için masaüstü uygulaması: LAS, LAZ, E57 ve daha fazlası. Windows…">
+  <meta name="description" content="Nokta bulutları (LAS, LAZ, E57) için masaüstü uygulaması: görüntüleme, ölçüm, dönüştürme, DXF ve DWG kesit çizimleri, mesh üretimi. Windows, macOS, Linux.">
   <link rel="canonical" href="https://open-aec.com/tr/open-pointcloud-studio/">
   <!-- hreflang:start -->
   <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-pointcloud-studio/">
@@ -21,7 +21,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenAEC Foundation">
   <meta property="og:title" content="Open Pointcloud Studio — OpenAEC Foundation">
-  <meta property="og:description" content="Lazer taramalarını ve nokta bulutlarını görüntülemek, ölçmek, düzenlemek ve dönüştürmek için masaüstü uygulaması: LAS, LAZ, E57 ve daha fazlası. Windows…">
+  <meta property="og:description" content="Nokta bulutları (LAS, LAZ, E57) için masaüstü uygulaması: görüntüleme, ölçüm, dönüştürme, DXF ve DWG kesit çizimleri, mesh üretimi. Windows, macOS, Linux.">
   <meta property="og:url" content="https://open-aec.com/tr/open-pointcloud-studio/">
   <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
   <meta property="og:locale" content="tr_TR">
@@ -30,7 +30,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Open Pointcloud Studio">
-  <meta name="twitter:description" content="Lazer taramalarını ve nokta bulutlarını görüntülemek, ölçmek, düzenlemek ve dönüştürmek için masaüstü uygulaması: LAS, LAZ, E57 ve daha fazlası. Windows…">
+  <meta name="twitter:description" content="Nokta bulutları (LAS, LAZ, E57) için masaüstü uygulaması: görüntüleme, ölçüm, dönüştürme, DXF ve DWG kesit çizimleri, mesh üretimi. Windows, macOS, Linux.">
   <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
 
   <!-- AI / LLM discoverability -->
@@ -50,10 +50,10 @@
     "applicationSubCategory": "Point Cloud",
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://open-aec.com/open-pointcloud-studio/",
-    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe",
-    "softwareVersion": "0.7.0",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe",
+    "softwareVersion": "0.8.0",
     "license": "https://www.gnu.org/licenses/gpl-3.0.html",
-    "description": "Desktop application for viewing, measuring, editing and converting laser scans and other point clouds. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.",
+    "description": "Desktop application for viewing, measuring, editing and converting laser scans and other point clouds, and for turning them into section drawings, meshes and the flat faces of a building. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.",
     "featureList": [
       "Opens LAS, LAZ, E57, PLY, PCD, PTX, PTS and text point clouds",
       "Opens a whole scan project from its folder or its scan project file (.rcp)",
@@ -65,6 +65,9 @@
       "Box selection, delete with undo, thin, move and scale",
       "Export as LAS, LAZ, E57, PLY, XYZ, PTS or CSV and merging of LAS and LAZ scans",
       "Terrain mesh and 3D surface, saved as OBJ, PLY or STL",
+      "Section drawing: what the section box cuts as a 2D drawing in DXF or DWG, with a filled cut and a preview",
+      "Closed mesh of a room or region, with the measured distance between the points and the mesh",
+      "Detected faces: planes with their outlines, and cylinders, exported as JSON or OBJ",
       "3D BAG building models of the Netherlands",
       "Local command API and MCP server",
       "Interface in Dutch and English"
@@ -77,7 +80,7 @@
       "availability": "https://schema.org/InStock"
     },
     "isAccessibleForFree": true,
-    "keywords": "point cloud, laser scan, LAS, LAZ, E57, PLY, PCD, PTX, section box, measuring, BCF, mesh, MCP server",
+    "keywords": "point cloud, laser scan, LAS, LAZ, E57, PLY, PCD, PTX, section box, section drawing, DXF, DWG, measuring, BCF, mesh, closed mesh, plane detection, MCP server",
     "sameAs": [
       "https://github.com/OpenAEC-Foundation/open-pointcloud-studio"
     ],
@@ -128,6 +131,9 @@
     .slider-track { display: flex; transition: transform 0.4s ease; }
     .slider-slide { min-width: 100%; }
     .slider-slide img { width: 100%; height: auto; display: block; }
+    /* The pictures of the generated test rooms have other proportions than the scans before them.
+       Each is shown whole in a frame as tall as the tallest of those, so the slider keeps its height. */
+    .slider-slide.slide-framed img { aspect-ratio: 1920 / 1146; object-fit: contain; }
     .slider-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: rgba(0,0,0,0.5); color: white; border: none;
@@ -149,6 +155,13 @@
     .download-item .btn { justify-content: center; margin-bottom: var(--sp-2); }
     .download-item .download-alt { font-size: 0.75rem; color: var(--scaffold-gray); margin-top: auto; padding-top: var(--sp-2); }
     .download-item .download-alt a { color: var(--warm-gold); }
+    /* The experimental packages: plain links under the grid, not buttons */
+    .download-section .download-arm { color: var(--scaffold-gray); font-size: 0.8rem; line-height: 1.6; margin: var(--sp-4) 0 0; }
+    .download-section .download-arm a { color: var(--warm-gold); }
+    .exp-tag {
+      display: inline-block; font-family: var(--font-code); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em;
+      padding: 2px 8px; border-radius: var(--radius-full); background: #FEF3C7; color: #92400E; margin-right: 2px; vertical-align: middle;
+    }
     .download-notes { list-style: none; padding: 0; margin: var(--sp-6) 0 0; }
     .download-notes li { color: var(--scaffold-gray); font-size: 0.85rem; line-height: 1.6; padding: var(--sp-1) 0; }
     .download-notes strong { color: var(--blueprint-white); }
@@ -242,7 +255,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "tr",
-        "dateModified": "2026-10-03",
+        "dateModified": "2026-10-04",
         "breadcrumb": {
           "@id": "https://open-aec.com/tr/open-pointcloud-studio/#breadcrumb"
         }
@@ -307,15 +320,15 @@
   <header class="page-header">
     <span class="section-label" data-i18n="header.label">Nokta bulutlarını görüntüleyin, ölçün ve düzenleyin</span>
     <h1 data-i18n="header.title">Open <span class="accent">Pointcloud</span> Studio</h1>
-    <p class="lead" data-i18n="header.desc">Lazer taramalarını ve diğer nokta bulutlarını görüntülemek, ölçmek, düzenlemek ve dönüştürmek için bir masaüstü uygulaması. Windows, macOS ve Linux'ta çalışır, Rust ile yazılmıştır; web tarayıcısına ya da webview'e ihtiyaç duymaz.</p>
+    <p class="lead" data-i18n="header.desc">Lazer taramalarını ve diğer nokta bulutlarını görüntülemek, ölçmek, düzenlemek ve dönüştürmek için bir masaüstü uygulaması. Bir taramadan DXF ya da DWG kesit çizimi, kapalı mesh ve bir odanın düzlemleri ile silindirlerini çıkarır. Windows, macOS ve Linux'ta çalışır, Rust ile yazılmıştır; web tarayıcısına ya da webview'e ihtiyaç duymaz.</p>
     <div class="header-meta">
       <span class="status-badge" data-i18n="header.badge">Beta</span>
-      <span class="version-info">v0.7.0 &middot; Windows &middot; macOS &middot; Linux</span>
+      <span class="version-info">v0.8.0 &middot; Windows &middot; macOS &middot; Linux</span>
     </div>
     <div class="hero-downloads">
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary" data-i18n="header.dlWindows">Windows kurulum dosyası</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-macos.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos-tar" class="btn btn-primary" data-i18n="header.dlMac">macOS (.tar.gz)</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-linux.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-tar" class="btn btn-primary" data-i18n="header.dlLinux">Linux (.tar.gz)</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary" data-i18n="header.dlWindows">Windows kurulum dosyası</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos" class="btn btn-primary" data-i18n="header.dlMac">macOS (.dmg)</a>
+      <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-appimage" class="btn btn-primary" data-i18n="header.dlLinux">Linux (AppImage)</a>
     </div>
     <a href="#download" class="hero-more" data-i18n="header.allFiles">Tüm dosyalar, sağlama toplamları ve kurulum notları &darr;</a>
   </header>
@@ -328,6 +341,9 @@
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio.jpeg" width="1920" height="1048" alt="Open Pointcloud Studio izometrik genel görünümde: bir binanın bahçesi ve çiçek açmış ağaçlarıyla birlikte 455 milyon noktalık taraması; solda proje paneli, sağda Özellikler paneli" data-i18n="slides.one" data-i18n-attr="alt"></div>
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-2.jpg" width="1920" height="1046" loading="lazy" alt="Aynı tarama, kesit kutusu yüksekliğin %11'ine ayarlanmış durumda: odalar yukarıdan görünüyor ve iki nokta arasında 26,774 metrelik bir uzaklık ölçümü var" data-i18n="slides.two" data-i18n-attr="alt"></div>
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-3.jpg" width="1920" height="1146" loading="lazy" alt="Kesit kutusu, yüksekliğin %4 ile %31'i arasındaki bir dilime daraltılmış; böylece pencereleriyle birlikte cephe ortaya çıkıyor. Sağda kaydedilmiş görünüm ve kesit kutusunun sürgüleri yer alıyor" data-i18n="slides.three" data-i18n-attr="alt"></div>
+          <div class="slider-slide slide-framed"><img src="/shared/assets/screenshots/open-pointcloud-studio-4.jpg" width="1302" height="806" loading="lazy" alt="Yapay olarak üretilmiş iki deneme odasının kesit çizimi: üstten görünen plan ve dolu kesitin önizlemesi (kapı boşluğu açık bırakılmış ara duvar ile yuvarlak bir kolon, dolu bölgeler olarak); sağda Özellikler panelindeki Section drawing bloğu (Felemenkçe arayüzde Snedetekening)" data-i18n="slides.four" data-i18n-attr="alt"></div>
+          <div class="slider-slide slide-framed"><img src="/shared/assets/screenshots/open-pointcloud-studio-5.jpg" width="1302" height="806" loading="lazy" alt="Aynı yapay deneme odalarının kapalı mesh'i: iki odanın yüzeyi, dış duvarlardan birinde açık bırakılmış bir kapı boşluğuyla; sağda Closed mesh bloğu (Felemenkçe arayüzde Gesloten mesh) ve sonucu: 15.868 köşe noktası, 30.563 üçgen ve 1,6 mm ortalama sapma" data-i18n="slides.five" data-i18n-attr="alt"></div>
+          <div class="slider-slide slide-framed"><img src="/shared/assets/screenshots/open-pointcloud-studio-6.jpg" width="1302" height="806" loading="lazy" alt="Aynı yapay deneme odalarının algılanan yüzeyleri, her tür kendi renginde (tavanlar mavi, duvarlar kum rengi); sağda Detect faces bloğu (Felemenkçe arayüzde Vlakken herkennen) ve sayıları: 2 zemin, 2 tavan, 10 duvar ve 1 kolon" data-i18n="slides.six" data-i18n-attr="alt"></div>
         </div>
         <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Önceki görsel" data-i18n="slides.prev" data-i18n-attr="aria-label">&lsaquo;</button>
         <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Sonraki görsel" data-i18n="slides.next" data-i18n-attr="aria-label">&rsaquo;</button>
@@ -337,31 +353,35 @@
 
     <div class="content">
       <div class="download-section" id="download">
-        <h3 data-i18n="download.title">v0.7.0 sürümünü indir</h3>
+        <h3 data-i18n="download.title">v0.8.0 sürümünü indir</h3>
         <p class="download-intro" data-i18n="download.intro">Her düğme indirmeyi hemen başlatır. Hesap açmanız gerekmez ve araya bir sayfa girmez.</p>
         <div class="download-grid">
           <div class="download-item">
             <div class="os">Windows</div>
-            <div class="size" data-i18n="download.win.req">Windows 10 ve 11, 64 bit &middot; 8,7 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary btn-sm" data-i18n="download.win.primary">Kurulum dosyası (.exe)</a>
-            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-windows.zip" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows-zip" data-i18n="download.win.zip">Kurulumsuz zip (9,9 MB)</a></div>
+            <div class="size" data-i18n="download.win.req">Windows 10 ve 11, 64 bit</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary btn-sm" data-i18n="download.win.primary">Kurulum dosyası (.exe)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_windows-x64.zip" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows-zip" data-i18n="download.win.zip">Kurulumsuz zip</a></div>
           </div>
           <div class="download-item">
             <div class="os">macOS</div>
-            <div class="size" data-i18n="download.mac.req">Apple ve Intel işlemciler &middot; 9,7 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-macos.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos-tar" class="btn btn-primary btn-sm" data-i18n="download.mac.primary">Arşiv (.tar.gz)</a>
+            <div class="size" data-i18n="download.mac.req">macOS 11 ve sonrası, Apple ve Intel işlemciler</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos" class="btn btn-primary btn-sm" data-i18n="download.mac.primary">Disk görüntüsü (.dmg)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos-tar" data-i18n="download.mac.tar">Yalnızca program (.tar.gz)</a></div>
           </div>
           <div class="download-item">
             <div class="os">Linux</div>
-            <div class="size" data-i18n="download.linux.req">x86-64 &middot; 13,6 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.7.0/open-pointcloud-studio-v0.7.0-linux.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-tar" class="btn btn-primary btn-sm" data-i18n="download.linux.primary">Arşiv (.tar.gz)</a>
+            <div class="size" data-i18n="download.linux.req">x86-64; Ubuntu 22.04, Debian 12, Fedora 36 veya daha yenisi</div>
+            <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-appimage" class="btn btn-primary btn-sm" data-i18n="download.linux.primary">AppImage (her dağıtım)</a>
+            <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.deb" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-deb" data-i18n="download.linux.deb">.deb (Debian, Ubuntu)</a><br><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-amd64.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-tar" data-i18n="download.linux.tar">Yalnızca program (.tar.gz)</a></div>
           </div>
         </div>
+        <p class="download-arm"><span class="exp-tag" data-i18n="download.arm.tag">deneysel</span> <span data-i18n="download.arm.label">64 bit ARM üzerinde Linux:</span> <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-appimage">AppImage</a> &middot; <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.deb" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-deb">.deb</a> &middot; <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-arm64.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-tar">.tar.gz</a></p>
         <ul class="download-notes">
-          <li data-i18n="download.note.win"><strong>Windows:</strong> kurulum dosyası imzalı değildir, bu yüzden Windows bilinmeyen bir yayıncı için uyarı verebilir: <em>Ek bilgi</em> ve ardından <em>Yine de çalıştır</em> seçeneğini seçin. Hiçbir şey kurmak istemiyorsanız zip dosyasını açıp programı oradan başlatın.</li>
-          <li data-i18n="download.note.mac"><strong>macOS:</strong> arşivi açın ve uygulamayı Uygulamalar klasörüne koyun. Uygulama noter onaylı değildir, bu yüzden macOS ilk açılışı reddeder: o seferlik sağ tıklayıp <em>Aç</em> seçeneğini kullanın.</li>
-          <li data-i18n="download.note.linux"><strong>Linux:</strong> arşivi açın ve programı içinden başlatın. Kurulum gerekmez.</li>
-          <li data-i18n="download.note.sha">Her dosyanın yanında, aynı adı taşıyan ve sağlama toplamını içeren bir <code>.sha256</code> dosyası bulunur; indirmeyi böylece doğrulayabilirsiniz.</li>
+          <li data-i18n="download.note.win"><strong>Windows:</strong> kurulum dosyası uygulamayı yönetici hakları gerekmeden geçerli kullanıcı için ya da tüm kullanıcılar için kurar. Sürüm kod imzası taşımıyorsa Windows bilinmeyen yayımcı uyarısı gösterebilir: önce <em>Ek bilgi</em>'yi, sonra <em>Yine de çalıştır</em>'ı seçin. Hiçbir şey kurmak istemiyorsanız zip dosyasını açıp programı oradan başlatın.</li>
+          <li data-i18n="download.note.mac"><strong>macOS:</strong> disk görüntüsünü açın ve uygulamayı Uygulamalar klasörüne sürükleyin. Uygulama notarize edilmediği için macOS ilk açılışı engeller. Buna bir kez izin verin: macOS 15 ve sonrasında uygulamayı başlatın, iletiyi kapatın ve Sistem Ayarları'nda <em>Gizlilik ve Güvenlik</em> altında <em>Yine de Aç</em>'ı seçin; macOS 11 ile 14 arasında uygulamaya Control tuşuna basarak tıklayın ve <em>Aç</em>'ı seçin.</li>
+          <li data-i18n="download.note.linux"><strong>Linux:</strong> AppImage dosyasını bir kez <code>chmod +x</code> ile çalıştırılabilir yapın, sonra başlatın. AppImage kendini FUSE (<code>fusermount3</code> ya da <code>fusermount</code>) ile bağlar; FUSE yoksa dosya adının ardına <code>--appimage-extract-and-run</code> yazarak başlatın. .deb paketini, indirdiğiniz dosyanın bulunduğu klasörde <code>sudo apt install ./open-pointcloud-studio_*_amd64.deb</code> komutuyla kurun. Linux'ta 2.35 veya daha yeni sürümde bir C kitaplığı (Ubuntu 22.04, Debian 12, Fedora 36 veya daha yenisi), X11 ya da Wayland ve bir Vulkan sürücüsü ya da OpenGL ES 3 gerekir. Dosya seçme pencereleri masaüstü portalını, portal yoksa <code>zenity</code> aracını kullanır.</li>
+          <li data-i18n="download.note.arm"><strong>64 bit ARM üzerinde Linux:</strong> deneysel. Bu paketler yalnızca yazılımsal görüntü oluşturma kullanan derleme makinelerinde derlenip sınandı; gerçek ARM kartlarında ve dizüstü bilgisayarlarda henüz denenmedi.</li>
+          <li data-i18n="download.note.sha">Sürümde her dosyanın yanında, aynı adı taşıyan ve sağlama toplamını içeren bir <code>.sha256</code> dosyası bulunur: bu dosyayı almak için indirme adresinin sonuna <code>.sha256</code> ekleyin. README, <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#checking-a-download" target="_blank" rel="noopener">bir indirmenin bu dosyayla nasıl doğrulanacağını</a> anlatır (İngilizce).</li>
         </ul>
       </div>
     </div>
@@ -385,7 +405,7 @@
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.lod.title">Baktığınız yerde ayrıntı</h3>
-          <p data-i18n="features.lod.desc">Bir milyon ve daha fazla noktalı bulutlar için uygulama diskte kendiliğinden bir dizin (octree) oluşturur. Bu dizin, belirlediğiniz nokta bütçesine kadar (en çok on milyon nokta) kameranın o anki konumuna uygun ayrıntıyı sağlar. Dizin saklanır ve dosyayı sonra yeniden açtığınızda tekrar kullanılır.</p>
+          <p data-i18n="features.lod.desc">Bir milyon ve daha fazla noktalı bulutlar için uygulama diskte kendiliğinden bir dizin (octree) oluşturur. Bu dizin, belirlediğiniz nokta bütçesine kadar (en çok on milyon nokta) kameranın o anki konumuna uygun ayrıntıyı sağlar. Kamera hareket ederken ekrandaki noktalar yerinde kalır; yeni görünümün ayrıntısı okununca onların yerini alır. Dizin saklanır ve dosyayı sonra yeniden açtığınızda tekrar kullanılır.</p>
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.display.title">Görüntüleme</h3>
@@ -393,7 +413,7 @@
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.section.title">Kesit kutusu</h3>
-          <p data-i18n="features.section.desc">Altı yüzü sürüklenebilen bir kutu, neyin gösterileceğini, seçileceğini ve mesh'e dönüştürüleceğini sınırlar. Bir taramadan kat planı ya da kesit böyle çıkarılır; kutunun içeriği ayrıca dışa aktarılabilir. Kutu taramanın X, Y ve Z eksenlerini izler ve döndürülemez.</p>
+          <p data-i18n="features.section.desc">Altı yüzü sürüklenebilen bir kutu, neyin gösterileceğini, seçileceğini, mesh'e dönüştürüleceğini ve yüzey aramasına gireceğini sınırlar. Bir taramadan kat planı ya da kesit böyle çıkarılır; kutunun içeriği ayrıca dışa aktarılabilir ya da 2B çizim olarak çizilebilir. Kutu taramanın X, Y ve Z eksenlerini izler ve döndürülemez.</p>
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.measure.title">Ölçüm</h3>
@@ -417,11 +437,23 @@
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.mesh.title">Mesh'ler</h3>
-          <p data-i18n="features.mesh.desc"><em>Terrain mesh</em>, bir ızgaradaki en alçak noktalardan 2,5B bir yüzey oluşturur. <em>3D surface</em> duvarları ve çıkıntıları da izler; sonuçta delikler kalır ve yüzey su geçirmez (kapalı) değildir. Açılmış bir mesh dosyası dahil her mesh OBJ, ikili PLY veya ikili STL olarak kaydedilebilir. Özellikler paneli köşe noktalarını, üçgenleri, açık kenarları ve bağlantılı parça sayısını gösterir.</p>
+          <p data-i18n="features.mesh.desc"><em>Terrain mesh</em>, bir ızgaradaki en alçak noktalardan 2,5B bir yüzey oluşturur. <em>3D surface</em> duvarları ve çıkıntıları da izler; sonuçta delikler kalır ve yüzey su geçirmez (kapalı) değildir. <em>Export mesh…</em>, ister burada üretilmiş, ister bir dosyadan açılmış, ister 3D BAG'den indirilmiş olsun her mesh'i OBJ, ikili PLY veya ikili STL olarak kaydeder. Özellikler paneli köşe noktalarını, üçgenleri, açık kenarları ve bağlantılı parça sayısını gösterir.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.drawing.title">Kesit çizimi</h3>
+          <p data-i18n="features.drawing.desc"><em>Section drawing</em>, kesit kutusunun kestiği yerin 1:1 ölçekli 2B çizimini oluşturur ve DXF ya da DWG olarak kaydeder: kutunun üst yüzünün altındaki dilimden bir plan ya da dört yan yüzünden birinin arkasındaki dilimden düşey bir kesit. Çizim, görünür bütün taramalardan o dilime düşen noktaları, 5 mm'de bir noktaya seyreltilmiş olarak içerir. <em>Filled cut</em>, dilimin içinden geçtiği duvarları, kolonları ve döşemeleri dış çizgili dolu bölgeler olarak çizer; kapı ve pencere boşluklarını açık bırakır. <em>Preview</em>, dosya kaydedilmeden önce bu bölgeleri noktaların üzerinde gösterir.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.closedMesh.title">Kapalı mesh</h3>
+          <p data-i18n="features.closedMesh.desc"><em>Closed mesh</em>, kesit kutusunun içindeki ya da taramanın tamamındaki bütün noktalardan örtüşmesiz bir yüzey oluşturur: taramada nokta bulunan ya da belirlenen sınırdan (başlangıçta 0,25 m) dar bir boşluk olan her yerde yüzey kapalıdır; kapı ve pencere boşlukları açık kalır. Kutuyu bir odanın çevresine yerleştirin ve <em>Start</em>'ı seçin; Özellikler panelindeki blok, bölgenin ne kadar büyük olduğunu ve yaklaşık kaç üçgen çıkacağını önceden söyler, bu sayı bir mesh'in alabileceğinden fazlaysa uyarır. İş bitince noktalar ile mesh arasındaki ortalama, %95 ve en büyük mesafeyi, açık kenarları ve bağlantılı parçaları verir. Bir mesh en çok dört milyon köşe noktası ve sekiz milyon üçgen içerir; OBJ, PLY veya STL olarak kaydedilebilir.</p>
+        </div>
+        <div class="feature-card">
+          <h3 data-i18n="features.faces.title">Yüzey algılama</h3>
+          <p data-i18n="features.faces.desc"><em>Detect faces</em>, kesit kutusunun içindeki ya da taramanın tamamındaki düz yüzeyleri (zeminler, tavanlar, duvarlar ve eğimli düzlemler) ve yuvarlak kolonlarla boruları bulur. Düz bir yüzey, dış çizgisiyle birlikte tek bir düzlemdir; bu çizgide pencere bir delik, kapı bir çentiktir. Bir kolon ya da boru ise ekseni, yarıçapı ve taranan uzunluğuyla tek bir silindirdir; dış çizgisi yoktur. Sonuç, taranan yüzeyin bir mesh'i değildir. Liste her yüzeyin türünü, alanını ve noktalarının artık hatasını (RMS) verir; bir satıra tıklamak o yüzeyi sahnede vurgular. <em>Export faces…</em> bunları her düzlemin ve silindirin parametreleriyle JSON olarak ya da her yüzey için bir grup içeren OBJ olarak kaydeder.</p>
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.bag.title">3D BAG binaları</h3>
-          <p data-i18n="features.bag.desc">Hollanda'nın bina modellerini, RD New koordinatlarıyla verilen bir alan için açık 3D BAG kaydından indirin ve bir taramayla birlikte gösterin. Tek indirme en çok 2 x 2 km'lik bir alanı ve yaklaşık 5.000 binayı kapsar ve internet bağlantısı gerektirir. Kapatılabilen yerleşik bir uzantıdır.</p>
+          <p data-i18n="features.bag.desc">File görünümündeki <em>3D BAG buildings…</em>, Hollanda'nın bina modellerini RD New koordinatlarıyla verilen bir alan için açık 3D BAG kaydından indirir ve bir taramayla birlikte gösterir. Tek indirme en çok 2 x 2 km'lik bir alanı ve yaklaşık 5.000 binayı kapsar ve internet bağlantısı gerektirir. Extensions sayfasından kapatılabilen yerleşik bir uzantıdır.</p>
         </div>
         <div class="feature-card">
           <h3 data-i18n="features.language.title">Felemenkçe ve İngilizce</h3>
@@ -454,11 +486,13 @@
               <tr><td>PTX</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.ptx">Her taramanın lazer tarayıcı konumuyla birlikte</td></tr>
               <tr><td>PTS</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.yes">evet</td><td></td></tr>
               <tr><td>XYZ, ASC, TXT, CSV</td><td data-i18n="formats.yes">evet</td><td>XYZ, CSV</td><td data-i18n="formats.text">Her satırda bir nokta bulunan metin</td></tr>
-              <tr><td>OBJ</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.obj">Renkli ve normalli mesh; malzeme renkleri okunur, doku görselleri okunmaz</td></tr>
+              <tr><td>OBJ</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.obj">Renkli ve normalli mesh; malzeme renkleri okunur, doku görselleri okunmaz. Algılanan yüzeyler de her yüzey için bir grupla OBJ olarak yazılır</td></tr>
               <tr><td data-i18n="formats.plyMeshName">Mesh olarak PLY</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.plyMesh">Yüzler olarak gösterilir. Çift duyarlıklı koordinatlarla, mesh'te varsa renk ve normallerle birlikte ikili PLY olarak yazılır</td></tr>
-              <tr><td>STL</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.stl">Yüzler olarak gösterilir. İkili STL olarak yazılır: yalnızca üçgenler, renk yok</td></tr>
+              <tr><td>STL</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.stl">Yüzler olarak gösterilir. İkili STL olarak yazılır: yalnızca üçgenler, renk yok. Sıfırdan 2.048 m'den uzakta duran bir mesh, dosya başlığında belirtilen tam metrelik bir başlangıç noktasına göre yazılır</td></tr>
               <tr><td>OFF</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.off">Yüzler olarak gösterilir; OBJ, PLY veya STL olarak kaydedilebilir</td></tr>
-              <tr><td>DXF</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.dxf">Yalnızca ASCII DXF. POINT öğeleri nokta, 3DFACE öğeleri yüz olarak açılır; diğer öğeler atlanır</td></tr>
+              <tr><td>DXF</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.asDrawing">evet, çizim olarak</td><td data-i18n="formats.dxf">Okuma: yalnızca ASCII DXF. POINT öğeleri nokta olarak, 3DFACE öğeleri OBJ, PLY veya STL olarak kaydedilebilen yüzler olarak açılır; diğer öğeler atlanır. Yazma: bir kesit kutusunun noktalar, dolu bölgeler, dış çizgiler ve bir satır metin içeren 2B çizimi; nokta dışa aktarımlarının biçimlerinden biri değildir</td></tr>
+              <tr><td>DWG</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.asDrawing">evet, çizim olarak</td><td data-i18n="formats.dwg">DXF'te olduğu gibi bir kesit kutusunun 2B çizimi; R2004, R2010, R2013 veya R2018 sürümünde. DWG dosyaları açılmaz</td></tr>
+              <tr><td data-i18n="formats.facesName">JSON olarak yüzeyler (.json)</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.faces">Bir taramanın algılanan yüzeyleri: her düzlem parametreleri, dış çizgisi ve noktalarının artık hatalarıyla; her silindir ekseni, yarıçapı ve artık hatalarıyla; ayrıca düz yüzeyler arasındaki kenarlar. Her alanı <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#the-json-file" target="_blank" rel="noopener">kullanıcı kılavuzu</a> açıklar (İngilizce)</td></tr>
               <tr><td data-i18n="formats.rcpName">Tarama projesi dosyası (.rcp)</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.rcp">Yalnızca tarama listesi okunur. Bir projenin dizinlenmiş tarama kopyaları (.rcs) kapalı bir biçimdedir ve okunmaz</td></tr>
               <tr><td>BCF 2.1 (.bcf)</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.bcf">Notları ve görselleriyle kayıtlı görünümler</td></tr>
               <tr><td>PNG</td><td data-i18n="formats.no">hayır</td><td data-i18n="formats.yes">evet</td><td data-i18n="formats.png">3B görünümün görseli, komut API'si üzerinden</td></tr>
@@ -469,9 +503,9 @@
 
       <div class="content-block explainer">
         <h2 data-i18n="automation.title">Komut API'si ve MCP sunucusu</h2>
-        <p data-i18n="automation.api">Her pencere <code>127.0.0.1</code> üzerinde bir komut sunucusu çalıştırır. Komutlar taramaları açıp kapatır, kamerayı, kesit kutusunu ve görüntülemeyi ayarlar, seçer, siler, ölçer, görünüm kaydeder, dışa aktarır, mesh oluşturur ve 3B görünümün görselini alır. Sunucu yalnızca geri döngü (loopback) adresini dinler ve belirteç (token) olmadan gelen komutu reddeder.</p>
+        <p data-i18n="automation.api">Her pencere <code>127.0.0.1</code> üzerinde bir komut sunucusu çalıştırır. Komutlar taramaları açıp kapatır, kamerayı, kesit kutusunu ve görüntülemeyi ayarlar, seçer, siler, ölçer, görünüm kaydeder, dışa aktarır, kesit çizer, mesh oluşturur, yüzey algılar, 3D BAG binalarını indirir ve 3B görünümün görselini alır. Sunucu yalnızca geri döngü (loopback) adresini dinler ve belirteç (token) olmadan gelen komutu reddeder.</p>
         <p data-i18n="automation.mcp"><code>open-pointcloud-studio --mcp</code> bir Model Context Protocol sunucusu çalıştırır. API'nin her komutu için bir araç, uzun işlerin bitmesini bekleyen araçlar, 3B görünümü görsel olarak döndüren bir araç ve pencereleri listeleyen, seçen ve başlatan araçlar sunar.</p>
-        <p data-i18n="automation.cli">Uygulama komut satırından pencere açmadan da çalışır: başka bir biçime dönüştürme, bir kutunun içindeki noktaları dışa aktarma, taramaları birleştirme, dizin oluşturma ve mesh üretme.</p>
+        <p data-i18n="automation.cli">Uygulama komut satırından pencere açmadan da çalışır: başka bir biçime dönüştürme, bir kutunun içindeki noktaları dışa aktarma, taramaları birleştirme, dizin oluşturma, bir kesiti DXF ya da DWG olarak çizme, mesh üretme ve yüzey algılama.</p>
         <ul class="plain">
           <li data-i18n="automation.linkApi"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/API.md" target="_blank" rel="noopener">API.md</a>: bütün komutlar (İngilizce)</li>
           <li data-i18n="automation.linkMcp"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/MCP.md" target="_blank" rel="noopener">MCP.md</a>: bütün araçlar ve bir istemci program için yapılandırma (İngilizce)</li>
@@ -486,7 +520,14 @@
           <li data-i18n="limits.units">Uzunluklar ve alanlar metre cinsindendir. Taramanın koordinatları metre olarak kabul edilir, dönüştürülmez.</li>
           <li data-i18n="limits.measure">Ölçüm taramayla birlikte kaydedilmez.</li>
           <li data-i18n="limits.surface">3D surface ile üretilen yüzeyde delikler kalır; yüzey su geçirmez değildir.</li>
-          <li data-i18n="limits.meshSize">Sahnede gösterilen bir mesh, dosya başına en çok bir milyon köşe noktası ve iki milyon üçgen içerir.</li>
+          <li data-i18n="limits.meshSize">Bir mesh, ister dosyadan gelsin ister uygulamada üretilsin, en çok dört milyon köşe noktası ve sekiz milyon üçgen içerir.</li>
+          <li data-i18n="limits.session">Kapalı mesh ve algılanan yüzeyler yalnızca açık oturum boyunca vardır: saklamak için dışa aktarın. Bir taramada tek bir mesh bulunur; yeni bir mesh öncekinin yerini alır.</li>
+          <li data-i18n="limits.drawingPoints">Bir kesit çiziminin nokta sınırı varsayılan olarak 150.000, en çok 400.000 noktadır; 5 mm'ye seyreltmeden sonra daha fazla nokta kalırsa nokta aralığı, noktalar sığana kadar ikiye katlanır.</li>
+          <li data-i18n="limits.fill">Kesit çizimindeki dolu kesit noktalardan çıkarılır: tek tarafından taranmış bir duvar ince bir şerit olarak çizilir, yaklaşık yarım metreden dar boşluklar kapatılır ve dilimdeki mobilyalar, noktaları önce silinmedikçe çizilir.</li>
+          <li data-i18n="limits.closedMesh">Kapalı mesh köşeleri yaklaşık çeyrek voksel kadar yuvarlar; iki ya da üç vokselden ince nesneler birleşir ya da delinir, başka bir yüzeyin yanındaki bazı boşluklar açık kalır. Tarayıcı istasyonları bilinmiyorsa, bölgenin merkezinden tam kenarından görünen bir yüzey yırtık çıkabilir.</li>
+          <li data-i18n="limits.faces">Detect faces, kapı boşluğunun yan yüzleri gibi 0,15 m'den dar şeritleri bildirmez. Çalışma bütçesine sığmayan büyük bir bölge daha büyük voksellerle aranır, seyrek taramalar daha az yüzey verir ya da hiç vermez, yaklaşık 0,7 m'den geniş yuvarlak kolonlar duvar şeritleri olarak çıkar ve tarayıcı istasyonları bilinmiyorsa bir yüzeyin baktığı taraf bir tahmindir.</li>
+          <li data-i18n="limits.drawingCheck">DXF ve DWG dosyaları henüz çeşitli çizim programlarıyla denenmedi. Bir program DWG dosyasını açmazsa DXF'i ya da başka bir dosya sürümünü deneyin.</li>
+          <li data-i18n="limits.generated">Dolu kesit, Closed mesh ve Detect faces yapay olarak üretilmiş odalarda ölçüldü; gerçek bir binanın taramasında henüz ölçülmedi. Kullanıcı kılavuzu <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#the-filled-cut-and-its-limits" target="_blank" rel="noopener">dolu kesitin</a>, <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-a-closed-mesh" target="_blank" rel="noopener">Closed mesh</a> ve <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-detected-faces" target="_blank" rel="noopener">Detect faces</a> araçlarının sınırlarını sıralar (İngilizce).</li>
           <li data-i18n="limits.index">Büyük bir ölçümde dizin diskte birkaç gigabayt yer tutabilir.</li>
         </ul>
       </div>
@@ -551,7 +592,7 @@
       };
     })();
   </script>
-  <script src="/shared/downloads.js?v=20261001"></script>
-  <script src="/shared/i18n.js?v=20260728"></script>
+  <script src="/shared/downloads.js?v=20261004"></script>
+  <script src="/shared/i18n.js?v=20261004"></script>
 </body>
 </html>
