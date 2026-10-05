@@ -2,11 +2,11 @@
 
 > Machine-readable Markdown mirrors of the OpenAEC product pages. Use these when feeding the OpenAEC catalog to AI assistants (Claude, Continue, Cursor, etc).
 
-Generated: 2026-10-03T06:10:58.262Z
+Generated: 2026-10-04T08:00:07.565Z
 
-**Foundation totals:** 62 public repos · 3485 stars · 14856 commits · 64 contributors.
+**Foundation totals:** 62 public repos · 3526 stars · 14916 commits · 65 contributors.
 
-**Total downloads across tools:** 98,473 (20 repos).
+**Total downloads across tools:** 99,892 (20 repos).
 
 ## Beta
 
@@ -15,7 +15,7 @@ Generated: 2026-10-03T06:10:58.262Z
 - [Open Calc Studio](./open-calc-studio.md) — Cost estimation and budgeting for buildings, civil infrastructure and GWW projects. STABU/RAW support, IFCX integration, MCP server for AI control. (`v0.13.0`)
 - [Open Planner Studio](./open-planner-studio.md) — Open-source construction scheduling with Gantt charts, critical path (CPM), WBS, resource levelling, baselines and progress tracking. One task grid for the whole schedule: it powers both the Gantt task list and the full Table view, with keyboard cell navigation, multi-cell paste from a spreadsheet, dependency editing in the cell, a column chooser, and a per-task duration unit of days or hours. Opens Microsoft Project (.mpp) files natively — date-faithful to the minute across a 216-file test corpus, with split tasks, resource leveling, timephased assignments and manually scheduled tasks read from the file and drawn as interrupted Gantt bars. Uses IFC 4.3 as its native file format and ships a built-in MCP server so an AI assistant can read and edit the schedule. (`v2026.9.0`)
 - [Open Pile Plan Studio](./open-pile-plan-studio.md) — Interactive pile-plan variants with load points, CPT selection, pile options, utilization, estimated costs and IFCPP project files. (`v0.4.3-alpha`)
-- [Open Pointcloud Studio](./open-pointcloud-studio.md) — Desktop application for viewing, measuring, editing and converting laser scans and other point clouds, and for turning them into section drawings, meshes and the flat faces of a building. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view. (`v0.7.0`)
+- [Open Pointcloud Studio](./open-pointcloud-studio.md) — Desktop application for viewing, measuring, editing and converting laser scans and other point clouds, and for turning them into section drawings, meshes and the flat faces of a building. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view. (`v0.8.0`)
 - [Open Speech Studio](./open-speech-studio.md) — Local speech-to-text using Whisper AI. CTRL+Win shortcut for OS-wide dictation. Privacy-first, no cloud. (`v0.10.3`)
 - [Monty IFC Viewer](./monty-ifc-viewer.md) — Lightweight IFC viewer for quick BIM model inspection. (`v1.0.1`)
 
