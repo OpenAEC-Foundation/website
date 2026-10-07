@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux
 **Category:** Building Physics
-**Current version:** v0.1.6-alpha (2026-03-31)
+**Current version:** v0.1.7-alpha (2026-10-06)
 **Tool ID:** `open-energy-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-energy-studio`
 
 ## Live stats
 
 - Stars: **0**
-- Commits: **515**
+- Commits: **530**
 - Forks: **2**
-- Open issues: **3**
-- Releases: **2**
-- Total downloads: **5**
-- Downloads by platform: macOS (3), Windows (2)
+- Open issues: **2**
+- Releases: **3**
+- Total downloads: **6**
+- Downloads by platform: Windows (3), macOS (3)
 
 ## Key features
 
@@ -54,7 +54,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-energy-studio/
 - Live demo: https://open-energy-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-energy-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-energy-studio/releases/tag/v0.1.6-alpha
+- Latest stable release: https://github.com/OpenAEC-Foundation/open-energy-studio/releases/tag/v0.1.7-alpha
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-energy-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)

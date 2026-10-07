@@ -2,11 +2,11 @@
 
 > Machine-readable Markdown mirrors of the OpenAEC product pages. Use these when feeding the OpenAEC catalog to AI assistants (Claude, Continue, Cursor, etc).
 
-Generated: 2026-10-06T06:08:41.803Z
+Generated: 2026-10-07T06:07:45.573Z
 
-**Foundation totals:** 62 public repos · 3585 stars · 15571 commits · 67 contributors.
+**Foundation totals:** 62 public repos · 3618 stars · 15874 commits · 68 contributors.
 
-**Total downloads across tools:** 103,110 (20 repos).
+**Total downloads across tools:** 105,447 (20 repos).
 
 ## Beta
 
@@ -21,7 +21,7 @@ Generated: 2026-10-06T06:08:41.803Z
 
 ## Alpha
 
-- [Open Energy Studio](./open-energy-studio.md) — Building energy analysis and performance for the Dutch NTA 8800 / BENG framework. (`v0.1.6-alpha`)
+- [Open Energy Studio](./open-energy-studio.md) — Building energy analysis and performance for the Dutch NTA 8800 / BENG framework. (`v0.1.7-alpha`)
 - [Open Heatloss Studio](./open-heatloss-studio.md) — Heat loss calculations for buildings per NEN 12831 and ISSO 51:2023. Rust calculation engine, IFCX integration, PDF reports. (`v0.1.1-pr13.alpha`)
 - [Open Field Studio](./open-field-studio.md) — Site inspection and quality control. Defect pinning on floorplans, NEN 2767 checklists, offline-first. (`v0.3.6`)
 - [Open Frame Studio](./open-frame-studio.md) — 2D structural frame analysis for beams, columns, portal frames and civil load-bearing systems. (`v0.6.0`)
