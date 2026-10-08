@@ -3,6 +3,7 @@
 // week-over-week and total deltas per tool. Writes data/download-trends.json.
 const fs = require('fs');
 const path = require('path');
+const { isExcludedRepo } = require('./website-exclusions');
 
 const ROOT = path.join(__dirname, '..');
 const historyDir = path.join(ROOT, 'data', 'history-downloads');
@@ -53,6 +54,7 @@ for (let i = 1; i < weeks.length; i++) {
   const cur = weekSnapshots[weeks[i]];
   const perRepo = {};
   Object.keys(cur.perRepo).forEach(repo => {
+    if (isExcludedRepo(repo)) return;
     // Een repo die in de vorige momentopname nog niet werd gevolgd, levert
     // anders zijn hele historie als "groei van deze week" op. Zulke repo's
     // tellen pas mee vanaf de eerste week waarin ze in beide metingen staan.
@@ -76,6 +78,7 @@ const first = snapshots[0];
 const last = snapshots[snapshots.length - 1];
 const totalDelta = {};
 Object.keys(last.perRepo).forEach(repo => {
+  if (isExcludedRepo(repo)) return;
   if (!(repo in first.perRepo)) return;   // pas volgen vanaf de eerste meting
   const before = first.perRepo[repo];
   const after = last.perRepo[repo];

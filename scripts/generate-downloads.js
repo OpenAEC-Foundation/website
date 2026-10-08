@@ -22,7 +22,6 @@ const TOOL_REPOS = [
   'open-heatloss-studio',
   'open-speech-studio',
   'Open-Field-Studio',
-  'open-frame-studio',
   'open-geotechniek-studio',
   'pile-plan-studio',
   'Open-Calculations-Studio',

@@ -363,27 +363,6 @@ const TOOLS = [
     standards: ['NEN 2767', 'BCF 2.1'],
   },
   {
-    id: 'open-frame-studio',
-    name: 'Open Frame Studio',
-    repo: 'open-frame-studio',
-    category: 'Structural Engineering',
-    status: 'alpha',
-    license: 'LGPL-3.0',
-    platforms: ['Windows', 'macOS', 'Linux'],
-    techStack: ['Rust', 'TypeScript', 'Tauri 2'],
-    description: '2D structural frame analysis for beams, columns, portal frames and civil load-bearing systems.',
-    alternatives: ['Matrixframe', 'SCIA Engineer', 'Robot Structural Analysis'],
-    features: [
-      '2D frame modelling: beams, columns, portals',
-      'Linear-elastic analysis',
-      'Load cases and combinations',
-      'Section libraries (steel, timber, concrete)',
-      'Diagram output for N, V, M',
-    ],
-    whenToUse: 'Quick 2D structural sanity checks for buildings or civil load-bearing systems, design school workflows, validation of larger FEA results.',
-    standards: ['Eurocode'],
-  },
-  {
     id: 'monty-ifc-viewer',
     name: 'Monty IFC Viewer',
     repo: 'monty-ifc-viewer',
@@ -779,6 +758,7 @@ function buildAboutMarkdown(llmsTxt) {
   if (llmsTxt) {
     // Strip the duplicate first H1+blockquote from llms.txt to avoid repeating.
     const trimmed = llmsTxt
+      .replace(/\r\n?/g, '\n')
       .replace(/^#\s+OpenAEC Foundation[\s\S]*?\n>\s+.*?\n+/, '')
       .trim();
     lines.push(trimmed);

@@ -23,7 +23,6 @@ const TOOL_REPOS = [
   'open-heatloss-studio',
   'open-speech-studio',
   'open-field-studio',
-  'open-frame-studio',
   'open-geotechniek-studio',
   'pile-plan-studio',
   'monty-ifc-viewer',
