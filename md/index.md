@@ -6,7 +6,7 @@ Generated: 2026-10-08T06:08:44.535Z
 
 **Foundation totals:** 62 public repos · 3660 stars · 15945 commits · 68 contributors.
 
-**Total downloads across tools:** 107,966 (20 repos).
+**Total downloads across tools:** 107,717 (19 repos).
 
 ## Beta
 
@@ -24,7 +24,6 @@ Generated: 2026-10-08T06:08:44.535Z
 - [Open Energy Studio](./open-energy-studio.md) — Building energy analysis and performance for the Dutch NTA 8800 / BENG framework. (`v0.1.7-alpha`)
 - [Open Heatloss Studio](./open-heatloss-studio.md) — Heat loss calculations for buildings per NEN 12831 and ISSO 51:2023. Rust calculation engine, IFCX integration, PDF reports. (`v0.1.1-pr13.alpha`)
 - [Open Field Studio](./open-field-studio.md) — Site inspection and quality control. Defect pinning on floorplans, NEN 2767 checklists, offline-first. (`v0.3.6`)
-- [Open Frame Studio](./open-frame-studio.md) — 2D structural frame analysis for beams, columns, portal frames and civil load-bearing systems. (`v0.6.0`)
 - [Y-app](./y-app.md) — Communication and collaboration for construction projects. (`n/a`)
 
 ## Preview

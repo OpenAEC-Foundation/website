@@ -2,6 +2,7 @@
 // Runs in GitHub Actions with GITHUB_TOKEN for 5000 req/hour
 const fs = require('fs');
 const path = require('path');
+const { isExcludedRepo } = require('./website-exclusions');
 
 const ORG = 'OpenAEC-Foundation';
 // External community repos counted in the ecosystem totals (stars, commits,
@@ -324,7 +325,7 @@ async function main() {
 
       // External repos count in the stats, but their releases are not flooded
       // into our news feed (Open CAD Studio releases very frequently).
-      if (repo._external) {
+      if (repo._external || isExcludedRepo(repo.name)) {
         console.log(`    ${repo.name}: EXTERNAL — counted in stats, releases not in news feed`);
         continue;
       }
@@ -382,7 +383,7 @@ async function main() {
 
   // PUBLIC repos created since cutoff date (private repos are never announced)
   publicRepos.forEach(repo => {
-    if (repo._external) return; // external repos are not announced as "new"
+    if (repo._external || isExcludedRepo(repo.name)) return;
     if (repo.created_at.substring(0, 10) >= newsCutoff) {
       newsItems.push({
         type: 'new_repo',
@@ -435,7 +436,7 @@ async function main() {
     summary: summary,
     languageDistribution: langStats,
     monthlyRepoCreation: monthlyCreation,
-    repos: publicRepos.map(r => ({
+    repos: publicRepos.filter(r => !isExcludedRepo(r.name)).map(r => ({
       name: r.name,
       description: r.description,
       language: r.language,
@@ -452,9 +453,9 @@ async function main() {
       updatedAt: r.updated_at.substring(0, 10),
       url: r.html_url,
     })).sort((a, b) => b.stars - a.stars),
-    topByStars: [...publicRepos].sort((a, b) => b.stargazers_count - a.stargazers_count).slice(0, 5).map(r => ({ name: r.name, value: r.stargazers_count })),
-    topByCommits: [...publicRepos].sort((a, b) => (b._commitCount || 0) - (a._commitCount || 0)).slice(0, 5).map(r => ({ name: r.name, value: r._commitCount })),
-    topBySize: [...publicRepos].sort((a, b) => b.size - a.size).slice(0, 5).map(r => ({ name: r.name, value: Math.round(r.size / 1024) + ' MB' })),
+    topByStars: publicRepos.filter(r => !isExcludedRepo(r.name)).sort((a, b) => b.stargazers_count - a.stargazers_count).slice(0, 5).map(r => ({ name: r.name, value: r.stargazers_count })),
+    topByCommits: publicRepos.filter(r => !isExcludedRepo(r.name)).sort((a, b) => (b._commitCount || 0) - (a._commitCount || 0)).slice(0, 5).map(r => ({ name: r.name, value: r._commitCount })),
+    topBySize: publicRepos.filter(r => !isExcludedRepo(r.name)).sort((a, b) => b.size - a.size).slice(0, 5).map(r => ({ name: r.name, value: Math.round(r.size / 1024) + ' MB' })),
     // Time series: prefers data/history/*.json snapshots for accuracy
     timeSeries: buildTimeSeries(publicRepos, summary),
   };
