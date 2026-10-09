@@ -13,12 +13,12 @@
 ## Live stats
 
 - Stars: **0**
-- Commits: **530**
+- Commits: **747**
 - Forks: **2**
 - Open issues: **2**
 - Releases: **3**
-- Total downloads: **6**
-- Downloads by platform: Windows (3), macOS (3)
+- Total downloads: **8**
+- Downloads by platform: Windows (5), macOS (3)
 
 ## Key features
 
@@ -61,6 +61,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 
 - [macOS · Open.Energy.Studio_0.1.6-alpha_aarch64.dmg](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.6-alpha/Open.Energy.Studio_0.1.6-alpha_aarch64.dmg) (v0.1.6-alpha — 2.1 MB)
 - [Windows · Open.Energy.Studio_0.1.6-alpha_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.6-alpha/Open.Energy.Studio_0.1.6-alpha_x64-setup.exe) (v0.1.6-alpha — 1.5 MB)
+- [Windows · Open.Energy.Studio_0.1.6-alpha_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.6-alpha_x64-setup.exe) (v0.1.7-alpha — 4.1 MB)
+- [Windows · Open.Energy.Studio_0.1.7-alpha_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.7-alpha_x64-setup.exe) (v0.1.7-alpha — 5.7 MB)
 
 ---
 
