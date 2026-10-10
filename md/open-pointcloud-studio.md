@@ -6,19 +6,19 @@
 **License:** GPL-3.0-only (application), LGPL-3.0-or-later (point-cloud library)
 **Platforms:** Windows, macOS, Linux
 **Category:** Reality Capture
-**Current version:** v0.9.1 (2026-10-05)
+**Current version:** v0.9.2 (2026-10-09)
 **Tool ID:** `open-pointcloud-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-pointcloud-studio`
 
 ## Live stats
 
-- Stars: **23**
-- Commits: **413**
+- Stars: **24**
+- Commits: **427**
 - Forks: **2**
-- Open issues: **12**
-- Releases: **11**
-- Total downloads: **628**
-- Downloads by platform: Windows (374), Linux (AppImage) (61), macOS (46), Archive (45), Other (38), Windows (MSI) (33), Linux (deb) (31)
+- Open issues: **11**
+- Releases: **12**
+- Total downloads: **656**
+- Downloads by platform: Windows (399), Linux (AppImage) (63), macOS (46), Archive (45), Other (39), Windows (MSI) (33), Linux (deb) (31)
 
 ## Key features
 
@@ -67,20 +67,23 @@ Opening and inspecting laser scans and whole scan projects, cutting floor plans 
 
 - Product page: https://open-aec.com/open-pointcloud-studio/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-pointcloud-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v0.9.1
+- Latest stable release: https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v0.9.2
 
 ## Direct downloads (current release)
 
-- [Linux (AppImage) · open-pointcloud-studio_0.9.1_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.1/open-pointcloud-studio_0.9.1_amd64.AppImage) (v0.9.1 — 17.2 MB)
-- [Linux (deb) · open-pointcloud-studio_0.9.1_amd64.deb](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.1/open-pointcloud-studio_0.9.1_amd64.deb) (v0.9.1 — 12.4 MB)
-- [Linux (AppImage), 64-bit ARM, experimental · open-pointcloud-studio_0.9.1_arm64.AppImage](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.1/open-pointcloud-studio_0.9.1_arm64.AppImage) (v0.9.1 — 17.3 MB)
-- [Linux (deb), 64-bit ARM, experimental · open-pointcloud-studio_0.9.1_arm64.deb](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.1/open-pointcloud-studio_0.9.1_arm64.deb) (v0.9.1 — 11.3 MB)
-- [Archive · open-pointcloud-studio_0.9.1_linux-amd64.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.1/open-pointcloud-studio_0.9.1_linux-amd64.tar.gz) (v0.9.1 — 18.1 MB)
-- [Archive, 64-bit ARM, experimental · open-pointcloud-studio_0.9.1_linux-arm64.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.1/open-pointcloud-studio_0.9.1_linux-arm64.tar.gz) (v0.9.1 — 18.3 MB)
-- [macOS · open-pointcloud-studio_0.9.1_macos-universal.dmg](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.1/open-pointcloud-studio_0.9.1_macos-universal.dmg) (v0.9.1 — 32.1 MB)
-- [Archive · open-pointcloud-studio_0.9.1_macos-universal.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.1/open-pointcloud-studio_0.9.1_macos-universal.tar.gz) (v0.9.1 — 28.4 MB)
-- [Windows · open-pointcloud-studio_0.9.1_windows-x64.zip](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.1/open-pointcloud-studio_0.9.1_windows-x64.zip) (v0.9.1 — 13.7 MB)
-- [Windows · open-pointcloud-studio_0.9.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.1/open-pointcloud-studio_0.9.1_x64-setup.exe) (v0.9.1 — 11.3 MB)
+- [Archive · open-cad-studio-source_fc19afa7.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.2/open-cad-studio-source_fc19afa7.tar.gz) (v0.9.2 — 34.6 MB)
+- [Archive · open-cad-studio-vendor_fc19afa7.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.2/open-cad-studio-vendor_fc19afa7.tar.gz) (v0.9.2 — 10.7 MB)
+- [Other · open-pointcloud-studio-features.mp4](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.2/open-pointcloud-studio-features.mp4) (v0.9.2 — 2.8 MB)
+- [Linux (AppImage) · open-pointcloud-studio_0.9.2_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.2/open-pointcloud-studio_0.9.2_amd64.AppImage) (v0.9.2 — 54 MB)
+- [Linux (deb) · open-pointcloud-studio_0.9.2_amd64.deb](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.2/open-pointcloud-studio_0.9.2_amd64.deb) (v0.9.2 — 40.3 MB)
+- [Linux (AppImage), 64-bit ARM, experimental · open-pointcloud-studio_0.9.2_arm64.AppImage](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.2/open-pointcloud-studio_0.9.2_arm64.AppImage) (v0.9.2 — 51.7 MB)
+- [Linux (deb), 64-bit ARM, experimental · open-pointcloud-studio_0.9.2_arm64.deb](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.2/open-pointcloud-studio_0.9.2_arm64.deb) (v0.9.2 — 35.6 MB)
+- [Archive · open-pointcloud-studio_0.9.2_linux-amd64.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.2/open-pointcloud-studio_0.9.2_linux-amd64.tar.gz) (v0.9.2 — 58.7 MB)
+- [Archive, 64-bit ARM, experimental · open-pointcloud-studio_0.9.2_linux-arm64.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.2/open-pointcloud-studio_0.9.2_linux-arm64.tar.gz) (v0.9.2 — 56.1 MB)
+- [macOS · open-pointcloud-studio_0.9.2_macos-universal.dmg](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.2/open-pointcloud-studio_0.9.2_macos-universal.dmg) (v0.9.2 — 111.6 MB)
+- [Archive · open-pointcloud-studio_0.9.2_macos-universal.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.2/open-pointcloud-studio_0.9.2_macos-universal.tar.gz) (v0.9.2 — 100.9 MB)
+- [Windows · open-pointcloud-studio_0.9.2_windows-x64.zip](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.2/open-pointcloud-studio_0.9.2_windows-x64.zip) (v0.9.2 — 51.3 MB)
+- [Windows · open-pointcloud-studio_0.9.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.2/open-pointcloud-studio_0.9.2_x64-setup.exe) (v0.9.2 — 37.2 MB)
 
 ---
 

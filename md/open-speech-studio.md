@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux
 **Category:** Productivity
-**Current version:** v0.10.3 (2026-07-13)
+**Current version:** v0.12.1 (2026-10-09)
 **Tool ID:** `open-speech-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-speech-studio`
 
 ## Live stats
 
 - Stars: **8**
-- Commits: **91**
+- Commits: **92**
 - Forks: **3**
-- Open issues: **12**
-- Releases: **5**
-- Total downloads: **365**
-- Downloads by platform: Windows (258), Linux (deb) (64), Windows (MSI) (37), macOS (6)
+- Open issues: **13**
+- Releases: **6**
+- Total downloads: **370**
+- Downloads by platform: Windows (262), Linux (deb) (65), Windows (MSI) (37), macOS (6)
 
 ## Key features
 
@@ -47,7 +47,7 @@ Hands-free site notes, dictation for inspection reports, confidential dictation 
 - Product page: https://open-aec.com/open-speech-studio/
 - Live demo: https://open-speech-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-speech-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-speech-studio/releases/tag/v0.10.3
+- Latest stable release: https://github.com/OpenAEC-Foundation/open-speech-studio/releases/tag/v0.12.1
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-speech-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
