@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux
 **Category:** Productivity
-**Current version:** v0.12.1 (2026-10-09)
+**Current version:** v0.12.2 (2026-10-10)
 **Tool ID:** `open-speech-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-speech-studio`
 
 ## Live stats
 
 - Stars: **8**
-- Commits: **92**
+- Commits: **93**
 - Forks: **3**
-- Open issues: **13**
-- Releases: **6**
-- Total downloads: **370**
-- Downloads by platform: Windows (262), Linux (deb) (65), Windows (MSI) (37), macOS (6)
+- Open issues: **14**
+- Releases: **7**
+- Total downloads: **377**
+- Downloads by platform: Windows (269), Linux (deb) (65), Windows (MSI) (37), macOS (6)
 
 ## Key features
 
@@ -47,7 +47,7 @@ Hands-free site notes, dictation for inspection reports, confidential dictation 
 - Product page: https://open-aec.com/open-speech-studio/
 - Live demo: https://open-speech-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-speech-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-speech-studio/releases/tag/v0.12.1
+- Latest stable release: https://github.com/OpenAEC-Foundation/open-speech-studio/releases/tag/v0.12.2
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-speech-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
@@ -58,8 +58,8 @@ Hands-free site notes, dictation for inspection reports, confidential dictation 
 - [Windows · Open.Speech.Studio_0.10.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.0/Open.Speech.Studio_0.10.0_x64-setup.exe) (v0.10.0 — 679.2 MB)
 - [Windows · Open.Speech.Studio_0.10.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.1/Open.Speech.Studio_0.10.1_x64-setup.exe) (v0.10.1 — 680.8 MB)
 - [Linux (deb) · Open.Speech.Studio_0.10.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.0/Open.Speech.Studio_0.10.0_amd64.deb) (v0.10.0 — 850.2 MB)
+- [Windows · Open.Speech.Studio_0.12.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.12.2/Open.Speech.Studio_0.12.2_x64-setup.exe) (v0.12.2 — 681.3 MB)
 - [Windows (MSI) · Open.Speech.Studio_0.10.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.0/Open.Speech.Studio_0.10.0_x64_en-US.msi) (v0.10.0 — 844.6 MB)
-- [Windows · Open.Speech.Studio_0.5.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.5.0/Open.Speech.Studio_0.5.0_x64-setup.exe) (v0.5.0 — 417 MB)
 
 ---
 
