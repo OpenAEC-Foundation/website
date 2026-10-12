@@ -17,8 +17,8 @@
 - Forks: **3**
 - Open issues: **14**
 - Releases: **7**
-- Total downloads: **377**
-- Downloads by platform: Windows (269), Linux (deb) (65), Windows (MSI) (37), macOS (6)
+- Total downloads: **386**
+- Downloads by platform: Windows (277), Linux (deb) (65), Windows (MSI) (37), macOS (6), Linux (AppImage) (1)
 
 ## Key features
 
@@ -56,9 +56,9 @@ Hands-free site notes, dictation for inspection reports, confidential dictation 
 - [Linux (deb) · Open.Speech.Studio_0.10.3_amd64.deb](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.3/Open.Speech.Studio_0.10.3_amd64.deb) (v0.10.3 — 851.1 MB)
 - [Windows (MSI) · Open.Speech.Studio_0.10.3_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.3/Open.Speech.Studio_0.10.3_x64_en-US.msi) (v0.10.3 — 846.3 MB)
 - [Windows · Open.Speech.Studio_0.10.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.0/Open.Speech.Studio_0.10.0_x64-setup.exe) (v0.10.0 — 679.2 MB)
+- [Windows · Open.Speech.Studio_0.12.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.12.2/Open.Speech.Studio_0.12.2_x64-setup.exe) (v0.12.2 — 681.3 MB)
 - [Windows · Open.Speech.Studio_0.10.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.1/Open.Speech.Studio_0.10.1_x64-setup.exe) (v0.10.1 — 680.8 MB)
 - [Linux (deb) · Open.Speech.Studio_0.10.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.0/Open.Speech.Studio_0.10.0_amd64.deb) (v0.10.0 — 850.2 MB)
-- [Windows · Open.Speech.Studio_0.12.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.12.2/Open.Speech.Studio_0.12.2_x64-setup.exe) (v0.12.2 — 681.3 MB)
 - [Windows (MSI) · Open.Speech.Studio_0.10.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.0/Open.Speech.Studio_0.10.0_x64_en-US.msi) (v0.10.0 — 844.6 MB)
 
 ---

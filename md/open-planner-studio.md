@@ -17,8 +17,8 @@
 - Forks: **13**
 - Open issues: **15**
 - Releases: **21**
-- Total downloads: **2,041**
-- Downloads by platform: Windows (1272), Linux (AppImage) (254), Linux (deb) (224), macOS (156), Linux (rpm) (57), Linux (snap) (43), Archive (35)
+- Total downloads: **2,091**
+- Downloads by platform: Windows (1308), Linux (AppImage) (259), Linux (deb) (228), macOS (161), Linux (rpm) (57), Linux (snap) (43), Archive (35)
 
 ## Key features
 
@@ -80,8 +80,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 
 - [Windows · Open.Planner.Studio_2026.9.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_x64-setup.exe) (v2026.9.0 — 7.8 MB)
 - [Linux (AppImage) · Open.Planner.Studio_2026.9.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.AppImage) (v2026.9.0 — 82.7 MB)
-- [Windows · Open.Planner.Studio_2026.8.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.8.1/Open.Planner.Studio_2026.8.1_x64-setup.exe) (v2026.8.1 — 7.6 MB)
 - [macOS · Open.Planner.Studio_2026.9.0_universal.dmg](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_universal.dmg) (v2026.9.0 — 16.3 MB)
+- [Windows · Open.Planner.Studio_2026.8.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.8.1/Open.Planner.Studio_2026.8.1_x64-setup.exe) (v2026.8.1 — 7.6 MB)
 - [Linux (deb) · Open.Planner.Studio_2026.9.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.deb) (v2026.9.0 — 8.9 MB)
 - [Windows · Open.Planner.Studio_2026.7.14_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.7.14/Open.Planner.Studio_2026.7.14_x64-setup.exe) (v2026.7.14 — 7.4 MB)
 - [Linux (rpm) · Open.Planner.Studio-2026.9.0-1.x86_64.rpm](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio-2026.9.0-1.x86_64.rpm) (v2026.9.0 — 8.8 MB)
