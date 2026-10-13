@@ -1,9 +1,9 @@
 'use strict';
 
-// The QR code in socials/ is printed on flyers, banners and slides. It encodes
-// https://open-aec.com/socials/ directly (no QR service, no redirect that can
-// expire), so it keeps working for as long as that address answers. These
-// checks fail when the page or the QR files disappear or drift apart.
+// The printed QR code (kept outside this repo, in the OpenAEC PR folder) encodes
+// https://open-aec.com/socials/ directly: no QR service, no redirect that can
+// expire. It keeps working for as long as that page answers, so these checks
+// fail when the page or the contact cards it links disappear.
 // Run with: node --test scripts/check-socials-qr.test.js
 
 const assert = require('node:assert/strict');
@@ -20,13 +20,6 @@ test('the page the QR code points to exists and is canonical', () => {
   assert.match(html, new RegExp(`<link rel="canonical" href="${QR_URL}">`));
   assert.doesNotMatch(html, /name="robots" content="[^"]*noindex/);
   assert.match(read('sitemap.xml'), new RegExp(`<loc>${QR_URL}</loc>`));
-});
-
-test('the QR files encode exactly that address', () => {
-  const svg = read('socials', 'qr-openaec-socials.svg');
-  assert.match(svg, new RegExp(`<title>QR-code: ${QR_URL}</title>`));
-  const png = fs.readFileSync(path.join(root, 'socials', 'qr-openaec-socials.png'));
-  assert.equal(png.subarray(1, 4).toString(), 'PNG');
 });
 
 test('every contact card linked from the page exists', () => {
