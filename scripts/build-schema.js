@@ -133,7 +133,7 @@ for (const file of htmlFiles(ROOT)) {
         url: ORIGIN + '/',
         sameAs: [
           'https://github.com/OpenAEC-Foundation',
-          'https://www.linkedin.com/company/23749451',
+          'https://www.linkedin.com/company/openaec-foundation-io',
         ],
       },
       {

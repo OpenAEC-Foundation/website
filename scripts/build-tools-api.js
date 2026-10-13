@@ -320,7 +320,7 @@ const output = {
     status: 'in formation (stichting i.o.)',
     website: 'https://open-aec.com',
     github: 'https://github.com/OpenAEC-Foundation',
-    linkedin: 'https://www.linkedin.com/company/23749451',
+    linkedin: 'https://www.linkedin.com/company/openaec-foundation-io',
     email: 'info@open-aec.com',
     license: 'All tools LGPL-3.0 (some LGPL-2.1 or CC-BY-SA-4.0)',
     pricing: 'Free / open source. Services (consulting, hosting, custom development) priced ~20% below market.',

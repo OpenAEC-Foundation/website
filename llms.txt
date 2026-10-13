@@ -97,7 +97,7 @@ Supported standards:
 - Policy & clean-room reverse engineering: https://open-aec.com/beleid/
 - IFCX specification: https://open-aec.com/ifcx/
 - Quote request: https://open-aec.com/offerte/
-- LinkedIn: https://www.linkedin.com/company/23749451
+- LinkedIn: https://www.linkedin.com/company/openaec-foundation-io
 - WhatsApp community: https://chat.whatsapp.com/J4PhnwwXGYP1WT6VQfoJVk
 - Contact: info@open-aec.com
 
