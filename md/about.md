@@ -98,7 +98,7 @@ Supported standards:
 - IFCX specification: https://open-aec.com/ifcx/
 - Quote request: https://open-aec.com/offerte/
 - LinkedIn: https://www.linkedin.com/company/openaec-foundation-io
-- WhatsApp community: https://chat.whatsapp.com/J4PhnwwXGYP1WT6VQfoJVk
+- WhatsApp channel: https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42
 - Contact: info@open-aec.com
 
 ## License & contributing
