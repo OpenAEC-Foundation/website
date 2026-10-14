@@ -15,7 +15,7 @@
 - Stars: **4**
 - Commits: **693**
 - Forks: **1**
-- Open issues: **7**
+- Open issues: **8**
 - Releases: **2**
 - Total downloads: **56**
 - Downloads by platform: Windows (49), Other (7)
