@@ -93,304 +93,22 @@
 
   <link rel="stylesheet" href="/shared/style.css">
   <style>
-    .page-header {
-      background: var(--night-build);
-      padding: var(--sp-20) var(--sp-6) var(--sp-12);
-      text-align: center;
-      border-bottom: 3px solid transparent;
-      border-image: var(--gradient-accent) 1;
-    }
-    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
-    .page-header h1 {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 2.5rem;
-      color: white;
-      letter-spacing: -0.02em;
-      margin-bottom: var(--sp-4);
-    }
-    .page-header h1 .accent { color: var(--amber); }
-    .page-header p {
-      font-size: 1.125rem;
-      color: var(--scaffold-gray);
-      max-width: 760px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-code);
-      font-size: 0.7rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      padding: 4px 14px;
-      border-radius: var(--radius-full);
-      background: #D1FAE5;
-      color: #065F46;
-      margin-top: var(--sp-4);
-    }
-    .header-meta {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-family: var(--font-code);
-      font-size: 0.7rem;
-      color: var(--scaffold-gray);
-      margin-top: var(--sp-2);
-    }
-    .header-cta {
-      display: flex;
-      gap: var(--sp-3);
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: var(--sp-6);
-    }
-    .header-cta .btn-primary {
-      background: var(--amber);
-      color: var(--deep-forge);
-    }
-    .header-cta .btn-ghost {
-      background: rgba(255,255,255,0.06);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.18);
-    }
-
-    .content { max-width: 850px; margin: 0 auto; }
-    .content h2 {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: var(--deep-forge);
-      margin-bottom: var(--sp-4);
-    }
-    .content h2 .accent { color: var(--amber); }
-    .content p { font-size: 1rem; color: #57534E; line-height: 1.7; margin-bottom: var(--sp-4); }
-    .content-block + .content-block { margin-top: var(--sp-12); }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: var(--sp-6);
-      margin: var(--sp-8) 0;
-    }
-    .feature-card {
-      background: white;
-      border: 1px solid #E7E5E4;
-      border-radius: var(--radius-lg);
-      padding: var(--sp-6);
-      box-shadow: var(--shadow-sm);
-    }
-    .feature-card h3 {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--deep-forge);
-      margin-bottom: var(--sp-2);
-    }
-    .feature-card p { font-size: 0.875rem; color: #57534E; line-height: 1.6; margin-bottom: 0; }
-    .feature-card .feature-icon {
-      width: 36px; height: 36px;
-      border-radius: var(--radius-md);
-      background: linear-gradient(135deg, #FEF3C7, #FDE68A);
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; margin-bottom: var(--sp-3);
-    }
-
-    /* Use cases grid */
-    .usecase-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: var(--sp-5);
-      margin: var(--sp-8) 0;
-    }
-    .usecase-card {
-      background: white;
-      border: 1px solid #E7E5E4;
-      border-left: 4px solid var(--amber);
-      border-radius: var(--radius-lg);
-      padding: var(--sp-6);
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      flex-direction: column;
-      gap: var(--sp-2);
-    }
-    .usecase-card .usecase-tag {
-      font-family: var(--font-code);
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--warm-gold);
-      font-weight: 600;
-    }
-    .usecase-card h3 {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--deep-forge);
-      margin: 0;
-    }
-    .usecase-card p {
-      font-size: 0.9rem;
-      color: #57534E;
-      line-height: 1.6;
-      margin: 0;
-    }
-
-    /* Why local - comparison cards */
-    .why-section {
-      background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
-      border-radius: var(--radius-lg);
-      padding: var(--sp-10) var(--sp-6);
-      margin-top: var(--sp-12);
-    }
-    .why-section h2 { text-align: center; }
-    .why-section .why-intro {
-      text-align: center;
-      max-width: 580px;
-      margin: 0 auto var(--sp-8);
-      color: #78350F;
-    }
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: var(--sp-5);
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .why-card {
-      background: white;
-      border-radius: var(--radius-lg);
-      padding: var(--sp-6);
-      text-align: center;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid #FDE68A;
-    }
-    .why-card .why-icon {
-      font-size: 2rem;
-      display: block;
-      margin-bottom: var(--sp-2);
-    }
-    .why-card h3 {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.05rem;
-      color: var(--deep-forge);
-      margin-bottom: var(--sp-2);
-    }
-    .why-card p {
-      font-size: 0.875rem;
-      color: #57534E;
-      line-height: 1.6;
-      margin: 0;
-    }
-    .why-card .price-callout {
-      display: block;
-      font-family: var(--font-code);
-      font-size: 0.75rem;
-      color: var(--warm-gold);
-      margin-top: var(--sp-2);
-      font-weight: 600;
-    }
-
-    /* Comparison table */
-    .comparison-wrap { overflow-x: auto; margin: var(--sp-6) 0; }
-    .comparison-table {
-      width: 100%;
-      border-collapse: collapse;
-      background: white;
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      font-size: 0.9rem;
-      min-width: 560px;
-    }
-    .comparison-table th, .comparison-table td {
-      padding: var(--sp-3) var(--sp-4);
-      text-align: left;
-      border-bottom: 1px solid #F5F5F4;
-    }
-    .comparison-table thead th {
-      background: var(--deep-forge);
-      color: white;
-      font-family: var(--font-heading);
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-    .comparison-table thead th.us {
-      background: var(--amber);
-      color: var(--deep-forge);
-    }
-    .comparison-table td.us-cell {
-      background: #FFFBEB;
-      font-weight: 600;
-      color: var(--deep-forge);
-    }
-    .comparison-table td.row-label {
-      font-weight: 600;
-      color: var(--deep-forge);
-    }
-
-    /* Final CTA */
-    .final-cta {
-      background: var(--night-build);
-      border-radius: var(--radius-lg);
-      padding: var(--sp-12) var(--sp-6);
-      text-align: center;
-      border: 1px solid rgba(255,255,255,0.08);
-      margin-top: var(--sp-12);
-    }
-    .final-cta h2 {
-      color: white;
-      font-size: 1.75rem;
-      margin-bottom: var(--sp-3);
-    }
-    .final-cta h2 .accent { color: var(--amber); }
-    .final-cta p {
-      color: var(--scaffold-gray);
-      max-width: 540px;
-      margin: 0 auto var(--sp-6);
-      font-size: 1rem;
-    }
-    .final-cta .cta-row {
-      display: flex; gap: var(--sp-4); justify-content: center; flex-wrap: wrap;
-    }
-    .final-cta .install-meta {
-      margin-top: var(--sp-4);
-      font-family: var(--font-code);
-      font-size: 0.75rem;
-      color: var(--scaffold-gray);
-    }
-
-    .cta-links { display: flex; gap: var(--sp-4); flex-wrap: wrap; margin-top: var(--sp-6); }
-    .cta-links a {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 10px 20px; border-radius: var(--radius-md);
-      font-family: var(--font-heading); font-weight: 600; font-size: 0.875rem;
-      text-decoration: none; transition: opacity 0.2s;
-    }
-    .cta-links a:hover { opacity: 0.85; }
-    .cta-secondary { background: var(--deep-forge); color: white; }
-
-    .page-footer.footer {
-      background: var(--deep-forge);
-      border-top: 3px solid transparent;
-      border-image: var(--gradient-accent) 1;
-    }
-    .footer-inner {
-      max-width: 1200px; margin: 0 auto;
-      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-4);
-    }
-    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
-
-    @media (max-width: 768px) {
-      .page-header h1 { font-size: 2rem; }
-      .features-grid { grid-template-columns: 1fr; }
-      .usecase-grid { grid-template-columns: 1fr; }
-      .why-grid { grid-template-columns: 1fr; }
-    }
+    .case-tag { display: inline-block; font-family: var(--font-code); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: #B45309; background: rgba(217,119,6,0.12); border-radius: var(--radius-full); padding: 3px 10px; margin-bottom: var(--sp-3); }
+    .panel-split-text h2 .why-sub { font-weight: 400; color: var(--text-on-dark); opacity: 0.7; }
+    .price-callout { display: inline-block; margin-top: 6px; font-family: var(--font-code); font-size: 0.78rem; color: var(--deep-forge); background: var(--warm-gold); border-radius: var(--radius-full); padding: 3px 10px; }
+    /* Vergelijking in het donkere paneel */
+    .cmp-wrap { max-width: 1100px; margin: var(--sp-10) auto 0; overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.1); }
+    .cmp-table { width: 100%; border-collapse: collapse; }
+    .cmp-table th, .cmp-table td { padding: 13px 18px; text-align: left; border-top: 1px solid rgba(255,255,255,0.08); color: var(--text-on-dark); font-size: 0.95rem; }
+    .cmp-table thead th { border-top: 0; font-family: var(--font-code); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--warm-gold); background: rgba(255,255,255,0.04); }
+    .cmp-table .row-label { color: white; font-weight: 600; }
+    .cmp-table .us, .cmp-table .us-cell { background: rgba(217,119,6,0.12); color: white; font-weight: 600; }
+    /* Sneltoetsen */
+    .keys-row { display: flex; gap: var(--sp-4); justify-content: center; flex-wrap: wrap; align-items: center; margin: var(--sp-6) 0 var(--sp-4); }
+    .keys-row kbd { font-family: var(--font-code); font-size: 0.95rem; color: var(--deep-forge); background: #FFFFFF; border: 1px solid rgba(42,42,50,0.15); border-bottom-width: 3px; border-radius: var(--radius-md); padding: 9px 18px; box-shadow: var(--shadow-float); }
+    .keys-or { color: var(--text-on-light); }
+    .keys-note { color: var(--text-on-light); font-size: 0.95rem; text-align: center; max-width: 640px; margin: 0 auto; }
+    .cta-meta { font-family: var(--font-code); font-size: 0.8rem; margin-top: var(--sp-5) !important; }
   </style>
 
   <meta name="i18n-static" content="fr">
@@ -427,7 +145,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "fr",
-        "dateModified": "2026-10-13",
+        "dateModified": "2026-10-15",
         "breadcrumb": {
           "@id": "https://open-aec.com/fr/open-speech-studio/#breadcrumb"
         }
@@ -455,7 +173,7 @@
   </script>
   <!-- schema:end -->
 </head>
-<body>
+<body class="page-panels">
     <div id="shared-nav"><!-- nav:start -->
 <nav class="navbar">
   <div class="nav-container">
@@ -489,36 +207,23 @@
 <!-- nav:end --></div>
 <script src="/shared/nav.js?v=20260728"></script>
 
-  <header class="page-header">
-    <p class="section-label" data-i18n="header.label">Écosystème OpenAEC</p>
-    <h1 data-i18n="header.title">Open Speech <span class="accent">Studio</span></h1>
-    <p data-i18n="header.desc">Reconnaissance vocale locale gratuite avec Whisper AI. Appuyez sur <strong style="color:white;">CTRL+Win</strong> et dictez dans n'importe quelle application — chat, e-mail, terminal, IDE. Sans cloud, sans abonnement, sans limites. v0.10.3 stable, 1 installateur, prêt en 30 secondes.</p>
-    <span class="status-badge" data-i18n="header.badge">v0.10.3 STABLE</span>
-    <div class="header-meta" data-i18n="header.meta">v0.10.3 &middot; 80 commits &middot; Whisper AI &middot; Tauri 2 &middot; Rust</div>
-    <div class="header-cta">
-      <a href="https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.3/Open.Speech.Studio_0.10.3_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-speech-studio" data-platform="windows" class="btn btn-primary btn-lg" data-i18n="header.cta.download">Télécharger l'installateur (.exe)</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-speech-studio" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-i18n="header.cta.github">Voir sur GitHub</a>
+  <header class="product-head surface-spot">
+    <div class="product-head-inner">
+      <p class="pill-label" data-i18n="header.label">Écosystème OpenAEC</p>
+      <h1 data-i18n="header.title">Open <span class="accent">Speech</span> Studio</h1>
+      <p class="lead" data-i18n="header.desc">Reconnaissance vocale locale gratuite avec Whisper AI. Appuyez sur <strong>CTRL+Win</strong> et dictez dans n'importe quelle application — chat, e-mail, terminal, IDE. Sans cloud, sans abonnement, sans limites. v0.10.3 stable, 1 installateur, prêt en 30 secondes.</p>
+      <div class="btn-group">
+        <a href="https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.3/Open.Speech.Studio_0.10.3_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-speech-studio" data-platform="windows" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="header.cta.download">Télécharger l'installateur (.exe)</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-speech-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-external"/></svg><span data-i18n="header.cta.github">Voir sur GitHub</span></a>
+      </div>
+      <div class="chip-row">
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-rocket"/></svg><span data-i18n="header.badge">v0.10.3 STABLE</span></span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-lock"/></svg>Whisper · 100% lokaal</span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-globe"/></svg>99 talen</span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-euro"/></svg>€ 0</span>
+      </div>
     </div>
-  </header>
-
-  <section class="section" style="background: var(--blueprint-white);">
-
-    <!-- Screenshots -->
-    <style>
-      .media-slider { max-width: 850px; margin: calc(-1 * var(--sp-4)) auto var(--sp-8); position: relative; }
-      .slider-container { position: relative; overflow: hidden; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); background: #2A2A32; }
-      .slider-track { display: flex; transition: transform 0.4s ease; }
-      .slider-slide { min-width: 100%; }
-      .slider-slide img { width: 100%; display: block; }
-      .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.25rem; display: flex; align-items: center; justify-content: center; z-index: 2; }
-      .slider-btn:hover { background: rgba(0,0,0,0.7); }
-      .slider-prev { left: 12px; }
-      .slider-next { right: 12px; }
-      .slider-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0; }
-      .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: #D6D3D1; border: none; cursor: pointer; }
-      .slider-dot.active { background: #D97706; }
-    </style>
-    <div class="media-slider">
+    <div class="media-slider shot-overlap">
       <div class="slider-container">
         <div class="slider-track" id="sliderTrack">
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-speech-studio-tts.png" alt="Open Speech Studio — tekst-naar-spraak met lokale stemmen"></div>
@@ -530,237 +235,288 @@
       </div>
       <div class="slider-dots" id="sliderDots"></div>
     </div>
+  </header>
 
-    <div class="content">
-
-      <!-- USE CASES voor AEC professionals -->
-      <div class="content-block">
-        <h2 data-i18n="usecases.heading">Cas d'usage pour les <span class="accent">professionnels AEC</span></h2>
-        <p data-i18n="usecases.intro">Que vous inspectiez sur site, preniez des notes en réunion de projet ou dictiez un e-mail entre deux tâches — Open Speech Studio fonctionne partout, même hors ligne.</p>
-        <div class="usecase-grid">
-          <div class="usecase-card">
-            <span class="usecase-tag" data-i18n="usecases.inspection.tag">CHANTIER</span>
-            <h3 data-i18n="usecases.inspection.title">Inspections sur site</h3>
-            <p data-i18n="usecases.inspection.desc">Dictez vos constats directement dans Open Field Studio tout en prenant des photos. Pas besoin d'enlever vos gants, ni de taper sur un petit écran. Parlez — c'est fait.</p>
-          </div>
-          <div class="usecase-card">
-            <span class="usecase-tag" data-i18n="usecases.meetings.tag">RÉUNIONS</span>
-            <h3 data-i18n="usecases.meetings.title">Comptes rendus de réunion</h3>
-            <p data-i18n="usecases.meetings.desc">Transcription en temps réel des réunions de projet sur place. Entièrement traité localement — aucune préoccupation de confidentialité pour les noms de clients, prix ou données de projet.</p>
-          </div>
-          <div class="usecase-card">
-            <span class="usecase-tag" data-i18n="usecases.email.tag">COMMUNICATION</span>
-            <h3 data-i18n="usecases.email.title">E-mails rapides sur site</h3>
-            <p data-i18n="usecases.email.desc">Dictez dans Outlook ou Gmail entre deux tâches. Mains libres quand vos mains sont sales, que vous portez des gants de sécurité ou que vous tenez une échelle.</p>
-          </div>
-          <div class="usecase-card">
-            <span class="usecase-tag" data-i18n="usecases.ai.tag">WORKFLOW IA</span>
-            <h3 data-i18n="usecases.ai.title">Écrire des prompts IA</h3>
-            <p data-i18n="usecases.ai.desc">Dictez un prompt pour Claude ou ChatGPT bien plus vite qu'en tapant. Parler est ~3× plus rapide et l'on formule souvent plus naturellement — idéal pour des prompts longs et détaillés.</p>
-          </div>
-          <div class="usecase-card">
-            <span class="usecase-tag" data-i18n="usecases.code.tag">DÉVELOPPEURS</span>
-            <h3 data-i18n="usecases.code.title">Commentaires de code et commits</h3>
-            <p data-i18n="usecases.code.desc">Dictez explications de code, docstrings et messages de commit directement dans votre IDE ou terminal. Fonctionne dans VS Code, Cursor, Neovim — partout où vous pouvez saisir du texte.</p>
-          </div>
-          <div class="usecase-card">
-            <span class="usecase-tag" data-i18n="usecases.accessibility.tag">ACCESSIBILITÉ</span>
-            <h3 data-i18n="usecases.accessibility.title">Accessibilité</h3>
-            <p data-i18n="usecases.accessibility.desc">Pour les personnes souffrant de TMS, de déficiences motrices ou de blessures temporaires. Utilisez votre ordinateur entièrement sans clavier — conforme RGPD, sans abonnement.</p>
-          </div>
-        </div>
+  <section class="section after-overlap"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="usecases.heading">Cas d'usage pour les <span class="accent">professionnels AEC</span></h2>
+      <p data-i18n="usecases.intro">Que vous inspectiez sur site, preniez des notes en réunion de projet ou dictiez un e-mail entre deux tâches — Open Speech Studio fonctionne partout, même hors ligne.</p>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-crane"/></svg></div>
+        <span class="case-tag" data-i18n="usecases.inspection.tag">CHANTIER</span>
+        <h4 data-i18n="usecases.inspection.title">Inspections sur site</h4>
+        <p data-i18n="usecases.inspection.desc">Dictez vos constats directement dans Open Field Studio tout en prenant des photos. Pas besoin d'enlever vos gants, ni de taper sur un petit écran. Parlez — c'est fait.</p>
       </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-users"/></svg></div>
+        <span class="case-tag" data-i18n="usecases.meetings.tag">RÉUNIONS</span>
+        <h4 data-i18n="usecases.meetings.title">Comptes rendus de réunion</h4>
+        <p data-i18n="usecases.meetings.desc">Transcription en temps réel des réunions de projet sur place. Entièrement traité localement — aucune préoccupation de confidentialité pour les noms de clients, prix ou données de projet.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-mail"/></svg></div>
+        <span class="case-tag" data-i18n="usecases.email.tag">COMMUNICATION</span>
+        <h4 data-i18n="usecases.email.title">E-mails rapides sur site</h4>
+        <p data-i18n="usecases.email.desc">Dictez dans Outlook ou Gmail entre deux tâches. Mains libres quand vos mains sont sales, que vous portez des gants de sécurité ou que vous tenez une échelle.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chip"/></svg></div>
+        <span class="case-tag" data-i18n="usecases.ai.tag">WORKFLOW IA</span>
+        <h4 data-i18n="usecases.ai.title">Écrire des prompts IA</h4>
+        <p data-i18n="usecases.ai.desc">Dictez un prompt pour Claude ou ChatGPT bien plus vite qu'en tapant. Parler est ~3× plus rapide et l'on formule souvent plus naturellement — idéal pour des prompts longs et détaillés.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-keyboard"/></svg></div>
+        <span class="case-tag" data-i18n="usecases.code.tag">DÉVELOPPEURS</span>
+        <h4 data-i18n="usecases.code.title">Commentaires de code et commits</h4>
+        <p data-i18n="usecases.code.desc">Dictez explications de code, docstrings et messages de commit directement dans votre IDE ou terminal. Fonctionne dans VS Code, Cursor, Neovim — partout où vous pouvez saisir du texte.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div>
+        <span class="case-tag" data-i18n="usecases.accessibility.tag">ACCESSIBILITÉ</span>
+        <h4 data-i18n="usecases.accessibility.title">Accessibilité</h4>
+        <p data-i18n="usecases.accessibility.desc">Pour les personnes souffrant de TMS, de déficiences motrices ou de blessures temporaires. Utilisez votre ordinateur entièrement sans clavier — conforme RGPD, sans abonnement.</p>
+      </div>
+    </div>
+  </div></section>
 
-      <!-- WAAROM LOKAAL -->
-      <div class="why-section">
+  <section class="section surface-dark panel">
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label">GDPR · Offline</p>
         <h2 data-i18n="why.heading">Pourquoi local ?</h2>
-        <p class="why-intro" data-i18n="why.intro">La reconnaissance vocale cloud envoie votre voix vers des serveurs tiers. Open Speech Studio fait tout sur votre propre PC — plus rapide, plus sûr et sans frais mensuels.</p>
-        <div class="why-grid">
-          <div class="why-card">
-            <span class="why-icon">🔒</span>
-            <h3 data-i18n="why.privacy.title">Vie privée</h3>
-            <p data-i18n="why.privacy.desc">Votre voix ne quitte jamais votre ordinateur. Conforme RGPD automatiquement — aucun DPA nécessaire avec des prestataires externes, aucun risque de fuite de données.</p>
-          </div>
-          <div class="why-card">
-            <span class="why-icon">💶</span>
-            <h3 data-i18n="why.cost.title">Sans abonnement</h3>
-            <p data-i18n="why.cost.desc">Otter.ai facture ~20 €/mois. Dragon NaturallySpeaking ~500 € en une fois. Open Speech Studio est gratuit pour toujours — open source LGPL-3.0.</p>
-            <span class="price-callout" data-i18n="why.cost.callout">0 € pour toujours</span>
-          </div>
-          <div class="why-card">
-            <span class="why-icon">♾️</span>
-            <h3 data-i18n="why.limits.title">Sans limites d'utilisation</h3>
-            <p data-i18n="why.limits.desc">Dictez 10 heures par jour si vous voulez. Pas de quota API, pas de « Fair Use Policy », pas de factures surprise. Seul votre matériel limite.</p>
-          </div>
-        </div>
-
-        <!-- Comparison table -->
-        <div class="comparison-wrap" style="max-width: 800px; margin: var(--sp-8) auto 0;">
-          <table class="comparison-table">
-            <thead>
-              <tr>
-                <th data-i18n="compare.feature">Fonctionnalité</th>
-                <th class="us" data-i18n="compare.us">Open Speech Studio</th>
-                <th data-i18n="compare.dragon">Dragon NaturallySpeaking</th>
-                <th data-i18n="compare.otter">Otter.ai</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="row-label" data-i18n="compare.price">Prix</td>
-                <td class="us-cell" data-i18n="compare.price.us">&euro;0 (open source)</td>
-                <td data-i18n="compare.price.dragon">~&euro;500 one-time</td>
-                <td data-i18n="compare.price.otter">~&euro;20/maand</td>
-              </tr>
-              <tr>
-                <td class="row-label" data-i18n="compare.local">100 % local</td>
-                <td class="us-cell" data-i18n="compare.yes">Oui</td>
-                <td data-i18n="compare.yes2">Oui</td>
-                <td data-i18n="compare.no">Non (cloud)</td>
-              </tr>
-              <tr>
-                <td class="row-label" data-i18n="compare.gdpr">Conforme RGPD sans DPA</td>
-                <td class="us-cell" data-i18n="compare.yes3">Oui</td>
-                <td data-i18n="compare.yes4">Oui</td>
-                <td data-i18n="compare.no2">Non</td>
-              </tr>
-              <tr>
-                <td class="row-label" data-i18n="compare.langs">Langues</td>
-                <td class="us-cell" data-i18n="compare.langs.us">99 talen (Whisper)</td>
-                <td data-i18n="compare.langs.dragon">~6 talen</td>
-                <td data-i18n="compare.langs.otter">~10 talen</td>
-              </tr>
-              <tr>
-                <td class="row-label" data-i18n="compare.gpu">Accélération GPU (CUDA)</td>
-                <td class="us-cell" data-i18n="compare.yes5">Oui</td>
-                <td data-i18n="compare.no3">Non</td>
-                <td data-i18n="compare.na">N/A (cloud)</td>
-              </tr>
-              <tr>
-                <td class="row-label" data-i18n="compare.opensource">Open source</td>
-                <td class="us-cell" data-i18n="compare.opensource.us">Ja (LGPL-3.0)</td>
-                <td data-i18n="compare.no4">Non</td>
-                <td data-i18n="compare.no5">Non</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <p data-i18n="why.intro">La reconnaissance vocale cloud envoie votre voix vers des serveurs tiers. Open Speech Studio fait tout sur votre propre PC — plus rapide, plus sûr et sans frais mensuels.</p>
       </div>
-
-      <!-- FUNCTIONALITEITEN -->
-      <div class="content-block">
-        <h2 data-i18n="features.heading">Fonctionnalités — que peut <span class="accent">faire</span> Open Speech Studio ?</h2>
-        <p data-i18n="features.intro">Open Speech Studio est plus qu'un outil de dictée. C'est une suite speech-to-text complète avec transcription de fichiers audio, enregistrement de réunions, plusieurs modèles Whisper et export vers les formats de sous-titres standard.</p>
-        <div class="features-grid">
-          <div class="feature-card">
-            <span class="feature-icon">🎙️</span>
-            <h3 data-i18n="features.dictate.title">Dictez partout</h3>
-            <p data-i18n="features.dictate.desc">Dictez du texte directement dans n'importe quelle application via une superposition globale au système. Fonctionne dans Outlook, Word, Chrome, VS Code, Slack, Teams — littéralement partout dans votre OS.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">📂</span>
-            <h3 data-i18n="features.transcribe.title">Transcription de fichiers audio</h3>
-            <p data-i18n="features.transcribe.desc">Transcrivez des fichiers audio (.mp3, .wav, .m4a, .ogg) avec traitement parallèle. Plusieurs fichiers à la fois, rapide et précis.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">👥</span>
-            <h3 data-i18n="features.meetings.title">Transcription de réunions en temps réel</h3>
-            <p data-i18n="features.meetings.desc">Enregistrez vos réunions de projet et regardez la transcription apparaître en temps réel. Compte-rendu automatique, même hors ligne sur le chantier.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">⚡</span>
-            <h3 data-i18n="features.gpu.title">Accélération GPU CUDA</h3>
-            <p data-i18n="features.gpu.desc">Accélération GPU CUDA pour des résultats plus rapides. Sur un GPU moderne, Whisper Large tourne quasiment en temps réel — utilisation optimale de votre matériel.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">⌨️</span>
-            <h3 data-i18n="features.shortcuts.title">Raccourcis clavier</h3>
-            <p data-i18n="features.shortcuts.desc">CTRL+Win pour la superposition, CTRL+SHIFT+Espace en alternative. Pas de clic souris nécessaire, pas de recherche dans les menus — la dictée démarre en &lt;100 ms.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🧠</span>
-            <h3 data-i18n="features.models.title">Modèles Whisper AI</h3>
-            <p data-i18n="features.models.desc">5 modèles : tiny, base, small, medium, large. Choisissez entre vitesse (tiny) ou précision (large). Mémoire utilisée 1 à 10 Go selon le modèle.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🌍</span>
-            <h3 data-i18n="features.languages.title">99 langues</h3>
-            <p data-i18n="features.languages.desc">Whisper prend en charge 99 langues : néerlandais, anglais, allemand, français, espagnol, polonais, arabe, mandarin et bien d'autres. Détection automatique de la langue.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🎛️</span>
-            <h3 data-i18n="features.overlay.title">Superposition de style Spotify</h3>
-            <p data-i18n="features.overlay.desc">Interface de superposition élégante et minimaliste avec visualisation en direct de l'onde sonore. Reste discrète, disparaît automatiquement après insertion.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🕘</span>
-            <h3 data-i18n="features.history.title">Historique</h3>
-            <p data-i18n="features.history.desc">Historique complet des transcriptions — interrogeable, réutilisable. Tout stocké localement, vous gardez le contrôle.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">📄</span>
-            <h3 data-i18n="features.export.title">Export TXT, SRT, VTT</h3>
-            <p data-i18n="features.export.desc">Exportez les transcriptions en texte brut (.txt) ou en sous-titres (.srt, .vtt) pour du contenu vidéo avec timestamps.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">📋</span>
-            <h3 data-i18n="features.clipboard.title">Intégration presse-papiers</h3>
-            <p data-i18n="features.clipboard.desc">Intégration automatique au presse-papiers — dictez et collez directement, ou laissez le texte s'insérer automatiquement à la position du curseur.</p>
-          </div>
-          <div class="feature-card">
-            <span class="feature-icon">🔒</span>
-            <h3 data-i18n="features.local.title">100 % local</h3>
-            <p data-i18n="features.local.desc">Tout fonctionne localement sur votre propre ordinateur. Vos données ne quittent jamais votre PC. Sans cloud, sans abonnement, sans limites. Conforme RGPD prêt à l'emploi.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- SHORTCUTS BLOCK (kept) -->
-      <div class="content-block" style="background: var(--night-build); border-radius: var(--radius-lg); padding: var(--sp-8); text-align: center; border-left: 4px solid var(--amber);">
-        <h2 style="color: white; margin-bottom: var(--sp-2);" data-i18n="shortcuts.title">Raccourcis clavier</h2>
-        <p style="color: var(--scaffold-gray); margin-bottom: var(--sp-4);" data-i18n="shortcuts.desc">Démarrez la reconnaissance vocale partout dans votre système d'exploitation :</p>
-        <div style="display: flex; gap: var(--sp-4); justify-content: center; flex-wrap: wrap; align-items: center;">
-          <span style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 8px 20px; border-radius: var(--radius-md); font-family: var(--font-code); font-size: 0.9rem; color: var(--amber);">CTRL + Windows</span>
-          <span style="color: var(--scaffold-gray);" data-i18n="shortcuts.or">ou</span>
-          <span style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); padding: 8px 20px; border-radius: var(--radius-md); font-family: var(--font-code); font-size: 0.9rem; color: var(--amber);">CTRL + SHIFT + Spatie</span>
-        </div>
-        <p style="color: var(--scaffold-gray); margin-top: var(--sp-4); font-size: 0.85rem;" data-i18n="shortcuts.note">Configurable dans les paramètres — choisissez votre propre raccourci s'il entre en conflit avec d'autres logiciels.</p>
-      </div>
-
-      <!-- TECH STACK -->
-      <div class="content-block">
-        <h2 data-i18n="tech.heading">Stack <span class="accent">technique</span></h2>
-        <p data-i18n="tech.desc">Open Speech Studio repose sur une stack moderne et performante. <strong>OpenAI Whisper</strong> pour une reconnaissance vocale à l'état de l'art. <strong>Rust</strong> pour un backend léger et rapide (sans runtime Python). <strong>Tauri 2</strong> pour l'application de bureau — bien plus léger qu'Electron (~10 Mo au lieu de 200 Mo). <strong>TypeScript + Svelte</strong> pour l'interface. Entièrement open source sous LGPL-3.0.</p>
-      </div>
-
-      <!-- FINAL CTA -->
-      <div class="final-cta">
-        <h2 data-i18n="finalcta.heading">Téléchargez maintenant <span class="accent">— installation en 30 secondes</span></h2>
-        <p data-i18n="finalcta.desc">1 fichier d'installation (.exe), sans inscription, sans compte, sans carte bancaire. Prêt à dicter en &lt;1 minute. Fonctionne sur Windows 10 et Windows 11.</p>
-        <div class="cta-row">
-          <a href="https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.3/Open.Speech.Studio_0.10.3_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-speech-studio" data-platform="windows" class="btn btn-primary btn-lg" style="background: var(--amber); color: var(--deep-forge);" data-i18n="finalcta.download">Télécharger l'installateur (.exe)</a>
-          <a href="https://github.com/OpenAEC-Foundation/open-speech-studio" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-i18n="finalcta.github">Voir le code source sur GitHub</a>
-        </div>
-        <p class="install-meta" data-i18n="finalcta.meta">v0.10.3 stable &middot; LGPL-3.0 &middot; Windows 10/11 &middot; téléchargement ~40 Mo</p>
-      </div>
-
+      <ul class="split-cards">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-lock"/></svg></div><div><h4 data-i18n="why.privacy.title">Vie privée</h4><p data-i18n="why.privacy.desc">Votre voix ne quitte jamais votre ordinateur. Conforme RGPD automatiquement — aucun DPA nécessaire avec des prestataires externes, aucun risque de fuite de données.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-euro"/></svg></div><div><h4 data-i18n="why.cost.title">Sans abonnement</h4><p data-i18n="why.cost.desc">Otter.ai facture ~20 €/mois. Dragon NaturallySpeaking ~500 € en une fois. Open Speech Studio est gratuit pour toujours — open source LGPL-3.0.</p><span class="price-callout" data-i18n="why.cost.callout">0 € pour toujours</span></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-infinity"/></svg></div><div><h4 data-i18n="why.limits.title">Sans limites d'utilisation</h4><p data-i18n="why.limits.desc">Dictez 10 heures par jour si vous voulez. Pas de quota API, pas de « Fair Use Policy », pas de factures surprise. Seul votre matériel limite.</p></div></li>
+      </ul>
+    </div>
+    <div class="cmp-wrap table-wrapper">
+      <table class="cmp-table">
+      <thead>
+        <tr>
+          <th data-i18n="compare.feature">Fonctionnalité</th>
+          <th class="us" data-i18n="compare.us">Open Speech Studio</th>
+          <th data-i18n="compare.dragon">Dragon NaturallySpeaking</th>
+          <th data-i18n="compare.otter">Otter.ai</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="row-label" data-i18n="compare.price">Prix</td>
+          <td class="us-cell" data-i18n="compare.price.us">&euro;0 (open source)</td>
+          <td data-i18n="compare.price.dragon">~&euro;500 one-time</td>
+          <td data-i18n="compare.price.otter">~&euro;20/maand</td>
+        </tr>
+        <tr>
+          <td class="row-label" data-i18n="compare.local">100 % local</td>
+          <td class="us-cell" data-i18n="compare.yes">Oui</td>
+          <td data-i18n="compare.yes2">Oui</td>
+          <td data-i18n="compare.no">Non (cloud)</td>
+        </tr>
+        <tr>
+          <td class="row-label" data-i18n="compare.gdpr">Conforme RGPD sans DPA</td>
+          <td class="us-cell" data-i18n="compare.yes3">Oui</td>
+          <td data-i18n="compare.yes4">Oui</td>
+          <td data-i18n="compare.no2">Non</td>
+        </tr>
+        <tr>
+          <td class="row-label" data-i18n="compare.langs">Langues</td>
+          <td class="us-cell" data-i18n="compare.langs.us">99 talen (Whisper)</td>
+          <td data-i18n="compare.langs.dragon">~6 talen</td>
+          <td data-i18n="compare.langs.otter">~10 talen</td>
+        </tr>
+        <tr>
+          <td class="row-label" data-i18n="compare.gpu">Accélération GPU (CUDA)</td>
+          <td class="us-cell" data-i18n="compare.yes5">Oui</td>
+          <td data-i18n="compare.no3">Non</td>
+          <td data-i18n="compare.na">N/A (cloud)</td>
+        </tr>
+        <tr>
+          <td class="row-label" data-i18n="compare.opensource">Open source</td>
+          <td class="us-cell" data-i18n="compare.opensource.us">Ja (LGPL-3.0)</td>
+          <td data-i18n="compare.no4">Non</td>
+          <td data-i18n="compare.no5">Non</td>
+        </tr>
+      </tbody>
+    </table>
     </div>
   </section>
+
+  <section class="section"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="features.heading">Fonctionnalités — que peut <span class="accent">faire</span> Open Speech Studio ?</h2>
+      <p data-i18n="features.intro">Open Speech Studio est plus qu'un outil de dictée. C'est une suite speech-to-text complète avec transcription de fichiers audio, enregistrement de réunions, plusieurs modèles Whisper et export vers les formats de sous-titres standard.</p>
+    </div>
+    <div class="features" id="oss-features" data-fold="6">
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-mic"/></svg></div>
+        <h4 data-i18n="features.dictate.title">Dictez partout</h4>
+        <p data-i18n="features.dictate.desc">Dictez du texte directement dans n'importe quelle application via une superposition globale au système. Fonctionne dans Outlook, Word, Chrome, VS Code, Slack, Teams — littéralement partout dans votre OS.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-folder"/></svg></div>
+        <h4 data-i18n="features.transcribe.title">Transcription de fichiers audio</h4>
+        <p data-i18n="features.transcribe.desc">Transcrivez des fichiers audio (.mp3, .wav, .m4a, .ogg) avec traitement parallèle. Plusieurs fichiers à la fois, rapide et précis.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-users"/></svg></div>
+        <h4 data-i18n="features.meetings.title">Transcription de réunions en temps réel</h4>
+        <p data-i18n="features.meetings.desc">Enregistrez vos réunions de projet et regardez la transcription apparaître en temps réel. Compte-rendu automatique, même hors ligne sur le chantier.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-bolt"/></svg></div>
+        <h4 data-i18n="features.gpu.title">Accélération GPU CUDA</h4>
+        <p data-i18n="features.gpu.desc">Accélération GPU CUDA pour des résultats plus rapides. Sur un GPU moderne, Whisper Large tourne quasiment en temps réel — utilisation optimale de votre matériel.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-keyboard"/></svg></div>
+        <h4 data-i18n="features.shortcuts.title">Raccourcis clavier</h4>
+        <p data-i18n="features.shortcuts.desc">CTRL+Win pour la superposition, CTRL+SHIFT+Espace en alternative. Pas de clic souris nécessaire, pas de recherche dans les menus — la dictée démarre en &lt;100 ms.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chip"/></svg></div>
+        <h4 data-i18n="features.models.title">Modèles Whisper AI</h4>
+        <p data-i18n="features.models.desc">5 modèles : tiny, base, small, medium, large. Choisissez entre vitesse (tiny) ou précision (large). Mémoire utilisée 1 à 10 Go selon le modèle.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-globe"/></svg></div>
+        <h4 data-i18n="features.languages.title">99 langues</h4>
+        <p data-i18n="features.languages.desc">Whisper prend en charge 99 langues : néerlandais, anglais, allemand, français, espagnol, polonais, arabe, mandarin et bien d'autres. Détection automatique de la langue.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-sliders"/></svg></div>
+        <h4 data-i18n="features.overlay.title">Superposition de style Spotify</h4>
+        <p data-i18n="features.overlay.desc">Interface de superposition élégante et minimaliste avec visualisation en direct de l'onde sonore. Reste discrète, disparaît automatiquement après insertion.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-history"/></svg></div>
+        <h4 data-i18n="features.history.title">Historique</h4>
+        <p data-i18n="features.history.desc">Historique complet des transcriptions — interrogeable, réutilisable. Tout stocké localement, vous gardez le contrôle.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-document"/></svg></div>
+        <h4 data-i18n="features.export.title">Export TXT, SRT, VTT</h4>
+        <p data-i18n="features.export.desc">Exportez les transcriptions en texte brut (.txt) ou en sous-titres (.srt, .vtt) pour du contenu vidéo avec timestamps.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-clipboard"/></svg></div>
+        <h4 data-i18n="features.clipboard.title">Intégration presse-papiers</h4>
+        <p data-i18n="features.clipboard.desc">Intégration automatique au presse-papiers — dictez et collez directement, ou laissez le texte s'insérer automatiquement à la position du curseur.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-lock"/></svg></div>
+        <h4 data-i18n="features.local.title">100 % local</h4>
+        <p data-i18n="features.local.desc">Tout fonctionne localement sur votre propre ordinateur. Vos données ne quittent jamais votre PC. Sans cloud, sans abonnement, sans limites. Conforme RGPD prêt à l'emploi.</p>
+      </div>
+    </div>
+    <p class="more-row" data-fold-for="oss-features" hidden>
+      <button type="button" class="btn btn-secondary btn-lg more-btn" aria-expanded="false" aria-controls="oss-features">
+        <span data-fold-show class="more-label"><span data-i18n="features.showAll">Afficher toutes les fonctions</span> <span class="more-count" data-fold-count></span></span>
+        <span data-fold-hide hidden data-i18n="features.showLess">Afficher moins</span>
+        <svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg>
+      </button>
+    </p>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="shortcuts.title">Raccourcis clavier</h2>
+      <p data-i18n="shortcuts.desc">Démarrez la reconnaissance vocale partout dans votre système d'exploitation :</p>
+    </div>
+    <div class="keys-row">
+      <kbd>CTRL + Windows</kbd>
+      <span class="keys-or" data-i18n="shortcuts.or">ou</span>
+      <kbd>CTRL + SHIFT + Spatie</kbd>
+    </div>
+    <p class="keys-note" data-i18n="shortcuts.note">Configurable dans les paramètres — choisissez votre propre raccourci s'il entre en conflit avec d'autres logiciels.</p>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="panel-split on-light">
+      <div class="panel-split-text">
+        <h2 data-i18n="tech.heading">Stack <span class="accent">technique</span></h2>
+      </div>
+      <div class="panel-split-body">
+        <p data-i18n="tech.desc">Open Speech Studio repose sur une stack moderne et performante. <strong>OpenAI Whisper</strong> pour une reconnaissance vocale à l'état de l'art. <strong>Rust</strong> pour un backend léger et rapide (sans runtime Python). <strong>Tauri 2</strong> pour l'application de bureau — bien plus léger qu'Electron (~10 Mo au lieu de 200 Mo). <strong>TypeScript + Svelte</strong> pour l'interface. Entièrement open source sous LGPL-3.0.</p>
+      </div>
+    </div>
+  </div></section>
 
   <!-- Release Notes (shared component) -->
   <div data-release-notes="open-speech-studio"></div>
   <script src="/shared/release-notes.js?v=20260728"></script>
 
-  <footer class="footer page-footer" style="padding: var(--sp-6);">
-    <div class="footer-inner">
-      <a href="/fr/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
-      <div style="display: flex; gap: var(--sp-4); align-items: center;">
-        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg> GitHub</a>
-        <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+  <section class="section surface-spot panel">
+    <div class="panel-center">
+      <h2 data-i18n="finalcta.heading">Téléchargez maintenant <span class="accent">— installation en 30 secondes</span></h2>
+      <p data-i18n="finalcta.desc">1 fichier d'installation (.exe), sans inscription, sans compte, sans carte bancaire. Prêt à dicter en &lt;1 minute. Fonctionne sur Windows 10 et Windows 11.</p>
+      <div class="btn-group">
+        <a href="https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.3/Open.Speech.Studio_0.10.3_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-speech-studio" data-platform="windows" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="finalcta.download">Télécharger l'installateur (.exe)</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-speech-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-star"/></svg><span data-i18n="finalcta.github">Voir le code source sur GitHub</span></a>
       </div>
-      <p>&copy; 2026 OpenAEC Foundation</p>
+      <p class="cta-meta" data-i18n="finalcta.meta">v0.10.3 stable &middot; LGPL-3.0 &middot; Windows 10/11 &middot; téléchargement ~40 Mo</p>
     </div>
-  </footer>
+  </section>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Pages</h4>
+        <a href="/fr/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">À propos</a>
+        <a href="/fr/ifcx/">IFCX</a>
+        <a href="/fr/roadmap/" data-i18n-en="Roadmap 2026" data-i18n-fr="Feuille de route 2026" data-i18n-tr="2026 yol haritası" data-i18n-es="Hoja de ruta 2026">Feuille de route 2026</a>
+        <a href="/fr/architectuur/" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Architecture</a>
+        <a href="/fr/supporters/" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Partenaires</a>
+        <a href="/fr/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Demander un devis</a>
+        <a href="/fr/structuur/" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structure</a>
+        <a href="/fr/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">FAQ</a>
+        <a href="/fr/statistieken/" data-i18n-en="Timeline &amp; Statistics" data-i18n-fr="Chronologie &amp; statistiques" data-i18n-tr="Zaman çizelgesi &amp; istatistikler" data-i18n-es="Cronología &amp; estadísticas">Chronologie &amp; statistiques</a>
+        <a href="/fr/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Avertissement</a>
+        <a href="/fr/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Projet de statuts</a>
+        <a href="/fr/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Crédits</a>
+        <a href="/fr/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Politique &amp; positions</a>
+        <a href="/fr/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Réseaux sociaux</a>
+      </nav>
+      <nav class="site-footer-col" aria-label="Meer tools">
+        <h4 data-i18n-en="More tools" data-i18n-fr="Plus d'outils" data-i18n-tr="Daha fazla araç" data-i18n-es="Más herramientas">Plus d'outils</h4>
+        <a href="/fr/open-energy-studio/">Open Energy Studio</a>
+        <a href="/fr/open-safety-studio/">Open Safety Studio</a>
+        <a href="/fr/open-3d-viewer/">Open 3D Viewer</a>
+        <a href="/fr/open-books/">OpenBooks</a>
+        <a href="/fr/openaec-cloud/">OpenAEC Cloud</a>
+        <a href="/fr/openaec-docs/">OpenAEC Docs</a>
+        <a href="/fr/ext-drawing-statistics/">Drawing Statistics</a>
+        <a href="/fr/y-app/">Y-app</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Fondation en cours de constitution</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">Pays-Bas</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
 <script>
   (function(){
     const track = document.getElementById('sliderTrack');
@@ -783,6 +539,31 @@
   })();
 </script>
   <script src="/shared/downloads.js?v=20261001"></script>
+<script>
+  // Lange lijsten: de eerste paar zichtbaar, de rest achter de vaste "Toon alles"-knop. Zonder JavaScript staat alles open.
+  document.querySelectorAll('[data-fold]').forEach(function (grid) {
+    var n = +grid.getAttribute('data-fold');
+    var items = Array.prototype.slice.call(grid.children);
+    var row = document.querySelector('[data-fold-for="' + grid.id + '"]');
+    if (!row || items.length <= n) return;
+    var btn = row.querySelector('.more-btn');
+    var show = btn.querySelector('[data-fold-show]');
+    var hide = btn.querySelector('[data-fold-hide]');
+    btn.querySelector('[data-fold-count]').textContent = '(' + items.length + ')';
+    function zet(open) {
+      items.forEach(function (c, i) { c.style.display = (!open && i >= n) ? 'none' : ''; });
+      show.hidden = open; hide.hidden = !open;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+    zet(false);
+    row.hidden = false;
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') !== 'true';
+      zet(open);
+      if (!open) grid.scrollIntoView({ block: 'start' });
+    });
+  });
+</script>
 <script src="/shared/i18n.js?v=20260728"></script>
 </body>
 </html>
