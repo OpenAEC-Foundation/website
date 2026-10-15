@@ -88,3 +88,19 @@ for (const file of htmlFiles(ROOT)) {
 }
 
 console.log(`\n${changed} pagina('s) bijgewerkt, ${unchanged} al actueel, ${skipped} overgeslagen.`);
+
+// Gedeelde footer: zelfde aanpak als de nav. Pagina's met <div id="shared-footer"></div>
+// krijgen shared/footer.html statisch tussen <!-- footer:start --> en <!-- footer:end -->.
+const footerPath = path.join(ROOT, 'shared', 'footer.html');
+if (fs.existsSync(footerPath)) {
+  const footer = fs.readFileSync(footerPath, 'utf8').replace(/\r\n?/g, '\n').trim();
+  const FOOT = /<div id="shared-footer"><!-- footer:start -->[\s\S]*?<!-- footer:end --><\/div>|<div id="shared-footer"><\/div>/;
+  let fChanged = 0;
+  for (const file of htmlFiles(ROOT)) {
+    const html = fs.readFileSync(file, 'utf8');
+    if (!html.includes('id="shared-footer"') || !FOOT.test(html)) continue;
+    const out = html.replace(FOOT, `<div id="shared-footer"><!-- footer:start -->\n${footer}\n<!-- footer:end --></div>`).replace(/\r\n?/g, '\n');
+    if (out !== html) { fs.writeFileSync(file, out); fChanged++; }
+  }
+  console.log(`footer: ${fChanged} pagina('s) bijgewerkt.`);
+}

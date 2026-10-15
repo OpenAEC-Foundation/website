@@ -34,6 +34,8 @@
       tlLines: (n) => `+${n} regels code`,
       more: 'Meer',
       less: 'Minder',
+      showAllVersions: (n) => `Toon alle ${n} versies`,
+      showFewerVersions: 'Toon minder',
       noNotes: 'Geen notities beschikbaar voor deze versie.',
     },
     en: {
@@ -65,6 +67,8 @@
       tlLines: (n) => `+${n} lines of code`,
       more: 'More',
       less: 'Less',
+      showAllVersions: (n) => `Show all ${n} versions`,
+      showFewerVersions: 'Show less',
       noNotes: 'No notes available for this version.',
     },
     fr: {
@@ -96,6 +100,8 @@
       tlLines: (n) => `+${n} lignes de code`,
       more: 'Plus',
       less: 'Moins',
+      showAllVersions: (n) => `Afficher les ${n} versions`,
+      showFewerVersions: 'Afficher moins',
       noNotes: 'Aucune note disponible pour cette version.',
     },
     tr: {
@@ -127,6 +133,8 @@
       tlLines: (n) => `+${n} kod satırı`,
       more: 'Daha fazla',
       less: 'Daha az',
+      showAllVersions: (n) => `${n} sürümün tümünü göster`,
+      showFewerVersions: 'Daha az göster',
       noNotes: 'Bu sürüm için not bulunmuyor.',
     },
     es: {
@@ -158,6 +166,8 @@
       tlLines: (n) => `+${n} líneas de código`,
       more: 'Más',
       less: 'Menos',
+      showAllVersions: (n) => `Mostrar las ${n} versiones`,
+      showFewerVersions: 'Mostrar menos',
       noNotes: 'No hay notas disponibles para esta versión.',
     },
   };
@@ -342,6 +352,7 @@
       }
       .rn-toggle:hover { background: var(--amber); color: white; }
 
+      .rn-groups-more { text-align: center; margin-top: var(--sp-6); }
       .rn-viewall {
         margin-top: var(--sp-6); font-size: 0.8125rem;
         text-align: center;
@@ -809,6 +820,9 @@
     });
   }
 
+  // Aantal versies dat zichtbaar is voordat "Toon alle versies" komt.
+  const RN_VISIBLE = 5;
+
   function renderAll(container, data, latestOnly, timeline, highlights) {
     if (timeline && highlights) return renderTimeline(container, data, highlights);
     if (latestOnly || timeline) return renderLatestOnly(container, data);
@@ -840,10 +854,28 @@
       <div class="rn-groups">
         ${data.groups.map((g, i) => renderGroup(g, i === 0)).join('')}
       </div>
+      ${data.groups.length > RN_VISIBLE ? `<p class="rn-groups-more"><button type="button" class="rn-toggle rn-groups-toggle" aria-expanded="false">${t('showAllVersions')(data.groups.length)}</button></p>` : ''}
       <p class="rn-viewall">
         <a href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll')}</a>
       </p>
     `;
+
+    // Alleen de nieuwste versies tonen; de rest achter "Toon alle versies".
+    const groupEls = Array.from(container.querySelectorAll('.rn-groups > .rn-group'));
+    const moreBtn = container.querySelector('.rn-groups-toggle');
+    const fold = (open) => {
+      groupEls.forEach((el, i) => { el.hidden = !open && i >= RN_VISIBLE; });
+      if (moreBtn) {
+        moreBtn.textContent = open ? t('showFewerVersions') : t('showAllVersions')(groupEls.length);
+        moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+    };
+    fold(false);
+    if (moreBtn) moreBtn.addEventListener('click', () => {
+      const open = moreBtn.getAttribute('aria-expanded') !== 'true';
+      fold(open);
+      if (!open) container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
 
     // Render the first (latest) group's body immediately
     const firstGroup = container.querySelector('.rn-group.expanded');
