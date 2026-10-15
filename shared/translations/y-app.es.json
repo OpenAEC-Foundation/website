@@ -1,18 +1,18 @@
 {
   "header": {
     "label": "OpenAEC Ecosystem",
-    "desc": "La Everything-app para tu empresa: correo, ERP, facturas, registro de horas, proyectos, comunicación y mucho más en una sola herramienta. <strong style=\"color: white;\">Multi-tenant: una cuenta, varias instancias de ERPNext.</strong>",
+    "desc": "La Everything-app para tu empresa: correo, ERP, facturas, registro de horas, proyectos, comunicación y mucho más en una sola herramienta. <strong>Multi-tenant: una cuenta, varias instancias de ERPNext.</strong>",
     "badge": "Beta",
     "category": "Everything-app"
   },
   "explainer1": {
     "title": "¿Qué es Y-app?",
-    "intro": "Y-app no es una herramienta de chat ni un frontend de ERP independiente. Es una <strong style=\"color: white;\">\"Everything-app\"</strong>: un espacio de trabajo multi-tenant de ERPNext que reúne toda la pila de tu empresa en una sola aplicación web. Correo (IMAP/SMTP + Office 365), ERP (ERPNext), archivos (NextCloud), chat (Teams, NextCloud Talk, Telegram), calendario, un asistente de IA (Claude) y decenas de módulos de negocio, todo accesible desde una sola pestaña del navegador.",
-    "li1": "<strong style=\"color: white;\">Multi-tenant</strong> — conecta varias instancias de ERPNext a una sola cuenta de Y-app",
-    "li2": "<strong style=\"color: white;\">Bóveda cifrada</strong> — credenciales en una base de datos SQLite del lado del servidor con AES-256-GCM y PBKDF2-SHA256 (210 000 iteraciones)",
-    "li3": "<strong style=\"color: white;\">Sin pestañas del navegador</strong> — cambia entre instancias mediante pestañas dentro de la app, cada una con su propio enrutamiento y sesión",
-    "li4": "<strong style=\"color: white;\">Modo empleador o empleado</strong> — restringe módulos por instancia mediante un desplegable",
-    "li5": "<strong style=\"color: white;\">i18n completa NL/EN</strong> — más de 1190 traducciones, conmutables en tiempo de ejecución"
+    "intro": "Y-app no es una herramienta de chat ni un frontend de ERP independiente. Es una <strong>\"Everything-app\"</strong>: un espacio de trabajo multi-tenant de ERPNext que reúne toda la pila de tu empresa en una sola aplicación web. Correo (IMAP/SMTP + Office 365), ERP (ERPNext), archivos (NextCloud), chat (Teams, NextCloud Talk, Telegram), calendario, un asistente de IA (Claude) y decenas de módulos de negocio, todo accesible desde una sola pestaña del navegador.",
+    "li1": "<strong>Multi-tenant</strong> Conecta varias instancias de ERPNext a una sola cuenta de Y-app",
+    "li2": "<strong>Bóveda cifrada</strong> Credenciales en una base de datos SQLite del lado del servidor con AES-256-GCM y PBKDF2-SHA256 (210 000 iteraciones)",
+    "li3": "<strong>Sin pestañas del navegador</strong> Cambia entre instancias mediante pestañas dentro de la app, cada una con su propio enrutamiento y sesión",
+    "li4": "<strong>Modo empleador o empleado</strong> Restringe módulos por instancia mediante un desplegable",
+    "li5": "<strong>i18n completa NL/EN</strong> Más de 1190 traducciones, conmutables en tiempo de ejecución"
   },
   "howitworks": {
     "title": "Cómo <span class=\"accent\">funciona</span>",
@@ -36,13 +36,13 @@
   },
   "explainer2": {
     "title": "Multi-tenant y cifrado: ni siquiera el host puede leer tus credenciales",
-    "intro": "Y-app funciona con un principio de conocimiento cero para tus credenciales de ERPNext. Cada combinación de correo, clave de ERPNext y token OAuth2 se cifra en una bóveda SQLite del lado del servidor con una clave maestra que <strong style=\"color: white;\">solo puede descifrarse con tu contraseña de Y-app</strong>.",
-    "li1": "<strong style=\"color: white;\">AES-256-GCM</strong> — cifrado autenticado para cada credencial",
-    "li2": "<strong style=\"color: white;\">PBKDF2-SHA256, 210 000 iteraciones</strong> — la recomendación actual de OWASP para la derivación de claves",
-    "li3": "<strong style=\"color: white;\">Archivo de clave maestra con modo 600</strong> — legible únicamente por el proceso de Y-app",
-    "li4": "<strong style=\"color: white;\">AsyncLocalStorage por petición</strong> — las credenciales nunca se comparten entre usuarios dentro del mismo proceso de Node",
-    "li5": "<strong style=\"color: white;\">Ni siquiera el host puede ver tus datos</strong> — sin tu inicio de sesión, la bóveda es un blob de bytes aleatorios",
-    "li6": "<strong style=\"color: white;\">Una cuenta, varias empresas</strong> — ideal para asesorías, consultores, holdings y organizaciones de franquicia"
+    "intro": "Y-app funciona con un principio de conocimiento cero para tus credenciales de ERPNext. Cada combinación de correo, clave de ERPNext y token OAuth2 se cifra en una bóveda SQLite del lado del servidor con una clave maestra que <strong>solo puede descifrarse con tu contraseña de Y-app</strong>.",
+    "li1": "<strong>AES-256-GCM</strong> Cifrado autenticado para cada credencial",
+    "li2": "<strong>PBKDF2-SHA256, 210 000 iteraciones</strong> La recomendación actual de OWASP para la derivación de claves",
+    "li3": "<strong>Archivo de clave maestra con modo 600</strong> Legible únicamente por el proceso de Y-app",
+    "li4": "<strong>AsyncLocalStorage por petición</strong> Las credenciales nunca se comparten entre usuarios dentro del mismo proceso de Node",
+    "li5": "<strong>Ni siquiera el host puede ver tus datos</strong> Sin tu inicio de sesión, la bóveda es un blob de bytes aleatorios",
+    "li6": "<strong>Una cuenta, varias empresas</strong> Ideal para asesorías, consultores, holdings y organizaciones de franquicia"
   },
   "modules": {
     "title": "¿Qué incluye? — <span class=\"accent\">los módulos</span>",
@@ -335,7 +335,7 @@
     "summary": "React 19 + TypeScript + Vite 7 + TailwindCSS 4 en el frontend, Node.js 20 + Express 4 + WebSocket en el backend. Autenticación mediante bcryptjs (12 rondas), cookies HttpOnly y AsyncLocalStorage para el aislamiento de credenciales por petición. Cifrado con AES-256-GCM y PBKDF2-SHA256 (210 000 iteraciones), datos en una base de datos SQLite (modo WAL). En producción se ejecuta bajo PM2, detrás de un proxy inverso nginx con terminación TLS, actualización a WebSocket y servido estático de dist. Desarrollo mediante tsx --watch."
   },
   "cta": {
-    "demo": "Demo en vivo &rarr;",
+    "demo": "Demo en vivo",
     "github": "Repositorio de GitHub"
   },
   "meta": {
