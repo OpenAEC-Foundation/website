@@ -59,15 +59,18 @@
     .opf-zoek { width: 100%; max-width: 32rem; padding: var(--sp-3) var(--sp-4); border: 1.5px solid rgba(42,42,50,0.15); border-radius: var(--radius-md);
       font: inherit; font-size: 0.95rem; margin-bottom: var(--sp-6); background: #fff; }
     .opf-zoek:focus { outline: 2px solid var(--amber); outline-offset: 1px; }
-    .opf-tabs { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--sp-4); align-items: start; }
+    /* Evenredig: vaste kolommen die de breedte vullen, gelijke hoogte per rij */
+    .opf-tabs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: minmax(5.4rem, auto); gap: var(--sp-4); align-items: stretch; }
+    @media (max-width: 900px) { .opf-tabs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 560px) { .opf-tabs { grid-template-columns: 1fr; } }
     .opf-tab { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); }
     .opf-tab[open] { grid-column: 1 / -1; }
     .opf-tab > summary { cursor: pointer; padding: var(--sp-4) var(--sp-5); font-family: var(--font-heading);
-      font-weight: 600; display: flex; justify-content: space-between; gap: var(--sp-3); list-style: none; }
+      font-weight: 600; display: grid; grid-template-columns: minmax(0, 1fr) auto auto; align-items: baseline; gap: var(--sp-3); list-style: none; }
     .opf-tab > summary::-webkit-details-marker { display: none; }
-    .opf-tab > summary::after { content: '+'; color: var(--amber); font-weight: 700; }
+    .opf-tab > summary::after { content: '+'; color: var(--amber); font-weight: 700; width: 1em; text-align: center; }
     .opf-tab[open] > summary::after { content: '−'; }
-    .opf-tel { color: var(--text-muted); font-weight: 400; font-size: 0.85rem; margin-left: auto; }
+    .opf-tel { color: var(--text-muted); font-weight: 400; font-size: 0.85rem; white-space: nowrap; }
     .opf-ctx { display: block; color: var(--text-muted); font-weight: 400; font-size: 0.8rem; }
     .opf-body { padding: 0 var(--sp-5) var(--sp-4); }
     .opf-groep { margin-top: var(--sp-3); }
