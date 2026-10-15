@@ -1,10 +1,10 @@
 # BCF Manager Studio
 
-> BCF 2.1 issue management platform. BCF API 3.0, IFC GlobalId linking.
+> BCF 2.1 issue management platform. BCF API 2.1 server, IFC GlobalId linking, self-hosted with Docker.
 
 **Status:** in development
 **License:** LGPL-3.0
-**Platforms:** Windows, macOS, Linux, Web
+**Platforms:** Web (self-hosted)
 **Category:** Issue Management
 **Current version:** n/a
 **Tool ID:** `bcf-manager-studio`
@@ -22,14 +22,14 @@
 ## Key features
 
 - BCF 2.1 topics, comments, viewpoints
-- BCF API 3.0 server
+- BCF API 2.1 server (29 endpoints)
 - IFC GlobalId linking
 - 3D viewer integration
 - Per-project access control
 
 ## Tech stack
 
-`Rust` · `TypeScript` · `Tauri 2`
+`Rust` · `Axum` · `PostgreSQL` · `React` · `TypeScript` · `Docker`
 
 ## When to use this
 
@@ -44,7 +44,7 @@ Central issue and clash coordination across BIM teams, replacing BIMcollab or So
 ## Standards & integration
 
 - BCF 2.1
-- BCF API 3.0
+- BCF API 2.1
 
 All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 
