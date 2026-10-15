@@ -1161,9 +1161,9 @@ a.card-glass:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0
 .js-tabs .mod-group + .mod-group { margin-top: 0; }
 .js-tabs .mod-group[hidden] { display: none; }
 
-/* Kaarten binnen een tabblad: rijen van drie (vier bij precies vier); de laatste rij staat in het midden, zodat er geen gat overblijft */
-.mod-group .features { display: flex; flex-wrap: wrap; justify-content: center; }
-.mod-group .features > .feature { flex: 0 1 calc((100% - 2 * 18px) / 3); }
-.mod-group .features:has(> :nth-child(4):last-child) > .feature { flex-basis: calc((100% - 3 * 18px) / 4); }
-@media (max-width: 960px) { .mod-group .features > .feature, .mod-group .features:has(> :nth-child(4):last-child) > .feature { flex-basis: calc((100% - 18px) / 2); } }
-@media (max-width: 640px) { .mod-group .features > .feature, .mod-group .features:has(> :nth-child(4):last-child) > .feature { flex-basis: 100%; } }
+/* Kaartrijen zonder gat: de laatste rij staat in het midden. Binnen een tabblad altijd; elders met .features-center (rijen van drie, of vier met .features-4) */
+.mod-group .features, .features.features-center { display: flex; flex-wrap: wrap; justify-content: center; }
+.mod-group .features > .feature, .features-center > .feature { flex: 0 1 calc((100% - 2 * 18px) / 3); }
+.mod-group .features:has(> :nth-child(4):last-child) > .feature, .features-4.features-center > .feature { flex-basis: calc((100% - 3 * 18px) / 4); }
+@media (max-width: 960px) { .mod-group .features > .feature, .mod-group .features:has(> :nth-child(4):last-child) > .feature, .features-center > .feature, .features-4.features-center > .feature { flex-basis: calc((100% - 18px) / 2); } }
+@media (max-width: 640px) { .mod-group .features > .feature, .mod-group .features:has(> :nth-child(4):last-child) > .feature, .features-center > .feature, .features-4.features-center > .feature { flex-basis: 100%; } }
