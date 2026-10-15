@@ -6,7 +6,7 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux
 **Category:** Structural Engineering
-**Current version:** v0.6.0 (2026-07-14)
+**Current version:** v0.5.2 (2026-07-09)
 **Tool ID:** `open-frame-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-frame-studio`
 
@@ -16,9 +16,9 @@
 - Commits: **122**
 - Forks: **5**
 - Open issues: **1**
-- Releases: **8**
-- Total downloads: **303**
-- Downloads by platform: Windows (192), Linux (AppImage) (50), Windows (MSI) (23), Linux (deb) (15), Linux (rpm) (12), Archive (6), macOS (5)
+- Releases: **7**
+- Total downloads: **54**
+- Downloads by platform: Windows (29), Linux (AppImage) (11), Windows (MSI) (5), Linux (rpm) (3), Linux (deb) (3), Archive (2), macOS (1)
 
 ## Key features
 
@@ -53,19 +53,19 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-frame-studio/
 - Live demo: https://open-frame-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-frame-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/v0.6.0
+- Latest stable release: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/v0.5.2
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
 
-- [Windows · Open.Frame.Studio_0.6.0_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_x64_user-setup.exe) (v0.6.0 — 4.6 MB)
-- [Windows · Open.Frame.Studio_0.6.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_x64-setup.exe) (v0.6.0 — 4.6 MB)
-- [Linux (AppImage) · Open.Frame.Studio_0.6.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_amd64.AppImage) (v0.6.0 — 80.6 MB)
-- [Windows (MSI) · Open.Frame.Studio_0.6.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_x64_en-US.msi) (v0.6.0 — 6.6 MB)
-- [Linux (deb) · Open.Frame.Studio_0.6.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_amd64.deb) (v0.6.0 — 7.1 MB)
 - [Windows · Open.Frame.Studio_0.2.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.2.0/Open.Frame.Studio_0.2.0_x64-setup.exe) (v0.2.0 — 4.4 MB)
-- [Linux (rpm) · Open.Frame.Studio-0.6.0-1.x86_64.rpm](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio-0.6.0-1.x86_64.rpm) (v0.6.0 — 7.1 MB)
 - [Linux (AppImage) · Open.Frame.Studio_0.2.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.2.0/Open.Frame.Studio_0.2.0_amd64.AppImage) (v0.2.0 — 80.4 MB)
+- [Windows · Open.Frame.Studio_0.1.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.1.0/Open.Frame.Studio_0.1.0_x64-setup.exe) (v0.1.0 — 4.3 MB)
+- [Windows · Open.Frame.Studio_0.5.2_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.5.2/Open.Frame.Studio_0.5.2_x64_user-setup.exe) (v0.5.2 — 4.7 MB)
+- [Windows · Open.Frame.Studio_0.4.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.4.0/Open.Frame.Studio_0.4.0_x64-setup.exe) (v0.4.0 — 4.6 MB)
+- [Windows (MSI) · Open.Frame.Studio_0.2.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.2.0/Open.Frame.Studio_0.2.0_x64_en-US.msi) (v0.2.0 — 6.2 MB)
+- [Windows · Open.Frame.Studio_0.2.0_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.2.0/Open.Frame.Studio_0.2.0_x64_user-setup.exe) (v0.2.0 — 4.4 MB)
+- [Linux (rpm) · Open.Frame.Studio-0.1.0-1.x86_64.rpm](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.1.0/Open.Frame.Studio-0.1.0-1.x86_64.rpm) (v0.1.0 — 6.8 MB)
 
 ---
 
