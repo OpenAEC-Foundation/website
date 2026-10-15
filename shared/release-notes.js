@@ -792,10 +792,29 @@
         </p>
       </div>
       <ol class="rn-timeline">${items}</ol>
-      <p class="rn-viewall">
-        <a href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll')}</a>
+      <p class="more-row">
+        ${releases.length > RN_VISIBLE ? `<button type="button" class="btn btn-secondary btn-lg more-btn rn-groups-toggle" aria-expanded="false"><span class="more-label">${t('showAllVersions')}</span> <span class="more-count">(${releases.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></button>` : ''}
+        <a class="more-link" href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/s*→s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-external"/></svg></a>
       </p>
     `;
+
+    // Alleen de nieuwste versies tonen; de rest achter "Toon alle versies".
+    const tlItems = Array.from(container.querySelectorAll('.rn-timeline > .rn-tl-item'));
+    const tlMore = container.querySelector('.rn-groups-toggle');
+    const tlFold = (open) => {
+      tlItems.forEach((el, i) => { el.hidden = !open && i >= RN_VISIBLE; });
+      if (tlMore) {
+        tlMore.querySelector('.more-label').textContent = open ? t('showFewerVersions') : t('showAllVersions');
+        tlMore.querySelector('.more-count').hidden = open;
+        tlMore.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+    };
+    tlFold(false);
+    if (tlMore) tlMore.addEventListener('click', () => {
+      const open = tlMore.getAttribute('aria-expanded') !== 'true';
+      tlFold(open);
+      if (!open) container.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
 
     // "Meer" klapt de volledige notities uit; de inhoud wordt pas bij de
     // eerste klik opgebouwd.
