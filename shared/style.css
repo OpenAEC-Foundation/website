@@ -41,10 +41,21 @@
 
   /* Gradient */
   --gradient-accent: linear-gradient(90deg, #D97706 0%, #F59E0B 40%, #EA580C 100%);
+
+  /* Vlakken en diepte (huisstijl A+, okt 2026) */
+  --surface-dark-top: #33333C;      /* "licht van boven" in donkere vlakken */
+  --surface-light-top: #F7F5F2;     /* warm licht vlak, boven */
+  --surface-light-bottom: #F1EEEA;  /* warm licht vlak, onder */
+  --text-muted: #57534E;            /* lopende tekst op licht */
+  --shadow-float: 0 1px 2px rgba(42,42,50,0.06), 0 12px 28px -14px rgba(42,42,50,0.22);
+  --shadow-float-hover: 0 2px 4px rgba(42,42,50,0.06), 0 24px 40px -16px rgba(217,119,6,0.35);
+  --shadow-deep: 0 20px 40px -20px rgba(0,0,0,0.6);
+  --glow-amber: 0 10px 24px -8px rgba(217,119,6,0.65);
 }
 
 /* Reset */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+button, input, select, textarea { font-family: inherit; }
 
 body {
   font-family: var(--font-body);
@@ -480,7 +491,7 @@ pre code {
   height: 3px;
   background: white;
   margin: 6px 0;
-  border-radius: 2px;
+  border-radius: var(--radius-full);
   transition: all 0.3s ease;
 }
 .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
@@ -782,11 +793,11 @@ pre code {
 .rn-tl-plain-list li::marker { color: #D6D3D1; }
 .rn-tl-plain-list strong { color: var(--deep-forge); font-weight: 600; }
 .rn-tl-plain-list code {
-  font-family: var(--font-mono, monospace);
+  font-family: var(--font-code);
   font-size: 0.95em;
-  background: #F5F5F4;
+  background: var(--concrete);
   padding: 0 3px;
-  border-radius: 3px;
+  border-radius: var(--radius-sm);
 }
 
 .rn-tl-plain .rn-tl-actions { margin-top: var(--sp-2); font-size: 0.8125rem; }
@@ -805,3 +816,89 @@ pre code {
    in- en uitklappen zelf doet de pagina met een inline style, zodat het ook
    werkt als deze stylesheet uit de cache achterloopt. */
 .features-more { margin-top: var(--sp-6); text-align: center; }
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Huisstijl A+ (okt 2026): de homepage-stijl met diepte.
+   Vaste regels: alleen Space Grotesk (koppen), Inter (tekst) en JetBrains
+   Mono (labels/code); alleen radius-sm/md/lg/full; kleuren uit :root.
+   Iconen: <svg class="ico"><use href="/shared/icons.svg#i-naam"/></svg>.
+   ───────────────────────────────────────────────────────────────────────── */
+
+/* Iconen: lijn in currentColor, accentvlak in --ico-accent */
+.ico { width: 1.25em; height: 1.25em; flex-shrink: 0; vertical-align: -0.22em; }
+.ico-amber { color: var(--amber); }
+
+/* Vlakken */
+.surface-dark { position: relative; color: var(--blueprint-white); background: linear-gradient(180deg, var(--surface-dark-top) 0%, var(--night-build) 70%); }
+.surface-spot { position: relative; color: var(--blueprint-white); background: radial-gradient(ellipse 60% 90% at 50% -10%, rgba(255,255,255,0.06), transparent 65%), var(--night-build); }
+.surface-light { background: radial-gradient(ellipse 80% 60% at 50% 0%, #FFFFFF, transparent 70%), linear-gradient(180deg, var(--surface-light-top), var(--surface-light-bottom)); }
+.accent-rule { border-bottom: 3px solid transparent; border-image: var(--gradient-accent) 1; }
+
+/* Label: pil met bolletje, JetBrains Mono */
+.pill-label { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-code); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--warm-gold); background: rgba(217,119,6,0.15); border-radius: var(--radius-full); padding: 7px 14px; margin: 0 0 var(--sp-5); max-width: none; }
+.pill-label::before { content: ""; width: 7px; height: 7px; border-radius: var(--radius-full); background: var(--amber); box-shadow: 0 0 0 4px rgba(217,119,6,0.18); }
+.surface-light .pill-label, .pill-label.on-light { background: rgba(217,119,6,0.1); color: #B45309; }
+
+/* Knoppen: aanvullingen op .btn */
+.btn .ico { width: 1.15em; height: 1.15em; }
+.btn-glow { background: linear-gradient(180deg, #E08A12, var(--amber)); color: white; box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, var(--glow-amber); }
+.btn-glow:hover { color: white; transform: translateY(-2px); box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, 0 14px 30px -8px rgba(217,119,6,0.8); }
+.btn-glow .ico { --ico-accent: white; --ico-accent-opacity: 0.3; }
+.btn-glass { color: white; background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.14); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset; }
+.btn-glass:hover { color: white; border-color: rgba(217,119,6,0.6); background: rgba(217,119,6,0.1); transform: translateY(-2px); }
+.btn-glass .ico { color: var(--amber); }
+
+/* Chips: kleine eigenschappen onder een kop */
+.chip-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.chip { display: inline-flex; align-items: center; gap: 8px; font-size: 0.85rem; color: #D4D4D8; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-full); padding: 6px 14px; }
+.chip .ico { color: var(--amber); width: 16px; height: 16px; }
+
+/* Icoontegel */
+.icon-tile { width: 48px; height: 48px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; color: var(--amber); background: linear-gradient(145deg, rgba(217,119,6,0.18), rgba(217,119,6,0.05)); border: 1px solid rgba(217,119,6,0.22); --ico-accent-opacity: 0.28; }
+.icon-tile .ico { width: 26px; height: 26px; }
+
+/* Kaarten */
+.card-lift { position: relative; background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); padding: var(--sp-6); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
+.card-lift:hover { transform: translateY(-4px); border-color: rgba(217,119,6,0.35); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float-hover); }
+.card-lift .icon-tile { margin-bottom: 18px; }
+.card-lift h3 { font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; margin: 0 0 6px; color: var(--deep-forge); }
+.card-lift p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.55; margin: 0; }
+.card-glass { background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025)); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: var(--sp-6); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, var(--shadow-deep); color: var(--blueprint-white); }
+.card-glass .icon-tile { background: rgba(217,119,6,0.14); border-color: rgba(217,119,6,0.3); --ico-accent-opacity: 0.3; }
+a.card-glass { text-decoration: none; transition: transform 0.2s ease, border-color 0.2s ease; }
+a.card-glass:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0.6); }
+.card-hot { background: linear-gradient(180deg, #E08A12, var(--amber)); border-color: transparent; box-shadow: 0 24px 50px -14px rgba(217,119,6,0.55); color: var(--night-build); }
+.card-hot .icon-tile { background: rgba(42,42,50,0.12); border-color: rgba(42,42,50,0.2); color: var(--night-build); }
+
+/* Kerncijfer in een kaart */
+.stat { display: flex; gap: 16px; align-items: center; text-align: left; }
+.stat b { display: block; font-family: var(--font-heading); font-weight: 700; font-size: 2.1rem; line-height: 1; letter-spacing: -0.02em; }
+.stat span { color: var(--scaffold-gray); font-size: 0.9rem; }
+.card-hot .stat span, .card-hot.stat span { color: var(--night-build); }
+
+/* Zwevende screenshot met oranje gloed */
+.shot-float { position: relative; max-width: 1040px; margin: var(--sp-12) auto 0; padding: 0 var(--sp-6); }
+.shot-float::before { content: ""; position: absolute; left: 10%; right: 10%; top: 12%; bottom: -6%; background: radial-gradient(ellipse at center, rgba(217,119,6,0.35), transparent 70%); filter: blur(40px); z-index: 0; }
+.shot-float img { position: relative; z-index: 1; display: block; width: 100%; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.14); box-shadow: 0 0 0 8px rgba(255,255,255,0.03), 0 40px 80px -20px rgba(0,0,0,0.75); }
+.shot-overlap img { margin-bottom: -120px; }
+.after-overlap { padding-top: calc(120px + var(--sp-16)) !important; }
+
+/* Rasters */
+.grid-auto-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.grid-auto-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+@media (max-width: 860px) {
+  .grid-auto-3 { grid-template-columns: 1fr; }
+  .grid-auto-4 { grid-template-columns: 1fr 1fr; }
+  .shot-overlap img { margin-bottom: -60px; }
+  .after-overlap { padding-top: calc(60px + var(--sp-12)) !important; }
+}
+
+/* Panelen (B3): donkere delen als afgeronde blokken op een lichte pagina.
+   Gebruik: <body class="page-panels"> en <section class="... panel">;
+   twee aansluitende panelen: panel-top + panel-bottom. */
+.page-panels { background: var(--surface-light-bottom); }
+.panel { max-width: 1240px; margin: var(--sp-12) auto; border-radius: var(--radius-lg); box-shadow: 0 40px 80px -30px rgba(42,42,50,0.55), 0 0 0 1px rgba(42,42,50,0.04); }
+.panel-top { margin-bottom: 0; border-bottom-left-radius: 0; border-bottom-right-radius: 0; }
+.panel-bottom { margin-top: 0; border-top-left-radius: 0; border-top-right-radius: 0; box-shadow: 0 40px 80px -30px rgba(42,42,50,0.55), 0 0 0 1px rgba(42,42,50,0.04), 0 -1px 0 rgba(255,255,255,0.06); }
+@media (max-width: 1288px) { .panel { margin-left: var(--sp-6); margin-right: var(--sp-6); } }
+@media (max-width: 768px) { .panel { margin: var(--sp-6) var(--sp-3); } .panel-top { margin-bottom: 0; } .panel-bottom { margin-top: 0; } }
