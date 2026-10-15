@@ -1171,7 +1171,8 @@ a.card-glass:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0
 @media (max-width: 640px) { .mod-group .features > .feature, .mod-group .features:has(> :nth-child(4):last-child) > .feature, .features-center > .feature, .features-4.features-center > .feature { flex-basis: 100%; } }
 
 /* Mensenkaarten (Over ons): foto, naam, rol, tekst en LinkedIn */
-.member-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.member-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
+.member-grid > .member-card { flex: 0 1 calc((100% - 3 * 18px) / 4); }
 .member-card { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); padding: var(--sp-8) var(--sp-6); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); text-align: center; display: flex; flex-direction: column; align-items: center; }
 .member-avatar { width: 112px; height: 112px; border-radius: 50%; overflow: hidden; margin-bottom: var(--sp-4); box-shadow: 0 0 0 4px rgba(217,119,6,0.15); }
 .member-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -1181,8 +1182,8 @@ a.card-glass:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0
 .member-link { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--sp-4); font-weight: 600; font-size: 0.85rem; color: #B45309; text-decoration: none; }
 .member-link:hover { color: var(--amber); }
 .member-link .ico { width: 14px; height: 14px; }
-@media (max-width: 960px) { .member-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 560px) { .member-grid { grid-template-columns: 1fr; } }
+@media (max-width: 960px) { .member-grid > .member-card { flex-basis: calc((100% - 18px) / 2); } }
+@media (max-width: 560px) { .member-grid > .member-card { flex-basis: 100%; } }
 
 /* Stappenlijst (Aan de slag): genummerde kaarten onder elkaar */
 .step-list { list-style: none; max-width: 860px; margin: 0 auto; padding: 0; display: flex; flex-direction: column; gap: 18px; }
