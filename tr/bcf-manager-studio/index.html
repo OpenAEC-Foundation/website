@@ -21,14 +21,16 @@
   <meta property="og:site_name" content="OpenAEC Foundation">
   <meta property="og:title" content="OpenAEC BCF Manager Studio">
   <meta property="og:description" content="BIM projeleri için açık kaynak BCF 2.1 sorun yönetim platformu. Sorunları yönetin, ekiplerle iletişim kurun ve IFC modellerine bağlayın.">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/bcf-manager-studio-dashboard.jpg">
   <meta property="og:url" content="https://open-aec.com/tr/bcf-manager-studio/">
   <meta property="og:locale" content="tr_TR">
   <meta property="og:locale:alternate" content="en_US">
 
   <!-- Twitter -->
-  <meta name="twitter:card" content="summary">
+  <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="OpenAEC BCF Manager Studio">
   <meta name="twitter:description" content="BIM projeleri için açık kaynak BCF 2.1 sorun yönetim platformu. Sorunları yönetin, ekiplerle iletişim kurun ve IFC modellerine bağlayın.">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/bcf-manager-studio-dashboard.jpg">
 
   <!-- AI / LLM discoverability -->
   <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
@@ -192,9 +194,22 @@
         <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-euro"/></svg>€ 0</span>
       </div>
     </div>
+    <div class="media-slider shot-overlap">
+      <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+          <div class="slider-slide"><img src="/shared/assets/screenshots/bcf-manager-studio-dashboard.jpg" alt="BCF Manager Studio - Projectdashboard met issues per prioriteit" width="1920" height="1080"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/bcf-manager-studio-issue.jpg" alt="BCF Manager Studio - Issue met viewpoint, beschrijving en reacties" width="1920" height="1080"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/bcf-manager-studio-issues.jpg" alt="BCF Manager Studio - Issuelijst met status en prioriteit" width="1920" height="1080"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/bcf-manager-studio-projecten.jpg" alt="BCF Manager Studio - Projectoverzicht" width="1920" height="1080"></div>
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Vorige">&lsaquo;</button>
+        <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Volgende">&rsaquo;</button>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
   </header>
 
-  <section class="section"><div class="container">
+  <section class="section after-overlap"><div class="container">
     <div class="panel-split on-light">
       <div class="panel-split-text">
         <h2 data-i18n="why.title">Neden BCF <span class="accent">Manager</span> Studio?</h2>
@@ -360,6 +375,27 @@
   </div>
 </footer>
 <!-- footer:end --></div>
+<script>
+  (function(){
+    const track = document.getElementById('sliderTrack');
+    const dots = document.getElementById('sliderDots');
+    if (!track || !dots) return;
+    const slides = track.children.length;
+    let current = 0;
+    for(let i=0;i<slides;i++){
+      const d = document.createElement('button');
+      d.className = 'slider-dot' + (i===0?' active':'');
+      d.onclick = ()=>slideTo(i);
+      dots.appendChild(d);
+    }
+    window.slideMove = function(dir){slideTo(current+dir);};
+    window.slideTo = function(i){
+      current = (i+slides)%slides;
+      track.style.transform = 'translateX(-'+current*100+'%)';
+      dots.querySelectorAll('.slider-dot').forEach((d,idx)=>d.classList.toggle('active',idx===current));
+    };
+  })();
+</script>
 <script src="/shared/i18n.js?v=20260728"></script>
 </body>
 </html>
