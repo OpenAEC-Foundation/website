@@ -788,12 +788,7 @@
     const latest = data.latestStable || releases[0];
 
     container.innerHTML = `
-      <div class="rn-header-block">
-        <h2 class="rn-title" data-rn-title>${t('title')}</h2>
-        <p class="rn-desc" data-rn-desc>
-          <strong>${escapeHtml(latest.tag)}</strong> &middot; ${escapeHtml(latest.date || '')} &middot; ${t('tlDesc')}
-        </p>
-      </div>
+      ${headerBlock(data)}
       <ol class="rn-timeline">${items}</ol>
       <p class="more-row">
         ${releases.length > RN_VISIBLE ? `<button type="button" class="btn btn-secondary btn-lg more-btn rn-groups-toggle" aria-expanded="false"><span class="more-label">${t('showAllVersions')}</span> <span class="more-count">(${releases.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></button>` : ''}
@@ -841,6 +836,30 @@
     });
   }
 
+  // Eén kop voor elke weergave: titel, beschrijving en drie tellers.
+  function headerBlock(data) {
+    const groups = (data.groups || []).length;
+    return `
+      <div class="rn-header-block">
+        <h2 class="rn-title" data-rn-title>${t('title')}</h2>
+        <p class="rn-desc" data-rn-desc>${t('desc')(data.totalChanges)}</p>
+        <div class="rn-stats">
+          <div class="rn-stat-card">
+            <div class="rn-stat-num">${data.totalChanges}</div>
+            <div class="rn-stat-label">${t('totalChanges')}</div>
+          </div>
+          <div class="rn-stat-card">
+            <div class="rn-stat-num">${data.totalReleases}</div>
+            <div class="rn-stat-label">${t('totalReleases')}</div>
+          </div>
+          <div class="rn-stat-card">
+            <div class="rn-stat-num">${groups}</div>
+            <div class="rn-stat-label">${t('versions')}</div>
+          </div>
+        </div>
+      </div>`;
+  }
+
   // Aantal versies dat zichtbaar is voordat "Toon alle versies" komt.
   const RN_VISIBLE = 5;
 
@@ -854,24 +873,7 @@
     data.groups.forEach((g, i) => { g._idx = i; });
 
     container.innerHTML = `
-      <div class="rn-header-block">
-        <h2 class="rn-title" data-rn-title>${t('title')}</h2>
-        <p class="rn-desc" data-rn-desc>${t('desc')(totalChanges)}</p>
-        <div class="rn-stats">
-          <div class="rn-stat-card">
-            <div class="rn-stat-num">${totalChanges}</div>
-            <div class="rn-stat-label">${t('totalChanges')}</div>
-          </div>
-          <div class="rn-stat-card">
-            <div class="rn-stat-num">${totalReleases}</div>
-            <div class="rn-stat-label">${t('totalReleases')}</div>
-          </div>
-          <div class="rn-stat-card">
-            <div class="rn-stat-num">${data.groups.length}</div>
-            <div class="rn-stat-label">${t('versions')}</div>
-          </div>
-        </div>
-      </div>
+      ${headerBlock(data)}
       <div class="rn-groups">
         ${data.groups.map((g, i) => renderGroup(g, i === 0)).join('')}
       </div>

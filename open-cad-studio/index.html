@@ -75,19 +75,12 @@
     .tech-desc { color: var(--text-muted); font-size: 1.02rem; line-height: 1.7; max-width: 720px; margin: 0 auto; text-align: center; }
     .tech-desc a { color: #B45309; font-weight: 600; }
 
-    .ocs-releases { max-width: 1152px; margin: 0 auto; }
-    .ocs-rel { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); margin-bottom: 12px; overflow: hidden; }
-    .ocs-rel[hidden] { display: none; }
-    .ocs-rel > summary { cursor: pointer; padding: var(--sp-4) var(--sp-5); display: flex; align-items: center; gap: var(--sp-3); font-family: var(--font-heading); font-weight: 700; color: var(--deep-forge); list-style: none; }
-    .ocs-rel > summary::-webkit-details-marker { display: none; }
-    .ocs-rel > summary .ico { color: var(--amber); width: 18px; height: 18px; transform: rotate(-90deg); transition: transform 0.2s ease; }
-    .ocs-rel[open] > summary .ico { transform: none; }
-    .ocs-rel > summary:hover .ocs-rel-tag { color: #B45309; }
-    .ocs-rel-date { font-family: var(--font-code); color: var(--text-muted); font-size: 0.78rem; font-weight: 400; margin-left: auto; white-space: nowrap; }
-    .ocs-rel-body { padding: var(--sp-4) var(--sp-5) var(--sp-5); white-space: pre-wrap; word-break: break-word; font-size: 0.9rem; line-height: 1.6; color: #44403C; border-top: 1px solid rgba(42,42,50,0.07); }
+    .ocs-rel-body { white-space: pre-wrap; word-break: break-word; font-size: 0.9rem; line-height: 1.6; color: #44403C; }
     .ocs-rel-body a { color: #B45309; }
-    .ocs-rel-loading { color: var(--text-muted); text-align: center; max-width: none; }
-    .ocs-rel-loading a { color: #B45309; font-weight: 600; }
+    .ocs-rel-link { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--sp-4); color: #B45309; font-weight: 600; font-size: 0.85rem; text-decoration: none; }
+    .ocs-rel-link:hover { text-decoration: underline; }
+    .ocs-rel-link .ico { width: 1em; height: 1em; }
+    .rn-group-header:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 
     .cta-stars { display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap; justify-content: center; }
     .cta-stars .ico { color: var(--amber); width: 20px; height: 20px; }
@@ -457,16 +450,23 @@
   </div></section>
 
   <!-- All versions & release notes (live from GitHub) -->
-  <section class="section" id="releases"><div class="container">
-    <div class="section-head">
-      <h2 data-i18n="releases.title">Alle versies &amp; <span class="accent">release notes</span></h2>
-      <p data-i18n="releases.desc">Elke uitgebrachte versie van Open CAD Studio, live opgehaald van GitHub.</p>
+  <section class="rn-section" id="releases"><div class="rn-container">
+    <div class="rn-header-block">
+      <h2 class="rn-title" data-i18n="releases.title">Release notes</h2>
+      <p class="rn-desc" data-i18n="releases.desc">Elke uitgebrachte versie van Open CAD Studio, live opgehaald van GitHub.</p>
+      <div class="rn-stats">
+        <div class="rn-stat-card"><div class="rn-stat-num" data-ocs-total>94</div><div class="rn-stat-label" data-i18n="releases.statReleases">releases in totaal</div></div>
+        <div class="rn-stat-card"><div class="rn-stat-num" data-ocs-latest>v2026.39</div><div class="rn-stat-label" data-i18n="releases.statLatest">nieuwste versie</div></div>
+        <div class="rn-stat-card"><div class="rn-stat-num" data-ocs-stars>1912</div><div class="rn-stat-label" data-i18n="releases.statStars">GitHub-sterren</div></div>
+      </div>
     </div>
-    <div id="ocs-releases" class="ocs-releases"><p class="ocs-rel-loading" data-i18n="releases.loading">Releases laden…</p></div>
-    <p class="more-row" id="ocs-rel-more" hidden>
-      <button type="button" class="btn btn-secondary btn-lg more-btn" aria-expanded="false" aria-controls="ocs-releases"><span class="more-label" data-i18n="releases.showAll">Toon alle versies</span><span class="more-label" data-i18n="releases.showLess" hidden>Toon minder</span> <span class="more-count"></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></button>
-      <a class="more-link" href="https://github.com/HakanSeven12/OpenCADStudio/releases" target="_blank" rel="noopener"><span data-i18n="releases.github">Alle releases op GitHub</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-external"/></svg></a>
+    <div class="rn-groups" id="ocs-releases"><p class="rn-loading" data-i18n="releases.loading">Releases laden…</p></div>
+    <p class="more-row" id="ocs-rel-more">
+      <button type="button" class="btn btn-secondary btn-lg more-btn rn-groups-toggle" aria-expanded="false" aria-controls="ocs-releases" hidden><span class="more-label" data-i18n="releases.showAll">Toon alle versies</span><span class="more-label" data-i18n="releases.showLess" hidden>Toon minder</span> <span class="more-count"></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></button>
+      <a class="more-link" href="https://github.com/HakanSeven12/OpenCADStudio/releases" target="_blank" rel="noopener"><span data-i18n="releases.github">Bekijk alle releases op GitHub</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-external"/></svg></a>
     </p>
+    <span hidden data-ocs-label-latest data-i18n="releases.latest">Laatste</span>
+    <span hidden data-ocs-label-gh data-i18n="releases.viewGitHub">Bekijk op GitHub</span>
   </div></section>
 
   <section class="section surface-spot panel">
@@ -558,13 +558,16 @@
     })();
   </script>
   <script>
-    // Alle releases met notities (externe repo HakanSeven12/OpenCADStudio); de nieuwste 5 zichtbaar.
+    // Alle releases met notities (externe repo HakanSeven12/OpenCADStudio), in dezelfde
+    // opbouw als de gedeelde release notes: kaart per versie, nieuwste open, 5 zichtbaar.
     (function () {
       var box = document.getElementById('ocs-releases');
-      var row = document.getElementById('ocs-rel-more');
+      var btn = document.querySelector('#ocs-rel-more .more-btn');
       if (!box) return;
       var ZICHTBAAR = 5;
       var CHEV = '<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg>';
+      var EXT = '<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-external"/></svg>';
+      function label(sel) { var el = document.querySelector(sel); return el ? el.textContent : ''; }
       function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
       // Minimal, safe markdown: escape first, then linkify bare URLs and **bold**.
       function fmt(s) {
@@ -573,29 +576,46 @@
           .replace(/(https?:\/\/[^\s)]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
       }
       function klap(open) {
-        box.querySelectorAll('.ocs-rel').forEach(function (el, i) { el.hidden = !open && i >= ZICHTBAAR; });
-        var btn = row.querySelector('.more-btn');
+        box.querySelectorAll('.rn-group').forEach(function (el, i) { el.hidden = !open && i >= ZICHTBAAR; });
         var labels = btn.querySelectorAll('.more-label');
         labels[0].hidden = open; labels[1].hidden = !open;
         btn.querySelector('.more-count').hidden = open;
         btn.setAttribute('aria-expanded', open ? 'true' : 'false');
       }
+      function wissel(head) {
+        var g = head.parentElement;
+        var open = g.classList.toggle('expanded');
+        head.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
       fetch('https://api.github.com/repos/HakanSeven12/OpenCADStudio/releases?per_page=100')
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (list) {
-          if (!list || !list.length) { box.innerHTML = '<p class="ocs-rel-loading">' + (box.getAttribute('data-empty') || 'Geen releases gevonden.') + '</p>'; return; }
+          if (!list || !list.length) { box.innerHTML = ''; return; }
+          document.querySelectorAll('[data-ocs-total]').forEach(function (el) { el.textContent = list.length; });
+          document.querySelectorAll('[data-ocs-latest]').forEach(function (el) { el.textContent = list[0].tag_name || ''; });
           box.innerHTML = list.map(function (rel, i) {
             var tag = esc(rel.tag_name || rel.name || '');
             var date = (rel.published_at || '').slice(0, 10);
             var body = (rel.body || '').trim();
-            return '<details class="ocs-rel"' + (i === 0 ? ' open' : '') + '>' +
-              '<summary>' + CHEV + '<span class="ocs-rel-tag">' + tag + '</span><span class="ocs-rel-date">' + date + '</span></summary>' +
-              '<div class="ocs-rel-body">' + (body ? fmt(body) : '<em>—</em>') + '</div>' +
-              '</details>';
+            return '<div class="rn-group' + (i === 0 ? ' latest expanded' : '') + '">' +
+              '<div class="rn-group-header" role="button" tabindex="0" aria-expanded="' + (i === 0) + '">' +
+                '<span class="rn-group-version">' + tag + '</span>' +
+                '<span class="rn-group-meta">' + date + '</span>' +
+                (i === 0 ? '<span class="rn-group-badge">' + esc(label('[data-ocs-label-latest]')) + '</span>' : '') +
+                '<span class="rn-group-toggle">' + CHEV + '</span>' +
+              '</div>' +
+              '<div class="rn-group-body">' +
+                '<div class="ocs-rel-body">' + (body ? fmt(body) : '<em>—</em>') + '</div>' +
+                '<a class="ocs-rel-link" href="' + esc(rel.html_url || '') + '" target="_blank" rel="noopener">' + esc(label('[data-ocs-label-gh]')) + EXT + '</a>' +
+              '</div>' +
+            '</div>';
           }).join('');
-          row.hidden = false;
-          var btn = row.querySelector('.more-btn');
-          if (list.length > ZICHTBAAR) {
+          box.querySelectorAll('.rn-group-header').forEach(function (head) {
+            head.addEventListener('click', function () { wissel(head); });
+            head.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); wissel(head); } });
+          });
+          if (btn && list.length > ZICHTBAAR) {
+            btn.hidden = false;
             btn.querySelector('.more-count').textContent = '(' + list.length + ')';
             klap(false);
             btn.addEventListener('click', function () {
@@ -603,13 +623,12 @@
               klap(open);
               if (!open) box.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
-          } else {
-            btn.hidden = true;
           }
         })
-        .catch(function () { box.innerHTML = ''; if (row) { row.hidden = false; row.querySelector('.more-btn').hidden = true; } });
+        .catch(function () { box.innerHTML = ''; });
     })();
   </script>
+  <script src="/shared/release-notes.js?v=20260728"></script>
   <script src="/shared/i18n.js?v=20260728"></script>
   <!-- Always-latest downloads + live version / releases / stars for Open CAD Studio
        (external community repo HakanSeven12/OpenCADStudio). Progressive enhancement:
