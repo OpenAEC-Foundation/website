@@ -62,17 +62,9 @@
 
   <style>
     .shot-caption { font-family: var(--font-code); font-size: 0.75rem; color: var(--text-muted); text-align: center; max-width: 760px; margin: 0 auto var(--sp-10); }
-    .prose { max-width: 760px; margin: 0 auto; text-align: center; }
-    .prose p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.7; margin: 0 auto var(--sp-4); max-width: none; }
-    .prose strong { color: var(--deep-forge); }
     code { font-family: var(--font-code); font-size: 0.86em; background: var(--concrete); color: var(--deep-forge); padding: 1px 6px; border-radius: var(--radius-sm); }
     .surface-dark code, .surface-spot code { background: rgba(217,119,6,0.15); color: var(--warm-gold); }
 
-    /* Glazen lijst in een donker paneel */
-    .glass-list { list-style: none; padding: 0; margin: var(--sp-8) auto 0; max-width: 1040px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; text-align: left; }
-    .glass-list li { background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025)); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: var(--sp-4) var(--sp-5); color: var(--scaffold-gray); font-size: 0.92rem; line-height: 1.6; }
-    .glass-list li strong { color: white; }
-    .glass-list li:last-child:nth-child(odd) { grid-column: 1 / -1; }
 
     /* Voorbeelddocument */
     .code-window { max-width: 860px; margin: 0 auto; border-radius: var(--radius-lg); overflow: hidden; background: var(--night-build); border: 1px solid rgba(42,42,50,0.2); box-shadow: 0 40px 80px -30px rgba(42,42,50,0.55); }
@@ -89,7 +81,6 @@
     .tech-chips { margin-bottom: var(--sp-6); }
     .tech-desc { color: var(--text-muted); font-size: 1.02rem; line-height: 1.7; max-width: 760px; margin: 0 auto; text-align: center; }
 
-    @media (max-width: 640px) { .glass-list { grid-template-columns: 1fr; } }
   </style>
 
   <!-- schema:start -->
@@ -209,30 +200,34 @@
 
   <section class="section after-overlap"><div class="container">
     <p class="shot-caption" data-i18n="screenshot.caption">CalcPAD-syntax editor met live preview &middot; wind-belastingberekening &middot; parametrische SVG-tekening</p>
-    <div class="section-head">
-      <h2 data-i18n="why.title">Waarom Open <span class="accent">Calculations</span> Studio?</h2>
-    </div>
-    <div class="prose">
-      <p data-i18n="why.desc1">CalcPAD wordt al jaren gebruikt door Nederlandse constructeurs voor handberekeningen. Maar het is closed-source, draait alleen op Windows, en heeft geen ingebouwde integratie met BIM-modellen. Open Calculations Studio brengt CalcPAD-functionaliteit naar moderne web-tech: cross-platform, open source, en met directe IFC-export.</p>
-      <p data-i18n="why.desc2">Het 1094-regel <code>2259-Intertek-units.cpd</code> regressie-bestand evalueert met <strong>0 errors</strong> en rendert <strong>6 SVG-tekeningen</strong>. Voldoende voor real-world projectberekeningen.</p>
+    <div class="panel-split on-light">
+      <div class="panel-split-text">
+        <h2 data-i18n="why.title">Waarom Open <span class="accent">Calculations</span> Studio?</h2>
+      </div>
+      <div class="panel-split-body">
+        <p data-i18n="why.desc1">CalcPAD wordt al jaren gebruikt door Nederlandse constructeurs voor handberekeningen. Maar het is closed-source, draait alleen op Windows, en heeft geen ingebouwde integratie met BIM-modellen. Open Calculations Studio brengt CalcPAD-functionaliteit naar moderne web-tech: cross-platform, open source, en met directe IFC-export.</p>
+        <p data-i18n="why.desc2">Het 1094-regel <code>2259-Intertek-units.cpd</code> regressie-bestand evalueert met <strong>0 errors</strong> en rendert <strong>6 SVG-tekeningen</strong>. Voldoende voor real-world projectberekeningen.</p>
+      </div>
     </div>
   </div></section>
 
   <section class="section surface-dark panel">
-    <div class="panel-center">
-      <p class="pill-label">CalcPAD · IFC4x3 · IFCX</p>
-      <h2 data-i18n="what.title">Wat is Open Calculations Studio?</h2>
-      <p data-i18n="what.desc">Open Calculations Studio is een moderne, open-source tool voor constructieve berekeningen — <strong>geïnspireerd door CalcPAD</strong>, de breed gebruikte tool onder Nederlandse en Europese constructeurs. We hebben de hele rekenengine herbouwd in TypeScript met ondersteuning voor de CalcPAD-syntax, en daar live IFC- en IFCX-export aan toegevoegd zodat berekeningen direct integreren met BIM-modellen.</p>
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label">CalcPAD · IFC4x3 · IFCX</p>
+        <h2 data-i18n="what.title">Wat is Open Calculations Studio?</h2>
+        <p data-i18n="what.desc">Open Calculations Studio is een moderne, open-source tool voor constructieve berekeningen — <strong>geïnspireerd door CalcPAD</strong>, de breed gebruikte tool onder Nederlandse en Europese constructeurs. We hebben de hele rekenengine herbouwd in TypeScript met ondersteuning voor de CalcPAD-syntax, en daar live IFC- en IFCX-export aan toegevoegd zodat berekeningen direct integreren met BIM-modellen.</p>
+      </div>
+      <ul class="split-cards">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p data-i18n="what.list1"><strong>CalcPAD-compatibel</strong> Bestaande <code>.cpd</code> bestanden werken zonder aanpassing</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-ruler"/></svg></div><div><p data-i18n="what.list2"><strong>Eenheden-aware</strong> <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> via mathjs</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-cube"/></svg></div><div><p data-i18n="what.list3"><strong>Live IFCX + IFC4x3 STEP export</strong> Berekening wordt direct BIM-element</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-pen"/></svg></div><div><p data-i18n="what.list4"><strong>KaTeX-rendering</strong> Wiskundige formules met echte breuken, sub/superscripts en Griekse letters</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-set-square"/></svg></div><div><p data-i18n="what.list5"><strong>SVG-tekeningen</strong> Parametrische schemas direct in de berekening</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-layers"/></svg></div><div><p data-i18n="what.list6"><strong>Belastingsgevallen</strong> SLS / ULS / aardbeving in aparte tabs</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chip"/></svg></div><div><p data-i18n="what.list7"><strong>Bruikbaar als library</strong> Embedden in FEM-applicaties of normtoetsingen</p></div></li>
+      </ul>
     </div>
-    <ul class="glass-list">
-      <li data-i18n="what.list1"><strong>CalcPAD-compatibel</strong> — bestaande <code>.cpd</code> bestanden werken zonder aanpassing</li>
-      <li data-i18n="what.list2"><strong>Eenheden-aware</strong> — <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> via mathjs</li>
-      <li data-i18n="what.list3"><strong>Live IFCX + IFC4x3 STEP export</strong> — berekening wordt direct BIM-element</li>
-      <li data-i18n="what.list4"><strong>KaTeX-rendering</strong> — wiskundige formules met echte breuken, sub/superscripts en Griekse letters</li>
-      <li data-i18n="what.list5"><strong>SVG-tekeningen</strong> — parametrische schemas direct in de berekening</li>
-      <li data-i18n="what.list6"><strong>Belastingsgevallen</strong> — SLS / ULS / aardbeving in aparte tabs</li>
-      <li data-i18n="what.list7"><strong>Bruikbaar als library</strong> — embedden in FEM-applicaties of normtoetsingen</li>
-    </ul>
   </section>
 
   <section class="section"><div class="container">
@@ -352,22 +347,24 @@ $Plot{f(x) @ x = <span class="number">0</span> : L}</pre>
   </div></section>
 
   <section class="section surface-dark panel">
-    <div class="panel-center">
-      <p class="pill-label">.cpd</p>
-      <h2 data-i18n="compat.title">CalcPAD-compatibiliteit</h2>
-      <p data-i18n="compat.desc">Volledig <em>subset compatible</em> met real-world CalcPAD-bestanden. Werkt out-of-the-box op je bestaande <code>.cpd</code> documenten:</p>
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label">.cpd</p>
+        <h2 data-i18n="compat.title">CalcPAD-compatibiliteit</h2>
+        <p data-i18n="compat.desc">Volledig <em>subset compatible</em> met real-world CalcPAD-bestanden. Werkt out-of-the-box op je bestaande <code>.cpd</code> documenten:</p>
+      </div>
+      <ul class="split-cards">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p><code>"Title</code>, <code>'prose</code>, <code>// comment</code></p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p><code>#if … #else if … #else … #end if</code>, <code>#hide / #show / #pre / #post</code></p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p><code>#repeat n … #end repeat</code> en <code>#for var = lo : hi … #loop</code> (incl. nested)</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p><code>#def name(p1; p2; …) … #end def</code> macros, <code>#def Name$ = literal</code> constants</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p><code>#include filename.cpd</code> — externe macro-libraries en SVG drawings</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p><code>$Plot{ … @ x = lo : hi }</code> — inline parametrische plots</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p>Subscript-comma's (<code>V_b,0</code>), <code>$</code>-getypeerde refs, matrix <code>[a;b|c;d]</code></p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p>Format-specs (<code>:F2</code>), dotted/percent identifiers</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p>mathjs Matrix-aware <code>take</code>, <code>hlookup</code>, <code>hlookup_ge</code>, <code>vlookup</code>, <code>get</code></p></div></li>
+      </ul>
     </div>
-    <ul class="glass-list">
-      <li><code>"Title</code>, <code>'prose</code>, <code>// comment</code></li>
-      <li><code>#if … #else if … #else … #end if</code>, <code>#hide / #show / #pre / #post</code></li>
-      <li><code>#repeat n … #end repeat</code> en <code>#for var = lo : hi … #loop</code> (incl. nested)</li>
-      <li><code>#def name(p1; p2; …) … #end def</code> macros, <code>#def Name$ = literal</code> constants</li>
-      <li><code>#include filename.cpd</code> — externe macro-libraries en SVG drawings</li>
-      <li><code>$Plot{ … @ x = lo : hi }</code> — inline parametrische plots</li>
-      <li>Subscript-comma's (<code>V_b,0</code>), <code>$</code>-getypeerde refs, matrix <code>[a;b|c;d]</code></li>
-      <li>Format-specs (<code>:F2</code>), dotted/percent identifiers</li>
-      <li>mathjs Matrix-aware <code>take</code>, <code>hlookup</code>, <code>hlookup_ge</code>, <code>vlookup</code>, <code>get</code></li>
-    </ul>
   </section>
 
   <section class="section"><div class="container">
