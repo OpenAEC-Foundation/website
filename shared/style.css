@@ -1010,6 +1010,20 @@ a.card-glass:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0
 .page-panels .rn-desc { margin: 0 auto; }
 .page-panels .rn-viewall { max-width: none; text-align: center; }
 
+/* Release notes als tijdlijn: de gewone lijst krijgt dezelfde lijn, bolletjes en kaarten als de tijdlijn-stand */
+.page-panels .rn-groups { list-style: none; margin: 0; padding: 0 0 0 var(--sp-6); border-left: 2px solid rgba(42,42,50,0.16); gap: var(--sp-5); }
+.page-panels .rn-timeline { border-left-color: rgba(42,42,50,0.16); }
+.page-panels .rn-group, .page-panels .rn-tl-card { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); }
+.page-panels .rn-group { position: relative; overflow: visible; }
+.page-panels .rn-group::before { content: ""; position: absolute; left: calc(-1 * var(--sp-6) - 7px); top: 1.15rem; width: 12px; height: 12px; border-radius: var(--radius-full); background: white; border: 2px solid var(--scaffold-gray); }
+.page-panels .rn-group.latest::before { background: var(--amber); border-color: var(--amber); box-shadow: 0 0 0 4px #FEF3C7; }
+.page-panels .rn-group.latest, .page-panels .rn-tl-item.latest .rn-tl-card { border-color: rgba(217,119,6,0.55); }
+.page-panels .rn-group-header, .page-panels .rn-group.latest .rn-group-header { background: transparent; border-radius: var(--radius-lg); }
+.page-panels .rn-group-header:hover, .page-panels .rn-group.latest .rn-group-header:hover { background: rgba(217,119,6,0.05); }
+.page-panels .rn-group.expanded .rn-group-header { border-bottom-color: rgba(42,42,50,0.07); border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+.page-panels .rn-group.expanded .rn-group-body { background: transparent; }
+@media (max-width: 640px) { .page-panels .rn-groups { padding-left: var(--sp-4); } .page-panels .rn-group::before { left: calc(-1 * var(--sp-4) - 7px); } }
+
 /* Functielijst (Open PDF Studio): koppen en zoekveld gecentreerd zoals de andere secties */
 .page-panels .opf > h2, .page-panels .opf > .opf-intro, .page-panels .opf-mcp > h3, .page-panels .opf-mcp > .opf-intro { text-align: center; margin-left: auto; margin-right: auto; }
 .page-panels .opf > h2 { margin-bottom: var(--sp-3); }

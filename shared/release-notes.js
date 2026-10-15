@@ -240,10 +240,13 @@
         margin-left: auto;
         font-family: var(--font-code);
         font-size: 0.75rem;
-        color: var(--scaffold-gray);
+        color: var(--amber);
+        display: inline-flex;
+        transform: rotate(-90deg);
         transition: transform 0.2s ease;
       }
-      .rn-group.expanded .rn-group-toggle { transform: rotate(90deg); color: var(--amber); }
+      .rn-group-toggle .ico { width: 18px; height: 18px; }
+      .rn-group.expanded .rn-group-toggle { transform: none; }
       .rn-group-body { display: none; }
       .rn-group.expanded .rn-group-body { display: block; }
       .rn-group-version {
@@ -415,7 +418,7 @@
             · ${dateRange}
           </span>
           ${isLatest ? `<span class="rn-group-badge">${t('latest')}</span>` : ''}
-          <span class="rn-group-toggle">▶</span>
+          <span class="rn-group-toggle"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></span>
         </div>
         <div class="rn-group-body"></div>
       </div>
