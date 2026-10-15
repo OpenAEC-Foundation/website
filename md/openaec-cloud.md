@@ -1,10 +1,10 @@
-# OpenAEC Cloud Platform
+# OpenAEC SuperCloud
 
-> Central platform: project management, user management, SSO and sync between OpenAEC tools.
+> Own cloud, account and SSO platform on your own Nextcloud: desktop sync client, shared cloud storage for the tools, one account for every app.
 
 **Status:** in development
 **License:** LGPL-3.0
-**Platforms:** Web, Self-hosted
+**Platforms:** Windows, Self-hosted (Nextcloud)
 **Category:** Platform
 **Current version:** n/a
 **Tool ID:** `openaec-cloud`
@@ -21,23 +21,25 @@
 
 ## Key features
 
-- Project workspaces
-- User and team management
-- SSO (OIDC) for all OpenAEC tools
-- Cross-tool data sync via IFCX
+- Desktop sync client: two-way folder sync with Nextcloud
+- Share links through your own server
+- Windows cloud folder with on-demand files
+- Shared Nextcloud storage library for OpenAEC tools (multi-tenant, project manifests)
+- One OpenAEC account, central token checks
 
 ## Tech stack
 
-`Rust` · `TypeScript`
+`Nextcloud` · `Rust` · `Tauri 2` · `SolidJS` · `Python`
 
 ## When to use this
 
-Hosting OpenAEC tooling as a unified platform for a firm or project.
+Keeping project files, accounts and issues on your own Nextcloud instead of Dropbox, OneDrive or a vendor cloud.
 
 ## Alternative to
 
+- Dropbox
+- OneDrive
 - Autodesk Construction Cloud
-- Bentley iTwin
 
 ## Standards & integration
 
