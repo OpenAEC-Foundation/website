@@ -971,12 +971,16 @@ a.card-glass:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0
 /* Downloads */
 .page-panels .download-section { background: transparent; padding: 0; margin: 0 auto; max-width: 1100px; text-align: center; }
 .page-panels .download-section h3 { color: var(--deep-forge); font-size: 1.6rem; margin-bottom: var(--sp-6); }
-.page-panels .download-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+/* Evenredig: 3 kolommen; bij precies 4, 2 of 1 download past het raster zich aan */
+.page-panels .download-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.page-panels .download-grid:has(> :nth-child(4):last-child) { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.page-panels .download-grid:has(> :nth-child(2):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 760px; margin: 0 auto; }
+.page-panels .download-grid:has(> :only-child) { grid-template-columns: minmax(0, 380px); justify-content: center; }
 .page-panels .download-item { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); padding: var(--sp-5); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); text-align: left; display: flex; flex-direction: column; gap: 4px; transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; }
 .page-panels .download-item:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0.35); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float-hover); }
-.page-panels .download-item .os { color: var(--deep-forge); font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem; margin: 0; }
+.page-panels .download-item .os { color: var(--deep-forge); font-family: var(--font-heading); font-weight: 700; font-size: 1.1rem; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .page-panels .download-item .size { font-family: var(--font-code); color: var(--text-muted); font-size: 0.75rem; margin: 0 0 var(--sp-3); }
-.page-panels .download-item .btn { margin-top: auto; align-self: stretch; justify-content: center; white-space: nowrap; padding: 9px 10px; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(180deg, #E08A12, var(--amber)); color: white; box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, var(--glow-amber); }
+.page-panels .download-item .btn { margin-top: auto; align-self: stretch; justify-content: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 11px 14px; font-size: 0.875rem; display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(180deg, #E08A12, var(--amber)); color: white; box-shadow: 0 1px 0 rgba(255,255,255,0.25) inset, var(--glow-amber); }
 .page-panels .download-item .btn:hover { transform: translateY(-1px); }
 
 /* Functiekaarten */
@@ -993,9 +997,10 @@ a.card-glass:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0
 /* Release notes op een lichte pagina */
 .page-panels .rn-section { background: transparent; }
 
-@media (max-width: 960px) { .page-panels .features { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 960px) { .page-panels .features { grid-template-columns: 1fr 1fr; } .page-panels .download-grid, .page-panels .download-grid:has(> :nth-child(4):last-child) { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) {
   .page-panels .features { grid-template-columns: 1fr; }
+  .page-panels .download-grid, .page-panels .download-grid:has(> :nth-child(4):last-child), .page-panels .download-grid:has(> :nth-child(2):last-child) { grid-template-columns: 1fr; }
   .page-panels .section.panel { padding: var(--sp-12) var(--sp-5); }
   .product-head { padding-top: var(--sp-12); }
   .page-panels .shot-overlap .slider-container { margin-bottom: -60px; }
