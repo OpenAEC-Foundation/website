@@ -62,122 +62,23 @@
   </script>
 
   <style>
-    .page-header {
-      background: var(--night-build);
-      padding: var(--sp-20) var(--sp-6) var(--sp-12);
-      text-align: center;
-      border-bottom: 3px solid transparent;
-      border-image: var(--gradient-accent) 1;
-    }
-    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; font-family: var(--font-code); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
-    .page-header h1 { font-family: var(--font-heading); font-weight: 700; font-size: 2.5rem; color: white; letter-spacing: -0.02em; margin-bottom: var(--sp-4); }
-    .page-header h1 .accent { color: var(--amber); }
-    .page-header p { font-size: 1.125rem; color: var(--scaffold-gray); max-width: 700px; margin: 0 auto; line-height: 1.6; }
-    .status-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: var(--font-code); font-size: 0.7rem; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.06em;
-      padding: 4px 14px; border-radius: var(--radius-full);
-      background: #FED7AA; color: #9A3412;
-      margin-top: var(--sp-4); margin-right: 6px;
-    }
-    .gww-badge { background: #CFFAFE; color: #155E75; }
-    .version-info {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: var(--font-code); font-size: 0.7rem;
-      color: var(--scaffold-gray); margin-top: var(--sp-2);
-    }
-    .hero-note { color: var(--scaffold-gray); font-size: 0.8rem; line-height: 1.5; margin: var(--sp-4) auto 0; max-width: 620px; }
-
-    .content { max-width: 900px; margin: 0 auto; }
-    .content h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; color: var(--deep-forge); margin-bottom: var(--sp-4); }
-    .content h2 .accent { color: var(--amber); }
-    .content p { font-size: 1rem; color: #57534E; line-height: 1.7; margin-bottom: var(--sp-4); }
-    .content-block + .content-block { margin-top: var(--sp-12); }
-
-    /* Slider */
-    .media-slider { max-width: 1100px; margin: 0 auto var(--sp-10); position: relative; }
-    .slider-container { position: relative; overflow: hidden; border-radius: var(--radius-lg); background: var(--night-build); box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
-    .slider-track { display: flex; transition: transform 0.4s ease; }
-    .slider-slide { min-width: 100%; }
-    .slider-slide img { width: 100%; display: block; }
-    .slider-btn {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(0,0,0,0.5); color: white; border: none;
-      width: 44px; height: 44px; border-radius: 50%; cursor: pointer;
-      font-size: 1.5rem; display: flex; align-items: center; justify-content: center;
-      z-index: 2;
-    }
-    .slider-btn:hover { background: rgba(0,0,0,0.7); }
-    .slider-prev { left: 12px; }
-    .slider-next { right: 12px; }
-    .slider-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0; }
-    .slider-dot { width: 10px; height: 10px; border-radius: 50%; border: none; cursor: pointer; background: #D6D3D1; }
-    .slider-dot.active { background: var(--amber); }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: var(--sp-6);
-      margin: var(--sp-8) 0;
-    }
-    .feature-card {
-      background: white; border: 1px solid #E7E5E4;
-      border-radius: var(--radius-lg); padding: var(--sp-6);
-      box-shadow: var(--shadow-sm);
-    }
-    .feature-card h3 { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--deep-forge); margin-bottom: var(--sp-2); }
-    .feature-card p { font-size: 0.875rem; color: #57534E; line-height: 1.6; margin-bottom: 0; }
-
-    /* Explainer block */
-    .explainer {
-      background: var(--night-build);
-      border-radius: var(--radius-lg);
-      padding: var(--sp-8);
-      margin: var(--sp-8) 0;
-    }
-    .explainer h3 { color: var(--amber); font-family: var(--font-heading); font-size: 1.125rem; margin-bottom: var(--sp-4); }
-    .explainer p { color: var(--scaffold-gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: var(--sp-3); }
-    .explainer ul { list-style: none; padding: 0; margin: 0; }
-    .explainer ul li {
-      position: relative;
-      padding: var(--sp-2) 0 var(--sp-2) var(--sp-5);
-      color: var(--scaffold-gray);
-      font-size: 0.875rem;
-      line-height: 1.6;
-    }
-    .explainer ul li::before {
-      content: ''; position: absolute; left: 0; top: 12px;
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--amber);
-    }
-
-    .tech-stack { display: flex; gap: var(--sp-3); flex-wrap: wrap; margin: var(--sp-4) 0; }
-    .tech-tag {
-      font-family: var(--font-code); font-size: 0.75rem; font-weight: 500;
-      padding: 4px 12px; border-radius: var(--radius-full);
-      background: var(--concrete); color: var(--deep-forge);
-    }
-
-    .cta-links { display: flex; gap: var(--sp-4); flex-wrap: wrap; margin-top: var(--sp-6); }
-    .cta-links a {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 24px; border-radius: var(--radius-md);
-      font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem;
-      text-decoration: none; transition: opacity 0.2s;
-    }
-    .cta-links a:hover { opacity: 0.85; }
-    .cta-primary { background: var(--amber); color: var(--deep-forge); }
-    .cta-secondary { background: var(--deep-forge); color: white; }
-
-    .page-footer.footer { background: var(--deep-forge); border-top: 3px solid transparent; border-image: var(--gradient-accent) 1; }
-    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-4); }
-    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
-
-    @media (max-width: 768px) {
-      .page-header h1 { font-size: 1.8rem; word-break: break-word; }
-      .features-grid { grid-template-columns: 1fr; }
-    }
+    .hero-note { color: var(--text-on-dark); font-size: 0.9rem; line-height: 1.5; margin: var(--sp-5) auto 0; max-width: 620px; opacity: 0.85; }
+    /* Downloads: het script toont alleen de pakketten van de nieuwste release; het raster blijft gecentreerd */
+    #download .download-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+    #download .download-item { flex: 0 1 260px; }
+    #download .download-item[hidden] { display: none; }
+    /* Licht "Wat is"-blok direct onder de screenshots */
+    .note-cards .split-card { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border-color: rgba(42,42,50,0.07); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); color: var(--text-on-light); }
+    .note-cards .split-card p { color: var(--text-on-light); }
+    .note-cards .icon-tile { background: linear-gradient(145deg, rgba(217,119,6,0.18), rgba(217,119,6,0.05)); border-color: rgba(217,119,6,0.22); }
+    .limits-card { max-width: 900px; margin: 0 auto; display: flex; gap: var(--sp-5); align-items: flex-start; background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(217,119,6,0.35); border-left: 4px solid var(--amber); border-radius: var(--radius-lg); box-shadow: var(--shadow-float); padding: var(--sp-6) var(--sp-8); }
+    .limits-card .icon-tile { flex-shrink: 0; }
+    .limits-card h2 { font-size: 1.35rem; color: var(--deep-forge); margin: 0 0 var(--sp-3); }
+    .limits-card p { color: var(--text-on-light); font-size: 1rem; line-height: 1.7; margin: 0 0 var(--sp-3); max-width: none; }
+    .limits-card p:last-child { margin-bottom: 0; }
+    .tech-chips { margin-bottom: var(--sp-6); }
+    .tech-desc { color: var(--text-on-light); font-size: 1.02rem; line-height: 1.7; max-width: 760px; margin: 0 auto; text-align: center; }
+    @media (max-width: 640px) { .limits-card { flex-direction: column; padding: var(--sp-5); } }
   </style>
 
   <meta name="i18n-static" content="es">
@@ -214,7 +115,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "es",
-        "dateModified": "2026-10-13",
+        "dateModified": "2026-10-15",
         "breadcrumb": {
           "@id": "https://open-aec.com/es/open-pile-plan-studio/#breadcrumb"
         }
@@ -248,7 +149,7 @@
   </script>
   <!-- schema:end -->
 </head>
-<body>
+<body class="page-panels">
   <div id="shared-nav"><!-- nav:start -->
 <nav class="navbar">
   <div class="nav-container">
@@ -282,218 +183,318 @@
 <!-- nav:end --></div>
   <script src="/shared/nav.js?v=20260728"></script>
 
-  <header class="page-header">
-    <p class="section-label" data-i18n="header.label">Ecosistema OpenAEC</p>
-    <h1 data-i18n="header.title">Open <span class="accent">Pile Plan</span> Studio</h1>
-    <p data-i18n="header.desc">Herramienta de ingeniería de código abierto para planos de pilotes. Reúne puntos de carga, CPT, informes de cimentación, opciones de pilote, aprovechamiento y costes estimados en un único plano de pilotes interactivo.</p>
-    <div>
-      <span class="status-badge" data-i18n="header.badge">Alpha</span>
-      <span class="status-badge gww-badge" data-i18n="header.gww">Obra civil / Geotecnia</span>
+  <header class="product-head surface-spot">
+    <div class="product-head-inner">
+      <p class="pill-label" data-i18n="header.label">Ecosistema OpenAEC</p>
+      <h1 data-i18n="header.title">Open <span class="accent">Pile Plan</span> Studio</h1>
+      <p class="lead" data-i18n="header.desc">Herramienta de ingeniería de código abierto para planos de pilotes. Reúne puntos de carga, CPT, informes de cimentación, opciones de pilote, aprovechamiento y costes estimados en un único plano de pilotes interactivo.</p>
+      <div class="btn-group">
+        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="cta.releases">Descargar</span></a>
+        <a href="https://pile-plan-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-play"/></svg><span data-i18n="cta.liveDemo">Abrir la demo en el navegador</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-external"/></svg><span data-i18n="cta.github">GitHub</span></a>
+      </div>
+      <div class="chip-row">
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-rocket"/></svg><span data-i18n="header.badge">Alpha</span></span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-strata"/></svg><span data-i18n="header.gww">Obra civil / Geotecnia</span></span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chip"/></svg><span data-pile-download-version>v0.4.3-alpha</span> · Rust · WebAssembly</span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-euro"/></svg>€ 0</span>
+      </div>
+      <p class="hero-note" data-i18n="header.caution">Los resultados de ingeniería son un apoyo a la decisión y deben ser verificados siempre por un profesional cualificado.</p>
     </div>
-    <div class="version-info"><span data-pile-download-version>v0.4.3-alpha</span> &middot; Rust + Tauri 2 &middot; WebAssembly &middot; HiGHS &middot; IFCPP</div>
-    <div style="margin-top: var(--sp-4);">
-      <a href="https://pile-plan-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="cta.liveDemo">🏗️ Abrir la demo en el navegador</a>
-      <a href="#download" class="btn btn-ghost" data-i18n="cta.releases">Descargar</a>
-    </div>
-    <p class="hero-note" data-i18n="header.caution">Los resultados de ingeniería son un apoyo a la decisión y deben ser verificados siempre por un profesional cualificado.</p>
-  </header>
-
-  <section class="section" style="background: var(--blueprint-white);">
-
-    <!-- Screenshots slider -->
-    <div class="media-slider">
+    <div class="shot-overlap"><div class="media-slider">
       <div class="slider-container">
         <div class="slider-track" id="sliderTrack">
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-pile-plan-studio.png" alt="Open Pile Plan Studio — interactief paalplan met opties voor een geselecteerde belastinglocatie"></div>
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-pile-plan-studio-import.png" alt="Open Pile Plan Studio — projectdata importeren met aparte bronrollen"></div>
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-pile-plan-studio-optimization.png" alt="Open Pile Plan Studio — optimalisatieresultaat en configuratie-instellingen"></div>
         </div>
-        <button class="slider-btn slider-prev" onclick="slideMove(-1)">&lsaquo;</button>
-        <button class="slider-btn slider-next" onclick="slideMove(1)">&rsaquo;</button>
+        <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Vorige">&lsaquo;</button>
+        <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Volgende">&rsaquo;</button>
       </div>
       <div class="slider-dots" id="sliderDots"></div>
-    </div>
+    </div></div>
+  </header>
 
-    <div class="content">
-
-      <!-- What is it? -->
-      <div class="explainer">
-        <h3 data-i18n="what.title">¿Qué es Open Pile Plan Studio?</h3>
+  <section class="section after-overlap"><div class="container">
+    <div class="explainer"><div class="panel-split on-light">
+      <div class="panel-split-text">
+        <h2 data-i18n="what.title">¿Qué es Open Pile Plan Studio?</h2>
         <p data-i18n="what.desc">Open Pile Plan Studio es una herramienta de ingeniería de código abierto para revisar opciones de pilote y componer variantes prácticas. Reúne cargas estructurales, CPT cercanos y configuraciones disponibles en el navegador y la aplicación de Windows, con el mismo núcleo de cálculo en Rust.</p>
-        <ul>
-          <li data-i18n="what.list1">Importa puntos de carga, CPT e informes de cimentación desde CSV/XLSX (incl. exportaciones de RFEM)</li>
-          <li data-i18n="what.list2">Opciones de pilote válidas, insuficientes y ausentes por punto de carga</li>
-          <li data-i18n="what.list3">Selección de CPT por cuadrante o ángulo máximo, con anulación manual</li>
-          <li data-i18n="what.list4">Compara aprovechamiento, resistencia determinante y coste estimado</li>
-          <li data-i18n="what.list5">Optimización de costes con HiGHS, límites de configuración y reducción opcional de diferencias entre vecinos</li>
-          <li data-i18n="what.list6">Guarda el proyecto completo como archivo IFCPP y vuelve a abrirlo más tarde</li>
-        </ul>
       </div>
+      <ul class="split-cards note-cards">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg></div><div><p data-i18n="what.list1">Importa puntos de carga, CPT e informes de cimentación desde CSV/XLSX (incl. exportaciones de RFEM)</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p data-i18n="what.list2">Opciones de pilote válidas, insuficientes y ausentes por punto de carga</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-pin"/></svg></div><div><p data-i18n="what.list3">Selección de CPT por cuadrante o ángulo máximo, con anulación manual</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-ruler"/></svg></div><div><p data-i18n="what.list4">Compara aprovechamiento, resistencia determinante y coste estimado</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-sliders"/></svg></div><div><p data-i18n="what.list5">Optimización de costes con HiGHS, límites de configuración y reducción opcional de diferencias entre vecinos</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-folder"/></svg></div><div><p data-i18n="what.list6">Guarda el proyecto completo como archivo IFCPP y vuelve a abrirlo más tarde</p></div></li>
+      </ul>
+    </div></div>
+  </div></section>
 
-      <div class="download-section" id="download">
-        <h3><span data-i18n="download.title">Descargar</span> <span data-pile-download-version>v0.4.3-alpha</span></h3>
-        <div class="download-grid">
-          <div class="download-item" data-pile-download="windows">
-            <div class="os">Windows</div><div class="size" data-download-size>7.2 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v0.4.3-alpha/Open.Pile.Plan.Studio_0.4.3_x64-setup.exe" data-download-link class="btn btn-primary btn-sm"><span data-i18n="download.action">Descargar</span> .exe</a>
-          </div>
-          <div class="download-item" data-pile-download="macos" hidden>
-            <div class="os">macOS</div><div class="size" data-download-size></div>
-            <a data-download-link class="btn btn-primary btn-sm"><span data-i18n="download.action">Descargar</span> .dmg</a>
-          </div>
-          <div class="download-item" data-pile-download="linux-deb" hidden>
-            <div class="os">Linux (deb)</div><div class="size" data-download-size></div>
-            <a data-download-link class="btn btn-primary btn-sm"><span data-i18n="download.action">Descargar</span> .deb</a>
-          </div>
-          <div class="download-item" data-pile-download="linux-appimage" hidden>
-            <div class="os">Linux (AppImage)</div><div class="size" data-download-size></div>
-            <a data-download-link class="btn btn-primary btn-sm"><span data-i18n="download.action">Descargar</span> AppImage</a>
-          </div>
-        </div>
+  <section class="section"><div class="container">
+  <div class="download-section" id="download">
+    <h3><span data-i18n="download.title">Descargar</span> <span data-pile-download-version>v0.4.3-alpha</span></h3>
+    <div class="download-grid">
+      <div class="download-item" data-pile-download="windows">
+        <div class="os">Windows</div><div class="size" data-download-size>7.2 MB</div>
+        <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v0.4.3-alpha/Open.Pile.Plan.Studio_0.4.3_x64-setup.exe" data-download-link class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="download.action">Descargar</span> .exe</a>
       </div>
+      <div class="download-item" data-pile-download="macos" hidden>
+        <div class="os">macOS</div><div class="size" data-download-size></div>
+        <a data-download-link class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="download.action">Descargar</span> .dmg</a>
+      </div>
+      <div class="download-item" data-pile-download="linux-deb" hidden>
+        <div class="os">Linux (deb)</div><div class="size" data-download-size></div>
+        <a data-download-link class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="download.action">Descargar</span> .deb</a>
+      </div>
+      <div class="download-item" data-pile-download="linux-appimage" hidden>
+        <div class="os">Linux (AppImage)</div><div class="size" data-download-size></div>
+        <a data-download-link class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="download.action">Descargar</span> AppImage</a>
+      </div>
+    </div>
+  </div>
+  </div></section>
 
-      <div class="content-block">
+  <section class="section surface-dark panel">
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label">GWW · Geotechniek</p>
         <h2 data-i18n="why.title">¿Por qué <span class="accent">Open Pile Plan</span> Studio?</h2>
+      </div>
+      <div class="panel-split-body">
         <p data-i18n="why.desc1">Componer un plano de pilotes suele ser un trabajo manual repartido entre hojas de cálculo, informes de cimentación y planos. Open Pile Plan Studio reúne esa información en un único espacio de trabajo interactivo: selecciona puntos de carga, consulta las configuraciones válidas y registra las decisiones de forma trazable.</p>
         <p data-i18n="why.desc2">Gratuito y de código abierto, para ingenieros estructurales, consultores geotécnicos y especialistas en cimentaciones. La demo en el navegador se abre con un proyecto de ejemplo completo, así que puedes explorar el flujo de trabajo sin ninguna preparación.</p>
       </div>
+    </div>
+  </section>
 
-      <div class="content-block">
-        <h2 data-i18n="features.title">Funciones</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <h3 data-i18n="features.import.title">Importación de proyecto orientada</h3>
-            <p data-i18n="features.import.desc">Importa puntos de carga, coordenadas de CPT e informes de cimentación desde archivos CSV o XLSX y asigna los tres roles de origen antes de la importación. Las exportaciones de RFEM se detectan automáticamente.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.selection.title">Selección de CPT</h3>
-            <p data-i18n="features.selection.desc">Selecciona CPT automáticamente mediante reglas de cuadrante o de ángulo máximo y anula la elección manualmente para puntos de carga individuales.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.options.title">Comparación de opciones de pilote</h3>
-            <p data-i18n="features.options.desc">Revisa las opciones de pilote válidas, insuficientes y ausentes por ubicación con tamaño, cota de punta y CPT determinante.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.assign.title">Asignar a uno o a varios</h3>
-            <p data-i18n="features.assign.desc">Asigna una configuración a un punto de carga o a una selección múltiple con opciones comunes.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.compare.title">Aprovechamiento y coste</h3>
-            <p data-i18n="features.compare.desc">Compara el aprovechamiento, el CPT determinante y el coste estimado antes de registrar una configuración.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.optimize.title">Optimización del plano</h3>
-            <p data-i18n="features.optimize.desc">Usa HiGHS para reducir costes con límites de configuración y, opcionalmente, las diferencias entre ubicaciones vecinas dentro de un presupuesto. La mejora rápida ofrece una alternativa local.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.interact.title">Selección interactiva</h3>
-            <p data-i18n="features.interact.desc">Selecciona ubicaciones con clic, selección múltiple o lazo y filtra por tamaño de pilote y cota de punta en la leyenda.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.project.title">Archivo de proyecto IFCPP</h3>
-            <p data-i18n="features.project.desc">Mantén juntos los datos importados, la configuración, las elecciones de pilote y las selecciones manuales de CPT, y vuelve a abrir el proyecto completo más tarde.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.export.title">Exportación a Excel/CSV</h3>
-            <p data-i18n="features.export.desc">Exporta las asignaciones de pilotes actuales y los CPT seleccionados a Excel o CSV para informes y coordinación.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.pileImport.title">Importación de un plano de pilotes existente</h3>
-            <p data-i18n="features.pileImport.desc">Actualiza un proyecto activo desde una tabla Excel/CSV, incluidos archivos heredados, con validación de ID y coordenadas y una vista previa antes de la importación.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.webdesktop.title">Navegador y escritorio</h3>
-            <p data-i18n="features.webdesktop.desc">El mismo núcleo de cálculo en Rust se ejecuta mediante WebAssembly en el navegador y de forma nativa en la aplicación de escritorio para Windows (Tauri 2). La aplicación de Windows también ofrece acceso MCP local para asistentes de IA como ChatGPT Desktop y Claude Desktop, con controles separados para la lectura y la edición.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.sample.title">Explora de inmediato</h3>
-            <p data-i18n="features.sample.desc">La demo en el navegador se abre con un proyecto de ejemplo completo, así que puedes investigar el flujo de trabajo sin preparación.</p>
-          </div>
-        </div>
+  <section class="section"><div class="container">
+    <h2 data-i18n="features.title">Funciones</h2>
+    <div class="features" id="opp-features" data-fold="6">
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg></div>
+        <h4 data-i18n="features.import.title">Importación de proyecto orientada</h4>
+        <p data-i18n="features.import.desc">Importa puntos de carga, coordenadas de CPT e informes de cimentación desde archivos CSV o XLSX y asigna los tres roles de origen antes de la importación. Las exportaciones de RFEM se detectan automáticamente.</p>
       </div>
-
-      <!-- Workflow -->
-      <div class="explainer">
-        <h3 data-i18n="workflow.title">Flujo de trabajo: tres pasos hacia un proyecto trazable</h3>
-        <ul>
-          <li data-i18n="workflow.step1"><strong style="color: white;">Combina las fuentes</strong>: importa puntos de carga, CPT e informes de cimentación y verifica su rol.</li>
-          <li data-i18n="workflow.step2"><strong style="color: white;">Evalúa las opciones</strong>: inspecciona la planta, la selección de CPT, la capacidad portante, el aprovechamiento y el coste.</li>
-          <li data-i18n="workflow.step3"><strong style="color: white;">Registra las decisiones</strong>: asigna configuraciones, revisa el plano completo y guárdalo todo como proyecto IFCPP.</li>
-        </ul>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-pin"/></svg></div>
+        <h4 data-i18n="features.selection.title">Selección de CPT</h4>
+        <p data-i18n="features.selection.desc">Selecciona CPT automáticamente mediante reglas de cuadrante o de ángulo máximo y anula la elección manualmente para puntos de carga individuales.</p>
       </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-layers"/></svg></div>
+        <h4 data-i18n="features.options.title">Comparación de opciones de pilote</h4>
+        <p data-i18n="features.options.desc">Revisa las opciones de pilote válidas, insuficientes y ausentes por ubicación con tamaño, cota de punta y CPT determinante.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div>
+        <h4 data-i18n="features.assign.title">Asignar a uno o a varios</h4>
+        <p data-i18n="features.assign.desc">Asigna una configuración a un punto de carga o a una selección múltiple con opciones comunes.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-euro"/></svg></div>
+        <h4 data-i18n="features.compare.title">Aprovechamiento y coste</h4>
+        <p data-i18n="features.compare.desc">Compara el aprovechamiento, el CPT determinante y el coste estimado antes de registrar una configuración.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-bolt"/></svg></div>
+        <h4 data-i18n="features.optimize.title">Optimización del plano</h4>
+        <p data-i18n="features.optimize.desc">Usa HiGHS para reducir costes con límites de configuración y, opcionalmente, las diferencias entre ubicaciones vecinas dentro de un presupuesto. La mejora rápida ofrece una alternativa local.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-pen"/></svg></div>
+        <h4 data-i18n="features.interact.title">Selección interactiva</h4>
+        <p data-i18n="features.interact.desc">Selecciona ubicaciones con clic, selección múltiple o lazo y filtra por tamaño de pilote y cota de punta en la leyenda.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-folder"/></svg></div>
+        <h4 data-i18n="features.project.title">Archivo de proyecto IFCPP</h4>
+        <p data-i18n="features.project.desc">Mantén juntos los datos importados, la configuración, las elecciones de pilote y las selecciones manuales de CPT, y vuelve a abrir el proyecto completo más tarde.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-document"/></svg></div>
+        <h4 data-i18n="features.export.title">Exportación a Excel/CSV</h4>
+        <p data-i18n="features.export.desc">Exporta las asignaciones de pilotes actuales y los CPT seleccionados a Excel o CSV para informes y coordinación.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-clipboard"/></svg></div>
+        <h4 data-i18n="features.pileImport.title">Importación de un plano de pilotes existente</h4>
+        <p data-i18n="features.pileImport.desc">Actualiza un proyecto activo desde una tabla Excel/CSV, incluidos archivos heredados, con validación de ID y coordenadas y una vista previa antes de la importación.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-globe"/></svg></div>
+        <h4 data-i18n="features.webdesktop.title">Navegador y escritorio</h4>
+        <p data-i18n="features.webdesktop.desc">El mismo núcleo de cálculo en Rust se ejecuta mediante WebAssembly en el navegador y de forma nativa en la aplicación de escritorio para Windows (Tauri 2). La aplicación de Windows también ofrece acceso MCP local para asistentes de IA como ChatGPT Desktop y Claude Desktop, con controles separados para la lectura y la edición.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-play"/></svg></div>
+        <h4 data-i18n="features.sample.title">Explora de inmediato</h4>
+        <p data-i18n="features.sample.desc">La demo en el navegador se abre con un proyecto de ejemplo completo, así que puedes investigar el flujo de trabajo sin preparación.</p>
+      </div>
+    </div>
+    <p class="more-row" data-fold-for="opp-features" hidden>
+      <button type="button" class="btn btn-secondary btn-lg more-btn" aria-expanded="false" aria-controls="opp-features">
+        <span data-fold-show class="more-label"><span data-i18n="features.showAll">Mostrar todas las funciones</span> <span class="more-count" data-fold-count></span></span>
+        <span data-fold-hide hidden data-i18n="features.showLess">Mostrar menos</span>
+        <svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg>
+      </button>
+    </p>
+  </div></section>
 
-      <!-- Limits -->
-      <div class="explainer" style="border-left: 4px solid var(--amber);">
-        <h3 data-i18n="limits.title">⚠️ Apoyo a la decisión, no responsabilidad de diseño automatizada</h3>
+  <section class="section surface-dark panel">
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label">1 · 2 · 3</p>
+        <h2 data-i18n="workflow.title">Flujo de trabajo: tres pasos hacia un proyecto trazable</h2>
+      </div>
+      <ul class="split-cards">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-link"/></svg></div><div><p data-i18n="workflow.step1"><strong>Combina las fuentes</strong>: importa puntos de carga, CPT e informes de cimentación y verifica su rol.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-ruler"/></svg></div><div><p data-i18n="workflow.step2"><strong>Evalúa las opciones</strong>: inspecciona la planta, la selección de CPT, la capacidad portante, el aprovechamiento y el coste.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p data-i18n="workflow.step3"><strong>Registra las decisiones</strong>: asigna configuraciones, revisa el plano completo y guárdalo todo como proyecto IFCPP.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section"><div class="container">
+    <div class="limits-card">
+      <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-warning"/></svg></div>
+      <div>
+        <h2 data-i18n="limits.title">Apoyo a la decisión, no responsabilidad de diseño automatizada</h2>
         <p data-i18n="limits.desc1">Open Pile Plan Studio es actualmente una alfa pública. La selección configurable de CPT es una aproximación práctica. Los resultados indican si la optimalidad quedó demostrada; la mejora rápida es un método local.</p>
         <p data-i18n="limits.desc2">Haz que un profesional cualificado verifique siempre dentro del proyecto los datos de entrada, las hipótesis y los resultados de ingeniería. La herramienta apoya las decisiones de ingeniería, pero no sustituye la responsabilidad sobre el diseño de la cimentación.</p>
       </div>
-
-      <div class="content-block">
-        <h2 data-i18n="tech.title">Tecnología</h2>
-        <div class="tech-stack">
-          <span class="tech-tag">Rust</span>
-          <span class="tech-tag">WebAssembly</span>
-          <span class="tech-tag">React</span>
-          <span class="tech-tag">TypeScript</span>
-          <span class="tech-tag">Tauri 2</span>
-          <span class="tech-tag">IFCPP</span>
-        </div>
-        <p data-i18n="tech.desc">La lógica de ingeniería para importación, opciones de pilote, costes, selección de CPT y optimización reside en el núcleo de cálculo en Rust. Ese mismo núcleo se ejecuta mediante WebAssembly en el navegador y de forma nativa en la aplicación de escritorio Tauri: un único modelo de cálculo, dos plataformas.</p>
-      </div>
-
-      <div class="content-block">
-        <div class="cta-links">
-          <a href="https://pile-plan-studio.open-aec.com/" target="_blank" rel="noopener" class="cta-primary" data-i18n="cta.liveDemo">🏗️ Abrir la demo en el navegador</a>
-          <a href="#download" class="cta-secondary" data-i18n="cta.releases">Descargar</a>
-          <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio" target="_blank" rel="noopener" class="cta-secondary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-            <span data-i18n="cta.github">GitHub</span>
-          </a>
-        </div>
-      </div>
-
     </div>
-  </section>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="tech.title">Tecnología</h2>
+    </div>
+    <div class="chip-row chip-row-light tech-chips">
+      <span class="chip">Rust</span>
+      <span class="chip">WebAssembly</span>
+      <span class="chip">React</span>
+      <span class="chip">TypeScript</span>
+      <span class="chip">Tauri 2</span>
+      <span class="chip">IFCPP</span>
+    </div>
+    <p class="tech-desc" data-i18n="tech.desc">La lógica de ingeniería para importación, opciones de pilote, costes, selección de CPT y optimización reside en el núcleo de cálculo en Rust. Ese mismo núcleo se ejecuta mediante WebAssembly en el navegador y de forma nativa en la aplicación de escritorio Tauri: un único modelo de cálculo, dos plataformas.</p>
+  </div></section>
 
   <!-- Release Notes (shared component) -->
   <div data-release-notes="pile-plan-studio"></div>
   <script src="/shared/release-notes.js?v=20260728"></script>
 
-  <footer class="footer page-footer" style="padding: var(--sp-6);">
-    <div class="footer-inner">
-      <a href="/es/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
-      <div style="display: flex; gap: var(--sp-4); align-items: center;">
-        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" style="color: var(--scaffold-gray); font-size: 0.75rem; text-decoration: none;">GitHub</a>
-        <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" style="color: var(--scaffold-gray); font-size: 0.75rem; text-decoration: none;">LinkedIn</a>
+  <section class="section surface-spot panel">
+    <div class="panel-center">
+      <h2 data-i18n="header.title">Open <span class="accent">Pile Plan</span> Studio</h2>
+      <div class="btn-group">
+        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="cta.releases">Descargar</span></a>
+        <a href="https://pile-plan-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-play"/></svg><span data-i18n="cta.liveDemo">Abrir la demo en el navegador</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-star"/></svg><span data-i18n="cta.github">GitHub</span></a>
       </div>
-      <p>&copy; 2026 OpenAEC Foundation</p>
     </div>
-  </footer>
+  </section>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/es/" class="nav-brand">Open<span class="accent">AEC</span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Páginas</h4>
+        <a href="/es/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">Sobre nosotros</a>
+        <a href="/es/ifcx/">IFCX</a>
+        <a href="/es/roadmap/" data-i18n-en="Roadmap 2026" data-i18n-fr="Feuille de route 2026" data-i18n-tr="2026 yol haritası" data-i18n-es="Hoja de ruta 2026">Hoja de ruta 2026</a>
+        <a href="/es/architectuur/" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Arquitectura</a>
+        <a href="/es/supporters/" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Colaboradores</a>
+        <a href="/es/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Solicitar presupuesto</a>
+        <a href="/es/structuur/" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Estructura</a>
+        <a href="/es/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">Preguntas frecuentes</a>
+        <a href="/es/statistieken/" data-i18n-en="Timeline &amp; Statistics" data-i18n-fr="Chronologie &amp; statistiques" data-i18n-tr="Zaman çizelgesi &amp; istatistikler" data-i18n-es="Cronología &amp; estadísticas">Cronología &amp; estadísticas</a>
+        <a href="/es/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Aviso legal</a>
+        <a href="/es/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Borrador de estatutos</a>
+        <a href="/es/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Créditos</a>
+        <a href="/es/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Política y posiciones</a>
+        <a href="/es/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Redes sociales</a>
+      </nav>
+      <nav class="site-footer-col" aria-label="Meer tools">
+        <h4 data-i18n-en="More tools" data-i18n-fr="Plus d'outils" data-i18n-tr="Daha fazla araç" data-i18n-es="Más herramientas">Más herramientas</h4>
+        <a href="/es/open-energy-studio/">Open Energy Studio</a>
+        <a href="/es/open-safety-studio/">Open Safety Studio</a>
+        <a href="/es/open-3d-viewer/">Open 3D Viewer</a>
+        <a href="/es/open-books/">OpenBooks</a>
+        <a href="/es/openaec-cloud/">OpenAEC Cloud</a>
+        <a href="/es/openaec-docs/">OpenAEC Docs</a>
+        <a href="/es/ext-drawing-statistics/">Drawing Statistics</a>
+        <a href="/es/y-app/">Y-app</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Fundación en constitución</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">Países Bajos</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
 
   <script>
-    (function() {
+    (function(){
       const track = document.getElementById('sliderTrack');
       const dots = document.getElementById('sliderDots');
-      if (!track) return;
-      const slides = track.children;
+      if (!track || !dots) return;
+      const slides = track.children.length;
       let current = 0;
-      for (let i = 0; i < slides.length; i++) {
+      for(let i=0;i<slides;i++){
         const d = document.createElement('button');
-        d.className = 'slider-dot' + (i === 0 ? ' active' : '');
-        d.style.cssText = 'width:10px;height:10px;border-radius:50%;border:none;cursor:pointer;background:' + (i === 0 ? '#D97706' : '#D6D3D1') + ';';
-        d.onclick = () => goTo(i);
+        d.className = 'slider-dot' + (i===0?' active':'');
+        d.onclick = ()=>slideTo(i);
         dots.appendChild(d);
       }
-      function goTo(i) {
-        current = (i + slides.length) % slides.length;
-        track.style.transform = 'translateX(-' + (current * 100) + '%)';
-        Array.from(dots.children).forEach((dot, idx) => {
-          dot.style.background = idx === current ? '#D97706' : '#D6D3D1';
-        });
-      }
-      window.slideMove = (dir) => goTo(current + dir);
+      window.slideMove = function(dir){slideTo(current+dir);};
+      window.slideTo = function(i){
+        current = (i+slides)%slides;
+        track.style.transform = 'translateX(-'+current*100+'%)';
+        dots.querySelectorAll('.slider-dot').forEach((d,idx)=>d.classList.toggle('active',idx===current));
+      };
     })();
+    // Lange lijsten: de eerste paar zichtbaar, de rest achter de vaste "Toon alles"-knop. Zonder JavaScript staat alles open.
+    document.querySelectorAll('[data-fold]').forEach(function (grid) {
+      var n = +grid.getAttribute('data-fold');
+      var items = Array.prototype.slice.call(grid.children);
+      var row = document.querySelector('[data-fold-for="' + grid.id + '"]');
+      if (!row || items.length <= n) return;
+      var btn = row.querySelector('.more-btn');
+      var show = btn.querySelector('[data-fold-show]');
+      var hide = btn.querySelector('[data-fold-hide]');
+      btn.querySelector('[data-fold-count]').textContent = '(' + items.length + ')';
+      function zet(open) {
+        items.forEach(function (c, i) { c.style.display = (!open && i >= n) ? 'none' : ''; });
+        show.hidden = open; hide.hidden = !open;
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      zet(false);
+      row.hidden = false;
+      btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') !== 'true';
+        zet(open);
+        if (!open) grid.scrollIntoView({ block: 'start' });
+      });
+    });
   </script>
   <script src="/shared/i18n.js?v=20260728"></script>
   <script src="/shared/pile-plan-downloads.js?v=20260923"></script>
