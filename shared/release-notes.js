@@ -34,7 +34,7 @@
       tlLines: (n) => `+${n} regels code`,
       more: 'Meer',
       less: 'Minder',
-      showAllVersions: (n) => `Toon alle ${n} versies`,
+      showAllVersions: 'Toon alle versies',
       showFewerVersions: 'Toon minder',
       noNotes: 'Geen notities beschikbaar voor deze versie.',
     },
@@ -67,7 +67,7 @@
       tlLines: (n) => `+${n} lines of code`,
       more: 'More',
       less: 'Less',
-      showAllVersions: (n) => `Show all ${n} versions`,
+      showAllVersions: 'Show all versions',
       showFewerVersions: 'Show less',
       noNotes: 'No notes available for this version.',
     },
@@ -100,7 +100,7 @@
       tlLines: (n) => `+${n} lignes de code`,
       more: 'Plus',
       less: 'Moins',
-      showAllVersions: (n) => `Afficher les ${n} versions`,
+      showAllVersions: 'Afficher toutes les versions',
       showFewerVersions: 'Afficher moins',
       noNotes: 'Aucune note disponible pour cette version.',
     },
@@ -133,7 +133,7 @@
       tlLines: (n) => `+${n} kod satırı`,
       more: 'Daha fazla',
       less: 'Daha az',
-      showAllVersions: (n) => `${n} sürümün tümünü göster`,
+      showAllVersions: 'Tüm sürümleri göster',
       showFewerVersions: 'Daha az göster',
       noNotes: 'Bu sürüm için not bulunmuyor.',
     },
@@ -166,7 +166,7 @@
       tlLines: (n) => `+${n} líneas de código`,
       more: 'Más',
       less: 'Menos',
-      showAllVersions: (n) => `Mostrar las ${n} versiones`,
+      showAllVersions: 'Mostrar todas las versiones',
       showFewerVersions: 'Mostrar menos',
       noNotes: 'No hay notas disponibles para esta versión.',
     },
@@ -352,7 +352,6 @@
       }
       .rn-toggle:hover { background: var(--amber); color: white; }
 
-      .rn-groups-more { text-align: center; margin-top: var(--sp-6); }
       .rn-viewall {
         margin-top: var(--sp-6); font-size: 0.8125rem;
         text-align: center;
@@ -854,9 +853,9 @@
       <div class="rn-groups">
         ${data.groups.map((g, i) => renderGroup(g, i === 0)).join('')}
       </div>
-      ${data.groups.length > RN_VISIBLE ? `<p class="rn-groups-more"><button type="button" class="rn-toggle rn-groups-toggle" aria-expanded="false">${t('showAllVersions')(data.groups.length)}</button></p>` : ''}
-      <p class="rn-viewall">
-        <a href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll')}</a>
+      <p class="more-row">
+        ${data.groups.length > RN_VISIBLE ? `<button type="button" class="btn btn-secondary btn-lg more-btn rn-groups-toggle" aria-expanded="false"><span class="more-label">${t('showAllVersions')}</span> <span class="more-count">(${data.groups.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></button>` : ''}
+        <a class="more-link" href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/\s*→\s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-external"/></svg></a>
       </p>
     `;
 
@@ -866,7 +865,8 @@
     const fold = (open) => {
       groupEls.forEach((el, i) => { el.hidden = !open && i >= RN_VISIBLE; });
       if (moreBtn) {
-        moreBtn.textContent = open ? t('showFewerVersions') : t('showAllVersions')(groupEls.length);
+        moreBtn.querySelector('.more-label').textContent = open ? t('showFewerVersions') : t('showAllVersions');
+        moreBtn.querySelector('.more-count').hidden = open;
         moreBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
       }
     };

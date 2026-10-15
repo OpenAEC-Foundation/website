@@ -4,7 +4,7 @@
 (function () {
   const TEKST = {
     nl: {
-      meer: (n) => `Toon alle ${n} gereedschappen`,
+      meer: 'Toon alle gereedschappen',
       minder: 'Toon minder',
       titel: 'Alle functies',
       intro: (d) => `Het volledige lint van versie ${d.versie}: ${d.aantallen.functies} functies op ${d.aantallen.tabbladen} tabbladen. Deze lijst komt rechtstreeks uit de broncode en loopt dus altijd gelijk met de app.`,
@@ -16,7 +16,7 @@
       treffers: (n) => `${n} ${n === 1 ? 'functie' : 'functies'}`,
     },
     en: {
-      meer: (n) => `Show all ${n} tools`,
+      meer: 'Show all tools',
       minder: 'Show less',
       titel: 'All features',
       intro: (d) => `The complete ribbon of version ${d.versie}: ${d.aantallen.functies} features across ${d.aantallen.tabbladen} tabs. This list is generated from the source code, so it always matches the app.`,
@@ -28,7 +28,7 @@
       treffers: (n) => `${n} ${n === 1 ? 'feature' : 'features'}`,
     },
     fr: {
-      meer: (n) => `Afficher les ${n} outils`,
+      meer: 'Afficher tous les outils',
       minder: 'Afficher moins',
       titel: 'Toutes les fonctions',
       intro: (d) => `Le ruban complet de la version ${d.versie} : ${d.aantallen.functies} fonctions réparties sur ${d.aantallen.tabbladen} onglets. Cette liste est générée à partir du code source et correspond donc toujours à l'application.`,
@@ -40,7 +40,7 @@
       treffers: (n) => `${n} ${n === 1 ? 'fonction' : 'fonctions'}`,
     },
     tr: {
-      meer: (n) => `${n} aracın tümünü göster`,
+      meer: 'Tüm araçları göster',
       minder: 'Daha az göster',
       titel: 'Tüm özellikler',
       intro: (d) => `Sürüm ${d.versie} şeridinin tamamı: ${d.aantallen.tabbladen} sekmede ${d.aantallen.functies} özellik. Bu liste kaynak koddan üretilir ve bu yüzden her zaman uygulamayla aynıdır.`,
@@ -85,7 +85,6 @@
     .opf-mcp-lijst { columns: 2 320px; column-gap: var(--sp-8); margin: var(--sp-4) 0 0; padding: 0; list-style: none; }
     .opf-mcp-lijst li { break-inside: avoid; font-size: 0.85rem; margin-bottom: var(--sp-2); color: var(--text-muted); }
     .opf-mcp-lijst li.opf-ingeklapt { display: none; }
-    .opf-meer-rij { text-align: center; margin-top: var(--sp-6); max-width: none; }
     .opf-mcp-lijst code { color: var(--night-build); font-weight: 600; margin-right: 6px; }
     .opf-verborgen { display: none !important; }
   `;
@@ -137,7 +136,7 @@
         <p class="opf-intro">${esc(T.mcpIntro(d))}</p>
         <ul class="opf-mcp-lijst">${d.mcp.map((m) =>
           `<li data-zoek="${esc((m.naam + ' ' + m.beschrijving).toLowerCase())}"><code>${esc(m.naam)}</code>${esc(m.beschrijving)}</li>`).join('')}</ul>
-        ${d.mcp.length > MCP_ZICHTBAAR ? `<p class="opf-meer-rij"><button type="button" class="btn btn-secondary btn-sm opf-meer" aria-expanded="false">${esc(T.meer(d.mcp.length))}</button></p>` : ''}
+        ${d.mcp.length > MCP_ZICHTBAAR ? `<p class="more-row opf-meer-rij"><button type="button" class="btn btn-secondary btn-lg more-btn opf-meer" aria-expanded="false"><span class="more-label">${esc(T.meer)}</span> <span class="more-count">(${d.mcp.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></button></p>` : ''}
       </div>`;
 
     // AI-gereedschappen: eerst een handvol, de rest achter een knop.
@@ -145,7 +144,8 @@
     if (meer) meer.addEventListener('click', () => {
       const open = meer.getAttribute('aria-expanded') !== 'true';
       meer.setAttribute('aria-expanded', open ? 'true' : 'false');
-      meer.textContent = open ? T.minder : T.meer(d.mcp.length);
+      meer.querySelector('.more-label').textContent = open ? T.minder : T.meer;
+      meer.querySelector('.more-count').hidden = open;
       inklappen(el);
       if (!open) el.querySelector('.opf-mcp').scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
