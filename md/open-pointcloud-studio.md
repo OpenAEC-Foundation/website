@@ -22,6 +22,10 @@
 
 ## Key features
 
+- Native Rust v0.9.5 interface with one compact Start ribbon and view controls below the view cube
+- Illustrated Dutch manual: https://github.com/OpenAEC-Foundation/open-pointcloud-studio/wiki/Handleiding
+- Feature video: https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-pointcloud-studio-features.mp4
+
 - Opens point clouds in LAS, LAZ, E57, PLY, PCD, PTX, PTS and text formats, and meshes in OBJ, PLY, OFF and STL
 - Opens a whole scan project at once: a folder of scans, or the scans that a scan project file (.rcp) lists
 - Large files stay usable while they open: LAS and LAZ open from their header, an E57 file of 512 MiB or more first shows a sample spread through the file when its layout allows that
