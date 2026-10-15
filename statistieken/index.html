@@ -258,10 +258,11 @@
 
     /* A+ (okt 2026) */
     .stats-section { max-width: none; }
-    .stats-updated { text-align: center; font-family: var(--font-code); font-size: 0.75rem; color: var(--text-on-light); margin-top: var(--sp-4); }
+    .product-head p.stats-updated { text-align: center; font-family: var(--font-code); font-size: 0.75rem; color: var(--text-on-dark); opacity: 0.8; max-width: none; margin: var(--sp-5) auto 0; }
+    .product-head .stat-grid { position: relative; margin-top: 0; }
     .stats-updated:has(#stats-updated:empty) { display: none; }
-    .chart-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 1100px; margin: var(--sp-8) auto 0; }
-    .chart-grid.single { grid-template-columns: 1fr; max-width: 1000px; }
+    .chart-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 1100px; margin: var(--sp-8) auto 0; }
+    .chart-cards.single { grid-template-columns: 1fr; max-width: 1000px; }
     .chart-card { padding: var(--sp-6); border-radius: var(--radius-lg); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.1); min-width: 0; }
     .chart-title { font-family: var(--font-code); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-gold); margin: 0 0 var(--sp-4); }
     .chart-card.on-light { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); }
@@ -293,7 +294,11 @@
     .top-repo-card ol li { color: var(--text-on-light); border-bottom-color: rgba(42,42,50,0.07); }
     .top-repo-card ol li span.repo-name { color: var(--deep-forge); }
     .top-repo-card ol li span.repo-val { color: var(--text-on-light); }
-    @media (max-width: 860px) { .chart-grid { grid-template-columns: 1fr; } }
+    .chart-card, .top-repo-card, .journey .rn-tl-card { transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+    .chart-card:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0.5); }
+    .chart-card.on-light:hover, .top-repo-card:hover, .journey .rn-tl-card:hover { transform: translateY(-4px); border-color: rgba(217,119,6,0.35); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float-hover); }
+    .journey .rn-tl-card { box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); }
+    @media (max-width: 860px) { .chart-cards { grid-template-columns: 1fr; } }
   </style>
 
   <!-- schema:start -->
@@ -397,10 +402,7 @@
       <h1 data-i18n="header.title">Tijdlijn & <span class="accent">Statistieken</span></h1>
       <p class="lead" data-i18n="header.desc">De geschiedenis en cijfers achter het OpenAEC-ecosysteem. Van het eerste idee tot een compleet open source platform.</p>
     </div>
-  </header>
-
-  <section class="section"><div class="container">
-    <div class="stat-grid stat-grid-4 on-light">
+    <div class="stat-grid stat-grid-4">
       <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.repos">Repositories</span></div><div class="stat-number" id="s-repos">—</div></div>
       <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.commits">Commits</span></div><div class="stat-number" id="s-commits">—</div></div>
       <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.stars">Stars</span></div><div class="stat-number" id="s-stars">—</div></div>
@@ -415,13 +417,13 @@
       <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.downloads">Downloads</span></div><div class="stat-number" id="s-downloads">—</div></div>
     </div>
     <p class="stats-updated"><span data-i18n="stats.updated">Laatste update:</span> <span id="stats-updated"></span></p>
-  </div></section>
+  </header>
 
   <section class="section surface-dark panel">
     <div class="panel-center">
       <h2 data-i18n="growth.title">Groei in de <span class="accent">tijd</span></h2>
     </div>
-    <div class="chart-grid">
+    <div class="chart-cards">
       <div class="chart-card">
         <h4 class="chart-title" data-i18n="charts.cum_repos">Cumulatief aantal repos</h4>
         <div class="chart-box" id="chart-cum-repos"></div>
@@ -451,7 +453,7 @@
   </section>
 
   <section class="section"><div class="container">
-    <div class="chart-grid single">
+    <div class="chart-cards single">
       <div class="chart-card on-light">
         <h3 data-i18n="charts.repos_month">Repos per <span class="accent">maand</span></h3>
         <div class="chart-box" id="chart-monthly"></div>
@@ -474,7 +476,7 @@
       <div class="stat-tile"><div class="stat-name"><span data-i18n="news.releases">Releases</span></div><div class="stat-number" id="s-news-releases">—</div></div>
       <div class="stat-tile"><div class="stat-name"><span data-i18n="news.new_repos">Nieuwe repos</span></div><div class="stat-number" id="s-news-repos">—</div></div>
     </div>
-    <div class="chart-grid single">
+    <div class="chart-cards single">
       <div class="chart-card">
         <h4 class="chart-title" data-i18n="news.chart_title">Releases & nieuwe repos per week</h4>
         <div class="chart-box" id="chart-news-activity"></div>
@@ -495,7 +497,7 @@
       <div class="stat-tile"><div class="stat-name"><span data-i18n="dl.tools">Tools met downloads</span></div><div class="stat-number" id="s-dl-tools">—</div></div>
       <div class="stat-tile"><div class="stat-name"><span data-i18n="dl.top_platform">Populairste platform</span></div><div class="stat-number" id="s-dl-top-platform">—</div></div>
     </div>
-    <div class="chart-grid single">
+    <div class="chart-cards single">
       <div class="chart-card on-light">
         <h4 class="chart-title" data-i18n="dl.per_platform">Downloads per platform</h4>
         <div class="chart-box" id="chart-dl-platform"></div>
@@ -548,7 +550,7 @@
           </ul>
         </div>
       </li>
-      <li class="rn-tl-item latest">
+      <li class="rn-tl-item">
         <div class="rn-tl-card">
           <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.apr.date">April 2026</span></div>
           <h3 data-i18n="timeline.apr.title">Stichting in oprichting</h3>
@@ -560,12 +562,85 @@
           </ul>
         </div>
       </li>
+      <!-- later: oorspronkelijk gepland item, vervangen door wat er echt gebeurde (Open 3D Studio, juli); ook _later in de vertalingen:
       <li class="rn-tl-item planned">
         <div class="rn-tl-card">
           <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.jun.date">Juni 2026</span><span class="status-planned" data-i18n="timeline.planned">gepland</span></div>
           <h3 data-i18n="timeline.jun.title">BIM Modeller start</h3>
           <ul class="rn-tl-plain-list">
             <li data-i18n="timeline.jun.i1">Start ontwikkeling open source BIM-modelleertool</li>
+          </ul>
+        </div>
+      </li>
+      -->
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.may.date">Mei 2026</span></div>
+          <h3 data-i18n="timeline.may.title">Calculatie & release notes</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.may.i1">Open Calc Studio gestart: open source calculatieprogramma voor de bouwsector</li>
+            <li data-i18n="timeline.may.i2">Live release notes op alle productpagina's</li>
+            <li data-i18n="timeline.may.i3">Ook GWW en civiele techniek in beeld</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.jun.date">Juni 2026</span></div>
+          <h3 data-i18n="timeline.jun.title">Website in vier talen</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.jun.i1">Site in het Nederlands, Engels, Frans en Turks</li>
+            <li data-i18n="timeline.jun.i2">Automatische taalkeuze bij het eerste bezoek</li>
+            <li data-i18n="timeline.jun.i3">Open PDF Studio v3 gestart</li>
+            <li data-i18n="timeline.jun.i4">Extensiecatalogus voor Open Planner Studio</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.jul.date">Juli 2026</span></div>
+          <h3 data-i18n="timeline.jul.title">Grootste groeimaand</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.jul.i1">11 nieuwe repositories</li>
+            <li data-i18n="timeline.jul.i2">OpenAEC Installer: alle tools op één plek installeren en bijwerken</li>
+            <li data-i18n="timeline.jul.i3">Open 3D Studio gestart: 3D-modelleren met IFC als native formaat</li>
+            <li data-i18n="timeline.jul.i4">Pile Plan Studio en de SuperCloud-desktopclient gestart</li>
+            <li data-i18n="timeline.jul.i5">Nieuws in vier talen</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.aug.date">Augustus 2026</span></div>
+          <h3 data-i18n="timeline.aug.title">Bouwkennis & vindbaarheid</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.aug.i1">IFCCAD: open CAD-tekenmodellen in Rust</li>
+            <li data-i18n="timeline.aug.i2">Master Builder-bibliotheek met bouwkennis, normen en tekeningen</li>
+            <li data-i18n="timeline.aug.i3">Site vindbaar gemaakt voor zoekmachines en AI-assistenten</li>
+            <li data-i18n="timeline.aug.i4">Open CAD Studio uitgelicht op de homepage</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.sep.date">September 2026</span></div>
+          <h3 data-i18n="timeline.sep.title">Vijf talen</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.sep.i1">Website ook in het Spaans</li>
+            <li data-i18n="timeline.sep.i2">Open PDF Studio: volledig functieoverzicht</li>
+            <li data-i18n="timeline.sep.i3">Ruim 3.400 stars over alle repositories</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item latest">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.oct.date">Oktober 2026</span></div>
+          <h3 data-i18n="timeline.oct.title">Downloaden met één klik</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.oct.i1">Downloadknoppen starten direct de download</li>
+            <li data-i18n="timeline.oct.i2">Open Pointcloud Studio 0.8.0, nu native</li>
+            <li data-i18n="timeline.oct.i3">Socials-pagina met QR-code</li>
+            <li data-i18n="timeline.oct.i4">62 repositories, 18.000+ commits, 4.200+ stars en 130.000+ downloads</li>
           </ul>
         </div>
       </li>
@@ -616,7 +691,7 @@
       <h2 data-i18n="geo.title"><span class="accent">AI</span>-vindbaarheid</h2>
       <p data-i18n="geo.desc">Onze strategie om AI-assistenten zoals Claude, ChatGPT, Grok, Perplexity en Gemini de OpenAEC-tools te laten aanbevelen aan hun gebruikers. Dit heet <em>Generative Engine Optimization (GEO)</em>.</p>
     </div>
-    <div class="chart-grid">
+    <div class="chart-cards">
       <div class="chart-card">
         <h4 class="chart-title" data-i18n="geo.done_title">Geïmplementeerd</h4>
         <ul class="geo-list">
