@@ -94,15 +94,8 @@
   <link rel="stylesheet" href="/shared/style.css">
   <style>
     .case-tag { display: inline-block; font-family: var(--font-code); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: #B45309; background: rgba(217,119,6,0.12); border-radius: var(--radius-full); padding: 3px 10px; margin-bottom: var(--sp-3); }
-    .panel-split-text h2 .why-sub { font-weight: 400; color: var(--text-on-dark); opacity: 0.7; }
+    .panel-split-text h2 .why-sub { display: block; margin-top: 6px; font-size: 0.6em; font-weight: 500; color: var(--text-on-dark); opacity: 0.75; }
     .price-callout { display: inline-block; margin-top: 6px; font-family: var(--font-code); font-size: 0.78rem; color: var(--deep-forge); background: var(--warm-gold); border-radius: var(--radius-full); padding: 3px 10px; }
-    /* Vergelijking in het donkere paneel */
-    .cmp-wrap { max-width: 1100px; margin: var(--sp-10) auto 0; overflow-x: auto; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.1); }
-    .cmp-table { width: 100%; border-collapse: collapse; }
-    .cmp-table th, .cmp-table td { padding: 13px 18px; text-align: left; border-top: 1px solid rgba(255,255,255,0.08); color: var(--text-on-dark); font-size: 0.95rem; }
-    .cmp-table thead th { border-top: 0; font-family: var(--font-code); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--warm-gold); background: rgba(255,255,255,0.04); }
-    .cmp-table .row-label { color: white; font-weight: 600; }
-    .cmp-table .us, .cmp-table .us-cell { background: rgba(217,119,6,0.12); color: white; font-weight: 600; }
     /* Sneltoetsen */
     .keys-row { display: flex; gap: var(--sp-4); justify-content: center; flex-wrap: wrap; align-items: center; margin: var(--sp-6) 0 var(--sp-4); }
     .keys-row kbd { font-family: var(--font-code); font-size: 0.95rem; color: var(--deep-forge); background: #FFFFFF; border: 1px solid rgba(42,42,50,0.15); border-bottom-width: 3px; border-radius: var(--radius-md); padding: 9px 18px; box-shadow: var(--shadow-float); }
@@ -290,7 +283,7 @@
       </div>
       <ul class="split-cards">
         <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-lock"/></svg></div><div><h4 data-i18n="why.privacy.title">Privacy</h4><p data-i18n="why.privacy.desc">Je stem verlaat nooit je computer. GDPR-veilig automatisch - geen DPA nodig met externe providers, geen risico op datalekken.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-euro"/></svg></div><div><h4 data-i18n="why.cost.title">Geen abonnement</h4><p data-i18n="why.cost.desc">Otter.ai vraagt ~&euro;20/maand. Dragon NaturallySpeaking ~&euro;500 one-time. Open Speech Studio is voor altijd gratis - open source LGPL-3.0.</p><span class="price-callout" data-i18n="why.cost.callout">&euro;0 forever</span></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-euro"/></svg></div><div><h4 data-i18n="why.cost.title">Geen abonnement</h4><p data-i18n="why.cost.desc">Otter.ai vraagt ~&euro;20/maand. Dragon NaturallySpeaking ~&euro;500 eenmalig. Open Speech Studio is voor altijd gratis - open source LGPL-3.0.</p><span class="price-callout" data-i18n="why.cost.callout">&euro;0 voor altijd</span></div></li>
         <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-infinity"/></svg></div><div><h4 data-i18n="why.limits.title">Geen rate-limits</h4><p data-i18n="why.limits.desc">Dicteer 10 uur per dag als je wil. Geen API-quota, geen "Fair Use Policy", geen verrassings-facturen. Je hardware is de enige limiet.</p></div></li>
       </ul>
     </div>
@@ -298,7 +291,7 @@
       <table class="cmp-table">
       <thead>
         <tr>
-          <th data-i18n="compare.feature">Feature</th>
+          <th data-i18n="compare.feature">Functie</th>
           <th class="us" data-i18n="compare.us">Open Speech Studio</th>
           <th data-i18n="compare.dragon">Dragon NaturallySpeaking</th>
           <th data-i18n="compare.otter">Otter.ai</th>
@@ -307,9 +300,9 @@
       <tbody>
         <tr>
           <td class="row-label" data-i18n="compare.price">Prijs</td>
-          <td class="us-cell" data-i18n="compare.price.us">&euro;0 (open source)</td>
-          <td data-i18n="compare.price.dragon">~&euro;500 one-time</td>
-          <td data-i18n="compare.price.otter">~&euro;20/maand</td>
+          <td class="us-cell" data-i18n="compare.priceUs">&euro;0 (open source)</td>
+          <td data-i18n="compare.priceDragon">~&euro;500 eenmalig</td>
+          <td data-i18n="compare.priceOtter">~&euro;20/maand</td>
         </tr>
         <tr>
           <td class="row-label" data-i18n="compare.local">100% lokaal</td>
@@ -325,9 +318,9 @@
         </tr>
         <tr>
           <td class="row-label" data-i18n="compare.langs">Talen</td>
-          <td class="us-cell" data-i18n="compare.langs.us">99 talen (Whisper)</td>
-          <td data-i18n="compare.langs.dragon">~6 talen</td>
-          <td data-i18n="compare.langs.otter">~10 talen</td>
+          <td class="us-cell" data-i18n="compare.langsUs">99 talen (Whisper)</td>
+          <td data-i18n="compare.langsDragon">~6 talen</td>
+          <td data-i18n="compare.langsOtter">~10 talen</td>
         </tr>
         <tr>
           <td class="row-label" data-i18n="compare.gpu">GPU-versnelling (CUDA)</td>
@@ -337,7 +330,7 @@
         </tr>
         <tr>
           <td class="row-label" data-i18n="compare.opensource">Open source</td>
-          <td class="us-cell" data-i18n="compare.opensource.us">Ja (LGPL-3.0)</td>
+          <td class="us-cell" data-i18n="compare.opensourceUs">Ja (LGPL-3.0)</td>
           <td data-i18n="compare.no4">Nee</td>
           <td data-i18n="compare.no5">Nee</td>
         </tr>
