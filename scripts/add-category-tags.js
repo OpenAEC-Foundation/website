@@ -33,7 +33,7 @@ const CATS = {
   'openaec-docs':               ['A','E','C','I'],
   'openaec-cloud':              ['A','E','C','I'],
   'openaec-bcf-platform':       ['E','C'],
-  'open-frame-studio':          ['E','I'],
+  'open-frame-studio':          ['A','C'],
 };
 
 function chipsHtml(cats) {

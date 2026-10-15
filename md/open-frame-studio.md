@@ -1,11 +1,11 @@
 # Open Frame Studio
 
-> 2D structural frame analysis for beams, columns, portal frames and civil load-bearing systems.
+> Design window and door frames (kozijnen) in 2D and 3D, with frame schedules, workshop drawings, cutting lists and IFC export.
 
 **Status:** alpha
-**License:** LGPL-3.0
-**Platforms:** Windows, macOS, Linux
-**Category:** Structural Engineering
+**License:** CC-BY-SA-4.0
+**Platforms:** Windows, macOS, Linux, Browser
+**Category:** Window & Door Frame Design
 **Current version:** v0.5.2 (2026-07-09)
 **Tool ID:** `open-frame-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-frame-studio`
@@ -22,29 +22,30 @@
 
 ## Key features
 
-- 2D frame modelling: beams, columns, portals
-- Linear-elastic analysis
-- Load cases and combinations
-- Section libraries (steel, timber, concrete)
-- Diagram output for N, V, M
+- 2D frame editor with grid subdivision, dimension lines and infills
+- Profile editor and a library of 80+ timber, aluminium, uPVC and timber-aluminium profiles
+- 3D view with extruded profiles and glass
+- Frame schedule (PDF, Excel), A3 workshop drawings and DXF
+- IFC export with ILS Houten Kozijnen v2.0 property sets
+- AI configurator via an OpenAI-compatible endpoint
 
 ## Tech stack
 
-`Rust` · `TypeScript` · `Tauri 2`
+`Rust` · `Svelte 5` · `Tauri 2` · `Three.js`
 
 ## When to use this
 
-Quick 2D structural sanity checks for buildings or civil load-bearing systems, design school workflows, validation of larger FEA results.
+Designing and documenting window and door frames for Dutch construction, from drawing to frame schedule, workshop drawing and BIM export.
 
 ## Alternative to
 
-- Matrixframe
-- SCIA Engineer
-- Robot Structural Analysis
+- commercial kozijn software
 
 ## Standards & integration
 
-- Eurocode
+- ILS Houten Kozijnen v2.0
+- IFC 4
+- NEN 3576
 
 All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 

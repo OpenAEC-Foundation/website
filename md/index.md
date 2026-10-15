@@ -24,7 +24,7 @@ Generated: 2026-10-15T06:08:26.398Z
 - [Open Energy Studio](./open-energy-studio.md) — Building energy analysis and performance for the Dutch NTA 8800 / BENG framework. (`v0.1.7-alpha`)
 - [Open Heatloss Studio](./open-heatloss-studio.md) — Heat loss calculations for buildings per NEN 12831 and ISSO 51:2023. Rust calculation engine, IFCX integration, PDF reports. (`v0.1.1-pr13.alpha`)
 - [Open Field Studio](./open-field-studio.md) — Site inspection and quality control. Defect pinning on floorplans, NEN 2767 checklists, offline-first. (`v0.3.6`)
-- [Open Frame Studio](./open-frame-studio.md) — 2D structural frame analysis for beams, columns, portal frames and civil load-bearing systems. (`v0.5.2`)
+- [Open Frame Studio](./open-frame-studio.md) — Design window and door frames (kozijnen) in 2D and 3D, with frame schedules, workshop drawings, cutting lists and IFC export. (`v0.5.2`)
 - [Y-app](./y-app.md) — Communication and collaboration for construction projects. (`n/a`)
 
 ## Preview
