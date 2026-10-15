@@ -53,8 +53,8 @@ assert.ok(
 );
 assert.match(
   validator,
-  /<a href="https:\/\/github\.com\/OpenAEC-Foundation\/OpenAEC-BIM-validator" target="_blank" rel="noopener" class="btn btn-primary github-cta"[^>]*>/,
-  'BIM Validator GitHub-link mist veilige attributen of toegankelijke knopstijl',
+  /<a href="https:\/\/github\.com\/OpenAEC-Foundation\/OpenAEC-BIM-validator" target="_blank" rel="noopener" class="btn btn-glow[^"]*"[^>]*>/,
+  'BIM Validator GitHub-link mist veilige attributen of de huisstijlknop',
 );
 assert.ok(validator.includes('id="recent-developments"'), 'BIM Validator mist recente ontwikkelingen');
 assert.ok(
@@ -65,25 +65,16 @@ assert.ok(
   validator.includes('<script src="/shared/release-notes.js?v=20260728"></script>'),
   'BIM Validator laadt het release-notesscript niet',
 );
+// Datums en links staan op het donkere paneel: warm goud (#F59E0B) haalt daar ruim AA.
 assert.match(
   validator,
-  /\.development-item time\s*\{[^}]*color:\s*#57534E/s,
+  /\.dev-card time\s*\{[^}]*color:\s*var\(--warm-gold\)/s,
   'BIM Validator-datums missen voldoende contrast',
 );
 assert.match(
   validator,
-  /\.development-link\s*\{[^}]*color:\s*var\(--info\)/s,
+  /\.dev-card a\s*\{[^}]*color:\s*var\(--warm-gold\)/s,
   'BIM Validator-links missen voldoende contrast',
-);
-assert.match(
-  validator,
-  /\.header-actions \.github-cta\s*\{[^}]*color:\s*#18181B/s,
-  'BIM Validator GitHub-knop mist contrastrijke tekst',
-);
-assert.match(
-  validator,
-  /\.header-actions \.github-cta:hover,[\s\S]*?background:\s*var\(--signal-orange\);[\s\S]*?color:\s*#18181B/,
-  'BIM Validator GitHub-knop mist contrastrijke hoverstijl',
 );
 for (const text of [
   'Project data separated per organization',
