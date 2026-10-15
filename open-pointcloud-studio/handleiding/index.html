@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Handleiding — Open Pointcloud Studio — OpenAEC Foundation</title>
+  <meta name="description" content="Handleiding voor Open Pointcloud Studio: scans openen, snedebox, meten, views en BCF, snedetekeningen in DXF en DWG, meshen, vlakken herkennen en 3D BAG.">
+  <link rel="canonical" href="https://open-aec.com/open-pointcloud-studio/handleiding/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-pointcloud-studio/handleiding/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/open-pointcloud-studio/handleiding/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/open-pointcloud-studio/handleiding/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/open-pointcloud-studio/handleiding/">
+  <link rel="alternate" hreflang="es" href="https://open-aec.com/es/open-pointcloud-studio/handleiding/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/open-pointcloud-studio/handleiding/">
+  <!-- hreflang:end -->
+
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Handleiding — Open Pointcloud Studio">
+  <meta property="og:description" content="Van een scan openen tot een snedetekening, een gesloten mesh en de vlakken van een ruimte.">
+  <meta property="og:url" content="https://open-aec.com/open-pointcloud-studio/handleiding/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Handleiding — Open Pointcloud Studio">
+  <meta name="twitter:description" content="Van een scan openen tot een snedetekening, een gesloten mesh en de vlakken van een ruimte.">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <meta name="i18n-page" content="open-pointcloud-studio-handleiding">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/shared/style.css">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Handleiding Open Pointcloud Studio",
+    "inLanguage": "nl",
+    "url": "https://open-aec.com/open-pointcloud-studio/handleiding/",
+    "about": { "@type": "SoftwareApplication", "name": "Open Pointcloud Studio" },
+    "publisher": { "@type": "Organization", "name": "OpenAEC Foundation" }
+  }
+  </script>
+
+  <style>
+    /* Handleiding-specifiek: inhoudsopgave, stappen en toetsen. De rest
+       komt uit /shared/style.css zodat de pagina de site-stijl volgt. */
+    .doc-layout { display: grid; grid-template-columns: 260px 1fr; gap: var(--sp-8); align-items: start; }
+    @media (max-width: 900px) { .doc-layout { grid-template-columns: minmax(0, 1fr); } .doc-toc { position: static !important; } }
+
+    .doc-head { padding-bottom: var(--sp-16); border-bottom: 3px solid transparent; border-image: var(--gradient-accent) 1; }
+    .doc-back { text-decoration: none; margin-bottom: var(--sp-6); }
+    .doc-back .ico { transform: rotate(180deg); }
+    .doc-back:hover { border-color: rgba(217,119,6,0.6); color: white; }
+    .doc-section { padding-top: var(--sp-12); }
+
+    .doc-toc { position: sticky; top: 96px; padding: var(--sp-5); background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); }
+    .doc-toc h3 { font-family: var(--font-code); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #B45309; margin: 0 0 var(--sp-3); }
+    .doc-toc ol { margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+    .doc-toc li { counter-increment: toc; margin: 2px 0; font-size: 0.9rem; }
+    .doc-toc a { display: flex; gap: 10px; padding: 6px 10px; border-radius: var(--radius-md); color: var(--deep-forge); text-decoration: none; transition: background 0.15s ease, color 0.15s ease; }
+    .doc-toc a::before { content: counter(toc); font-family: var(--font-code); font-size: 0.75rem; color: var(--text-muted); min-width: 1.2em; padding-top: 2px; }
+    .doc-toc a:hover { background: rgba(217,119,6,0.08); }
+    .doc-toc a.is-active { background: rgba(217,119,6,0.14); color: #B45309; font-weight: 600; }
+    .doc-toc a.is-active::before { color: var(--amber); }
+
+    .doc-sheet { background: #FFFFFF; border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); box-shadow: var(--shadow-float); padding: var(--sp-10) var(--sp-12); min-width: 0; }
+    .doc-chapter { scroll-margin-top: 96px; padding-bottom: var(--sp-8); margin-bottom: var(--sp-8); border-bottom: 1px solid rgba(42,42,50,0.07); }
+    .doc-chapter:last-child { border-bottom: 0; margin-bottom: 0; }
+    .doc-chapter h2 { font-size: 1.6rem; margin-bottom: var(--sp-3); color: var(--deep-forge); }
+    .doc-chapter h3 { margin: var(--sp-6) 0 var(--sp-2); font-size: 1.05rem; color: var(--deep-forge); }
+    .doc-chapter p, .doc-chapter li { line-height: 1.7; color: var(--text-on-light); max-width: 72ch; }
+    .doc-chapter a { color: #B45309; font-weight: 600; }
+    .doc-chapter code { font-family: var(--font-code); font-size: 0.85em; background: var(--concrete); padding: 1px 5px; border-radius: var(--radius-sm); }
+    .doc-chapter ol.steps { padding-left: 1.2rem; }
+    .doc-chapter ol.steps li { margin: 0.4rem 0; }
+    .doc-chapter ol.steps li::marker { color: var(--amber); font-weight: 700; }
+
+    kbd { font-family: var(--font-code); font-size: 0.85em; background: var(--concrete); border: 1px solid rgba(42,42,50,0.15); border-bottom-width: 2px; border-radius: var(--radius-sm); padding: 1px 6px; white-space: nowrap; }
+    .doc-note { border-left: 3px solid var(--amber); background: rgba(217,119,6,0.07); border-radius: var(--radius-md); padding: var(--sp-4) var(--sp-5); margin: var(--sp-5) 0; }
+    .doc-note strong { display: block; margin-bottom: 0.25rem; color: #B45309; font-family: var(--font-heading); }
+
+    table.doc-keys { width: 100%; border-collapse: collapse; margin-top: var(--sp-3); }
+    table.doc-keys th, table.doc-keys td { text-align: left; padding: 0.5rem 0.7rem; border-bottom: 1px solid rgba(42,42,50,0.08); font-size: 0.92rem; }
+    table.doc-keys th { font-family: var(--font-code); font-weight: 500; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+    table.doc-keys tr:hover td { background: rgba(217,119,6,0.04); }
+    table.doc-keys td:first-child { width: 34%; }
+
+    figure.doc-fig { margin: var(--sp-6) 0; }
+    figure.doc-fig img { width: 100%; display: block; border-radius: var(--radius-lg); border: 1px solid rgba(42,42,50,0.08); box-shadow: var(--shadow-float); }
+    figure.doc-fig figcaption { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.6rem; }
+    @media (max-width: 900px) { .doc-sheet { padding: var(--sp-6) var(--sp-5); } .doc-toc { position: static !important; } }
+    .doc-chapter ul + p, .doc-chapter ol + p, .doc-chapter table + p, .doc-chapter figure + ul { margin-top: var(--sp-4); }
+    .doc-intro { margin-top: 0; }
+  </style>
+
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "nl",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/openaec-foundation-io"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/open-pointcloud-studio/handleiding/#webpage",
+        "url": "https://open-aec.com/open-pointcloud-studio/handleiding/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "nl",
+        "dateModified": "2026-09-25",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/open-pointcloud-studio/handleiding/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/open-pointcloud-studio/handleiding/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Open Pointcloud Studio",
+            "item": "https://open-aec.com/open-pointcloud-studio"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Handleiding",
+            "item": "https://open-aec.com/open-pointcloud-studio/handleiding/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body class="page-panels">
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-brand">Open<span class="accent">AEC</span></a>
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
+      <ul class="nav-links">
+        <li><a href="/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Ecosysteem</a></li>
+        <li><a href="/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Roadmap</a></li>
+        <li><a href="/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Architectuur</a></li>
+        <li><a href="/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Statistieken</a></li>
+        <li><a href="/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Nieuws</a></li>
+        <li><a href="/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Supporters</a></li>
+        <li><a href="/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">Wij steunen</a></li>
+        <li><a href="/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structuur</a></li>
+        <li><a href="/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim" data-i18n-es="Contacto">Contact</a></li>
+      </ul>
+      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn" data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Feedback</a>
+      <div class="lang-switcher">
+        <a class="lang-btn active" data-lang="nl" href="/open-pointcloud-studio/handleiding/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/open-pointcloud-studio/handleiding/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/open-pointcloud-studio/handleiding/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/open-pointcloud-studio/handleiding/" hreflang="tr">TR</a>
+        <a class="lang-btn" data-lang="es" href="/es/open-pointcloud-studio/handleiding/" hreflang="es">ES</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js?v=20260728"></script>
+
+  <header class="product-head surface-spot doc-head">
+    <div class="product-head-inner">
+      <a class="chip doc-back" href="/open-pointcloud-studio/"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-arrow-right"/></svg>Open Pointcloud Studio</a>
+      <p class="pill-label" data-i18n="header.label">Handleiding</p>
+      <h1 data-i18n="header.title">Open <span class="accent">Pointcloud</span> Studio — handleiding</h1>
+      <p class="lead" data-i18n="header.desc">Van een scan openen tot een snedetekening, een gesloten mesh en de vlakken van een ruimte. Deze handleiding volgt het programma: eerst het venster, dan elk gereedschap.</p>
+      <div class="btn-group">
+        <a href="/open-pointcloud-studio/#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="header.downloadBtn">Naar downloads</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-external"/></svg><span data-i18n="header.guideBtn">Volledige handleiding (Engels)</span></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section doc-section"><div class="container">
+    <div class="doc-layout">
+
+      <!-- Inhoudsopgave -->
+      <nav class="doc-toc" aria-label="Inhoudsopgave" data-doc-toc>
+        <h3 data-i18n="toc.title">Inhoud</h3>
+        <ol>
+          <li><a href="#installeren" data-i18n="toc.installeren">Installeren</a></li>
+          <li><a href="#venster" data-i18n="toc.venster">Het venster</a></li>
+          <li><a href="#openen" data-i18n="toc.openen">Scans openen</a></li>
+          <li><a href="#rondkijken" data-i18n="toc.rondkijken">Rondkijken en weergave</a></li>
+          <li><a href="#stations" data-i18n="toc.stations">Stations, foto's en lopen</a></li>
+          <li><a href="#snedebox" data-i18n="toc.snedebox">Snedebox</a></li>
+          <li><a href="#selecteren" data-i18n="toc.selecteren">Selecteren en bewerken</a></li>
+          <li><a href="#meten" data-i18n="toc.meten">Meten</a></li>
+          <li><a href="#views" data-i18n="toc.views">Views, notities en BCF</a></li>
+          <li><a href="#exporteren" data-i18n="toc.exporteren">Exporteren en samenvoegen</a></li>
+          <li><a href="#snedetekening" data-i18n="toc.snedetekening">Snedetekeningen</a></li>
+          <li><a href="#bladen" data-i18n="toc.bladen">Bladen</a></li>
+          <li><a href="#meshen" data-i18n="toc.meshen">Meshen</a></li>
+          <li><a href="#vlakken" data-i18n="toc.vlakken">Vlakken herkennen</a></li>
+          <li><a href="#bag" data-i18n="toc.bag">3D BAG-gebouwen</a></li>
+          <li><a href="#index" data-i18n="toc.index">Index en detail</a></li>
+          <li><a href="#instellingen" data-i18n="toc.instellingen">Instellingen en extensies</a></li>
+          <li><a href="#sneltoetsen" data-i18n="toc.sneltoetsen">Sneltoetsen en muis</a></li>
+        </ol>
+      </nav>
+
+      <div class="doc-sheet">
+        <div class="doc-note doc-intro"><strong data-i18n="note.title">Meer detail</strong><span data-i18n="note.desc">Deze pagina is een overzicht. De <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md" target="_blank" rel="noopener">volledige gebruikershandleiding</a> op GitHub (Engels) beschrijft elk gereedschap tot in detail, met alle grenzen en metingen.</span></div>
+
+        <article class="doc-chapter" id="installeren">
+          <h2><span class="doc-num">1.</span> <span data-i18n="c.installeren.title">Installeren</span></h2>
+          <div data-i18n="c.installeren.body"><p>Open Pointcloud Studio draait op Windows, macOS en Linux. Alle pakketten staan in het <a href="/open-pointcloud-studio/#download">downloadblok</a>; elke knop start de download meteen, zonder account.</p>
+<h3>Windows</h3>
+<p>De installer (<code>.exe</code>) installeert voor de huidige gebruiker zonder beheerdersrechten, of voor alle gebruikers. Liever niets installeren? Kies dan de zip. Waarschuwt Windows voor een onbekende uitgever, kies dan <em>Meer informatie</em> en <em>Toch uitvoeren</em>.</p>
+<h3>macOS</h3>
+<p>Open de schijfkopie (<code>.dmg</code>) en sleep de applicatie naar Apps. Ze is niet genotariseerd, dus macOS weigert de eerste start: sta die één keer toe via <em>Systeeminstellingen → Privacy en beveiliging → Open toch</em>.</p>
+<h3>Linux</h3>
+<p>Maak de AppImage één keer uitvoerbaar met <code>chmod +x</code> en start hem. Er zijn ook een <code>.deb</code>-pakket en een archief met alleen het programma.</p>
+<div class="doc-note"><strong>Open CAD Studio zit erbij</strong><span>Elk pakket bevat Open CAD Studio, zodat je een getekende DXF of DWG meteen kunt bekijken. Je hoeft niets apart te installeren.</span></div></div>
+        </article>
+
+        <article class="doc-chapter" id="venster">
+          <h2><span class="doc-num">2.</span> <span data-i18n="c.venster.title">Het venster</span></h2>
+          <div data-i18n="c.venster.body"><p>Het venster bestaat uit zes delen. Als je die herkent, vind je alles terug.</p>
+<figure class="doc-fig"><img src="/shared/assets/screenshots/open-pointcloud-studio.jpeg" alt="Het venster met een scan van 455 miljoen punten: links de projectbrowser, in het midden de scène, rechts Eigenschappen." loading="lazy"><figcaption>Het venster met een scan van 455 miljoen punten: links de projectbrowser, in het midden de scène, rechts Eigenschappen.</figcaption></figure>
+<ul>
+<li><strong>Bovenste strook</strong>: de knop <em>Bestand</em>, de tabbladen <em>Start</em> en <em>Beeld</em>, snelknoppen (puntenwolk importeren, scanmap openen, exporteren, ongedaan maken, opnieuw) en <em>Instellingen</em>.</li>
+<li><strong>Lint Start</strong>: bestand, navigatie, selectie, snedebox, meshen, 2D-snedetekeningen, bladen, meten, annoteren, index en export. In een smal venster klappen groepen in tot keuzelijsten.</li>
+<li><strong>Projectbrowser</strong> (links) met vijf groepen: <em>SCANS</em> (de open puntenwolken, elk met een zichtbaarheidsschakelaar), <em>KLASSEN</em>, <em>VIEWS</em> (3D-views, plattegronden, aanzichten, doorsneden en geopende bestanden), <em>BLADEN</em> en <em>BCF</em>.</li>
+<li><strong>Scène</strong> (midden): het 3D-beeld met de viewcube. Tabbladen erboven zetten het 3D-model en geopende views en tekeningen naast elkaar.</li>
+<li><strong>Eigenschappen</strong> (rechts): wat de actieve scan bevat en de instellingen van wat je gebruikt, zoals de snedebox, een meting of een mesh.</li>
+<li><strong>Statusbalk</strong> (onder): wat er gebeurt, hoeveel punten open en geselecteerd zijn, en wat het hoofdvenster toont.</li>
+</ul>
+<p>Klik in de projectbrowser op een scan om hem de <strong>actieve scan</strong> te maken. Meten, bewerken, meshen, exporteren en views werken altijd op de actieve scan. Met Shift en Ctrl markeer je meerdere scans, om ze samen te verbergen of te sluiten.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="openen">
+          <h2><span class="doc-num">3.</span> <span data-i18n="c.openen.title">Scans openen</span></h2>
+          <div data-i18n="c.openen.body"><p>Een scan open je via <em>Puntenwolk importeren</em> in Bestand, het icoon in de bovenste strook, <em>+ Puntenwolk toevoegen</em> in de projectbrowser, of door bestanden of mappen op het venster te slepen. Meerdere bestanden mogen tegelijk open.</p>
+<h3>Een heel scanproject</h3>
+<p><em>Scanmap openen…</em> opent elk ondersteund bestand in een map (submappen niet), op naam gesorteerd. Een scanprojectbestand (<code>.rcp</code>) opent de scans die het noemt, als ze ernaast staan als E57, LAS, LAZ, PLY, PCD, PTX, PTS of tekst. De geïndexeerde kopieën (<code>.rcs</code>) zijn een gesloten formaat en worden niet gelezen.</p>
+<h3>Wat je eerst ziet</h3>
+<ul>
+<li><strong>LAS en LAZ</strong> openen meteen vanuit de header, met een steekproef van punten verspreid over het bestand.</li>
+<li><strong>Andere formaten</strong> worden de eerste keer helemaal gelezen. Grote bestanden tonen hun punten al tijdens het lezen, zodat de scan stap voor stap verschijnt.</li>
+<li>Een bestand dat al een index heeft, opent direct vanuit die index (zie <a href="#index">Index en detail</a>).</li>
+</ul>
+<p>Een strook boven de scène toont per import en per index de voortgang, de verwachte resterende tijd en een knop <em>Annuleren</em>.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="rondkijken">
+          <h2><span class="doc-num">4.</span> <span data-i18n="c.rondkijken.title">Rondkijken en weergave</span></h2>
+          <div data-i18n="c.rondkijken.body"><ul>
+<li><strong>Draaien</strong>: sleep met de middelste knop terwijl je Shift ingedrukt houdt, of met de linkerknop en Alt.</li>
+<li><strong>Om een punt draaien</strong>: dubbelklik op een punt; het beeld draait voortaan om dat punt. Dubbelklik in het lege vlak om weer om het midden te draaien.</li>
+<li><strong>Schuiven</strong>: sleep met de middelste of rechterknop. <strong>Zoomen</strong>: draai aan het wieltje, het zoomt naar de muiswijzer.</li>
+<li><code>F</code> of <em>Alles tonen</em> geeft het isometrische overzicht van het hele model. Op de <strong>viewcube</strong> klik je een vlak of hoek voor een vaste richting.</li>
+</ul>
+<h3>Weergave</h3>
+<p>De groep <em>Weergave</em> bepaalt hoe punten getekend worden: kleuren op <strong>RGB</strong>, <strong>Hoogte</strong>, <strong>Intensiteit</strong> of classificatie; <strong>Eye-dome</strong> voor schaduw op diepte, die randen en reliëf zichtbaar maakt; de <strong>puntgrootte</strong> (0,1 tot 20) en het budget: het maximum aantal punten dat tegelijk getekend wordt (100.000 tot 10 miljoen).</p>
+<p>Onder <em>KLASSEN</em> zet je classificaties aan of uit als lagen. Een verborgen klasse doet ook niet mee met selecties en meshes.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="stations">
+          <h2><span class="doc-num">5.</span> <span data-i18n="c.stations.title">Stations, foto's en lopen</span></h2>
+          <div data-i18n="c.stations.body"><p>Scannerposities uit E57-, PCD- en PTX-bestanden verschijnen als <strong>stationsmarkeringen</strong>. Een knop in de groep NAVIGATIE zet de stations met de wolk in beeld; in Eigenschappen toont <em>Lijst tonen</em> elk station met zijn coördinaten.</p>
+<h3>Stationsfoto's</h3>
+<p>E57-scans bevatten vaak de foto's van elk station. Zo'n station wordt een bol die zijn omgeving toont. Klik op een bol om in dat station te staan: sleep om rond te kijken, scroll om te zoomen en klik op een ander station om erheen te stappen. Panorama's en foto's langs een gelopen route open je met een dubbelklik op hun markering; de schuif <em>Foto</em> bepaalt hoeveel de foto de punten bedekt.</p>
+<h3>Lopen</h3>
+<p>Met <code>W</code> <code>A</code> <code>S</code> <code>D</code> loop je door de scène, met <code>Q</code> en <code>E</code> ga je omlaag en omhoog, en Shift loopt sneller. Escape of <em>Terug naar 3D-weergave</em> brengt je terug.</p>
+<h3>Kleur uit foto's</h3>
+<p>Een scan met foto's kan zijn punten de kleur geven die de foto's zien, bijvoorbeeld voor een wolk zonder kleur. Het blok <em>Kleur uit foto's</em> in Eigenschappen kleurt wat in de snedebox ligt; met Ongedaan maken draai je het terug. Het bronbestand verandert niet.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="snedebox">
+          <h2><span class="doc-num">6.</span> <span data-i18n="c.snedebox.title">Snedebox</span></h2>
+          <div data-i18n="c.snedebox.body"><p><strong>Snedebox</strong> zet een box aan die alles daarbuiten wegsnijdt. Daarmee kijk je in een gebouw, kies je een verdieping en bepaal je wat een tekening, mesh of export gebruikt.</p>
+<figure class="doc-fig"><img src="/shared/assets/screenshots/open-pointcloud-studio-3.jpg" alt="De snedebox beperkt tot een schijf van de hoogte, zodat de gevel met de ramen vrijkomt." loading="lazy"><figcaption>De snedebox beperkt tot een schijf van de hoogte, zodat de gevel met de ramen vrijkomt.</figcaption></figure>
+<ul>
+<li>Sleep een van de zes <strong>handgrepen</strong> om dat vlak te verschuiven, of typ <strong>Min</strong> en <strong>Max</strong> voor X, Y en Z in Eigenschappen en kies <em>XYZ-grenzen toepassen</em>.</li>
+<li>De box past zich desgewenst om de geselecteerde punten; <strong>Box herstellen</strong> opent hem weer over het hele model.</li>
+<li><strong>Draaien</strong>: met de gebogen pijlen, met <em>Rotatie (°)</em>, of met <strong>Uitlijnen op wanden</strong>, dat de box langs de hoofdrichting van de wanden zet.</li>
+<li>Waar de box een mesh doorsnijdt, wordt de snede gevuld getoond (<em>Snede vullen</em>), zoals bij een snedetekening.</li>
+</ul>
+<p>De box snijdt alleen weg wat getekend wordt. Binnen de box leest het programma vanuit de index meer detail, tot het puntbudget vol is.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="selecteren">
+          <h2><span class="doc-num">7.</span> <span data-i18n="c.selecteren.title">Selecteren en bewerken</span></h2>
+          <div data-i18n="c.selecteren.body"><h3>Selecteren</h3>
+<ul>
+<li>Zonder gereedschap selecteert een <strong>klik</strong> het dichtstbijzijnde punt en een <strong>sleep</strong> een rechthoek. <strong>Vak selecteren</strong> neemt alle bronpunten in de rechthoek, ook punten die niet op het scherm staan.</li>
+<li><strong>Punt kiezen</strong> toont van één punt de coördinaten, kleur, intensiteit en klasse onder <em>Geselecteerd punt</em>.</li>
+<li><strong>Wissen</strong> heft de selectie op; <strong>Zoom op selectie</strong> zoomt erop in.</li>
+</ul>
+<h3>Bewerken</h3>
+<ul>
+<li>De <kbd>Delete</kbd>-toets verbergt de geselecteerde punten. Ongedaan maken en opnieuw werken tot acht stappen terug.</li>
+<li><strong>Uitdunnen</strong> houdt een instelbaar percentage van de punten over, gelijkmatig over de hele scan.</li>
+<li><strong>Verplaatsen</strong> en <strong>Schalen</strong> verschuiven of schalen de actieve scan; <em>Transformatie herstellen</em> zet hem terug.</li>
+</ul>
+<p>Geen van deze bewerkingen verandert het bronbestand. Wil je het resultaat bewaren, exporteer dan naar een nieuw bestand.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="meten">
+          <h2><span class="doc-num">8.</span> <span data-i18n="c.meten.title">Meten</span></h2>
+          <div data-i18n="c.meten.body"><p><strong>Meten</strong> op het tabblad Start begint een afstand; in Eigenschappen kies je <strong>Afstand</strong> of <strong>Oppervlakte</strong>. Een klik pakt het bronpunt onder de muiswijzer. Slepen draait nog steeds, zodat je tussen twee punten het beeld kunt draaien.</p>
+<figure class="doc-fig"><img src="/shared/assets/screenshots/open-pointcloud-studio-2.jpg" alt="Een afstandsmeting van 26,774 meter tussen twee punten, met de snedebox laag in het gebouw." loading="lazy"><figcaption>Een afstandsmeting van 26,774 meter tussen twee punten, met de snedebox laag in het gebouw.</figcaption></figure>
+<ul>
+<li><strong>Afstand</strong>: twee punten. Je krijgt de 3D-lengte, de horizontale lengte en het hoogteverschil.</li>
+<li><strong>Oppervlakte</strong>: een gesloten veelhoek; sluit af met Enter of een klik op het eerste punt. Je krijgt de ware oppervlakte (ook van een schuin dak of een wand), de oppervlakte van bovenaf en de omtrek.</li>
+</ul>
+<p>Backspace haalt het laatste punt weg, Escape stopt. Waarden staan in meters met drie decimalen; de coördinaten van een scan worden als meters gelezen en niet omgerekend. Een meting wordt niet met de scan opgeslagen.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="views">
+          <h2><span class="doc-num">9.</span> <span data-i18n="c.views.title">Views, notities en BCF</span></h2>
+          <div data-i18n="c.views.body"><h3>Views</h3>
+<p><strong>View opslaan</strong> onder VIEWS bewaart wat de scène toont: de camera, de snedebox en de kleurmodus. Een klik op een view zet alles terug. Elke view heeft knoppen om te hernoemen, bij te werken, te dupliceren en te verwijderen. Een scan heeft hoogstens 64 views.</p>
+<h3>Notities en lijnen</h3>
+<p>Met <strong>Notitie</strong> en <strong>Lijn</strong> in Eigenschappen plaats je annotaties op punten van de scan: een notitie is een punt met tekst, een lijn een pijl tussen twee punten. Ze horen bij de actieve view en blijven op hun punten staan als de camera beweegt.</p>
+<h3>Momentopnamen en BCF</h3>
+<p>Elke view krijgt een PNG-momentopname van de scène. <strong>Views als BCF…</strong> (in Bestand → Exporteren) of <strong>BCF exporteren…</strong> in de projectbrowser schrijft alle views van de actieve scan als één BCF 2.1-bestand, met camera, snedebox, notities als opmerkingen en de momentopnamen. Zo neem je bevindingen mee naar een BIM-programma.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="exporteren">
+          <h2><span class="doc-num">10.</span> <span data-i18n="c.exporteren.title">Exporteren en samenvoegen</span></h2>
+          <div data-i18n="c.exporteren.body"><p>De exports staan in Bestand onder <em>EXPORTEREN</em>. Het formaat kies je op de pagina Werkruimte: PLY (binair of ASCII), LAS, LAZ, E57, XYZ, PTS of CSV.</p>
+<table class="doc-keys">
+<tr><th>Export</th><th>Wat het schrijft</th></tr>
+<tr><td>Volledige resolutie…</td><td>De actieve scan zonder verwijderde punten, verplaatst en geschaald zoals in de scène</td></tr>
+<tr><td>Geselecteerde punten…</td><td>Alleen de selectie</td></tr>
+<tr><td>Zonder geselecteerde punten…</td><td>Alles behalve de selectie</td></tr>
+<tr><td>Snedebox…</td><td>De punten binnen de snedebox</td></tr>
+<tr><td>Snedetekening…</td><td>Wat de box doorsnijdt, als 2D-tekening in DXF of DWG</td></tr>
+<tr><td>Elk N-de punt…</td><td>Eén punt op de 2, 5, 10, 20, 50 of 100</td></tr>
+<tr><td>Oppervlaktemesh…</td><td>De mesh als OBJ, PLY, STL, DXF, DWG of IFC</td></tr>
+<tr><td>Herkende vlakken…</td><td>De vlakken als JSON, OBJ, DXF, DWG of IFC</td></tr>
+<tr><td>Views als BCF…</td><td>De opgeslagen views</td></tr>
+</table>
+<p>Een LAS- of LAZ-bestand dat je naar LAS of LAZ exporteert, behoudt de oorspronkelijke puntrecords; een onbewerkte scan naar zijn eigen formaat is een exacte kopie. <strong>Zichtbare LAS/LAZ-scans samenvoegen…</strong> voegt de zichtbare LAS- en LAZ-lagen samen tot één bestand.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="snedetekening">
+          <h2><span class="doc-num">11.</span> <span data-i18n="c.snedetekening.title">Snedetekeningen</span></h2>
+          <div data-i18n="c.snedetekening.body"><p><strong>Snedetekening</strong> in de groep SNEDEBOX maakt een 2D-tekening op schaal 1:1 van wat de snedebox doorsnijdt, als DXF of DWG voor een tekenprogramma. De tekening toont een plak achter één vlak van de box: de punten, de <strong>gevulde snede</strong> (wanden, kolommen en vloeren als gevulde vlakken met een gesloten omtrek), het kader en een regel tekst.</p>
+<figure class="doc-fig"><img src="/shared/assets/screenshots/open-pointcloud-studio-4.jpg" alt="Snedetekening van twee kamers: de plattegrond met de gevulde snede, een deuropening en een ronde kolom." loading="lazy"><figcaption>Snedetekening van twee kamers: de plattegrond met de gevulde snede, een deuropening en een ronde kolom.</figcaption></figure>
+<h3>Een plattegrond, stap voor stap</h3>
+<ol class="steps">
+<li>Open de scans van de verdieping en verberg wat niet in de tekening hoort.</li>
+<li>Zet de <strong>Snedebox</strong> aan en leg het bovenvlak op de snijhoogte, bijvoorbeeld 1,10 m boven de vloer. Met een plak van 0,10 m zie je wat tussen 1,00 en 1,10 m ligt: boven het meeste meubilair, door de deuren.</li>
+<li>Kies <strong>Snedetekening</strong>, laat <em>Aanzicht</em> op <em>Plattegrond</em> en de <em>Plakdikte (m)</em> op 0,10.</li>
+<li>Kies <strong>Voorbeeld</strong>. Staat er een kast of persoon als vlak in beeld, selecteer en verwijder die punten en bekijk opnieuw.</li>
+<li>Kies <strong>Tekening exporteren…</strong> en geef een bestandsnaam op <code>.dxf</code> of <code>.dwg</code>.</li>
+</ol>
+<h3>Een doorsnede</h3>
+<p>Leg een zijvlak van de box waar de snede moet komen (draai de box eerst met <em>Uitlijnen op wanden</em> als het gebouw schuin staat) en kies het bijpassende aanzicht: <em>Doorsnede, voor</em>, <em>achter</em>, <em>links</em> of <em>rechts</em>. Een dikkere plak, tot 5 m, toont ook wat achter de snede ligt, zoals een aanzicht.</p>
+<h3>De tekeningweergave</h3>
+<p>Met <strong>2D-plattegrond / aanzicht / doorsnede maken…</strong> onder VIEWS maak je een tekening die je in het programma zelf bekijkt, op een licht blad met lagen die je aan en uit zet. Het blauwe <strong>bijsnijgebied</strong> kun je verslepen of met <code>R</code> <code>O</code> draaien; de tekening wordt dan opnieuw gemaakt. <em>Openen in CAD-viewer</em> opent de laatst geëxporteerde DXF of DWG in het meegeleverde Open CAD Studio.</p>
+<div class="doc-note"><strong>Grenzen van de gevulde snede</strong><span>De gevulde snede is afgeleid uit de punten. Een wand die van één kant is gescand wordt een smalle strook, openingen smaller dan ongeveer een halve meter worden gedicht en meubels in de plak worden meegetekend, tenzij je hun punten eerst verwijdert.</span></div></div>
+        </article>
+
+        <article class="doc-chapter" id="bladen">
+          <h2><span class="doc-num">12.</span> <span data-i18n="c.bladen.title">Bladen</span></h2>
+          <div data-i18n="c.bladen.body"><p>Een <strong>blad</strong> is papier (A4 tot A0) waarop je opgeslagen 3D-views, plattegronden, aanzichten en doorsneden schikt om te printen, met een rand en een titelblok. Je maakt het met <em>Nieuw blad…</em> onder BLADEN.</p>
+<ul>
+<li><strong>Views plaatsen</strong>: sleep een rij uit VIEWS op het papier. Een tekening komt op 1:100 (ook 1:20, 1:50, 1:200, 1:500 of een eigen schaal); een 3D-view toont zijn momentopname.</li>
+<li><strong>Annoteren</strong>: <em>Tekst</em>, <em>Maat</em>, <em>Verwijzing</em> en <em>Lijn</em>, met maten die vastklikken op eindpunten en hoeken.</li>
+<li><strong>Vergrendelen</strong>: een vergrendelde view of tekening blijft zoals je hem hebt ingericht.</li>
+<li><strong>PDF exporteren…</strong> schrijft het blad als PDF van één pagina, met tekeningen als vectoren.</li>
+</ul></div>
+        </article>
+
+        <article class="doc-chapter" id="meshen">
+          <h2><span class="doc-num">13.</span> <span data-i18n="c.meshen.title">Meshen</span></h2>
+          <div data-i18n="c.meshen.body"><p><strong>Puntenwolk meshen</strong> in de groep OPPERVLAK opent een kaart die je in drie stappen van punten naar een mesh of naar de vlakken van een gebouw brengt: <em>Methode</em>, <em>Opties</em> en <em>Uitvoeren</em>. De methoden werken op wat binnen de snedebox ligt.</p>
+<table class="doc-keys">
+<tr><th>Methode</th><th>Gebruik het voor</th></tr>
+<tr><td>Gesloten mesh</td><td>Een ruimte of gebouwdeel waarvan het oppervlak moet kloppen: zonder overlappingen, dicht waar punten zijn, met de gemeten afstand tussen punten en mesh</td></tr>
+<tr><td>Terreinmesh</td><td>Maaiveld en andere vlakken van bovenaf gezien (2,5D)</td></tr>
+<tr><td>3D-oppervlak</td><td>Een snelle indruk van een hele scan, met wanden; laat gaten en is niet waterdicht</td></tr>
+<tr><td>Vlakken</td><td>De vlakken van wanden, vloeren en daken en ronde kolommen; maakt geen mesh (zie <a href="#vlakken">Vlakken herkennen</a>)</td></tr>
+</table>
+<figure class="doc-fig"><img src="/shared/assets/screenshots/open-pointcloud-studio-5.jpg" alt="Gesloten mesh van twee kamers, met een open deuropening in een buitenwand." loading="lazy"><figcaption>Gesloten mesh van twee kamers, met een open deuropening in een buitenwand.</figcaption></figure>
+<h3>Een gesloten mesh van één ruimte</h3>
+<ol class="steps">
+<li>Open de scans van de ruimte en wacht tot ze geïndexeerd zijn.</li>
+<li>Zet de snedebox om de ruimte: de zijkanten tot halverwege de wanden, het bovenvlak net boven het plafond, het ondervlak net onder de vloer.</li>
+<li>Kies <strong>Puntenwolk meshen</strong> → <strong>Gesloten mesh</strong> → <em>Volgende</em>. Bij meerdere stations als losse bestanden zet je <em>Scans</em> op <em>Alle zichtbare scans</em>.</li>
+<li>Kies <strong>Uitvoeren</strong>. Na afloop toont de kaart het aantal hoekpunten en driehoeken en de gemiddelde afwijking.</li>
+<li>Bewaar de mesh met <strong>Mesh exporteren…</strong> als OBJ, PLY, STL, DXF, DWG of IFC; hij bestaat alleen in de lopende sessie.</li>
+</ol>
+<p>Een scan heeft één mesh: een nieuwe vervangt de vorige. OBJ-, PLY-, OFF- en STL-bestanden kun je ook openen als mesh. Een mesh heeft hoogstens vier miljoen hoekpunten en acht miljoen driehoeken.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="vlakken">
+          <h2><span class="doc-num">14.</span> <span data-i18n="c.vlakken.title">Vlakken herkennen</span></h2>
+          <div data-i18n="c.vlakken.body"><p>De methode <strong>Vlakken</strong> in Puntenwolk meshen vindt de vlakken in een deel van een scan: vloeren, plafonds, wanden en schuine vlakken, elk als één vlak met een omtrek (een raam is een gat, een deur een inkeping), plus ronde kolommen en leidingen als cilinders. Bij elk vlak staat hoeveel punten erbij horen en hoe ver ze ervan af liggen.</p>
+<figure class="doc-fig"><img src="/shared/assets/screenshots/open-pointcloud-studio-6.jpg" alt="Herkende vlakken van twee kamers, elk type in een eigen kleur: plafonds blauw, wanden zandkleurig." loading="lazy"><figcaption>Herkende vlakken van twee kamers, elk type in een eigen kleur: plafonds blauw, wanden zandkleurig.</figcaption></figure>
+<p>Een vlak is geen mesh. Een mesh volgt het gescande oppervlak met veel kleine driehoeken; een vlak vervangt een wand door het ene vlak dat erbij past. Met vlakken meet en teken je: de oppervlakte van een vloer, de hoogte tussen vloer en plafond, of een wand te lood staat.</p>
+<ol class="steps">
+<li>Zet de snedebox om de ruimte, zoals bij een gesloten mesh.</li>
+<li>Kies <strong>Puntenwolk meshen</strong> → <strong>Vlakken</strong> → <em>Volgende</em> → <strong>Uitvoeren</strong>.</li>
+<li>Bekijk de lijst onder <em>Herkende vlakken</em> in Eigenschappen; een klik licht een vlak op in de scène.</li>
+<li>Bewaar ze met <strong>Vlakken exporteren…</strong> als JSON, OBJ, DXF, DWG of IFC.</li>
+</ol></div>
+        </article>
+
+        <article class="doc-chapter" id="bag">
+          <h2><span class="doc-num">15.</span> <span data-i18n="c.bag.title">3D BAG-gebouwen</span></h2>
+          <div data-i18n="c.bag.body"><p><strong>3D BAG-gebouwen…</strong> in Bestand downloadt gebouwmodellen van Nederland uit het openbare 3D BAG-register en toont ze als meshlaag naast je scan.</p>
+<ul>
+<li>Typ een gebied in RD-coördinaten, neem het over van de actieve scan of de snedebox, of teken een rechthoek op de kaart.</li>
+<li>Kies het detailniveau: LoD 1.2, 1.3 of 2.2, en kies <strong>OBJ downloaden</strong>.</li>
+<li>Eén download beslaat hoogstens 2 bij 2 km en ongeveer 5.000 gebouwen.</li>
+</ul>
+<p>Het resultaat is een OBJ-bestand in RD en NAP-hoogten, met de bronvermelding van 3D BAG (CC BY 4.0). Hiervoor is een internetverbinding nodig.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="index">
+          <h2><span class="doc-num">16.</span> <span data-i18n="c.index.title">Index en detail</span></h2>
+          <div data-i18n="c.index.body"><p>Een grote wolk wordt niet in het geheugen gehouden. Het programma bouwt een <strong>index</strong> op schijf (een octree) en leest daaruit de punten die de camera nodig heeft, tot het puntbudget.</p>
+<ul>
+<li>Een wolk van een miljoen punten of meer krijgt na het openen vanzelf een index. <strong>Auto-index</strong> in de groep INDEX zet dat uit; <strong>Index bouwen</strong> start er handmatig een.</li>
+<li>De index blijft op schijf bewaard. Open je hetzelfde onveranderde bestand later opnieuw, dan opent het direct vanuit de index.</li>
+<li>Tijdens het bewegen blijven de punten op het scherm staan; kort nadat de camera stilstaat, wordt het detail voor het nieuwe beeld gelezen.</li>
+</ul>
+<div class="doc-note"><strong>Schijfruimte</strong><span>Een index kan voor een grote opname meerdere gigabytes op schijf innemen.</span></div></div>
+        </article>
+
+        <article class="doc-chapter" id="instellingen">
+          <h2><span class="doc-num">17.</span> <span data-i18n="c.instellingen.title">Instellingen en extensies</span></h2>
+          <div data-i18n="c.instellingen.body"><p>De knop <strong>Instellingen</strong> rechtsboven, of <code>Ctrl</code>+<code>,</code>, opent het dialoogvenster:</p>
+<ul>
+<li><strong>Algemeen</strong>: de taal (automatisch, Engels of Nederlands) en de CAD-viewer die geëxporteerde DXF- en DWG-bestanden opent.</li>
+<li><strong>Uiterlijk</strong>: het thema, een van de vijf uit het OpenAEC-stijlboek: Licht, Forge, OpenAEC, Blueprint of Hoog contrast.</li>
+<li><strong>Over</strong>: versie, licenties en een link naar de broncode.</li>
+</ul>
+<h3>Extensies</h3>
+<p>Onder <strong>Bestand → Extensies</strong> zet je ingebouwde functies aan of uit (zoals 3D BAG) en installeer je extensies van anderen. Een extensie is een programma dat met jouw rechten draait: installeer alleen extensies van makers die je vertrouwt.</p>
+<h3>Commando-API en MCP</h3>
+<p>Elk venster start een commandoserver op <code>127.0.0.1</code>, en <code>open-pointcloud-studio --mcp</code> start een MCP-server, zodat scripts en AI-assistenten het programma kunnen bedienen. Zie de <a href="/open-pointcloud-studio/">productpagina</a> voor de links naar de documentatie.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="sneltoetsen">
+          <h2><span class="doc-num">18.</span> <span data-i18n="c.sneltoetsen.title">Sneltoetsen en muis</span></h2>
+          <div data-i18n="c.sneltoetsen.body"><table class="doc-keys">
+<tr><th>Invoer</th><th>Wat het doet</th></tr>
+<tr><td>Linker sleep</td><td>Rechthoek die punten selecteert</td></tr>
+<tr><td><kbd>Alt</kbd> + linker sleep, <kbd>Shift</kbd> + middelste sleep</td><td>Draaien</td></tr>
+<tr><td>Middelste of rechter sleep</td><td>Schuiven</td></tr>
+<tr><td>Dubbelklik</td><td>Draaien om het punt onder de muiswijzer</td></tr>
+<tr><td>Wieltje</td><td>Zoomen naar de muiswijzer</td></tr>
+<tr><td><kbd>F</kbd></td><td>Alles in beeld</td></tr>
+<tr><td><kbd>R</kbd> dan <kbd>O</kbd></td><td>Bijsnijgebied of snedebox draaien; typ een hoek, Enter past toe</td></tr>
+<tr><td><kbd>Delete</kbd></td><td>Geselecteerde punten verbergen</td></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>Z</kbd> / <kbd>Ctrl</kbd>+<kbd>Y</kbd></td><td>Ongedaan maken / opnieuw</td></tr>
+<tr><td><kbd>Enter</kbd> / <kbd>Backspace</kbd></td><td>Meting afronden / laatste punt weghalen</td></tr>
+<tr><td><kbd>Escape</kbd></td><td>Dialoog of kaart sluiten, lopen stoppen, terug naar Selecteren</td></tr>
+<tr><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd>, <kbd>Q</kbd> <kbd>E</kbd></td><td>Lopen; omlaag en omhoog (Shift = sneller)</td></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>Tab</kbd></td><td>Volgend tabblad boven de scène</td></tr>
+<tr><td><kbd>Ctrl</kbd>+<kbd>,</kbd></td><td>Instellingen</td></tr>
+</table>
+<p>Op macOS neemt <kbd>Cmd</kbd> de plaats in van <kbd>Ctrl</kbd>, behalve bij <kbd>Ctrl</kbd>+<kbd>Tab</kbd>.</p></div>
+        </article>
+
+      </div>
+    </div>
+  </div></section>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/" class="nav-brand">Open<span class="accent">AEC</span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Open source software voor de volledige AEC-keten (bouw, utiliteit, GWW en civiele techniek) — van ontwerp tot oplevering en beheer.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Pagina's</h4>
+        <a href="/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">Over ons</a>
+        <a href="/ifcx/">IFCX</a>
+        <a href="/roadmap/" data-i18n-en="Roadmap 2026" data-i18n-fr="Feuille de route 2026" data-i18n-tr="2026 yol haritası" data-i18n-es="Hoja de ruta 2026">Roadmap 2026</a>
+        <a href="/architectuur/" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Architectuur</a>
+        <a href="/supporters/" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Supporters</a>
+        <a href="/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Offerte aanvragen</a>
+        <a href="/structuur/" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structuur</a>
+        <a href="/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">FAQ</a>
+        <a href="/statistieken/" data-i18n-en="Timeline &amp; Statistics" data-i18n-fr="Chronologie &amp; statistiques" data-i18n-tr="Zaman çizelgesi &amp; istatistikler" data-i18n-es="Cronología &amp; estadísticas">Tijdlijn &amp; Statistieken</a>
+        <a href="/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Disclaimer</a>
+        <a href="/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Concept statuten</a>
+        <a href="/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Credits</a>
+        <a href="/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Beleid & standpunten</a>
+        <a href="/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Socials</a>
+      </nav>
+      <nav class="site-footer-col" aria-label="Meer tools">
+        <h4 data-i18n-en="More tools" data-i18n-fr="Plus d'outils" data-i18n-tr="Daha fazla araç" data-i18n-es="Más herramientas">Meer tools</h4>
+        <a href="/open-energy-studio/">Open Energy Studio</a>
+        <a href="/open-safety-studio/">Open Safety Studio</a>
+        <a href="/open-3d-viewer/">Open 3D Viewer</a>
+        <a href="/open-books/">OpenBooks</a>
+        <a href="/openaec-cloud/">OpenAEC Cloud</a>
+        <a href="/openaec-docs/">OpenAEC Docs</a>
+        <a href="/ext-drawing-statistics/">Drawing Statistics</a>
+        <a href="/y-app/">Y-app</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Stichting i.o.</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">Nederland</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation i.o. — Open source voor een open bouw- en infrasector</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
+
+  <script>
+    // Markeert in de inhoudsopgave het hoofdstuk dat in beeld is.
+    (function () {
+      const toc = document.querySelector('[data-doc-toc]');
+      if (!toc || !('IntersectionObserver' in window)) return;
+      const links = new Map([...toc.querySelectorAll('a[href^="#"]')].map((a) => [a.getAttribute('href').slice(1), a]));
+      const zet = (id) => links.forEach((a, k) => a.classList.toggle('is-active', k === id));
+      const io = new IntersectionObserver((entries) => {
+        const zichtbaar = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (zichtbaar.length) zet(zichtbaar[0].target.id);
+      }, { rootMargin: '-100px 0px -60% 0px' });
+      links.forEach((_, id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+    })();
+  </script>
+  <script src="/shared/i18n.js?v=20260728"></script>
+</body>
+</html>
