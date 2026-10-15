@@ -17,6 +17,7 @@ Generated: 2026-10-15T06:08:26.398Z
 - [Open Pile Plan Studio](./open-pile-plan-studio.md) — Interactive pile-plan variants with load points, CPT selection, pile options, utilization, estimated costs and IFCPP project files. (`v0.4.3-alpha`)
 - [Open Pointcloud Studio](./open-pointcloud-studio.md) — Desktop application for viewing, measuring, editing and converting laser scans and other point clouds, and for turning them into section drawings, meshes and the flat faces of a building. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view. (`v0.9.5`)
 - [Open Speech Studio](./open-speech-studio.md) — Local speech-to-text using Whisper AI. CTRL+Win shortcut for OS-wide dictation. Privacy-first, no cloud. (`v0.12.2`)
+- [OpenAEC Installer](./openaec-installer.md) — Central hub to discover, install, update and launch every OpenAEC tool from one app. (`v0.2.2`)
 - [Monty IFC Viewer](./monty-ifc-viewer.md) — Lightweight IFC viewer for quick BIM model inspection. (`v1.0.1`)
 
 ## Alpha

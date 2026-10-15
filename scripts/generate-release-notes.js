@@ -24,6 +24,7 @@ const TOOL_REPOS = [
   'open-speech-studio',
   'open-field-studio',
   'open-frame-studio',
+  'openaec-installer',
   'open-geotechniek-studio',
   'pile-plan-studio',
   'monty-ifc-viewer',
