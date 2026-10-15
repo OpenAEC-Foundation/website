@@ -94,15 +94,18 @@
   <style>
     /* De beelden van de gegenereerde testkamers hebben een andere verhouding: elk heel in een kader zo hoog als de hoogste */
     .slider-slide.slide-framed img { aspect-ratio: 1920 / 1146; object-fit: contain; }
-    /* Rij met de drie directe downloads (de downloadtest zoekt deze klasse) */
-    .hero-downloads { display: flex; gap: var(--sp-4); justify-content: center; flex-wrap: wrap; }
-    .hero-more { display: inline-flex; align-items: center; gap: 6px; margin-top: var(--sp-5); font-size: 0.9rem; color: var(--warm-gold); text-decoration: none; }
-    .hero-more:hover { color: white; text-decoration: underline; }
+    /* Directe downloads als tekstregel onder de knoppen (de downloadtest zoekt deze klasse) */
+    .hero-downloads { margin: var(--sp-5) auto 0; max-width: none; font-size: 0.95rem; color: var(--text-on-dark); }
+    .hero-downloads a { color: var(--warm-gold); font-weight: 600; text-decoration: none; }
+    .hero-downloads a:hover { color: white; text-decoration: underline; }
 
     /* Downloads: meerdere links per systeem */
     .page-panels .download-section .download-intro { color: var(--text-on-light); font-size: 1.02rem; margin: calc(-1 * var(--sp-3)) auto var(--sp-6); max-width: 640px; }
-    .download-item { display: flex; flex-direction: column; align-items: stretch; }
-    .download-item .download-alt { font-size: 0.82rem; color: var(--text-on-light); margin-top: var(--sp-3); line-height: 1.6; }
+    /* Naam, eisen, knop en extra links staan in alle drie de kaarten op dezelfde hoogte */
+    #download .download-grid { row-gap: 0; }
+    #download .download-item { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0; align-items: start; margin-bottom: 16px; }
+    #download .download-item .btn { margin-top: 0; align-self: end; }
+    .download-item .download-alt { font-size: 0.85rem; color: var(--text-on-light); margin-top: var(--sp-3); line-height: 1.7; }
     .download-item .download-alt a { color: #B45309; font-weight: 600; }
     .download-arm { color: var(--text-on-light); font-size: 0.9rem; line-height: 1.6; margin: var(--sp-5) auto 0; max-width: none; text-align: center; }
     .download-arm a { color: #B45309; font-weight: 600; }
@@ -238,12 +241,12 @@
       <p class="pill-label" data-i18n="header.label">Puntenwolken bekijken, meten en bewerken</p>
       <h1 data-i18n="header.title">Open <span class="accent">Pointcloud</span> Studio</h1>
       <p class="lead" data-i18n="header.desc">Een desktopapplicatie voor het bekijken, meten, bewerken en omzetten van laserscans en andere puntenwolken. Uit een scan haal je een snedetekening in DXF of DWG, een gesloten mesh en de vlakken en cilinders van een ruimte. Draait op Windows, macOS en Linux, is geschreven in Rust en heeft geen browser of webview nodig.</p>
-      <div class="hero-downloads">
-        <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="header.dlWindows">Windows-installer</span></a>
-        <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="header.dlMac">macOS (.dmg)</span></a>
-        <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-appimage" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="header.dlLinux">Linux (AppImage)</span></a>
+      <div class="btn-group">
+        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="cta.download">Download</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-document"/></svg><span data-i18n="cta.guide">Handleiding</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-external"/></svg><span data-i18n="cta.github">GitHub</span></a>
       </div>
-      <a href="#download" class="hero-more"><span data-i18n="header.allFiles">Alle bestanden, controlesommen en uitleg bij het installeren</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></a>
+      <p class="hero-downloads"><span data-i18n="header.direct">Direct downloaden:</span> <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" data-i18n="header.dlWindows">Windows-installer</a> · <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos" data-i18n="header.dlMac">macOS (.dmg)</a> · <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-appimage" data-i18n="header.dlLinux">Linux (AppImage)</a></p>
       <div class="chip-row">
         <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-rocket"/></svg><span data-i18n="header.badge">Beta</span></span>
         <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-globe"/></svg>Windows · macOS · Linux</span>
