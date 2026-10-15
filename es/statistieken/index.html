@@ -35,81 +35,6 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/shared/style.css">
   <style>
-    .page-header {
-      background: var(--night-build);
-      padding: var(--sp-20) var(--sp-6) var(--sp-12);
-      text-align: center;
-      border-bottom: 3px solid transparent;
-      border-image: var(--gradient-accent) 1;
-    }
-    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
-    .page-header h1 {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 2.5rem;
-      color: white;
-      letter-spacing: -0.02em;
-      margin-bottom: var(--sp-4);
-    }
-    .page-header h1 .accent { color: var(--amber); }
-    .page-header p {
-      font-size: 1.125rem;
-      color: var(--scaffold-gray);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
-    }
-
-    /* Highlight stat cards */
-    .highlight-cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: var(--sp-6);
-      margin: var(--sp-8) auto;
-      max-width: 900px;
-    }
-    .highlight-card {
-      background: white;
-      border: 1px solid #E7E5E4;
-      border-radius: var(--radius-lg);
-      padding: var(--sp-6);
-      text-align: center;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-      transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .highlight-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(217, 119, 6, 0) 0%, rgba(217, 119, 6, 0) 60%, rgba(217, 119, 6, 0.08) 100%);
-      opacity: 0;
-      transition: opacity 0.25s ease;
-      pointer-events: none;
-    }
-    .highlight-card:hover {
-      box-shadow: 0 14px 30px -10px rgba(217, 119, 6, 0.28), 0 4px 12px -4px rgba(0,0,0,0.06);
-      border-color: var(--amber);
-      transform: translateY(-4px) scale(1.01);
-    }
-    .highlight-card:hover::before { opacity: 1; }
-    .highlight-card .number {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 2.25rem;
-      color: var(--amber);
-      transition: transform 0.25s ease;
-      font-variant-numeric: tabular-nums;
-    }
-    .highlight-card:hover .number { transform: scale(1.06); }
-    .highlight-card .label {
-      font-size: 0.875rem;
-      color: var(--scaffold-gray);
-      margin-top: var(--sp-1);
-    }
-
-    /* Chart tooltip (shared by all SVG charts) */
     .chart-tip {
       position: fixed;
       pointer-events: none;
@@ -197,142 +122,6 @@
     }
 
     /* Timeline */
-    .timeline-section {
-      background: var(--night-build);
-      padding: var(--sp-16) var(--sp-6);
-    }
-    .timeline-section h2 {
-      text-align: center;
-      color: white;
-      font-size: 2rem;
-      margin-bottom: var(--sp-12);
-    }
-    .timeline-section h2 .accent { color: var(--amber); }
-
-    .timeline {
-      position: relative;
-      max-width: 900px;
-      margin: 0 auto;
-      padding: var(--sp-6) 0;
-    }
-    .timeline::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 3px;
-      background: rgba(217, 119, 6, 0.3);
-      transform: translateX(-50%);
-    }
-
-    .timeline-item {
-      position: relative;
-      width: 50%;
-      padding: 0 var(--sp-8) var(--sp-10);
-    }
-    .timeline-item:nth-child(odd) {
-      left: 0;
-      padding-right: var(--sp-10);
-      text-align: right;
-    }
-    .timeline-item:nth-child(even) {
-      left: 50%;
-      padding-left: var(--sp-10);
-      text-align: left;
-    }
-
-    /* Dot on the line */
-    .timeline-item::before {
-      content: '';
-      position: absolute;
-      top: 6px;
-      width: 16px;
-      height: 16px;
-      border-radius: 50%;
-      background: var(--amber);
-      border: 3px solid var(--night-build);
-      box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.3);
-      z-index: 2;
-    }
-    .timeline-item:nth-child(odd)::before {
-      right: -8px;
-    }
-    .timeline-item:nth-child(even)::before {
-      left: -8px;
-    }
-
-    .timeline-item.planned .timeline-card {
-      border-style: dashed;
-      opacity: 0.8;
-    }
-    .timeline-item.planned::before {
-      background: var(--scaffold-gray);
-      box-shadow: 0 0 0 3px rgba(161, 161, 170, 0.3);
-    }
-
-    .timeline-card {
-      background: var(--deep-forge);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius-lg);
-      padding: var(--sp-6);
-      text-align: left;
-    }
-    .timeline-date {
-      font-family: var(--font-code);
-      font-size: 0.75rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--amber);
-      margin-bottom: var(--sp-2);
-    }
-    .timeline-card h3 {
-      color: white;
-      font-size: 1.125rem;
-      margin-bottom: var(--sp-3);
-    }
-    .timeline-card ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    .timeline-card ul li {
-      position: relative;
-      padding: var(--sp-1) 0 var(--sp-1) var(--sp-5);
-      color: var(--scaffold-gray);
-      font-size: 0.875rem;
-      line-height: 1.6;
-    }
-    .timeline-card ul li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 10px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--amber);
-    }
-    .timeline-item.planned .timeline-card ul li::before {
-      background: var(--scaffold-gray);
-    }
-    .planned-badge {
-      display: inline-block;
-      font-family: var(--font-code);
-      font-size: 0.625rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      background: rgba(161, 161, 170, 0.2);
-      color: var(--scaffold-gray);
-      padding: 2px 8px;
-      border-radius: var(--radius-full);
-      margin-left: var(--sp-2);
-      vertical-align: middle;
-    }
-
-    /* Stats table section */
     .stats-section { max-width: 1000px; margin: 0 auto; }
     .stats-section h2 {
       font-family: var(--font-heading);
@@ -458,54 +247,58 @@
       color: var(--scaffold-gray);
     }
 
-    /* Footer */
-    .page-footer.footer {
-      background: var(--deep-forge);
-      border-top: 3px solid transparent;
-      border-image: var(--gradient-accent) 1;
-    }
-    .footer-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: var(--sp-4);
-    }
-    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
-
-    /* Responsive */
     @media (max-width: 768px) {
-      .page-header h1 { font-size: 2rem; }
-      .highlight-cards { grid-template-columns: repeat(2, 1fr); }
 
-      .timeline::before { left: 20px; }
-      .timeline-item,
-      .timeline-item:nth-child(odd),
-      .timeline-item:nth-child(even) {
-        left: 0;
-        width: 100%;
-        padding-left: 50px;
-        padding-right: 0;
-        text-align: left;
-      }
-      .timeline-item::before,
-      .timeline-item:nth-child(odd)::before,
-      .timeline-item:nth-child(even)::before {
-        left: 12px;
-        right: auto;
-      }
 
       .stats-table { font-size: 0.75rem; }
       .stats-table thead th,
       .stats-table tbody td { padding: var(--sp-2); }
       .top-repos { grid-template-columns: 1fr; }
-      .trend-grid { grid-template-columns: 1fr !important; }
     }
-    @media (max-width: 480px) {
-      .highlight-cards { grid-template-columns: 1fr; }
-    }
+
+    /* A+ (okt 2026) */
+    .stats-section { max-width: none; }
+    .product-head p.stats-updated { text-align: center; font-family: var(--font-code); font-size: 0.75rem; color: var(--text-on-dark); opacity: 0.8; max-width: none; margin: var(--sp-5) auto 0; }
+    .product-head .stat-grid { position: relative; margin-top: 0; }
+    .stats-updated:has(#stats-updated:empty) { display: none; }
+    .chart-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 1100px; margin: var(--sp-8) auto 0; }
+    .chart-cards.single { grid-template-columns: 1fr; max-width: 1000px; }
+    .chart-card { padding: var(--sp-6); border-radius: var(--radius-lg); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.1); min-width: 0; }
+    .chart-title { font-family: var(--font-code); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-gold); margin: 0 0 var(--sp-4); }
+    .chart-card.on-light { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); }
+    .chart-card.on-light .chart-title { color: #B45309; }
+    .chart-card h3 { font-size: 1.2rem; color: var(--deep-forge); margin: 0 0 var(--sp-2); }
+    .chart-card h3 + p { color: var(--text-on-light); font-size: 0.9rem; margin-bottom: var(--sp-4); }
+    .chart-box { height: 250px; }
+    .chart-box.short { height: 225px; }
+    .chart-legend { display: flex; gap: var(--sp-4); margin-bottom: var(--sp-2); font-family: var(--font-code); font-size: 0.72rem; color: var(--text-on-dark); }
+    .chart-legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+    .dot-open { background: #22D3EE; } .dot-closed { background: #34D399; } .dot-total { background: #F59E0B; }
+    .panel .btn-group { justify-content: center; margin-top: var(--sp-8); }
+    .table-card { margin-top: var(--sp-8); padding: var(--sp-2) var(--sp-4); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .stats-table td.loading { text-align: center; color: var(--text-on-light); padding: var(--sp-8); }
+    .geo-list { list-style: none; margin: 0; padding: 0; }
+    .geo-list li { position: relative; padding: 7px 0 7px 30px; color: var(--text-on-dark); font-size: 0.92rem; line-height: 1.55; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .geo-list li:last-child { border-bottom: 0; }
+    .geo-list li .ico { position: absolute; left: 0; top: 9px; width: 18px; height: 18px; color: var(--amber); }
+    .geo-list.next li .ico { color: var(--warm-gold); opacity: 0.75; }
+    .geo-list a { color: var(--warm-gold); font-weight: 600; }
+    .journey { max-width: 820px; margin: var(--sp-8) auto 0; }
+    .journey .rn-tl-card h3 { font-size: 1.1rem; color: var(--deep-forge); margin: var(--sp-1) 0 0; }
+    .journey .rn-tl-plain-list { font-size: 0.92rem; }
+    .journey .rn-tl-item.planned .rn-tl-card { border-style: dashed; background: var(--blueprint-white); }
+    .journey .status-planned { font-family: var(--font-code); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 9px; border-radius: var(--radius-full); background: rgba(42,42,50,0.08); color: var(--deep-forge); }
+    .top-repos { max-width: 1100px; margin-left: auto; margin-right: auto; gap: 16px; }
+    .top-repo-card { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); }
+    .top-repo-card h4 { color: #B45309; font-size: 0.78rem; }
+    .top-repo-card ol li { color: var(--text-on-light); border-bottom-color: rgba(42,42,50,0.07); }
+    .top-repo-card ol li span.repo-name { color: var(--deep-forge); }
+    .top-repo-card ol li span.repo-val { color: var(--text-on-light); }
+    .chart-card, .top-repo-card, .journey .rn-tl-card { transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+    .chart-card:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0.5); }
+    .chart-card.on-light:hover, .top-repo-card:hover, .journey .rn-tl-card:hover { transform: translateY(-4px); border-color: rgba(217,119,6,0.35); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float-hover); }
+    .journey .rn-tl-card { box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); }
+    @media (max-width: 860px) { .chart-cards { grid-template-columns: 1fr; } }
   </style>
 
   <meta name="i18n-static" content="es">
@@ -542,7 +335,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "es",
-        "dateModified": "2026-10-13",
+        "dateModified": "2026-10-15",
         "breadcrumb": {
           "@id": "https://open-aec.com/es/statistieken/#breadcrumb"
         }
@@ -576,7 +369,7 @@
   </script>
   <!-- schema:end -->
 </head>
-<body>
+<body class="page-panels">
     <div id="shared-nav"><!-- nav:start -->
 <nav class="navbar">
   <div class="nav-container">
@@ -610,293 +403,385 @@
 <!-- nav:end --></div>
 <script src="/shared/nav.js?v=20260728"></script>
 
-  <header class="page-header">
-    <p class="section-label" data-i18n="header.label">OpenAEC Foundation</p>
-    <h1 data-i18n="header.title">Cronología y <span class="accent">estadísticas</span></h1>
-    <p data-i18n="header.desc">La historia y las cifras detrás del ecosistema OpenAEC. Desde la primera idea hasta una plataforma open source completa.</p>
+  <header class="product-head surface-spot">
+    <div class="product-head-inner">
+      <p class="pill-label" data-i18n="header.label">OpenAEC Foundation</p>
+      <h1 data-i18n="header.title">Cronología y <span class="accent">estadísticas</span></h1>
+      <p class="lead" data-i18n="header.desc">La historia y las cifras detrás del ecosistema OpenAEC. Desde la primera idea hasta una plataforma open source completa.</p>
+    </div>
+    <div class="stat-grid stat-grid-4">
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.repos">Repositorios</span></div><div class="stat-number" id="s-repos">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.commits">Commits</span></div><div class="stat-number" id="s-commits">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.stars">Estrellas</span></div><div class="stat-number" id="s-stars">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.releases">Versiones publicadas</span></div><div class="stat-number" id="s-releases">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.contributors">Contribuidores</span></div><div class="stat-number" id="s-contributors">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.loc">Líneas de código (est.)</span></div><div class="stat-number" id="s-loc">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.languages">Lenguajes de programación</span></div><div class="stat-number" id="s-languages">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.open_issues">Issues abiertas</span></div><div class="stat-number" id="s-issues">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.closed_issues">Issues cerradas</span></div><div class="stat-number" id="s-closed-issues">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.merged_prs">PRs fusionadas</span></div><div class="stat-number" id="s-merged-prs">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.closed_prs">PRs cerradas</span></div><div class="stat-number" id="s-closed-prs">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.downloads">Descargas</span></div><div class="stat-number" id="s-downloads">—</div></div>
+    </div>
+    <p class="stats-updated"><span data-i18n="stats.updated">Última actualización:</span> <span id="stats-updated"></span></p>
   </header>
 
-  <!-- Section 1: Highlight stats -->
-  <section class="section" style="background: var(--blueprint-white);">
-    <div class="highlight-cards" style="grid-template-columns: repeat(4, 1fr);">
-      <div class="highlight-card"><div class="number" id="s-repos">—</div><div class="label" data-i18n="stats.repos">Repositorios</div></div>
-      <div class="highlight-card"><div class="number" id="s-commits">—</div><div class="label" data-i18n="stats.commits">Commits</div></div>
-      <div class="highlight-card"><div class="number" id="s-stars">—</div><div class="label" data-i18n="stats.stars">Estrellas</div></div>
-      <div class="highlight-card"><div class="number" id="s-releases">—</div><div class="label" data-i18n="stats.releases">Versiones publicadas</div></div>
-      <div class="highlight-card"><div class="number" id="s-contributors">—</div><div class="label" data-i18n="stats.contributors">Contribuidores</div></div>
-      <div class="highlight-card"><div class="number" id="s-loc">—</div><div class="label" data-i18n="stats.loc">Líneas de código (est.)</div></div>
-      <div class="highlight-card"><div class="number" id="s-languages">—</div><div class="label" data-i18n="stats.languages">Lenguajes de programación</div></div>
-      <div class="highlight-card"><div class="number" id="s-issues">—</div><div class="label" data-i18n="stats.open_issues">Issues abiertas</div></div>
-      <div class="highlight-card"><div class="number" id="s-closed-issues">—</div><div class="label" data-i18n="stats.closed_issues">Issues cerradas</div></div>
-      <div class="highlight-card"><div class="number" id="s-merged-prs">—</div><div class="label" data-i18n="stats.merged_prs">PRs fusionadas</div></div>
-      <div class="highlight-card"><div class="number" id="s-closed-prs">—</div><div class="label" data-i18n="stats.closed_prs">PRs cerradas</div></div>
-      <div class="highlight-card"><div class="number" id="s-downloads">—</div><div class="label" data-i18n="stats.downloads">Descargas</div></div>
+  <section class="section surface-dark panel">
+    <div class="panel-center">
+      <h2 data-i18n="growth.title">Crecimiento a lo largo del <span class="accent">tiempo</span></h2>
     </div>
-    <p id="stats-updated" style="text-align:center;font-size:0.75rem;color:var(--scaffold-gray);margin-top:var(--sp-2);"></p>
-  </section>
-
-  <!-- Trend charts -->
-  <section class="section" style="background: var(--night-build);">
-    <div class="stats-section" style="max-width:1000px;margin:0 auto;">
-      <h2 style="color:white;" data-i18n="growth.title">Crecimiento a lo largo del <span class="accent">tiempo</span></h2>
-      <div class="trend-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-6);margin-top:var(--sp-6);">
-        <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
-          <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="charts.cum_repos">Repositorios acumulados</h4>
-          <div id="chart-cum-repos" style="height:250px;"></div>
-        </div>
-        <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
-          <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="charts.cum_commits">Commits acumulados</h4>
-          <div id="chart-cum-commits" style="height:250px;"></div>
-        </div>
-        <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
-          <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="charts.issues_combined">Issues — abiertas, cerradas, total</h4>
-          <div style="display:flex;gap:var(--sp-3);margin-bottom:var(--sp-2);font-family:var(--font-code);font-size:0.7rem;color:#A1A1AA;">
-            <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#22D3EE;margin-right:4px;vertical-align:middle;"></span>Open</span>
-            <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#34D399;margin-right:4px;vertical-align:middle;"></span>Closed</span>
-            <span><span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#F59E0B;margin-right:4px;vertical-align:middle;"></span>Totaal</span>
-          </div>
-          <div id="chart-cum-issues" style="height:225px;"></div>
-        </div>
-        <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
-          <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="charts.loc">Líneas de código (estimadas)</h4>
-          <div id="chart-cum-loc" style="height:250px;"></div>
-        </div>
-        <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
-          <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="charts.cum_contributors">Contribuidores acumulados</h4>
-          <div id="chart-cum-contributors" style="height:250px;"></div>
-        </div>
-        <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
-          <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="charts.cum_stars">Estrellas acumuladas</h4>
-          <div id="chart-cum-stars" style="height:250px;"></div>
-        </div>
+    <div class="chart-cards">
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="charts.cum_repos">Repositorios acumulados</h4>
+        <div class="chart-box" id="chart-cum-repos"></div>
+      </div>
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="charts.cum_commits">Commits acumulados</h4>
+        <div class="chart-box" id="chart-cum-commits"></div>
+      </div>
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="charts.issues_combined">Issues — abiertas, cerradas, total</h4>
+        <div class="chart-legend"><span><span class="dot dot-open"></span><span data-i18n="charts.legend_open">Abiertas</span></span><span><span class="dot dot-closed"></span><span data-i18n="charts.legend_closed">Cerradas</span></span><span><span class="dot dot-total"></span><span data-i18n="charts.legend_total">Total</span></span></div>
+        <div class="chart-box short" id="chart-cum-issues"></div>
+      </div>
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="charts.loc">Líneas de código (estimadas)</h4>
+        <div class="chart-box" id="chart-cum-loc"></div>
+      </div>
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="charts.cum_contributors">Contribuidores acumulados</h4>
+        <div class="chart-box" id="chart-cum-contributors"></div>
+      </div>
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="charts.cum_stars">Estrellas acumuladas</h4>
+        <div class="chart-box" id="chart-cum-stars"></div>
       </div>
     </div>
   </section>
 
-  <section class="section" style="background: white;">
-    <div class="stats-section">
-      <h2 data-i18n="charts.repos_month">Repos por <span class="accent">mes</span></h2>
-      <div id="chart-monthly" style="height: 250px;"></div>
-    </div>
-  </section>
-  <section class="section" style="background: var(--concrete);">
-    <div class="stats-section">
-      <h2 data-i18n="charts.lang_dist">Distribución por <span class="accent">lenguaje de programación</span></h2>
-      <p style="color:#57534E;font-size:0.875rem;margin-bottom:var(--sp-4);">Aantal repositories per primaire programmeertaal van het OpenAEC-ecosysteem.</p>
-      <div id="chart-langs" style="max-width:700px;"></div>
-    </div>
-  </section>
-
-  <!-- News activity -->
-  <section class="section" style="background: var(--night-build);">
-    <div class="stats-section" style="max-width:1000px;margin:0 auto;">
-      <h2 style="color:white;" data-i18n="news.title">Actividad de <span class="accent">noticias</span></h2>
-      <p style="color:var(--scaffold-gray);margin-bottom:var(--sp-6);" data-i18n="news.subtitle">Todas las versiones publicadas y los repositorios nuevos desde el 1 de enero de 2026.</p>
-      <div class="highlight-cards" style="grid-template-columns: repeat(3, 1fr); margin-bottom: var(--sp-6);">
-        <div class="highlight-card" style="background:var(--deep-forge);border-color:rgba(255,255,255,0.1);"><div class="number" id="s-news-total">—</div><div class="label" style="color:var(--scaffold-gray);" data-i18n="news.items">Noticias</div></div>
-        <div class="highlight-card" style="background:var(--deep-forge);border-color:rgba(255,255,255,0.1);"><div class="number" id="s-news-releases">—</div><div class="label" style="color:var(--scaffold-gray);">Releases</div></div>
-        <div class="highlight-card" style="background:var(--deep-forge);border-color:rgba(255,255,255,0.1);"><div class="number" id="s-news-repos">—</div><div class="label" style="color:var(--scaffold-gray);" data-i18n="news.new_repos">Repos nuevos</div></div>
+  <section class="section"><div class="container">
+    <div class="chart-cards single">
+      <div class="chart-card on-light">
+        <h3 data-i18n="charts.repos_month">Repos por <span class="accent">mes</span></h3>
+        <div class="chart-box" id="chart-monthly"></div>
       </div>
-      <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
-        <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);" data-i18n="news.chart_title">Versiones y repos nuevos por semana</h4>
-        <div id="chart-news-activity" style="height:250px;"></div>
-      </div>
-      <div style="text-align:center;margin-top:var(--sp-6);">
-        <a href="/es/nieuws/" class="btn btn-primary btn-lg" data-i18n="news.view_all">Ver todas las noticias &rarr;</a>
+      <div class="chart-card on-light">
+        <h3 data-i18n="charts.lang_dist">Distribución por <span class="accent">lenguaje de programación</span></h3>
+        <p data-i18n="charts.lang_desc">Número de repositorios por lenguaje de programación principal en el ecosistema OpenAEC.</p>
+        <div id="chart-langs"></div>
       </div>
     </div>
+  </div></section>
+
+  <section class="section surface-dark panel">
+    <div class="panel-center">
+      <h2 data-i18n="news.title">Actividad de <span class="accent">noticias</span></h2>
+      <p data-i18n="news.subtitle">Todas las versiones publicadas y los repositorios nuevos desde el 1 de enero de 2026.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="news.items">Noticias</span></div><div class="stat-number" id="s-news-total">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="news.releases">Versiones</span></div><div class="stat-number" id="s-news-releases">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="news.new_repos">Repos nuevos</span></div><div class="stat-number" id="s-news-repos">—</div></div>
+    </div>
+    <div class="chart-cards single">
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="news.chart_title">Versiones y repos nuevos por semana</h4>
+        <div class="chart-box" id="chart-news-activity"></div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <a href="/es/nieuws/" class="btn btn-glow"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-arrow-right"/></svg><span data-i18n="news.view_all">Ver todas las noticias</span></a>
+    </div>
   </section>
 
-  <!-- Downloads activity -->
-  <section class="section" style="background: var(--blueprint-white);">
-    <div class="stats-section" style="max-width:1000px;margin:0 auto;">
-      <h2>Installer <span class="accent">downloads</span></h2>
-      <p style="color:#57534E;margin-bottom:var(--sp-6);">Aantal downloads per platform en per tool, live opgehaald van GitHub Releases.</p>
-
-      <div class="highlight-cards" style="grid-template-columns: repeat(3, 1fr); margin-bottom: var(--sp-6);">
-        <div class="highlight-card"><div class="number" id="s-dl-total">—</div><div class="label">Totaal downloads</div></div>
-        <div class="highlight-card"><div class="number" id="s-dl-tools">—</div><div class="label">Tools met downloads</div></div>
-        <div class="highlight-card"><div class="number" id="s-dl-top-platform">—</div><div class="label">Populairste platform</div></div>
+  <section class="section"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="dl.title"><span class="accent">Descargas</span> de instaladores</h2>
+      <p data-i18n="dl.desc">Descargas por plataforma y por herramienta, obtenidas en directo de GitHub Releases.</p>
+    </div>
+    <div class="stat-grid on-light">
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="dl.total">Descargas totales</span></div><div class="stat-number" id="s-dl-total">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="dl.tools">Herramientas con descargas</span></div><div class="stat-number" id="s-dl-tools">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="dl.top_platform">Plataforma más popular</span></div><div class="stat-number" id="s-dl-top-platform">—</div></div>
+    </div>
+    <div class="chart-cards single">
+      <div class="chart-card on-light">
+        <h4 class="chart-title" data-i18n="dl.per_platform">Descargas por plataforma</h4>
+        <div class="chart-box" id="chart-dl-platform"></div>
       </div>
-
-      <div style="background:white;border:1px solid #E7E5E4;border-radius:var(--radius-lg);padding:var(--sp-6);margin-bottom:var(--sp-6);">
-        <h4 style="color:var(--deep-forge);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);">Downloads per platform</h4>
-        <div id="chart-dl-platform" style="height:250px;"></div>
-      </div>
-
-      <div style="background:white;border:1px solid #E7E5E4;border-radius:var(--radius-lg);padding:var(--sp-6);">
-        <h4 style="color:var(--deep-forge);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);">Top tools — meeste downloads</h4>
+      <div class="chart-card on-light">
+        <h4 class="chart-title" data-i18n="dl.top_tools">Herramientas destacadas: las más descargadas</h4>
         <div id="dl-ranking"></div>
       </div>
     </div>
-  </section>
+  </div></section>
 
-  <!-- AI / GEO readiness -->
-  <section class="section" style="background: var(--night-build);">
-    <div class="stats-section" style="max-width:1000px;margin:0 auto;">
-      <h2 style="color:white;"><span class="accent">AI</span>-vindbaarheid</h2>
-      <p style="color:var(--scaffold-gray);margin-bottom:var(--sp-6);">Onze strategie om AI-assistenten zoals Claude, ChatGPT, Grok, Perplexity en Gemini de OpenAEC-tools te laten aanbevelen aan hun gebruikers. Dit heet <em>Generative Engine Optimization (GEO)</em>.</p>
-
-      <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);margin-bottom:var(--sp-4);">
-        <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);">Geïmplementeerd</h4>
-        <ul style="list-style:none;padding:0;margin:0;">
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/llms.txt" style="color:var(--amber);">/llms.txt</a> — LLM-vriendelijke site-samenvatting (emerging standaard)</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/robots.txt" style="color:var(--amber);">/robots.txt</a> — Expliciete allow voor 18 AI-bots (ClaudeBot, GPTBot, PerplexityBot, etc.)</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/sitemap.xml" style="color:var(--amber);">/sitemap.xml</a> — Volledige URL-index voor crawlers</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/api/tools.json" style="color:var(--amber);">/api/tools.json</a> — Machine-readable tool catalogus (17 tools)</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> Schema.org JSON-LD op homepage (Organization + 10 SoftwareApplication)</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/es/faq/" style="color:var(--amber);">FAQPage JSON-LD</a> — direct gebruikt in Google AI Overview</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/es/aan-de-slag/" style="color:var(--amber);">HowTo JSON-LD</a> — getting-started stappen voor AI Overview</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> Open Graph + Twitter Cards — rich previews op LinkedIn, Slack, Twitter</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/es/vs/" style="color:var(--amber);">Comparison-pagina's</a> — vs Bluebeam, Solibri, AutoCAD, BIMcollab, Bouwprijs (hoge AI-zoekintent)</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:#16A34A;font-weight:700;">✓</span> <a href="/md/index.md" style="color:var(--amber);">Markdown mirrors</a> — Claude/Cursor/Continue lezen .md schoner dan HTML</li>
-        </ul>
-      </div>
-
-      <div style="background:var(--deep-forge);border-radius:var(--radius-lg);padding:var(--sp-6);">
-        <h4 style="color:var(--amber);font-family:var(--font-code);font-size:0.8rem;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:var(--sp-4);">Volgende stappen</h4>
-        <ul style="list-style:none;padding:0;margin:0;">
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:var(--scaffold-gray);font-weight:700;">○</span> Sitemap submitten aan Google Search Console + Bing Webmaster Tools</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:var(--scaffold-gray);font-weight:700;">○</span> Backlinks vanuit autoritaire bronnen (buildingSMART, OSArch, awesome-bim, awesome-rust lists)</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:var(--scaffold-gray);font-weight:700;">○</span> Per tool eigen Markdown documentation pages (uitgebreidere SDK + examples)</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:var(--scaffold-gray);font-weight:700;">○</span> MCP servers voor elke tool — directe AI tool-use integratie (Open Calc Studio heeft er al een)</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:var(--scaffold-gray);font-weight:700;">○</span> Engelstalige blog/case-studies — internationale AI-zichtbaarheid</li>
-          <li style="color:var(--scaffold-gray);font-size:0.875rem;padding:6px 0;padding-left:24px;position:relative;"><span style="position:absolute;left:0;color:var(--scaffold-gray);font-weight:700;">○</span> Stack Overflow / Reddit / Hacker News presence — AI-trainingsdata bron</li>
-        </ul>
-      </div>
+  <section class="section"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="timeline.title">El <span class="accent">recorrido</span></h2>
     </div>
-  </section>
-
-  <!-- Section 2: Timeline -->
-  <section class="timeline-section">
-    <h2 data-i18n="timeline.title">El <span class="accent">recorrido</span></h2>
-    <div class="timeline">
-
-      <!-- Januari 2026 -->
-      <div class="timeline-item">
-        <div class="timeline-card">
-          <div class="timeline-date">Januari 2026</div>
-          <h3>Start OpenAEC Foundation</h3>
-          <ul>
-            <li>Eerste repository's aangemaakt</li>
-            <li>Open PDF Studio en Open 2D Studio gestart</li>
-            <li>Frappe Claude Skill Package gepubliceerd (55 stars)</li>
+    <ol class="rn-timeline journey">
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.jan.date">Enero de 2026</span></div>
+          <h3 data-i18n="timeline.jan.title">Arranca la OpenAEC Foundation</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.jan.i1">Se crean los primeros repositorios</li>
+            <li data-i18n="timeline.jan.i2">Se inician Open PDF Studio y Open 2D Studio</li>
+            <li data-i18n="timeline.jan.i3">Se publica el Frappe Claude Skill Package (55 estrellas)</li>
           </ul>
         </div>
-      </div>
-
-      <!-- Februari 2026 -->
-      <div class="timeline-item">
-        <div class="timeline-card">
-          <div class="timeline-date">Februari 2026</div>
-          <h3>Ecosysteem groeit</h3>
-          <ul>
-            <li>Open Pointcloud Studio, Open Energy Studio, Open Heatloss Studio gestart</li>
-            <li>Dynlex (196 commits), OpenAEC Reports (255 commits)</li>
-            <li>IFC Factory voor IFCX-ontwikkeling</li>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.feb.date">Febrero de 2026</span></div>
+          <h3 data-i18n="timeline.feb.title">El ecosistema crece</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.feb.i1">Se inician Open Pointcloud Studio, Open Energy Studio y Open Heatloss Studio</li>
+            <li data-i18n="timeline.feb.i2">Dynlex (196 commits), OpenAEC Reports (255 commits)</li>
+            <li data-i18n="timeline.feb.i3">IFC Factory para el desarrollo de IFCX</li>
           </ul>
         </div>
-      </div>
-
-      <!-- Maart 2026 -->
-      <div class="timeline-item">
-        <div class="timeline-card">
-          <div class="timeline-date">Maart 2026</div>
-          <h3>Validatie & documentatie</h3>
-          <ul>
-            <li>OpenAEC BIM Validator (207 commits)</li>
-            <li>Open Field Studio gelanceerd (v0.1.3)</li>
-            <li>Open Speech Studio (v0.5.0)</li>
-            <li>19 Claude Skill Packages gepubliceerd</li>
-            <li>BCF Platform en OpenAEC Docs gestart</li>
-            <li>Website live op open-aec.com</li>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.mar.date">Marzo de 2026</span></div>
+          <h3 data-i18n="timeline.mar.title">Validación y documentación</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.mar.i1">OpenAEC BIM Validator (207 commits)</li>
+            <li data-i18n="timeline.mar.i2">Lanzamiento de Open Field Studio (v0.1.3)</li>
+            <li data-i18n="timeline.mar.i3">Open Speech Studio (v0.5.0)</li>
+            <li data-i18n="timeline.mar.i4">Se publican 19 Claude Skill Packages</li>
+            <li data-i18n="timeline.mar.i5">Se inician BCF Platform y OpenAEC Docs</li>
+            <li data-i18n="timeline.mar.i6">Sitio web en línea en open-aec.com</li>
           </ul>
         </div>
-      </div>
-
-      <!-- April 2026 -->
-      <div class="timeline-item">
-        <div class="timeline-card">
-          <div class="timeline-date">April 2026</div>
-          <h3>Stichting in oprichting</h3>
-          <ul>
-            <li>Stichting OpenAEC Foundation i.o. — oprichting in voorbereiding</li>
-            <li>50 repositories, 2.428+ commits</li>
-            <li>10+ live demo's beschikbaar</li>
-            <li>Offerte-systeem en supporters programma gelanceerd</li>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.apr.date">Abril de 2026</span></div>
+          <h3 data-i18n="timeline.apr.title">Fundación en proceso de constitución</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.apr.i1">Stichting OpenAEC Foundation i.o.: constitución en preparación</li>
+            <li data-i18n="timeline.apr.i2">50 repositorios, 2.428+ commits</li>
+            <li data-i18n="timeline.apr.i3">Más de 10 demos en vivo disponibles</li>
+            <li data-i18n="timeline.apr.i4">Se ponen en marcha el sistema de presupuestos y el programa de colaboradores</li>
           </ul>
         </div>
-      </div>
-
-      <!-- Juni 2026 (gepland) -->
-      <div class="timeline-item planned">
-        <div class="timeline-card">
-          <div class="timeline-date">Juni 2026 <span class="planned-badge">gepland</span></div>
-          <h3>BIM Modeller start</h3>
-          <ul>
-            <li>Start ontwikkeling open source BIM-modelleertool</li>
+      </li>
+      <!-- later: oorspronkelijk gepland item, vervangen door wat er echt gebeurde (Open 3D Studio, juli); ook _later in de vertalingen:
+      <li class="rn-tl-item planned">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.jun.date">Junio 2026</span><span class="status-planned" data-i18n="timeline.planned">previsto</span></div>
+          <h3 data-i18n="timeline.jun.title">Sitio web en cuatro idiomas</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.jun.i1">Sitio en neerlandés, inglés, francés y turco</li>
           </ul>
         </div>
-      </div>
-
-      <!-- December 2026 (gepland) -->
-      <div class="timeline-item planned">
-        <div class="timeline-card">
-          <div class="timeline-date">December 2026 <span class="planned-badge">gepland</span></div>
-          <h3>Ecosysteem compleet</h3>
-          <ul>
-            <li>Alle tools in productie</li>
-            <li>IFCX namespaces voltooid</li>
-            <li>End-to-end open source AEC-keten</li>
+      </li>
+      -->
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.may.date">Mayo 2026</span></div>
+          <h3 data-i18n="timeline.may.title">Presupuestos y notas de versión</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.may.i1">Inicio de Open Calc Studio: software de presupuestos de código abierto para la construcción</li>
+            <li data-i18n="timeline.may.i2">Notas de versión en directo en todas las páginas de producto</li>
+            <li data-i18n="timeline.may.i3">La ingeniería civil y las infraestructuras entran en el alcance</li>
           </ul>
         </div>
-      </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.jun.date">Junio 2026</span></div>
+          <h3 data-i18n="timeline.jun.title">Sitio web en cuatro idiomas</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.jun.i1">Sitio en neerlandés, inglés, francés y turco</li>
+            <li data-i18n="timeline.jun.i2">Selección automática del idioma en la primera visita</li>
+            <li data-i18n="timeline.jun.i3">Inicio de Open PDF Studio v3</li>
+            <li data-i18n="timeline.jun.i4">Catálogo de extensiones para Open Planner Studio</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.jul.date">Julio 2026</span></div>
+          <h3 data-i18n="timeline.jul.title">El mes de mayor crecimiento</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.jul.i1">11 repositorios nuevos</li>
+            <li data-i18n="timeline.jul.i2">OpenAEC Installer: instala y actualiza todas las herramientas en un solo lugar</li>
+            <li data-i18n="timeline.jul.i3">Inicio de Open 3D Studio: modelado 3D con IFC como formato nativo</li>
+            <li data-i18n="timeline.jul.i4">Inicio de Pile Plan Studio y del cliente de escritorio de SuperCloud</li>
+            <li data-i18n="timeline.jul.i5">Noticias en cuatro idiomas</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.aug.date">Agosto 2026</span></div>
+          <h3 data-i18n="timeline.aug.title">Conocimiento constructivo y visibilidad</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.aug.i1">IFCCAD: modelos de dibujo CAD abiertos en Rust</li>
+            <li data-i18n="timeline.aug.i2">Biblioteca Master Builder con conocimiento constructivo, normas y planos</li>
+            <li data-i18n="timeline.aug.i3">Sitio optimizado para buscadores y asistentes de IA</li>
+            <li data-i18n="timeline.aug.i4">Open CAD Studio destacado en la página de inicio</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.sep.date">Septiembre 2026</span></div>
+          <h3 data-i18n="timeline.sep.title">Cinco idiomas</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.sep.i1">Sitio web también en español</li>
+            <li data-i18n="timeline.sep.i2">Open PDF Studio: resumen completo de funciones</li>
+            <li data-i18n="timeline.sep.i3">Más de 3.400 estrellas en todos los repositorios</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item latest">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.oct.date">Octubre 2026</span></div>
+          <h3 data-i18n="timeline.oct.title">Descargas con un clic</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.oct.i1">Los botones de descarga inician la descarga al instante</li>
+            <li data-i18n="timeline.oct.i2">Open Pointcloud Studio 0.8.0, ahora nativo</li>
+            <li data-i18n="timeline.oct.i3">Página de redes sociales con código QR</li>
+            <li data-i18n="timeline.oct.i4">62 repositorios, 18.000+ commits, 4.200+ estrellas y 130.000+ descargas</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item planned">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.dec.date">Diciembre de 2026</span><span class="status-planned" data-i18n="timeline.planned">previsto</span></div>
+          <h3 data-i18n="timeline.dec.title">Ecosistema completo</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.dec.i1">Todas las herramientas en producción</li>
+            <li data-i18n="timeline.dec.i2">Espacios de nombres IFCX completados</li>
+            <li data-i18n="timeline.dec.i3">Cadena AEC open source de principio a fin</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </div></section>
 
-    </div>
-  </section>
-
-  <!-- Section 3: Repository statistics -->
-  <section class="section" style="background: var(--blueprint-white);">
-    <div class="stats-section">
+  <section class="section"><div class="container stats-section">
+    <div class="section-head">
       <h2 data-i18n="repos.title">Resumen de repositorios</h2>
-      <div class="table-wrapper" style="overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; display: block;">
+    </div>
+    <div class="feature table-card">
         <table class="stats-table">
-          <thead>
-            <tr>
-              <th>Repository</th>
-              <th data-i18n="repos.language">Lenguaje</th>
-              <th>Commits</th>
-              <th>Releases</th>
-              <th>Stars</th>
-              <th data-i18n="repos.created">Creado</th>
-            </tr>
-          </thead>
-          <tbody id="repo-tbody">
-            <tr><td colspan="6" style="text-align:center;color:var(--scaffold-gray);padding:var(--sp-8);">Laden...</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- Top repos by metric -->
-      <div class="top-repos">
+        <thead>
+          <tr>
+            <th>Repository</th>
+            <th data-i18n="repos.language">Lenguaje</th>
+            <th>Commits</th>
+            <th>Releases</th>
+            <th>Stars</th>
+            <th data-i18n="repos.created">Creado</th>
+          </tr>
+        </thead>
+        <tbody id="repo-tbody">
+          <tr><td colspan="6" class="loading" data-i18n="stats.loading">Cargando…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="top-repos">
         <div class="top-repo-card"><h4 data-i18n="top.stars">Más estrellas</h4><ol id="top-stars"></ol></div>
         <div class="top-repo-card"><h4 data-i18n="top.commits">Más commits</h4><ol id="top-commits"></ol></div>
         <div class="top-repo-card"><h4 data-i18n="top.size">Repos más grandes</h4><ol id="top-size"></ol></div>
       </div>
+  </div></section>
 
+  <section class="section surface-dark panel">
+    <div class="panel-center">
+      <h2 data-i18n="geo.title">Visibilidad en la <span class="accent">IA</span></h2>
+      <p data-i18n="geo.desc">Nuestra estrategia para que asistentes de IA como Claude, ChatGPT, Grok, Perplexity y Gemini recomienden las herramientas de OpenAEC a sus usuarios. Esto se denomina <em>Generative Engine Optimization (GEO)</em>.</p>
+    </div>
+    <div class="chart-cards">
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="geo.done_title">Implementado</h4>
+        <ul class="geo-list">
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="geo.done.llms"><a href="/llms.txt">/llms.txt</a>: resumen del sitio adaptado a los LLM (estándar emergente)</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="geo.done.robots"><a href="/robots.txt">/robots.txt</a>: permite explícitamente 24 rastreadores, entre ellos ClaudeBot, GPTBot y PerplexityBot</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="geo.done.sitemap"><a href="/sitemap.xml">/sitemap.xml</a>: índice completo de URL para los rastreadores, en cinco idiomas</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="geo.done.api"><a href="/api/tools.json">/api/tools.json</a>: catálogo de herramientas legible por máquina (19 herramientas)</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="geo.done.schema">JSON-LD de Schema.org en la página de inicio (Organization + 13 SoftwareApplication)</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="geo.done.faq"><a href="/es/faq/">FAQPage JSON-LD</a>: aprovechable directamente por Google AI Overviews</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="geo.done.howto"><a href="/es/aan-de-slag/">HowTo JSON-LD</a>: pasos para empezar, pensados para AI Overviews</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="geo.done.og">Tarjetas Open Graph: vistas previas enriquecidas al compartir en LinkedIn, Slack y WhatsApp</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="geo.done.vs"><a href="/es/vs/">Páginas comparativas</a>: frente a AutoCAD, BIMcollab, Bluebeam, Bouwprijs, Dragon y Solibri</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="geo.done.md"><a href="/md/index.md">Espejos en Markdown</a>: Claude, Cursor y Continue leen .md con más limpieza que HTML</span></li>
+        </ul>
+      </div>
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="geo.next_title">Próximos pasos</h4>
+        <ul class="geo-list next">
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-clock"/></svg><span data-i18n="geo.next.console">Enviar el sitemap a Google Search Console y a Bing Webmaster Tools</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-clock"/></svg><span data-i18n="geo.next.backlinks">Enlaces desde fuentes de referencia (buildingSMART, OSArch, awesome-bim, awesome-rust)</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-clock"/></svg><span data-i18n="geo.next.docs">Documentación en Markdown específica para cada herramienta (SDK y ejemplos más completos)</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-clock"/></svg><span data-i18n="geo.next.mcp">Servidores MCP para más herramientas: integración directa con asistentes de IA</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-clock"/></svg><span data-i18n="geo.next.blog">Blog y casos prácticos, también en inglés: visibilidad internacional</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-clock"/></svg><span data-i18n="geo.next.community">Presencia en Stack Overflow, Reddit y Hacker News</span></li>
+        </ul>
+      </div>
     </div>
   </section>
 
-  <footer class="footer page-footer" style="padding: var(--sp-6);">
-    <div class="footer-inner">
-      <a href="/es/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
-      <div style="display: flex; gap: var(--sp-4); align-items: center;">
-        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg> GitHub</a>
-        <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/es/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.</p>
       </div>
-      <p>&copy; 2026 OpenAEC Foundation</p>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Páginas</h4>
+        <a href="/es/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">Sobre nosotros</a>
+        <a href="/es/ifcx/">IFCX</a>
+        <a href="/es/roadmap/" data-i18n-en="Roadmap 2026" data-i18n-fr="Feuille de route 2026" data-i18n-tr="2026 yol haritası" data-i18n-es="Hoja de ruta 2026">Hoja de ruta 2026</a>
+        <a href="/es/architectuur/" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Arquitectura</a>
+        <a href="/es/supporters/" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Colaboradores</a>
+        <a href="/es/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Solicitar presupuesto</a>
+        <a href="/es/structuur/" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Estructura</a>
+        <a href="/es/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">Preguntas frecuentes</a>
+        <a href="/es/statistieken/" data-i18n-en="Timeline &amp; Statistics" data-i18n-fr="Chronologie &amp; statistiques" data-i18n-tr="Zaman çizelgesi &amp; istatistikler" data-i18n-es="Cronología &amp; estadísticas">Cronología &amp; estadísticas</a>
+        <a href="/es/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Aviso legal</a>
+        <a href="/es/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Borrador de estatutos</a>
+        <a href="/es/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Créditos</a>
+        <a href="/es/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Política y posiciones</a>
+        <a href="/es/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Redes sociales</a>
+      </nav>
+      <nav class="site-footer-col" aria-label="Meer tools">
+        <h4 data-i18n-en="More tools" data-i18n-fr="Plus d'outils" data-i18n-tr="Daha fazla araç" data-i18n-es="Más herramientas">Más herramientas</h4>
+        <a href="/es/open-energy-studio/">Open Energy Studio</a>
+        <a href="/es/open-safety-studio/">Open Safety Studio</a>
+        <a href="/es/open-3d-viewer/">Open 3D Viewer</a>
+        <a href="/es/open-books/">OpenBooks</a>
+        <a href="/es/openaec-cloud/">OpenAEC Cloud</a>
+        <a href="/es/openaec-docs/">OpenAEC Docs</a>
+        <a href="/es/ext-drawing-statistics/">Drawing Statistics</a>
+        <a href="/es/y-app/">Y-app</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Fundación en constitución</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">Países Bajos</span></p>
+      </div>
     </div>
-  </footer>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
 
 <script>
 const LANG_COLORS = {
@@ -961,7 +846,7 @@ function renderStats(data) {
   countUp('s-closed-issues', s.closedIssues != null ? s.closedIssues : 0);
   countUp('s-merged-prs',    s.mergedPRs    != null ? s.mergedPRs    : 0);
   countUp('s-closed-prs',    s.closedPRs    != null ? s.closedPRs    : 0);
-  document.getElementById('stats-updated').textContent = 'Laatste update: ' + data.generated.substring(0, 10);
+  document.getElementById('stats-updated').textContent = data.generated.substring(0, 10);
 
   // Table
   const tbody = document.getElementById('repo-tbody');
@@ -1062,9 +947,9 @@ function renderStats(data) {
     dailyLineChart('chart-cum-commits', ts, 'commits', '#16A34A');
     // Combined issues chart: open + closed + total on one axis
     multiDailyLineChart('chart-cum-issues', ts, [
-      { field: 'openIssues',   color: '#22D3EE', label: 'Open' },
-      { field: 'closedIssues', color: '#34D399', label: 'Closed' },
-      { field: 'totalIssues',  color: '#F59E0B', label: 'Totaal' },
+      { field: 'openIssues',   color: '#22D3EE', label: (document.querySelector('[data-i18n="charts.legend_open"]') || {}).textContent || 'Open' },
+      { field: 'closedIssues', color: '#34D399', label: (document.querySelector('[data-i18n="charts.legend_closed"]') || {}).textContent || 'Closed' },
+      { field: 'totalIssues',  color: '#F59E0B', label: (document.querySelector('[data-i18n="charts.legend_total"]') || {}).textContent || 'Totaal' },
     ]);
     dailyLineChart('chart-cum-contributors', ts, 'contributors', '#16A34A');
     dailyLineChart('chart-cum-stars', ts, 'stars', '#F59E0B');
