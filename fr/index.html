@@ -17,7 +17,6 @@
 
 
 
-
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -694,133 +693,11 @@
       color: var(--text-on-dark);
     }
 
-    /* Nav overrides */
-    .homepage-nav.navbar {
-      position: sticky;
-      left: auto;
-      right: auto;
-      background: var(--deep-forge);
-      border-bottom: 3px solid transparent;
-      border-image: var(--gradient-accent) 1;
-      backdrop-filter: none;
-      padding: var(--sp-4) var(--sp-6);
-    }
-    .homepage-nav .nav-container {
-      padding: 0;
-      max-width: 1200px;
-    }
-    .homepage-nav .nav-brand {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--sp-1);
-      color: white;
-      text-decoration: none;
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.25rem;
-    }
-    .homepage-nav .nav-brand .accent { color: var(--amber); }
-    .homepage-nav .nav-menu {
-      display: flex;
-      gap: clamp(var(--sp-3), 1.2vw, var(--sp-6));
-      align-items: center;
-    }
-    .homepage-nav .nav-links {
-      display: flex;
-      /* Vaste sp-8 maakte de balk breder dan het scherm; dan viel de ruimte
-         tussen logo en "Ecosystem" helemaal weg. Schaalt nu mee. */
-      gap: clamp(var(--sp-3), 1.8vw, var(--sp-8));
-      list-style: none;
-      align-items: center;
-    }
-    .homepage-nav .nav-link {
-      color: var(--text-on-dark);
-      font-family: var(--font-body);
-      font-weight: 500;
-      font-size: 0.875rem;
-      text-decoration: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      transition: color 0.15s ease;
-    }
-    .homepage-nav .nav-link:hover { color: white; }
-    .homepage-nav .btn.btn-primary {
-      background: var(--amber);
-      color: white;
-      box-shadow: none;
-    }
-    .homepage-nav .btn.btn-primary:hover { background: var(--signal-orange); }
-
-    /* Language switcher */
-    .lang-switcher {
-      display: flex;
-      align-items: center;
-      gap: 2px;
-      background: rgba(255,255,255,0.08);
-      padding: var(--sp-1);
-      border-radius: var(--radius-md);
-      margin-left: var(--sp-4);
-    }
-    .lang-btn {
-      background: none;
-      border: none;
-      padding: 6px 12px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-      border-radius: var(--radius-sm);
-      color: var(--text-on-dark);
-      transition: all 0.15s ease;
-      font-family: var(--font-body);
-    }
-    .lang-btn:hover { color: white; }
-    .lang-btn.active {
-      background: white;
-      color: var(--deep-forge);
-    }
-
     .mobile-only { display: none; }
     .desktop-only { display: flex; }
 
     /* Responsive */
     @media (max-width: 768px) {
-      .homepage-nav .nav-menu { display: none !important; }
-      .homepage-nav .nav-menu.active {
-        display: flex !important;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--deep-forge);
-        padding: var(--sp-4) var(--sp-6);
-        border-bottom: 3px solid transparent;
-        border-image: var(--gradient-accent) 1;
-        z-index: 1000;
-        gap: var(--sp-2);
-      }
-      .homepage-nav .nav-menu.active .nav-links {
-        display: flex !important;
-        flex-direction: column;
-        gap: var(--sp-3);
-      }
-      .homepage-nav .nav-menu.active .nav-links a {
-        font-size: 1rem;
-        padding: var(--sp-2) 0;
-        color: var(--text-on-dark);
-      }
-      .homepage-nav .nav-menu.active .lang-switcher {
-        display: flex !important;
-        margin-left: 0;
-        margin-top: var(--sp-3);
-      }
-      .homepage-nav .nav-menu.active .nav-feedback-btn {
-        display: inline-flex;
-        align-self: flex-start;
-        margin-top: var(--sp-2);
-      }
-      .homepage-nav .nav-container { position: relative; }
       .mobile-only { display: flex; }
       .desktop-only { display: none; }
       .section { padding: var(--sp-12) var(--sp-4); }
@@ -962,34 +839,38 @@
 </head>
 <body class="page-panels">
   <!-- Navigation -->
-  <nav class="navbar homepage-nav">
-    <div class="nav-container">
-      <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
-      <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
-        <ul class="nav-links">
-          <li><a href="/fr/#ecosysteem" class="nav-link" data-i18n="nav.ecosystem">Écosystème</a></li>
-          <li><a href="/fr/roadmap/" class="nav-link" data-i18n="nav.roadmap">Feuille de route</a></li>
-          <li><a href="/fr/architectuur/" class="nav-link" data-i18n="nav.architecture">Architecture</a></li>
-          <li><a href="/fr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Statistiques</a></li>
-          <li><a href="/fr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Actualités</a></li>
-          <li><a href="/fr/supporters/" class="nav-link" data-i18n="nav.supporters">Partenaires</a></li>
-          <li><a href="/fr/structuur/" class="nav-link" data-i18n="nav.structure">Structure</a></li>
-          <li><a href="/fr/#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
-        </ul>
-        <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chat"/></svg> Feedback</a>
-        <div class="lang-switcher">
-          <a class="lang-btn" data-lang="nl" href="/" hreflang="nl">NL</a>
-          <a class="lang-btn" data-lang="en" href="/en/" hreflang="en">EN</a>
-          <a class="lang-btn active" data-lang="fr" href="/fr/" hreflang="fr">FR</a>
-          <a class="lang-btn" data-lang="tr" href="/tr/" hreflang="tr">TR</a>
-          <a class="lang-btn" data-lang="es" href="/es/" hreflang="es">ES</a>
-        </div>
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/fr/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
+      <ul class="nav-links">
+        <li><a href="/fr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Écosystème</a></li>
+        <li><a href="/fr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Feuille de route</a></li>
+        <li><a href="/fr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Architecture</a></li>
+        <li><a href="/fr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Statistiques</a></li>
+        <li><a href="/fr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Actualités</a></li>
+        <li><a href="/fr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Partenaires</a></li>
+        <li><a href="/fr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">Nous soutenons</a></li>
+        <li><a href="/fr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structure</a></li>
+        <li><a href="/fr/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim" data-i18n-es="Contacto">Contact</a></li>
+      </ul>
+      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Commentaires</span></a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/" hreflang="en">EN</a>
+        <a class="lang-btn active" data-lang="fr" href="/fr/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/" hreflang="tr">TR</a>
+        <a class="lang-btn" data-lang="es" href="/es/" hreflang="es">ES</a>
       </div>
     </div>
-  </nav>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js?v=20260728"></script>
 
   <!-- Hero Section -->
   <section class="hero" id="hero">

@@ -146,7 +146,7 @@ pre code {
   z-index: 1000;
 }
 .nav-container {
-  max-width: 1200px;
+  max-width: 1320px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -163,17 +163,20 @@ pre code {
   text-decoration: none;
 }
 .nav-brand .accent { color: var(--amber); }
+/* Logo als homeknop: symbool + woordmerk */
+.nav-brand { display: inline-flex; align-items: center; gap: 10px; flex-shrink: 0; line-height: 1; }
+.nav-logo { width: 28px; height: 32px; display: block; }
 .nav-menu {
   display: flex;
   align-items: center;
   /* Meeschalende tussenruimte: met vaste sp-6 duwden de langere Franse labels
      ("Feuille de route", "Nous soutenons") de taalschakelaar buiten beeld op 1280px. */
-  gap: clamp(var(--sp-2), 1.1vw, var(--sp-6));
+  gap: clamp(var(--sp-2), 0.8vw, var(--sp-4));
 }
 .nav-links {
   display: flex;
   /* Schaalt mee zodat de balk ook met langere labels binnen het scherm blijft. */
-  gap: clamp(var(--sp-3), 1.4vw, var(--sp-6));
+  gap: clamp(10px, 0.95vw, var(--sp-5));
   list-style: none;
   align-items: center;
 }
@@ -191,8 +194,10 @@ pre code {
 .nav-feedback-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 6px 14px;
+  gap: 7px;
+  height: 34px;
+  line-height: 1;
+  padding: 0 14px;
   background: var(--amber);
   color: var(--night-build);
   border-radius: var(--radius-sm);
@@ -202,9 +207,11 @@ pre code {
   flex-shrink: 0;
   transition: background 0.2s;
 }
-.nav-feedback-btn .ico { width: 16px; height: 16px; }
+.nav-feedback-btn .ico { width: 16px; height: 16px; flex-shrink: 0; display: block; }
+.nav-feedback-btn span { display: block; }
 .nav-feedback-btn:hover {
-  background: var(--amber-light);
+  background: var(--warm-gold);
+  color: var(--night-build);
 }
 /* Taalschakelaar: één balk, de actieve taal wit (overal gelijk, ook op de homepage) */
 .lang-switcher {
@@ -215,13 +222,19 @@ pre code {
   background: rgba(255,255,255,0.08);
   padding: var(--sp-1);
   border-radius: var(--radius-md);
-  margin-left: var(--sp-2);
+  margin-left: 0;
+  height: 34px;
+  box-sizing: border-box;
 }
 .lang-btn {
   background: none;
   border: none;
   color: var(--text-on-dark);
-  padding: 6px 12px;
+  padding: 0 8px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1;
   border-radius: var(--radius-sm);
   font-family: var(--font-body);
   font-size: 0.75rem;
@@ -506,8 +519,8 @@ pre code {
 .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 /* Responsive */
-@media (max-width: 1150px) {
-  /* De nav klapt in op 1150px, niet op 768px. Tussen die twee breedtes paste de
+@media (max-width: 1365px) {
+  /* De nav klapt in op 1366px, niet op 768px. Tussen die twee breedtes paste de
      balk niet meer: het menu botste tegen het logo en de pagina kreeg
      horizontale scroll. De overige mobiele regels blijven op 768px staan. */
   .hamburger { display: block; }
