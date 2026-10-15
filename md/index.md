@@ -19,6 +19,7 @@ Generated: 2026-10-15T06:08:26.398Z
 - [Open Speech Studio](./open-speech-studio.md) — Local speech-to-text using Whisper AI. CTRL+Win shortcut for OS-wide dictation. Privacy-first, no cloud. (`v0.12.2`)
 - [OpenAEC Installer](./openaec-installer.md) — Central hub to discover, install, update and launch every OpenAEC tool from one app. (`v0.2.2`)
 - [Monty IFC Viewer](./monty-ifc-viewer.md) — Lightweight IFC viewer for quick BIM model inspection. (`v1.0.1`)
+- [Open Safety Studio](./open-safety-studio.md) — Safety plans for construction: health and safety plan (V&G), BLVC plan, risk matrix and safe maintenance, with the Dutch legal basis alongside. Live demo in the browser. (`n/a`)
 
 ## Alpha
 
@@ -38,10 +39,6 @@ Generated: 2026-10-15T06:08:26.398Z
 - [OpenAEC BIM Validator](./bim-validator.md) — IDS validation against NL-BIM Basis ILS and RVB BIM Norm. Browser-based, 3D viewer, BCF export. (`n/a`)
 - [OpenAEC Docs](./openaec-docs.md) — BIM document management based on Nextcloud. CDE-style document distribution and revisions. (`n/a`)
 - [OpenAEC SuperCloud](./openaec-cloud.md) — Own cloud, account and SSO platform on your own Nextcloud: desktop sync client, shared cloud storage for the tools, one account for every app. (`n/a`)
-
-## Planned
-
-- [Open Safety Studio](./open-safety-studio.md) — Safety analysis and risk assessment for construction projects. (`n/a`)
 
 ## Schema
 

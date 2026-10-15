@@ -1,20 +1,22 @@
 # Open Safety Studio
 
-> Safety analysis and risk assessment for construction projects.
+> Safety plans for construction: health and safety plan (V&G), BLVC plan, risk matrix and safe maintenance, with the Dutch legal basis alongside. Live demo in the browser.
 
-**Status:** planned
+**Status:** beta
 **License:** LGPL-3.0
-**Platforms:** Windows, macOS, Linux
+**Platforms:** Browser
 **Category:** Safety
 **Current version:** n/a
 **Tool ID:** `open-safety-studio`
 
 ## Key features
 
-- Risk inventory & evaluation (RI&E)
-- Task risk analysis (TRA / LMRA)
-- Linking risks to IFCX work locations
-- PDF reports for VCA/ISO 45001 audits
+- Health and safety plan (V&G) following Arbobesluit art. 2.28, incl. special risks from Annex II
+- BLVC plan: accessibility, liveability, safety and communication around the site
+- 5x5 risk matrix (likelihood x severity)
+- Safe maintenance following Bouwbesluit art. 6.53 and Arbobesluit art. 2.30
+- IFC import, export and validation
+- Templates and printable reports
 
 ## Tech stack
 
@@ -22,7 +24,7 @@
 
 ## When to use this
 
-Construction site safety planning, VCA and ISO 45001 documentation, replacing manual spreadsheets.
+Drawing up a health and safety plan, BLVC plan or safe-maintenance file for a Dutch construction project without starting from separate Word files and spreadsheets.
 
 ## Alternative to
 
@@ -31,8 +33,9 @@ Construction site safety planning, VCA and ISO 45001 documentation, replacing ma
 
 ## Standards & integration
 
-- VCA
-- ISO 45001
+- Arbobesluit
+- Bouwbesluit
+- IFC
 
 All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 
