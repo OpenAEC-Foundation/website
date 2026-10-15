@@ -1,6 +1,6 @@
 # OpenAEC Docs
 
-> BIM document management based on Nextcloud. CDE-style document distribution and revisions.
+> BIM document management on top of Nextcloud: project files and folders, project manifests and links with the BIM Validator and BCF platform.
 
 **Status:** in development
 **License:** LGPL-3.0
@@ -21,14 +21,16 @@
 
 ## Key features
 
-- CDE workflow on top of Nextcloud
-- Document revision and status flags
-- Folder permissions per project role
-- OpenAEC SSO integration
+- Project files and folders straight in Nextcloud
+- Fixed project folders with allowed file types
+- Project manifest of models, issue sets and reports
+- Links with the OpenAEC BIM Validator and BCF platform
+- OIDC single sign-on, several organisations per installation
+- REST API
 
 ## Tech stack
 
-`Nextcloud` · `PHP`
+`Nextcloud` · `Rust` · `React` · `TypeScript` · `PostgreSQL`
 
 ## When to use this
 

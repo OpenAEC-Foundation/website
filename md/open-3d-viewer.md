@@ -18,7 +18,7 @@
 
 ## Tech stack
 
-`TypeScript` · `WebGPU` · `three.js`
+`TypeScript` · `WebGL` · `three.js`
 
 ## When to use this
 

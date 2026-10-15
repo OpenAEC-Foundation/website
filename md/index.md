@@ -37,7 +37,7 @@ Generated: 2026-10-15T06:08:26.398Z
 
 - [BCF Manager Studio](./bcf-manager-studio.md) — BCF 2.1 issue management platform. BCF API 2.1 server, IFC GlobalId linking, self-hosted with Docker. (`n/a`)
 - [OpenAEC BIM Validator](./bim-validator.md) — IDS validation against NL-BIM Basis ILS and RVB BIM Norm. Browser-based, 3D viewer, BCF export. (`n/a`)
-- [OpenAEC Docs](./openaec-docs.md) — BIM document management based on Nextcloud. CDE-style document distribution and revisions. (`n/a`)
+- [OpenAEC Docs](./openaec-docs.md) — BIM document management on top of Nextcloud: project files and folders, project manifests and links with the BIM Validator and BCF platform. (`n/a`)
 - [OpenAEC SuperCloud](./openaec-cloud.md) — Own cloud, account and SSO platform on your own Nextcloud: desktop sync client, shared cloud storage for the tools, one account for every app. (`n/a`)
 
 ## Schema
