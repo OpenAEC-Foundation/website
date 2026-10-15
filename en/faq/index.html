@@ -39,96 +39,26 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/shared/style.css">
   <style>
-    .page-header {
-      background: var(--night-build);
-      padding: var(--sp-20) var(--sp-6) var(--sp-12);
-      text-align: center;
-      border-bottom: 3px solid transparent;
-      border-image: var(--gradient-accent) 1;
-    }
-    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; }
-    .page-header h1 { font-family: var(--font-heading); font-weight: 700; font-size: 2.5rem; color: white; letter-spacing: -0.02em; margin-bottom: var(--sp-4); }
-    .page-header h1 .accent { color: var(--amber); }
-    .page-header p { font-size: 1.125rem; color: var(--scaffold-gray); max-width: 600px; margin: 0 auto; line-height: 1.6; }
-
-    .faq-list { max-width: 800px; margin: 0 auto; }
-    .faq-item {
-      border-bottom: 1px solid #E7E5E4;
-      padding: var(--sp-6) 0;
-    }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-q {
-      font-family: var(--font-heading);
-      font-weight: 700;
-      font-size: 1.25rem;
-      color: var(--deep-forge);
-      margin-bottom: var(--sp-3);
-      cursor: pointer;
-      display: flex;
-      align-items: flex-start;
-      gap: var(--sp-3);
-    }
-    .faq-q::before {
-      content: '';
-      display: block;
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--amber);
-      margin-top: 8px;
-      flex-shrink: 0;
-    }
-    .faq-a {
-      padding-left: 20px;
-      color: #57534E;
-      font-size: 1rem;
-      line-height: 1.7;
-    }
-    .faq-a p { margin-bottom: var(--sp-3); }
-    .faq-a p:last-child { margin-bottom: 0; }
-    .faq-a ul {
-      list-style: none;
-      padding: 0;
-      margin: var(--sp-3) 0;
-    }
-    .faq-a ul li {
-      padding: var(--sp-2) 0;
-      padding-left: var(--sp-4);
-      position: relative;
-      border-bottom: 1px solid #F5F5F4;
-    }
-    .faq-a ul li::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 14px;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: var(--amber);
-    }
-    .faq-a ul li:last-child { border-bottom: none; }
-    .faq-a strong { color: var(--deep-forge); }
-    .faq-a a { color: var(--amber); text-decoration: none; font-weight: 600; }
-    .faq-a a:hover { color: var(--signal-orange); }
-
-    .highlight-box {
-      background: var(--night-build);
-      border-radius: var(--radius-lg);
-      padding: var(--sp-6);
-      margin: var(--sp-4) 0;
-      border-left: 4px solid var(--amber);
-      color: var(--scaffold-gray);
-      font-size: 0.9375rem;
-      line-height: 1.6;
-    }
-    .highlight-box strong { color: white; }
-
-    .page-footer.footer { background: var(--deep-forge); border-top: 3px solid transparent; border-image: var(--gradient-accent) 1; }
-    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-4); }
-    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
-
-    @media (max-width: 768px) { .page-header h1 { font-size: 2rem; } .faq-q { font-size: 1.1rem; } }
+    .faq-list { max-width: 880px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
+    .faq { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); transition: border-color 0.2s ease; }
+    .faq[open] { border-color: rgba(217,119,6,0.35); }
+    .faq summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 14px; padding: var(--sp-5) var(--sp-6); font-family: var(--font-heading); font-weight: 600; font-size: 1.1rem; color: var(--deep-forge); }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary .q-num { flex: none; width: 34px; height: 34px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; color: var(--amber); background: linear-gradient(145deg, rgba(217,119,6,0.18), rgba(217,119,6,0.05)); border: 1px solid rgba(217,119,6,0.22); }
+    .faq summary .q-text { flex: 1; }
+    .faq summary > .ico { flex: none; width: 20px; height: 20px; color: var(--amber); transition: transform 0.2s ease; }
+    .faq[open] summary > .ico { transform: rotate(180deg); }
+    .faq summary:hover .q-text { color: #B45309; }
+    .faq-body { padding: 0 var(--sp-6) var(--sp-6) calc(var(--sp-6) + 48px); }
+    .faq-body p, .faq-body li { color: var(--text-on-light); line-height: 1.7; }
+    .faq-body p + p, .faq-body ul + p, .faq-body p + ul { margin-top: var(--sp-3); }
+    .faq-body ul { padding-left: 1.2rem; }
+    .faq-body li { margin: 0.35rem 0; }
+    .faq-body li::marker { color: var(--amber); }
+    .faq-body strong { color: var(--deep-forge); }
+    .faq-body a { color: #B45309; font-weight: 600; }
+    .faq-body .highlight-box { margin-top: var(--sp-5); border-left: 3px solid var(--amber); background: rgba(217,119,6,0.07); border-radius: var(--radius-md); padding: var(--sp-4) var(--sp-5); color: var(--text-on-light); line-height: 1.7; }
+    @media (max-width: 640px) { .faq-body { padding: 0 var(--sp-5) var(--sp-5); } .faq summary { padding: var(--sp-4) var(--sp-5); } }
   </style>
 
   <!-- FAQPage Schema.org JSON-LD — generates AI Overview cards on Google, Perplexity, Bing -->
@@ -184,7 +114,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "en",
-        "dateModified": "2026-10-13",
+        "dateModified": "2026-10-15",
         "breadcrumb": {
           "@id": "https://open-aec.com/en/faq/#breadcrumb"
         }
@@ -212,7 +142,7 @@
   </script>
   <!-- schema:end -->
 </head>
-<body>
+<body class="page-panels">
     <div id="shared-nav"><!-- nav:start -->
 <nav class="navbar">
   <div class="nav-container">
@@ -246,70 +176,101 @@
 <!-- nav:end --></div>
 <script src="/shared/nav.js?v=20260728"></script>
 
-  <header class="page-header">
-    <p class="section-label" data-i18n="header.label">OpenAEC Foundation</p>
-    <h1><span class="accent">FAQ</span></h1>
-    <p data-i18n="header.desc">Frequently asked questions about open source in construction, our revenue model and the future of the ecosystem.</p>
+  <header class="product-head surface-spot">
+    <div class="product-head-inner">
+      <p class="pill-label" data-i18n="header.label">OpenAEC Foundation</p>
+      <h1><span class="accent">FAQ</span></h1>
+      <p class="lead" data-i18n="header.desc">Frequently asked questions about open source in construction, our revenue model and the future of the ecosystem.</p>
+    </div>
   </header>
 
-  <section class="section" style="background: var(--blueprint-white);">
+  <section class="section"><div class="container">
     <div class="faq-list">
-
-      <!-- Q1 -->
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="q1.title">Why everything open source?</div>
-        <div class="faq-a" data-i18n="q1.body"><p>The AEC sector is one of the last major industries still running entirely on closed, proprietary software. That brings high licensing costs, vendor lock-in and dependence on a handful of suppliers.</p><p>Open source changes that fundamentally:</p><ul><li><strong>Transparency</strong> — anyone can inspect, review and improve the code</li><li><strong>No licensing costs</strong> — professional tools become accessible to any company, large or small</li><li><strong>No vendor lock-in</strong> — your data stays yours, in open formats</li><li><strong>Faster innovation</strong> — the whole community builds along, not a single company</li><li><strong>Future-proof</strong> — software doesn't disappear when a company stops</li></ul><div class="highlight-box"><strong>The gamechanger: agentic coding.</strong> With AI-driven software development, intellectual property (IP) in software is no longer a viable revenue model. Code can be written faster and cheaper than ever. The value no longer sits in the code itself, but in the ecosystem, the community and the services around it. Open source is the logical choice for the future.</div></div>
-      </div>
-
-      <!-- Q2 (gratis blijven?) — new -->
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="q2.title">Will the tools stay free forever?</div>
-        <div class="faq-a" data-i18n="q2.body"><p>Yes — all OpenAEC tools stay free and open source, forever. That's not a marketing promise, it's a licensing matter: all tools are licensed under <strong>LGPL-3.0</strong>. We cannot unilaterally revoke that license. Even if the foundation stops tomorrow or pivots, the current code remains freely available to everyone.</p><p><strong>What if development of one of our tools stops?</strong></p><p>That can happen — not every tool stays under our active development. But because everything is open source, anyone can take over the project, fork it, or integrate its ideas into their own tool. A nice example is <strong>CalcPAD</strong>: the open-source variant of that calculation tool was discontinued, and we have integrated a significant part of its ideas into <strong>Open Calculations Studio</strong>. Open source guarantees that good ideas don't disappear with a company.</p><p><strong>No freemium, no surprise paywall, no vendor lock-in.</strong> What is free today is free tomorrow. Our revenue comes from services around the ecosystem (see our revenue model) — not from selling licenses.</p></div>
-      </div>
-
-      <!-- Q7 (AI-coding visie) — rewritten -->
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="q7.title">Isn't AI-written software of poor quality?</div>
-        <div class="faq-a" data-i18n="q7.body"><p>We see it differently. We develop all software within OpenAEC using AI coding — not as an experiment, but as a deliberate way of working. That deserves explanation, because it's a new way of developing that still takes some getting used to.</p><p><strong>Our position</strong>: quality depends on how you <em>check</em> it, not on who writes it. We have a programming background ourselves, but the bulk of what the AI produces we don't understand line-by-line. And that's fine. What matters is whether the result is correct. We steer for that through:</p><ul><li><strong>Verification calculations</strong> — calculation tools (Open Calculations Studio, Open Heatloss Studio) are calibrated against reference examples from standards and handbooks. If something deviates, it's wrong.</li><li><strong>Visual tests</strong> — viewers and graphical tools are compared against screenshots of validated outcomes.</li><li><strong>Open source as peer review</strong> — all our code is public on GitHub. Anyone can read along, find bugs, and submit pull requests.</li><li><strong>Classical software engineering</strong> — tests, builds, deploys, semver versions. Nothing different from a good traditional team.</li></ul><p>Traditionally developed software is also dependent on humans, and human errors have been the largest cause of bugs for decades. AI errors are not more dangerous — they're distributed differently. The safety nets above catch both kinds.</p><p><strong>"But humans can't maintain the generated code"</strong> — today (May 2026) there's still a kernel of truth in that. AI code is not always as readable as hand-written code. But consider where we've come from: at the beginning of 2026 the output was significantly worse than now. Half a year from now we'll see another big step forward, and maintenance will increasingly be done by AI as well — under our direction.</p><p>More important than the current level is <strong>the direction of the movement</strong>. Our position — and it is still debatable today (May 2026) for some — is that within six months to a year AI coding will be not just faster and cheaper, but <strong>qualitatively better</strong> than what most human developers write today. The direction is unmistakable; only the exact pace varies between estimates.</p><p><strong>"What if the AI vendor stops or triples its prices?"</strong> — no problem. We are vendor-independent. Anthropic Claude is our current primary choice, but OpenAI, xAI Grok, Google Gemini, Mistral, DeepSeek and Qwen are directly interchangeable. And local models (Llama, Qwen open-weights) run on an ordinary GPU. Even at tripled token prices, AI coding remains more economically attractive than a team of full-time traditional developers.</p><p><strong>The conclusion</strong>: AI coding is no longer an experiment. Twenty tools, five thousand downloads, supporters using them in production — all built this way. We don't pretend AI coding works without discipline, but discipline is no reason to reject the technique. It's reason to embrace it, with the right safety nets in place.</p></div>
-      </div>
-
-      <!-- Q3 -->
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="q3.title">How do you make money?</div>
-        <div class="faq-a" data-i18n="q3.body"><p>For now we are investing heavily to get the full ecosystem working this year. Everything is and will remain open source. You can download it all via <a href="https://github.com/OpenAEC-Foundation" target="_blank">our GitHub</a>.</p><p>As a foundation we provide services around the ecosystem:</p><ul><li><strong>Consultancy</strong> — advice on implementation, integration and optimization of the tools within your organization</li><li><strong>Hosting &amp; SLA</strong> — managed hosting of the tools with guaranteed uptime and support. Request a <a href="/en/offerte/">quote</a> for example the BIM Validator</li><li><strong>Extensions &amp; custom development</strong> — building extensions to the software for specific client needs. The base stays open source; the extension becomes property of the client or is contributed back to the ecosystem</li><li><strong>AI assistance on top of the tools</strong> <em>(future)</em> — premium AI assistants embedded in the tools: automatic reporting, smart suggestions during calculations, IFC extraction via natural language, batch validation of hundreds of models at once. <strong>The tools themselves stay free</strong>; the AI layer is an optional paid service for those who want it.</li><li><strong>Donations</strong> — companies and individuals supporting the mission</li><li><strong>Subsidies</strong> — government innovation and digitalization grants for the construction sector</li></ul><div class="highlight-box">Our prices are typically <strong>~20% below market</strong> because no intellectual property (IP) costs are charged. You only pay for the service, not for the software.</div></div>
-      </div>
-
-      <!-- Q4 -->
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="q4.title">Can I host the tools myself?</div>
-        <div class="faq-a" data-i18n="q4.body"><p>Absolutely. All tools are open source and can be installed independently on your own server. Most tools offer Docker images for easy deployment. You have full control over your data and infrastructure.</p><p>If you'd rather not manage it yourself, we offer managed hosting with an SLA.</p></div>
-      </div>
-
-      <!-- Q5 -->
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="q5.title">What technology are the tools built on?</div>
-        <div class="faq-a" data-i18n="q5.body"><p>All tools in the ecosystem are built on the same stack: <strong>Tauri 2.0</strong> (Rust backend) with a web frontend. This means every tool runs as a desktop application (Windows, macOS, Linux), as a web app and as a mobile app — from the same codebase.</p><p>Read more on our <a href="/en/architectuur/">architecture page</a>.</p></div>
-      </div>
-
-      <!-- Q6 -->
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="q6.title">How can I contribute?</div>
-        <div class="faq-a" data-i18n="q6.body"><p>There are several ways to contribute:</p><ul><li><strong>Contribute code</strong> — fork a repo on <a href="https://github.com/OpenAEC-Foundation" target="_blank">GitHub</a> and submit a pull request</li><li><strong>Testing &amp; feedback</strong> — use the tools and report bugs or suggestions</li><li><strong>Become a supporter</strong> — support the foundation financially via the <a href="/en/supporters/">supporters page</a></li><li><strong>Community</strong> — follow our <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank">WhatsApp channel</a></li></ul></div>
-      </div>
-
+      <details class="faq" open id="q1">
+        <summary><span class="q-num">1</span><span class="q-text" data-i18n="q1.title">Why everything open source?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
+        <div class="faq-body" data-i18n="q1.body"><p>The AEC sector is one of the last major industries still running entirely on closed, proprietary software. That brings high licensing costs, vendor lock-in and dependence on a handful of suppliers.</p><p>Open source changes that fundamentally:</p><ul><li><strong>Transparency</strong> — anyone can inspect, review and improve the code</li><li><strong>No licensing costs</strong> — professional tools become accessible to any company, large or small</li><li><strong>No vendor lock-in</strong> — your data stays yours, in open formats</li><li><strong>Faster innovation</strong> — the whole community builds along, not a single company</li><li><strong>Future-proof</strong> — software doesn't disappear when a company stops</li></ul><div class="highlight-box"><strong>The gamechanger: agentic coding.</strong> With AI-driven software development, intellectual property (IP) in software is no longer a viable revenue model. Code can be written faster and cheaper than ever. The value no longer sits in the code itself, but in the ecosystem, the community and the services around it. Open source is the logical choice for the future.</div></div>
+      </details>
+      <details class="faq" id="q2">
+        <summary><span class="q-num">2</span><span class="q-text" data-i18n="q2.title">Will the tools stay free forever?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
+        <div class="faq-body" data-i18n="q2.body"><p>Yes — all OpenAEC tools stay free and open source, forever. That's not a marketing promise, it's a licensing matter: all tools are licensed under <strong>LGPL-3.0</strong>. We cannot unilaterally revoke that license. Even if the foundation stops tomorrow or pivots, the current code remains freely available to everyone.</p><p><strong>What if development of one of our tools stops?</strong></p><p>That can happen — not every tool stays under our active development. But because everything is open source, anyone can take over the project, fork it, or integrate its ideas into their own tool. A nice example is <strong>CalcPAD</strong>: the open-source variant of that calculation tool was discontinued, and we have integrated a significant part of its ideas into <strong>Open Calculations Studio</strong>. Open source guarantees that good ideas don't disappear with a company.</p><p><strong>No freemium, no surprise paywall, no vendor lock-in.</strong> What is free today is free tomorrow. Our revenue comes from services around the ecosystem (see our revenue model) — not from selling licenses.</p></div>
+      </details>
+      <details class="faq" id="q7">
+        <summary><span class="q-num">3</span><span class="q-text" data-i18n="q7.title">Isn't AI-written software of poor quality?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
+        <div class="faq-body" data-i18n="q7.body"><p>We see it differently. We develop all software within OpenAEC using AI coding — not as an experiment, but as a deliberate way of working. That deserves explanation, because it's a new way of developing that still takes some getting used to.</p><p><strong>Our position</strong>: quality depends on how you <em>check</em> it, not on who writes it. We have a programming background ourselves, but the bulk of what the AI produces we don't understand line-by-line. And that's fine. What matters is whether the result is correct. We steer for that through:</p><ul><li><strong>Verification calculations</strong> — calculation tools (Open Calculations Studio, Open Heatloss Studio) are calibrated against reference examples from standards and handbooks. If something deviates, it's wrong.</li><li><strong>Visual tests</strong> — viewers and graphical tools are compared against screenshots of validated outcomes.</li><li><strong>Open source as peer review</strong> — all our code is public on GitHub. Anyone can read along, find bugs, and submit pull requests.</li><li><strong>Classical software engineering</strong> — tests, builds, deploys, semver versions. Nothing different from a good traditional team.</li></ul><p>Traditionally developed software is also dependent on humans, and human errors have been the largest cause of bugs for decades. AI errors are not more dangerous — they're distributed differently. The safety nets above catch both kinds.</p><p><strong>"But humans can't maintain the generated code"</strong> — today (May 2026) there's still a kernel of truth in that. AI code is not always as readable as hand-written code. But consider where we've come from: at the beginning of 2026 the output was significantly worse than now. Half a year from now we'll see another big step forward, and maintenance will increasingly be done by AI as well — under our direction.</p><p>More important than the current level is <strong>the direction of the movement</strong>. Our position — and it is still debatable today (May 2026) for some — is that within six months to a year AI coding will be not just faster and cheaper, but <strong>qualitatively better</strong> than what most human developers write today. The direction is unmistakable; only the exact pace varies between estimates.</p><p><strong>"What if the AI vendor stops or triples its prices?"</strong> — no problem. We are vendor-independent. Anthropic Claude is our current primary choice, but OpenAI, xAI Grok, Google Gemini, Mistral, DeepSeek and Qwen are directly interchangeable. And local models (Llama, Qwen open-weights) run on an ordinary GPU. Even at tripled token prices, AI coding remains more economically attractive than a team of full-time traditional developers.</p><p><strong>The conclusion</strong>: AI coding is no longer an experiment. Twenty tools, five thousand downloads, supporters using them in production — all built this way. We don't pretend AI coding works without discipline, but discipline is no reason to reject the technique. It's reason to embrace it, with the right safety nets in place.</p></div>
+      </details>
+      <details class="faq" id="q3">
+        <summary><span class="q-num">4</span><span class="q-text" data-i18n="q3.title">How do you make money?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
+        <div class="faq-body" data-i18n="q3.body"><p>For now we are investing heavily to get the full ecosystem working this year. Everything is and will remain open source. You can download it all via <a href="https://github.com/OpenAEC-Foundation" target="_blank">our GitHub</a>.</p><p>As a foundation we provide services around the ecosystem:</p><ul><li><strong>Consultancy</strong> — advice on implementation, integration and optimization of the tools within your organization</li><li><strong>Hosting &amp; SLA</strong> — managed hosting of the tools with guaranteed uptime and support. Request a <a href="/en/offerte/">quote</a> for example the BIM Validator</li><li><strong>Extensions &amp; custom development</strong> — building extensions to the software for specific client needs. The base stays open source; the extension becomes property of the client or is contributed back to the ecosystem</li><li><strong>AI assistance on top of the tools</strong> <em>(future)</em> — premium AI assistants embedded in the tools: automatic reporting, smart suggestions during calculations, IFC extraction via natural language, batch validation of hundreds of models at once. <strong>The tools themselves stay free</strong>; the AI layer is an optional paid service for those who want it.</li><li><strong>Donations</strong> — companies and individuals supporting the mission</li><li><strong>Subsidies</strong> — government innovation and digitalization grants for the construction sector</li></ul><div class="highlight-box">Our prices are typically <strong>~20% below market</strong> because no intellectual property (IP) costs are charged. You only pay for the service, not for the software.</div></div>
+      </details>
+      <details class="faq" id="q4">
+        <summary><span class="q-num">5</span><span class="q-text" data-i18n="q4.title">Can I host the tools myself?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
+        <div class="faq-body" data-i18n="q4.body"><p>Absolutely. All tools are open source and can be installed independently on your own server. Most tools offer Docker images for easy deployment. You have full control over your data and infrastructure.</p><p>If you'd rather not manage it yourself, we offer managed hosting with an SLA.</p></div>
+      </details>
+      <details class="faq" id="q5">
+        <summary><span class="q-num">6</span><span class="q-text" data-i18n="q5.title">What technology are the tools built on?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
+        <div class="faq-body" data-i18n="q5.body"><p>All tools in the ecosystem are built on the same stack: <strong>Tauri 2.0</strong> (Rust backend) with a web frontend. This means every tool runs as a desktop application (Windows, macOS, Linux), as a web app and as a mobile app — from the same codebase.</p><p>Read more on our <a href="/en/architectuur/">architecture page</a>.</p></div>
+      </details>
+      <details class="faq" id="q6">
+        <summary><span class="q-num">7</span><span class="q-text" data-i18n="q6.title">How can I contribute?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
+        <div class="faq-body" data-i18n="q6.body"><p>There are several ways to contribute:</p><ul><li><strong>Contribute code</strong> — fork a repo on <a href="https://github.com/OpenAEC-Foundation" target="_blank">GitHub</a> and submit a pull request</li><li><strong>Testing &amp; feedback</strong> — use the tools and report bugs or suggestions</li><li><strong>Become a supporter</strong> — support the foundation financially via the <a href="/en/supporters/">supporters page</a></li><li><strong>Community</strong> — follow our <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank">WhatsApp channel</a></li></ul></div>
+      </details>
     </div>
-  </section>
+  </div></section>
 
-  <footer class="footer page-footer" style="padding: var(--sp-6);">
-    <div class="footer-inner">
-      <a href="/en/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
-      <div style="display: flex; gap: var(--sp-4); align-items: center;">
-        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg> GitHub</a>
-        <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" style="color: var(--scaffold-gray); display: inline-flex; align-items: center; gap: 6px; font-size: 0.75rem; text-decoration: none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg> LinkedIn</a>
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/en/" class="nav-brand">Open<span class="accent">AEC</span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management.</p>
       </div>
-      <p>&copy; 2026 OpenAEC Foundation</p>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Pages</h4>
+        <a href="/en/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">About us</a>
+        <a href="/en/ifcx/">IFCX</a>
+        <a href="/en/roadmap/" data-i18n-en="Roadmap 2026" data-i18n-fr="Feuille de route 2026" data-i18n-tr="2026 yol haritası" data-i18n-es="Hoja de ruta 2026">Roadmap 2026</a>
+        <a href="/en/architectuur/" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Architecture</a>
+        <a href="/en/supporters/" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Supporters</a>
+        <a href="/en/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Request quote</a>
+        <a href="/en/structuur/" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structure</a>
+        <a href="/en/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">FAQ</a>
+        <a href="/en/statistieken/" data-i18n-en="Timeline &amp; Statistics" data-i18n-fr="Chronologie &amp; statistiques" data-i18n-tr="Zaman çizelgesi &amp; istatistikler" data-i18n-es="Cronología &amp; estadísticas">Timeline &amp; Statistics</a>
+        <a href="/en/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Disclaimer</a>
+        <a href="/en/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Draft statutes</a>
+        <a href="/en/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Credits</a>
+        <a href="/en/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Policy &amp; positions</a>
+        <a href="/en/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Socials</a>
+      </nav>
+      <nav class="site-footer-col" aria-label="Meer tools">
+        <h4 data-i18n-en="More tools" data-i18n-fr="Plus d'outils" data-i18n-tr="Daha fazla araç" data-i18n-es="Más herramientas">More tools</h4>
+        <a href="/en/open-energy-studio/">Open Energy Studio</a>
+        <a href="/en/open-safety-studio/">Open Safety Studio</a>
+        <a href="/en/open-3d-viewer/">Open 3D Viewer</a>
+        <a href="/en/open-books/">OpenBooks</a>
+        <a href="/en/openaec-cloud/">OpenAEC Cloud</a>
+        <a href="/en/openaec-docs/">OpenAEC Docs</a>
+        <a href="/en/ext-drawing-statistics/">Drawing Statistics</a>
+        <a href="/en/y-app/">Y-app</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Foundation i.f.</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">The Netherlands</span></p>
+      </div>
     </div>
-  </footer>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
   <script src="/shared/i18n.js?v=20260728"></script>
 </body>
 </html>
