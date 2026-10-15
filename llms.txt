@@ -109,14 +109,14 @@ Most tools are LGPL-3.0 licensed. Some are LGPL-2.1. The Foundation does clean-r
 <!-- stats:start -->
 ## Key facts (generated, do not edit by hand)
 
-Last updated: 2026-09-22
+Last updated: 2026-10-15
 
-- 67 public repositories on GitHub (129 total including private)
-- 13,166 commits by 59 contributors
-- 3,245 GitHub stars, 363 forks
-- 1,366 issues closed, 789 pull requests merged
-- 18 tools in the catalog — machine-readable at https://open-aec.com/api/tools.json
-- 79,708 downloads across 20 released tools
+- 62 public repositories on GitHub (62 total including private)
+- 18,159 commits by 79 contributors
+- 4,245 GitHub stars, 518 forks
+- 1,575 issues closed, 1,038 pull requests merged
+- 19 tools in the catalog — machine-readable at https://open-aec.com/api/tools.json
+- 132,061 downloads across 20 released tools
 - All tools LGPL-3.0 or LGPL-2.1, built with Rust + Tauri 2 + TypeScript
 - Cross-platform: Windows, macOS, Linux, web
 
