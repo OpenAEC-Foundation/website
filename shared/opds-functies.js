@@ -120,7 +120,7 @@
         </div>`).join('');
       return `
         <details class="opf-tab" data-tab="${esc(t.key)}">
-          <summary><span>${esc(v(t.label))}${t.contextueel ? `<span class="opf-ctx">${esc(T.contextueel)}</span>` : ''}</span>
+          <summary><span>${esc(v(t.label))}</span>
             <span class="opf-tel">${esc(T.treffers(aantal))}</span></summary>
           <div class="opf-body">${groepen}</div>
         </details>`;
