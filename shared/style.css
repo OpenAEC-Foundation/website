@@ -838,6 +838,8 @@ pre code {
 
 /* Label: pil met bolletje, JetBrains Mono */
 .pill-label { display: inline-flex; align-items: center; gap: 10px; font-family: var(--font-code); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--warm-gold); background: rgba(217,119,6,0.15); border-radius: var(--radius-full); padding: 7px 14px; margin: 0 0 var(--sp-5); max-width: none; }
+/* Label altijd oranje, ook binnen panelen waar de lopende tekst een eigen kleur heeft */
+p.pill-label, .panel-center .pill-label, .panel-split-text .pill-label, .surface-dark .pill-label, .surface-spot .pill-label { color: var(--warm-gold); }
 .pill-label::before { content: ""; width: 7px; height: 7px; border-radius: var(--radius-full); background: var(--amber); box-shadow: 0 0 0 4px rgba(217,119,6,0.18); }
 .surface-light .pill-label, .pill-label.on-light { background: rgba(217,119,6,0.1); color: #B45309; }
 
@@ -1065,7 +1067,6 @@ a.card-glass:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0
 /* Leesbaarheid (B, Nino okt 2026): panelen met meer dan een paar regels tekst staan in twee kolommen —
    het verhaal links uitgelijnd, de punten als kaarten rechts. Gecentreerd blijft alleen wat kort is. */
 .panel-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--sp-12); max-width: 1100px; margin: 0 auto; align-items: start; text-align: left; }
-.panel-split-text { position: sticky; top: 100px; }
 .panel-split-text .pill-label { margin-bottom: var(--sp-6); }
 .panel-split-text h2 { color: white; font-size: clamp(1.7rem, 3vw, 2.2rem); line-height: 1.15; margin: 0 0 var(--sp-5); max-width: 20ch; }
 .panel-split-text h2 .accent, .panel-split-text h2 span { color: var(--amber); }
@@ -1094,6 +1095,5 @@ a.card-glass:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0
 .panel-split.on-light code { background: var(--concrete); color: var(--deep-forge); }
 @media (max-width: 860px) {
   .panel-split { grid-template-columns: 1fr; gap: var(--sp-8); }
-  .panel-split-text { position: static; }
   .split-cards-2 { grid-template-columns: 1fr; }
 }
