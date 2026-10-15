@@ -17,6 +17,7 @@
 
 
 
+
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -101,7 +102,7 @@
 
     /* Hero */
     .hero {
-      background: var(--night-build);
+      background: radial-gradient(ellipse 60% 90% at 50% -10%, rgba(255,255,255,0.06), transparent 65%), var(--night-build);
       padding: var(--sp-24) var(--sp-6) var(--sp-16);
       text-align: center;
       position: relative;
@@ -109,20 +110,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-    @keyframes heroParallax {
-      0% { transform: scale(1.0) translate(0, 0); }
-      50% { transform: scale(1.08) translate(-1%, -1%); }
-      100% { transform: scale(1.0) translate(0, 0); }
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-      opacity: 0.12;
-      animation: heroParallax 25s ease-in-out infinite;
     }
     .hero-content {
       position: relative;
@@ -141,19 +128,21 @@
       gap: 8px;
       background: rgba(217,119,6,0.15);
       color: var(--warm-gold);
-      padding: 8px 16px;
+      padding: 7px 14px;
       border-radius: var(--radius-full);
+      font-family: var(--font-code);
       font-size: 0.75rem;
-      font-weight: 600;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
       margin-bottom: var(--sp-8);
     }
     .badge-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       background: var(--amber);
-      border-radius: 50%;
+      border-radius: var(--radius-full);
+      box-shadow: 0 0 0 4px rgba(217,119,6,0.18);
       animation: pulse 2s infinite;
     }
     @keyframes pulse {
@@ -174,7 +163,7 @@
     .hero h1 .accent { color: var(--amber); }
     .hero .tagline {
       font-size: 1.25rem;
-      color: var(--scaffold-gray);
+      color: var(--text-on-dark);
       max-width: 600px;
       margin: 0 auto var(--sp-8);
       line-height: 1.6;
@@ -188,9 +177,9 @@
       flex-wrap: wrap;
     }
     .hero-follow { margin-top: var(--sp-10, 40px); display: flex; align-items: center; justify-content: center; gap: var(--sp-4); flex-wrap: wrap; }
-    .hero-follow-label { font-family: var(--font-code); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--scaffold-gray); }
+    .hero-follow-label { font-family: var(--font-code); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-on-dark); }
     .hero-follow-icons { display: flex; gap: 10px; }
-    .hero-follow-icons a { width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease; }
+    .hero-follow-icons a { width: 42px; height: 42px; border-radius: var(--radius-full); display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease; }
     .hero-follow-icons a svg { width: 19px; height: 19px; fill: var(--blueprint-white); }
     .hero-follow-icons a:hover { background: var(--amber); border-color: var(--amber); transform: translateY(-2px); }
     .launch-box {
@@ -243,7 +232,7 @@
     }
     .section-desc {
       font-size: 1.125rem;
-      color: #57534E;
+      color: var(--text-on-light);
       max-width: 700px;
       margin: 0 auto;
       line-height: 1.6;
@@ -257,22 +246,19 @@
       margin-top: var(--sp-12);
     }
     .feature-card {
-      background: white;
-      border: 1px solid #E7E5E4;
+      background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white));
+      border: 1px solid rgba(42,42,50,0.07);
       border-radius: var(--radius-lg);
       padding: var(--sp-6);
-      transition: box-shadow 0.15s ease, border-color 0.15s ease;
+      box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
     .feature-card:hover {
-      box-shadow: var(--shadow-md);
-      border-color: #D6D3D1;
+      transform: translateY(-4px);
+      border-color: rgba(217,119,6,0.35);
+      box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float-hover);
     }
-    .feature-icon {
-      width: 48px;
-      height: 48px;
-      margin-bottom: var(--sp-4);
-      color: var(--amber);
-    }
+    .feature-card .icon-tile { margin-bottom: var(--sp-4); }
     .feature-card h3 {
       font-family: var(--font-heading);
       font-weight: 700;
@@ -282,13 +268,13 @@
     }
     .feature-card p {
       font-size: 0.875rem;
-      color: #57534E;
+      color: var(--text-muted);
       line-height: 1.6;
     }
 
     /* Mission */
     .missie {
-      background: var(--deep-forge);
+      background: linear-gradient(180deg, var(--surface-dark-top) 0%, var(--night-build) 70%);
       color: var(--blueprint-white);
     }
     .missie .section-title {
@@ -309,7 +295,11 @@
     }
     .missie-item {
       padding: var(--sp-6);
-      border-left: 3px solid var(--amber);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-top: 3px solid var(--amber);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
+      box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, var(--shadow-deep);
     }
     .missie-item h3 {
       font-family: var(--font-heading);
@@ -320,7 +310,7 @@
     }
     .missie-item p {
       font-size: 0.875rem;
-      color: var(--scaffold-gray);
+      color: var(--text-on-dark);
       line-height: 1.6;
     }
 
@@ -336,24 +326,26 @@
       flex-direction: column;
       justify-content: space-between;
       gap: var(--sp-4);
-      background: white;
-      border: 1px solid #E7E5E4;
+      background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white));
+      border: 1px solid rgba(42,42,50,0.07);
       border-radius: var(--radius-lg);
       padding: var(--sp-6);
-      box-shadow: var(--shadow-sm);
-      transition: box-shadow 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+      box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float);
+      transition: box-shadow 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
       position: relative;
     }
+    .tool-card.tool-card-featured { border: 2px solid var(--amber); }
+    .dev-notice { display: inline-flex; align-items: center; gap: 6px; background: var(--concrete); color: var(--text-muted); box-shadow: 0 0 0 1px rgba(42,42,50,0.08) inset; padding: 6px 14px; border-radius: var(--radius-full); font-family: var(--font-code); font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-top: var(--sp-4); }
     .tool-card[data-href] { cursor: pointer; }
     .tool-card:hover {
-      box-shadow: 0 12px 28px -8px rgba(217, 119, 6, 0.22), 0 4px 10px -2px rgba(0,0,0,0.06);
-      border-color: var(--amber);
-      transform: translateY(-3px);
+      box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float-hover);
+      border-color: rgba(217,119,6,0.45);
+      transform: translateY(-4px);
     }
     .tool-card:hover .tool-card-cta { opacity: 1; transform: translateX(0); }
     .tool-card-cta {
       position: absolute; top: 16px; right: 16px;
-      width: 28px; height: 28px; border-radius: 50%;
+      width: 28px; height: 28px; border-radius: var(--radius-full);
       background: var(--amber); color: white;
       display: flex; align-items: center; justify-content: center;
       font-size: 14px; line-height: 1;
@@ -397,26 +389,12 @@
       display: inline-block;
       white-space: nowrap;
     }
-    .tool-tag-beta { background: #FED7AA; color: #9A3412; }
-    .tool-tag-dev { background: #DBEAFE; color: #1E40AF; }
-    .tool-tag-alpha { background: #FEF3C7; color: #92400E; }
-    .tool-tag-civil { background: #DCFCE7; color: #166534; }
-    .tool-tag-gww { background: #CFFAFE; color: #155E75; }
-    .tool-tag-community { background: #E0E7FF; color: #3730A3; }
-    .tool-tag-available {
-      background: #16A34A; color: white;
-      font-weight: 700;
-    }
-    .tool-tag-available::before {
-      content: '✓ ';
-    }
-    .tool-tag-live {
-      background: #DCFCE7;
-      color: #166534;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-    }
+    /* Statuslabels: oranje tint = status, neutraal = soort, groen = beschikbaar */
+    .tool-tag-beta { background: rgba(217,119,6,0.14); color: #B45309; }
+    .tool-tag-alpha { background: rgba(217,119,6,0.08); color: #B45309; }
+    .tool-tag-dev, .tool-tag-civil, .tool-tag-gww, .tool-tag-community { background: var(--concrete); color: var(--text-muted); box-shadow: 0 0 0 1px rgba(42,42,50,0.08) inset; }
+    .tool-tag-available { background: var(--success); color: white; font-weight: 700; }
+    .tool-tag-live { background: rgba(22,163,74,0.12); color: var(--success); display: inline-flex; align-items: center; gap: 4px; }
     /* Category filter (top of ecosystem section) */
     .cat-filter {
       display: flex; flex-wrap: wrap; justify-content: center;
@@ -424,8 +402,8 @@
     }
     .cat-filter-btn {
       background: transparent;
-      border: 1.5px solid #E7E5E4;
-      color: #57534E;
+      border: 1.5px solid rgba(42,42,50,0.12);
+      color: var(--text-muted);
       font-family: var(--font-heading);
       font-weight: 600;
       font-size: 0.85rem;
@@ -464,18 +442,22 @@
       font-weight: 600;
       letter-spacing: 0.04em;
       padding: 1px 7px;
-      border-radius: 3px;
-      background: #F5F5F4;
-      color: #57534E;
-      border: 1px solid #E7E5E4;
+      border-radius: var(--radius-sm);
+      background: var(--concrete);
+      color: var(--text-muted);
+      border: 1px solid rgba(42,42,50,0.08);
       text-transform: uppercase;
       white-space: nowrap;
     }
-    .tool-cat-a { background: #FEF3C7; color: #78350F; border-color: #FDE68A; }
-    .tool-cat-e { background: #DBEAFE; color: #1E3A8A; border-color: #BFDBFE; }
-    .tool-cat-c { background: #FCE7F3; color: #831843; border-color: #FBCFE8; }
-    .tool-cat-i { background: #CFFAFE; color: #155E75; border-color: #A5F3FC; }
+    /* Categorieën A/E/C/I: allemaal dezelfde neutrale vorm, de letter zegt genoeg */
     .tool-card.is-hidden { display: none; }
+    .tool-card.is-folded { display: none; }
+    .tools-more { display: flex; justify-content: center; margin-top: var(--sp-8); }
+    .tools-more[hidden] { display: none; }
+    .tools-more-btn { display: inline-flex; align-items: center; gap: 10px; }
+    .tools-more-btn .ico { color: var(--amber); transition: transform 0.2s ease; }
+    .tools-more-btn[aria-expanded="true"] .ico { transform: rotate(180deg); }
+    .tools-more-count { font-family: var(--font-code); font-size: 0.8rem; color: var(--text-muted); }
     .tool-links {
       display: flex;
       gap: var(--sp-3);
@@ -484,7 +466,7 @@
     }
     .tool-links .tool-link { font-size: 0.8rem; }
     .tool-links .tool-link-secondary {
-      color: #57534E;
+      color: var(--text-muted);
       font-weight: 500;
       font-size: 0.8rem;
       text-decoration: none;
@@ -499,7 +481,7 @@
     .tool-stat {
       font-family: var(--font-code);
       font-size: 0.65rem;
-      color: var(--scaffold-gray);
+      color: var(--text-on-light);
       display: inline-flex;
       align-items: center;
       gap: 4px;
@@ -507,7 +489,7 @@
     .tool-stat svg { flex-shrink: 0; }
     .tool-card p {
       font-size: 0.875rem;
-      color: #57534E;
+      color: var(--text-muted);
       line-height: 1.6;
     }
     .tool-link {
@@ -576,11 +558,11 @@
       margin-top: var(--sp-12);
     }
     .contact-card {
-      background: white;
-      border: 1px solid #E7E5E4;
+      background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white));
+      border: 1px solid rgba(42,42,50,0.07);
       border-radius: var(--radius-lg);
       padding: var(--sp-8);
-      box-shadow: var(--shadow-sm);
+      box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float);
     }
     .contact-card h3 {
       font-family: var(--font-heading);
@@ -596,7 +578,7 @@
     }
     .contact-role {
       font-size: 0.875rem;
-      color: var(--scaffold-gray);
+      color: var(--text-on-light);
       margin-bottom: var(--sp-8);
     }
     .contact-info { display: flex; flex-direction: column; gap: var(--sp-4); }
@@ -604,7 +586,9 @@
     .contact-icon-box {
       width: 40px;
       height: 40px;
-      background: rgba(217,119,6,0.08);
+      background: linear-gradient(145deg, rgba(217,119,6,0.18), rgba(217,119,6,0.05));
+      border: 1px solid rgba(217,119,6,0.22);
+      --ico-accent-opacity: 0.28;
       border-radius: var(--radius-md);
       display: flex;
       align-items: center;
@@ -614,7 +598,7 @@
     }
     .contact-item-label {
       font-size: 0.75rem;
-      color: var(--scaffold-gray);
+      color: var(--text-on-light);
       margin-bottom: 2px;
     }
     .contact-item-value {
@@ -639,7 +623,7 @@
     .form-group textarea {
       width: 100%;
       padding: 12px 16px;
-      border: 1.5px solid #D6D3D1;
+      border: 1.5px solid rgba(42,42,50,0.15);
       border-radius: var(--radius-md);
       font-size: 0.875rem;
       font-family: var(--font-body);
@@ -656,7 +640,7 @@
 
     /* Footer overrides */
     .homepage-footer.footer {
-      background: var(--deep-forge);
+      background: linear-gradient(180deg, var(--surface-dark-top) 0%, var(--night-build) 70%);
       border-top: 3px solid transparent;
       border-image: var(--gradient-accent) 1;
     }
@@ -674,7 +658,7 @@
     }
     .footer-desc {
       font-size: 0.875rem;
-      color: var(--scaffold-gray);
+      color: var(--text-on-dark);
       margin-top: var(--sp-4);
       max-width: 300px;
       line-height: 1.6;
@@ -687,7 +671,7 @@
     }
     .footer-section p {
       font-size: 0.875rem;
-      color: var(--scaffold-gray);
+      color: var(--text-on-dark);
       line-height: 1.8;
     }
     .footer-date {
@@ -697,7 +681,7 @@
       color: var(--amber);
     }
     .footer-bottom {
-      border-top: 1px solid #27272A;
+      border-top: 1px solid rgba(255,255,255,0.08);
       padding-top: var(--sp-6);
       display: flex;
       justify-content: space-between;
@@ -707,7 +691,7 @@
     }
     .footer-bottom p {
       font-size: 0.75rem;
-      color: var(--scaffold-gray);
+      color: var(--text-on-dark);
     }
 
     /* Nav overrides */
@@ -750,7 +734,7 @@
       align-items: center;
     }
     .homepage-nav .nav-link {
-      color: var(--scaffold-gray);
+      color: var(--text-on-dark);
       font-family: var(--font-body);
       font-weight: 500;
       font-size: 0.875rem;
@@ -785,8 +769,8 @@
       font-size: 0.75rem;
       font-weight: 600;
       cursor: pointer;
-      border-radius: 6px;
-      color: var(--scaffold-gray);
+      border-radius: var(--radius-sm);
+      color: var(--text-on-dark);
       transition: all 0.15s ease;
       font-family: var(--font-body);
     }
@@ -824,7 +808,7 @@
       .homepage-nav .nav-menu.active .nav-links a {
         font-size: 1rem;
         padding: var(--sp-2) 0;
-        color: var(--scaffold-gray);
+        color: var(--text-on-dark);
       }
       .homepage-nav .nav-menu.active .lang-switcher {
         display: flex !important;
@@ -848,6 +832,73 @@
       .contact-grid { grid-template-columns: 1fr; }
       .footer-grid { flex-direction: column; gap: var(--sp-6); }
       .cta-box { padding: var(--sp-8) var(--sp-4); }
+    }
+
+    /* Huisstijl A+ — homepage */
+    .home-light { background: transparent; }
+    .home-dark { background: linear-gradient(180deg, var(--surface-dark-top) 0%, var(--night-build) 70%); color: var(--blueprint-white); }
+    .home-spot { background: radial-gradient(ellipse 60% 90% at 50% -10%, rgba(255,255,255,0.06), transparent 65%), var(--night-build); color: var(--blueprint-white); }
+    .home-dark .section-title, .home-spot .section-title { color: white; }
+    .home-dark .section-desc, .home-spot .section-desc { color: var(--text-on-dark); }
+    .home-dark .section-label, .home-spot .section-label { color: var(--warm-gold); }
+    .section-title .accent { color: var(--amber); }
+    .pill-label.section-label { color: var(--warm-gold); margin-bottom: var(--sp-5); }
+    .home-light .pill-label.section-label { color: #B45309; }
+    .hero .btn .ico, .home-dark .btn .ico, .home-spot .btn .ico { width: 1.15em; height: 1.15em; }
+
+    /* Uitgelicht */
+    .featured { padding: var(--sp-20) var(--sp-6); }
+    .featured + .featured { padding-top: var(--sp-4); background: var(--night-build); }
+    .featured-cad.panel { margin-top: var(--sp-12); }
+    .featured-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-12); align-items: center; }
+    .featured-shot { position: relative; }
+    .featured-shot::before { content: ""; position: absolute; left: 8%; right: 8%; top: 10%; bottom: -8%; background: radial-gradient(ellipse at center, rgba(217,119,6,0.3), transparent 70%); filter: blur(36px); }
+    .featured-shot img { position: relative; display: block; width: 100%; height: auto; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.14); box-shadow: 0 0 0 8px rgba(255,255,255,0.03), 0 40px 80px -24px rgba(0,0,0,0.75); }
+    .featured-shot figcaption { position: relative; font-family: var(--font-code); font-size: 0.7rem; color: var(--text-on-dark); margin-top: var(--sp-4); text-align: center; }
+    .featured h2 { font-family: var(--font-heading); font-weight: 700; font-size: 2rem; color: white; line-height: 1.2; margin-bottom: var(--sp-4); }
+    .featured h2 span { color: var(--amber); }
+    .featured-desc { color: var(--text-on-dark); font-size: 1.05rem; line-height: 1.7; margin-bottom: var(--sp-5); }
+    .featured-desc strong, .featured-list strong { color: white; }
+    .featured-list { list-style: none; padding: 0; margin: 0 0 var(--sp-6) 0; }
+    .featured-list li { color: var(--text-on-dark); font-size: 0.9rem; padding: 6px 0; display: flex; gap: 10px; align-items: flex-start; }
+    .featured-list li > .ico { color: var(--amber); width: 20px; height: 20px; margin-top: 1px; --ico-accent-opacity: 0.3; }
+    .featured-actions { display: flex; gap: var(--sp-3); flex-wrap: wrap; align-items: center; }
+    .btn-textlink { color: var(--warm-gold); font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; padding: 12px 8px; }
+    .btn-textlink:hover { color: var(--amber); }
+
+    /* Toepassingsgebied */
+    .scope-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--sp-4); max-width: 960px; margin: var(--sp-8) auto 0; text-align: left; }
+    .scope-card { padding: var(--sp-5); border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.1); background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025)); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, var(--shadow-deep); }
+    .scope-card h3 { font-family: var(--font-heading); font-weight: 700; color: var(--amber); font-size: 0.95rem; margin-bottom: 6px; }
+    .scope-card p { color: var(--text-on-dark); font-size: 0.8125rem; line-height: 1.5; }
+    .scope-desc { color: var(--text-on-dark); font-size: 1rem; line-height: 1.7; max-width: 800px; margin: 0 auto; }
+    .scope-desc strong { color: white; }
+
+    /* Nieuws (licht) */
+    .news-list { max-width: 760px; margin: var(--sp-8) auto 0; text-align: left; background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); padding: var(--sp-2) var(--sp-6); }
+    .news-item { display: flex; gap: var(--sp-4); padding: var(--sp-4) 0; border-bottom: 1px solid rgba(42,42,50,0.07); }
+    .news-item:last-child { border-bottom: 0; }
+    .news-date { font-family: var(--font-code); font-size: 0.7rem; color: var(--text-muted); white-space: nowrap; padding-top: 2px; }
+    .news-item a { color: var(--deep-forge); font-weight: 600; text-decoration: none; font-size: 0.95rem; }
+    .news-item a:hover { color: var(--amber); }
+    .news-item p { font-size: 0.8rem; color: var(--text-muted); margin: 2px 0 0; }
+    .news-intro a { color: var(--amber); font-weight: 600; }
+
+    /* Early adopters */
+    .ea { padding: var(--sp-16) var(--sp-8); }
+    .ea-actions { padding: var(--sp-8); text-align: center; }
+    .ea-actions .ea-stars { margin: 0 0 var(--sp-6); }
+    .ea-buttons { display: grid; gap: 12px; }
+    .ea-buttons .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; }
+    .ea-stars { color: var(--text-on-dark); font-size: 0.9rem; margin-top: var(--sp-8); display: inline-flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-full); padding: 8px 16px; }
+    .ea-stars .ico { color: var(--warm-gold); }
+    .ea-stars strong { color: white; }
+
+    @media (max-width: 768px) {
+      .featured-grid { grid-template-columns: 1fr; gap: var(--sp-8); }
+      .featured { padding: var(--sp-12) var(--sp-4); }
+      .featured-cad .featured-shot { order: 2; }
+      .ea { padding: var(--sp-12) var(--sp-4); }
     }
   </style>
 
@@ -887,7 +938,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "en",
-        "dateModified": "2026-10-05",
+        "dateModified": "2026-10-15",
         "breadcrumb": {
           "@id": "https://open-aec.com/en/#breadcrumb"
         }
@@ -909,7 +960,7 @@
   </script>
   <!-- schema:end -->
 </head>
-<body>
+<body class="page-panels">
   <!-- Navigation -->
   <nav class="navbar homepage-nav">
     <div class="nav-container">
@@ -928,7 +979,7 @@
           <li><a href="/en/structuur/" class="nav-link" data-i18n="nav.structure">Structure</a></li>
           <li><a href="/en/#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
         </ul>
-        <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn">💬 Feedback</a>
+        <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chat"/></svg> Feedback</a>
         <div class="lang-switcher">
           <a class="lang-btn" data-lang="nl" href="/" hreflang="nl">NL</a>
           <a class="lang-btn active" data-lang="en" href="/en/" hreflang="en">EN</a>
@@ -981,9 +1032,9 @@
       <p class="tagline" data-i18n="hero.description">We develop, support and promote open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management.</p>
 
       <div class="hero-buttons">
-        <a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_x64-setup.exe" data-gh-download="OpenAEC-Foundation/openaec-installer" class="btn btn-primary btn-lg" data-i18n="hero.downloadBtn">↓ Download OpenAEC Installer</a>
-        <a href="#contact" class="btn btn-ghost btn-lg" data-i18n="hero.contactBtn">Get in touch →</a>
-        <a href="#over-ons" class="btn btn-ghost btn-lg" data-i18n="hero.readMore">Read more</a>
+        <a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_x64-setup.exe" data-gh-download="OpenAEC-Foundation/openaec-installer" class="btn btn-glow btn-lg" data-i18n="hero.downloadBtn"><svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-download'/></svg> Download OpenAEC Installer</a>
+        <a href="#contact" class="btn btn-glass btn-lg" data-i18n="hero.contactBtn">Get in touch →</a>
+        <a href="#over-ons" class="btn btn-glass btn-lg" data-i18n="hero.readMore">Read more</a>
       </div>
 
       <div class="hero-follow">
@@ -1000,84 +1051,63 @@
   </section>
 
   <!-- Featured tool: Open CAD Studio -->
-  <section class="section" style="background: linear-gradient(135deg, #36363E 0%, #2A2A32 100%); padding: var(--sp-12) var(--sp-6); position: relative; overflow: hidden;">
-    <div class="container" style="position: relative; z-index: 2;">
-      <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-12); align-items: center;" class="featured-grid featured-grid-cad">
-        <div style="background: var(--night-build); border-radius: var(--radius-lg); padding: var(--sp-3); border: 1px solid rgba(217, 119, 6, 0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.4);">
-          <img src="/shared/assets/screenshots/open-cad-studio.jpeg" alt="Open CAD Studio — 2D + 3D CAD-applicatie met DWG-tekening van een stedelijk weg- en infrastructuurontwerp" style="width: 100%; height: auto; display: block; border-radius: var(--radius-md);" loading="lazy">
-          <div style="font-family: var(--font-code); font-size: 0.7rem; color: var(--scaffold-gray); margin-top: var(--sp-3); text-align: center;">Open CAD Studio — 2D + 3D &middot; DWG/DXF &middot; Rust</div>
-        </div>
+  <section class="featured home-dark featured-cad panel panel-top">
+    <div class="featured-grid">
+        <figure class="featured-shot"><img src="/shared/assets/screenshots/open-cad-studio.jpeg" alt="Open CAD Studio — 2D + 3D CAD-applicatie met DWG-tekening van een stedelijk weg- en infrastructuurontwerp" loading="lazy"><figcaption>Open CAD Studio — 2D + 3D &middot; DWG/DXF &middot; Rust</figcaption></figure>
         <div>
-          <p style="font-family: var(--font-code); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--warm-gold); margin-bottom: var(--sp-3);" data-i18n="featuredCad.label">⭐ Featured — full 2D + 3D CAD, open source</p>
-          <h2 style="font-family: var(--font-heading); font-weight: 700; font-size: 2rem; color: white; line-height: 1.2; margin-bottom: var(--sp-4);" data-i18n="featuredCad.title">Draw in 2D and 3D with <span style="color: var(--amber);">open source CAD</span></h2>
-          <p style="color: var(--scaffold-gray); font-size: 1.05rem; line-height: 1.7; margin-bottom: var(--sp-5);" data-i18n="featuredCad.desc">Open CAD Studio is a <strong style="color: white;">full-featured 2D + 3D CAD application</strong>, built in Rust with GPU-accelerated rendering. Native <strong style="color: white;">DWG &amp; DXF</strong> read and write (R13–R2018) — your existing drawings work right away. A community project by Hakan Seven, aligned with the OpenAEC ecosystem.</p>
-          <ul style="list-style: none; padding: 0; margin: 0 0 var(--sp-6) 0;">
-            <li style="color: var(--scaffold-gray); font-size: 0.9rem; padding: 6px 0 6px 28px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber); font-weight: 700;">✓</span> <span data-i18n="featuredCad.bullet1"><strong style="color: white;">2D + 3D CAD</strong> — GPU-accelerated rendering (wgpu/iced)</span></li>
-            <li style="color: var(--scaffold-gray); font-size: 0.9rem; padding: 6px 0 6px 28px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber); font-weight: 700;">✓</span> <span data-i18n="featuredCad.bullet2"><strong style="color: white;">Native DWG &amp; DXF</strong> — read and write, R13–R2018</span></li>
-            <li style="color: var(--scaffold-gray); font-size: 0.9rem; padding: 6px 0 6px 28px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber); font-weight: 700;">✓</span> <span data-i18n="featuredCad.bullet3"><strong style="color: white;">Paper space &amp; ACIS solids</strong> — dimensions and layouts</span></li>
-            <li style="color: var(--scaffold-gray); font-size: 0.9rem; padding: 6px 0 6px 28px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber); font-weight: 700;">✓</span> <span data-i18n="featuredCad.bullet4"><strong style="color: white;">Rust speed</strong> — smooth even with large drawings</span></li>
-            <li style="color: var(--scaffold-gray); font-size: 0.9rem; padding: 6px 0 6px 28px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber); font-weight: 700;">✓</span> <span data-i18n="featuredCad.bullet5"><strong style="color: white;">Fully open source</strong> — community-driven, no licence fees</span></li>
-            <li style="color: var(--scaffold-gray); font-size: 0.9rem; padding: 6px 0 6px 28px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber); font-weight: 700;">✓</span> <span data-i18n="featuredCad.bullet6"><strong style="color: white;">Windows, macOS &amp; Linux</strong> — native desktop application</span></li>
+          <p class="pill-label section-label" data-i18n="featuredCad.label">Featured — full 2D + 3D CAD, open source</p>
+          <h2 data-i18n="featuredCad.title">Draw in 2D and 3D with <span style="color: var(--amber);">open source CAD</span></h2>
+          <p class="featured-desc" data-i18n="featuredCad.desc">Open CAD Studio is a <strong style="color: white;">full-featured 2D + 3D CAD application</strong>, built in Rust with GPU-accelerated rendering. Native <strong style="color: white;">DWG &amp; DXF</strong> read and write (R13–R2018) — your existing drawings work right away. A community project by Hakan Seven, aligned with the OpenAEC ecosystem.</p>
+          <ul class="featured-list">
+            <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="featuredCad.bullet1"><strong>2D + 3D CAD</strong>: GPU-accelerated rendering (wgpu/iced)</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="featuredCad.bullet2"><strong>Native DWG &amp; DXF</strong>: read and write, R13–R2018</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="featuredCad.bullet3"><strong>Paper space &amp; ACIS solids</strong>: dimensions and layouts</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="featuredCad.bullet4"><strong>Rust speed</strong>: smooth even with large drawings</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="featuredCad.bullet5"><strong>Fully open source</strong>: community-driven, no licence fees</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="featuredCad.bullet6"><strong>Windows, macOS &amp; Linux</strong>: native desktop application</span></li>
           </ul>
-          <div style="display: flex; gap: var(--sp-3); flex-wrap: wrap;">
-            <a href="https://www.opencadstudio.com/" target="_blank" rel="noopener" style="background: var(--amber); color: white; padding: 12px 28px; border-radius: var(--radius-md); font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;" data-i18n="featuredCad.cta_live">🚀 Open live demo</a>
-            <a href="/en/open-cad-studio/" style="background: rgba(255,255,255,0.1); color: white; padding: 12px 28px; border-radius: var(--radius-md); font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.2);" data-i18n="featuredCad.cta_download">📐 Product page</a>
-            <a href="https://github.com/HakanSeven12/OpenCADStudio" target="_blank" rel="noopener" style="background: transparent; color: var(--amber); padding: 12px 8px; font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;" data-i18n="featuredCad.cta_github">⭐ GitHub</a>
+          <div class="featured-actions">
+            <a href="https://www.opencadstudio.com/" target="_blank" rel="noopener" class="btn btn-glow" data-i18n="featuredCad.cta_live"><svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-play'/></svg> Open live demo</a>
+            <a href="/en/open-cad-studio/" class="btn btn-glass" data-i18n="featuredCad.cta_download"><svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-document'/></svg> Product page</a>
+            <a href="https://github.com/HakanSeven12/OpenCADStudio" target="_blank" rel="noopener" class="btn-textlink" data-i18n="featuredCad.cta_github"><svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> GitHub</a>
           </div>
         </div>
-      </div>
     </div>
-    <style>
-      @media (max-width: 768px) {
-        .featured-grid-cad { grid-template-columns: 1fr !important; gap: var(--sp-8) !important; }
-        .featured-grid-cad > div:first-child { order: 2; }
-      }
-    </style>
   </section>
 
   <!-- Featured tool: Open PDF Studio -->
-  <section class="section" style="background: linear-gradient(135deg, #2A2A32 0%, #36363E 100%); padding: var(--sp-12) var(--sp-6); position: relative; overflow: hidden;">
-    <div class="container" style="position: relative; z-index: 2;">
-      <div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-12); align-items: center;" class="featured-grid">
+  <section class="featured home-dark featured-pdf panel panel-bottom">
+    <div class="featured-grid">
         <div>
-          <p style="font-family: var(--font-code); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--warm-gold); margin-bottom: var(--sp-3);" data-i18n="featuredPdf.label">⭐ Featured — free open-source PDF editor</p>
-          <h2 style="font-family: var(--font-heading); font-weight: 700; font-size: 2rem; color: white; line-height: 1.2; margin-bottom: var(--sp-4);" data-i18n="featuredPdf.title">Annotate and edit PDFs with <span style="color: var(--amber);">open source</span></h2>
-          <p style="color: var(--scaffold-gray); font-size: 1.05rem; line-height: 1.7; margin-bottom: var(--sp-5);" data-i18n="featuredPdf.desc">Open PDF Studio is a <strong style="color: white;">full-featured PDF editor and annotator</strong> for the AEC industry — no subscription, telemetry or bloatware. Its custom <strong style="color: white;">Rust PDF engine</strong> renders vector PDFs such as technical drawings blazingly fast, even at hundreds of pages.</p>
-          <ul style="list-style: none; padding: 0; margin: 0 0 var(--sp-6) 0;">
-            <li style="color: var(--scaffold-gray); font-size: 0.9rem; padding: 6px 0 6px 28px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber); font-weight: 700;">✓</span> <span data-i18n="featuredPdf.bullet1"><strong style="color: white;">20+ annotation tools</strong> — highlights, clouds, stamps and signatures</span></li>
-            <li style="color: var(--scaffold-gray); font-size: 0.9rem; padding: 6px 0 6px 28px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber); font-weight: 700;">✓</span> <span data-i18n="featuredPdf.bullet2"><strong style="color: white;">Measure to scale</strong> — distance, area and perimeter with calibration and snapping</span></li>
-            <li style="color: var(--scaffold-gray); font-size: 0.9rem; padding: 6px 0 6px 28px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber); font-weight: 700;">✓</span> <span data-i18n="featuredPdf.bullet3"><strong style="color: white;">Rust PDF engine</strong> — blazing-fast vector rendering of technical drawings</span></li>
-            <li style="color: var(--scaffold-gray); font-size: 0.9rem; padding: 6px 0 6px 28px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber); font-weight: 700;">✓</span> <span data-i18n="featuredPdf.bullet4"><strong style="color: white;">Page management &amp; forms</strong> — merge, reorder, redact, AcroForms/XFA</span></li>
-            <li style="color: var(--scaffold-gray); font-size: 0.9rem; padding: 6px 0 6px 28px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber); font-weight: 700;">✓</span> <span data-i18n="featuredPdf.bullet5"><strong style="color: white;">Fully open source</strong> — free, no subscription, no telemetry</span></li>
-            <li style="color: var(--scaffold-gray); font-size: 0.9rem; padding: 6px 0 6px 28px; position: relative;"><span style="position: absolute; left: 0; color: var(--amber); font-weight: 700;">✓</span> <span data-i18n="featuredPdf.bullet6"><strong style="color: white;">Windows, Linux &amp; Android</strong> — in 39 languages, incl. manual</span></li>
+          <p class="pill-label section-label" data-i18n="featuredPdf.label">Featured — free open-source PDF editor</p>
+          <h2 data-i18n="featuredPdf.title">Annotate and edit PDFs with <span style="color: var(--amber);">open source</span></h2>
+          <p class="featured-desc" data-i18n="featuredPdf.desc">Open PDF Studio is a <strong style="color: white;">full-featured PDF editor and annotator</strong> for the AEC industry — no subscription, telemetry or bloatware. Its custom <strong style="color: white;">Rust PDF engine</strong> renders vector PDFs such as technical drawings blazingly fast, even at hundreds of pages.</p>
+          <ul class="featured-list">
+            <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="featuredPdf.bullet1"><strong>20+ annotation tools</strong>: highlights, clouds, stamps and signatures</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="featuredPdf.bullet2"><strong>Measure to scale</strong>: distance, area and perimeter with calibration and snapping</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="featuredPdf.bullet3"><strong>Rust PDF engine</strong>: blazing-fast vector rendering of technical drawings</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="featuredPdf.bullet4"><strong>Page management &amp; forms</strong>: merge, reorder, redact, AcroForms/XFA</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="featuredPdf.bullet5"><strong>Fully open source</strong>: free, no subscription, no telemetry</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg><span data-i18n="featuredPdf.bullet6"><strong>Windows, Linux &amp; Android</strong>: in 39 languages, incl. manual</span></li>
           </ul>
-          <div style="display: flex; gap: var(--sp-3); flex-wrap: wrap;">
-            <a href="https://open-pdf-studio.open-aec.com/" target="_blank" rel="noopener" style="background: var(--amber); color: white; padding: 12px 28px; border-radius: var(--radius-md); font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;" data-i18n="featuredPdf.cta_live">🚀 Open live demo</a>
-            <a href="/en/open-pdf-studio/" style="background: rgba(255,255,255,0.1); color: white; padding: 12px 28px; border-radius: var(--radius-md); font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(255,255,255,0.2);" data-i18n="featuredPdf.cta_download">📄 Product page</a>
-            <a href="https://github.com/OpenAEC-Foundation/open-pdf-studio" target="_blank" rel="noopener" style="background: transparent; color: var(--amber); padding: 12px 8px; font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;" data-i18n="featuredPdf.cta_github">⭐ GitHub</a>
+          <div class="featured-actions">
+            <a href="https://open-pdf-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glow" data-i18n="featuredPdf.cta_live"><svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-play'/></svg> Open live demo</a>
+            <a href="/en/open-pdf-studio/" class="btn btn-glass" data-i18n="featuredPdf.cta_download"><svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-document'/></svg> Product page</a>
+            <a href="https://github.com/OpenAEC-Foundation/open-pdf-studio" target="_blank" rel="noopener" class="btn-textlink" data-i18n="featuredPdf.cta_github"><svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> GitHub</a>
           </div>
         </div>
-        <div style="background: var(--night-build); border-radius: var(--radius-lg); padding: var(--sp-3); border: 1px solid rgba(217, 119, 6, 0.3); box-shadow: 0 20px 60px rgba(0,0,0,0.4);">
-          <img src="/shared/assets/screenshots/open-pdf-studio-2.jpeg" alt="Open PDF Studio — open source PDF-editor met meetgereedschap en schaalkalibratie op een technische bouwtekening" style="width: 100%; height: auto; display: block; border-radius: var(--radius-md);" loading="lazy">
-          <div style="font-family: var(--font-code); font-size: 0.7rem; color: var(--scaffold-gray); margin-top: var(--sp-3); text-align: center;">Open PDF Studio — annoteren &middot; meten &middot; Rust PDF-engine</div>
-        </div>
-      </div>
+        <figure class="featured-shot"><img src="/shared/assets/screenshots/open-pdf-studio-2.jpeg" alt="Open PDF Studio — open source PDF-editor met meetgereedschap en schaalkalibratie op een technische bouwtekening" loading="lazy"><figcaption data-i18n="featuredPdf.caption">Open PDF Studio — annotate · measure · Rust PDF engine</figcaption></figure>
     </div>
-    <style>
-      @media (max-width: 768px) {
-        .featured-grid { grid-template-columns: 1fr !important; gap: var(--sp-8) !important; }
-      }
-    </style>
   </section>
 
   <!-- Tools Section -->
-  <section class="section section-white" id="ecosysteem">
+  <section class="section home-light" id="ecosysteem">
     <div class="container">
       <div class="text-center">
-        <p class="section-label" data-i18n="tools.label">Ecosystem</p>
+        <p class="pill-label section-label" data-i18n="tools.label">Ecosystem</p>
         <h2 class="section-title" data-i18n="tools.title">The OpenAEC ecosystem</h2>
         <p class="section-desc" data-i18n="tools.description">Our foundation's goal is to make the entire AEC industry (buildings, infrastructure, civil engineering) open source this year. These are the tools and projects we're building to make it happen.</p>
-        <p style="display: inline-flex; align-items: center; gap: 6px; background: #DBEAFE; color: #1E40AF; padding: 6px 14px; border-radius: var(--radius-full); font-family: var(--font-code); font-size: 0.7rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-top: var(--sp-4);" data-i18n="tools.devNotice">All tools are currently in active development</p>
+        <p class="dev-notice" data-i18n="tools.devNotice">All tools are currently in active development</p>
       </div>
 
       <!-- Category filter -->
@@ -1089,8 +1119,8 @@
         <button class="cat-filter-btn" data-cat="I" role="tab" aria-selected="false"><span class="tool-cat tool-cat-i">I</span> <span data-i18n="tools.filter.infra">Infra &amp; GWW</span> <span class="cat-count" data-cat-count="I"></span></button>
       </div>
 
-      <div class="tools-grid">
-        <article class="tool-card" data-categories="A,E,C,I" style="border: 2px solid var(--amber);">
+      <div class="tools-grid" id="tools-grid">
+        <article class="tool-card tool-card-featured" data-categories="A,E,C,I">
           <img class="tool-thumb" src="/shared/assets/screenshots/ifcx.png" alt="IFCX Schema">
           <div>
             <div class="tool-cats"><span class="tool-cat tool-cat-a">A</span><span class="tool-cat tool-cat-e">E</span><span class="tool-cat tool-cat-c">C</span><span class="tool-cat tool-cat-i">I</span></div>
@@ -1126,10 +1156,10 @@
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 data-i18n="tools.items.openPdf.title" style="margin-bottom:0;">Open PDF Studio</h3><span class="tool-tag tool-tag-available" data-i18n="tools.tags.available">Available</span></div>
             <p data-i18n="tools.items.openPdf.desc">Free <strong>PDF editor and annotator</strong> with a custom Rust PDF engine. 20+ annotation tools, measuring to scale, page management, forms, redaction and watermarks — in 39 languages on Windows, Linux and Android.</p>
             <div class="tool-stats">
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 1132 commits</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> nightly</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 878</span>
-              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">4 okt 2026</span><span class="lang-en">4 Oct 2026</span></span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 1300 commits</span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v2026.42</span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 916</span>
+              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">15 okt 2026</span><span class="lang-en">15 Oct 2026</span></span>
             </div>
             </div>
           <div class="tool-links">
@@ -1145,10 +1175,10 @@
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 data-i18n="tools.items.openPlanner.title" style="margin-bottom:0;">Open Planner Studio</h3><span class="tool-tag tool-tag-available" data-i18n="tools.tags.available">Available</span><span class="tool-tag tool-tag-beta" data-i18n="tools.tags.beta">Beta</span></div>
             <p data-i18n="tools.items.openPlanner.desc">Open planning and project coordination tool for buildings, infrastructure and civil works.</p>
             <div class="tool-stats">
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 3357 commits</span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 3988 commits</span>
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v2026.9</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 24</span>
-              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">3 okt 2026</span><span class="lang-en">3 Oct 2026</span></span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 33</span>
+              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">14 okt 2026</span><span class="lang-en">14 Oct 2026</span></span>
             </div>
             </div>
           <div class="tool-links">
@@ -1165,8 +1195,8 @@
             <div class="tool-stats">
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 306 commits</span>
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v2026.39</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 19</span>
-              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">4 okt 2026</span><span class="lang-en">4 Oct 2026</span></span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 20</span>
+              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">12 okt 2026</span><span class="lang-en">12 Oct 2026</span></span>
             </div>
             </div>
           <div class="tool-links">
@@ -1196,10 +1226,10 @@
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 data-i18n="tools.items.openPointcloud.title" style="margin-bottom:0;">Open Pointcloud Studio</h3><span class="tool-tag tool-tag-beta" data-i18n="tools.tags.beta">Beta</span></div>
             <p data-i18n="tools.items.openPointcloud.desc">Desktop application for point clouds: opens LAS, LAZ, E57 and whole scan projects, with a section box, measuring, saved views with notes as BCF, export and meshes.</p>
             <div class="tool-stats">
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 195 commits</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v0.8</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 12</span>
-              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">5 okt 2026</span><span class="lang-en">5 Oct 2026</span></span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 432 commits</span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v0.9</span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 28</span>
+              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">13 okt 2026</span><span class="lang-en">13 Oct 2026</span></span>
             </div>
             </div>
           <div class="tool-links">
@@ -1216,8 +1246,8 @@
             <div class="tool-stats">
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 96 commits</span>
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v0.13</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 14</span>
-              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">4 okt 2026</span><span class="lang-en">4 Oct 2026</span></span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 16</span>
+              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">12 okt 2026</span><span class="lang-en">12 Oct 2026</span></span>
             </div>
             </div>
           <div class="tool-links">
@@ -1234,8 +1264,8 @@
             <div class="tool-stats">
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 406 commits</span>
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v0.4</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 5</span>
-              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">4 okt 2026</span><span class="lang-en">4 Oct 2026</span></span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 6</span>
+              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">12 okt 2026</span><span class="lang-en">12 Oct 2026</span></span>
             </div>
             </div>
           <div class="tool-links">
@@ -1252,8 +1282,8 @@
             <div class="tool-stats">
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 34 commits</span>
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v0.2</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 1</span>
-              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">26 aug 2026</span><span class="lang-en">26 Aug 2026</span></span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 3</span>
+              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">12 okt 2026</span><span class="lang-en">12 Oct 2026</span></span>
             </div>
             </div>
           <div class="tool-links">
@@ -1268,10 +1298,10 @@
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 data-i18n="tools.items.openSpeech.title" style="margin-bottom:0;">Open Speech Studio</h3><span class="tool-tag tool-tag-available" data-i18n="tools.tags.available">Available</span><span class="tool-tag tool-tag-beta" data-i18n="tools.tags.beta">Beta</span></div>
             <p data-i18n="tools.items.openSpeech.desc">Open source speech-to-text and meeting notes tool for construction meetings and project consultations.</p>
             <div class="tool-stats">
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 91 commits</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v0.10</span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 93 commits</span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v0.12</span>
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 8</span>
-              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">4 okt 2026</span><span class="lang-en">4 Oct 2026</span></span>
+              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">10 okt 2026</span><span class="lang-en">10 Oct 2026</span></span>
             </div>
             </div>
           <a href="/en/open-speech-studio/" class="tool-link" data-i18n="tools.productPageLink">Product page &rarr;</a>
@@ -1285,8 +1315,8 @@
             <div class="tool-stats">
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 35 commits</span>
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v0.3</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 2</span>
-              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">4 okt 2026</span><span class="lang-en">4 Oct 2026</span></span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 3</span>
+              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">6 okt 2026</span><span class="lang-en">6 Oct 2026</span></span>
             </div>
             </div>
           <div class="tool-links">
@@ -1321,8 +1351,8 @@
             <div class="tool-stats">
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 49 commits</span>
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v1.0</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 1</span>
-              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">18 sep 2026</span><span class="lang-en">18 Sep 2026</span></span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 2</span>
+              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">6 okt 2026</span><span class="lang-en">6 Oct 2026</span></span>
             </div>
             </div>
           <div class="tool-links">
@@ -1337,7 +1367,7 @@
             <p data-i18n="tools.items.openFrame.desc">Open source structural analysis tool. 2D frame calculations for beams, columns, portal structures and civil load-bearing systems.</p>
             <div class="tool-stats">
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 122 commits</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v0.6</span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg> v0.5</span>
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 10</span>
               <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">4 okt 2026</span><span class="lang-en">4 Oct 2026</span></span>
             </div>
@@ -1372,8 +1402,8 @@
             <p data-i18n="tools.items.openBooks.desc">Open project for <strong>scanning and digitising old architectural books</strong>. Makes historic architectural heritage accessible for research, restoration and the OpenAEC ecosystem.</p>
             <div class="tool-stats">
               <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg> 113 commits</span>
-              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 7</span>
-              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">22 sep 2026</span><span class="lang-en">22 Sep 2026</span></span>
+              <span class="tool-stat"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg> 9</span>
+              <span class="tool-stat" title="Last updated on GitHub" data-i18n="tools.lastModified" data-i18n-attr="title"><svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg> <span class="lang-nl">12 okt 2026</span><span class="lang-en">12 Oct 2026</span></span>
             </div>
             </div>
           <div class="tool-links">
@@ -1418,8 +1448,16 @@
         </article>
       </div>
 
+      <div class="tools-more" hidden>
+        <button type="button" class="btn btn-secondary btn-lg more-btn tools-more-btn" aria-expanded="false" aria-controls="tools-grid">
+          <span class="tools-more-open"><span data-i18n="tools.showAll">Show all tools</span> <span class="tools-more-count more-count"></span></span>
+          <span class="tools-more-close" hidden data-i18n="tools.showLess">Show less</span>
+          <svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg>
+        </button>
+      </div>
+
       <div class="tools-actions" style="gap: var(--sp-4); flex-wrap: wrap;">
-        <a href="/en/offerte/" class="btn btn-primary btn-lg" data-i18n="tools.quoteBtn">Request quote</a>
+        <a href="/en/offerte/" class="btn btn-glow btn-lg" data-i18n="tools.quoteBtn">Request quote</a>
         <a href="/en/roadmap/" class="btn btn-secondary btn-lg" data-i18n="tools.roadmapBtn">Roadmap 2026</a>
         <a href="/en/architectuur/" class="btn btn-secondary btn-lg" data-i18n="tools.archBtn">Software architecture</a>
       </div>
@@ -1502,72 +1540,98 @@
 
         btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.cat)));
       })();
+
+      // Inklappen: standaard alleen de eerste rij van de zichtbare tools.
+      // Zonder JavaScript blijven alle tools zichtbaar (ook voor zoekmachines).
+      (function() {
+        const grid = document.getElementById('tools-grid');
+        const wrap = document.querySelector('.tools-more');
+        if (!grid || !wrap) return;
+        const btn = wrap.querySelector('.tools-more-btn');
+        const openLbl = wrap.querySelector('.tools-more-open');
+        const closeLbl = wrap.querySelector('.tools-more-close');
+        const count = wrap.querySelector('.tools-more-count');
+        const cards = Array.from(grid.querySelectorAll('.tool-card'));
+        let open = false;
+        const columns = () => getComputedStyle(grid).gridTemplateColumns.split(' ').filter(Boolean).length || 1;
+        function update() {
+          cards.forEach(c => c.classList.remove('is-folded'));
+          const visible = cards.filter(c => !c.classList.contains('is-hidden'));
+          // Eén kolom (telefoon): twee tools tonen, anders één volle rij.
+          const perRow = columns() === 1 ? 2 : columns();
+          if (!open) visible.slice(perRow).forEach(c => c.classList.add('is-folded'));
+          wrap.hidden = visible.length <= perRow;
+          count.textContent = '(' + visible.length + ')';
+          openLbl.hidden = open;
+          closeLbl.hidden = !open;
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+        btn.addEventListener('click', () => {
+          open = !open;
+          update();
+          if (!open) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        document.querySelectorAll('.cat-filter-btn').forEach(b => b.addEventListener('click', () => { open = false; update(); }));
+        let t;
+        window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(update, 120); });
+        update();
+      })();
     </script>
   </section>
 
   <!-- Waarom OpenAEC Section -->
   <!-- Scope section: AEC breed -->
-  <section class="section" style="background: var(--night-build); padding: var(--sp-12) var(--sp-6); text-align: center;">
-    <div class="container">
-      <p style="font-family: var(--font-code); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--warm-gold); margin-bottom: var(--sp-4);" data-i18n="scope.label">Scope</p>
-      <h2 style="font-family: var(--font-heading); font-weight: 700; font-size: 1.75rem; color: white; margin-bottom: var(--sp-4);" data-i18n="scope.title">Buildings, infrastructure &amp; <span style="color: var(--amber);">civil engineering</span></h2>
-      <p style="color: var(--scaffold-gray); font-size: 1rem; line-height: 1.7; max-width: 800px; margin: 0 auto var(--sp-8);" data-i18n="scope.desc">OpenAEC covers the full <strong>Architecture, Engineering &amp; Construction</strong> chain: from residential and commercial buildings to roads, bridges, tunnels, railways, water infrastructure and civil works. Our tools and the IFCX ecosystem support IfcBuilding, IfcRoad, IfcRail, IfcBridge, IfcTunnel and IfcMarineFacility — conforming to IFC 4.3.</p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--sp-4); max-width: 900px; margin: 0 auto;">
-        <div style="background: var(--deep-forge); border-radius: var(--radius-md); padding: var(--sp-4); text-align: left;">
-          <div style="font-family: var(--font-heading); font-weight: 700; color: var(--amber); font-size: 0.9rem; margin-bottom: 6px;" data-i18n="scope.bu.title">Buildings &amp; utilities</div>
-          <div style="color: var(--scaffold-gray); font-size: 0.8125rem; line-height: 1.5;" data-i18n="scope.bu.desc">Homes, offices, schools, hospitals — from design to delivery and management.</div>
-        </div>
-        <div style="background: var(--deep-forge); border-radius: var(--radius-md); padding: var(--sp-4); text-align: left;">
-          <div style="font-family: var(--font-heading); font-weight: 700; color: var(--amber); font-size: 0.9rem; margin-bottom: 6px;" data-i18n="scope.gww.title">Civil infrastructure</div>
-          <div style="color: var(--scaffold-gray); font-size: 0.8125rem; line-height: 1.5;" data-i18n="scope.gww.desc">Roads, dikes, water barriers, sewerage, earthworks.</div>
-        </div>
-        <div style="background: var(--deep-forge); border-radius: var(--radius-md); padding: var(--sp-4); text-align: left;">
-          <div style="font-family: var(--font-heading); font-weight: 700; color: var(--amber); font-size: 0.9rem; margin-bottom: 6px;" data-i18n="scope.civil.title">Civil engineering</div>
-          <div style="color: var(--scaffold-gray); font-size: 0.8125rem; line-height: 1.5;" data-i18n="scope.civil.desc">Bridges, tunnels, viaducts, locks, harbours, railways, geotechnics.</div>
-        </div>
-        <div style="background: var(--deep-forge); border-radius: var(--radius-md); padding: var(--sp-4); text-align: left;">
-          <div style="font-family: var(--font-heading); font-weight: 700; color: var(--amber); font-size: 0.9rem; margin-bottom: 6px;" data-i18n="scope.infra.title">Infrastructure</div>
-          <div style="color: var(--scaffold-gray); font-size: 0.8125rem; line-height: 1.5;" data-i18n="scope.infra.desc">Energy and utility networks, telecom, transport, public space, monuments.</div>
-        </div>
+  <section class="section home-dark panel">
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label section-label" data-i18n="scope.label">Scope</p>
+        <h2 data-i18n="scope.title">Buildings, infrastructure &amp; <span style="color: var(--amber);">civil engineering</span></h2>
+        <p data-i18n="scope.desc">OpenAEC covers the full <strong>Architecture, Engineering &amp; Construction</strong> chain: from residential and commercial buildings to roads, bridges, tunnels, railways, water infrastructure and civil works. Our tools and the IFCX ecosystem support IfcBuilding, IfcRoad, IfcRail, IfcBridge, IfcTunnel and IfcMarineFacility — conforming to IFC 4.3.</p>
       </div>
+      <ul class="split-cards split-cards-2">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-crane"/></svg></div><div><h4 data-i18n="scope.bu.title">Buildings &amp; utilities</h4><p data-i18n="scope.bu.desc">Homes, offices, schools, hospitals — from design to delivery and management.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-strata"/></svg></div><div><h4 data-i18n="scope.gww.title">Civil infrastructure</h4><p data-i18n="scope.gww.desc">Roads, dikes, water barriers, sewerage, earthworks.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-set-square"/></svg></div><div><h4 data-i18n="scope.civil.title">Civil engineering</h4><p data-i18n="scope.civil.desc">Bridges, tunnels, viaducts, locks, harbours, railways, geotechnics.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-link"/></svg></div><div><h4 data-i18n="scope.infra.title">Infrastructure</h4><p data-i18n="scope.infra.desc">Energy and utility networks, telecom, transport, public space, monuments.</p></div></li>
+      </ul>
     </div>
   </section>
 
-  <section class="section section-alt" id="over-ons">
+  <section class="section home-light" id="over-ons">
     <div class="container">
       <div class="text-center">
-        <p class="section-label" data-i18n="about.label">About us</p>
+        <p class="pill-label section-label" data-i18n="about.label">About us</p>
         <h2 class="section-title" data-i18n="about.title">Why OpenAEC Foundation?</h2>
         <p class="section-desc" data-i18n="about.description">The AEC industry deserves software that is transparent, future-proof and shaped by its users.</p>
       </div>
       <div class="features-grid">
         <div class="feature-card">
-          <svg class="feature-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M24 4v4M24 40v4M4 24h4M40 24h4"/><circle cx="24" cy="24" r="12"/><path d="M18 24l3 3 6-6"/></svg>
+          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-euro"/></svg></div>
           <h3 data-i18n="about.features.cost.title">Cost reduction</h3>
           <p data-i18n="about.features.cost.desc">No license costs, lower consulting fees. Building becomes more affordable for everyone.</p>
         </div>
         <div class="feature-card">
-          <svg class="feature-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="14" r="4"/><circle cx="34" cy="14" r="4"/><circle cx="14" cy="34" r="4"/><circle cx="34" cy="34" r="4"/><path d="M18 14h12M14 18v12M34 18v12M18 34h12"/></svg>
+          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chip"/></svg></div>
           <h3 data-i18n="about.features.ai.title">AI-ready</h3>
           <p data-i18n="about.features.ai.desc">Open source code integrates better with AI and automation.</p>
         </div>
         <div class="feature-card">
-          <svg class="feature-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40V20l16-12 16 12v20"/><path d="M18 40V28h12v12"/><path d="M2 44h44"/></svg>
+          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-shield"/></svg></div>
           <h3 data-i18n="about.features.future.title">Future-proof</h3>
           <p data-i18n="about.features.future.desc">Community can continue maintaining software, independent of vendors.</p>
         </div>
         <div class="feature-card">
-          <svg class="feature-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 44V12l8-8h16l8 8v32"/><path d="M16 4v8H8"/><path d="M16 24h16M16 32h10"/><path d="M32 4v8h8"/></svg>
+          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-users"/></svg></div>
           <h3 data-i18n="about.features.edu.title">Education</h3>
           <p data-i18n="about.features.edu.desc">Internship and training opportunities for students worldwide.</p>
         </div>
         <div class="feature-card">
-          <svg class="feature-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="36" height="36" rx="4"/><path d="M6 18h36M18 6v36"/><circle cx="32" cy="32" r="4"/></svg>
+          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-cube"/></svg></div>
           <h3 data-i18n="about.features.formats.title">Open formats</h3>
           <p data-i18n="about.features.formats.desc">All data in open standards like IFC, PDF, DXF. No vendor lock-in.</p>
         </div>
         <div class="feature-card">
-          <svg class="feature-icon" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="24" cy="24" r="16"/><path d="M24 14v10l7 7"/><path d="M16 8l-2-4M32 8l2-4"/></svg>
+          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div>
           <h3 data-i18n="about.features.ux.title">User-friendly</h3>
           <p data-i18n="about.features.ux.desc">100% focus on user-friendliness. Modern interfaces inspired by the best commercial software.</p>
         </div>
@@ -1576,9 +1640,9 @@
   </section>
 
   <!-- Missie Section -->
-  <section class="section missie" id="missie">
+  <section class="section missie panel" id="missie">
     <div class="container text-center">
-      <p class="section-label" data-i18n="mission.label">Our mission</p>
+      <p class="pill-label section-label" data-i18n="mission.label">Our mission</p>
       <h2 class="section-title" data-i18n="mission.title">"Developing, supporting and promoting <span class="accent">open source software</span> for the entire AEC chain (buildings, infrastructure, civil engineering)."</h2>
       <div class="missie-grid">
         <div class="missie-item">
@@ -1611,22 +1675,22 @@
 
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: var(--sp-6); margin-top: var(--sp-10); max-width: 800px; margin-left: auto; margin-right: auto;">
         <div style="text-align: center;">
-          <img src="/personen/Maarten.jpeg" alt="Maarten Vroegindeweij" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #E7E5E4; margin: 0 auto var(--sp-3); display: block;">
+          <img src="/personen/Maarten.jpeg" alt="Maarten Vroegindeweij" style="width: 80px; height: 80px; border-radius: var(--radius-full); object-fit: cover; border: 3px solid #E7E5E4; margin: 0 auto var(--sp-3); display: block;">
           <p style="font-family: var(--font-heading); font-weight: 700; font-size: 1rem;" data-i18n="board.members.maarten.name">Maarten Vroegindeweij</p>
           <p style="font-family: var(--font-code); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); margin-top: 2px;" data-i18n="board.members.maarten.role">Chairman</p>
         </div>
         <div style="text-align: center;">
-          <img src="/personen/Jochem.jpeg" alt="Jochem Kolthof" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #E7E5E4; margin: 0 auto var(--sp-3); display: block;">
+          <img src="/personen/Jochem.jpeg" alt="Jochem Kolthof" style="width: 80px; height: 80px; border-radius: var(--radius-full); object-fit: cover; border: 3px solid #E7E5E4; margin: 0 auto var(--sp-3); display: block;">
           <p style="font-family: var(--font-heading); font-weight: 700; font-size: 1rem;" data-i18n="board.members.jochem.name">Jochem Kolthof</p>
           <p style="font-family: var(--font-code); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); margin-top: 2px;" data-i18n="board.members.jochem.role">Treasurer</p>
         </div>
         <div style="text-align: center;">
-          <img src="/personen/Martjan%20den%20Hoed.jpeg" alt="Martjan den Hoed" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #E7E5E4; margin: 0 auto var(--sp-3); display: block;">
+          <img src="/personen/Martjan%20den%20Hoed.jpeg" alt="Martjan den Hoed" style="width: 80px; height: 80px; border-radius: var(--radius-full); object-fit: cover; border: 3px solid #E7E5E4; margin: 0 auto var(--sp-3); display: block;">
           <p style="font-family: var(--font-heading); font-weight: 700; font-size: 1rem;" data-i18n="board.members.martjan.name">Martjan den Hoed</p>
           <p style="font-family: var(--font-code); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); margin-top: 2px;" data-i18n="board.members.martjan.role">Secretary</p>
         </div>
         <div style="text-align: center;">
-          <img src="/personen/Silvia%20Taurer.jpeg" alt="Silvia Taurer" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; border: 3px solid #E7E5E4; margin: 0 auto var(--sp-3); display: block;">
+          <img src="/personen/Silvia%20Taurer.jpeg" alt="Silvia Taurer" style="width: 80px; height: 80px; border-radius: var(--radius-full); object-fit: cover; border: 3px solid #E7E5E4; margin: 0 auto var(--sp-3); display: block;">
           <p style="font-family: var(--font-heading); font-weight: 700; font-size: 1rem;" data-i18n="board.members.silvia.name">Silvia Taurer</p>
           <p style="font-family: var(--font-code); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber); margin-top: 2px;" data-i18n="board.members.silvia.role">Board member</p>
         </div>
@@ -1639,41 +1703,39 @@
   </section>
 
   <!-- Nieuws Section -->
-  <section class="section" style="background: var(--night-build); text-align: center; padding: var(--sp-12) var(--sp-6);">
+  <section class="section home-light" style="text-align: center;">
     <div class="container">
-      <p style="font-family: var(--font-code); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--warm-gold); margin-bottom: var(--sp-4);" data-i18n="news.label">News</p>
-      <h2 style="font-family: var(--font-heading); font-weight: 700; font-size: 1.75rem; color: white; margin-bottom: var(--sp-3);" data-i18n="news.title">Stay updated</h2>
-      <p style="color: var(--scaffold-gray); font-size: 1rem; max-width: 500px; margin: 0 auto var(--sp-6); line-height: 1.6;" data-i18n="news.desc">Follow our <a href='https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42' target='_blank' rel='noopener' style='color: var(--amber);'>WhatsApp channel</a> for the latest news about the ecosystem, new releases and updates.</p>
-      <div id="news-feed" style="max-width:700px;margin:0 auto;text-align:left;"></div>
+      <p class="pill-label section-label" data-i18n="news.label">News</p>
+      <h2 class="section-title" data-i18n="news.title">Stay updated</h2>
+      <p class="section-desc news-intro" data-i18n="news.desc">Follow our <a href='https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42' target='_blank' rel='noopener' style='color: var(--amber);'>WhatsApp channel</a> for the latest news about the ecosystem, new releases and updates.</p>
+      <div id="news-feed" class="news-list"></div>
     </div>
   </section>
 
   <!-- Early Adopter CTA -->
-  <section class="section" style="background: linear-gradient(135deg, #1a1206 0%, #0a0a0a 50%, #0d1117 100%); padding: var(--sp-12) var(--sp-6); text-align: center;">
-    <div class="container" style="max-width: 720px;">
-      <div style="display: inline-block; background: rgba(230, 126, 34, 0.15); border: 1px solid rgba(230, 126, 34, 0.3); border-radius: var(--radius-full); padding: 6px 16px; margin-bottom: var(--sp-4);">
-        <span style="font-family: var(--font-code); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--amber);" data-i18n="cta.badge">🚀 Early Adopter Program</span>
+  <section class="ea home-spot panel">
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label section-label" data-i18n="cta.badge">Early Adopter Program</p>
+        <h2 data-i18n="cta.title">We are in the <span class="accent">development phase</span></h2>
+        <p data-i18n="cta.desc">Are you an early adopter who wants to be at the foundation of the future of IT in the Dutch construction industry? Join as a volunteer. Test the tools and provide us with feedback, GitHub Issues and lots of ideas! In the age of AI, ideas are worth gold. Join the discussion on GitHub about ideas and issues.</p>
       </div>
-      <h2 style="font-family: var(--font-heading); font-weight: 700; font-size: 2rem; color: white; margin-bottom: var(--sp-4); line-height: 1.3;" data-i18n="cta.title">We are in the <span class="accent">development phase</span></h2>
-      <p style="color: var(--scaffold-gray); font-size: 1.1rem; line-height: 1.7; margin-bottom: var(--sp-6);" data-i18n="cta.desc">Are you an early adopter who wants to be at the foundation of the future of IT in the Dutch construction industry? Join as a volunteer. Test the tools and provide us with feedback, GitHub Issues and lots of ideas! In the age of AI, ideas are worth gold. Join the discussion on GitHub about ideas and issues.</p>
-      <div style="display: flex; gap: var(--sp-4); justify-content: center; flex-wrap: wrap;">
-        <a href="https://open-feedback-studio.open-aec.com/" class="btn btn-primary btn-lg" style="display: inline-flex; align-items: center; gap: 8px;" data-i18n="cta.feedback">💬 Give feedback</a>
-        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" style="display: inline-flex; align-items: center; gap: 8px; border-color: rgba(255,255,255,0.3); color: white;" data-i18n="cta.github">⭐ Contribute on GitHub</a>
-        <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" style="display: inline-flex; align-items: center; gap: 8px; border-color: rgba(230, 126, 34, 0.4); color: var(--amber);" data-i18n="cta.whatsapp">📱 Follow the WhatsApp channel</a>
+      <div class="ea-actions card-glass">
+        <p class="ea-stars"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-star"/></svg> <strong data-gh-stars>4245</strong> <span data-i18n="cta.starsLine">GitHub stars across <strong style="color: white;" data-gh-repos>62</strong> public repositories</span></p>
+        <div class="ea-buttons">
+            <a href="https://open-feedback-studio.open-aec.com/" class="btn btn-glow btn-lg" data-i18n="cta.feedback"><svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-chat'/></svg> Give feedback</a>
+            <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" class="btn btn-glass btn-lg" data-i18n="cta.github"><svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> Contribute on GitHub</a>
+            <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" class="btn btn-glass btn-lg" data-i18n="cta.whatsapp"><svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-phone'/></svg> Follow the WhatsApp channel</a>
+        </div>
       </div>
-      <p style="color: var(--scaffold-gray); font-size: 0.9rem; margin-top: var(--sp-6); margin-bottom: 0;">
-        <span style="color: var(--warm-gold);">⭐</span>
-        <strong style="color: white;" data-gh-stars>3556</strong>
-        <span data-i18n="cta.starsLine">GitHub stars across <strong style="color: white;" data-gh-repos>62</strong> public repositories</span>
-      </p>
     </div>
   </section>
 
   <!-- Contact Section -->
-  <section class="section" id="contact">
+  <section class="section home-light" id="contact">
     <div class="container">
       <div class="text-center">
-        <p class="section-label" data-i18n="contact.label">Contact</p>
+        <p class="pill-label section-label" data-i18n="contact.label">Contact</p>
         <h2 class="section-title" data-i18n="contact.title">Get in touch</h2>
       </div>
 
@@ -1686,7 +1748,7 @@
           <div class="contact-info">
             <div class="contact-item">
               <span class="contact-icon-box">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
+                <svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-mail"/></svg>
               </span>
               <div>
                 <p class="contact-item-label" data-i18n="contact.person.emailLabel">Email</p>
@@ -1695,7 +1757,7 @@
             </div>
             <div class="contact-item">
               <span class="contact-icon-box">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                <svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-pin"/></svg>
               </span>
               <div>
                 <p class="contact-item-label" data-i18n="contact.person.addressLabel">Address</p>
@@ -1720,8 +1782,8 @@
               <label for="message" data-i18n="contact.form.message">Message</label>
               <textarea id="message" name="message" required data-i18n-attr="placeholder" data-i18n="contact.form.messagePlaceholder" placeholder="I am interested in..."></textarea>
             </div>
-            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;" data-i18n="contact.form.submit">Send message</button>
-            <p id="contactFormNote" style="display:none; margin-top: var(--sp-3); font-size: 0.875rem; color: #57534E;" data-i18n="contact.form.sent">Your email client opens with the message already filled in. Send it to complete your message — then it reaches us at <a href="mailto:info@open-aec.com">info@open-aec.com</a>.</p>
+            <button type="submit" class="btn btn-glow btn-lg" style="width: 100%;" data-i18n="contact.form.submit">Send message</button>
+            <p id="contactFormNote" style="display:none; margin-top: var(--sp-3); font-size: 0.875rem; color: var(--text-muted);" data-i18n="contact.form.sent">Your email client opens with the message already filled in. Send it to complete your message — then it reaches us at <a href="mailto:info@open-aec.com">info@open-aec.com</a>.</p>
           </form>
         </div>
       </div>
@@ -1730,29 +1792,29 @@
 
   <!-- Socials Section -->
   <style>
-    #socials { background: var(--deep-forge); border-top: 3px solid; border-image: var(--gradient-accent) 1; }
+    #socials { background: linear-gradient(180deg, var(--surface-dark-top) 0%, var(--night-build) 70%); }
     #socials .section-label { color: var(--warm-gold); max-width: none; }
     #socials .section-title { color: white; margin-bottom: var(--sp-3); }
-    #socials .socials-desc { color: var(--scaffold-gray); max-width: 560px; margin: 0 auto var(--sp-8); line-height: 1.6; }
+    #socials .socials-desc { color: var(--text-on-dark); max-width: 560px; margin: 0 auto var(--sp-8); line-height: 1.6; }
     .socials-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--sp-4); max-width: 860px; margin: 0 auto; }
-    .social-card { text-decoration: none; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-lg); padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease; }
+    .social-card { text-decoration: none; background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025)); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 1px 0 rgba(255,255,255,0.08) inset, var(--shadow-deep); border-radius: var(--radius-lg); padding: 20px; display: flex; flex-direction: column; gap: 12px; transition: border-color 0.2s ease, background 0.2s ease, transform 0.2s ease; }
     .social-card:hover { border-color: var(--amber); background: rgba(217,119,6,0.08); transform: translateY(-3px); }
-    .social-icon { flex-shrink: 0; width: 44px; height: 44px; border-radius: 10px; display: flex; align-items: center; justify-content: center; }
+    .social-icon { flex-shrink: 0; width: 44px; height: 44px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; }
     .social-icon svg { width: 24px; height: 24px; fill: #fff; }
     .social-name { font-family: var(--font-heading); font-weight: 700; color: white; font-size: 1.05rem; }
     .social-go { color: var(--amber); font-weight: 600; font-size: 0.875rem; margin-top: auto; }
     @media (max-width: 900px) { .socials-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 768px) { .socials-grid { grid-template-columns: repeat(2, 1fr); } }
     .footer-socials { display: flex; gap: 8px; flex-wrap: wrap; }
-    .footer-socials a { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); transition: background 0.2s ease; }
+    .footer-socials a { width: 34px; height: 34px; border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.06); transition: background 0.2s ease; }
     .footer-socials a svg { width: 16px; height: 16px; fill: var(--scaffold-gray); transition: fill 0.2s ease; }
     .footer-socials a:hover { background: var(--amber); }
     .footer-socials a:hover svg { fill: white; }
   </style>
-  <section class="section" id="socials">
+  <section class="section panel" id="socials">
     <div class="container">
       <div class="text-center">
-        <p class="section-label" data-i18n="socials.label">Socials</p>
+        <p class="pill-label section-label" data-i18n="socials.label">Socials</p>
         <h2 class="section-title" data-i18n="socials.title">Follow us</h2>
         <p class="socials-desc" data-i18n="socials.desc">New releases, stories from practice and a look behind the scenes. Pick your channel.</p>
       </div>
@@ -1792,33 +1854,33 @@
         <div class="footer-section">
           <h4 data-i18n="footer.pagesTitle">Pages</h4>
           <p style="line-height: 2.2;">
-            <a href="/en/over-ons.html" style="color: var(--scaffold-gray); text-decoration: none;" data-i18n="footer.pages.about">About us</a><br>
-            <a href="/en/ifcx/" style="color: var(--scaffold-gray); text-decoration: none;">IFCX</a><br>
-            <a href="/en/roadmap/" style="color: var(--scaffold-gray); text-decoration: none;" data-i18n="footer.pages.roadmap">Roadmap 2026</a><br>
-            <a href="/en/architectuur/" style="color: var(--scaffold-gray); text-decoration: none;" data-i18n="footer.pages.architecture">Architecture</a><br>
-            <a href="/en/supporters/" style="color: var(--scaffold-gray); text-decoration: none;" data-i18n="footer.pages.supporters">Supporters</a><br>
-            <a href="/en/offerte/" style="color: var(--scaffold-gray); text-decoration: none;" data-i18n="footer.pages.quote">Request quote</a><br>
-            <a href="/en/structuur/" style="color: var(--scaffold-gray); text-decoration: none;" data-i18n="footer.pages.structure">Structure</a><br>
-            <a href="/en/faq/" style="color: var(--scaffold-gray); text-decoration: none;" data-i18n="footer.pages.faq">FAQ</a><br>
-            <a href="/en/statistieken/" style="color: var(--scaffold-gray); text-decoration: none;" data-i18n="footer.pages.timeline">Timeline &amp; Statistics</a><br>
-            <a href="/en/disclaimer/" style="color: var(--scaffold-gray); text-decoration: none;" data-i18n="footer.pages.disclaimer">Disclaimer</a><br>
-            <a href="/en/statuten/" style="color: var(--scaffold-gray); text-decoration: none;" data-i18n="footer.pages.statutes">Draft statutes</a><br>
-            <a href="/en/credits/" style="color: var(--scaffold-gray); text-decoration: none;" data-i18n="footer.pages.credits">Credits</a><br>
-            <a href="/en/beleid/" style="color: var(--scaffold-gray); text-decoration: none;" data-i18n="footer.pages.policy">Policy & positions</a><br>
-            <a href="/en/socials/" style="color: var(--scaffold-gray); text-decoration: none;" data-i18n="footer.pages.socials">Socials</a>
+            <a href="/en/over-ons.html" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.about">About us</a><br>
+            <a href="/en/ifcx/" style="color: var(--text-on-dark); text-decoration: none;">IFCX</a><br>
+            <a href="/en/roadmap/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.roadmap">Roadmap 2026</a><br>
+            <a href="/en/architectuur/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.architecture">Architecture</a><br>
+            <a href="/en/supporters/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.supporters">Supporters</a><br>
+            <a href="/en/offerte/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.quote">Request quote</a><br>
+            <a href="/en/structuur/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.structure">Structure</a><br>
+            <a href="/en/faq/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.faq">FAQ</a><br>
+            <a href="/en/statistieken/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.timeline">Timeline &amp; Statistics</a><br>
+            <a href="/en/disclaimer/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.disclaimer">Disclaimer</a><br>
+            <a href="/en/statuten/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.statutes">Draft statutes</a><br>
+            <a href="/en/credits/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.credits">Credits</a><br>
+            <a href="/en/beleid/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.policy">Policy & positions</a><br>
+            <a href="/en/socials/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.socials">Socials</a>
           </p>
         </div>
         <div class="footer-section">
           <h4 data-i18n="footer.moreToolsTitle">More tools</h4>
           <p style="line-height: 2.2;">
-            <a href="/en/open-energy-studio/" style="color: var(--scaffold-gray); text-decoration: none;">Open Energy Studio</a><br>
-            <a href="/en/open-safety-studio/" style="color: var(--scaffold-gray); text-decoration: none;">Open Safety Studio</a><br>
-            <a href="/en/open-3d-viewer/" style="color: var(--scaffold-gray); text-decoration: none;">Open 3D Viewer</a><br>
-            <a href="/en/open-books/" style="color: var(--scaffold-gray); text-decoration: none;">OpenBooks</a><br>
-            <a href="/en/openaec-cloud/" style="color: var(--scaffold-gray); text-decoration: none;">OpenAEC Cloud</a><br>
-            <a href="/en/openaec-docs/" style="color: var(--scaffold-gray); text-decoration: none;">OpenAEC Docs</a><br>
-            <a href="/en/ext-drawing-statistics/" style="color: var(--scaffold-gray); text-decoration: none;">Drawing Statistics</a><br>
-            <a href="/en/y-app/" style="color: var(--scaffold-gray); text-decoration: none;">Y-app</a>
+            <a href="/en/open-energy-studio/" style="color: var(--text-on-dark); text-decoration: none;">Open Energy Studio</a><br>
+            <a href="/en/open-safety-studio/" style="color: var(--text-on-dark); text-decoration: none;">Open Safety Studio</a><br>
+            <a href="/en/open-3d-viewer/" style="color: var(--text-on-dark); text-decoration: none;">Open 3D Viewer</a><br>
+            <a href="/en/open-books/" style="color: var(--text-on-dark); text-decoration: none;">OpenBooks</a><br>
+            <a href="/en/openaec-cloud/" style="color: var(--text-on-dark); text-decoration: none;">OpenAEC Cloud</a><br>
+            <a href="/en/openaec-docs/" style="color: var(--text-on-dark); text-decoration: none;">OpenAEC Docs</a><br>
+            <a href="/en/ext-drawing-statistics/" style="color: var(--text-on-dark); text-decoration: none;">Drawing Statistics</a><br>
+            <a href="/en/y-app/" style="color: var(--text-on-dark); text-decoration: none;">Y-app</a>
           </p>
         </div>
         <div class="footer-section">
@@ -1868,37 +1930,38 @@
           badge: "Doelstelling: alle bouwsoftware open source voor eind 2026",
           title: "Open source voor een <span class=\"accent\">open bouw- en infrasector</span>",
           description: "Wij ontwikkelen, ondersteunen en promoten open source software voor de volledige AEC-keten (bouw, utiliteit, GWW en civiele techniek) \u2014 van ontwerp tot oplevering en beheer.",
-          downloadBtn: "\u2193 Download OpenAEC Installer",
+          downloadBtn: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-download'/></svg> Download OpenAEC Installer",
           contactBtn: "Neem contact op \u2192",
           readMore: "Lees meer"
         },
         featuredCad: {
-          label: "⭐ Uitgelicht — volwaardige 2D + 3D CAD, open source",
+          label: "Uitgelicht — volwaardige 2D + 3D CAD, open source",
           title: "Teken in 2D én 3D met <span style=\"color: var(--amber);\">open source CAD</span>",
           desc: "Open CAD Studio is een <strong style=\"color: white;\">volwaardige 2D + 3D CAD-applicatie</strong>, gebouwd in Rust met GPU-versnelde rendering. Native <strong style=\"color: white;\">DWG &amp; DXF</strong> lezen en schrijven (R13–R2018) — je bestaande tekeningen werken meteen. Een community-project van Hakan Seven, in de geest van het OpenAEC-ecosysteem.",
-          bullet1: "<strong style=\"color: white;\">2D + 3D CAD</strong> — GPU-versnelde rendering (wgpu/iced)",
-          bullet2: "<strong style=\"color: white;\">Native DWG &amp; DXF</strong> — lezen én schrijven, R13–R2018",
-          bullet3: "<strong style=\"color: white;\">Paper space &amp; ACIS solids</strong> — dimensies en layouts",
-          bullet4: "<strong style=\"color: white;\">Rust-snelheid</strong> — vloeiend, ook bij grote tekeningen",
-          bullet5: "<strong style=\"color: white;\">Volledig open source</strong> — community-gedreven, geen licentiekosten",
-          bullet6: "<strong style=\"color: white;\">Windows, macOS &amp; Linux</strong> — native desktop-applicatie",
-          cta_live: "🚀 Open live demo",
-          cta_download: "📐 Productpagina",
-          cta_github: "⭐ GitHub"
+          bullet1: "<strong>2D + 3D CAD</strong>: GPU-versnelde rendering (wgpu/iced)",
+          bullet2: "<strong>Native DWG &amp; DXF</strong>: lezen én schrijven, R13–R2018",
+          bullet3: "<strong>Paper space &amp; ACIS solids</strong>: dimensies en layouts",
+          bullet4: "<strong>Rust-snelheid</strong>: vloeiend, ook bij grote tekeningen",
+          bullet5: "<strong>Volledig open source</strong>: community-gedreven, geen licentiekosten",
+          bullet6: "<strong>Windows, macOS &amp; Linux</strong>: native desktop-applicatie",
+          cta_live: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-play'/></svg> Open live demo",
+          cta_download: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-document'/></svg> Productpagina",
+          cta_github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> GitHub"
         },
         featuredPdf: {
-          label: "⭐ Uitgelicht — gratis open source PDF-editor",
+          caption: "Open PDF Studio — annoteren · meten · Rust PDF-engine",
+          label: "Uitgelicht — gratis open source PDF-editor",
           title: "Annoteer en bewerk PDF's met <span style=\"color: var(--amber);\">open source</span>",
           desc: "Open PDF Studio is een <strong style=\"color: white;\">volwaardige PDF-editor en -annotator</strong> voor de bouw — zonder abonnement, telemetrie of bloatware. De eigen <strong style=\"color: white;\">Rust PDF-engine</strong> rendert vector-PDF's zoals technische tekeningen razendsnel, ook bij honderden pagina's.",
-          bullet1: "<strong style=\"color: white;\">20+ annotatiegereedschappen</strong> — markeringen, wolken, stempels en handtekeningen",
-          bullet2: "<strong style=\"color: white;\">Meten op schaal</strong> — afstand, oppervlakte en omtrek met kalibratie en snapping",
-          bullet3: "<strong style=\"color: white;\">Rust PDF-engine</strong> — razendsnelle vector-rendering van technische tekeningen",
-          bullet4: "<strong style=\"color: white;\">Paginabeheer &amp; formulieren</strong> — samenvoegen, herordenen, redigeren, AcroForms/XFA",
-          bullet5: "<strong style=\"color: white;\">Volledig open source</strong> — gratis, geen abonnement, geen telemetrie",
-          bullet6: "<strong style=\"color: white;\">Windows, Linux &amp; Android</strong> — in 39 talen, incl. handleiding",
-          cta_live: "🚀 Open live demo",
-          cta_download: "📄 Productpagina",
-          cta_github: "⭐ GitHub"
+          bullet1: "<strong>20+ annotatiegereedschappen</strong>: markeringen, wolken, stempels en handtekeningen",
+          bullet2: "<strong>Meten op schaal</strong>: afstand, oppervlakte en omtrek met kalibratie en snapping",
+          bullet3: "<strong>Rust PDF-engine</strong>: razendsnelle vector-rendering van technische tekeningen",
+          bullet4: "<strong>Paginabeheer &amp; formulieren</strong>: samenvoegen, herordenen, redigeren, AcroForms/XFA",
+          bullet5: "<strong>Volledig open source</strong>: gratis, geen abonnement, geen telemetrie",
+          bullet6: "<strong>Windows, Linux &amp; Android</strong>: in 39 talen, incl. handleiding",
+          cta_live: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-play'/></svg> Open live demo",
+          cta_download: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-document'/></svg> Productpagina",
+          cta_github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> GitHub"
         },
         scope: {
           label: "Toepassingsgebied",
@@ -1935,6 +1998,8 @@
           }
         },
         tools: {
+          showAll: "Toon alle tools",
+          showLess: "Toon minder",
           label: "Ecosysteem",
           title: "Het OpenAEC-ecosysteem",
           description: "Onze stichting heeft als doelstelling om de hele AEC-sector dit jaar open source te maken. Dit zijn de tools en projecten waarmee we dat realiseren.",
@@ -2011,12 +2076,12 @@
           follow: "Volgen \u2192"
         },
         cta: {
-          badge: "🚀 Early Adopter Programma",
+          badge: "Early Adopter Programma",
           title: 'Wij zijn in de <span class="accent">ontwikkelfase</span>',
           desc: "Ben jij een early adopter en wil je aan de basis staan van de toekomst van IT in de Nederlandse bouw? Doe dan mee als vrijwilliger. Test de tools en voorzie ons van feedback, GitHub Issues en veel ideeën! In de tijd van AI zijn ideeën geld waard. Discussieer mee op GitHub over de ideeën en de issues.",
-          feedback: "💬 Geef feedback",
-          github: "⭐ Draag bij op GitHub",
-          whatsapp: "📱 Volg het WhatsApp-kanaal",
+          feedback: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-chat'/></svg> Geef feedback",
+          github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> Draag bij op GitHub",
+          whatsapp: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-phone'/></svg> Volg het WhatsApp-kanaal",
           starsLine: 'GitHub stars verspreid over <strong style="color: white;" data-gh-repos>62</strong> publieke repositories'
         },
         board: {
@@ -2085,37 +2150,38 @@
           badge: "Goal: all construction software open source by end of 2026",
           title: "Open source for an <span class=\"accent\">open construction & infrastructure industry</span>",
           description: "We develop, support and promote open source software for the entire AEC chain (buildings, infrastructure, civil engineering) \u2014 from design to delivery and management.",
-          downloadBtn: "\u2193 Download OpenAEC Installer",
+          downloadBtn: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-download'/></svg> Download OpenAEC Installer",
           contactBtn: "Get in touch \u2192",
           readMore: "Read more"
         },
         featuredCad: {
-          label: "\u2b50 Featured \u2014 full 2D + 3D CAD, open source",
+          label: "Featured \u2014 full 2D + 3D CAD, open source",
           title: "Draw in 2D and 3D with <span style=\"color: var(--amber);\">open source CAD</span>",
           desc: "Open CAD Studio is a <strong style=\"color: white;\">full-featured 2D + 3D CAD application</strong>, built in Rust with GPU-accelerated rendering. Native <strong style=\"color: white;\">DWG &amp; DXF</strong> read and write (R13\u2013R2018) \u2014 your existing drawings work right away. A community project by Hakan Seven, aligned with the OpenAEC ecosystem.",
-          bullet1: "<strong style=\"color: white;\">2D + 3D CAD</strong> \u2014 GPU-accelerated rendering (wgpu/iced)",
-          bullet2: "<strong style=\"color: white;\">Native DWG &amp; DXF</strong> \u2014 read and write, R13\u2013R2018",
-          bullet3: "<strong style=\"color: white;\">Paper space &amp; ACIS solids</strong> \u2014 dimensions and layouts",
-          bullet4: "<strong style=\"color: white;\">Rust speed</strong> \u2014 smooth even with large drawings",
-          bullet5: "<strong style=\"color: white;\">Fully open source</strong> \u2014 community-driven, no licence fees",
-          bullet6: "<strong style=\"color: white;\">Windows, macOS &amp; Linux</strong> \u2014 native desktop application",
-          cta_live: "\ud83d\ude80 Open live demo",
-          cta_download: "\ud83d\udcd0 Product page",
-          cta_github: "\u2b50 GitHub"
+          bullet1: "<strong>2D + 3D CAD</strong>: GPU-accelerated rendering (wgpu/iced)",
+          bullet2: "<strong>Native DWG &amp; DXF</strong>: read and write, R13\u2013R2018",
+          bullet3: "<strong>Paper space &amp; ACIS solids</strong>: dimensions and layouts",
+          bullet4: "<strong>Rust speed</strong>: smooth even with large drawings",
+          bullet5: "<strong>Fully open source</strong>: community-driven, no licence fees",
+          bullet6: "<strong>Windows, macOS &amp; Linux</strong>: native desktop application",
+          cta_live: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-play'/></svg> Open live demo",
+          cta_download: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-document'/></svg> Product page",
+          cta_github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> GitHub"
         },
         featuredPdf: {
-          label: "\u2b50 Featured \u2014 free open-source PDF editor",
+          caption: "Open PDF Studio — annotate · measure · Rust PDF engine",
+          label: "Featured \u2014 free open-source PDF editor",
           title: "Annotate and edit PDFs with <span style=\"color: var(--amber);\">open source</span>",
           desc: "Open PDF Studio is a <strong style=\"color: white;\">full-featured PDF editor and annotator</strong> for the AEC industry \u2014 no subscription, telemetry or bloatware. Its custom <strong style=\"color: white;\">Rust PDF engine</strong> renders vector PDFs such as technical drawings blazingly fast, even at hundreds of pages.",
-          bullet1: "<strong style=\"color: white;\">20+ annotation tools</strong> \u2014 highlights, clouds, stamps and signatures",
-          bullet2: "<strong style=\"color: white;\">Measure to scale</strong> \u2014 distance, area and perimeter with calibration and snapping",
-          bullet3: "<strong style=\"color: white;\">Rust PDF engine</strong> \u2014 blazing-fast vector rendering of technical drawings",
-          bullet4: "<strong style=\"color: white;\">Page management &amp; forms</strong> \u2014 merge, reorder, redact, AcroForms/XFA",
-          bullet5: "<strong style=\"color: white;\">Fully open source</strong> \u2014 free, no subscription, no telemetry",
-          bullet6: "<strong style=\"color: white;\">Windows, Linux &amp; Android</strong> \u2014 in 39 languages, incl. manual",
-          cta_live: "\ud83d\ude80 Open live demo",
-          cta_download: "\ud83d\udcc4 Product page",
-          cta_github: "\u2b50 GitHub"
+          bullet1: "<strong>20+ annotation tools</strong>: highlights, clouds, stamps and signatures",
+          bullet2: "<strong>Measure to scale</strong>: distance, area and perimeter with calibration and snapping",
+          bullet3: "<strong>Rust PDF engine</strong>: blazing-fast vector rendering of technical drawings",
+          bullet4: "<strong>Page management &amp; forms</strong>: merge, reorder, redact, AcroForms/XFA",
+          bullet5: "<strong>Fully open source</strong>: free, no subscription, no telemetry",
+          bullet6: "<strong>Windows, Linux &amp; Android</strong>: in 39 languages, incl. manual",
+          cta_live: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-play'/></svg> Open live demo",
+          cta_download: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-document'/></svg> Product page",
+          cta_github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> GitHub"
         },
         scope: {
           label: "Scope",
@@ -2152,6 +2218,8 @@
           }
         },
         tools: {
+          showAll: "Show all tools",
+          showLess: "Show less",
           label: "Ecosystem",
           title: "The OpenAEC ecosystem",
           description: "Our foundation's goal is to make the entire AEC industry (buildings, infrastructure, civil engineering) open source this year. These are the tools and projects we're building to make it happen.",
@@ -2225,12 +2293,12 @@
           follow: "Follow \u2192"
         },
         cta: {
-          badge: "🚀 Early Adopter Program",
+          badge: "Early Adopter Program",
           title: 'We are in the <span class="accent">development phase</span>',
           desc: "Are you an early adopter who wants to be at the foundation of the future of IT in the Dutch construction industry? Join as a volunteer. Test the tools and provide us with feedback, GitHub Issues and lots of ideas! In the age of AI, ideas are worth gold. Join the discussion on GitHub about ideas and issues.",
-          feedback: "💬 Give feedback",
-          github: "⭐ Contribute on GitHub",
-          whatsapp: "📱 Follow the WhatsApp channel",
+          feedback: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-chat'/></svg> Give feedback",
+          github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> Contribute on GitHub",
+          whatsapp: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-phone'/></svg> Follow the WhatsApp channel",
           starsLine: 'GitHub stars across <strong style="color: white;" data-gh-repos>62</strong> public repositories'
         },
         board: {
@@ -2310,7 +2378,7 @@
           title: "Open <span class=\"accent\">source</span> pour un secteur ouvert de la <br><span class=\"accent\">construction et de l'infrastructure</span>",
           subtitle: "L'OpenAEC Foundation d\u00e9veloppe, soutient et promeut des logiciels <strong>open source</strong> pour toute la cha\u00eene AEC : b\u00e2timent, infrastructure, g\u00e9nie civil et utilit\u00e9s. Notre premi\u00e8re mission : rendre le secteur enti\u00e8rement open source en 2026.",
           description: "Nous d\u00e9veloppons, soutenons et promouvons des logiciels open source pour toute la cha\u00eene AEC (b\u00e2timent, infrastructure, g\u00e9nie civil) \u2014 de la conception \u00e0 la livraison et \u00e0 la gestion.",
-          downloadBtn: "\u2193 T\u00e9l\u00e9charger OpenAEC Installer",
+          downloadBtn: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-download'/></svg> T\u00e9l\u00e9charger OpenAEC Installer",
           contactBtn: "Nous contacter \u2192",
           readMore: "En savoir plus",
           cta: {
@@ -2355,34 +2423,37 @@
           }
         },
         featuredCad: {
-          label: "\u2b50 \u00c0 la une \u2014 CAO 2D + 3D compl\u00e8te, open source",
+          label: "\u00c0 la une \u2014 CAO 2D + 3D compl\u00e8te, open source",
           title: "Dessinez en 2D et 3D avec <span style=\"color: var(--amber);\">une CAO open source</span>",
           desc: "Open CAD Studio est une <strong style=\"color: white;\">application CAO 2D + 3D compl\u00e8te</strong>, d\u00e9velopp\u00e9e en Rust avec un rendu acc\u00e9l\u00e9r\u00e9 par GPU. Lecture et \u00e9criture natives <strong style=\"color: white;\">DWG &amp; DXF</strong> (R13\u2013R2018) \u2014 vos dessins existants fonctionnent imm\u00e9diatement. Un projet communautaire de Hakan Seven, dans l'esprit de l'\u00e9cosyst\u00e8me OpenAEC.",
-          bullet1: "<strong style=\"color: white;\">CAO 2D + 3D</strong> \u2014 rendu acc\u00e9l\u00e9r\u00e9 par GPU (wgpu/iced)",
-          bullet2: "<strong style=\"color: white;\">DWG &amp; DXF natifs</strong> \u2014 lecture et \u00e9criture, R13\u2013R2018",
-          bullet3: "<strong style=\"color: white;\">Paper space &amp; solides ACIS</strong> \u2014 cotes et pr\u00e9sentations",
-          bullet4: "<strong style=\"color: white;\">Vitesse de Rust</strong> \u2014 fluide, m\u00eame sur de grands dessins",
-          bullet5: "<strong style=\"color: white;\">Enti\u00e8rement open source</strong> \u2014 port\u00e9 par la communaut\u00e9, sans licence",
-          bullet6: "<strong style=\"color: white;\">Windows, macOS &amp; Linux</strong> \u2014 application de bureau native",
-          cta_live: "\ud83d\ude80 Ouvrir la d\u00e9mo",
-          cta_download: "\ud83d\udcd0 Page produit",
-          cta_github: "\u2b50 GitHub"
+          bullet1: "<strong>CAO 2D + 3D</strong>: rendu acc\u00e9l\u00e9r\u00e9 par GPU (wgpu/iced)",
+          bullet2: "<strong>DWG &amp; DXF natifs</strong>: lecture et \u00e9criture, R13\u2013R2018",
+          bullet3: "<strong>Paper space &amp; solides ACIS</strong>: cotes et pr\u00e9sentations",
+          bullet4: "<strong>Vitesse de Rust</strong>: fluide, m\u00eame sur de grands dessins",
+          bullet5: "<strong>Enti\u00e8rement open source</strong>: port\u00e9 par la communaut\u00e9, sans licence",
+          bullet6: "<strong>Windows, macOS &amp; Linux</strong>: application de bureau native",
+          cta_live: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-play'/></svg> Ouvrir la d\u00e9mo",
+          cta_download: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-document'/></svg> Page produit",
+          cta_github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> GitHub"
         },
         featuredPdf: {
-          label: "\u2b50 \u00c0 la une \u2014 \u00e9diteur PDF open source gratuit",
+          caption: "Open PDF Studio — annoter · mesurer · moteur PDF Rust",
+          label: "\u00c0 la une \u2014 \u00e9diteur PDF open source gratuit",
           title: "Annotez et modifiez vos PDF avec <span style=\"color: var(--amber);\">l'open source</span>",
           desc: "Open PDF Studio est un <strong style=\"color: white;\">\u00e9diteur et annotateur PDF complet</strong> pour le secteur AEC \u2014 sans abonnement, t\u00e9l\u00e9m\u00e9trie ni bloatware. Son <strong style=\"color: white;\">moteur PDF en Rust</strong> affiche les PDF vectoriels comme les dessins techniques \u00e0 une vitesse fulgurante, m\u00eame sur des centaines de pages.",
-          bullet1: "<strong style=\"color: white;\">20+ outils d'annotation</strong> \u2014 surlignages, nuages, tampons et signatures",
-          bullet2: "<strong style=\"color: white;\">Mesure \u00e0 l'\u00e9chelle</strong> \u2014 distance, surface et p\u00e9rim\u00e8tre avec calibration et accrochage",
-          bullet3: "<strong style=\"color: white;\">Moteur PDF en Rust</strong> \u2014 rendu vectoriel ultra-rapide des dessins techniques",
-          bullet4: "<strong style=\"color: white;\">Gestion des pages &amp; formulaires</strong> \u2014 fusion, r\u00e9organisation, caviardage, AcroForms/XFA",
-          bullet5: "<strong style=\"color: white;\">Enti\u00e8rement open source</strong> \u2014 gratuit, sans abonnement, sans t\u00e9l\u00e9m\u00e9trie",
-          bullet6: "<strong style=\"color: white;\">Windows, Linux &amp; Android</strong> \u2014 en 39 langues, manuel inclus",
-          cta_live: "\ud83d\ude80 Ouvrir la d\u00e9mo",
-          cta_download: "\ud83d\udcc4 Page produit",
-          cta_github: "\u2b50 GitHub"
+          bullet1: "<strong>20+ outils d'annotation</strong>: surlignages, nuages, tampons et signatures",
+          bullet2: "<strong>Mesure \u00e0 l'\u00e9chelle</strong>: distance, surface et p\u00e9rim\u00e8tre avec calibration et accrochage",
+          bullet3: "<strong>Moteur PDF en Rust</strong>: rendu vectoriel ultra-rapide des dessins techniques",
+          bullet4: "<strong>Gestion des pages &amp; formulaires</strong>: fusion, r\u00e9organisation, caviardage, AcroForms/XFA",
+          bullet5: "<strong>Enti\u00e8rement open source</strong>: gratuit, sans abonnement, sans t\u00e9l\u00e9m\u00e9trie",
+          bullet6: "<strong>Windows, Linux &amp; Android</strong>: en 39 langues, manuel inclus",
+          cta_live: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-play'/></svg> Ouvrir la d\u00e9mo",
+          cta_download: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-document'/></svg> Page produit",
+          cta_github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> GitHub"
         },
         tools: {
+          showAll: "Afficher tous les outils",
+          showLess: "Afficher moins",
           label: "\u00c9cosyst\u00e8me",
           title: "L'\u00e9cosyst\u00e8me OpenAEC",
           description: "L'objectif de notre fondation est de rendre tout le secteur AEC open source cette ann\u00e9e. Voici les outils et projets qui le rendent possible.",
@@ -2454,15 +2525,15 @@
           follow: "Suivre \u2192"
         },
         cta: {
-          badge: "🚀 Programme Early Adopter",
+          badge: "Programme Early Adopter",
           title: "Devenez partenaire ?",
           desc: "Soutenez l'OpenAEC Foundation et aidez \u00e0 rendre le secteur de la construction open source.",
           becomeBtn: "Devenir partenaire",
-          downloadBtn: "↓ Télécharger OpenAEC Installer",
+          downloadBtn: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-download'/></svg> Télécharger OpenAEC Installer",
           contactBtn: "Nous contacter",
-          feedback: "💬 Donner votre avis",
-          github: "⭐ Contribuer sur GitHub",
-          whatsapp: "📱 Suivre la chaîne WhatsApp",
+          feedback: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-chat'/></svg> Donner votre avis",
+          github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> Contribuer sur GitHub",
+          whatsapp: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-phone'/></svg> Suivre la chaîne WhatsApp",
           starsLine: "Étoiles GitHub sur <strong style=\"color: white;\" data-gh-repos>62</strong> dépôts publics"
         },
         board: {
@@ -2541,7 +2612,7 @@
           title: "A\u00e7\u0131k <span class=\"accent\">in\u015faat ve altyap\u0131 sekt\u00f6r\u00fc</span> i\u00e7in <br><span class=\"accent\">a\u00e7\u0131k kaynak</span>",
           subtitle: "OpenAEC Foundation, t\u00fcm AEC zinciri i\u00e7in <strong>a\u00e7\u0131k kaynak</strong> yaz\u0131l\u0131mlar geli\u015ftirir, destekler ve tan\u0131t\u0131r: bina, altyap\u0131, in\u015faat m\u00fchendisli\u011fi ve kamu hizmetleri. \u0130lk misyonumuz: 2026'da sekt\u00f6r\u00fc tamamen a\u00e7\u0131k kaynakl\u0131 hale getirmek.",
           description: "T\u00fcm AEC zinciri (bina, altyap\u0131, in\u015faat m\u00fchendisli\u011fi) i\u00e7in a\u00e7\u0131k kaynak yaz\u0131l\u0131mlar geli\u015ftiriyor, destekliyor ve tan\u0131t\u0131yoruz \u2014 tasar\u0131mdan teslime ve y\u00f6netime kadar.",
-          downloadBtn: "\u2193 OpenAEC Installer'\u0131 indir",
+          downloadBtn: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-download'/></svg> OpenAEC Installer'\u0131 indir",
           contactBtn: "\u0130leti\u015fime ge\u00e7in \u2192",
           readMore: "Devam\u0131n\u0131 oku",
           cta: {
@@ -2586,34 +2657,37 @@
           }
         },
         featuredCad: {
-          label: "\u2b50 \u00d6ne \u00e7\u0131kan \u2014 tam 2D + 3D CAD, a\u00e7\u0131k kaynak",
+          label: "\u00d6ne \u00e7\u0131kan \u2014 tam 2D + 3D CAD, a\u00e7\u0131k kaynak",
           title: "<span style=\"color: var(--amber);\">A\u00e7\u0131k kaynak CAD</span> ile 2D ve 3D \u00e7izin",
           desc: "Open CAD Studio, Rust ile geli\u015ftirilen ve GPU h\u0131zland\u0131rmal\u0131 i\u015flemeye sahip <strong style=\"color: white;\">tam donan\u0131ml\u0131 bir 2D + 3D CAD uygulamas\u0131d\u0131r</strong>. Yerel <strong style=\"color: white;\">DWG &amp; DXF</strong> okuma ve yazma (R13\u2013R2018) \u2014 mevcut \u00e7izimleriniz hemen \u00e7al\u0131\u015f\u0131r. Hakan Seven'\u0131n OpenAEC ekosistemi ruhuyla geli\u015ftirdi\u011fi bir topluluk projesi.",
-          bullet1: "<strong style=\"color: white;\">2D + 3D CAD</strong> \u2014 GPU h\u0131zland\u0131rmal\u0131 i\u015fleme (wgpu/iced)",
-          bullet2: "<strong style=\"color: white;\">Yerel DWG &amp; DXF</strong> \u2014 okuma ve yazma, R13\u2013R2018",
-          bullet3: "<strong style=\"color: white;\">Paper space &amp; ACIS kat\u0131lar\u0131</strong> \u2014 \u00f6l\u00e7\u00fcler ve d\u00fczenler",
-          bullet4: "<strong style=\"color: white;\">Rust h\u0131z\u0131</strong> \u2014 b\u00fcy\u00fck \u00e7izimlerde bile ak\u0131c\u0131",
-          bullet5: "<strong style=\"color: white;\">Tamamen a\u00e7\u0131k kaynak</strong> \u2014 topluluk odakl\u0131, lisans \u00fccreti yok",
-          bullet6: "<strong style=\"color: white;\">Windows, macOS &amp; Linux</strong> \u2014 yerel masa\u00fcst\u00fc uygulamas\u0131",
-          cta_live: "\ud83d\ude80 Canl\u0131 demoyu a\u00e7",
-          cta_download: "\ud83d\udcd0 \u00dcr\u00fcn sayfas\u0131",
-          cta_github: "\u2b50 GitHub"
+          bullet1: "<strong>2D + 3D CAD</strong>: GPU h\u0131zland\u0131rmal\u0131 i\u015fleme (wgpu/iced)",
+          bullet2: "<strong>Yerel DWG &amp; DXF</strong>: okuma ve yazma, R13\u2013R2018",
+          bullet3: "<strong>Paper space &amp; ACIS kat\u0131lar\u0131</strong>: \u00f6l\u00e7\u00fcler ve d\u00fczenler",
+          bullet4: "<strong>Rust h\u0131z\u0131</strong>: b\u00fcy\u00fck \u00e7izimlerde bile ak\u0131c\u0131",
+          bullet5: "<strong>Tamamen a\u00e7\u0131k kaynak</strong>: topluluk odakl\u0131, lisans \u00fccreti yok",
+          bullet6: "<strong>Windows, macOS &amp; Linux</strong>: yerel masa\u00fcst\u00fc uygulamas\u0131",
+          cta_live: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-play'/></svg> Canl\u0131 demoyu a\u00e7",
+          cta_download: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-document'/></svg> \u00dcr\u00fcn sayfas\u0131",
+          cta_github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> GitHub"
         },
         featuredPdf: {
-          label: "\u2b50 \u00d6ne \u00e7\u0131kan \u2014 \u00fccretsiz a\u00e7\u0131k kaynak PDF d\u00fczenleyici",
+          caption: "Open PDF Studio — açıklama · ölçüm · Rust PDF motoru",
+          label: "\u00d6ne \u00e7\u0131kan \u2014 \u00fccretsiz a\u00e7\u0131k kaynak PDF d\u00fczenleyici",
           title: "<span style=\"color: var(--amber);\">A\u00e7\u0131k kaynak</span> ile PDF'leri i\u015faretleyin ve d\u00fczenleyin",
           desc: "Open PDF Studio, AEC sekt\u00f6r\u00fc i\u00e7in <strong style=\"color: white;\">tam donan\u0131ml\u0131 bir PDF d\u00fczenleyici ve i\u015faretleme arac\u0131d\u0131r</strong> \u2014 abonelik, telemetri veya bloatware olmadan. \u00d6zel <strong style=\"color: white;\">Rust PDF motoru</strong>, teknik \u00e7izimler gibi vekt\u00f6rel PDF'leri y\u00fczlerce sayfada bile \u00e7ok h\u0131zl\u0131 i\u015fler.",
-          bullet1: "<strong style=\"color: white;\">20+ i\u015faretleme arac\u0131</strong> \u2014 vurgular, bulutlar, damgalar ve imzalar",
-          bullet2: "<strong style=\"color: white;\">\u00d6l\u00e7ekli \u00f6l\u00e7\u00fcm</strong> \u2014 kalibrasyon ve yakalama ile mesafe, alan ve \u00e7evre",
-          bullet3: "<strong style=\"color: white;\">Rust PDF motoru</strong> \u2014 teknik \u00e7izimlerde \u00e7ok h\u0131zl\u0131 vekt\u00f6r i\u015fleme",
-          bullet4: "<strong style=\"color: white;\">Sayfa y\u00f6netimi ve formlar</strong> \u2014 birle\u015ftirme, yeniden s\u0131ralama, karartma, AcroForms/XFA",
-          bullet5: "<strong style=\"color: white;\">Tamamen a\u00e7\u0131k kaynak</strong> \u2014 \u00fccretsiz, aboneliksiz, telemetrisiz",
-          bullet6: "<strong style=\"color: white;\">Windows, Linux ve Android</strong> \u2014 39 dilde, k\u0131lavuz dahil",
-          cta_live: "\ud83d\ude80 Canl\u0131 demoyu a\u00e7",
-          cta_download: "\ud83d\udcc4 \u00dcr\u00fcn sayfas\u0131",
-          cta_github: "\u2b50 GitHub"
+          bullet1: "<strong>20+ i\u015faretleme arac\u0131</strong>: vurgular, bulutlar, damgalar ve imzalar",
+          bullet2: "<strong>\u00d6l\u00e7ekli \u00f6l\u00e7\u00fcm</strong>: kalibrasyon ve yakalama ile mesafe, alan ve \u00e7evre",
+          bullet3: "<strong>Rust PDF motoru</strong>: teknik \u00e7izimlerde \u00e7ok h\u0131zl\u0131 vekt\u00f6r i\u015fleme",
+          bullet4: "<strong>Sayfa y\u00f6netimi ve formlar</strong>: birle\u015ftirme, yeniden s\u0131ralama, karartma, AcroForms/XFA",
+          bullet5: "<strong>Tamamen a\u00e7\u0131k kaynak</strong>: \u00fccretsiz, aboneliksiz, telemetrisiz",
+          bullet6: "<strong>Windows, Linux ve Android</strong>: 39 dilde, k\u0131lavuz dahil",
+          cta_live: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-play'/></svg> Canl\u0131 demoyu a\u00e7",
+          cta_download: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-document'/></svg> \u00dcr\u00fcn sayfas\u0131",
+          cta_github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> GitHub"
         },
         tools: {
+          showAll: "T\u00fcm ara\u00e7lar\u0131 g\u00f6ster",
+          showLess: "Daha az g\u00f6ster",
           label: "Ekosistem",
           title: "OpenAEC ekosistemi",
           description: "Vakf\u0131m\u0131z\u0131n amac\u0131, bu y\u0131l t\u00fcm AEC sekt\u00f6r\u00fcn\u00fc a\u00e7\u0131k kaynakl\u0131 hale getirmektir. Bunu m\u00fcmk\u00fcn k\u0131lan ara\u00e7lar ve projeler a\u015fa\u011f\u0131dad\u0131r.",
@@ -2685,15 +2759,15 @@
           follow: "Takip et \u2192"
         },
         cta: {
-          badge: "\ud83d\ude80 Erken Kullan\u0131c\u0131 Program\u0131",
+          badge: "Erken Kullan\u0131c\u0131 Program\u0131",
           title: "Destek\u00e7i olmak ister misiniz?",
           desc: "OpenAEC Foundation'\u0131 destekleyin ve in\u015faat sekt\u00f6r\u00fcn\u00fcn a\u00e7\u0131k kaynak olmas\u0131na yard\u0131mc\u0131 olun.",
           becomeBtn: "Destek\u00e7i ol",
-          downloadBtn: "\u2193 OpenAEC Installer'\u0131 indir",
+          downloadBtn: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-download'/></svg> OpenAEC Installer'\u0131 indir",
           contactBtn: "Bize ula\u015f\u0131n",
-          feedback: "\ud83d\udcac Geri bildirim ver",
-          github: "\u2b50 GitHub'da katk\u0131da bulun",
-          whatsapp: "\ud83d\udcf1 WhatsApp kanal\u0131n\u0131 takip et",
+          feedback: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-chat'/></svg> Geri bildirim ver",
+          github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> GitHub'da katk\u0131da bulun",
+          whatsapp: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-phone'/></svg> WhatsApp kanal\u0131n\u0131 takip et",
           starsLine: "<strong style=\"color: white;\" data-gh-repos>62</strong> genel depoda GitHub y\u0131ld\u0131zlar\u0131"
         },
         board: {
@@ -2763,37 +2837,38 @@
           badge: "Objetivo: todo el software de construcción en código abierto para finales de 2026",
           title: "Código abierto para un <span class=\"accent\">sector abierto de la construcción y las infraestructuras</span>",
           description: "Desarrollamos, apoyamos y promovemos software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.",
-          downloadBtn: "↓ Descargar OpenAEC Installer",
+          downloadBtn: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-download'/></svg> Descargar OpenAEC Installer",
           contactBtn: "Ponte en contacto →",
           readMore: "Leer más"
         },
         featuredCad: {
-          label: "⭐ Destacado — CAD 2D + 3D completo, código abierto",
+          label: "Destacado — CAD 2D + 3D completo, código abierto",
           title: "Dibuja en 2D y 3D con <span style=\"color: var(--amber);\">CAD de código abierto</span>",
           desc: "Open CAD Studio es una <strong style=\"color: white;\">aplicación CAD 2D + 3D completa</strong>, construida en Rust con renderizado acelerado por GPU. Lectura y escritura nativas de <strong style=\"color: white;\">DWG &amp; DXF</strong> (R13–R2018): tus dibujos existentes funcionan desde el primer momento. Un proyecto comunitario de Hakan Seven, alineado con el ecosistema OpenAEC.",
-          bullet1: "<strong style=\"color: white;\">CAD 2D + 3D</strong> — renderizado acelerado por GPU (wgpu/iced)",
-          bullet2: "<strong style=\"color: white;\">DWG &amp; DXF nativos</strong> — lectura y escritura, R13–R2018",
-          bullet3: "<strong style=\"color: white;\">Espacio papel &amp; sólidos ACIS</strong> — cotas y presentaciones",
-          bullet4: "<strong style=\"color: white;\">Velocidad de Rust</strong> — fluido incluso con dibujos grandes",
-          bullet5: "<strong style=\"color: white;\">Totalmente de código abierto</strong> — impulsado por la comunidad, sin costes de licencia",
-          bullet6: "<strong style=\"color: white;\">Windows, macOS &amp; Linux</strong> — aplicación de escritorio nativa",
-          cta_live: "🚀 Abrir demo en vivo",
-          cta_download: "📐 Página del producto",
-          cta_github: "⭐ GitHub"
+          bullet1: "<strong>CAD 2D + 3D</strong>: renderizado acelerado por GPU (wgpu/iced)",
+          bullet2: "<strong>DWG &amp; DXF nativos</strong>: lectura y escritura, R13–R2018",
+          bullet3: "<strong>Espacio papel &amp; sólidos ACIS</strong>: cotas y presentaciones",
+          bullet4: "<strong>Velocidad de Rust</strong>: fluido incluso con dibujos grandes",
+          bullet5: "<strong>Totalmente de código abierto</strong>: impulsado por la comunidad, sin costes de licencia",
+          bullet6: "<strong>Windows, macOS &amp; Linux</strong>: aplicación de escritorio nativa",
+          cta_live: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-play'/></svg> Abrir demo en vivo",
+          cta_download: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-document'/></svg> Página del producto",
+          cta_github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> GitHub"
         },
         featuredPdf: {
-          label: "⭐ Destacado — editor de PDF gratuito y de código abierto",
+          caption: "Open PDF Studio — anotar · medir · motor PDF en Rust",
+          label: "Destacado — editor de PDF gratuito y de código abierto",
           title: "Anota y edita PDF con <span style=\"color: var(--amber);\">código abierto</span>",
           desc: "Open PDF Studio es un <strong style=\"color: white;\">editor y anotador de PDF completo</strong> para el sector AEC — sin suscripción, telemetría ni bloatware. Su <strong style=\"color: white;\">motor PDF en Rust</strong> a medida renderiza PDF vectoriales, como planos técnicos, a una velocidad vertiginosa, incluso con cientos de páginas.",
-          bullet1: "<strong style=\"color: white;\">Más de 20 herramientas de anotación</strong> — resaltados, nubes, sellos y firmas",
-          bullet2: "<strong style=\"color: white;\">Medición a escala</strong> — distancia, área y perímetro con calibración y ajuste",
-          bullet3: "<strong style=\"color: white;\">Motor PDF en Rust</strong> — renderizado vectorial ultrarrápido de planos técnicos",
-          bullet4: "<strong style=\"color: white;\">Gestión de páginas &amp; formularios</strong> — combinar, reordenar, censurar, AcroForms/XFA",
-          bullet5: "<strong style=\"color: white;\">Totalmente de código abierto</strong> — gratuito, sin suscripción, sin telemetría",
-          bullet6: "<strong style=\"color: white;\">Windows, Linux &amp; Android</strong> — en 39 idiomas, manual incluido",
-          cta_live: "🚀 Abrir demo en vivo",
-          cta_download: "📄 Página del producto",
-          cta_github: "⭐ GitHub"
+          bullet1: "<strong>Más de 20 herramientas de anotación</strong>: resaltados, nubes, sellos y firmas",
+          bullet2: "<strong>Medición a escala</strong>: distancia, área y perímetro con calibración y ajuste",
+          bullet3: "<strong>Motor PDF en Rust</strong>: renderizado vectorial ultrarrápido de planos técnicos",
+          bullet4: "<strong>Gestión de páginas &amp; formularios</strong>: combinar, reordenar, censurar, AcroForms/XFA",
+          bullet5: "<strong>Totalmente de código abierto</strong>: gratuito, sin suscripción, sin telemetría",
+          bullet6: "<strong>Windows, Linux &amp; Android</strong>: en 39 idiomas, manual incluido",
+          cta_live: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-play'/></svg> Abrir demo en vivo",
+          cta_download: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-document'/></svg> Página del producto",
+          cta_github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> GitHub"
         },
         scope: {
           label: "Ámbito",
@@ -2830,6 +2905,8 @@
           }
         },
         tools: {
+          showAll: "Mostrar todas las herramientas",
+          showLess: "Mostrar menos",
           label: "Ecosistema",
           title: "El ecosistema OpenAEC",
           description: "El objetivo de nuestra fundación es que todo el sector AEC (edificación, infraestructuras, ingeniería civil) sea de código abierto este año. Estas son las herramientas y proyectos que estamos construyendo para lograrlo.",
@@ -2903,12 +2980,12 @@
           follow: "Seguir \u2192"
         },
         cta: {
-          badge: "🚀 Programa Early Adopter",
+          badge: "Programa Early Adopter",
           title: 'Estamos en la <span class="accent">fase de desarrollo</span>',
           desc: "¿Eres un early adopter que quiere estar en los cimientos del futuro de la informática en el sector de la construcción neerlandés? Únete como voluntario. ¡Prueba las herramientas y envíanos comentarios, incidencias en GitHub y muchas ideas! En la era de la IA, las ideas valen oro. Participa en el debate sobre ideas e incidencias en GitHub.",
-          feedback: "💬 Enviar comentarios",
-          github: "⭐ Contribuir en GitHub",
-          whatsapp: "📱 Seguir el canal de WhatsApp",
+          feedback: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-chat'/></svg> Enviar comentarios",
+          github: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-star'/></svg> Contribuir en GitHub",
+          whatsapp: "<svg class='ico' aria-hidden='true'><use href='/shared/icons.svg#i-phone'/></svg> Seguir el canal de WhatsApp",
           starsLine: 'Estrellas de GitHub en <strong style="color: white;" data-gh-repos>62</strong> repositorios públicos'
         },
         board: {
@@ -3088,11 +3165,11 @@
       const feed = document.getElementById('news-feed');
       if (!feed || !news.length) return;
       feed.innerHTML = news.slice(0, 5).map(item => `
-        <div style="display:flex;gap:var(--sp-4);padding:var(--sp-3) 0;border-bottom:1px solid rgba(255,255,255,0.1);">
-          <span style="font-family:var(--font-code);font-size:0.7rem;color:var(--scaffold-gray);white-space:nowrap;">${item.date}</span>
+        <div class="news-item">
+          <span class="news-date">${item.date}</span>
           <div>
-            <a href="${item.url}" target="_blank" style="color:white;font-weight:600;text-decoration:none;font-size:0.9rem;">${item.title}</a>
-            <p style="font-size:0.8rem;color:var(--scaffold-gray);margin:2px 0 0;">${item.description}</p>
+            <a href="${item.url}" target="_blank">${item.title}</a>
+            <p>${item.description}</p>
           </div>
         </div>
       `).join('');

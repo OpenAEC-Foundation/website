@@ -18,6 +18,7 @@
 
 
 
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenAEC Foundation">
@@ -171,69 +172,19 @@
   }
   </script>
   <style>
-    /* Zelfde contentbreedte als .download-section en .features hieronder,
-       anders staan er drie verschillende breedtes onder elkaar. */
-    .media-slider { max-width: 1152px; margin: 0 auto var(--sp-8); position: relative; }
-    /* Huisstijl-uitlichtblok, gelijk aan .explainer op de Pile Plan- en
-       Geotechniek-pagina: donker met amber accent, geen losse hex-waarden. */
-    .explainer {
-      background: var(--night-build);
-      border-radius: var(--radius-lg);
-      border-left: 4px solid var(--amber);
-      padding: var(--sp-8);
-    }
-    .explainer .section-label { color: var(--warm-gold); display: block; margin-bottom: var(--sp-3); }
-    .explainer h2 { color: var(--amber); font-family: var(--font-heading); font-size: 1.5rem; margin: 0 0 var(--sp-4); }
-    .explainer p { color: var(--scaffold-gray); font-size: 0.95rem; line-height: 1.7; margin: 0 0 var(--sp-4); max-width: 72ch; }
-    .explainer strong { color: var(--blueprint-white); font-weight: 600; }
-    .explainer ul { list-style: none; padding: 0; margin: 0 0 var(--sp-5); max-width: 72ch; }
-    .explainer ul li {
-      position: relative;
-      padding: var(--sp-2) 0 var(--sp-2) var(--sp-5);
-      color: var(--scaffold-gray);
-      font-size: 0.9rem;
-      line-height: 1.6;
-    }
-    .explainer ul li::before {
-      content: ''; position: absolute; left: 0; top: 14px;
-      width: 6px; height: 6px; border-radius: 50%; background: var(--amber);
-    }
-    /* Geen eigen achtergrond: de flex-track neemt de hoogte van de langste
-       slide, dus onder een bredere screenshot bleef er anders een donkere
-       balk staan. De screenshots zitten nu bovendien allemaal tussen 1.90 en
-       2.00, waardoor het verschil hooguit een paar pixels wit is. */
-    .slider-container { position: relative; overflow: hidden; border-radius: 12px; background: transparent; }
-    .slider-track { display: flex; transition: transform 0.4s ease; }
-    .slider-slide { min-width: 100%; }
-    /* height:auto is nodig zodra de img een height-attribuut heeft, anders
-       neemt de browser die letterlijk over in plaats van de verhouding. */
-    .slider-slide img { width: 100%; height: auto; display: block; border-radius: 12px; }
-    .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: white; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; font-size: 1.25rem; display: flex; align-items: center; justify-content: center; z-index: 2; }
-    .slider-btn:hover { background: rgba(0,0,0,0.7); }
-    .slider-prev { left: 12px; }
-    .slider-next { right: 12px; }
-    .slider-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0; }
-    .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: #D6D3D1; border: none; cursor: pointer; }
-    .slider-dot.active { background: #D97706; }
-    .faq-list { max-width: 800px; margin: var(--sp-8) auto 0; }
-    .faq-item { border-bottom: 1px solid #E7E5E4; padding: var(--sp-6) 0; }
-    .faq-item:last-child { border-bottom: none; }
-    .faq-q {
-      font-family: var(--font-heading); font-weight: 700; font-size: 1.25rem;
-      color: var(--deep-forge); margin-bottom: var(--sp-3);
-      display: flex; align-items: flex-start; gap: var(--sp-3);
-    }
-    .faq-q::before {
-      content: ''; display: block; width: 8px; height: 8px; border-radius: 50%;
-      background: var(--amber); margin-top: 8px; flex-shrink: 0;
-    }
-    .faq-a { padding-left: 20px; color: #57534E; font-size: 1rem; line-height: 1.7; }
-    .faq-a p { margin: 0; }
-    @media (max-width: 768px) {
-      /* var(--sp-8) rondom laat op 375px maar ~215px tekst over */
-      .explainer { padding: var(--sp-6) var(--sp-5); }
-      .explainer h2 { font-size: 1.25rem; }
-    }
+
+    /* Veelgestelde vragen: inklapbare kaarten */
+    .faq-list { max-width: 860px; margin: 0 auto; display: grid; gap: 12px; }
+    .faq-item { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); overflow: hidden; }
+    .faq-item > summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); padding: var(--sp-5) var(--sp-6); font-family: var(--font-heading); font-weight: 700; font-size: 1.08rem; color: var(--deep-forge); }
+    .faq-item > summary::-webkit-details-marker { display: none; }
+    .faq-item > summary .ico { color: var(--amber); width: 20px; height: 20px; flex-shrink: 0; transition: transform 0.2s ease; }
+    .faq-item[open] > summary .ico { transform: rotate(180deg); }
+    .faq-item > summary:hover { color: #B45309; }
+    .faq-a { padding: 0 var(--sp-6) var(--sp-5); color: var(--text-muted); font-size: 0.98rem; line-height: 1.7; }
+    .faq-a p { margin: 0; max-width: none; }
+    .faq-a a { color: #B45309; font-weight: 600; }
+
   </style>
 
 
@@ -271,7 +222,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "en",
-        "dateModified": "2026-10-03",
+        "dateModified": "2026-10-13",
         "breadcrumb": {
           "@id": "https://open-aec.com/en/open-planner-studio/#breadcrumb"
         }
@@ -299,7 +250,7 @@
   </script>
   <!-- schema:end -->
 </head>
-<body>
+<body class="page-panels">
     <div id="shared-nav"><!-- nav:start -->
 <nav class="navbar">
   <div class="nav-container">
@@ -333,18 +284,24 @@
 <!-- nav:end --></div>
 <script src="/shared/nav.js?v=20260728"></script>
 
-  <section class="hero">
-    <span class="section-label" data-i18n="header.label">Construction planning</span>
-    <h1 data-i18n="header.title">Open <span class="accent">Planner</span> Studio</h1>
-    <p class="tagline" data-i18n="header.desc">Open-source construction planning with Gantt charts, critical path, resources and levelling, baselines and progress — and native IFC 4.3 as the file format. One task grid for your whole schedule: next to the Gantt and as a full table view, edited like a spreadsheet. Also opens MS Project (.mpp) files natively. On your desktop and straight in the browser.</p>
-    <div class="btn-group">
-      <a href="#download" class="btn btn-primary btn-lg" data-i18n="header.downloadBtn" data-opl-ver>Download v2026.9.0</a>
-      <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-ghost btn-lg" data-i18n="header.demoBtn">Open in your browser</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-planner-studio" class="btn btn-ghost btn-lg" data-i18n="header.sourceBtn">View source</a>
+  <header class="product-head surface-spot">
+    <div class="product-head-inner">
+      <p class="pill-label" data-i18n="header.label">Construction planning</p>
+      <h1 data-i18n="header.title">Open <span class="accent">Planner</span> Studio</h1>
+      <p class="lead" data-i18n="header.desc">Open-source construction planning with Gantt charts, critical path, resources and levelling, baselines and progress — and native IFC 4.3 as the file format. One task grid for your whole schedule: next to the Gantt and as a full table view, edited like a spreadsheet. Also opens MS Project (.mpp) files natively. On your desktop and straight in the browser.</p>
+      <div class="btn-group">
+        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="header.downloadBtn" data-opl-ver>Download v2026.9.0</span></a>
+        <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-play"/></svg><span data-i18n="header.demoBtn">Open in your browser</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-planner-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-external"/></svg><span data-i18n="header.sourceBtn">View source</span></a>
+      </div>
+      <div class="chip-row">
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-globe"/></svg>Windows · macOS · Linux · Browser</span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-cube"/></svg>IFC 4.3</span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-shield"/></svg>LGPL-3.0</span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-euro"/></svg>€ 0</span>
+      </div>
     </div>
-  </section>
-
-    <section class="section" style="padding: 0 var(--sp-6);"><div class="container"><div class="media-slider">
+    <div class="media-slider shot-overlap">
       <div class="slider-container">
         <div class="slider-track" id="sliderTrack">
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-planner-studio-gantt.png" alt="Open Planner Studio — Gantt-planning met WBS-structuur, relatiepijlen en voortgangsbalken, drie projecten tegelijk open en het eigenschappenpaneel met CPM-resultaat rechts" width="1920" height="1048" decoding="async" fetchpriority="high"></div>
@@ -356,195 +313,218 @@
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-planner-studio-rapport.png" alt="Open Planner Studio — Rapport-tab met papierformaat, lettergrootte en afdrukvoorbeeld van de Gantt" width="1920" height="1048" decoding="async" loading="lazy"></div>
           <div class="slider-slide"><img src="/shared/assets/screenshots/open-planner-studio-handleiding.png" alt="Open Planner Studio — ingebouwde handleiding met quick-start en praktijkgidsen, waaronder het koppelen van een AI-assistent" width="1644" height="927" decoding="async" loading="lazy"></div>
         </div>
-        <button class="slider-btn slider-prev" onclick="slideMove(-1)">&lsaquo;</button>
-        <button class="slider-btn slider-next" onclick="slideMove(1)">&rsaquo;</button>
+        <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Vorige">&lsaquo;</button>
+        <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Volgende">&rsaquo;</button>
       </div>
       <div class="slider-dots" id="sliderDots"></div>
-    </div></div></section>
-
-  <section class="section" style="padding: var(--sp-6) var(--sp-6);"><div class="container">
-    <div class="explainer">
-      <span class="section-label" data-i18n="whatsnew.label">New in v2026.9.0 · testers wanted</span>
-      <h2 data-i18n="whatsnew.title">One table for your whole schedule — and you edit it like a spreadsheet</h2>
-      <p data-i18n="whatsnew.desc">The task list beside the Gantt and the full Table view are now <strong>the same table</strong>: the same columns, the same shortcuts, the same way of editing — wherever you work. It stays fluid at thousands of tasks, you move from cell to cell with the keyboard, and you paste whole blocks in from your spreadsheet in one go. Dependencies are now edited right in the cell; the separate Relations tab had become redundant and has been retired.</p>
-      <ul data-i18n="whatsnew.list"><li><strong>One table, two places</strong> — the same columns, shortcuts and edits beside the Gantt and in the Table view. Your column choice, widths and order are remembered per place.</li><li><strong>Paste from your spreadsheet</strong> — several cells at once, applied in full or not at all. Values stay values instead of flattening to text, and read-only cells are skipped.</li><li><strong>Dependencies in the cell</strong> — edit relations and jump to the linked task without leaving the table. The separate Relations tab has been retired as a result.</li><li><strong>Days and hours</strong> — you choose per task whether its duration counts in days or in hours. An hour task consumes real working minutes on its own calendar, even when that calendar has a break in it.</li><li><strong>Also new:</strong> your own task types, reports on A2 with a baseline overlay and status line, automatic saving back to your own file, and an interface that can follow the system theme.</li></ul>
-      <p data-i18n="whatsnew.testers">We are looking for <strong>testers</strong>: work planners, schedulers, project leads and BIM coordinators. Try Open Planner Studio right in your browser and tell us what you think — your feedback helps shape where it goes.</p>
-      <div style="display:flex; gap:var(--sp-3); flex-wrap:wrap; margin-top:var(--sp-6);">
-        <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-primary" data-i18n="whatsnew.ctaDemo">Try the live demo →</a>
-        <a href="mailto:maarten@open-aec.com?subject=Tester%20Open%20Planner%20Studio" class="btn btn-ghost" data-i18n="whatsnew.ctaJoin">Join as a tester</a>
-      </div>
     </div>
-  </div></section>
+  </header>
 
-  <section class="section" id="download"><div class="container">
+  <section class="section after-overlap" id="download"><div class="container">
     <div class="download-section">
       <h3 data-i18n="download.title" data-opl-ver>Download v2026.9.0</h3>
       <div class="download-grid">
         <div class="download-item"><div class="os">Windows</div><div class="size" data-opl-size="windows">7.3 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_x64-setup.exe" data-opl-dl="windows" class="btn btn-primary btn-sm">Download .exe</a></div>
+          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_x64-setup.exe" data-opl-dl="windows" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg>Download .exe</a></div>
         <div class="download-item"><div class="os">macOS (universal)</div><div class="size" data-opl-size="macos">15.4 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_universal.dmg" data-opl-dl="macos" class="btn btn-primary btn-sm">Download .dmg</a></div>
+          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_universal.dmg" data-opl-dl="macos" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg>Download .dmg</a></div>
         <div class="download-item"><div class="os">Linux (deb)</div><div class="size" data-opl-size="linux-deb">8.3 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.deb" data-opl-dl="linux-deb" class="btn btn-primary btn-sm">Download .deb</a></div>
+          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.deb" data-opl-dl="linux-deb" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg>Download .deb</a></div>
         <div class="download-item"><div class="os">Linux (rpm)</div><div class="size" data-opl-size="linux-rpm">8.3 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio-2026.9.0-1.x86_64.rpm" data-opl-dl="linux-rpm" class="btn btn-primary btn-sm">Download .rpm</a></div>
+          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio-2026.9.0-1.x86_64.rpm" data-opl-dl="linux-rpm" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg>Download .rpm</a></div>
         <div class="download-item"><div class="os">Linux (AppImage)</div><div class="size" data-opl-size="linux-appimage">82.2 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.AppImage" data-opl-dl="linux-appimage" class="btn btn-primary btn-sm">Download AppImage</a></div>
+          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.AppImage" data-opl-dl="linux-appimage" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg>Download AppImage</a></div>
         <div class="download-item"><div class="os">Linux (snap)</div><div class="size" data-opl-size="linux-snap">7.5 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/open-planner-studio_2026.9.0_amd64.snap" data-opl-dl="linux-snap" class="btn btn-primary btn-sm">Download .snap</a></div>
+          <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/open-planner-studio_2026.9.0_amd64.snap" data-opl-dl="linux-snap" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg>Download .snap</a></div>
       </div>
-      <p style="color:var(--scaffold-gray); font-size:0.85rem; margin-top:var(--sp-4);" data-i18n="download.browserNote">Rather not install anything? Open Planner Studio also runs <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener" style="color:var(--amber);">fully in your browser</a> — including opening and saving files.</p>
+      <p class="download-note" data-i18n="download.browserNote">Rather not install anything? Open Planner Studio also runs <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener">fully in your browser</a> — including opening and saving files.</p>
     </div>
   </div></section>
 
+  <!-- Nieuw in deze versie -->
+  <section class="section surface-dark panel">
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label" data-i18n="whatsnew.label">New in v2026.9.0 · testers wanted</p>
+        <h2 data-i18n="whatsnew.title">One table for your whole schedule — and you edit it like a spreadsheet</h2>
+        <p data-i18n="whatsnew.desc">The task list beside the Gantt and the full Table view are now <strong>the same table</strong>: the same columns, the same shortcuts, the same way of editing — wherever you work. It stays fluid at thousands of tasks, you move from cell to cell with the keyboard, and you paste whole blocks in from your spreadsheet in one go. Dependencies are now edited right in the cell; the separate Relations tab had become redundant and has been retired.</p>
+        <p class="split-note" data-i18n="whatsnew.testers">We are looking for <strong>testers</strong>: work planners, schedulers, project leads and BIM coordinators. Try Open Planner Studio right in your browser and tell us what you think — your feedback helps shape where it goes.</p>
+        <div class="btn-group">
+        <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-play"/></svg><span data-i18n="whatsnew.ctaDemo">Try the live demo</span></a>
+        <a href="mailto:maarten@open-aec.com?subject=Tester%20Open%20Planner%20Studio" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-mail"/></svg><span data-i18n="whatsnew.ctaJoin">Join as a tester</span></a>
+      </div>
+      </div>
+      <ul class="split-cards">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-grid"/></svg></div><div><p data-i18n="whatsnew.items.i1"><strong>One table, two places</strong> The same columns, shortcuts and edits beside the Gantt and in the Table view. Your column choice, widths and order are remembered per place.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-clipboard"/></svg></div><div><p data-i18n="whatsnew.items.i2"><strong>Paste from your spreadsheet</strong> Several cells at once, applied in full or not at all. Values stay values instead of flattening to text, and read-only cells are skipped.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-link"/></svg></div><div><p data-i18n="whatsnew.items.i3"><strong>Dependencies in the cell</strong> Edit relations and jump to the linked task without leaving the table. The separate Relations tab has been retired as a result.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-clock"/></svg></div><div><p data-i18n="whatsnew.items.i4"><strong>Days and hours</strong> You choose per task whether its duration counts in days or in hours. An hour task consumes real working minutes on its own calendar, even when that calendar has a break in it.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-star"/></svg></div><div><p data-i18n="whatsnew.items.i5"><strong>Also new:</strong> your own task types, reports on A2 with a baseline overlay and status line, automatic saving back to your own file, and an interface that can follow the system theme.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
   <section class="section section-alt"><div class="container">
     <h2 data-i18n="features.heading">Features</h2>
-    <div class="features" id="opl-features" style="margin-top:var(--sp-8)">
+    <div class="features" id="opl-features">
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chip"/></svg></div>
         <h4 data-i18n="features.ai.title">AI assistant via MCP</h4>
         <p data-i18n="features.ai.desc">An MCP server is built into the app, so an AI client such as Claude Code can read and edit your schedule directly. Switch it on in the AI tab, with a pause button, read-only mode and automatic backups.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-gantt"/></svg></div>
         <h4 data-i18n="features.gantt.title">Gantt charts</h4>
         <p data-i18n="features.gantt.desc">Interactive HTML5 Canvas Gantt with drag and drop, zoom and timeline navigation. Drag a whole selection vertically, collapse non-working days out of the timeline and select with Ctrl+click. Week numbers in the header.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-route"/></svg></div>
         <h4 data-i18n="features.cpm.title">Critical path (CPM)</h4>
         <p data-i18n="features.cpm.desc">Automatic critical path calculation with float, near-critical work, multiple critical paths and deadline analysis. A "dates as recorded" view shows a file exactly as it recorded its own dates, when those differ from recalculation.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-grid"/></svg></div>
         <h4 data-i18n="features.wbs.title">WBS &amp; table view</h4>
         <p data-i18n="features.wbs.desc">Hierarchical task structure with collapsible chapters. Beside the Gantt and in the full Table view you work in the same table: cell to cell with the keyboard, blocks pasted in from your spreadsheet, dependencies in the cell, columns you choose and pin, rows you drag. It stays fluid at thousands of tasks too.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-pen"/></svg></div>
         <h4 data-i18n="features.tasktypes.title">Your own task types</h4>
         <p data-i18n="features.tasktypes.desc">Alongside the built-in types you can define your own task types. They are reusable on your installation, and their name and identity travel with the project — so what a task is stays readable after an IFC exchange or on another machine.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-history"/></svg></div>
         <h4 data-i18n="features.autosave.title">Automatic saving</h4>
         <p data-i18n="features.autosave.desc">Once your project has a file the app is allowed to write to, you can have it written back periodically — with no dialog. It deliberately stays separate from crash recovery: a document that has never been saved is never quietly overwritten, and the recovery snapshot keeps running alongside it.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-cube"/></svg></div>
         <h4 data-i18n="features.ifc.title">Native IFC 4.3</h4>
         <p data-i18n="features.ifc.desc">Your schedule <em>is</em> an IFC file (buildingSMART standard). With a built-in IFC code editor to generate and apply.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-users"/></svg></div>
         <h4 data-i18n="features.resources.title">Resources &amp; levelling</h4>
         <p data-i18n="features.resources.desc">Labour, equipment and subcontractors with a histogram and automatic levelling of overallocation. Move assignments while keeping units and curve.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-layers"/></svg></div>
         <h4 data-i18n="features.library.title">Resource libraries</h4>
         <p data-i18n="features.library.desc">Share one resource pool across several projects. The library is the source, the project shows what it actually uses, and deviations are flagged so you can resolve them. The occupancy overview adds up every open project — as a table and as a histogram — and marks the days where the committed load exceeds the available capacity.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div>
         <h4 data-i18n="features.baselines.title">Baselines &amp; progress</h4>
         <p data-i18n="features.baselines.desc">Capture multiple baselines and record progress with a status date, actual start and a cleaned-up progress line.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-calendar"/></svg></div>
         <h4 data-i18n="features.calendars.title">Calendars &amp; hourly planning</h4>
         <p data-i18n="features.calendars.desc">Construction-specific calendars: public holidays, building recess, frost delay, inspection moments and phasing, plus a configurable break in the daily pattern. Per task you choose whether the duration counts in days or in hours; an hour task consumes real working minutes on its own calendar instead of being quietly converted to whole days.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-viewport"/></svg></div>
         <h4 data-i18n="features.browser.title">Desktop and browser</h4>
         <p data-i18n="features.browser.desc">Runs natively on Windows, macOS and Linux, but also fully in the browser — including open, save, auto-save and crash recovery.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-link"/></svg></div>
         <h4 data-i18n="features.exchange.title">Exchange</h4>
         <p data-i18n="features.exchange.desc">Import and export IFC, CSV, MS Project (.xml) and Primavera P6 (.xml) — no intermediate steps or conversion tools.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg></div>
         <h4 data-i18n="features.mpp.title">MS Project (.mpp) import</h4>
         <p data-i18n="features.mpp.desc">Opens .mpp files natively, with no Microsoft Project or converter involved — date-faithful to the minute across a 216-file test corpus. Split tasks, resource leveling, timephased assignments and manually scheduled tasks are read and shown as interrupted bars in the Gantt, print preview and PDF export; nothing from the source file is lost, even after you edit it.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-strata"/></svg></div>
         <h4 data-i18n="features.bim4d.title">4D BIM-ready</h4>
         <p data-i18n="features.bim4d.desc">Your schedule is an open IFC 4.3 file. BIM software can lay it directly alongside your building model for 4D analysis of the construction sequence, with no conversion needed.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-printer"/></svg></div>
         <h4 data-i18n="features.reporting.title">Reporting &amp; printing</h4>
         <p data-i18n="features.reporting.desc">Live print preview in the ribbon and export to a real high-resolution PDF (±220 DPI). Paper up to A2, a baseline overlay, a status or progress line, bars coloured by task, category or resource, and non-working days you can compress. Configurable font size, a header that repeats on every page and a timeline that may span several pages. Your settings are remembered.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-document"/></svg></div>
         <h4 data-i18n="features.docs.title">Manual inside the app</h4>
         <p data-i18n="features.docs.desc">Press F1 for an offline manual, available in all fourteen languages: quick start, fifteen practical guides — including resource libraries and connecting an AI assistant — and sixteen reference pages, plus eight sample projects to practise on.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-keyboard"/></svg></div>
         <h4 data-i18n="features.shortcuts.title">Shortcuts &amp; context menus</h4>
         <p data-i18n="features.shortcuts.desc">Full overview via Ctrl+/ and rich right-click menus on the task row, Gantt bar, canvas and band header. Per-task notes with a tickable checklist.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-globe"/></svg></div>
         <h4 data-i18n="features.multilingual.title">14 languages</h4>
         <p data-i18n="features.multilingual.desc">Nederlands, English, Fran&ccedil;ais, Deutsch, Espa&ntilde;ol, Italiano, Portugu&ecirc;s, Polski, T&uuml;rk&ccedil;e, 中文, 日本語, 한국어 and RTL support for العربية and فارسی.</p>
       </div>
       <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-sliders"/></svg></div>
         <h4 data-i18n="features.ribbon.title">Ribbon toolbar</h4>
         <p data-i18n="features.ribbon.desc">Familiar Office-style ribbon with tabs: Home, Planning, Resources, View, Settings, Table, IFC and Report — plus an AI tab once AI mode is on. Relation actions sit in the task groups themselves.</p>
       </div>
     </div>
     <!-- Alleen met JavaScript: zonder script staan alle kaartjes gewoon open
          (progressive enhancement), dus deze knop start verborgen. -->
-    <div class="features-more" data-features-more hidden>
-      <button type="button" class="btn btn-secondary" data-features-toggle aria-expanded="false" aria-controls="opl-features">
-        <span data-feat-show><span data-i18n="features.showAll">Show all features</span> (<span data-feat-count>20</span>)</span>
+    <p class="more-row" data-features-more hidden>
+      <button type="button" class="btn btn-secondary btn-lg more-btn" data-features-toggle aria-expanded="false" aria-controls="opl-features">
+        <span data-feat-show class="more-label"><span data-i18n="features.showAll">Show all features</span> <span class="more-count">(<span data-feat-count>20</span>)</span></span>
         <span data-feat-hide hidden data-i18n="features.showLess">Show less</span>
+        <svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg>
       </button>
-    </div>
+    </p>
   </div></section>
 
   <section class="section"><div class="container">
     <h2 data-i18n="tech.heading">Technology</h2>
-    <div class="features" style="margin-top:var(--sp-8)">
-      <div class="feature"><h4 data-i18n="tech.tauri.title">Tauri 2</h4><p data-i18n="tech.tauri.desc">Native desktop app with a Rust backend for Windows, macOS and Linux.</p></div>
-      <div class="feature"><h4 data-i18n="tech.react.title">React 19 + TypeScript</h4><p data-i18n="tech.react.desc">Component-based UI with Zustand + Immer for state management.</p></div>
-      <div class="feature"><h4 data-i18n="tech.canvas.title">HTML5 Canvas 2D</h4><p data-i18n="tech.canvas.desc">Gantt rendering. TailwindCSS 4 for styling, Vite 7 as the build.</p></div>
+    <div class="features features-compact">
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chip"/></svg></div><div><h4 data-i18n="tech.tauri.title">Tauri 2</h4><p data-i18n="tech.tauri.desc">Native desktop app with a Rust backend for Windows, macOS and Linux.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-layers"/></svg></div><div><h4 data-i18n="tech.react.title">React 19 + TypeScript</h4><p data-i18n="tech.react.desc">Component-based UI with Zustand + Immer for state management.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-gantt"/></svg></div><div><h4 data-i18n="tech.canvas.title">HTML5 Canvas 2D</h4><p data-i18n="tech.canvas.desc">Gantt rendering. TailwindCSS 4 for styling, Vite 7 as the build.</p></div></div>
     </div>
   </div></section>
 
-  <section class="section section-alt" id="faq"><div class="container">
+  <section class="section" id="faq"><div class="container">
     <h2 data-i18n="faq.heading">Frequently asked questions</h2>
     <div class="faq-list">
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.import.q">Can I open files from Microsoft Project or Primavera P6?</div>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.import.q">Can I open files from Microsoft Project or Primavera P6?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
         <div class="faq-a"><p data-i18n="faq.import.a">Yes. Open Planner Studio opens MS Project (.mpp) files natively — no Microsoft Project or external converter needed — and is date-faithful to the minute across a 216-file test corpus; split tasks, leveling delay, timephased assignments and manually scheduled tasks are read and shown. The app also imports and exports MS Project (.xml) and Primavera P6 (.xml) directly, with no intermediate step or conversion tool. IFC and CSV are supported as well.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.browser.q">Do I have to install anything?</div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.browser.q">Do I have to install anything?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
         <div class="faq-a"><p data-i18n="faq.browser.a">No. The full application runs in the browser, including opening and saving files, auto-save and crash recovery. In Chromium browsers (Chrome, Edge, Brave, Opera, Vivaldi) Ctrl+S saves back over the same file, just like on the desktop; Firefox and Safari fall back to the file picker. If you do want to install, there are builds for Windows, macOS and Linux.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.formaat.q">What file format is my schedule saved in?</div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.formaat.q">What file format is my schedule saved in?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
         <div class="faq-a"><p data-i18n="faq.formaat.a">IFC 4.3, the open buildingSMART standard. Your schedule *is* an IFC file — there is no proprietary, closed format. That keeps your data readable outside this application, and lets BIM software lay your schedule directly alongside an IFC building model for 4D analysis of the construction sequence.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.ai.q">What exactly can an AI assistant do with my schedule?</div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.ai.q">What exactly can an AI assistant do with my schedule?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
         <div class="faq-a"><p data-i18n="faq.ai.a">Since v2026.7.13 the app ships a built-in MCP server. An AI client such as Claude Code can read your schedule through it — project overview, tasks, critical path, resources, histogram, calendars and baselines — and edit it too. You switch the bridge on in the AI tab and stay in control: there is a pause button, a read-only mode, automatic backups and an activity panel listing every call the assistant made.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.prijs.q">What does Open Planner Studio cost?</div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.prijs.q">What does Open Planner Studio cost?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
         <div class="faq-a"><p data-i18n="faq.prijs.a">Nothing. The application is free and open source under the LGPL-3.0 licence. No subscription, no per-seat licence fees.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.platforms.q">Which systems does it run on?</div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.platforms.q">Which systems does it run on?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
         <div class="faq-a"><p data-i18n="faq.platforms.a">Windows (.exe), macOS (universal .dmg, both Intel and Apple Silicon) and Linux (.deb, .rpm, AppImage and snap). Plus fully in the browser.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.bouwpraktijk.q">Does it fit construction practice?</div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.bouwpraktijk.q">Does it fit construction practice?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
         <div class="faq-a"><p data-i18n="faq.bouwpraktijk.a">Yes. You set up construction-specific calendars with public holidays, building recess, frost delay, inspection moments and phasing, and you can plan down to hour level. The interface is available in fourteen languages.</p></div>
-      </div>
-      <div class="faq-item">
-        <div class="faq-q" data-i18n="faq.analyse.q">Can I see which tasks drive the end date?</div>
+      </details>
+      <details class="faq-item">
+        <summary><span data-i18n="faq.analyse.q">Can I see which tasks drive the end date?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></summary>
         <div class="faq-a"><p data-i18n="faq.analyse.a">Yes. The critical path is calculated automatically, with float, near-critical work, multiple critical paths and deadline analysis. Resources get a histogram with automatic levelling of overallocation, and multiple baselines let you track deviations from the original plan.</p></div>
-      </div>
+      </details>
     </div>
   </div></section>
-
-  <section style="background: var(--concrete); padding: 3rem 1.5rem; text-align: center;">
-    <div style="max-width: 900px; margin: 0 auto; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-      <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-primary btn-lg" data-i18n="cta.demo">Live demo &rarr;</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-i18n="cta.releases">All releases &rarr;</a>
-      <a href="https://github.com/OpenAEC-Foundation/open-planner-studio" target="_blank" rel="noopener" class="btn btn-secondary btn-lg" data-i18n="cta.github">GitHub &rarr;</a>
-    </div>
-  </section>
 
   <!-- Release Notes (shared component) -->
   <div data-release-notes="open-planner-studio" data-release-notes-timeline>
@@ -589,12 +569,71 @@
 </div>
   <script src="/shared/release-notes.js?v=20260728"></script>
 
-  <footer class="footer"><div class="footer-container">
-    <a href="/en/" class="nav-brand">Open<span class="accent">AEC</span></a>
-    <span data-i18n="footer.slogan">Build free. Build together.</span>
-    <a href="https://github.com/OpenAEC-Foundation">GitHub</a>
-    <span>&copy; 2026 OpenAEC Foundation</span>
-  </div></footer>
+  <section class="section surface-spot panel">
+    <div class="panel-center">
+      <h2 data-i18n="header.title">Open <span class="accent">Planner</span> Studio</h2>
+      <div class="btn-group">
+        <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-play"/></svg><span data-i18n="cta.demo">Live demo</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-history"/></svg><span data-i18n="cta.releases">All releases</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-planner-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-star"/></svg><span data-i18n="cta.github">GitHub</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/en/" class="nav-brand">Open<span class="accent">AEC</span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Pages</h4>
+        <a href="/en/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">About us</a>
+        <a href="/en/ifcx/">IFCX</a>
+        <a href="/en/roadmap/" data-i18n-en="Roadmap 2026" data-i18n-fr="Feuille de route 2026" data-i18n-tr="2026 yol haritası" data-i18n-es="Hoja de ruta 2026">Roadmap 2026</a>
+        <a href="/en/architectuur/" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Architecture</a>
+        <a href="/en/supporters/" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Supporters</a>
+        <a href="/en/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Request quote</a>
+        <a href="/en/structuur/" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structure</a>
+        <a href="/en/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">FAQ</a>
+        <a href="/en/statistieken/" data-i18n-en="Timeline &amp; Statistics" data-i18n-fr="Chronologie &amp; statistiques" data-i18n-tr="Zaman çizelgesi &amp; istatistikler" data-i18n-es="Cronología &amp; estadísticas">Timeline &amp; Statistics</a>
+        <a href="/en/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Disclaimer</a>
+        <a href="/en/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Draft statutes</a>
+        <a href="/en/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Credits</a>
+        <a href="/en/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Policy &amp; positions</a>
+        <a href="/en/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Socials</a>
+      </nav>
+      <nav class="site-footer-col" aria-label="Meer tools">
+        <h4 data-i18n-en="More tools" data-i18n-fr="Plus d'outils" data-i18n-tr="Daha fazla araç" data-i18n-es="Más herramientas">More tools</h4>
+        <a href="/en/open-energy-studio/">Open Energy Studio</a>
+        <a href="/en/open-safety-studio/">Open Safety Studio</a>
+        <a href="/en/open-3d-viewer/">Open 3D Viewer</a>
+        <a href="/en/open-books/">OpenBooks</a>
+        <a href="/en/openaec-cloud/">OpenAEC Cloud</a>
+        <a href="/en/openaec-docs/">OpenAEC Docs</a>
+        <a href="/en/ext-drawing-statistics/">Drawing Statistics</a>
+        <a href="/en/y-app/">Y-app</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Foundation i.f.</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">The Netherlands</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
   <script>
     (function(){
       const track = document.getElementById('sliderTrack');

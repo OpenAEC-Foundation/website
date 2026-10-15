@@ -17,6 +17,7 @@
 
 
 
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenAEC Foundation">
@@ -61,121 +62,26 @@
   </script>
 
   <style>
-    .page-header {
-      background: var(--night-build);
-      padding: var(--sp-20) var(--sp-6) var(--sp-12);
-      text-align: center;
-      border-bottom: 3px solid transparent;
-      border-image: var(--gradient-accent) 1;
-    }
-    .page-header .section-label { color: var(--warm-gold); margin-bottom: var(--sp-4); display: block; font-family: var(--font-code); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; }
-    .page-header h1 { font-family: var(--font-heading); font-weight: 700; font-size: 2.5rem; color: white; letter-spacing: -0.02em; margin-bottom: var(--sp-4); }
-    .page-header h1 .accent { color: var(--amber); }
-    .page-header p { font-size: 1.125rem; color: var(--scaffold-gray); max-width: 750px; margin: 0 auto; line-height: 1.6; }
-    .status-badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: var(--font-code); font-size: 0.7rem; font-weight: 500;
-      text-transform: uppercase; letter-spacing: 0.06em;
-      padding: 4px 14px; border-radius: var(--radius-full);
-      background: #DBEAFE; color: #1E40AF;
-      margin-top: var(--sp-4); margin-right: 6px;
-    }
-    .version-info {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: var(--font-code); font-size: 0.7rem;
-      color: var(--scaffold-gray); margin-top: var(--sp-2);
-    }
+    .shot-caption { font-family: var(--font-code); font-size: 0.75rem; color: var(--text-muted); text-align: center; max-width: 760px; margin: 0 auto var(--sp-10); }
+    code { font-family: var(--font-code); font-size: 0.86em; background: var(--concrete); color: var(--deep-forge); padding: 1px 6px; border-radius: var(--radius-sm); }
+    .surface-dark code, .surface-spot code { background: rgba(217,119,6,0.15); color: var(--warm-gold); }
 
-    .content { max-width: 900px; margin: 0 auto; }
-    .content h2 { font-family: var(--font-heading); font-weight: 700; font-size: 1.5rem; color: var(--deep-forge); margin-bottom: var(--sp-4); }
-    .content h2 .accent { color: var(--amber); }
-    .content p { font-size: 1rem; color: #57534E; line-height: 1.7; margin-bottom: var(--sp-4); }
-    .content-block + .content-block { margin-top: var(--sp-12); }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: var(--sp-6);
-      margin: var(--sp-8) 0;
-    }
-    .feature-card {
-      background: white; border: 1px solid #E7E5E4;
-      border-radius: var(--radius-lg); padding: var(--sp-6);
-      box-shadow: var(--shadow-sm);
-    }
-    .feature-card h3 { font-family: var(--font-heading); font-weight: 700; font-size: 1rem; color: var(--deep-forge); margin-bottom: var(--sp-2); }
-    .feature-card p { font-size: 0.875rem; color: #57534E; line-height: 1.6; margin-bottom: 0; }
+    /* Voorbeelddocument */
+    .code-window { max-width: 860px; margin: 0 auto; border-radius: var(--radius-lg); overflow: hidden; background: var(--night-build); border: 1px solid rgba(42,42,50,0.2); box-shadow: 0 40px 80px -30px rgba(42,42,50,0.55); }
+    .code-window-bar { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.08); font-family: var(--font-code); font-size: 0.75rem; color: var(--scaffold-gray); }
+    .code-window-bar i { width: 10px; height: 10px; border-radius: var(--radius-full); background: rgba(255,255,255,0.18); }
+    .code-window-bar i:first-child { background: var(--amber); }
+    .code-window-bar span { margin-left: 8px; }
+    .code-block { margin: 0; padding: var(--sp-5) var(--sp-6); overflow-x: auto; font-family: var(--font-code); font-size: 0.85rem; line-height: 1.65; color: #E7E5E4; white-space: pre; }
+    .code-block .comment { color: #8A8A93; }
+    .code-block .keyword { color: var(--amber); font-weight: 600; }
+    .code-block .string { color: var(--warm-gold); }
+    .code-block .number { color: #FDE68A; }
 
-    .explainer {
-      background: var(--night-build);
-      border-radius: var(--radius-lg);
-      padding: var(--sp-8);
-      margin: var(--sp-8) 0;
-    }
-    .explainer h3 { color: var(--amber); font-family: var(--font-heading); font-size: 1.125rem; margin-bottom: var(--sp-4); }
-    .explainer p { color: var(--scaffold-gray); font-size: 0.9rem; line-height: 1.7; margin-bottom: var(--sp-3); }
-    .explainer ul { list-style: none; padding: 0; margin: 0; }
-    .explainer ul li {
-      position: relative;
-      padding: var(--sp-2) 0 var(--sp-2) var(--sp-5);
-      color: var(--scaffold-gray);
-      font-size: 0.875rem;
-      line-height: 1.6;
-    }
-    .explainer ul li::before {
-      content: ''; position: absolute; left: 0; top: 12px;
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--amber);
-    }
-    .explainer code {
-      background: rgba(217, 119, 6, 0.15); color: var(--amber);
-      padding: 1px 6px; border-radius: 3px;
-      font-family: var(--font-code); font-size: 0.85em;
-    }
+    .tech-chips { margin-bottom: var(--sp-6); }
+    .tech-desc { color: var(--text-muted); font-size: 1.02rem; line-height: 1.7; max-width: 760px; margin: 0 auto; text-align: center; }
 
-    /* Code block */
-    .code-block {
-      background: var(--night-build);
-      color: #E7E5E4;
-      border-radius: var(--radius-md);
-      padding: var(--sp-5);
-      overflow-x: auto;
-      font-family: var(--font-code);
-      font-size: 0.85rem;
-      line-height: 1.6;
-      margin: var(--sp-6) 0;
-    }
-    .code-block .comment { color: #71717A; }
-    .code-block .keyword { color: var(--amber); }
-    .code-block .string  { color: #93C5FD; }
-    .code-block .number  { color: #86EFAC; }
-
-    .tech-stack { display: flex; gap: var(--sp-3); flex-wrap: wrap; margin: var(--sp-4) 0; }
-    .tech-tag {
-      font-family: var(--font-code); font-size: 0.75rem; font-weight: 500;
-      padding: 4px 12px; border-radius: var(--radius-full);
-      background: var(--concrete); color: var(--deep-forge);
-    }
-
-    .cta-links { display: flex; gap: var(--sp-4); flex-wrap: wrap; margin-top: var(--sp-6); }
-    .cta-links a {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 12px 24px; border-radius: var(--radius-md);
-      font-family: var(--font-heading); font-weight: 600; font-size: 0.9rem;
-      text-decoration: none; transition: opacity 0.2s;
-    }
-    .cta-links a:hover { opacity: 0.85; }
-    .cta-primary { background: var(--amber); color: var(--deep-forge); }
-    .cta-secondary { background: var(--deep-forge); color: white; }
-
-    .page-footer.footer { background: var(--deep-forge); border-top: 3px solid transparent; border-image: var(--gradient-accent) 1; }
-    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-4); }
-    .footer-inner p { font-size: 0.75rem; color: var(--scaffold-gray); }
-
-    @media (max-width: 768px) {
-      .page-header h1 { font-size: 1.8rem; word-break: break-word; }
-      .features-grid { grid-template-columns: 1fr; }
-    }
   </style>
 
   <meta name="i18n-static" content="es">
@@ -212,7 +118,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "es",
-        "dateModified": "2026-10-03",
+        "dateModified": "2026-10-13",
         "breadcrumb": {
           "@id": "https://open-aec.com/es/open-calculations-studio/#breadcrumb"
         }
@@ -246,7 +152,7 @@
   </script>
   <!-- schema:end -->
 </head>
-<body>
+<body class="page-panels">
   <div id="shared-nav"><!-- nav:start -->
 <nav class="navbar">
   <div class="nav-container">
@@ -280,56 +186,66 @@
 <!-- nav:end --></div>
   <script src="/shared/nav.js?v=20260728"></script>
 
-  <header class="page-header">
-    <p class="section-label" data-i18n="header.label">Ecosistema OpenAEC</p>
-    <h1 data-i18n="header.title">Open <span class="accent">Calculations</span> Studio</h1>
-    <p data-i18n="header.desc">App de escritorio de código abierto para cálculos estructurales — <strong style="color: white;">inspirada en CalcPAD</strong>, con exportación directa a <strong style="color: white;">IFC4x3 STEP</strong> e <strong style="color: white;">IFCX JSON-LD</strong>. Anteriormente Ifc-Calc, reconstruida bajo la OpenAEC Foundation.</p>
-    <div>
-      <span class="status-badge" data-i18n="header.badge">En desarrollo</span>
-      <a href="https://open-calculations-studio.open-aec.com/" target="_blank" rel="noopener" class="status-badge" style="background:#16A34A;color:white;text-decoration:none;display:inline-flex;align-items:center;gap:6px;">🚀 <span lang="en">open-calculations-studio.open-aec.com</span> &rarr;</a>
+  <header class="product-head surface-spot">
+    <div class="product-head-inner">
+      <p class="pill-label" data-i18n="header.label">Ecosistema OpenAEC</p>
+      <h1 data-i18n="header.title">Open <span class="accent">Calculations</span> Studio</h1>
+      <p class="lead" data-i18n="header.desc">App de escritorio de código abierto para cálculos estructurales — <strong>inspirada en CalcPAD</strong>, con exportación directa a <strong>IFC4x3 STEP</strong> e <strong>IFCX JSON-LD</strong>. Anteriormente Ifc-Calc, reconstruida bajo la OpenAEC Foundation.</p>
+      <div class="btn-group">
+        <a href="https://open-calculations-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-play"/></svg><span data-i18n="cta.liveDemo">Abrir la demo en vivo</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/Open-Calculations-Studio/releases/download/v0.1.9/Open.Calculations.Studio_0.1.9_x64-setup.exe" data-gh-download="OpenAEC-Foundation/Open-Calculations-Studio" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="cta.download">Descargar — Windows, macOS y Linux</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/Open-Calculations-Studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-external"/></svg><span data-i18n="cta.github">Repositorio en GitHub</span></a>
+      </div>
+      <div class="chip-row">
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-clock"/></svg><span data-i18n="header.badge">En desarrollo</span></span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg>CalcPAD (.cpd)</span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-cube"/></svg>IFC4x3 · IFCX</span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-euro"/></svg>€ 0</span>
+      </div>
     </div>
-    <div class="version-info">v0.1.4 &middot; TypeScript + Rust + Tauri 2 &middot; mathjs + KaTeX &middot; CalcPAD-compatible &middot; 67 commits &middot; 11 releases &middot; 8 stars</div>
+    <div class="shot-float shot-overlap"><img src="/shared/assets/screenshots/open-calculations-studio.png" alt="Open Calculations Studio - CalcPAD-syntax editor met live preview, wind-belastingberekening en SVG-tekening"></div>
   </header>
 
-  <section class="section" style="background: var(--blueprint-white); padding-top: var(--sp-10); padding-bottom: var(--sp-4);">
-    <div class="content" style="max-width: 1100px;">
-      <figure style="margin: 0; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-lg); border: 1px solid #E7E5E4;">
-        <img src="/shared/assets/screenshots/open-calculations-studio.png" alt="Open Calculations Studio - CalcPAD-syntax editor met live preview, wind-belastingberekening en SVG-tekening" style="width: 100%; height: auto; display: block;" loading="lazy">
-        <figcaption style="background: var(--night-build); color: var(--scaffold-gray); font-family: var(--font-code); font-size: 0.75rem; padding: 10px 16px; text-align: center;" data-i18n="screenshot.caption">Editor con sintaxis CalcPAD y vista previa en vivo · cálculo de carga de viento · dibujo SVG paramétrico</figcaption>
-      </figure>
-    </div>
-  </section>
-
-  <section class="section" style="background: var(--blueprint-white);">
-
-    <div class="content">
-
-      <!-- What is it? -->
-      <div class="explainer">
-        <h3 data-i18n="what.title">¿Qué es Open Calculations Studio?</h3>
-        <p data-i18n="what.desc">Open Calculations Studio es una herramienta moderna de código abierto para cálculos estructurales — <strong style="color: white;">inspirada en CalcPAD</strong>, la herramienta muy extendida entre los ingenieros estructurales neerlandeses y europeos. Reconstruimos todo el motor de cálculo en TypeScript con compatibilidad con la sintaxis CalcPAD, y añadimos exportación IFC e IFCX en vivo para que los cálculos se integren directamente con los modelos BIM.</p>
-        <ul>
-          <li data-i18n="what.list1"><strong style="color: white;">Compatible con CalcPAD</strong> — los archivos <code>.cpd</code> existentes funcionan sin cambios</li>
-          <li data-i18n="what.list2"><strong style="color: white;">Consciente de unidades</strong> — <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> mediante mathjs</li>
-          <li data-i18n="what.list3"><strong style="color: white;">Exportación en vivo a IFCX + IFC4x3 STEP</strong> — un cálculo se convierte de inmediato en un elemento BIM</li>
-          <li data-i18n="what.list4"><strong style="color: white;">Renderizado KaTeX</strong> — fórmulas matemáticas con fracciones reales, subíndices y superíndices y letras griegas</li>
-          <li data-i18n="what.list5"><strong style="color: white;">Dibujos SVG</strong> — diagramas paramétricos directamente dentro del cálculo</li>
-          <li data-i18n="what.list6"><strong style="color: white;">Casos de carga</strong> — SLS / ULS / sísmico en pestañas separadas</li>
-          <li data-i18n="what.list7"><strong style="color: white;">Utilizable como biblioteca</strong> — intégrala en aplicaciones FEM o comprobaciones normativas</li>
-        </ul>
-      </div>
-
-      <div class="content-block">
+  <section class="section after-overlap"><div class="container">
+    <p class="shot-caption" data-i18n="screenshot.caption">Editor con sintaxis CalcPAD y vista previa en vivo · cálculo de carga de viento · dibujo SVG paramétrico</p>
+    <div class="panel-split on-light">
+      <div class="panel-split-text">
         <h2 data-i18n="why.title">¿Por qué Open <span class="accent">Calculations</span> Studio?</h2>
+      </div>
+      <div class="panel-split-body">
         <p data-i18n="why.desc1">CalcPAD lleva años siendo utilizado por ingenieros estructurales neerlandeses para cálculos manuales. Pero es de código cerrado, solo funciona en Windows y no tiene integración BIM incorporada. Open Calculations Studio lleva la funcionalidad de CalcPAD a la tecnología web moderna: multiplataforma, de código abierto y con exportación IFC directa.</p>
         <p data-i18n="why.desc2">El archivo de regresión <code>2259-Intertek-units.cpd</code>, de 1094 líneas, se evalúa con <strong>0 errores</strong> y renderiza <strong>6 dibujos SVG</strong>. Suficiente para cálculos de proyectos reales.</p>
       </div>
+    </div>
+  </div></section>
 
-      <!-- Example code block -->
-      <div class="content-block">
-        <h2 data-i18n="example.title"><span class="accent">Documento</span> de ejemplo</h2>
-        <p data-i18n="example.desc">Un documento CalcPAD resulta natural para un ingeniero — fórmulas, unidades, lógica condicional y dibujos, todo junto:</p>
-        <div class="code-block"><span class="string">"Project — woning Laageind 57</span>
+  <section class="section surface-dark panel">
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label">CalcPAD · IFC4x3 · IFCX</p>
+        <h2 data-i18n="what.title">¿Qué es Open Calculations Studio?</h2>
+        <p data-i18n="what.desc">Open Calculations Studio es una herramienta moderna de código abierto para cálculos estructurales — <strong>inspirada en CalcPAD</strong>, la herramienta muy extendida entre los ingenieros estructurales neerlandeses y europeos. Reconstruimos todo el motor de cálculo en TypeScript con compatibilidad con la sintaxis CalcPAD, y añadimos exportación IFC e IFCX en vivo para que los cálculos se integren directamente con los modelos BIM.</p>
+      </div>
+      <ul class="split-cards">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p data-i18n="what.list1"><strong>Compatible con CalcPAD</strong> Los archivos <code>.cpd</code> existentes funcionan sin cambios</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-ruler"/></svg></div><div><p data-i18n="what.list2"><strong>Consciente de unidades</strong> <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> mediante mathjs</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-cube"/></svg></div><div><p data-i18n="what.list3"><strong>Exportación en vivo a IFCX + IFC4x3 STEP</strong> Un cálculo se convierte de inmediato en un elemento BIM</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-pen"/></svg></div><div><p data-i18n="what.list4"><strong>Renderizado KaTeX</strong> Fórmulas matemáticas con fracciones reales, subíndices y superíndices y letras griegas</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-set-square"/></svg></div><div><p data-i18n="what.list5"><strong>Dibujos SVG</strong> Diagramas paramétricos directamente dentro del cálculo</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-layers"/></svg></div><div><p data-i18n="what.list6"><strong>Casos de carga</strong> SLS / ULS / sísmico en pestañas separadas</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chip"/></svg></div><div><p data-i18n="what.list7"><strong>Utilizable como biblioteca</strong> Intégrala en aplicaciones FEM o comprobaciones normativas</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="example.title"><span class="accent">Documento</span> de ejemplo</h2>
+      <p data-i18n="example.desc">Un documento CalcPAD resulta natural para un ingeniero — fórmulas, unidades, lógica condicional y dibujos, todo junto:</p>
+    </div>
+    <div class="code-window">
+      <div class="code-window-bar" aria-hidden="true"><i></i><i></i><i></i><span>woning-laageind-57.cpd</span></div>
+      <pre class="code-block"><span class="string">"Project — woning Laageind 57</span>
 
 <span class="keyword">#include</span> svg_drawing.cpd
 
@@ -356,151 +272,250 @@ sigma = N_Ed/A to N/mm^<span class="number">2</span>
 @img(detail-D1.svg)
 
 <span class="comment"># 5. Belasting-diagram</span>
-$Plot{f(x) @ x = <span class="number">0</span> : L}</div>
-      </div>
+$Plot{f(x) @ x = <span class="number">0</span> : L}</pre>
+    </div>
+  </div></section>
 
-      <div class="content-block">
-        <h2 data-i18n="features.title">Funciones</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <h3 data-i18n="features.units.title">Fórmulas con unidades</h3>
-            <p data-i18n="features.units.desc">Trabaja con <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> y todas las unidades del SI. Mathjs se encarga de la aritmética consciente de unidades y la simplificación automática (<code>b*h</code> → <code>mm²</code>).</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.katex.title">Composición matemática</h3>
-            <p data-i18n="features.katex.desc">Renderizado KaTeX con fracciones reales, superíndices, subíndices y letras griegas (σ, ε, ρ, Φ, ψ). Las fórmulas muestran <code>nombre = fórmula = valores sustituidos = resultado</code> en una sola línea.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.editor.title">Vista previa en vivo</h3>
-            <p data-i18n="features.editor.desc">Editor de panel dividido (CodeMirror 6) con resaltado de sintaxis para <code>.cpd</code>. La vista previa con debounce se vuelve a renderizar mientras escribes.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.loadcases.title">Casos de carga</h3>
-            <p data-i18n="features.loadcases.desc">Pestañas para SLS / ULS / sismo, etc., cada una con sus propios valores de entrada para las variables. Un documento, múltiples escenarios.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.calcpad.title">Compatible con CalcPAD</h3>
-            <p data-i18n="features.calcpad.desc">Totalmente compatible con archivos <code>.cpd</code> existentes: <code>#if/#else if/#end if</code>, <code>#repeat</code>, <code>#for</code>, macros <code>#def</code>, <code>#include</code>, <code>$Plot</code>, matrices, búsquedas.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.ifc.title">Exportación IFC4x3 STEP</h3>
-            <p data-i18n="features.ifc.desc">Detecta elementos estructurales mediante nombres de variable convencionales (<code>b_fdn</code>, <code>l_fdn</code>, <code>D_paal</code>, <code>M_Ed</code>, <code>R_c_d</code>). Genera un esqueleto válido Project → Site → Building → Storey.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.ifcx.title">IFCX JSON-LD</h3>
-            <p data-i18n="features.ifcx.desc">Exportación IFCX (borrador) en vivo — la próxima generación de IFC con espacios de nombres para cálculos, normas y metadatos. Cálculo y modelo BIM en un solo formato.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.svg.title">Dibujos SVG</h3>
-            <p data-i18n="features.svg.desc">Macros SVG paramétricas con interpolación de valores. <code>@img(file.svg)</code> incrusta dibujos externos en línea. <code>@svg ... @end</code> para SVG escrito a mano.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.viewer.title">Pestaña IFC</h3>
-            <p data-i18n="features.viewer.desc">Visor STEP integrado y visor IFCX JSON con resaltado de sintaxis. Los tipos de entidad clicables enlazan directamente con la documentación de buildingSMART.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.gef.title">Carga de GEF</h3>
-            <p data-i18n="features.gef.desc">Carga con <code>@gef nombre</code> — usa los datos de sondeos directamente en los cálculos de cimentación. Se integra con Open Geotechniek Studio.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.themes.title">5 temas</h3>
-            <p data-i18n="features.themes.desc">Light, Forge, OpenAEC, Blueprint y Contrast — todos construidos sobre los design tokens de OpenAEC. Elige el que mejor funcione en tu entorno.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.pdf.title">Exportación a PDF</h3>
-            <p data-i18n="features.pdf.desc">Exportación a PDF lista para imprimir mediante el shell de Tauri con vista previa headless. Lista para el expediente del proyecto o la revisión de terceros.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="features.library.title">Modo biblioteca</h3>
-            <p data-i18n="features.library.desc">Usa <code>@ifc-calc/core</code> como biblioteca TypeScript: analiza, evalúa, renderiza y genera IFC/IFCX desde apps FEM o comprobaciones normativas.</p>
-          </div>
-        </div>
+  <section class="section"><div class="container">
+    <h2 data-i18n="features.title">Funciones</h2>
+    <div class="features" id="ocalc-features">
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-ruler"/></svg></div>
+        <h4 data-i18n="features.units.title">Fórmulas con unidades</h4>
+        <p data-i18n="features.units.desc">Trabaja con <code>mm</code>, <code>kN</code>, <code>N/mm²</code>, <code>mm⁴</code> y todas las unidades del SI. Mathjs se encarga de la aritmética consciente de unidades y la simplificación automática (<code>b*h</code> → <code>mm²</code>).</p>
       </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-pen"/></svg></div>
+        <h4 data-i18n="features.katex.title">Composición matemática</h4>
+        <p data-i18n="features.katex.desc">Renderizado KaTeX con fracciones reales, superíndices, subíndices y letras griegas (σ, ε, ρ, Φ, ψ). Las fórmulas muestran <code>nombre = fórmula = valores sustituidos = resultado</code> en una sola línea.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-viewport"/></svg></div>
+        <h4 data-i18n="features.editor.title">Vista previa en vivo</h4>
+        <p data-i18n="features.editor.desc">Editor de panel dividido (CodeMirror 6) con resaltado de sintaxis para <code>.cpd</code>. La vista previa con debounce se vuelve a renderizar mientras escribes.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-layers"/></svg></div>
+        <h4 data-i18n="features.loadcases.title">Casos de carga</h4>
+        <p data-i18n="features.loadcases.desc">Pestañas para SLS / ULS / sismo, etc., cada una con sus propios valores de entrada para las variables. Un documento, múltiples escenarios.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div>
+        <h4 data-i18n="features.calcpad.title">Compatible con CalcPAD</h4>
+        <p data-i18n="features.calcpad.desc">Totalmente compatible con archivos <code>.cpd</code> existentes: <code>#if/#else if/#end if</code>, <code>#repeat</code>, <code>#for</code>, macros <code>#def</code>, <code>#include</code>, <code>$Plot</code>, matrices, búsquedas.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-cube"/></svg></div>
+        <h4 data-i18n="features.ifc.title">Exportación IFC4x3 STEP</h4>
+        <p data-i18n="features.ifc.desc">Detecta elementos estructurales mediante nombres de variable convencionales (<code>b_fdn</code>, <code>l_fdn</code>, <code>D_paal</code>, <code>M_Ed</code>, <code>R_c_d</code>). Genera un esqueleto válido Project → Site → Building → Storey.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-link"/></svg></div>
+        <h4 data-i18n="features.ifcx.title">IFCX JSON-LD</h4>
+        <p data-i18n="features.ifcx.desc">Exportación IFCX (borrador) en vivo — la próxima generación de IFC con espacios de nombres para cálculos, normas y metadatos. Cálculo y modelo BIM en un solo formato.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-set-square"/></svg></div>
+        <h4 data-i18n="features.svg.title">Dibujos SVG</h4>
+        <p data-i18n="features.svg.desc">Macros SVG paramétricas con interpolación de valores. <code>@img(file.svg)</code> incrusta dibujos externos en línea. <code>@svg ... @end</code> para SVG escrito a mano.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-document"/></svg></div>
+        <h4 data-i18n="features.viewer.title">Pestaña IFC</h4>
+        <p data-i18n="features.viewer.desc">Visor STEP integrado y visor IFCX JSON con resaltado de sintaxis. Los tipos de entidad clicables enlazan directamente con la documentación de buildingSMART.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-strata"/></svg></div>
+        <h4 data-i18n="features.gef.title">Carga de GEF</h4>
+        <p data-i18n="features.gef.desc">Carga con <code>@gef nombre</code> — usa los datos de sondeos directamente en los cálculos de cimentación. Se integra con Open Geotechniek Studio.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-sliders"/></svg></div>
+        <h4 data-i18n="features.themes.title">5 temas</h4>
+        <p data-i18n="features.themes.desc">Light, Forge, OpenAEC, Blueprint y Contrast — todos construidos sobre los design tokens de OpenAEC. Elige el que mejor funcione en tu entorno.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-printer"/></svg></div>
+        <h4 data-i18n="features.pdf.title">Exportación a PDF</h4>
+        <p data-i18n="features.pdf.desc">Exportación a PDF lista para imprimir mediante el shell de Tauri con vista previa headless. Lista para el expediente del proyecto o la revisión de terceros.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chip"/></svg></div>
+        <h4 data-i18n="features.library.title">Modo biblioteca</h4>
+        <p data-i18n="features.library.desc">Usa <code>@ifc-calc/core</code> como biblioteca TypeScript: analiza, evalúa, renderiza y genera IFC/IFCX desde apps FEM o comprobaciones normativas.</p>
+      </div>
+    </div>
+    <p class="more-row" data-features-more hidden>
+      <button type="button" class="btn btn-secondary btn-lg more-btn" data-features-toggle aria-expanded="false" aria-controls="ocalc-features">
+        <span data-feat-show class="more-label"><span data-i18n="features.showAll">Mostrar todas las funciones</span> <span class="more-count">(<span data-feat-count>13</span>)</span></span>
+        <span data-feat-hide hidden data-i18n="features.showLess">Mostrar menos</span>
+        <svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg>
+      </button>
+    </p>
+  </div></section>
 
-      <!-- CalcPAD compat block -->
-      <div class="explainer">
-        <h3 data-i18n="compat.title">Compatibilidad con CalcPAD</h3>
+  <section class="section surface-dark panel">
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label">.cpd</p>
+        <h2 data-i18n="compat.title">Compatibilidad con CalcPAD</h2>
         <p data-i18n="compat.desc">Totalmente <em>compatible como subconjunto</em> con archivos CalcPAD reales. Funciona de inmediato con tus documentos <code>.cpd</code> existentes:</p>
-        <ul>
-          <li><code>"Title</code>, <code>'prose</code>, <code>// comment</code></li>
-          <li><code>#if … #else if … #else … #end if</code>, <code>#hide / #show / #pre / #post</code></li>
-          <li><code>#repeat n … #end repeat</code> en <code>#for var = lo : hi … #loop</code> (incl. nested)</li>
-          <li><code>#def name(p1; p2; …) … #end def</code> macros, <code>#def Name$ = literal</code> constants</li>
-          <li><code>#include filename.cpd</code> — externe macro-libraries en SVG drawings</li>
-          <li><code>$Plot{ … @ x = lo : hi }</code> — inline parametrische plots</li>
-          <li>Subscript-comma's (<code>V_b,0</code>), <code>$</code>-getypeerde refs, matrix <code>[a;b|c;d]</code></li>
-          <li>Format-specs (<code>:F2</code>), dotted/percent identifiers</li>
-          <li>mathjs Matrix-aware <code>take</code>, <code>hlookup</code>, <code>hlookup_ge</code>, <code>vlookup</code>, <code>get</code></li>
-        </ul>
       </div>
-
-      <div class="content-block">
-        <h2 data-i18n="useCases.title">Perfiles de usuario</h2>
-        <div class="features-grid">
-          <div class="feature-card">
-            <h3 data-i18n="useCases.structural.title">Ingenieros estructurales</h3>
-            <p data-i18n="useCases.structural.desc">Cálculos manuales de vigas, pilares y cimentaciones — directamente en un documento legible. Abre tus archivos CalcPAD existentes sin migración.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="useCases.bim.title">Modeladores BIM</h3>
-            <p data-i18n="useCases.bim.desc">Vincula los cálculos directamente a elementos IFC. Sin transferencia manual de valores — la comprobación vive en el modelo.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="useCases.education.title">Educación &amp; formación</h3>
-            <p data-i18n="useCases.education.desc">Los estudiantes de ingeniería estructural aprenden a calcular con la sintaxis real que encontrarán en la práctica. Código abierto — sin costes de licencia.</p>
-          </div>
-          <div class="feature-card">
-            <h3 data-i18n="useCases.fem.title">Desarrolladores FEM</h3>
-            <p data-i18n="useCases.fem.desc">Integra <code>@ifc-calc/core</code> en tu propia aplicación FEM para preprocesado/posprocesado o comprobaciones normativas. Biblioteca TypeScript, instalable con npm.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="content-block">
-        <h2 data-i18n="tech.title">Tecnología</h2>
-        <div class="tech-stack">
-          <span class="tech-tag">TypeScript</span>
-          <span class="tech-tag">React 19</span>
-          <span class="tech-tag">Rust</span>
-          <span class="tech-tag">Tauri 2</span>
-          <span class="tech-tag">mathjs</span>
-          <span class="tech-tag">KaTeX</span>
-          <span class="tech-tag">CodeMirror 6</span>
-          <span class="tech-tag">Vite</span>
-          <span class="tech-tag">npm workspaces</span>
-        </div>
-        <p data-i18n="tech.desc">Monorepo con tres paquetes: <code>@ifc-calc/core</code> (parser + evaluador + generador IFC como biblioteca TypeScript), <code>@openaec/calculations-studio</code> (app de escritorio Tauri 2 con UI en React 19) y <code>@ifc-calc/web</code> (compilación solo para navegador). Multiplataforma: Windows, macOS, Linux.</p>
-      </div>
-
-      <div class="content-block">
-        <div class="cta-links">
-          <a href="https://open-calculations-studio.open-aec.com/" target="_blank" rel="noopener" class="cta-primary" data-i18n="cta.liveDemo">🚀 Abrir la demo en vivo</a>
-          <a href="https://github.com/OpenAEC-Foundation/Open-Calculations-Studio" target="_blank" rel="noopener" class="cta-secondary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-            <span data-i18n="cta.github">Repositorio en GitHub</span>
-          </a>
-          <a href="https://github.com/OpenAEC-Foundation/Open-Calculations-Studio/releases/download/v0.1.9/Open.Calculations.Studio_0.1.9_x64-setup.exe" data-gh-download="OpenAEC-Foundation/Open-Calculations-Studio" class="cta-secondary" data-i18n="cta.download">&#8595; Descargar — Windows, macOS y Linux</a>
-        </div>
-      </div>
-
+      <ul class="split-cards">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p><code>"Title</code>, <code>'prose</code>, <code>// comment</code></p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p><code>#if … #else if … #else … #end if</code>, <code>#hide / #show / #pre / #post</code></p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p><code>#repeat n … #end repeat</code> en <code>#for var = lo : hi … #loop</code> (incl. nested)</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p><code>#def name(p1; p2; …) … #end def</code> macros, <code>#def Name$ = literal</code> constants</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p><code>#include filename.cpd</code> — externe macro-libraries en SVG drawings</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p><code>$Plot{ … @ x = lo : hi }</code> — inline parametrische plots</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p>Subscript-comma's (<code>V_b,0</code>), <code>$</code>-getypeerde refs, matrix <code>[a;b|c;d]</code></p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p>Format-specs (<code>:F2</code>), dotted/percent identifiers</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-check"/></svg></div><div><p>mathjs Matrix-aware <code>take</code>, <code>hlookup</code>, <code>hlookup_ge</code>, <code>vlookup</code>, <code>get</code></p></div></li>
+      </ul>
     </div>
   </section>
+
+  <section class="section"><div class="container">
+    <h2 data-i18n="useCases.title">Perfiles de usuario</h2>
+    <div class="features features-4">
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-crane"/></svg></div>
+        <h4 data-i18n="useCases.structural.title">Ingenieros estructurales</h4>
+        <p data-i18n="useCases.structural.desc">Cálculos manuales de vigas, pilares y cimentaciones — directamente en un documento legible. Abre tus archivos CalcPAD existentes sin migración.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-cube"/></svg></div>
+        <h4 data-i18n="useCases.bim.title">Modeladores BIM</h4>
+        <p data-i18n="useCases.bim.desc">Vincula los cálculos directamente a elementos IFC. Sin transferencia manual de valores — la comprobación vive en el modelo.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-users"/></svg></div>
+        <h4 data-i18n="useCases.education.title">Educación &amp; formación</h4>
+        <p data-i18n="useCases.education.desc">Los estudiantes de ingeniería estructural aprenden a calcular con la sintaxis real que encontrarán en la práctica. Código abierto — sin costes de licencia.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chip"/></svg></div>
+        <h4 data-i18n="useCases.fem.title">Desarrolladores FEM</h4>
+        <p data-i18n="useCases.fem.desc">Integra <code>@ifc-calc/core</code> en tu propia aplicación FEM para preprocesado/posprocesado o comprobaciones normativas. Biblioteca TypeScript, instalable con npm.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="tech.title">Tecnología</h2>
+    </div>
+    <div class="chip-row chip-row-light tech-chips">
+      <span class="chip">TypeScript</span>
+      <span class="chip">React 19</span>
+      <span class="chip">Rust</span>
+      <span class="chip">Tauri 2</span>
+      <span class="chip">mathjs</span>
+      <span class="chip">KaTeX</span>
+      <span class="chip">CodeMirror 6</span>
+      <span class="chip">Vite</span>
+      <span class="chip">npm workspaces</span>
+    </div>
+    <p class="tech-desc" data-i18n="tech.desc">Monorepo con tres paquetes: <code>@ifc-calc/core</code> (parser + evaluador + generador IFC como biblioteca TypeScript), <code>@openaec/calculations-studio</code> (app de escritorio Tauri 2 con UI en React 19) y <code>@ifc-calc/web</code> (compilación solo para navegador). Multiplataforma: Windows, macOS, Linux.</p>
+  </div></section>
 
   <!-- Release Notes (shared component) -->
   <div data-release-notes="Open-Calculations-Studio"></div>
   <script src="/shared/release-notes.js?v=20260728"></script>
 
-  <footer class="footer page-footer" style="padding: var(--sp-6);">
-    <div class="footer-inner">
-      <a href="/es/" class="nav-brand" style="color: white; text-decoration: none; font-family: var(--font-heading); font-weight: 700;">Open<span class="accent" style="color: var(--amber);">AEC</span></a>
-      <div style="display: flex; gap: var(--sp-4); align-items: center;">
-        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" style="color: var(--scaffold-gray); font-size: 0.75rem; text-decoration: none;">GitHub</a>
-        <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" style="color: var(--scaffold-gray); font-size: 0.75rem; text-decoration: none;">LinkedIn</a>
+  <section class="section surface-spot panel">
+    <div class="panel-center">
+      <h2 data-i18n="header.title">Open <span class="accent">Calculations</span> Studio</h2>
+      <div class="btn-group">
+        <a href="https://open-calculations-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-play"/></svg><span data-i18n="cta.liveDemo">Abrir la demo en vivo</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/Open-Calculations-Studio/releases/download/v0.1.9/Open.Calculations.Studio_0.1.9_x64-setup.exe" data-gh-download="OpenAEC-Foundation/Open-Calculations-Studio" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-download"/></svg><span data-i18n="cta.download">Descargar — Windows, macOS y Linux</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/Open-Calculations-Studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-star"/></svg><span data-i18n="cta.github">Repositorio en GitHub</span></a>
       </div>
-      <p>&copy; 2026 OpenAEC Foundation</p>
     </div>
-  </footer>
+  </section>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/es/" class="nav-brand">Open<span class="accent">AEC</span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Páginas</h4>
+        <a href="/es/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">Sobre nosotros</a>
+        <a href="/es/ifcx/">IFCX</a>
+        <a href="/es/roadmap/" data-i18n-en="Roadmap 2026" data-i18n-fr="Feuille de route 2026" data-i18n-tr="2026 yol haritası" data-i18n-es="Hoja de ruta 2026">Hoja de ruta 2026</a>
+        <a href="/es/architectuur/" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Arquitectura</a>
+        <a href="/es/supporters/" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Colaboradores</a>
+        <a href="/es/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Solicitar presupuesto</a>
+        <a href="/es/structuur/" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Estructura</a>
+        <a href="/es/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">Preguntas frecuentes</a>
+        <a href="/es/statistieken/" data-i18n-en="Timeline &amp; Statistics" data-i18n-fr="Chronologie &amp; statistiques" data-i18n-tr="Zaman çizelgesi &amp; istatistikler" data-i18n-es="Cronología &amp; estadísticas">Cronología &amp; estadísticas</a>
+        <a href="/es/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Aviso legal</a>
+        <a href="/es/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Borrador de estatutos</a>
+        <a href="/es/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Créditos</a>
+        <a href="/es/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Política y posiciones</a>
+        <a href="/es/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Redes sociales</a>
+      </nav>
+      <nav class="site-footer-col" aria-label="Meer tools">
+        <h4 data-i18n-en="More tools" data-i18n-fr="Plus d'outils" data-i18n-tr="Daha fazla araç" data-i18n-es="Más herramientas">Más herramientas</h4>
+        <a href="/es/open-energy-studio/">Open Energy Studio</a>
+        <a href="/es/open-safety-studio/">Open Safety Studio</a>
+        <a href="/es/open-3d-viewer/">Open 3D Viewer</a>
+        <a href="/es/open-books/">OpenBooks</a>
+        <a href="/es/openaec-cloud/">OpenAEC Cloud</a>
+        <a href="/es/openaec-docs/">OpenAEC Docs</a>
+        <a href="/es/ext-drawing-statistics/">Drawing Statistics</a>
+        <a href="/es/y-app/">Y-app</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Fundación en constitución</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">Países Bajos</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
   <script src="/shared/downloads.js?v=20261001"></script>
+  <script>
+  // Functies: eerste 6 zichtbaar, de rest achter "Toon alle functies". Zonder JavaScript staat alles open.
+  (function () {
+    var VISIBLE = 6;
+    var grid = document.getElementById('ocalc-features');
+    var wrap = document.querySelector('[data-features-more]');
+    if (!grid || !wrap) return;
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.feature'));
+    if (cards.length <= VISIBLE) return;
+    var btn = wrap.querySelector('[data-features-toggle]');
+    var show = wrap.querySelector('[data-feat-show]');
+    var hide = wrap.querySelector('[data-feat-hide]');
+    var count = wrap.querySelector('[data-feat-count]');
+    var extra = cards.slice(VISIBLE);
+    if (count) count.textContent = String(cards.length);
+    extra.forEach(function (c) { c.style.display = 'none'; });
+    wrap.hidden = false;
+    btn.addEventListener('click', function () {
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      extra.forEach(function (c) { c.style.display = open ? 'none' : ''; });
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      show.hidden = !open;
+      hide.hidden = open;
+      if (open) grid.scrollIntoView({ block: 'start' });
+    });
+  })();
+  </script>
   <script src="/shared/i18n.js?v=20260728"></script>
 </body>
 </html>
