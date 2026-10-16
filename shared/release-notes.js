@@ -418,7 +418,7 @@
             · ${dateRange}
           </span>
           ${isLatest ? `<span class="rn-group-badge">${t('latest')}</span>` : ''}
-          <span class="rn-group-toggle"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></span>
+          <span class="rn-group-toggle"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></span>
         </div>
         <div class="rn-group-body"></div>
       </div>
@@ -791,8 +791,8 @@
       ${headerBlock(data)}
       <ol class="rn-timeline">${items}</ol>
       <p class="more-row">
-        ${releases.length > RN_VISIBLE ? `<button type="button" class="btn btn-secondary btn-lg more-btn rn-groups-toggle" aria-expanded="false"><span class="more-label">${t('showAllVersions')}</span> <span class="more-count">(${releases.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></button>` : ''}
-        <a class="more-link" href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/s*→s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-external"/></svg></a>
+        ${releases.length > RN_VISIBLE ? `<button type="button" class="btn btn-secondary btn-lg more-btn rn-groups-toggle" aria-expanded="false"><span class="more-label">${t('showAllVersions')}</span> <span class="more-count">(${releases.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></button>` : ''}
+        <a class="more-link" href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/s*→s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a>
       </p>
     `;
 
@@ -878,8 +878,8 @@
         ${data.groups.map((g, i) => renderGroup(g, i === 0)).join('')}
       </div>
       <p class="more-row">
-        ${data.groups.length > RN_VISIBLE ? `<button type="button" class="btn btn-secondary btn-lg more-btn rn-groups-toggle" aria-expanded="false"><span class="more-label">${t('showAllVersions')}</span> <span class="more-count">(${data.groups.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></button>` : ''}
-        <a class="more-link" href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/\s*→\s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-external"/></svg></a>
+        ${data.groups.length > RN_VISIBLE ? `<button type="button" class="btn btn-secondary btn-lg more-btn rn-groups-toggle" aria-expanded="false"><span class="more-label">${t('showAllVersions')}</span> <span class="more-count">(${data.groups.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></button>` : ''}
+        <a class="more-link" href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/\s*→\s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a>
       </p>
     `;
 

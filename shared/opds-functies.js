@@ -136,7 +136,7 @@
         <p class="opf-intro">${esc(T.mcpIntro(d))}</p>
         <ul class="opf-mcp-lijst">${d.mcp.map((m) =>
           `<li data-zoek="${esc((m.naam + ' ' + m.beschrijving).toLowerCase())}"><code>${esc(m.naam)}</code>${esc(m.beschrijving)}</li>`).join('')}</ul>
-        ${d.mcp.length > MCP_ZICHTBAAR ? `<p class="more-row opf-meer-rij"><button type="button" class="btn btn-secondary btn-lg more-btn opf-meer" aria-expanded="false"><span class="more-label">${esc(T.meer)}</span> <span class="more-count">(${d.mcp.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg#i-chevron-down"/></svg></button></p>` : ''}
+        ${d.mcp.length > MCP_ZICHTBAAR ? `<p class="more-row opf-meer-rij"><button type="button" class="btn btn-secondary btn-lg more-btn opf-meer" aria-expanded="false"><span class="more-label">${esc(T.meer)}</span> <span class="more-count">(${d.mcp.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></button></p>` : ''}
       </div>`;
 
     // AI-gereedschappen: eerst een handvol, de rest achter een knop.
