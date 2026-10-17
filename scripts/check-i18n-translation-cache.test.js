@@ -34,7 +34,7 @@ function requestsFor({ src, lang, staticLang = null, page = 'open-pointcloud-stu
       readyState: 'complete',
       baseURI: 'https://open-aec.com/open-pointcloud-studio/',
       currentScript: src === null ? null : { src },
-      documentElement: {},
+      documentElement: { classList: { remove() {} } },
       querySelector: selector => metas[selector] || null,
       querySelectorAll: () => [],
       addEventListener() {},

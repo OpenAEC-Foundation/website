@@ -40,6 +40,12 @@
     return 'en';
   }
 
+  // De kop-snippet (build-i18n-pages.js) verbergt de pagina zolang de tekst nog
+  // Nederlands is terwijl de bezoeker een andere taal wil. Hier gaat hij weer open.
+  function reveal() {
+    document.documentElement.classList.remove('lang-pending');
+  }
+
   function setLanguage(lang) {
     localStorage.setItem(STORAGE_KEY, lang);
     document.documentElement.lang = lang;
@@ -63,7 +69,7 @@
   }
 
   function applyTranslations(lang) {
-    if (STATIC_LANG) return;   // de HTML is al vertaald
+    if (STATIC_LANG) { reveal(); return; }   // de HTML is al vertaald
     if (lang === 'nl') {
       // Dutch is the default — restore original content from data-i18n-nl
       document.title = ORIGINAL_TITLE;
@@ -72,6 +78,7 @@
         if (original != null) setHtmlIfChanged(el, original);
       });
       applyInlineTranslations(lang);
+      reveal();
       return;
     }
 
@@ -87,6 +94,7 @@
     const pageId = document.querySelector('meta[name="i18n-page"]')?.content;
     if (!pageId) {
       applyInlineTranslations(lang);
+      reveal();
       return;
     }
 
@@ -116,7 +124,7 @@
     Promise.all(urls.map(loadJson))
       .then(sources => {
         const found = sources.filter(Boolean);
-        if (!found.length) { applyInlineTranslations(lang); return; }
+        if (!found.length) { applyInlineTranslations(lang); reveal(); return; }
         const translations = found.reduce(mergeInto, {});
         document.querySelectorAll('[data-i18n]').forEach(el => {
           const key = el.getAttribute('data-i18n');
@@ -136,8 +144,9 @@
         document.title = (translations.meta && translations.meta.title) || ORIGINAL_TITLE;
 
         applyInlineTranslations(lang);
+        reveal();
       })
-      .catch(() => applyInlineTranslations(lang));
+      .catch(() => { applyInlineTranslations(lang); reveal(); });
   }
 
   function applyInlineTranslations(lang) {
@@ -193,11 +202,13 @@
     if (STATIC_LANG) {
       document.documentElement.lang = STATIC_LANG;
       updateButtons(STATIC_LANG);
+      reveal();
       return;
     }
     const lang = getCurrentLang();
     document.documentElement.lang = lang;
     if (lang !== 'nl') applyTranslations(lang);
+    else reveal();
     updateButtons(lang);
   }
 

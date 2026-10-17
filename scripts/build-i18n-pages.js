@@ -245,7 +245,29 @@ function plain(value, max = 155) {
   return txt.slice(0, txt.lastIndexOf(' ', max)).replace(/[,;:]$/, '') + '…';
 }
 
+// Zonder dit zie je op een Nederlandse pagina eerst heel even Nederlands en
+// springt de tekst daarna naar je eigen taal: de vertaling wordt pas laat in
+// de pagina gezet. Deze snippet staat vooraan in de <head>. Hij bepaalt
+// synchroon dezelfde taal als shared/i18n.js en verbergt de pagina als dat niet
+// Nederlands is. i18n.js (en de homepage) halen de klasse weg zodra de tekst
+// klopt. De timeout is de vangrail: faalt het vertalen, dan toont de pagina
+// toch na 3 seconden, in het Nederlands.
+const LANG_BOOT = [
+  '<!-- lang-boot:start -->',
+  '<style>html.lang-pending body{visibility:hidden}</style>',
+  '<script>(function(){try{var l=localStorage.getItem("openaec-lang");if(!l){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||"en"];l="en";for(var i=0;i<a.length;i++){var c=String(a[i]||"").toLowerCase().split("-")[0];if("nl en fr tr es".split(" ").indexOf(c)>-1){l=c;break}}}if(l!=="nl"){var d=document.documentElement;d.classList.add("lang-pending");setTimeout(function(){d.classList.remove("lang-pending")},3000)}}catch(e){}})()</script>',
+  '<!-- lang-boot:end -->',
+].join('\n  ');
+const LANG_BOOT_RE = /[ \t]*<!-- lang-boot:start -->[\s\S]*?<!-- lang-boot:end -->\n?/g;
+
 function setHead(html, { lang, url, title, description }) {
+  // De vertaalde pagina's zijn al klaar bij het laden: geen verberg-snippet.
+  // Een Nederlandse pagina die i18n.js laadt, krijgt hem (opnieuw) vooraan de head.
+  html = html.replace(LANG_BOOT_RE, '');
+  if (lang === 'nl' && /shared\/i18n\.js|i18n\.init\(\)/.test(html)) {
+    html = html.replace(/(<head[^>]*>\s*)/, `$1${LANG_BOOT}\n  `);
+  }
+
   // Bestaand hreflang-blok van een vorige run weghalen.
   html = html.replace(/\n?[ \t]*<!-- hreflang:start -->[\s\S]*?<!-- hreflang:end -->/g, '');
 
