@@ -196,7 +196,8 @@
 
     /* ── Productpagina-opbouw volgens discussie #342 ── */
     :root { --opl-nav-h: 68px; }
-    .opl-anchor, #releases { scroll-margin-top: calc(var(--opl-nav-h) + 64px); }
+    .opl-anchor, #releases { scroll-margin-top: calc(var(--opl-nav-h) + var(--opl-sub-h, 56px) + 8px); }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
     .product-head .opl-tagline { font-family: var(--font-heading); color: white; font-weight: 600; font-size: clamp(1.35rem, 2.6vw, 1.75rem); line-height: 1.25; letter-spacing: -0.01em; max-width: 680px; margin: 0 auto var(--sp-3); }
     .product-head .lead { margin-bottom: var(--sp-6); }
     .product-head .btn-group { justify-content: center; }
@@ -272,7 +273,14 @@
     .opl-dl-other[open] > summary .ico { transform: rotate(180deg); }
     .opl-dl-other { text-align: center; }
     .opl-dl-other .download-grid { margin-top: var(--sp-5); text-align: center; }
-    .opl-dl-other .download-item.is-primary { border-color: rgba(217,119,6,0.6); }
+    /* Kaarten onder "Andere platforms": rustig, in de stijl van het donkere vlak */
+    .page-panels .opl-dl-other .download-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); box-shadow: none; text-align: left; transition: border-color 0.15s ease, background 0.15s ease; }
+    .page-panels .opl-dl-other .download-item:hover { transform: none; box-shadow: none; border-color: rgba(255,255,255,0.24); background: rgba(255,255,255,0.06); }
+    .page-panels .opl-dl-other .download-item.is-primary { border-color: rgba(217,119,6,0.5); }
+    .page-panels .opl-dl-other .download-item .os { color: white; font-size: 1rem; }
+    .page-panels .opl-dl-other .download-item .size { color: var(--text-on-dark); opacity: 0.75; }
+    .page-panels .opl-dl-other .download-item .btn { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.28); box-shadow: none; }
+    .page-panels .opl-dl-other .download-item .btn:hover { transform: none; background: rgba(217,119,6,0.12); border-color: rgba(217,119,6,0.6); color: white; }
     .opl-dl-note { color: var(--text-on-dark); font-size: 0.92rem; margin: var(--sp-6) auto 0; }
 
     /* Release notes: alleen de laatste drie, de rest achter een knop */
@@ -808,9 +816,33 @@
       var h = nav ? nav.getBoundingClientRect().height : 0;
       if (h > 0) root.style.setProperty('--opl-nav-h', Math.round(h) + 'px');
     }
+    // Elke doelsectie krijgt een eigen scroll-margin-top: de kop van de
+    // sectie (niet de bovenrand met padding) komt dan 8 px onder de subnav.
+    var GAP = 8;
+    function headOf(sec) {
+      return sec.querySelector('.section-head, .pill-label, h2, .rn-header-block, .rn-title') || sec;
+    }
+    function setMargins() {
+      var sub = document.querySelector('.opl-subnav');
+      var navH = parseFloat(getComputedStyle(root).getPropertyValue('--opl-nav-h')) || 0;
+      var subH = sub ? sub.getBoundingClientRect().height : 0;
+      root.style.setProperty('--opl-sub-h', Math.round(subH) + 'px');
+      document.querySelectorAll('.opl-anchor, #releases').forEach(function (sec) {
+        var inner = headOf(sec).getBoundingClientRect().top - sec.getBoundingClientRect().top;
+        sec.style.scrollMarginTop = Math.round(navH + subH + GAP - inner) + 'px';
+      });
+    }
     measure();
-    window.addEventListener('resize', measure);
-    document.addEventListener('nav:loaded', measure);
+    setMargins();
+    window.addEventListener('resize', function () { measure(); setMargins(); });
+    window.addEventListener('load', setMargins);
+    // Vlak voor een sprong opnieuw meten: de release notes worden pas laat
+    // door JavaScript opgebouwd en kunnen hun kop dan verplaatst hebben.
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (a) { measure(); setMargins(); }
+    }, true);
+    document.addEventListener('nav:loaded', function () { measure(); setMargins(); });
     var links = Array.prototype.slice.call(document.querySelectorAll('.opl-subnav a[href^="#"]'));
     var sections = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
     function update() {
