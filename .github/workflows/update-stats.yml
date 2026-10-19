@@ -52,6 +52,12 @@ jobs:
       - name: Compute download trends (weekly deltas)
         run: node scripts/compute-download-trends.js
 
+      # Nieuwswaardige signalen voor de socials (releases, pieken, mijlpalen).
+      # Leest stats, downloads en release-notes, dus na de stappen hierboven.
+      # Een lokale skill maakt er posts van; dit script post zelf niets.
+      - name: Detect news signals for social posts
+        run: node scripts/generate-news-signals.js
+
       - name: Update homepage tool stats (static)
         run: node scripts/build-homepage-stats.js
 
