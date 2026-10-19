@@ -268,15 +268,18 @@
     .opl-dl-other > summary .ico { width: 18px; height: 18px; transition: transform 0.2s ease; }
     .opl-dl-other[open] > summary .ico { transform: rotate(180deg); }
     .opl-dl-other { text-align: center; }
-    .opl-dl-other .download-grid { margin-top: var(--sp-5); text-align: center; }
-    /* Kaarten onder "Andere platforms": rustig, in de stijl van het donkere vlak */
-    .page-panels .opl-dl-other .download-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); box-shadow: none; text-align: left; transition: border-color 0.15s ease, background 0.15s ease; }
-    .page-panels .opl-dl-other .download-item:hover { transform: none; box-shadow: none; border-color: rgba(255,255,255,0.24); background: rgba(255,255,255,0.06); }
-    .page-panels .opl-dl-other .download-item.is-primary { border-color: rgba(217,119,6,0.5); }
-    .page-panels .opl-dl-other .download-item .os { color: white; font-size: 1rem; }
-    .page-panels .opl-dl-other .download-item .size { color: var(--text-on-dark); opacity: 0.75; }
-    .page-panels .opl-dl-other .download-item .btn { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.28); box-shadow: none; }
-    .page-panels .opl-dl-other .download-item .btn:hover { transform: none; background: rgba(217,119,6,0.12); border-color: rgba(217,119,6,0.6); color: white; }
+    .opl-files { margin-top: var(--sp-5); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-2) var(--sp-8); text-align: left; background: rgba(255,255,255,0.04); border-radius: var(--radius-lg); padding: var(--sp-5) var(--sp-6); }
+    .opl-files h3 { color: white; font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; margin: 0 0 var(--sp-2); }
+    .opl-files ul { list-style: none; margin: 0; padding: 0; }
+    .opl-files li + li { border-top: 1px solid rgba(255,255,255,0.08); }
+    .opl-files a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 0; color: var(--text-on-dark); text-decoration: none; font-size: 0.92rem; }
+    .opl-files a .ico { width: 16px; height: 16px; flex-shrink: 0; color: rgba(255,255,255,0.45); transition: color 0.15s ease; }
+    .opl-files a:hover, .opl-files a:focus-visible { color: var(--warm-gold); }
+    .opl-files a:hover .ico, .opl-files a:focus-visible .ico { color: var(--warm-gold); }
+    .opl-files a:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 4px; }
+    .opl-file-size { font-family: var(--font-code); font-size: 0.8rem; opacity: 0.7; }
+    .opl-files a.is-primary { color: white; font-weight: 600; }
+    @media (max-width: 768px) { .opl-files { grid-template-columns: 1fr; gap: var(--sp-5); } }
     .opl-dl-note { color: var(--text-on-dark); font-size: 0.92rem; margin: var(--sp-6) auto 0; }
 
     /* Release notes: alleen de laatste drie, de rest achter een knop */
@@ -546,19 +549,19 @@
       <p class="opl-dl-mobile" data-opl-mobile hidden data-i18n="download.mobileNote">Open Planner Studio est conçu pour un grand écran. Ouvrez-le sur votre ordinateur, ou essayez-le ici dans le navigateur.</p>
       <details class="opl-dl-other" data-opl-other>
         <summary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg><span data-i18n="download.other">Autres plateformes</span></summary>
-        <div class="download-grid">
-          <div class="download-item" data-opl-item="windows"><div class="os">Windows</div><div class="size" data-opl-size="windows">7.3 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_x64-setup.exe" data-opl-dl="windows" class="btn btn-secondary btn-sm">Download</a></div>
-          <div class="download-item" data-opl-item="macos"><div class="os">macOS (universal)</div><div class="size" data-opl-size="macos">15.4 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_universal.dmg" data-opl-dl="macos" class="btn btn-secondary btn-sm">Download</a></div>
-          <div class="download-item" data-opl-item="linux-deb"><div class="os">Linux (deb)</div><div class="size" data-opl-size="linux-deb">8.3 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.deb" data-opl-dl="linux-deb" class="btn btn-secondary btn-sm">Download</a></div>
-          <div class="download-item" data-opl-item="linux-rpm"><div class="os">Linux (rpm)</div><div class="size" data-opl-size="linux-rpm">8.3 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio-2026.9.0-1.x86_64.rpm" data-opl-dl="linux-rpm" class="btn btn-secondary btn-sm">Download</a></div>
-          <div class="download-item" data-opl-item="linux-appimage"><div class="os">Linux (AppImage)</div><div class="size" data-opl-size="linux-appimage">82.2 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.AppImage" data-opl-dl="linux-appimage" class="btn btn-secondary btn-sm">Download</a></div>
-          <div class="download-item" data-opl-item="linux-snap"><div class="os">Linux (snap)</div><div class="size" data-opl-size="linux-snap">7.5 MB</div>
-            <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/open-planner-studio_2026.9.0_amd64.snap" data-opl-dl="linux-snap" class="btn btn-secondary btn-sm">Download</a></div>
+        <div class="opl-files">
+          <div class="opl-files-col"><h3>Windows</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_x64-setup.exe" data-opl-dl="windows" data-opl-item="windows"><span class="opl-file"><span data-i18n="download.fileExe">Programme d'installation (.exe)</span><span class="opl-file-size"> · <span data-opl-size="windows">7.3 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          </ul></div>
+          <div class="opl-files-col"><h3>macOS</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_universal.dmg" data-opl-dl="macos" data-opl-item="macos"><span class="opl-file"><span data-i18n="download.fileDmg">.dmg universel</span><span class="opl-file-size"> · <span data-opl-size="macos">15.4 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          </ul></div>
+          <div class="opl-files-col"><h3>Linux</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.deb" data-opl-dl="linux-deb" data-opl-item="linux-deb"><span class="opl-file"><span data-i18n="download.fileDeb">.deb</span><span class="opl-file-size"> · <span data-opl-size="linux-deb">8.3 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio-2026.9.0-1.x86_64.rpm" data-opl-dl="linux-rpm" data-opl-item="linux-rpm"><span class="opl-file"><span data-i18n="download.fileRpm">.rpm</span><span class="opl-file-size"> · <span data-opl-size="linux-rpm">8.3 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.AppImage" data-opl-dl="linux-appimage" data-opl-item="linux-appimage"><span class="opl-file"><span data-i18n="download.fileAppImage">AppImage</span><span class="opl-file-size"> · <span data-opl-size="linux-appimage">82.2 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://snapcraft.io/open-planner-studio" target="_blank" rel="noopener"><span class="opl-file" data-i18n="download.snap">Snap Store</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></li>
+          </ul></div>
         </div>
       </details>
       <p class="opl-dl-note" data-i18n="download.browserNote">Vous préférez ne rien installer ? L'application fonctionne aussi entièrement dans le navigateur, ouverture et enregistrement compris.</p>
@@ -912,7 +915,7 @@
       var primary = document.querySelector('[data-opl-primary]');
       if (!primary) return;
       primary.setAttribute('data-opl-dl', key);
-      var source = document.querySelector('.download-item [data-opl-dl="' + key + '"]');
+      var source = document.querySelector('.opl-files [data-opl-dl="' + key + '"]');
       if (source) primary.href = source.href;
       document.querySelectorAll('[data-os]').forEach(function (el) {
         el.hidden = el.getAttribute('data-os') !== key;
