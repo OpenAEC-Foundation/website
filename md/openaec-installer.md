@@ -15,10 +15,10 @@
 - Stars: **3**
 - Commits: **34**
 - Forks: **2**
-- Open issues: **5**
+- Open issues: **6**
 - Releases: **10**
-- Total downloads: **2,546**
-- Downloads by platform: Windows (1694), Linux (AppImage) (352), Windows (MSI) (187), macOS (162), Linux (deb) (151)
+- Total downloads: **2,828**
+- Downloads by platform: Windows (1910), Linux (AppImage) (390), Windows (MSI) (190), macOS (186), Linux (deb) (152)
 
 ## Key features
 
@@ -54,8 +54,8 @@ Installing and keeping all OpenAEC tools up to date on one workstation without v
 
 - [Windows · OpenAEC.Installer_0.2.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_x64-setup.exe) (v0.2.2 — 4.2 MB)
 - [Linux (AppImage) · OpenAEC.Installer_0.2.2_amd64.AppImage](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_amd64.AppImage) (v0.2.2 — 79.4 MB)
-- [Windows (MSI) · OpenAEC.Installer_0.2.2_x64_en-US.msi](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_x64_en-US.msi) (v0.2.2 — 5.4 MB)
 - [macOS · OpenAEC.Installer_0.2.2_universal.dmg](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_universal.dmg) (v0.2.2 — 9.6 MB)
+- [Windows (MSI) · OpenAEC.Installer_0.2.2_x64_en-US.msi](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_x64_en-US.msi) (v0.2.2 — 5.4 MB)
 - [Windows · OpenAEC.Installer_0.2.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.0/OpenAEC.Installer_0.2.0_x64-setup.exe) (v0.2.0 — 4.2 MB)
 - [Linux (deb) · OpenAEC.Installer_0.2.2_amd64.deb](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_amd64.deb) (v0.2.2 — 5.5 MB)
 - [Windows · OpenAEC.Installer_0.1.6_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.1.6/OpenAEC.Installer_0.1.6_x64-setup.exe) (v0.1.6 — 4.2 MB)
