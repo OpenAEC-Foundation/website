@@ -1,0 +1,105 @@
+{
+  "meta": {
+    "title": "IFCCAD — OpenAEC Foundation",
+    "description": "IFCCAD : un format de dessin CAO ouvert fondé sur IFCX. Dessins autonomes, connexion au BIM et développement vers des échanges DWG et DXF fiables."
+  },
+  "hero": {
+    "label": "OpenAEC · format CAO ouvert",
+    "intro": "Un format ouvert pour des dessins CAO complets, fondé sur IFCX. Utilisable de manière autonome, avec l’ambition de relier durablement les dessins et le BIM.",
+    "explorer": "Découvrir IFCCAD dans le Format Explorer",
+    "github": "Suivre le développement sur GitHub",
+    "note": "Explorez le format et essayez la conversion de fichiers DWG et DXF. L’Explorer montre aussi les informations que la conversion actuelle préserve et ses limites."
+  },
+  "why": {
+    "title": "Pourquoi nous développons IFCCAD",
+    "p1": "Les dessins CAO restent indispensables : pour les détails, les plans d’exécution, les projets existants et les conceptions qui ne nécessitent pas de maquette BIM. Pourtant, ces échanges reposent largement sur DWG, un format dont l’évolution est contrôlée par un éditeur de logiciels. OpenAEC souhaite développer une alternative ouverte permettant aux dessins de circuler entre applications et de rester accessibles à long terme.",
+    "p2": "IFCCAD doit préserver davantage que les lignes visibles. Les calques, les blocs, le texte, les cotations, les présentations et leurs relations font aussi partie d’un dessin exploitable. Notre objectif est de remplacer DWG comme format de travail et d’échange, avec une transition qui préserve le sens des fichiers DWG et DXF existants."
+  },
+  "pillars": {
+    "open": {
+      "title": "Ouvert et indépendant",
+      "desc": "Un modèle de dessin documenté publiquement, que différentes applications CAO peuvent lire et écrire."
+    },
+    "standalone": {
+      "title": "Utilisable de manière autonome",
+      "desc": "Un dessin CAO complet doit aussi être utilisable sans maquette BIM ni liaison BIM."
+    },
+    "bim": {
+      "title": "Connexion au BIM",
+      "desc": "Une base pour relier les dessins, les objets du bâtiment et le contenu CAO généré."
+    }
+  },
+  "roundtrip": {
+    "title": "Des allers-retours fiables avec DWG et DXF",
+    "p1": "Nous visons un <strong>aller-retour fidèle</strong> : convertir un fichier DWG ou DXF en IFCCAD, le modifier puis le réexporter en préservant la géométrie, la structure du dessin, les propriétés et les relations pertinentes. Il s’agit de préserver le sens et la possibilité de modifier le dessin ; les octets internes du fichier ou les identifiants CAO réattribués n’ont pas besoin d’être identiques.",
+    "p2": "La représentation native, la préservation et les diagnostics explicites de conversion se complètent. Les éléments pris en charge doivent être transférés de manière fiable ; les limites doivent être visibles. Les tests actuels qualifient des composants et des processus bien délimités, sans garantir encore un aller-retour complet pour chaque fichier DWG ou DXF. Nous souhaitons ensuite étendre cette approche à d’autres formats CAO."
+  },
+  "studio": {
+    "title": "opencadcodec et Open CAD Studio",
+    "p1": "Pour lire et écrire les fichiers DWG et DXF, nous utilisons <a href=\"https://github.com/HakanSeven12/opencadcodec\">opencadcodec</a>, le codec CAO de l’écosystème <a href=\"/open-cad-studio/\">Open CAD Studio</a>. Nos convertisseurs relient directement le modèle CAO de ce codec à IFCCAD. Les améliorations et les limites constatées sont également partagées avec le projet amont.",
+    "p2": "Le Format Explorer peut déjà utiliser Open CAD Studio pour afficher le contenu CAO original et celui issu d’un aller-retour. Nous souhaitons aussi intégrer prochainement IFCCAD directement dans Open CAD Studio, afin d’inscrire le format dans un environnement de travail CAO concret."
+  },
+  "profile": {
+    "title": "Un profil CAO au sein d’IFCX",
+    "p1": "IFCCAD utilise la structure et les possibilités de composition d’<a href=\"/ifcx/\">IFCX</a> pour les dessins CAO. IFCX permet de décrire les informations au moyen de schémas et d’espaces de noms. IFCCAD y ajoute le sens et les règles nécessaires à un dessin : géométrie, présentation, appartenance et références entre les composants du dessin.",
+    "p2": "Nous souhaitons réutiliser directement les schémas IFCX existants lorsqu’ils peuvent exprimer la sémantique CAO nécessaire. Des définitions spécifiques temporaires comblent les lacunes actuelles. Nous explorons ainsi la place de la CAO dans l’écosystème IFCX en développement, tout en permettant à un fichier IFCCAD de décrire un dessin autonome.",
+    "p3": "IFCCAD est actuellement un profil expérimental d’OpenAEC. Le profil et IFCX sont tous deux en développement ; IFCCAD n’est pas encore une norme CAO officielle de buildingSMART."
+  },
+  "status": {
+    "label": "État du développement · octobre 2026",
+    "title": "Ce qu’IFCCAD peut déjà stocker",
+    "intro": "Il existe un modèle de dessin dédié, des schémas, une validation stricte, des lecteurs et des outils d’écriture, ainsi que des voies de conversion directes pour DWG et DXF. Le <a href=\"https://ifccad-explorer.open-aec.com\">Format Explorer</a> permet d’inspecter le format et d’essayer les conversions. La prise en charge actuelle est délimitée : toutes les variantes et propriétés des composants CAO ci-dessous ne sont pas encore couvertes.",
+    "limits": "Nous vérifions les conversions prises en charge en rouvrant les fichiers et en comparant leur contenu sémantique. Les fonctions non prises en charge et les pertes d’information sont signalées. La prise en charge complète des cotations, d’autres objets et du processus BIM associatif stable reste à développer. Le format et ses engagements de compatibilité sont encore provisoires."
+  },
+  "capabilities": {
+    "geometry": {
+      "title": "Géométrie",
+      "desc": "Points, lignes, cercles et arcs, ellipses complètes et partielles, polylignes planes à segments droits et courbes, et polylignes spatiales à segments droits."
+    },
+    "appearance": {
+      "title": "Calques et présentation",
+      "desc": "Calques, couleurs, transparence, épaisseurs de ligne, types de ligne simples et réglages d’échelle, avec des choix distincts pour ByLayer, ByBlock et les propriétés explicites."
+    },
+    "blocks": {
+      "title": "Blocs et texte",
+      "desc": "Blocs locaux réutilisables et imbriqués, points d’insertion, rotation et échelle, ainsi que texte simple et multiligne dans les profils de mise en forme pris en charge."
+    },
+    "hatches": {
+      "title": "Hachures",
+      "desc": "Remplissages unis et motifs de lignes explicites avec contours enregistrés, îlots et références prises en charge vers la géométrie de délimitation."
+    },
+    "layouts": {
+      "title": "Espace objet et espace papier",
+      "desc": "Espace objet, plusieurs présentations papier, ordre des onglets, formats de feuille, réglages de tracé pris en charge et fenêtres avec caméras et découpage."
+    },
+    "workspace": {
+      "title": "Environnement de dessin",
+      "desc": "Définitions SCU prises en charge, fenêtres de l’espace objet et réglages de grille et d’accrochage, ainsi que visibilité et ordre d’affichage."
+    }
+  },
+  "preservation": {
+    "title": "La préservation et le pilote temporaire sur les splines",
+    "p1": "Tous les composants CAO ne disposent pas immédiatement d’une représentation native dans IFCCAD. Avec la <strong>préservation</strong>, nous souhaitons conserver explicitement les informations sources qui ne trouvent pas encore entièrement leur place dans le modèle de dessin. Lors de la conversion retour, ces informations peuvent être rétablies si les relations et le contexte nécessaires restent valides. Les modifications natives sont prioritaires : un enregistrement source préservé ne doit jamais écraser silencieusement des modifications ultérieures.",
+    "pilotTitle": "Les splines testent la préservation ; la prise en charge native suivra",
+    "pilot": "Les splines sont actuellement stockées par un pilote de préservation et réexportées dans les voies de conversion qualifiées. Nous les utilisons pour tester le mécanisme de préservation, du stockage à la restauration. Nous souhaitons bientôt les prendre en charge nativement comme des entités IFCCAD à part entière, dont la géométrie peut être modifiée.",
+    "limits": "Le pilote actuel préserve les paramètres des splines et les données sources disponibles, mais ne propose pas encore de géométrie spline native ni de modification géométrique. La préservation complète la prise en charge native. Son extension à d’autres entités CAO et informations sources est prévue ; le pilote actuel ne garantit pas la conservation de toutes les informations d’un fichier DWG quelconque."
+  },
+  "storage": {
+    "title": "Des fichiers plus compacts et une lecture et une écriture efficaces",
+    "p1": "Des fichiers compacts, une consommation mémoire limitée et une lecture et une écriture efficaces sont des objectifs importants du développement. Nous y travaillons déjà, notamment avec un stockage binaire expérimental fondé sur CBOR et une compression supplémentaire.",
+    "p2": "Ces essais sont propres à IFCCAD ; les choix définitifs de stockage ne sont pas encore arrêtés. Nous continuons à évaluer les améliorations selon la préservation du contenu des dessins et leur utilité pratique."
+  },
+  "bim": {
+    "title": "Du BIM à la CAO, en préservant le travail de dessin manuel",
+    "p1": "Notre ambition dépasse la simple liaison entre un dessin et un objet BIM. Nous souhaitons aussi générer du contenu CAO à partir du BIM et le régénérer lorsque la maquette change. Le travail de dessin ajouté manuellement doit alors être préservé.",
+    "exampleTitle": "Un mur se déplace, le dessin reste lié",
+    "example": "Imaginons qu’un dessinateur ajoute des cotations et des annotations à un plan généré depuis le BIM, puis le place sur une feuille avec des fenêtres. Lorsqu’un mur se déplace, nous souhaitons actualiser la géométrie générée, faire suivre les cotations associées et préserver les ajouts manuels ainsi que la mise en page.",
+    "limits": "Cela nécessite une identité stable et des relations associatives entre les objets BIM, les composants de dessin générés et les modifications CAO manuelles. Nous souhaitons éviter que chaque régénération produise une géométrie détachée à laquelle le dessinateur doit tout relier à nouveau. Lorsqu’un objet disparaît ou change fondamentalement, les relations invalides doivent pouvoir être identifiées. Cette liaison BIM et ce processus de régénération sont des objectifs de développement ; ils ne sont pas encore implémentés."
+  },
+  "cta": {
+    "title": "Explorez IFCCAD et contribuez",
+    "desc": "Essayez l’Explorer, consultez le code source ou partagez votre expérience pratique et des fichiers de test que vous êtes autorisé à partager. Les retours des utilisateurs CAO, des spécialistes BIM et des développeurs nous aident à orienter les prochaines étapes vers des processus de dessin réels.",
+    "explorer": "Ouvrir le Format Explorer",
+    "feedback": "Retours et contributions sur GitHub"
+  }
+}

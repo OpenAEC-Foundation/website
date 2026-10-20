@@ -44,6 +44,8 @@ Every tool has a **page slug** and a **GitHub repo name**, and they usually diff
 
 ### i18n — two separate engines
 
+IFCCAD has static NL/EN/FR/TR/ES pages. Run `node scripts/check-ifccad-languages.js` as an additional check after changing IFCCAD content or translations. It checks dictionary completeness, rendered content, language links, canonical/hreflang, sitemap entries and the localized IFCX cross-links. Keep `shared/translations/ifccad*.json` synchronized with `ifccad/index.html`; generate language pages with `build-i18n-pages.js`, followed by `build-schema.js`.
+
 Four languages: **nl (default, the literal HTML text), en, fr, tr**. Preference in `localStorage` under `openaec-lang`. Language is client-side only — there are no per-language URLs and no `hreflang` anywhere.
 
 - **Subpages** use `shared/i18n.js`. A page declares `<meta name="i18n-page" content="<slug>">`; translations load from `/shared/translations/<slug>.json` (EN) and `<slug>.fr.json` / `<slug>.tr.json` (with EN fallback). Nodes carry `data-i18n="dotted.key"`, attributes use `data-i18n-attr`. NL originals are cached into `data-i18n-nl` on first switch. Without the meta tag only inline-attribute translation runs.
