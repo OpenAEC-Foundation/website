@@ -351,6 +351,34 @@ a.bv-doc:hover { border-color: var(--amber); box-shadow: var(--schaduw-md); colo
 .bv-kaart ul { padding-left: 18px; display: grid; gap: 4px; margin: 0; }
 @media (max-width: 900px) { .bv { grid-template-columns: minmax(0, 1fr); } .bv-inhoud { display: none; } .kernpunten, .bv-docs { grid-template-columns: repeat(2, minmax(0, 1fr)); } .bv-kaarten, .bv-lagen { grid-template-columns: minmax(0, 1fr); } .bv-laag + .bv-laag { border-left: 0; border-top: 1px solid var(--lijn); } }
 @media (max-width: 520px) { .kernpunten, .bv-docs { grid-template-columns: minmax(0, 1fr); } }
+/* Schema's (beveiliging) */
+.schema { margin: 0 0 6px; background: var(--wit); border: 1px solid var(--lijn); border-radius: var(--r-lg); padding: 20px; display: grid; gap: 14px; }
+.schema-kop { display: grid; gap: 4px; }
+.schema-kop strong { font-family: var(--f-kop); font-size: 1.05rem; }
+.schema-kop span { color: var(--steen); font-size: 0.9rem; }
+.schema-rol { overflow-x: auto; }
+.sch { display: block; width: 100%; min-width: 680px; height: auto; font-family: var(--f-tekst, inherit); }
+.sch-vak { fill: var(--wit); stroke: var(--lijn-hover); stroke-width: 1.5; }
+.sch-rij { fill: var(--concrete); stroke: none; }
+.sch-sleutel { fill: #FEF3C7; }
+.sch-omg { fill: #FFFBEB; stroke: var(--amber); stroke-width: 2; }
+.sch-ander { fill: none; stroke: var(--lijn-hover); stroke-width: 1.5; stroke-dasharray: 6 5; }
+.sch-eu { fill: none; stroke: var(--amber); stroke-width: 1.5; stroke-dasharray: 8 6; }
+.sch-eu-tekst { font-family: var(--f-mono); font-size: 13px; fill: var(--amber); letter-spacing: 0.04em; }
+.sch-kop { font-family: var(--f-kop); font-size: 16px; font-weight: 700; fill: var(--deep-forge); }
+.sch-tekst { font-size: 14px; font-weight: 600; fill: var(--deep-forge); }
+.sch-sub { font-size: 12px; fill: var(--steen); }
+.sch-lijn { fill: none; stroke: var(--deep-forge); stroke-width: 1.6; }
+.sch-stippel { stroke-dasharray: 5 4; }
+.sch-pijlpunt { fill: var(--deep-forge); }
+.sch-flow { list-style: none; counter-reset: stap; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 28px; }
+.sch-flow li { counter-increment: stap; position: relative; background: var(--concrete); border-radius: var(--r-md); padding: 14px 14px 14px 46px; display: grid; gap: 2px; align-content: center; font-size: 0.9rem; min-height: 64px; }
+.sch-flow li::before { content: counter(stap); position: absolute; left: 12px; top: 50%; transform: translateY(-50%); width: 24px; height: 24px; border-radius: 50%; background: var(--amber); color: var(--wit); font-family: var(--f-mono); font-size: 0.8rem; display: grid; place-items: center; }
+.sch-flow li + li::after { content: "→"; position: absolute; left: -22px; top: 50%; transform: translateY(-50%); color: var(--amber); font-weight: 700; }
+.sch-tijd small { font-family: var(--f-mono); color: var(--amber); font-size: 0.75rem; }
+@media (max-width: 900px) { .sch-flow { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sch-flow li:nth-child(odd)::after { content: none; } }
+@media (max-width: 520px) { .sch-flow { grid-template-columns: minmax(0, 1fr); gap: 10px; } .sch-flow li::after { content: none; } }
+
 /* Aanmelden */
 .am { padding-block: 40px 72px; display: grid; gap: 36px; }
 .am-stappen h2 { font-size: 1.05rem; }
