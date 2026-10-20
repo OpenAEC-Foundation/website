@@ -12,6 +12,7 @@ let html = fs.readFileSync(file, 'utf8');
 // Category mapping per data-repo key (lowercased).
 // A=Architecture, E=Engineering, C=Construction, I=Infra & GWW
 const CATS = {
+  'ifccad': ['A','E','C','I'],
   // IFCX card has no data-repo — handled separately below
   'open-pdf-studio':            ['A','E','C','I'],
   'open-calc-studio':           ['C','I'],

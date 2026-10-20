@@ -10,6 +10,36 @@ const stats = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'stats.json'), 
 // Curated catalog: which repos are user-facing tools + their metadata
 const TOOLS = [
   {
+  "id": "ifccad",
+  "repo": "ifccad",
+  "name": "IFCCAD",
+  "category": "CAD Format",
+  "status": "in development",
+  "description": "An open CAD drawing format based on IFCX. Usable on its own, with development towards reliable DWG/DXF exchange and future BIM integration.",
+  "keywords": [
+    "IFCCAD",
+    "IFCX",
+    "CAD drawing format",
+    "DWG",
+    "DXF",
+    "roundtrip",
+    "preservation",
+    "Format Explorer"
+  ],
+  "alternatives": [],
+  "license": "MPL-2.0",
+  "techStack": [
+    "Rust",
+    "WebAssembly",
+    "JavaScript"
+  ],
+  "platforms": [
+    "Web"
+  ],
+  "productPage": "https://open-aec.com/ifccad/",
+  "liveDemo": "https://ifccad-explorer.open-aec.com"
+},
+  {
     id: 'open-pdf-studio',
     repo: 'open-pdf-studio',
     name: 'Open PDF Studio',

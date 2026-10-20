@@ -35,6 +35,7 @@ Generated: 2026-10-20T06:07:29.075Z
 
 ## In development
 
+- [IFCCAD](./ifccad.md) — An open CAD drawing format based on IFCX. Usable on its own, with development towards reliable DWG/DXF exchange and future BIM integration. (`n/a`)
 - [BCF Manager Studio](./bcf-manager-studio.md) — BCF 2.1 issue management platform. BCF API 2.1 server, IFC GlobalId linking, self-hosted with Docker. (`n/a`)
 - [OpenAEC BIM Validator](./bim-validator.md) — IDS validation against NL-BIM Basis ILS and RVB BIM Norm. Browser-based, 3D viewer, BCF export. (`n/a`)
 - [OpenAEC Docs](./openaec-docs.md) — BIM document management on top of Nextcloud: project files and folders, project manifests and links with the BIM Validator and BCF platform. (`n/a`)

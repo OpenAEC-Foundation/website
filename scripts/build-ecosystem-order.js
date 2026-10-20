@@ -70,6 +70,8 @@ const PAGES = ['index.html', 'en/index.html', 'fr/index.html', 'tr/index.html', 
 //   daardoor op te weinig gegevens om de plek zelf te bepalen.
 const PINNED = new Map([
   ['ifcx', 1],
+  // IFCCAD is the CAD profile using IFCX; keep the formats together.
+  ['ifccad', 2],
   ['yapp', 6],
 ]);
 

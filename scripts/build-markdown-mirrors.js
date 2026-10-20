@@ -92,6 +92,49 @@ function platformList(byPlatform) {
 
 const TOOLS = [
   {
+  "id": "ifccad",
+  "repo": "ifccad",
+  "name": "IFCCAD",
+  "category": "CAD Format",
+  "status": "in development",
+  "description": "An open CAD drawing format based on IFCX. Usable on its own, with development towards reliable DWG/DXF exchange and future BIM integration.",
+  "keywords": [
+    "IFCCAD",
+    "IFCX",
+    "CAD drawing format",
+    "DWG",
+    "DXF",
+    "roundtrip",
+    "preservation",
+    "Format Explorer"
+  ],
+  "alternatives": [],
+  "license": "MPL-2.0",
+  "techStack": [
+    "Rust",
+    "WebAssembly",
+    "JavaScript"
+  ],
+  "platforms": [
+    "Web"
+  ],
+  "productPage": "https://open-aec.com/ifccad/",
+  "liveDemo": "https://ifccad-explorer.open-aec.com",
+  "nightly": false,
+  "features": [
+    "Open, standalone CAD drawing profile using IFCX; no BIM model required",
+    "Format Explorer for inspecting drawing structure and trying DWG/DXF conversion",
+    "Development towards faithful round trips, with explicit conversion diagnostics and a bounded preservation pilot",
+    "BIM integration and associative regeneration remain development goals"
+  ],
+  "whenToUse": "Exploring an open alternative to DWG, inspecting IFCCAD drawings and testing supported conversion routes. Experimental; complete round trips and associative BIM regeneration are not yet guaranteed.",
+  "standards": [
+    "IFCX",
+    "DWG",
+    "DXF"
+  ]
+},
+  {
     id: 'open-pdf-studio',
     name: 'Open PDF Studio',
     repo: 'open-pdf-studio',
@@ -620,7 +663,7 @@ function buildToolMarkdown(tool, stats, downloads, releaseInfo) {
   const totalReleases = ranked?.releases ?? repoStats?.releases ?? 0;
 
   const productPage = `${SITE_BASE}/${tool.id}/`;
-  const liveDemo = `https://${tool.id}.open-aec.com/`;
+  const liveDemo = typeof tool.liveDemo === 'string' ? tool.liveDemo : `https://${tool.id}.open-aec.com/`;
   const githubRepo = tool.repo
     ? `https://github.com/OpenAEC-Foundation/${tool.repo}`
     : null;
