@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script>document.documentElement.className="js"</script>
+<title>APIs · OpenAEC SuperCloud</title>
+<meta name="description" content="Every OpenAEC SuperCloud tool as an API too: calculate, convert, check and store from your own software, with one key and in IFCX.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://open-aec.com/supercloud/en/api/">
+<link rel="alternate" hreflang="nl" href="https://open-aec.com/supercloud/api/">
+<link rel="alternate" hreflang="en" href="https://open-aec.com/supercloud/en/api/">
+<link rel="alternate" hreflang="de" href="https://open-aec.com/supercloud/de/api/">
+<link rel="alternate" hreflang="fr" href="https://open-aec.com/supercloud/fr/api/">
+<link rel="alternate" hreflang="es" href="https://open-aec.com/supercloud/es/api/">
+<link rel="alternate" hreflang="tr" href="https://open-aec.com/supercloud/tr/api/">
+<link rel="alternate" hreflang="x-default" href="https://open-aec.com/supercloud/api/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OpenAEC SuperCloud">
+<meta property="og:title" content="APIs · OpenAEC SuperCloud">
+<meta property="og:description" content="Every OpenAEC SuperCloud tool as an API too: calculate, convert, check and store from your own software, with one key and in IFCX.">
+<meta property="og:url" content="https://open-aec.com/supercloud/en/api/">
+<meta property="og:locale" content="en_GB">
+<meta property="og:image" content="https://open-aec.com/supercloud/assets/oac-915e7e5f-og-en.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2A2A32">
+<link rel="icon" type="image/svg+xml" href="/supercloud/assets/oac-618a5565-favicon.svg">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/supercloud/assets/oac-4449710e-inter-400.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="/supercloud/assets/oac-ff792354-space-grotesk-700.woff2">
+<link rel="stylesheet" href="/supercloud/assets/oac-53d03544-style.css">
+<script defer src="/supercloud/assets/oac-d47646fb-site.js"></script>
+</head>
+<body>
+<a class="naar-inhoud" href="#inhoud">Skip to content</a>
+<header class="nav">
+  <div class="wrap nav-rij">
+    <a class="merk" href="/supercloud/en/" aria-label="OpenAEC SuperCloud, go to the home page">
+      <img src="/supercloud/assets/oac-da3c0750-symbool.svg" alt="" width="26" height="32">
+      <span>Open<b>AEC</b> SuperCloud</span>
+    </a>
+    <button class="menuknop" type="button" aria-expanded="false" aria-controls="hoofdmenu">Menu</button>
+    <nav class="nav-links" id="hoofdmenu" aria-label="Main menu">
+      <a class="link" href="/supercloud/en/why/">Why</a>
+      <a class="link" href="/supercloud/en/apps/">Apps</a>
+      <a class="link" href="/supercloud/en/pricing/">Pricing</a>
+      <a class="link" href="/supercloud/en/security/">Security</a>
+      <a class="link active" href="/supercloud/en/api/">APIs</a>
+      <a class="link" href="/supercloud/en/about/">About us</a>
+      <details class="talen">
+        <summary aria-label="Choose language">EN</summary>
+        <ul><li><a href="/supercloud/api/" hreflang="nl" lang="nl">Nederlands</a></li><li><a href="/supercloud/en/api/" hreflang="en" lang="en" aria-current="true">English</a></li><li><a href="/supercloud/de/api/" hreflang="de" lang="de">Deutsch</a></li><li><a href="/supercloud/fr/api/" hreflang="fr" lang="fr">Français</a></li><li><a href="/supercloud/es/api/" hreflang="es" lang="es">Español</a></li><li><a href="/supercloud/tr/api/" hreflang="tr" lang="tr">Türkçe</a></li></ul>
+      </details>
+      
+      <a class="knop knop-primair knop-klein" href="/supercloud/en/sign-up/?taal=en">Sign up</a>
+    </nav>
+  </div>
+</header>
+<div class="strip" aria-hidden="true"></div>
+
+<main id="inhoud">
+<section class="paginakop op-donker">
+  <div class="wrap"><p class="bovenkop">APIs</p><h1>Every tool as an API</h1><p>You can call every tool on the SuperCloud from your own software as well: calculate, convert, check and store. With one key, in one open language (IFCX), and you pay for what you use.</p></div>
+</section>
+<div class="wrap api">
+  <ul class="api-principes"><li><h2>One key for every tool</h2><p>You create API keys in the admin environment, per environment and with only the permissions needed. The same key works for every tool.</p></li><li><h2>IFCX in, IFCX out</h2><p>The APIs speak the same open language as the apps. A model you send to the heat loss calculation goes straight on to the energy calculation without conversion.</p></li><li><h2>Pay for what you use</h2><p>Calls count towards your environment's usage, at cost plus 10%. You set your own limits.</p></li></ul>
+
+  <section class="api-voorbeeld" aria-labelledby="kop-voorbeeld">
+    <div>
+      <h2 id="kop-voorbeeld">What a call looks like</h2>
+      <p>A heat loss calculation from your own script: send an IFCX model and get the result per room back.</p>
+      <p class="api-label">Illustrative example; the final specification will follow per tool.</p>
+    </div>
+    <pre class="code"><code><span class="c-k">curl</span> -X POST https://api.cloud.open-aec.com/v1/heatloss/calculations \
+  -H <span class="c-s">"Authorization: Bearer $OPENAEC_API_KEY"</span> \
+  -H <span class="c-s">"Content-Type: application/json"</span> \
+  --data @woning.ifcx
+
+<span class="c-c"># antwoord</span>
+{
+  <span class="c-s">"status"</span>: <span class="c-s">"done"</span>,
+  <span class="c-s">"standard"</span>: <span class="c-s">"ISSO 51"</span>,
+  <span class="c-s">"rooms"</span>: 12,
+  <span class="c-s">"design_heat_loss_w"</span>: 6420,
+  <span class="c-s">"result"</span>: <span class="c-s">"woning-warmteverlies.ifcx"</span>
+}</code></pre>
+  </section>
+
+  <section class="api-lijst" aria-labelledby="kop-lijst">
+    <div class="rij-kop"><h2 id="kop-lijst">An API for every tool</h2><span>26</span></div>
+    <p class="bv-intro">Every tool gets an API. Availability follows that of the app.</p>
+    <ul class="api-tools"><li><a class="api-tool" href="/supercloud/en/apps/open-cad-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-a83164a0-open-cad-studio.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open CAD Studio API</strong><span>2D drafting and 3D modelling, with DWG and DXF.</span></span>
+      <span class="badge b-beta">Beta</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-planner-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-7368f40e-open-planner-studio.png" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open Planner Studio API</strong><span>Project planning and construction phasing.</span></span>
+      <span class="badge b-binnenkort">Coming soon</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-pdf-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-da469e9c-open-pdf-studio.png" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open PDF Studio API</strong><span>Annotate, measure and check PDFs.</span></span>
+      <span class="badge b-beschikbaar">Available</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-calc-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-6caf6dc8-open-calc-studio.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open Calc Studio API</strong><span>Budgets and cost estimates for construction.</span></span>
+      <span class="badge b-beta">Beta</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-fem-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-4041e086-open-fem-studio.png" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open FEM Studio API</strong><span>Analyse structures with finite elements.</span></span>
+      <span class="badge b-beta">Beta</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-calculations-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-9830f686-open-calculations-studio.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open Calculations Studio API</strong><span>Structural calculations as a readable worksheet.</span></span>
+      <span class="badge b-beta">Beta</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-pointcloud-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-7f604256-open-pointcloud-studio.png" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open Pointcloud Studio API</strong><span>View, measure and convert point clouds.</span></span>
+      <span class="badge b-beta">Beta</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/monty-ifc-viewer/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-ea621939-monty-ifc-viewer.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Monty IFC Viewer API</strong><span>View IFC models, on site too.</span></span>
+      <span class="badge b-beschikbaar">Available</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-3d-viewer/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-e763efec-open-3d-viewer.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open 3D Viewer Studio API</strong><span>Quickly view 3D models in common formats.</span></span>
+      <span class="badge b-binnenkort">Coming soon</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-bim-validator/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-65619f2a-open-bim-validator.png" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open BIM Validator Studio API</strong><span>Check IFC models against IDS requirements.</span></span>
+      <span class="badge b-beta">Beta</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-bim-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-76c7c932-open-bim-studio.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open BIM Studio API</strong><span>Create and edit BIM models based on IFC.</span></span>
+      <span class="badge b-binnenkort">Coming soon</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-infra/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-4ecb8346-open-infra.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open Infra API</strong><span>Topographic data for your work area, straight into your drawing.</span></span>
+      <span class="badge b-binnenkort">Coming soon</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/ifcgit/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-333187be-ifcgit.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>IfcGit API</strong><span>Version control for IFC models.</span></span>
+      <span class="badge b-binnenkort">Coming soon</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-heatloss-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-3a96652d-open-heatloss-studio.png" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open Heatloss Studio API</strong><span>Heat loss calculation according to ISSO 51.</span></span>
+      <span class="badge b-beta">Beta</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-energy-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-9d9dcf9c-open-energy-studio.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open Energy Studio API</strong><span>Calculate BENG indicators according to NTA 8800.</span></span>
+      <span class="badge b-binnenkort">Coming soon</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-geotechniek-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-352fe7e2-open-geotechniek-studio.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open Geotechniek Studio API</strong><span>View and classify cone penetration tests and boreholes.</span></span>
+      <span class="badge b-beta">Beta</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/pile-plan-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-008533fb-pile-plan-studio.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Pile Plan Studio API</strong><span>Create a pile plan from loads and soil tests.</span></span>
+      <span class="badge b-beta">Beta</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-field-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-88c45d65-open-field-studio.png" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open Field Studio API</strong><span>Record fieldwork, inspections and handovers.</span></span>
+      <span class="badge b-binnenkort">Coming soon</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/open-speech-studio/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-eb26f505-open-speech-studio.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Open Speech Studio API</strong><span>Speech to text, locally on your own computer.</span></span>
+      <span class="badge b-beta">Beta</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/openaec-storage/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-045efe7a-openaec-storage.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>OpenAEC Storage API</strong><span>Store, share and send project files.</span></span>
+      <span class="badge b-binnenkort">Coming soon</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/y-next/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-abf8fb79-y-next.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Y-Next API</strong><span>Email, hours, invoices and planning on one screen.</span></span>
+      <span class="badge b-beschikbaar">Available</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/z-next/">
+      <span class="icoon g-openaec" aria-hidden="true"><img src="/supercloud/assets/oac-880bb78e-z-next.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Z-Next API</strong><span>ERP implementation on ERPNext for SMEs.</span></span>
+      <span class="badge b-beschikbaar">Available</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/erp-bundel/">
+      <span class="icoon g-derden" aria-hidden="true"><img src="/supercloud/assets/oac-e2936b8f-erp-bundel.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>ERP bundle API</strong><span>ERPNext with everything a business needs around it, as one package.</span></span>
+      <span class="badge b-beschikbaar">Available</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/openaec-office/">
+      <span class="icoon g-derden" aria-hidden="true"><img src="/supercloud/assets/oac-e0b6dc52-openaec-office.svg" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>OpenAEC Office API</strong><span>Documents, spreadsheets and presentations in the browser.</span></span>
+      <span class="badge b-binnenkort">Coming soon</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/speckle/">
+      <span class="icoon g-derden" aria-hidden="true"><img src="/supercloud/assets/oac-bdc0be58-speckle.png" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Speckle API</strong><span>Share 3D models and data between design applications.</span></span>
+      <span class="badge b-binnenkort">Coming soon</span>
+    </a></li><li><a class="api-tool" href="/supercloud/en/apps/blender-bonsai/">
+      <span class="icoon g-derden" aria-hidden="true"><img src="/supercloud/assets/oac-66efb3f2-blender-bonsai.png" alt="" width="48" height="48" loading="lazy"></span>
+      <span class="api-tool-tekst"><strong>Blender + Bonsai API</strong><span>Open-source BIM modelling in Blender.</span></span>
+      <span class="badge b-binnenkort">Coming soon</span>
+    </a></li></ul>
+  </section>
+
+  <section aria-labelledby="kop-werking">
+    <h2 id="kop-werking">How it works</h2>
+    <ul class="kernpunten api-werking"><li><strong>Signing in</strong><span>API keys for scripts and integrations; OAuth for apps acting on behalf of a user.</span></li><li><strong>Specification</strong><span>A public OpenAPI specification per tool, with examples.</span></li><li><strong>Limits</strong><span>Limits per key and per environment, so one script cannot overload your environment.</span></li><li><strong>In the EU</strong><span>Calls are processed in the EU, with the same security as the apps themselves.</span></li></ul>
+  </section>
+
+  <section class="bv-slot"><p><a class="knop knop-primair" href="/supercloud/en/sign-up/?taal=en">Sign up</a></p></section>
+</div>
+
+</main>
+<footer class="footer">
+  <div class="strip" aria-hidden="true"></div>
+  <div class="wrap footer-raster">
+    <div>
+      <h2 class="footer-kop">OpenAEC Studio BV</h2>
+      <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br>Chamber of Commerce 99480697 · VAT NL869009096B01</p>
+    </div>
+    <div>
+      <h2 class="footer-kop">SuperCloud</h2>
+      <ul>
+        <li><a href="/supercloud/en/why/">Why</a></li>
+        <li><a href="/supercloud/en/apps/">Apps</a></li>
+        <li><a href="/supercloud/en/pricing/">Pricing</a></li>
+        <li><a href="/supercloud/en/security/">Security</a></li>
+        <li><a href="/supercloud/en/api/">APIs</a></li>
+        <li><a href="/supercloud/en/faq/">Questions</a></li>
+        <li><a href="/supercloud/en/about/">About us</a></li>
+        <li><a href="/supercloud/en/sign-up/?taal=en">Sign up</a></li>
+        <li><a href="/supercloud/en/privacy/">Privacy statement</a></li>
+      </ul>
+    </div>
+    <div>
+      <h2 class="footer-kop">OpenAEC</h2>
+      <ul>
+        <li><a href="https://open-aec.com">open-aec.com</a></li>
+        <li>All software open source</li>
+      </ul>
+      <p class="footer-klein">© 2026 OpenAEC Studio BV</p>
+      <p class="footer-klein">All images on this site are concept images; they do not show existing projects or data centres.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
