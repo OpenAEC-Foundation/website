@@ -67,6 +67,7 @@ function label(segment) {
     .replace(/\b\w/g, c => c.toUpperCase())
     .replace(/\bOpenaec\b/g, 'OpenAEC')
     .replace(/\bIfcx\b/g, 'IFCX')
+    .replace(/\bIfccad\b/g, 'IFCCAD')
     .replace(/\bBim\b/g, 'BIM')
     .replace(/\bPdf\b/g, 'PDF')
     .replace(/\bCad\b/g, 'CAD')
