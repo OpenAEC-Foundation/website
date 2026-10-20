@@ -40,7 +40,12 @@ for (const lang of langs) {
     for (const key of [...keys, 'meta.title', 'meta.description']) {
       const value = dig(translations, key);
       assert.ok(typeof value === 'string' && value.trim(), `${lang}: missing ${key}`);
-      if (key === 'meta.description') {
+      const sourceElement = [...source.matchAll(/<[^>]+data-i18n="([^"]+)"[^>]*>/g)].find(m => m[1] === key)?.[0];
+      if (sourceElement?.includes('data-i18n-attr=')) {
+        const attr = /data-i18n-attr="([^"]+)"/.exec(sourceElement)[1];
+        const translatedElement = [...html.matchAll(/<[^>]+data-i18n="([^"]+)"[^>]*>/g)].find(m => m[1] === key)?.[0];
+        assert.ok(translatedElement?.includes(attr + '="' + value + '"'), lang + ': translated ' + attr);
+      } else if (key === 'meta.description') {
         const actual = /<meta name="description" content="([^"]+)"/.exec(html)?.[1];
         assert.ok(actual && value.startsWith(actual.replace(/…$/, '')), `${lang}: translated description`);
       } else assert.ok(text(html).includes(text(value)), `${lang}: ${key} must be rendered`);
