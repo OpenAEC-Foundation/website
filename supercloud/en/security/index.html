@@ -29,7 +29,7 @@
 <link rel="icon" type="image/svg+xml" href="/supercloud/assets/oac-618a5565-favicon.svg">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/supercloud/assets/oac-4449710e-inter-400.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/supercloud/assets/oac-ff792354-space-grotesk-700.woff2">
-<link rel="stylesheet" href="/supercloud/assets/oac-caba8dd8-style.css">
+<link rel="stylesheet" href="/supercloud/assets/oac-78b38e69-style.css">
 <script defer src="/supercloud/assets/oac-d47646fb-site.js"></script>
 </head>
 <body>
@@ -62,7 +62,7 @@
 <main id="inhoud">
 <section class="paginakop op-donker">
   <div class="wrap">
-    <p class="bovenkop">Security and privacy</p><h1>How we protect your data</h1><p>These are the commitments we keep, and you can check them in the source code and the logs.</p>
+    <p class="bovenkop">Security and privacy</p><h1>How we protect your data</h1><p>A technical overview of OpenAEC SuperCloud security: data location, encryption and key management, identity, tenant isolation, operations and continuity. The software is open source, so every claim here can be verified.</p>
     <ul class="bv-feiten"><li><strong>Frankfurt, EU</strong><span>AWS region eu-central-1</span></li><li><strong>ISO 27001 · SOC 2 · C5</strong><span>data centre certifications (AWS)</span></li><li><strong>1 key per customer</strong><span>encrypted with your own key</span></li></ul>
   </div>
 </section>
@@ -79,7 +79,7 @@
   <div class="bv-hoofd">
     <section class="bv-kort" id="kort" aria-labelledby="kop-kort">
       <h2 id="kop-kort" class="bovenkop">At a glance</h2>
-      <ul class="kernpunten"><li><strong>Data in the EU</strong><span>Servers and backups in the European Union.</span></li><li><strong>Your own key</strong><span>Every customer encrypted with their own key.</span></li><li><strong>AI in the EU</strong><span>Only language models in the EU by default.</span></li><li><strong>No onlookers</strong><span>Support only with your permission, logged.</span></li><li><strong>Export everything</strong><span>Your data is yours, at any time.</span></li><li><strong>Open source</strong><span>Verifiable, and on your own servers too.</span></li></ul>
+      <ul class="kernpunten"><li><strong>EU-only processing</strong><span>AWS eu-central-1; backups in a second EU region.</span></li><li><strong>KMS key per tenant</strong><span>AES-256 at rest; crypto-shredding on exit.</span></li><li><strong>OIDC + MFA</strong><span>PKCE, short-lived JWTs, TOTP and passkeys.</span></li><li><strong>Just-in-time support</strong><span>Only with consent, time-boxed, audited.</span></li><li><strong>IaC + least privilege</strong><span>OpenTofu via CI/CD; no console operations.</span></li><li><strong>AI gateway</strong><span>EU models only by default; no training on customer data.</span></li></ul>
     </section>
     <section class="bv-groep" id="gegevens">
       <h2>Where your data lives</h2>
@@ -121,23 +121,23 @@
 </figure>
 
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>Your data stays in the EU</h3>
-        <p>All environments run in a data centre in the European Union. Backups are kept in a second EU region.</p>
-        <ul><li>AWS region Frankfurt (eu-central-1)</li><li>Every customer gets their own database and their own file storage</li><li>Encrypted backups in a second EU region</li></ul>
+        <h3>Data location</h3>
+        <p>All customer data is processed and stored in the AWS eu-central-1 region (Frankfurt). Backups are stored encrypted in a second EU region. Processing outside the EU only happens if you enable an AI model outside the EU yourself.</p>
+        <ul><li>Primary region: eu-central-1 (Frankfurt)</li><li>Backups: second EU region, plus a copy in long-term storage</li><li>Region and partition are parameters in the infrastructure code</li></ul>
         
       </article><article class="bv-kaart">
-        <h3>Separated from other customers</h3>
-        <p>Every environment stands on its own: its own database, its own storage and its own key. Larger customers can choose their own servers and their own network, with no other customers on them.</p>
-        
-        
-      </article><article class="bv-kaart">
-        <h3>A separate key per customer</h3>
-        <p>Your data is encrypted with a key that only applies to your environment. When you leave, we destroy that key, which also makes all backups unreadable.</p>
+        <h3>Tenant isolation</h3>
+        <p>Every customer environment has its own database with its own database user, its own S3 bucket and its own KMS key. Application containers run with CPU and memory limits. Large customers get their own application stack, their own database instance and their own network segment; a dedicated AWS account is optional.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Encrypted in transit and at rest</h3>
-        <p>Traffic always travels encrypted over https. Stored data, files and backups are encrypted as well.</p>
+        <h3>Key management and crypto-shredding</h3>
+        <p>Data at rest is encrypted with AES-256 via AWS KMS, with a customer managed key per customer. On exit, that key is destroyed after the retention period, rendering all backups and previous versions unreadable as well.</p>
+        
+        
+      </article><article class="bv-kaart">
+        <h3>Encryption in transit</h3>
+        <p>All traffic uses TLS 1.2 or higher, with HSTS. Databases and storage are not directly reachable from the internet; files are transferred through short-lived signed URLs.</p>
         
         
       </article></div>
@@ -149,37 +149,37 @@
 </figure>
 
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>Signing in</h3>
-        <p>You sign in with one OpenAEC account for all apps, with two-step verification or a passkey. As an administrator you can make two-step verification mandatory for your whole environment.</p>
-        <ul><li>Short sessions that expire automatically</li><li>Disabling an account takes effect in all apps at once</li></ul>
+        <h3>Identity and authentication</h3>
+        <p>One central identity provider based on OpenID Connect. Customer environments, browser tools, desktop apps and APIs trust this provider; local passwords on customer environments are disabled, except for a break-glass admin account.</p>
+        <ul><li>MFA with TOTP or passkeys (WebAuthn), enforceable per environment</li><li>Desktop and browser tools: OAuth 2.0 Authorization Code with PKCE</li><li>Short-lived JWT access tokens (15 minutes) with refresh tokens</li><li>Revoking an account blocks new tokens immediately; active tokens expire within 15 minutes</li></ul>
         
       </article><article class="bv-kaart">
-        <h3>You decide who sees what</h3>
-        <p>You set roles and permissions per environment. Users only see the projects, folders and data they have access to. Guests are free and only see what you share with them.</p>
+        <h3>Authorisation</h3>
+        <p>Roles and permissions are managed per customer environment (role-based access control). Users are provisioned just in time based on their membership. Guests only see what has been explicitly shared with them.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Sharing files safely</h3>
-        <p>Send large files with a link instead of as an attachment.</p>
-        <ul><li>An expiry date and a password per link</li><li>Revoke links at any time</li><li>Recipients do not need an account to download</li></ul>
+        <h3>External sharing</h3>
+        <p>Share links are tokens with an expiry date and an optional password, and can be revoked at any time.</p>
+        <ul><li>Downloads via short-lived presigned URLs</li><li>Recipients do not need an account</li><li>Collaborating does require a (free) guest account</li></ul>
         
       </article><article class="bv-kaart">
-        <h3>Support only with your permission</h3>
-        <p>OpenAEC staff cannot simply look inside your environment.</p>
-        <ul><li>Support access only when you grant it, for 24 hours or 7 days</li><li>Every access is recorded in a log you can view yourself</li><li>Emergency access only during an outage or security incident, with a reason and immediate notice to you</li></ul>
+        <h3>Support access</h3>
+        <p>Staff have no access to customer data by default. Access is just in time: only with the customer's consent, time-boxed and fully recorded.</p>
+        <ul><li>Consent by the customer administrator, for 24 hours or 7 days</li><li>Audit log of every session, visible to the customer</li><li>Break-glass only for an outage or incident, with a reason and immediate notification</li></ul>
         
       </article></div>
     </section><section class="bv-groep" id="ai">
       <h2>AI</h2>
       
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>AI without giving away your data</h3>
-        <p>AI features run only through language models in the EU by default. Your data is not used to train models. If you want to use a model outside the EU, you have to switch it on yourself, and it is clearly marked that your data leaves the EU.</p>
-        <ul><li>Every model shows where it runs</li><li>As an administrator you can switch off models outside the EU for your whole environment</li><li>Limits per person and per environment, so usage never grows unnoticed</li></ul>
+        <h3>AI gateway</h3>
+        <p>All AI requests pass through our own gateway, which enforces authentication, model selection, usage and limits. By default only models in the EU are used; models outside the EU must be enabled explicitly and are labelled. Customer data is not used to train models.</p>
+        <ul><li>Model policy per environment; 'EU only' can be enforced</li><li>Budgets and limits per person and per environment, even without a live connection to the admin environment</li><li>Usage metered per request</li></ul>
         
       </article><article class="bv-kaart">
-        <h3>AI only sees what you may see</h3>
-        <p>The AI search index belongs to your own environment and follows the same permissions as the apps. AI only finds documents the user is allowed to open, and conversations are stored in your own environment.</p>
+        <h3>Permission-aware retrieval</h3>
+        <p>The search index (pgvector) belongs to the customer environment and follows the same permissions as the apps: retrieval only returns documents the user is allowed to open. Conversation history is stored in the customer environment.</p>
         
         
       </article></div>
@@ -187,23 +187,23 @@
       <h2>Operations and continuity</h2>
       
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>Operations without manual work</h3>
-        <p>The entire infrastructure is defined in code. Every change is reviewed and recorded beforehand; nobody changes servers by hand.</p>
+        <h3>Infrastructure as code</h3>
+        <p>The entire infrastructure is defined in OpenTofu and deployed through CI/CD; there are no manual console operations. The component that changes infrastructure has a narrow IAM role (least privilege); the application layer has no broad cloud permissions.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Backups you can restore</h3>
-        <p>Backups are made automatically and restored automatically as a test, so we know they work. An extra copy is kept in long-term storage.</p>
+        <h3>Backup and recovery</h3>
+        <p>Backups are created automatically and periodically restored automatically to verify they work. An extra copy is kept in long-term storage (Glacier Deep Archive), encrypted with the customer's key.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Monitoring</h3>
-        <p>The systems are monitored continuously. If something fails, our team is alerted immediately; support is available during office hours.</p>
+        <h3>Monitoring and logging</h3>
+        <p>Systems are monitored continuously with alerting. Administrative and support actions are recorded in audit logs. Usage and costs are metered per customer via tags. Support and follow-up during office hours.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Email from your own domain</h3>
-        <p>Email from your environment is sent from your own domain, with SPF, DKIM and DMARC. Recipients can see a message really comes from you, and emails that do not arrive show up in an overview.</p>
+        <h3>Email security</h3>
+        <p>Outbound email is sent via Amazon SES from the customer's domain, with SPF, DKIM and DMARC. Bounces and complaints are fed back per customer.</p>
         
         
       </article></div>
@@ -215,33 +215,33 @@
 </figure>
 
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>Data processing agreement</h3>
-        <p>OpenAEC Studio BV processes your data on your behalf, as the GDPR calls it. Your subscription comes with a data processing agreement, including a list of the parties we use for it.</p>
+        <h3>GDPR and data processing agreement</h3>
+        <p>OpenAEC Studio BV is a processor within the meaning of the GDPR. Every subscription includes a data processing agreement with the list of sub-processors, including AWS (EU regions).</p>
         
         
       </article><article class="bv-kaart">
-        <h3>If something goes wrong</h3>
-        <p>If a security incident affects your data, we report it without undue delay: what happened, which data is involved and what we are doing about it. That way you can meet your own reporting obligations.</p>
+        <h3>Incident response</h3>
+        <p>If a security incident affects personal data, we inform the customer without undue delay about its nature, scope and measures, so the customer can report within the GDPR deadline.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Found a vulnerability?</h3>
-        <p>Please let us know. We take every report seriously, tell you what we do with it and are happy to credit you if you wish.</p>
+        <h3>Coordinated disclosure</h3>
+        <p>Report vulnerabilities to the address below. We acknowledge receipt, keep you informed of the handling and are happy to credit you after publication.</p>
         
         <p><a href="mailto:maarten@open-aec.com">maarten@open-aec.com</a></p>
       </article><article class="bv-kaart">
-        <h3>Export and leaving</h3>
-        <p>You can export everything at any time: files with their folder structure, data as CSV and a full database dump. Leaving happens in four steps.</p>
-        <ul><li>Cancel at the end of the month</li><li>30 days read-only, so you can export everything</li><li>30 days frozen, in case you want to come back</li><li>Key destroyed, everything deleted, and a certificate of deletion</li></ul>
+        <h3>Exit and data portability</h3>
+        <p>Full export at any time, in open formats: files with folder structure, data as CSV and a full database dump.</p>
+        <ul><li>Cancellation at the end of the month</li><li>30 days read-only for export</li><li>30 days frozen</li><li>Destruction of the KMS key and a statement of deletion</li></ul>
         
       </article><article class="bv-kaart">
         <h3>Open source</h3>
-        <p>All software on the SuperCloud is open source. You can verify what happens to your data, and you can run the same apps on your own servers.</p>
+        <p>All software on the SuperCloud is open source. You can audit the implementation yourself or have it audited, without relying on our statements.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>On-premises too</h3>
-        <p>If you want to keep your data entirely in-house, the apps can also run on your own servers or with your own hosting provider. OpenAEC Studio BV helps with installation, management and updates.</p>
+        <h3>On-premises</h3>
+        <p>The same container images also run on-premises or at your own hosting provider if you want to keep your data entirely under your own control. OpenAEC Studio BV supports installation, operations and updates.</p>
         
         
       </article></div>

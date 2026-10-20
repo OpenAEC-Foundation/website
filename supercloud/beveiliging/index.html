@@ -29,7 +29,7 @@
 <link rel="icon" type="image/svg+xml" href="/supercloud/assets/oac-618a5565-favicon.svg">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/supercloud/assets/oac-4449710e-inter-400.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/supercloud/assets/oac-ff792354-space-grotesk-700.woff2">
-<link rel="stylesheet" href="/supercloud/assets/oac-caba8dd8-style.css">
+<link rel="stylesheet" href="/supercloud/assets/oac-78b38e69-style.css">
 <script defer src="/supercloud/assets/oac-d47646fb-site.js"></script>
 </head>
 <body>
@@ -62,7 +62,7 @@
 <main id="inhoud">
 <section class="paginakop op-donker">
   <div class="wrap">
-    <p class="bovenkop">Beveiliging en privacy</p><h1>Zo beschermen we je gegevens</h1><p>Dit zijn de afspraken waar we ons aan houden, en die je in de broncode en de logboeken kunt controleren.</p>
+    <p class="bovenkop">Beveiliging en privacy</p><h1>Zo beschermen we je gegevens</h1><p>Technisch overzicht van de beveiliging van de OpenAEC SuperCloud: datalocatie, versleuteling en sleutelbeheer, identiteit, tenant-isolatie, beheer en continuïteit. De software is open source, dus elke bewering hier is te verifiëren.</p>
     <ul class="bv-feiten"><li><strong>Frankfurt, EU</strong><span>AWS-regio eu-central-1</span></li><li><strong>ISO 27001 · SOC 2 · C5</strong><span>certificeringen van het datacentrum (AWS)</span></li><li><strong>1 sleutel per klant</strong><span>versleuteling met je eigen sleutel</span></li></ul>
   </div>
 </section>
@@ -79,7 +79,7 @@
   <div class="bv-hoofd">
     <section class="bv-kort" id="kort" aria-labelledby="kop-kort">
       <h2 id="kop-kort" class="bovenkop">In het kort</h2>
-      <ul class="kernpunten"><li><strong>Data in de EU</strong><span>Servers en back-ups in de Europese Unie.</span></li><li><strong>Eigen sleutel</strong><span>Elke klant versleuteld met een eigen sleutel.</span></li><li><strong>AI in de EU</strong><span>Standaard alleen taalmodellen in de EU.</span></li><li><strong>Geen meekijkers</strong><span>Support alleen met jouw toestemming, gelogd.</span></li><li><strong>Alles exporteerbaar</strong><span>Je gegevens zijn van jou, op elk moment.</span></li><li><strong>Open source</strong><span>Controleerbaar, en ook op eigen servers.</span></li></ul>
+      <ul class="kernpunten"><li><strong>EU-only verwerking</strong><span>AWS eu-central-1; back-ups in een tweede EU-regio.</span></li><li><strong>KMS-sleutel per tenant</strong><span>AES-256 at rest; crypto-shredding bij exit.</span></li><li><strong>OIDC + MFA</strong><span>PKCE, kortlevende JWT's, TOTP en passkeys.</span></li><li><strong>Just-in-time support</strong><span>Alleen met toestemming, tijdgebonden, geaudit.</span></li><li><strong>IaC + least privilege</strong><span>OpenTofu via CI/CD; geen consolebeheer.</span></li><li><strong>AI-gateway</strong><span>Standaard alleen EU-modellen; geen training op klantdata.</span></li></ul>
     </section>
     <section class="bv-groep" id="gegevens">
       <h2>Waar je gegevens staan</h2>
@@ -121,23 +121,23 @@
 </figure>
 
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>Je gegevens blijven in de EU</h3>
-        <p>Alle omgevingen draaien in een datacentrum in de Europese Unie. Back-ups staan in een tweede EU-regio.</p>
-        <ul><li>AWS-regio Frankfurt (eu-central-1)</li><li>Elke klant krijgt een eigen database en een eigen opslagruimte voor bestanden</li><li>Back-ups versleuteld in een tweede EU-regio</li></ul>
+        <h3>Datalocatie</h3>
+        <p>Alle klantdata wordt verwerkt en opgeslagen in de AWS-regio eu-central-1 (Frankfurt). Back-ups staan versleuteld in een tweede EU-regio. Verwerking buiten de EU gebeurt alleen als je zelf een AI-model buiten de EU inschakelt.</p>
+        <ul><li>Primaire regio: eu-central-1 (Frankfurt)</li><li>Back-ups: tweede EU-regio, plus een kopie in langetermijnopslag</li><li>Regio en partitie zijn parameters in de infrastructuurcode</li></ul>
         
       </article><article class="bv-kaart">
-        <h3>Gescheiden van andere klanten</h3>
-        <p>Elke omgeving staat los van de andere: een eigen database, een eigen opslagruimte en een eigen sleutel. Grotere klanten kunnen kiezen voor eigen servers en een eigen netwerk, zonder andere klanten erop.</p>
-        
-        
-      </article><article class="bv-kaart">
-        <h3>Een eigen sleutel per klant</h3>
-        <p>Je gegevens worden versleuteld met een sleutel die alleen voor jouw omgeving geldt. Vertrek je, dan vernietigen we die sleutel; daarmee zijn ook alle back-ups onleesbaar.</p>
+        <h3>Tenant-isolatie</h3>
+        <p>Elke klantomgeving heeft een eigen database met een eigen databasegebruiker, een eigen S3-bucket en een eigen KMS-sleutel. Applicatiecontainers draaien met CPU- en geheugenlimieten. Grote klanten krijgen een eigen applicatiestack, een eigen database-instantie en een eigen netwerksegment; een eigen AWS-account is optioneel.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Versleuteld onderweg en opgeslagen</h3>
-        <p>Verkeer gaat altijd versleuteld over https. Opgeslagen gegevens, bestanden en back-ups zijn ook versleuteld.</p>
+        <h3>Sleutelbeheer en crypto-shredding</h3>
+        <p>Data at rest is versleuteld met AES-256 via AWS KMS, met een customer managed key per klant. Bij vertrek wordt die sleutel na de bewaartermijn vernietigd. Daarmee worden ook alle back-ups en eerdere versies onleesbaar.</p>
+        
+        
+      </article><article class="bv-kaart">
+        <h3>Versleuteling in transit</h3>
+        <p>Al het verkeer loopt over TLS 1.2 of hoger, met HSTS. Databases en opslag zijn niet rechtstreeks vanaf internet bereikbaar; bestanden gaan via kortlevende, ondertekende URL's.</p>
         
         
       </article></div>
@@ -149,37 +149,37 @@
 </figure>
 
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>Inloggen</h3>
-        <p>Je logt in met één OpenAEC-account voor alle apps, met tweestapsverificatie of een passkey. Als beheerder kun je tweestapsverificatie verplicht stellen voor je hele omgeving.</p>
-        <ul><li>Korte sessies die automatisch verlopen</li><li>Een account uitzetten werkt direct in alle apps</li></ul>
+        <h3>Identiteit en authenticatie</h3>
+        <p>Eén centrale identiteitsprovider op basis van OpenID Connect. Klantomgevingen, browsertools, desktop-apps en API's vertrouwen deze provider; lokale wachtwoorden op klantomgevingen staan uit, op een noodbeheeraccount na.</p>
+        <ul><li>MFA met TOTP of passkeys (WebAuthn), af te dwingen per omgeving</li><li>Desktop- en browsertools: OAuth 2.0 Authorization Code met PKCE</li><li>Kortlevende JWT-toegangstokens (15 minuten) met refresh-tokens</li><li>Een account intrekken blokkeert direct nieuwe tokens; lopende tokens verlopen binnen 15 minuten</li></ul>
         
       </article><article class="bv-kaart">
-        <h3>Jij bepaalt wie wat ziet</h3>
-        <p>Rollen en rechten stel je per omgeving in. Een gebruiker ziet alleen de projecten, mappen en gegevens waar hij toegang toe heeft. Gasten zijn gratis en zien alleen wat je met ze deelt.</p>
+        <h3>Autorisatie</h3>
+        <p>Rollen en rechten worden per klantomgeving beheerd (role-based access control). Gebruikers worden just-in-time aangemaakt op basis van hun lidmaatschap. Gasten zien alleen wat expliciet met hen is gedeeld.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Veilig bestanden delen</h3>
-        <p>Grote bestanden verstuur je met een link in plaats van als bijlage.</p>
-        <ul><li>Een vervaldatum en een wachtwoord per link</li><li>Links kun je op elk moment intrekken</li><li>Ontvangers hebben geen account nodig om te downloaden</li></ul>
+        <h3>Extern delen</h3>
+        <p>Deellinks zijn tokens met een vervaldatum en optioneel een wachtwoord, en zijn op elk moment in te trekken.</p>
+        <ul><li>Downloads via kortlevende presigned URL's</li><li>Ontvangers hebben geen account nodig</li><li>Meewerken vereist wel een (gratis) gastaccount</li></ul>
         
       </article><article class="bv-kaart">
-        <h3>Support alleen met jouw toestemming</h3>
-        <p>Medewerkers van OpenAEC kunnen niet zomaar in je omgeving kijken.</p>
-        <ul><li>Supporttoegang alleen als jij die geeft, voor 24 uur of 7 dagen</li><li>Elke toegang staat in een logboek dat je zelf kunt inzien</li><li>Noodtoegang alleen bij een storing of beveiligingsincident, met reden en directe melding aan jou</li></ul>
+        <h3>Supporttoegang</h3>
+        <p>Medewerkers hebben standaard geen toegang tot klantdata. Toegang is just-in-time: alleen na toestemming van de klant, tijdgebonden en volledig vastgelegd.</p>
+        <ul><li>Toestemming door de klantbeheerder, voor 24 uur of 7 dagen</li><li>Audit-log van elke sessie, in te zien door de klant</li><li>Break-glass alleen bij een storing of incident, met reden en directe melding</li></ul>
         
       </article></div>
     </section><section class="bv-groep" id="ai">
       <h2>AI</h2>
       
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>AI zonder je gegevens weg te geven</h3>
-        <p>AI-functies lopen standaard alleen via taalmodellen in de EU. Je gegevens worden niet gebruikt om modellen te trainen. Wil je een model buiten de EU gebruiken, dan moet je dat zelf aanzetten, en dan staat er duidelijk bij dat je gegevens de EU verlaten.</p>
-        <ul><li>Bij elk model staat waar het draait</li><li>Als beheerder kun je modellen buiten de EU voor je hele omgeving uitzetten</li><li>Plafonds per persoon en per omgeving, zodat verbruik niet ongemerkt oploopt</li></ul>
+        <h3>AI-gateway</h3>
+        <p>Alle AI-verzoeken lopen via een eigen gateway die authenticatie, modelkeuze, verbruik en plafonds afdwingt. Standaard worden alleen modellen in de EU gebruikt; modellen buiten de EU moeten expliciet worden ingeschakeld en zijn gelabeld. Klantdata wordt niet gebruikt om modellen te trainen.</p>
+        <ul><li>Modelbeleid per omgeving; 'alleen EU' is af te dwingen</li><li>Budgetten en plafonds per persoon en per omgeving, ook zonder live verbinding met de beheeromgeving</li><li>Verbruik per verzoek gemeten</li></ul>
         
       </article><article class="bv-kaart">
-        <h3>AI ziet alleen wat jij mag zien</h3>
-        <p>De zoekindex voor AI hoort bij je eigen omgeving en volgt dezelfde rechten als de apps. AI vindt dus alleen documenten die de gebruiker zelf ook mag openen, en gesprekken worden in je eigen omgeving bewaard.</p>
+        <h3>Retrieval met rechten</h3>
+        <p>De zoekindex (pgvector) hoort bij de klantomgeving en volgt dezelfde rechten als de apps: retrieval levert alleen documenten op die de gebruiker zelf mag openen. Gespreksgeschiedenis wordt in de klantomgeving opgeslagen.</p>
         
         
       </article></div>
@@ -187,23 +187,23 @@
       <h2>Beheer en continuïteit</h2>
       
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>Beheer zonder handwerk</h3>
-        <p>De hele infrastructuur is in code vastgelegd. Elke wijziging wordt vooraf gecontroleerd en vastgelegd; niemand past servers met de hand aan.</p>
+        <h3>Infrastructure as code</h3>
+        <p>De volledige infrastructuur is beschreven in OpenTofu en wordt uitgerold via CI/CD; er is geen handmatig consolebeheer. De component die infrastructuur aanpast heeft een smalle IAM-rol (least privilege); de applicatielaag heeft geen brede cloudrechten.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Back-ups die je kunt terugzetten</h3>
-        <p>Back-ups worden automatisch gemaakt en automatisch op proef teruggezet, zodat we weten dat ze bruikbaar zijn. Een extra kopie staat in langetermijnopslag.</p>
+        <h3>Back-up en herstel</h3>
+        <p>Back-ups worden automatisch gemaakt en periodiek automatisch teruggezet om de bruikbaarheid te toetsen. Een extra kopie staat in langetermijnopslag (Glacier Deep Archive), versleuteld met de sleutel van de klant.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Bewaking</h3>
-        <p>De systemen worden doorlopend bewaakt. Bij een storing krijgt ons team direct een melding; support is bereikbaar tijdens kantooruren.</p>
+        <h3>Monitoring en logging</h3>
+        <p>Systemen worden doorlopend bewaakt met alarmering. Beheer- en supporthandelingen worden vastgelegd in audit-logs. Verbruik en kosten worden per klant gemeten via tags. Support en opvolging tijdens kantooruren.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>E-mail vanaf je eigen domein</h3>
-        <p>Mail uit je omgeving gaat vanaf je eigen domein, met SPF, DKIM en DMARC. Ontvangers zien zo dat een bericht echt van jou komt, en mails die niet aankomen zie je terug in een overzicht.</p>
+        <h3>E-mailbeveiliging</h3>
+        <p>Uitgaande mail gaat via Amazon SES vanaf het domein van de klant, met SPF, DKIM en DMARC. Bounces en klachten worden per klant teruggekoppeld.</p>
         
         
       </article></div>
@@ -215,33 +215,33 @@
 </figure>
 
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>Verwerkersovereenkomst</h3>
-        <p>OpenAEC Studio BV verwerkt je gegevens in jouw opdracht, zoals de AVG dat noemt. Bij je abonnement hoort een verwerkersovereenkomst, met een lijst van de partijen die we daarvoor inschakelen.</p>
+        <h3>AVG en verwerkersovereenkomst</h3>
+        <p>OpenAEC Studio BV is verwerker in de zin van de AVG. Bij elk abonnement hoort een verwerkersovereenkomst met de lijst van subverwerkers, waaronder AWS (EU-regio's).</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Als er iets misgaat</h3>
-        <p>Raakt een beveiligingsincident jouw gegevens, dan melden we dat zonder onnodige vertraging: wat er gebeurd is, welke gegevens het betreft en wat we eraan doen. Zo kun je zelf aan je meldplicht voldoen.</p>
+        <h3>Incidentrespons</h3>
+        <p>Bij een beveiligingsincident dat persoonsgegevens raakt, informeren we de klant zonder onnodige vertraging over aard, omvang en maatregelen, zodat de klant binnen de AVG-termijn zelf kan melden.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Een kwetsbaarheid gevonden?</h3>
-        <p>Meld het ons. We nemen elke melding serieus, laten je weten wat we ermee doen en vermelden je graag als je dat wilt.</p>
+        <h3>Coordinated disclosure</h3>
+        <p>Kwetsbaarheden kun je melden via het adres hieronder. We bevestigen de ontvangst, houden je op de hoogte van de afhandeling en vermelden je graag na publicatie.</p>
         
         <p><a href="mailto:maarten@open-aec.com">maarten@open-aec.com</a></p>
       </article><article class="bv-kaart">
-        <h3>Exporteren en vertrekken</h3>
-        <p>Je kunt op elk moment alles exporteren: bestanden met mappenstructuur, gegevens als CSV en een volledige databasedump. Vertrekken gaat in vier stappen.</p>
-        <ul><li>Opzeggen per het einde van de maand</li><li>30 dagen alleen-lezen, zodat je alles kunt exporteren</li><li>30 dagen bevroren, voor het geval je terug wilt</li><li>Sleutel vernietigd, alles verwijderd, en een verklaring van verwijdering</li></ul>
+        <h3>Exit en dataportabiliteit</h3>
+        <p>Volledige export op elk moment, in open formaten: bestanden met mappenstructuur, gegevens als CSV en een volledige databasedump.</p>
+        <ul><li>Opzegging per het einde van de maand</li><li>30 dagen alleen-lezen voor export</li><li>30 dagen bevroren</li><li>Vernietiging van de KMS-sleutel en een verklaring van verwijdering</li></ul>
         
       </article><article class="bv-kaart">
         <h3>Open source</h3>
-        <p>Alle software op de SuperCloud is open source. Je kunt nagaan wat er met je gegevens gebeurt, en je kunt dezelfde apps ook op je eigen servers draaien.</p>
+        <p>Alle software op de SuperCloud is open source. Je kunt de implementatie zelf auditen of laten auditen, zonder afhankelijk te zijn van onze verklaringen.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Ook on-premise</h3>
-        <p>Wil je je gegevens helemaal in eigen huis houden, dan kunnen de apps ook op je eigen servers of bij je eigen hostingpartij draaien. OpenAEC Studio BV helpt met installeren, beheren en bijwerken.</p>
+        <h3>On-premise</h3>
+        <p>Dezelfde container-images draaien ook on-premise of bij je eigen hostingpartij, als je data volledig in eigen beheer wilt houden. OpenAEC Studio BV ondersteunt bij installatie, beheer en updates.</p>
         
         
       </article></div>

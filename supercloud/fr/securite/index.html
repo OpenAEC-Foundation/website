@@ -29,7 +29,7 @@
 <link rel="icon" type="image/svg+xml" href="/supercloud/assets/oac-618a5565-favicon.svg">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/supercloud/assets/oac-4449710e-inter-400.woff2">
 <link rel="preload" as="font" type="font/woff2" crossorigin href="/supercloud/assets/oac-ff792354-space-grotesk-700.woff2">
-<link rel="stylesheet" href="/supercloud/assets/oac-caba8dd8-style.css">
+<link rel="stylesheet" href="/supercloud/assets/oac-78b38e69-style.css">
 <script defer src="/supercloud/assets/oac-d47646fb-site.js"></script>
 </head>
 <body>
@@ -62,7 +62,7 @@
 <main id="inhoud">
 <section class="paginakop op-donker">
   <div class="wrap">
-    <p class="bovenkop">Sécurité et confidentialité</p><h1>Comment nous protégeons vos données</h1><p>Voici les engagements que nous respectons, et que vous pouvez vérifier dans le code source et les journaux.</p>
+    <p class="bovenkop">Sécurité et confidentialité</p><h1>Comment nous protégeons vos données</h1><p>Vue d'ensemble technique de la sécurité de l'OpenAEC SuperCloud : localisation des données, chiffrement et gestion des clés, identité, isolation des clients, exploitation et continuité. Le logiciel est open source : chaque affirmation ici est vérifiable.</p>
     <ul class="bv-feiten"><li><strong>Francfort, UE</strong><span>région AWS eu-central-1</span></li><li><strong>ISO 27001 · SOC 2 · C5</strong><span>certifications du centre de données (AWS)</span></li><li><strong>1 clé par client</strong><span>chiffré avec votre propre clé</span></li></ul>
   </div>
 </section>
@@ -79,7 +79,7 @@
   <div class="bv-hoofd">
     <section class="bv-kort" id="kort" aria-labelledby="kop-kort">
       <h2 id="kop-kort" class="bovenkop">En bref</h2>
-      <ul class="kernpunten"><li><strong>Données dans l'UE</strong><span>Serveurs et sauvegardes dans l'Union européenne.</span></li><li><strong>Votre propre clé</strong><span>Chaque client chiffré avec sa propre clé.</span></li><li><strong>IA dans l'UE</strong><span>Par défaut, uniquement des modèles de langage dans l'UE.</span></li><li><strong>Aucun regard indiscret</strong><span>Support uniquement avec votre accord, journalisé.</span></li><li><strong>Tout exportable</strong><span>Vos données vous appartiennent, à tout moment.</span></li><li><strong>Open source</strong><span>Vérifiable, et aussi sur vos propres serveurs.</span></li></ul>
+      <ul class="kernpunten"><li><strong>Traitement uniquement dans l'UE</strong><span>AWS eu-central-1 ; sauvegardes dans une seconde région UE.</span></li><li><strong>Clé KMS par client</strong><span>AES-256 au repos ; crypto-shredding à la sortie.</span></li><li><strong>OIDC + MFA</strong><span>PKCE, JWT de courte durée, TOTP et passkeys.</span></li><li><strong>Support juste-à-temps</strong><span>Uniquement avec accord, limité dans le temps, audité.</span></li><li><strong>IaC + moindre privilège</strong><span>OpenTofu via CI/CD ; aucune action manuelle en console.</span></li><li><strong>Passerelle IA</strong><span>Par défaut uniquement des modèles UE ; pas d'entraînement sur les données clients.</span></li></ul>
     </section>
     <section class="bv-groep" id="gegevens">
       <h2>Où sont vos données</h2>
@@ -121,23 +121,23 @@
 </figure>
 
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>Vos données restent dans l'UE</h3>
-        <p>Tous les environnements tournent dans un centre de données de l'Union européenne. Les sauvegardes sont conservées dans une deuxième région de l'UE.</p>
-        <ul><li>Région AWS de Francfort (eu-central-1)</li><li>Chaque client dispose de sa propre base de données et de son propre stockage de fichiers</li><li>Sauvegardes chiffrées dans une seconde région de l'UE</li></ul>
+        <h3>Localisation des données</h3>
+        <p>Toutes les données clients sont traitées et stockées dans la région AWS eu-central-1 (Francfort). Les sauvegardes sont chiffrées dans une seconde région de l'UE. Un traitement hors UE n'a lieu que si vous activez vous-même un modèle d'IA hors UE.</p>
+        <ul><li>Région principale : eu-central-1 (Francfort)</li><li>Sauvegardes : seconde région UE, plus une copie en stockage à long terme</li><li>Région et partition sont des paramètres du code d'infrastructure</li></ul>
         
       </article><article class="bv-kaart">
-        <h3>Séparé des autres clients</h3>
-        <p>Chaque environnement est indépendant : sa propre base de données, son propre stockage et sa propre clé. Les clients plus importants peuvent choisir leurs propres serveurs et leur propre réseau, sans autres clients.</p>
-        
-        
-      </article><article class="bv-kaart">
-        <h3>Une clé propre à chaque client</h3>
-        <p>Vos données sont chiffrées avec une clé qui ne vaut que pour votre environnement. Si vous partez, nous détruisons cette clé ; toutes les sauvegardes deviennent alors illisibles elles aussi.</p>
+        <h3>Isolation des clients</h3>
+        <p>Chaque environnement client dispose de sa propre base de données avec son propre utilisateur, de son propre bucket S3 et de sa propre clé KMS. Les conteneurs applicatifs tournent avec des limites CPU et mémoire. Les grands clients obtiennent leur propre pile applicative, leur propre instance de base de données et leur propre segment réseau ; un compte AWS dédié est optionnel.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Chiffré en transit et au repos</h3>
-        <p>Le trafic passe toujours chiffré via https. Les données, fichiers et sauvegardes stockés sont également chiffrés.</p>
+        <h3>Gestion des clés et crypto-shredding</h3>
+        <p>Les données au repos sont chiffrées en AES-256 via AWS KMS, avec une clé gérée par client (customer managed key). À la sortie, cette clé est détruite après la période de conservation, ce qui rend aussi illisibles toutes les sauvegardes et versions antérieures.</p>
+        
+        
+      </article><article class="bv-kaart">
+        <h3>Chiffrement en transit</h3>
+        <p>Tout le trafic passe par TLS 1.2 ou supérieur, avec HSTS. Les bases de données et le stockage ne sont pas accessibles directement depuis Internet ; les fichiers transitent par des URL signées de courte durée.</p>
         
         
       </article></div>
@@ -149,37 +149,37 @@
 </figure>
 
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>Connexion</h3>
-        <p>Vous vous connectez avec un seul compte OpenAEC pour toutes les applications, avec validation en deux étapes ou une clé d'accès (passkey). En tant qu'administrateur, vous pouvez rendre la validation en deux étapes obligatoire pour tout votre environnement.</p>
-        <ul><li>Sessions courtes qui expirent automatiquement</li><li>La désactivation d'un compte s'applique immédiatement à toutes les applications</li></ul>
+        <h3>Identité et authentification</h3>
+        <p>Un fournisseur d'identité central basé sur OpenID Connect. Environnements clients, outils navigateur, applications de bureau et API font confiance à ce fournisseur ; les mots de passe locaux des environnements clients sont désactivés, sauf un compte d'administration d'urgence.</p>
+        <ul><li>MFA par TOTP ou passkeys (WebAuthn), imposable par environnement</li><li>Outils de bureau et navigateur : OAuth 2.0 Authorization Code avec PKCE</li><li>Jetons d'accès JWT de courte durée (15 minutes) avec jetons de rafraîchissement</li><li>La révocation d'un compte bloque immédiatement les nouveaux jetons ; les jetons en cours expirent sous 15 minutes</li></ul>
         
       </article><article class="bv-kaart">
-        <h3>Vous décidez qui voit quoi</h3>
-        <p>Vous définissez les rôles et les droits par environnement. Un utilisateur ne voit que les projets, dossiers et données auxquels il a accès. Les invités sont gratuits et ne voient que ce que vous partagez avec eux.</p>
+        <h3>Autorisation</h3>
+        <p>Les rôles et droits sont gérés par environnement client (contrôle d'accès basé sur les rôles). Les utilisateurs sont provisionnés juste-à-temps selon leur appartenance. Les invités ne voient que ce qui a été explicitement partagé avec eux.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Partager des fichiers en toute sécurité</h3>
-        <p>Envoyez les gros fichiers par lien plutôt qu'en pièce jointe.</p>
-        <ul><li>Une date d'expiration et un mot de passe par lien</li><li>Liens révocables à tout moment</li><li>Les destinataires n'ont pas besoin de compte pour télécharger</li></ul>
+        <h3>Partage externe</h3>
+        <p>Les liens de partage sont des jetons avec date d'expiration et mot de passe optionnel, révocables à tout moment.</p>
+        <ul><li>Téléchargements via des URL présignées de courte durée</li><li>Les destinataires n'ont pas besoin de compte</li><li>Collaborer nécessite un compte invité (gratuit)</li></ul>
         
       </article><article class="bv-kaart">
-        <h3>Le support uniquement avec votre accord</h3>
-        <p>Le personnel d'OpenAEC ne peut pas consulter votre environnement à sa guise.</p>
-        <ul><li>Accès du support uniquement si vous l'accordez, pour 24 heures ou 7 jours</li><li>Chaque accès est consigné dans un journal que vous pouvez consulter vous-même</li><li>Accès d'urgence uniquement en cas de panne ou d'incident de sécurité, avec un motif et une notification immédiate</li></ul>
+        <h3>Accès support</h3>
+        <p>Le personnel n'a par défaut aucun accès aux données clients. L'accès est juste-à-temps : uniquement avec l'accord du client, limité dans le temps et entièrement enregistré.</p>
+        <ul><li>Accord de l'administrateur client, pour 24 heures ou 7 jours</li><li>Journal d'audit de chaque session, consultable par le client</li><li>Accès d'urgence uniquement en cas de panne ou d'incident, avec motif et notification immédiate</li></ul>
         
       </article></div>
     </section><section class="bv-groep" id="ai">
       <h2>IA</h2>
       
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>L'IA sans céder vos données</h3>
-        <p>Les fonctions d'IA passent par défaut uniquement par des modèles de langage situés dans l'UE. Vos données ne servent pas à entraîner des modèles. Si vous voulez utiliser un modèle hors de l'UE, vous devez l'activer vous-même, et il est alors clairement indiqué que vos données quittent l'UE.</p>
-        <ul><li>Chaque modèle indique où il fonctionne</li><li>En tant qu'administrateur, vous pouvez désactiver les modèles hors UE pour tout votre environnement</li><li>Plafonds par personne et par environnement, pour que la consommation n'augmente pas à votre insu</li></ul>
+        <h3>Passerelle IA</h3>
+        <p>Toutes les requêtes d'IA passent par notre propre passerelle, qui impose l'authentification, le choix du modèle, la consommation et les plafonds. Par défaut, seuls des modèles dans l'UE sont utilisés ; les modèles hors UE doivent être activés explicitement et sont signalés. Les données clients ne servent pas à entraîner des modèles.</p>
+        <ul><li>Politique de modèles par environnement ; « UE uniquement » peut être imposé</li><li>Budgets et plafonds par personne et par environnement, même sans connexion en direct à l'environnement d'administration</li><li>Consommation mesurée par requête</li></ul>
         
       </article><article class="bv-kaart">
-        <h3>L'IA ne voit que ce que vous pouvez voir</h3>
-        <p>L'index de recherche de l'IA appartient à votre propre environnement et suit les mêmes droits que les applications. L'IA ne trouve donc que les documents que l'utilisateur peut lui-même ouvrir, et les conversations sont conservées dans votre environnement.</p>
+        <h3>Recherche respectant les droits</h3>
+        <p>L'index de recherche (pgvector) appartient à l'environnement client et suit les mêmes droits que les applications : la recherche ne renvoie que des documents que l'utilisateur peut ouvrir. L'historique des conversations est stocké dans l'environnement client.</p>
         
         
       </article></div>
@@ -187,23 +187,23 @@
       <h2>Exploitation et continuité</h2>
       
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>Une exploitation sans intervention manuelle</h3>
-        <p>Toute l'infrastructure est décrite dans du code. Chaque modification est vérifiée et consignée au préalable ; personne ne modifie les serveurs à la main.</p>
+        <h3>Infrastructure as code</h3>
+        <p>Toute l'infrastructure est décrite en OpenTofu et déployée via CI/CD ; aucune gestion manuelle en console. Le composant qui modifie l'infrastructure dispose d'un rôle IAM restreint (moindre privilège) ; la couche applicative n'a pas de droits cloud étendus.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Des sauvegardes que l'on peut restaurer</h3>
-        <p>Les sauvegardes sont créées automatiquement et restaurées automatiquement à titre de test, pour que nous sachions qu'elles fonctionnent. Une copie supplémentaire est conservée en stockage à long terme.</p>
+        <h3>Sauvegarde et restauration</h3>
+        <p>Les sauvegardes sont créées automatiquement et restaurées automatiquement de façon périodique pour vérifier leur validité. Une copie supplémentaire est conservée en stockage à long terme (Glacier Deep Archive), chiffrée avec la clé du client.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Surveillance</h3>
-        <p>Les systèmes sont surveillés en permanence. En cas de panne, notre équipe est alertée immédiatement ; le support est joignable aux heures de bureau.</p>
+        <h3>Supervision et journalisation</h3>
+        <p>Les systèmes sont supervisés en continu avec alertes. Les actions d'administration et de support sont consignées dans des journaux d'audit. La consommation et les coûts sont mesurés par client via des tags. Support et suivi aux heures de bureau.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>E-mail depuis votre propre domaine</h3>
-        <p>Les e-mails de votre environnement partent de votre propre domaine, avec SPF, DKIM et DMARC. Les destinataires voient ainsi qu'un message vient vraiment de vous, et les e-mails non distribués apparaissent dans un récapitulatif.</p>
+        <h3>Sécurité des e-mails</h3>
+        <p>Les e-mails sortants partent via Amazon SES depuis le domaine du client, avec SPF, DKIM et DMARC. Les rebonds et plaintes sont remontés par client.</p>
         
         
       </article></div>
@@ -215,33 +215,33 @@
 </figure>
 
       <div class="bv-kaarten"><article class="bv-kaart">
-        <h3>Contrat de sous-traitance</h3>
-        <p>OpenAEC Studio BV traite vos données pour votre compte, au sens du RGPD. Votre abonnement s'accompagne d'un contrat de sous-traitance, avec la liste des parties auxquelles nous faisons appel.</p>
+        <h3>RGPD et contrat de sous-traitance</h3>
+        <p>OpenAEC Studio BV est sous-traitant au sens du RGPD. Chaque abonnement comprend un contrat de sous-traitance avec la liste des sous-traitants ultérieurs, dont AWS (régions UE).</p>
         
         
       </article><article class="bv-kaart">
-        <h3>En cas de problème</h3>
-        <p>Si un incident de sécurité touche vos données, nous le signalons dans les meilleurs délais : ce qui s'est passé, quelles données sont concernées et ce que nous faisons. Vous pouvez ainsi remplir vos propres obligations de notification.</p>
+        <h3>Réponse aux incidents</h3>
+        <p>Si un incident de sécurité touche des données personnelles, nous informons le client dans les meilleurs délais de sa nature, de son ampleur et des mesures prises, afin qu'il puisse notifier dans le délai du RGPD.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Vous avez trouvé une vulnérabilité ?</h3>
-        <p>Signalez-la-nous. Nous prenons chaque signalement au sérieux, vous disons ce que nous en faisons et vous citons volontiers si vous le souhaitez.</p>
+        <h3>Divulgation coordonnée</h3>
+        <p>Signalez les vulnérabilités à l'adresse ci-dessous. Nous accusons réception, vous tenons informé du traitement et vous citons volontiers après publication.</p>
         
         <p><a href="mailto:maarten@open-aec.com">maarten@open-aec.com</a></p>
       </article><article class="bv-kaart">
-        <h3>Exporter et partir</h3>
-        <p>Vous pouvez tout exporter à tout moment : les fichiers avec leur arborescence, les données au format CSV et un dump complet de la base de données. Le départ se fait en quatre étapes.</p>
-        <ul><li>Résiliation à la fin du mois</li><li>30 jours en lecture seule, pour que vous puissiez tout exporter</li><li>30 jours de gel, au cas où vous voudriez revenir</li><li>Clé détruite, tout supprimé, et une attestation de suppression</li></ul>
+        <h3>Sortie et portabilité des données</h3>
+        <p>Export complet à tout moment, dans des formats ouverts : fichiers avec leur arborescence, données en CSV et sauvegarde complète de la base.</p>
+        <ul><li>Résiliation en fin de mois</li><li>30 jours en lecture seule pour l'export</li><li>30 jours gelé</li><li>Destruction de la clé KMS et attestation de suppression</li></ul>
         
       </article><article class="bv-kaart">
         <h3>Open source</h3>
-        <p>Tous les logiciels du SuperCloud sont open source. Vous pouvez vérifier ce qu'il advient de vos données, et vous pouvez aussi faire tourner les mêmes applications sur vos propres serveurs.</p>
+        <p>Tous les logiciels du SuperCloud sont open source. Vous pouvez auditer l'implémentation vous-même ou la faire auditer, sans dépendre de nos déclarations.</p>
         
         
       </article><article class="bv-kaart">
-        <h3>Aussi en on-premise</h3>
-        <p>Si vous souhaitez garder vos données entièrement en interne, les applications peuvent aussi tourner sur vos propres serveurs ou chez votre propre hébergeur. OpenAEC Studio BV vous aide pour l'installation, la gestion et les mises à jour.</p>
+        <h3>On-premise</h3>
+        <p>Les mêmes images de conteneurs fonctionnent aussi sur site ou chez votre propre hébergeur si vous souhaitez garder vos données entièrement sous votre contrôle. OpenAEC Studio BV accompagne l'installation, l'exploitation et les mises à jour.</p>
         
         
       </article></div>
