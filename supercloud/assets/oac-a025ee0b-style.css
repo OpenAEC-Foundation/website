@@ -173,9 +173,9 @@ main { flex: 1 0 auto; }
 .label-doel { font-family: var(--f-mono); font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--amber-tekst); background: var(--amber-vlak); border-radius: var(--r-rond); padding: 1px 8px; justify-self: start; }
 .res-bron { font-family: var(--f-mono); font-size: 0.68rem; color: #78716C; margin-top: 12px; }
 
-.partners { display: flex; flex-wrap: wrap; gap: 16px 40px; align-items: center; padding: 0; list-style: none; }
-.partners li { display: grid; place-items: center; height: 48px; }
-.partners img { max-height: 40px; width: auto; max-width: 160px; opacity: 0.9; transition: opacity 0.15s ease; }
+.partners { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; align-items: stretch; padding: 0; list-style: none; }
+.partners li { display: grid; place-items: center; min-height: 80px; padding: 16px; border: 1px solid var(--lijn); border-radius: var(--r-md); background: var(--wit); }
+.partners img { width: 132px; height: 40px; object-fit: contain; opacity: 0.9; transition: opacity 0.15s ease; }
 .partners li:hover img { opacity: 1; }
 .partners .logo-donker { background: var(--deep-forge); border-radius: var(--r-md); padding: 6px 12px; height: auto; }
 .partners .tekstlogo { font-family: var(--f-kop); font-weight: 700; font-size: 1.05rem; color: var(--steen); white-space: nowrap; }
@@ -259,10 +259,12 @@ main { flex: 1 0 auto; }
 .g-openaec { background: var(--deep-forge); color: var(--warm-gold); }
 .g-frappe { background: var(--info-vlak); color: var(--info-tekst); }
 .g-derden { background: var(--concrete); color: var(--deep-forge); border: 1px solid var(--lijn-hover); }
-.tegel .icoon { width: 96px; height: 96px; border-radius: 18px; font-size: 1.2rem; }
-/* Logo's zonder eigen vlak eromheen: het logo zelf is het beeld. */
+.tegel .icoon { width: 72px; height: 72px; border-radius: 16px; font-size: 1.2rem; }
+/* Eigen symbolen delen één raster; externe merken krijgen dezelfde optische ruimte. */
 .icoon-logo { background: none; border: 0; border-radius: 0; overflow: visible; }
 .icoon-logo img { width: 100%; height: 100%; }
+.icoon-logo.g-derden { background: var(--concrete); border: 1px solid var(--lijn); border-radius: 21%; overflow: hidden; }
+.icoon-logo.g-derden img { width: 74%; height: 74%; }
 .icoon-groot.icoon-logo { width: 96px; height: 96px; }
 .icoon-groot { width: 72px; height: 72px; border-radius: 16px; font-size: 1.35rem; }
 
@@ -480,12 +482,10 @@ a.bv-doc:hover { border-color: var(--amber); box-shadow: var(--schaduw-md); colo
 .tijdlijn li { position: relative; display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 20px; padding: 0 0 26px 26px; }
 .tijdlijn li::before { content: ""; position: absolute; left: -7px; top: 6px; width: 12px; height: 12px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 4px var(--blueprint-white); }
 .tijdlijn-jaar { font-family: var(--f-mono); color: var(--amber); font-weight: 500; padding-top: 2px; }
+.tijdlijn-inhoud { display: flex; gap: 16px; align-items: flex-start; }
+.tijdlijn-logo { width: 48px; height: 48px; flex: none; object-fit: contain; border-radius: 10px; }
 .tijdlijn h3 { font-size: 1.1rem; margin-bottom: 4px; }
 .tijdlijn p { color: #44403C; max-width: 70ch; }
-.oo-mensen { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
-.oo-rol { font-weight: 600; color: var(--deep-forge); margin: 2px 0 6px; font-size: 0.92rem; }
-.oo-mensen p { color: var(--steen); font-size: 0.92rem; }
-.oo-mensen a { font-size: 0.88rem; font-weight: 600; }
 .oo-toekomst { background: var(--deep-forge); color: var(--blueprint-white); border-radius: var(--r-lg); padding: 32px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: center; }
 .oo-toekomst h2 { color: var(--blueprint-white); }
 .oo-toekomst p { color: #D6D3D1; }
@@ -494,7 +494,7 @@ a.bv-doc:hover { border-color: var(--amber); box-shadow: var(--schaduw-md); colo
 .oo-links { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
 .oo-links a { display: inline-block; border: 1px solid var(--lijn); border-radius: var(--r-rond); padding: 6px 14px; background: var(--wit); font-size: 0.88rem; text-decoration: none; }
 .oo-links a:hover { border-color: var(--amber); }
-@media (max-width: 760px) { .oo-mensen, .oo-toekomst { grid-template-columns: minmax(0, 1fr); } .tijdlijn li { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
+@media (max-width: 760px) { .oo-toekomst { grid-template-columns: minmax(0, 1fr); } .tijdlijn li { grid-template-columns: minmax(0, 1fr); gap: 4px; } }
 
 /* API's */
 .api { padding-block: 40px 72px; display: grid; gap: 56px; }
