@@ -4,7 +4,7 @@
 (function () {
   "use strict";
 
-  const FILTERS = ["groep", "discipline", "soort", "status"];
+  const FILTERS = ["groep", "discipline", "soort", "status", "cat"];
 
   /** Alle waarden die in de catalogus voorkomen, per filter. */
   function bekendeWaarden(apps) {
@@ -144,6 +144,20 @@
     const leeg = document.querySelector("[data-leeg]");
     let filters = leesFilters(location.search, bekend);
 
+    // Disciplinekeuze bovenin: één tegelijk, of alle.
+    const tabs = [...document.querySelectorAll("[data-cat-tab]")];
+    const zetTabs = () => {
+      const gekozen = [...filters.cat][0] || "";
+      for (const tab of tabs) tab.setAttribute("aria-pressed", String(tab.dataset.catTab === gekozen));
+    };
+    for (const tab of tabs) {
+      tab.addEventListener("click", (e) => {
+        e.preventDefault();
+        filters.cat = new Set(tab.dataset.catTab ? [tab.dataset.catTab] : []);
+        toepassen();
+      });
+    }
+
     filterEl.dataset.js = "";
     zoekveld.value = filters.q;
     for (const vak of filterEl.querySelectorAll("input[type=checkbox]")) vak.checked = filters[vak.name].has(vak.value);
@@ -164,6 +178,7 @@
       }
       const actief = Boolean(filters.q) || FILTERS.some((f) => filters[f].size > 0);
       if (standaard) standaard.hidden = actief;
+      zetTabs();
       if (leeg) leeg.hidden = totaal > 0;
       if (teller) teller.textContent = totaal + tellerTekst;
       const query = schrijfFilters(filters, location.search);
