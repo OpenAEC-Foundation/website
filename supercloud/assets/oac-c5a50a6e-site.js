@@ -302,35 +302,4 @@
     zet((start && data.plannen[start]) || data.plannen.supercloud || { gebruikers: 1 });
   });
 
-  // ---- Aanmelden per e-mail ---------------------------------------------------
-  // Zolang de accounts-site er niet is, opent "Aanmelden" een vooraf ingevulde
-  // e-mail. Een keuze van de site (plan, app, rekenhulp) gaat mee in de tekst.
-  const amData = document.getElementById("aanmeld-data");
-  const amMail = document.querySelector("[data-am-mail]");
-  if (amData && amMail) {
-    const d = JSON.parse(amData.textContent);
-    const q = new URLSearchParams(location.search);
-    const org = q.get("type") === "organisatie";
-    const keuze = [];
-    if (d.plannen[q.get("plan")]) keuze.push(d.plannen[q.get("plan")]);
-    if (d.apps[q.get("app")]) keuze.push(d.apps[q.get("app")]);
-    if (q.get("gebruikers")) keuze.push(`${d.regels.gebruiker}: ${q.get("gebruikers")}`);
-    for (const deel of (q.get("apps") || "").split(",")) {
-      const [slug, n] = deel.split(":");
-      if (d.apps[slug] && Number(n) > 0) keuze.push(`${d.apps[slug]}: ${Number(n)}`);
-    }
-    for (const sleutel of ["erp", "office", "extra_tb", "ai"]) if (Number(q.get(sleutel)) > 0) keuze.push(`${d.regels[sleutel]}: ${sleutel === "ai" ? "€ " : ""}${Number(q.get(sleutel))}`);
-    if (d.regels[q.get("opslag")]) keuze.push(d.regels[q.get("opslag")]);
-    if (q.get("omgeving") === "1") keuze.push(d.regels.omgeving);
-    if (d.regels[`sla_${q.get("sla")}`]) keuze.push(d.regels[`sla_${q.get("sla")}`]);
-    const regels = [...d.velden, ...(org ? d.org_velden : [])].map((v) => `${v}: `);
-    if (keuze.length) {
-      regels.push("", `${d.keuze}:`, ...keuze.map((k) => `- ${k}`));
-      const toon = document.querySelector("[data-am-keuze]");
-      toon.textContent = `${d.keuze}: ${keuze.join(", ")}`;
-      toon.hidden = false;
-    }
-    const onderwerp = org ? d.onderwerp_org : d.onderwerp;
-    amMail.href = `mailto:${d.aan}?subject=${encodeURIComponent(onderwerp)}&body=${encodeURIComponent(regels.join("\n") + "\n")}`;
-  }
 })();
