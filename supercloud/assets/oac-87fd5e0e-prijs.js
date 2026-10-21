@@ -8,7 +8,7 @@
 
   /**
    * keuze: { gebruikers, apps: { slug: aantal }, erp, opslag: "standaard"|"plus"|null,
-   *          extra_tb, omgeving: bool, office, ai (euro) }
+   *          extra_tb, omgeving: bool, office, ai (euro), sla: "basis"|"zakelijk"|"premium" }
    * Geeft { regels: [{ soort, sleutel, aantal, bedrag }], totaal, per_gebruiker, gratis }.
    */
   function bereken(prijzen, keuze) {
@@ -40,6 +40,9 @@
       regel("office", "office", aantal, aantal * prijzen.office);
     }
     if (keuze.ai > 0) regel("ai", "ai", 1, keuze.ai);
+    // Serviceniveau: een vast bedrag per maand plus een deel per gebruiker; Basis is inbegrepen.
+    const sla = keuze.sla && prijzen.sla && prijzen.sla[keuze.sla];
+    if (sla) regel("sla", `sla_${keuze.sla}`, 1, sla.vast + g * sla.per_gebruiker);
     // Zonder betaalde bouwstenen is het de gratis laag; anders telt elke gebruiker mee.
     const gratis = regels.length === 0;
     if (!gratis) regels.unshift({ soort: "gebruiker", sleutel: "gebruiker", aantal: g, bedrag: rond(g * prijzen.gebruiker) });

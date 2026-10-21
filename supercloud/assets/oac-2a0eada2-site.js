@@ -230,6 +230,7 @@
         if (n > 0) apps[el.dataset.app] = n;
       }
       const opslag = [...veld("opslag")].find((el) => el.checked);
+      const sla = [...veld("sla")].find((el) => el.checked);
       return {
         gebruikers: Math.max(1, getal("gebruikers")),
         apps,
@@ -239,6 +240,7 @@
         omgeving: veld("omgeving")[0].checked,
         office: getal("office"),
         ai: getal("ai"),
+        sla: sla ? sla.value : "basis",
       };
     }
 
@@ -247,6 +249,7 @@
       for (const naam of ["erp", "extra_tb", "office", "ai"]) veld(naam)[0].value = keuze[naam] || 0;
       for (const el of veld("opslag")) el.checked = el.value === (keuze.opslag || "");
       veld("omgeving")[0].checked = Boolean(keuze.omgeving);
+      for (const el of veld("sla")) el.checked = el.value === (keuze.sla || "basis");
       for (const el of hulp.querySelectorAll("[data-app]")) el.value = (keuze.apps && keuze.apps[el.dataset.app]) || 0;
       toon();
     }
@@ -281,6 +284,7 @@
       for (const naam of ["erp", "extra_tb", "office", "ai"]) if (keuze[naam]) q.set(naam, String(keuze[naam]));
       if (keuze.opslag) q.set("opslag", keuze.opslag);
       if (keuze.omgeving) q.set("omgeving", "1");
+      q.set("sla", keuze.sla);
       knop.href = `${knop.dataset.aanmeldBasis}&${q.toString()}`;
     }
 
@@ -318,6 +322,7 @@
     for (const sleutel of ["erp", "office", "extra_tb", "ai"]) if (Number(q.get(sleutel)) > 0) keuze.push(`${d.regels[sleutel]}: ${sleutel === "ai" ? "€ " : ""}${Number(q.get(sleutel))}`);
     if (d.regels[q.get("opslag")]) keuze.push(d.regels[q.get("opslag")]);
     if (q.get("omgeving") === "1") keuze.push(d.regels.omgeving);
+    if (d.regels[`sla_${q.get("sla")}`]) keuze.push(d.regels[`sla_${q.get("sla")}`]);
     const regels = [...d.velden, ...(org ? d.org_velden : [])].map((v) => `${v}: `);
     if (keuze.length) {
       regels.push("", `${d.keuze}:`, ...keuze.map((k) => `- ${k}`));
