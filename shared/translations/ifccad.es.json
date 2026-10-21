@@ -1,0 +1,107 @@
+{
+  "meta": {
+    "title": "IFCCAD — OpenAEC Foundation",
+    "description": "IFCCAD: un formato de dibujo CAD abierto basado en IFCX. Dibujos independientes, conexión con BIM y desarrollo hacia un intercambio DWG y DXF fiable."
+  },
+  "hero": {
+    "label": "OpenAEC · formato CAD abierto",
+    "intro": "Un formato abierto para dibujos CAD completos, basado en IFCX. Utilizable de forma independiente, con la ambición de conectar los dibujos y el BIM a largo plazo.",
+    "explorer": "Explora IFCCAD en el Format Explorer",
+    "github": "Sigue el desarrollo en GitHub",
+    "note": "Explora el formato y prueba la conversión de archivos DWG y DXF. El Explorer también muestra qué información conserva la conversión actual y cuáles son sus límites.",
+    "screenshotAlt": "IFCCAD Format Explorer con la estructura del dibujo y la planta de una vivienda en Open CAD Studio",
+    "screenshotCaption": "El IFCCAD Format Explorer muestra la estructura del dibujo junto a la planta en Open CAD Studio."
+  },
+  "why": {
+    "title": "Por qué desarrollamos IFCCAD",
+    "p1": "Los dibujos CAD siguen siendo imprescindibles: para detalles, planos de ejecución, proyectos existentes y diseños que no necesitan un modelo BIM. Sin embargo, este intercambio de información depende en gran medida de DWG, un formato cuyo desarrollo controla un proveedor de software. OpenAEC quiere desarrollar una alternativa abierta que permita mover dibujos entre aplicaciones y mantenerlos accesibles a largo plazo.",
+    "p2": "IFCCAD debe conservar más que las líneas visibles. Las capas, los bloques, el texto, las cotas, las presentaciones y sus relaciones también forman parte de un dibujo utilizable. Nuestro objetivo es sustituir DWG como formato de trabajo e intercambio, con una transición que conserve el significado de los archivos DWG y DXF existentes."
+  },
+  "pillars": {
+    "open": {
+      "title": "Abierto e independiente",
+      "desc": "Un modelo de dibujo documentado públicamente que distintas aplicaciones CAD puedan leer y escribir."
+    },
+    "standalone": {
+      "title": "Utilizable de forma independiente",
+      "desc": "Un dibujo CAD completo también debe poder utilizarse sin un modelo BIM ni una conexión BIM."
+    },
+    "bim": {
+      "title": "Conexión con BIM",
+      "desc": "Una base para conectar dibujos, objetos del edificio y contenido CAD generado."
+    }
+  },
+  "roundtrip": {
+    "title": "Conversiones de ida y vuelta fiables con DWG y DXF",
+    "p1": "Trabajamos para lograr una <strong>conversión de ida y vuelta fiel</strong>: convertir DWG o DXF a IFCCAD, trabajar con él y volver a exportarlo conservando la geometría, la estructura del dibujo, las propiedades y las relaciones pertinentes. Se trata de conservar el significado y la capacidad de edición; los bytes internos del archivo o los identificadores CAD reasignados no tienen por qué ser idénticos.",
+    "p2": "La representación nativa, la preservación y los diagnósticos explícitos de conversión se complementan. Los elementos compatibles deben transferirse de forma fiable; las limitaciones deben ser visibles. Las pruebas actuales validan componentes y flujos de trabajo delimitados, todavía no una conversión completa de ida y vuelta de cualquier archivo DWG o DXF. Más adelante queremos extender este enfoque a otros formatos CAD."
+  },
+  "studio": {
+    "title": "opencadcodec y Open CAD Studio",
+    "p1": "Para leer y escribir DWG y DXF utilizamos <a href=\"https://github.com/HakanSeven12/opencadcodec\">opencadcodec</a>, el códec CAD del ecosistema de <a href=\"/open-cad-studio/\">Open CAD Studio</a>. Nuestros conversores conectan directamente el modelo CAD de ese códec con IFCCAD. Las mejoras y las limitaciones detectadas también se comparten con el proyecto de origen.",
+    "p2": "El Format Explorer ya puede utilizar Open CAD Studio para visualizar el contenido CAD original y el obtenido tras la conversión de ida y vuelta. También queremos integrar IFCCAD directamente en Open CAD Studio próximamente, para que el formato forme parte de un entorno de trabajo CAD práctico."
+  },
+  "profile": {
+    "title": "Un perfil CAD dentro de IFCX",
+    "p1": "IFCCAD utiliza la estructura y las posibilidades de composición de <a href=\"/ifcx/\">IFCX</a> para los dibujos CAD. IFCX permite describir información mediante esquemas y espacios de nombres. IFCCAD añade el significado y las reglas necesarios para un dibujo: geometría, presentación, pertenencia y referencias entre los componentes del dibujo.",
+    "p2": "Queremos reutilizar directamente los esquemas IFCX existentes cuando puedan expresar la semántica CAD necesaria. Las definiciones propias temporales cubren las carencias actuales. Así investigamos cómo puede encajar el CAD en el creciente ecosistema IFCX, mientras un archivo IFCCAD también puede describir un dibujo independiente.",
+    "p3": "IFCCAD es actualmente un perfil experimental de OpenAEC. Tanto el perfil como IFCX están en desarrollo; IFCCAD todavía no es un estándar CAD oficial de buildingSMART."
+  },
+  "status": {
+    "label": "Estado del desarrollo · octubre de 2026",
+    "title": "Qué puede almacenar ya IFCCAD",
+    "intro": "Existen un modelo de dibujo propio, esquemas, validación estricta, lectores y herramientas de escritura, y vías de conversión directas para DWG y DXF. El <a href=\"https://ifccad-explorer.open-aec.com\">Format Explorer</a> permite inspeccionar el formato y probar la conversión. La compatibilidad actual tiene límites definidos: todavía no se cubren todas las variantes y propiedades de los componentes CAD que se indican a continuación.",
+    "limits": "Comprobamos las conversiones compatibles volviendo a abrir los archivos y comparando su contenido semántico. Se informa de la falta de compatibilidad y de la pérdida de información. La compatibilidad completa con las cotas, más tipos de objetos y el flujo BIM asociativo estable siguen siendo trabajo futuro. El formato y sus compromisos de compatibilidad todavía son provisionales."
+  },
+  "capabilities": {
+    "geometry": {
+      "title": "Geometría",
+      "desc": "Puntos, líneas, círculos y arcos, elipses completas y parciales, polilíneas planas con segmentos rectos y curvos, y polilíneas espaciales con segmentos rectos."
+    },
+    "appearance": {
+      "title": "Capas y presentación",
+      "desc": "Capas, colores, transparencia, grosores de línea, tipos de línea sencillos y ajustes de escala, con opciones separadas para ByLayer, ByBlock y propiedades explícitas."
+    },
+    "blocks": {
+      "title": "Bloques y texto",
+      "desc": "Bloques locales reutilizables y anidados, puntos de inserción, rotación y escala, además de texto y texto multilínea dentro de los perfiles de formato compatibles."
+    },
+    "hatches": {
+      "title": "Sombreados",
+      "desc": "Rellenos sólidos y patrones de líneas explícitos con contornos almacenados, islas y referencias compatibles a la geometría delimitadora."
+    },
+    "layouts": {
+      "title": "Espacio modelo y espacio papel",
+      "desc": "Espacio modelo, varias presentaciones de papel, orden de pestañas, tamaños de hoja, ajustes de trazado compatibles y ventanas gráficas con cámaras y recorte."
+    },
+    "workspace": {
+      "title": "Entorno de dibujo",
+      "desc": "Definiciones de UCS compatibles, ventanas del modelo y ajustes de rejilla y referencia, además de visibilidad y orden de dibujo."
+    }
+  },
+  "preservation": {
+    "title": "Preservación y el piloto temporal de splines",
+    "p1": "No todos los componentes CAD disponen de inmediato de una representación nativa en IFCCAD. Con la <strong>preservación</strong> queremos conservar explícitamente la información de origen que todavía no encaja por completo en el modelo de dibujo. En la conversión de vuelta, esa información puede recuperarse si las relaciones y el contexto necesarios siguen siendo válidos. Las modificaciones nativas tienen prioridad: un registro de origen preservado nunca debe sobrescribir silenciosamente cambios posteriores.",
+    "pilotTitle": "Las splines prueban la preservación; la compatibilidad nativa llegará después",
+    "pilot": "Actualmente las splines se almacenan mediante un piloto de preservación y se vuelven a exportar dentro de las vías de conversión validadas. Las utilizamos para probar el mecanismo de preservación desde el almacenamiento hasta la recuperación. Queremos ofrecer pronto compatibilidad nativa como entidades IFCCAD completas cuya geometría pueda editarse.",
+    "limits": "El piloto actual conserva los parámetros de las splines y los datos de origen disponibles, pero todavía no ofrece geometría spline nativa ni edición geométrica. La preservación complementa la compatibilidad nativa. Está prevista una preservación más amplia para otras entidades CAD e información de origen adicional; el piloto actual no garantiza conservar toda la información de cualquier archivo DWG."
+  },
+  "storage": {
+    "title": "Archivos más compactos y lectura y escritura eficientes",
+    "p1": "Los archivos compactos, el uso limitado de memoria y la lectura y escritura eficientes son objetivos importantes del desarrollo. Ya estamos trabajando en ellos, entre otras cosas con almacenamiento binario experimental basado en CBOR y compresión adicional.",
+    "p2": "Son experimentos específicos de IFCCAD; las decisiones definitivas de almacenamiento todavía no están tomadas. Seguimos evaluando las mejoras según la conservación del contenido del dibujo y su utilidad práctica."
+  },
+  "bim": {
+    "title": "Del BIM al CAD, conservando el trabajo de dibujo manual",
+    "p1": "Nuestra ambición va más allá de vincular un dibujo con un objeto BIM. También queremos generar contenido CAD a partir del BIM y regenerarlo cuando cambie el modelo. El trabajo de dibujo añadido manualmente debe conservarse durante ese proceso.",
+    "exampleTitle": "Una pared se desplaza y el dibujo sigue conectado",
+    "example": "Imagina que un delineante añade cotas y anotaciones a una planta generada desde BIM y la coloca en una hoja con ventanas gráficas. Cuando una pared se desplaza, queremos actualizar la geometría generada, hacer que las cotas asociadas la sigan y conservar las adiciones manuales y la composición de la hoja.",
+    "limits": "Esto requiere identidad estable y relaciones asociativas entre los objetos BIM, los componentes de dibujo generados y las modificaciones CAD manuales. Queremos evitar que cada regeneración produzca geometría desconectada a la que el delineante deba volver a vincularlo todo. Cuando los objetos desaparezcan o cambien de forma fundamental, las relaciones no válidas deben poder identificarse. Esta conexión BIM y este flujo de regeneración son objetivos de desarrollo; todavía no se han implementado."
+  },
+  "cta": {
+    "title": "Explora IFCCAD y contribuye",
+    "desc": "Prueba el Explorer, consulta el código fuente o comparte experiencia práctica y archivos de prueba que tengas permiso para compartir. Los comentarios de usuarios CAD, especialistas BIM y desarrolladores nos ayudan a orientar los próximos pasos hacia flujos de trabajo de dibujo reales.",
+    "explorer": "Abrir el Format Explorer",
+    "feedback": "Comentarios y contribuciones en GitHub"
+  }
+}

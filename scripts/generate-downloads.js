@@ -13,6 +13,7 @@ if (TOKEN) headers['Authorization'] = `Bearer ${TOKEN}`;
 
 // Tool repos to track downloads for
 const TOOL_REPOS = [
+  'ifccad',
   'open-pdf-studio',
   'open-2d-studio',
   'open-calc-studio',

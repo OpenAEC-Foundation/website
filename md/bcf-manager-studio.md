@@ -14,8 +14,8 @@
 
 - Stars: **1**
 - Commits: **41**
-- Forks: **1**
-- Open issues: **0**
+- Forks: **2**
+- Open issues: **2**
 - Releases: **0**
 - Total downloads: **0**
 

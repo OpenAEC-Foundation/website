@@ -70,6 +70,8 @@ const PAGES = ['index.html', 'en/index.html', 'fr/index.html', 'tr/index.html', 
 //   daardoor op te weinig gegevens om de plek zelf te bepalen.
 const PINNED = new Map([
   ['ifcx', 1],
+  // IFCCAD is the CAD profile using IFCX; keep the formats together.
+  ['ifccad', 2],
   ['yapp', 6],
 ]);
 
@@ -239,8 +241,8 @@ function scoreCard(repoName) {
 
 // ── HTML ───────────────────────────────────────────────────────────────────
 
-const GRID_OPEN = '<div class="tools-grid">';
-const CARD_RE = /<article class="tool-card"[\s\S]*?<\/article>/g;
+const GRID_OPEN_RE = /<div class="tools-grid"[^>]*>/;
+const CARD_RE = /<article class="tool-card(?: [^"]*)?"[\s\S]*?<\/article>/g;
 
 /**
  * Zoekt de `</div>` die bij een `<div>` op positie `start` hoort, door de
@@ -261,7 +263,7 @@ function closingDiv(html, start) {
 
 /** Splitst de tools-grid in kaarten plus de witruimte ertussen. */
 function readGrid(html, file) {
-  const gridStart = html.indexOf(GRID_OPEN);
+  const gridStart = html.search(GRID_OPEN_RE);
   if (gridStart === -1) throw new Error(`${file}: <div class="tools-grid"> niet gevonden`);
   const gridEnd = closingDiv(html, gridStart);
   if (gridEnd === -1) throw new Error(`${file}: tools-grid wordt niet afgesloten`);

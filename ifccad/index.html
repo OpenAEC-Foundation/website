@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <!-- lang-boot:start -->
+  <style>html.lang-pending body{visibility:hidden}</style>
+  <script>(function(){try{var l=localStorage.getItem("openaec-lang");if(!l){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||"en"];l="en";for(var i=0;i<a.length;i++){var c=String(a[i]||"").toLowerCase().split("-")[0];if("nl en fr tr es".split(" ").indexOf(c)>-1){l=c;break}}}if(l!=="nl"){var d=document.documentElement;d.classList.add("lang-pending");setTimeout(function(){d.classList.remove("lang-pending")},3000)}}catch(e){}})()</script>
+  <!-- lang-boot:end -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IFCCAD — OpenAEC Foundation</title>
+  <meta name="description" content="IFCCAD: een open CAD-tekenformaat op basis van IFCX. Zelfstandig tekenen, aansluiting op BIM en ontwikkeling richting betrouwbare DWG- en DXF-uitwisseling.">
+  <meta name="i18n-page" content="ifccad">
+  <link rel="canonical" href="https://open-aec.com/ifccad/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/ifccad/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/ifccad/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/ifccad/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/ifccad/">
+  <link rel="alternate" hreflang="es" href="https://open-aec.com/es/ifccad/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/ifccad/">
+  <!-- hreflang:end -->
+  <meta name="robots" content="index, follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="IFCCAD — open CAD-tekeningen met aansluiting op BIM">
+  <meta property="og:description" content="Ontdek het experimentele IFCCAD-formaat, probeer de Format Explorer en lees over de ontwikkeling naar betrouwbare CAD-uitwisseling.">
+  <meta property="og:url" content="https://open-aec.com/ifccad/">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/ifccad-format-explorer.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/ifccad-format-explorer.png">
+  <meta name="twitter:title" content="IFCCAD — OpenAEC Foundation">
+  <meta name="twitter:description" content="Een open CAD-formaat op basis van IFCX, zelfstandig bruikbaar en gericht op betrouwbare uitwisseling met DWG en DXF.">
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/shared/style.css?v=20261015">
+  <style>
+    .page-header { background: var(--night-build); padding: var(--sp-16) var(--sp-6) var(--sp-12); text-align: center; border-bottom: 3px solid transparent; border-image: var(--gradient-accent) 1; }
+    .page-header .section-label { display: block; color: var(--warm-gold); margin: 0 auto var(--sp-4); }
+    .page-header h1 { color: var(--blueprint-white); font-size: clamp(2.75rem, 7vw, 4rem); margin-bottom: var(--sp-4); }
+    .page-header h1 .accent { color: var(--warm-gold); }
+    .page-header .intro { max-width: 720px; margin: 0 auto; color: var(--blueprint-white); font-size: 1.125rem; line-height: 1.7; }
+    .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--sp-3); margin: var(--sp-6) 0 var(--sp-3); }
+    .page-header .btn-secondary, .cta-section .btn-secondary { color: var(--blueprint-white); border-color: var(--scaffold-gray); }
+    .page-header .explorer-note { max-width: 650px; margin: 0 auto; color: var(--scaffold-gray); font-size: .9375rem; }
+    .explorer-preview { max-width: 1100px; margin: var(--sp-8) auto 0; }
+    .explorer-preview a { display: block; border-radius: var(--radius-lg); }
+    .explorer-preview img { display: block; width: 100%; height: auto; border: 1px solid var(--scaffold-gray); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+    .explorer-preview figcaption { margin-top: var(--sp-3); color: var(--scaffold-gray); font-size: .875rem; line-height: 1.6; }
+    .content-section { max-width: 850px; margin: 0 auto; }
+    .content-section + .content-section { margin-top: var(--sp-12); }
+    .content-section h2 { font-size: 1.75rem; margin-bottom: var(--sp-5); }
+    .content-section h3 { font-size: 1.125rem; margin-bottom: var(--sp-3); }
+    .content-section p { max-width: none; margin-bottom: var(--sp-4); line-height: 1.75; }
+    .content-section a:not(.btn) { text-decoration: underline; text-underline-offset: .2em; }
+    .content-section ul { padding-left: var(--sp-6); margin-bottom: var(--sp-5); }
+    .content-section li { padding: var(--sp-1) 0; }
+    .pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-4); margin: var(--sp-8) 0; }
+    .pillar { background: white; border: 1px solid var(--concrete); border-top: 3px solid var(--amber); border-radius: var(--radius-md); padding: var(--sp-5); box-shadow: var(--shadow-sm); }
+    .pillar p { font-size: .9375rem; margin-bottom: 0; }
+    .highlight-block { background: var(--night-build); border-left: 4px solid var(--amber); border-radius: var(--radius-lg); padding: var(--sp-8); margin: var(--sp-6) 0; color: var(--blueprint-white); }
+    .highlight-block h3 { color: var(--warm-gold); }
+    .highlight-block p:last-child { margin-bottom: 0; }
+    .status-note { padding: var(--sp-5); background: var(--concrete); border-radius: var(--radius-md); margin-bottom: var(--sp-6); }
+    .status-note p:last-child { margin-bottom: 0; }
+    .capabilities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-5); margin: var(--sp-6) 0; }
+    .capability { padding: var(--sp-5); background: white; border: 1px solid var(--concrete); border-radius: var(--radius-md); }
+    .capability p { font-size: .9375rem; margin-bottom: 0; }
+    .cta-section { background: var(--deep-forge); color: var(--blueprint-white); }
+    .cta-section .hero-actions { justify-content: flex-start; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-4); }
+    .footer-inner p { margin: 0; font-size: .8125rem; }
+    a:focus-visible { outline: 3px solid var(--warm-gold); outline-offset: 4px; }
+    @media (max-width: 768px) { .pillars, .capabilities { grid-template-columns: 1fr; } .page-header { padding-top: var(--sp-12); } .highlight-block { padding: var(--sp-5); } .content-section h2 { font-size: 1.5rem; } .hero-actions .btn { width: 100%; max-width: 380px; } }
+  </style>
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "nl",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/openaec-foundation-io"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/ifccad/#webpage",
+        "url": "https://open-aec.com/ifccad/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "nl",
+        "dateModified": "2026-10-20",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/ifccad/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/ifccad/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "IFCCAD",
+            "item": "https://open-aec.com/ifccad/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
+      <ul class="nav-links">
+        <li><a href="/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Ecosysteem</a></li>
+        <li><a href="/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Roadmap</a></li>
+        <li><a href="/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Architectuur</a></li>
+        <li><a href="/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Statistieken</a></li>
+        <li><a href="/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Nieuws</a></li>
+        <li><a href="/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Supporters</a></li>
+        <li><a href="/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">Wij steunen</a></li>
+        <li><a href="/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structuur</a></li>
+        <li><a href="/#contact" class="nav-link" data-i18n-en="Contact" data-i18n-fr="Contact" data-i18n-tr="İletişim" data-i18n-es="Contacto">Contact</a></li>
+      </ul>
+      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Feedback</span></a>
+      <div class="lang-switcher">
+        <a class="lang-btn active" data-lang="nl" href="/ifccad/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/ifccad/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/ifccad/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/ifccad/" hreflang="tr">TR</a>
+        <a class="lang-btn" data-lang="es" href="/es/ifccad/" hreflang="es">ES</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js?v=20261015"></script>
+  <header class="page-header">
+    <p class="section-label" data-i18n="hero.label">OpenAEC · open CAD-formaat</p>
+    <h1>IFC<span class="accent">CAD</span></h1>
+    <p class="intro" data-i18n="hero.intro">Een open formaat voor volwaardige CAD-tekeningen, gebouwd op IFCX. Zelfstandig bruikbaar, met de ambitie om tekeningen en BIM duurzaam met elkaar te verbinden.</p>
+    <div class="hero-actions">
+      <a href="https://ifccad-explorer.open-aec.com" class="btn btn-primary" data-i18n="hero.explorer">Bekijk IFCCAD in de Format Explorer</a>
+      <a href="https://github.com/OpenAEC-Foundation/ifccad" class="btn btn-secondary" data-i18n="hero.github">Bekijk de ontwikkeling op GitHub</a>
+    </div>
+    <p class="explorer-note" data-i18n="hero.note">Verken het formaat en probeer conversie van DWG- en DXF-bestanden. De Explorer laat ook zien welke informatie de huidige conversie behoudt en waar beperkingen zitten.</p>
+    <figure class="explorer-preview">
+      <a href="/shared/assets/screenshots/ifccad-format-explorer.png" target="_blank" rel="noopener">
+        <img src="/shared/assets/screenshots/ifccad-format-explorer.png" alt="IFCCAD Format Explorer met tekenstructuur en een woningplattegrond in Open CAD Studio" data-i18n="hero.screenshotAlt" data-i18n-attr="alt" width="1920" height="948" decoding="async">
+      </a>
+      <figcaption data-i18n="hero.screenshotCaption">De IFCCAD Format Explorer toont de tekenstructuur naast de plattegrond in Open CAD Studio.</figcaption>
+    </figure>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="content-section">
+        <h2 data-i18n="why.title">Waarom we IFCCAD ontwikkelen</h2>
+        <p data-i18n="why.p1">CAD-tekeningen blijven onmisbaar: voor details, werktekeningen, bestaande projecten en ontwerpen die geen BIM-model nodig hebben. Toch leunt deze informatie-uitwisseling sterk op DWG, een formaat waarvan de ontwikkeling wordt bepaald door een softwareleverancier. OpenAEC wil een open alternatief ontwikkelen waarmee tekeningen tussen toepassingen kunnen bewegen en op lange termijn toegankelijk blijven.</p>
+        <p data-i18n="why.p2">IFCCAD moet meer bewaren dan de zichtbare lijnen. Ook lagen, blokken, tekst, maatvoering, bladindelingen en hun onderlinge relaties horen bij een bruikbare tekening. Ons doel is DWG als werk- en uitwisselformaat te kunnen vervangen, met een overgang waarbij bestaande DWG- en DXF-bestanden hun betekenis behouden.</p>
+        <div class="pillars">
+          <article class="pillar"><h3 data-i18n="pillars.open.title">Open en onafhankelijk</h3><p data-i18n="pillars.open.desc">Een openbaar beschreven tekenmodel dat verschillende CAD-toepassingen kunnen lezen en schrijven.</p></article>
+          <article class="pillar"><h3 data-i18n="pillars.standalone.title">Zelfstandig bruikbaar</h3><p data-i18n="pillars.standalone.desc">Een complete CAD-tekening moet ook zonder BIM-model of BIM-koppeling bruikbaar zijn.</p></article>
+          <article class="pillar"><h3 data-i18n="pillars.bim.title">Aansluiting op BIM</h3><p data-i18n="pillars.bim.desc">Een basis om tekeningen, gebouwobjecten en gegenereerde CAD-content met elkaar te verbinden.</p></article>
+        </div>
+      </div>
+      <div class="content-section">
+        <h2 data-i18n="roundtrip.title">Betrouwbaar heen en terug met DWG en DXF</h2>
+        <p data-i18n="roundtrip.p1">We werken toe naar een <strong>faithful roundtrip</strong>: DWG of DXF naar IFCCAD omzetten, ermee werken en terugschrijven met behoud van geometrie, tekenstructuur, eigenschappen en relevante relaties. Het gaat om behoud van betekenis en bewerkbaarheid; interne bestandsbytes of opnieuw toegekende CAD-handles hoeven daarbij niet identiek te zijn.</p>
+        <p data-i18n="roundtrip.p2">Native representatie, preservation en expliciete conversiediagnostiek vullen elkaar aan. Een ondersteund onderdeel moet betrouwbaar overgaan; een beperking moet zichtbaar zijn. De huidige tests kwalificeren afgebakende onderdelen en workflows, nog geen volledige roundtrip van ieder DWG- of DXF-bestand. Later willen we dezelfde aanpak uitbreiden naar andere CAD-formaten.</p>
+      </div>
+      <div class="content-section">
+        <h2 data-i18n="studio.title">opencadcodec en Open CAD Studio</h2>
+        <p data-i18n="studio.p1">Voor het lezen en schrijven van DWG en DXF sluiten we aan op <a href="https://github.com/HakanSeven12/opencadcodec">opencadcodec</a>, de CAD-codec uit het ecosysteem van <a href="/open-cad-studio/">Open CAD Studio</a>. Onze converters verbinden het CAD-model van die codec rechtstreeks met IFCCAD. Verbeteringen en geconstateerde beperkingen worden ook met het upstreamproject gedeeld.</p>
+        <p data-i18n="studio.p2">De Format Explorer kan Open CAD Studio al gebruiken om oorspronkelijke en teruggeconverteerde CAD-content te bekijken. We willen IFCCAD binnenkort ook rechtstreeks in Open CAD Studio integreren, zodat het formaat onderdeel wordt van een praktische CAD-werkomgeving.</p>
+      </div>
+      <div class="content-section">
+        <h2 data-i18n="profile.title">Een CAD-profiel binnen IFCX</h2>
+        <p data-i18n="profile.p1">IFCCAD gebruikt de structuur en compositiemogelijkheden van <a href="/ifcx/">IFCX</a> voor CAD-tekeningen. IFCX biedt ruimte om informatie via schema’s en namespaces te beschrijven. IFCCAD voegt daar de betekenis en regels aan toe die nodig zijn voor een tekening: geometrie, presentatie, eigenaarschap en verwijzingen tussen tekenonderdelen.</p>
+        <p data-i18n="profile.p2">We willen bestaande IFCX-schema’s rechtstreeks hergebruiken waar ze de benodigde CAD-betekenis kunnen uitdrukken. Tijdelijke eigen definities vullen de huidige gaten. Zo onderzoeken we hoe CAD een plaats kan krijgen in het groeiende IFCX-ecosysteem, terwijl een IFCCAD-bestand ook een zelfstandige tekening kan beschrijven.</p>
+        <p data-i18n="profile.p3">IFCCAD is momenteel een experimenteel OpenAEC-profiel. Zowel het profiel als IFCX zijn in ontwikkeling; IFCCAD is nog geen officiële buildingSMART CAD-standaard.</p>
+      </div>
+    </section>
+
+    <section class="section section-alt" aria-labelledby="development-title">
+      <div class="content-section">
+        <p class="section-label" data-i18n="status.label">Ontwikkelstatus · oktober 2026</p>
+        <h2 id="development-title" data-i18n="status.title">Wat IFCCAD nu al kan opslaan</h2>
+        <div class="status-note"><p data-i18n="status.intro">Er zijn een eigen tekenmodel, schema’s, strikte validatie, lezers en schrijvers en directe conversieroutes voor DWG en DXF. De <a href="https://ifccad-explorer.open-aec.com">Format Explorer</a> maakt het formaat inspecteerbaar en laat conversie uitproberen. De huidige ondersteuning is afgebakend: niet alle varianten en eigenschappen van onderstaande CAD-onderdelen zijn al gedekt.</p></div>
+        <div class="capabilities">
+          <article class="capability"><h3 data-i18n="capabilities.geometry.title">Geometrie</h3><p data-i18n="capabilities.geometry.desc">Punten, lijnen, cirkels en bogen, volledige en gedeeltelijke ellipsen, vlakke polylijnen met rechte en gebogen segmenten en ruimtelijke polylijnen met rechte segmenten.</p></article>
+          <article class="capability"><h3 data-i18n="capabilities.appearance.title">Lagen en presentatie</h3><p data-i18n="capabilities.appearance.desc">Lagen, kleuren, transparantie, lijndiktes, eenvoudige lijnpatronen en schaalinstellingen, met afzonderlijke keuzes voor ByLayer, ByBlock en expliciete eigenschappen.</p></article>
+          <article class="capability"><h3 data-i18n="capabilities.blocks.title">Blokken en tekst</h3><p data-i18n="capabilities.blocks.desc">Herbruikbare en geneste lokale blokken, invoegpunten, rotatie en schaal, plus tekst en meerregelige tekst binnen de ondersteunde opmaakprofielen.</p></article>
+          <article class="capability"><h3 data-i18n="capabilities.hatches.title">Arceringen</h3><p data-i18n="capabilities.hatches.desc">Solid fills en expliciete lijnpatronen met opgeslagen contouren, eilanden en ondersteunde verwijzingen naar begrenzende geometrie.</p></article>
+          <article class="capability"><h3 data-i18n="capabilities.layouts.title">Modelspace en paperspace</h3><p data-i18n="capabilities.layouts.desc">Modelspace, meerdere paper layouts, tabvolgorde, bladformaten, ondersteunde plotinstellingen en viewports met camera’s en clipping.</p></article>
+          <article class="capability"><h3 data-i18n="capabilities.workspace.title">Tekenomgeving</h3><p data-i18n="capabilities.workspace.desc">Ondersteunde UCS-definities, modelvensters en instellingen voor grid en snap, naast zichtbaarheid en tekenvolgorde.</p></article>
+        </div>
+        <p data-i18n="status.limits">We toetsen ondersteunde conversies door bestanden opnieuw te openen en hun betekenis te vergelijken. Ontbrekende ondersteuning en informatieverlies worden gemeld. Volledige maatvoering, bredere objectondersteuning en de stabiele associatieve BIM-workflow blijven vervolgwerk. Het formaat en zijn compatibiliteitsafspraken zijn nog voorlopig.</p>
+      </div>
+      <div class="content-section">
+        <h2 data-i18n="preservation.title">Preservation en de tijdelijke splinepilot</h2>
+        <p data-i18n="preservation.p1">Niet ieder CAD-onderdeel heeft meteen een native IFCCAD-representatie. Met <strong>preservation</strong> willen we broninformatie die nog niet volledig in het eigen tekenmodel past, expliciet bewaren. Bij terugconversie kan die informatie worden teruggeschreven als de noodzakelijke relaties en context nog geldig zijn. Native bewerkingen blijven leidend: een bewaard bronrecord mag latere wijzigingen niet stilzwijgend overschrijven.</p>
+        <div class="highlight-block">
+          <h3 data-i18n="preservation.pilotTitle">Splines testen preservation; native ondersteuning volgt</h3>
+          <p data-i18n="preservation.pilot">Splines worden momenteel via een preservation-pilot opgeslagen en, binnen de gekwalificeerde conversieroutes, teruggeschreven. We gebruiken splines hier om het preservation-mechanisme van opslag tot herstel te testen. We willen ze binnenkort native ondersteunen als volwaardige, geometrisch bewerkbare IFCCAD-entiteiten.</p>
+        </div>
+        <p data-i18n="preservation.limits">De huidige pilot bewaart splineparameters en beschikbare brongegevens, maar biedt nog geen native splinegeometrie of geometrische bewerking. Preservation is een aanvulling op native ondersteuning. Bredere preservation voor andere CAD-entiteiten en aanvullende broninformatie is gepland; de huidige pilot is geen garantie dat alle informatie uit een willekeurig DWG-bestand behouden blijft.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="content-section">
+        <h2 data-i18n="storage.title">Compactere bestanden en efficiënter laden en schrijven</h2>
+        <p data-i18n="storage.p1">Compacte bestanden, beperkt geheugengebruik en efficiënt laden en schrijven zijn belangrijke ontwikkeldoelen. We werken hier al aan, onder meer met experimentele binaire opslag op basis van CBOR en aanvullende compressie.</p>
+        <p data-i18n="storage.p2">Dit zijn IFCCAD-specifieke proeven; de definitieve opslagkeuzes liggen nog niet vast. We blijven verbeteringen toetsen op behoud van tekeninhoud en bruikbaarheid in de praktijk.</p>
+      </div>
+      <div class="content-section">
+        <h2 data-i18n="bim.title">Van BIM naar CAD, met behoud van handmatig tekenwerk</h2>
+        <p data-i18n="bim.p1">Onze ambitie gaat verder dan een link tussen een tekening en een BIM-object. We willen ook CAD-content vanuit BIM kunnen genereren en opnieuw kunnen genereren wanneer het model verandert. Handmatig toegevoegd tekenwerk moet daarbij behouden blijven.</p>
+        <div class="highlight-block">
+          <h3 data-i18n="bim.exampleTitle">Een wand verandert, de tekening blijft verbonden</h3>
+          <p data-i18n="bim.example">Stel dat een tekenaar maatvoering en toelichtingen toevoegt aan een vanuit BIM gegenereerde plattegrond, en deze op een blad met viewports plaatst. Wanneer een wand verschuift, willen we de gegenereerde geometrie kunnen vernieuwen, de gekoppelde maatvoering laten volgen en de handmatige aanvullingen en bladindeling behouden.</p>
+        </div>
+        <p data-i18n="bim.limits">Dat vraagt om stabiele identiteit en associatieve relaties tussen BIM-objecten, gegenereerde tekenonderdelen en handmatige CAD-bewerkingen. We willen voorkomen dat elke nieuwe generatie losse geometrie oplevert waaraan de tekenaar alles opnieuw moet koppelen. Bij verdwenen of fundamenteel gewijzigde objecten moeten ongeldige relaties herkenbaar worden. Deze BIM-koppeling en regeneratieworkflow zijn ontwikkeldoelen; ze zijn nog niet geïmplementeerd.</p>
+      </div>
+    </section>
+
+    <section class="section cta-section" aria-labelledby="contribute-title">
+      <div class="content-section">
+        <h2 id="contribute-title" data-i18n="cta.title">Verken IFCCAD en help mee</h2>
+        <p data-i18n="cta.desc">Probeer de Explorer, bekijk de broncode of deel praktijkervaring en testbestanden die je mag delen. Feedback van CAD-gebruikers, BIM-specialisten en ontwikkelaars helpt ons de volgende stappen te richten op echte tekenworkflows.</p>
+        <div class="hero-actions">
+          <a href="https://ifccad-explorer.open-aec.com" class="btn btn-primary" data-i18n="cta.explorer">Open de Format Explorer</a>
+          <a href="https://github.com/OpenAEC-Foundation/ifccad/issues" class="btn btn-secondary" data-i18n="cta.feedback">Feedback en bijdragen op GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer page-footer" style="padding: var(--sp-6);">
+    <div class="content-section footer-inner">
+      <a href="/" class="nav-brand">Open<span class="accent">AEC</span></a>
+      <a href="https://www.linkedin.com/company/23749451" rel="noopener">LinkedIn</a>
+      <p>&copy; 2026 OpenAEC Foundation</p>
+    </div>
+  </footer>
+  <script src="/shared/i18n.js?v=20261015"></script>
+</body>
+</html>
