@@ -39,7 +39,7 @@
 - Native IFC 4.3 (ADD2) file format, with IFC4 as a save option, so BIM software can use the schedule for 4D
 - AutoSave to the document's own file, separate from always-on crash recovery
 - Optional built-in MCP server in the desktop app: an AI client such as Claude Code can read and edit the schedule, with pause, read-only mode, automatic backups and an activity log
-- Interface and in-app Help in 28 languages, including right-to-left Arabic and Persian; the Help was rewritten into 79 articles
+- Interface and in-app Help in 28 languages, including right-to-left Arabic and Persian; the Help was rewritten into 78 articles
 - Runs on Windows, macOS and Linux and fully in the browser
 
 ## Tech stack

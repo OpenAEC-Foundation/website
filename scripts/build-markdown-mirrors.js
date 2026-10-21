@@ -254,7 +254,7 @@ const TOOLS = [
       'Native IFC 4.3 (ADD2) file format, with IFC4 as a save option, so BIM software can use the schedule for 4D',
       'AutoSave to the document\'s own file, separate from always-on crash recovery',
       'Optional built-in MCP server in the desktop app: an AI client such as Claude Code can read and edit the schedule, with pause, read-only mode, automatic backups and an activity log',
-      'Interface and in-app Help in 28 languages, including right-to-left Arabic and Persian; the Help was rewritten into 79 articles',
+      'Interface and in-app Help in 28 languages, including right-to-left Arabic and Persian; the Help was rewritten into 78 articles',
       'Runs on Windows, macOS and Linux and fully in the browser',
     ],
     whenToUse: 'Construction and civil engineering scheduling, as an open-source alternative to Microsoft Project, Primavera P6 or Asta Powerproject — especially when existing MS Project (.mpp) or Primavera P6 (.xer) files need to open faithfully, when the schedule should stay in an open format (IFC 4.3) that BIM software can use for 4D, or when an AI assistant should be able to work on the schedule directly.',
