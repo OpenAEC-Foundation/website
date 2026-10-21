@@ -302,4 +302,24 @@
     zet((start && data.plannen[start]) || data.plannen.supercloud || { gebruikers: 1 });
   });
 
+
+  // ---- Aanmelden ----------------------------------------------------------------
+  // De keuze van de site (plan, app, rekenhulp) gaat als verborgen velden mee.
+  const amForm = document.querySelector("[data-aanmeldformulier]");
+  if (amForm) {
+    const VELDEN = ["plan", "app", "sla", "type", "gebruikers", "apps", "erp", "opslag", "omgeving", "office", "ai", "extra_tb"];
+    const q = new URLSearchParams(location.search);
+    let meegegeven = 0;
+    for (const naam of VELDEN) {
+      const waarde = (q.get(naam) || "").trim();
+      if (!waarde || waarde.length > 300) continue;
+      const veld = document.createElement("input");
+      veld.type = "hidden";
+      veld.name = naam;
+      veld.value = waarde;
+      amForm.append(veld);
+      meegegeven++;
+    }
+    if (meegegeven) amForm.querySelector("[data-am-keuze]").hidden = false;
+  }
 })();
