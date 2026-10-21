@@ -309,7 +309,6 @@
   if (amForm) {
     const VELDEN = ["plan", "app", "sla", "type", "gebruikers", "apps", "erp", "opslag", "omgeving", "office", "ai", "extra_tb"];
     const q = new URLSearchParams(location.search);
-    let meegegeven = 0;
     for (const naam of VELDEN) {
       const waarde = (q.get(naam) || "").trim();
       if (!waarde || waarde.length > 300) continue;
@@ -318,8 +317,6 @@
       veld.name = naam;
       veld.value = waarde;
       amForm.append(veld);
-      meegegeven++;
     }
-    if (meegegeven) amForm.querySelector("[data-am-keuze]").hidden = false;
   }
 })();
