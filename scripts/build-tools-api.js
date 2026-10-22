@@ -387,7 +387,7 @@ const output = {
   dataFormats: {
     ifcx: 'Universal data format — all tools communicate in IFCX',
     ifc: ['IFC 2x3', 'IFC 4', 'IFC 4.3 (incl. civil schemas: IfcRoad, IfcRail, IfcBridge, IfcTunnel, IfcMarineFacility)'],
-    bcf: 'BCF 2.1 (XML) + BCF API 3.0 (REST)',
+    bcf: 'BCF 2.1 (XML) + BCF API 2.1 (REST)',
     ids: 'Information Delivery Specification (NL-BIM Basis ILS, RVB BIM Norm)',
     other: ['DXF', 'PDF', 'PDF/A', 'GEF', 'BRO-xml', 'LAS', 'LAZ'],
   },
