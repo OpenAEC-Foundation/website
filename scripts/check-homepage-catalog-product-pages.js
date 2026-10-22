@@ -24,11 +24,13 @@ assert.ok(
 );
 
 const retiredHomepageRepos = [
-  'open-energy-studio',
   'open-2d-studio',
   'openaec-cloud',
   'openaec-docs',
 ];
+
+// Open Energy Studio is back on the homepage since 2026.43.0 (installers and releases).
+assert.ok(homepage.includes('data-repo="open-energy-studio"'), 'homepage mist de kaart van Open Energy Studio');
 
 for (const repo of retiredHomepageRepos) {
   assert.ok(!homepage.includes(`data-repo="${repo}"`), `homepage bevat nog kaart: ${repo}`);
