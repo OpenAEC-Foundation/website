@@ -4,6 +4,17 @@
 (function() {
   const STORAGE_KEY = 'openaec-lang';
 
+  // Private repos: their GitHub release pages give visitors a 404, so release-notes links into
+  // them are hidden (also in groups that are expanded later). Remove a repo once it goes public.
+  const PRIVATE_REPOS = ['Y-app', 'Open-Calculations-Studio', 'open-safety-studio', 'open-3d-viewer'];
+  (function hidePrivateRepoLinks() {
+    const style = document.createElement('style');
+    style.textContent = PRIVATE_REPOS
+      .map((r) => `[data-release-notes] a[href*="/OpenAEC-Foundation/${r}/" i], [data-release-notes] a[href$="/OpenAEC-Foundation/${r}" i] { display: none !important; }`)
+      .join('\n');
+    document.head.appendChild(style);
+  })();
+
   const I18N = {
     nl: {
       title: 'Release notes',
