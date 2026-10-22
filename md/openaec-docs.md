@@ -15,7 +15,7 @@
 - Stars: **0**
 - Commits: **5**
 - Forks: **0**
-- Open issues: **2**
+- Open issues: **3**
 - Releases: **0**
 - Total downloads: **0**
 

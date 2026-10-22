@@ -13,9 +13,9 @@
 ## Live stats
 
 - Stars: **14**
-- Commits: **240**
+- Commits: **243**
 - Forks: **1**
-- Open issues: **11**
+- Open issues: **12**
 - Releases: **0**
 - Total downloads: **0**
 

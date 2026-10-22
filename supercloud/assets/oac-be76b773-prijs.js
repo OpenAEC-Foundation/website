@@ -9,18 +9,27 @@
   /**
    * keuze: { gebruikers, apps: { slug: aantal }, erp, opslag: "standaard"|"plus"|null,
    *          extra_tb, omgeving: bool, office, ai (euro), sla: "basis"|"zakelijk"|"premium" }
-   * Geeft { regels: [{ soort, sleutel, aantal, bedrag }], totaal, per_gebruiker, gratis }.
+   * Geeft { regels: [{ soort, sleutel, aantal, bedrag }], totaal, per_gebruiker, gratis,
+   *         op_aanvraag: [{ sleutel, aantal }] }.
    */
   function bereken(prijzen, keuze) {
     const g = Math.max(1, Math.floor(keuze.gebruikers || 1));
     const regels = [];
+    const opAanvraag = [];
     const regel = (soort, sleutel, aantal, bedrag) => {
       if (aantal > 0 && bedrag > 0) regels.push({ soort, sleutel, aantal, bedrag: rond(bedrag) });
     };
     for (const [slug, n] of Object.entries(keuze.apps || {})) {
       const niveau = prijzen.apps[slug];
-      if (!niveau || !(n > 0)) continue;
+      const dienst = prijzen.diensten && prijzen.diensten[slug];
+      if ((!niveau && !dienst) || !(n > 0)) continue;
       const aantal = Math.min(Math.floor(n), g);
+      if (dienst) {
+        // Gehoste dienst met een eigen prijs; boven het gratis aantal gebruikers op aanvraag.
+        if (dienst.gratis_tot != null && aantal > dienst.gratis_tot) opAanvraag.push({ sleutel: slug, aantal });
+        else regel("app", slug, aantal, aantal * dienst.per_gebruiker);
+        continue;
+      }
       const perStuk = prijzen.app_niveaus[niveau] + (prijzen.app_rekenkosten[slug] || 0);
       regel("app", slug, aantal, aantal * perStuk);
     }
@@ -44,10 +53,10 @@
     const sla = keuze.sla && prijzen.sla && prijzen.sla[keuze.sla];
     if (sla) regel("sla", `sla_${keuze.sla}`, 1, sla.vast + g * sla.per_gebruiker);
     // Zonder betaalde bouwstenen is het de gratis laag; anders telt elke gebruiker mee.
-    const gratis = regels.length === 0;
+    const gratis = regels.length === 0 && opAanvraag.length === 0;
     if (!gratis) regels.unshift({ soort: "gebruiker", sleutel: "gebruiker", aantal: g, bedrag: rond(g * prijzen.gebruiker) });
     const totaal = rond(regels.reduce((s, r) => s + r.bedrag, 0));
-    return { regels, totaal, per_gebruiker: rond(totaal / g), gratis };
+    return { regels, totaal, per_gebruiker: rond(totaal / g), gratis, op_aanvraag: opAanvraag };
   }
 
   globalThis.oacPrijs = { bereken };

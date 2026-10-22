@@ -266,15 +266,20 @@
       hulp.querySelector("[data-per-gebruiker]").textContent = uit.gratis ? "" : `${geld.format(uit.per_gebruiker)} ${data.per_gebruiker}`;
       hulp.querySelector("[data-gratis]").hidden = !uit.gratis;
       const lijst = hulp.querySelector("[data-regels]");
-      lijst.replaceChildren(...uit.regels.map((r) => {
+      const rij = (tekst, bedragTekst) => {
         const li = document.createElement("li");
         const naam = document.createElement("span");
-        naam.textContent = r.aantal > 1 || r.soort === "gebruiker" ? `${r.aantal} × ${naamVan(r)}` : naamVan(r);
+        naam.textContent = tekst;
         const bedrag = document.createElement("span");
-        bedrag.textContent = geld.format(r.bedrag);
+        bedrag.textContent = bedragTekst;
         li.append(naam, bedrag);
         return li;
-      }));
+      };
+      lijst.replaceChildren(
+        ...uit.regels.map((r) => rij(r.aantal > 1 || r.soort === "gebruiker" ? `${r.aantal} × ${naamVan(r)}` : naamVan(r), geld.format(r.bedrag))),
+        // Een dienst boven het gratis aantal gebruikers telt niet mee in het totaal.
+        ...uit.op_aanvraag.map((r) => rij(`${r.aantal} × ${data.apps[r.sleutel] || r.sleutel}`, data.op_aanvraag)),
+      );
       // De keuze gaat mee naar de aanmelding op de accounts-site.
       const knop = hulp.querySelector("[data-aanmeld-basis]");
       const q = new URLSearchParams();
