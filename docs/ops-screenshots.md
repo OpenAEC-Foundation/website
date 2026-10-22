@@ -73,3 +73,27 @@ Alle paden staan onder `shared/assets/screenshots/`.
 ## Controle
 
 De gerichte controles `check-release-timeline.js` en `check-release-notes-generator.js` slagen. Alle vier vertaalbestanden parsen als JSON. De browsercontrole op `http://100.86.248.78:3210/` controleert alle vijf taalroutes, de nieuwste release met badge en statistieken, en het laden van alle zeven paginabeelden. Ook de Nederlandse browservoorkeur is afzonderlijk gecontroleerd. De acht PNG-responses van de server zijn byte voor byte gelijk aan de nieuwe bestanden. Op 390 px breedte ontstaat geen horizontale overflow. Er zijn geen volledige OPS-testsuites gedraaid.
+
+## Beeldverhouding op de pagina
+
+Op 22 oktober 2026 is ook de vervorming van de hero hersteld. De gedeelde regel `.shot-float img` zette alleen `width: 100%`; de hoogte bleef daardoor het HTML-attribuut van 1048 px. Bij viewport 1280 was het element inclusief rand 992 × 1048 px. `height: auto` in `shared/style.css` laat de afbeelding nu evenredig meeschalen. De overlap blijft ongewijzigd: `margin-bottom: -120px`, en `-60px` tot 860 px breedte.
+
+Dit was geen gevolg van de nieuwe screenshotafmetingen. Vóór commits `42a946c` en `cdc9e2f` (op `7cbd287`) waren zowel de hero-PNG als de HTML-afmetingen al 1920 × 1048. Ook de CSS miste toen `height: auto`. Opnieuw vastleggen of uitsnijden is daarom niet nodig. De zes detailbeelden behouden de bestaande 16:10-kaders met `object-fit: cover; object-position: left top`.
+
+Headless Playwright heeft de vijf taalroutes (`nl`, `en`, `es`, `fr`, `tr`) op 1440, 1280, 1024, 768 en 390 px gecontroleerd. Eén Chromium-proces draaide onder `nice -n 19`, met tijdelijke bestanden onder `~/tmp`. Alle 175 beeldmetingen slagen. De taalversies hebben identieke beeldafmetingen. De HTML en gedeelde CSS van de draaiende server op poort 3210 zijn byte voor byte vergeleken met deze werkboom. Er is geen horizontale pagina-overflow.
+
+Hieronder staat per afbeelding de gemeten `clientWidth × clientHeight` met de verhouding tussen haakjes. Deze gehele pixels sluiten de rand uit. De hero is bij 1280 inclusief rand 992 × 542,375 px; bij 390 is dat 294 × 161,375 px.
+
+| Afbeelding (`open-planner-studio-…png`) | Natuurlijk (verhouding) | 1440 en 1280 | 1024 | 768 | 390 |
+| --- | --- | --- | --- | --- | --- |
+| `hero` | 1920 × 1048 (1,83206) | 990 × 540 (1,83333) | 926 × 505 (1,83366) | 670 × 366 (1,83060) | 292 × 159 (1,83648) |
+| `feat-critical-path` | 1036 × 648 (1,59877) | 623 × 389 (1,60154) | 511 × 319 (1,60188) | 686 × 428 (1,60280) | 308 × 192 (1,60417) |
+| `feat-file-import` | 1200 × 750 (1,60000) | 445 × 277 (1,60650) | 365 × 227 (1,60793) | 686 × 428 (1,60280) | 308 × 192 (1,60417) |
+| `feat-task-table` | 1200 × 750 (1,60000) | 623 × 389 (1,60154) | 511 × 319 (1,60188) | 686 × 428 (1,60280) | 308 × 192 (1,60417) |
+| `feat-occupancy` | 1200 × 750 (1,60000) | 445 × 277 (1,60650) | 365 × 227 (1,60793) | 686 × 428 (1,60280) | 308 × 192 (1,60417) |
+| `feat-reports` | 1200 × 750 (1,60000) | 623 × 389 (1,60154) | 511 × 319 (1,60188) | 686 × 428 (1,60280) | 308 × 192 (1,60417) |
+| `feat-ifc` | 1200 × 750 (1,60000) | 445 × 277 (1,60650) | 365 × 227 (1,60793) | 686 × 428 (1,60280) | 308 × 192 (1,60417) |
+
+De maximale relatieve afwijking is 0,241% voor de hero en 0,496% voor de detailbeelden. Ook zonder de toegestane `cover`-uitzondering blijft alles onder 1%. De hero is op 1280 en 390 px vastgelegd en visueel bekeken: het hele beeld blijft zichtbaar en de overlap met de lichte achtergrond blijft intact. De opnamen staan in `~/tmp/pr36-hero-1280.png` en `~/tmp/pr36-hero-390.png`. De ruwe metingen staan in `~/tmp/pr36-image-ratios.json`; het gebruikte controlescript staat in `~/tmp/pr36-check-ratios.cjs`.
+
+Deze controle betreft headless Chromium op de bestaande dev-server. Firefox, Safari en productie zijn niet gecontroleerd.
