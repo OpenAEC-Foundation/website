@@ -30,7 +30,10 @@
         else regel("app", slug, aantal, aantal * dienst.per_gebruiker);
         continue;
       }
-      const perStuk = prijzen.app_niveaus[niveau] + (prijzen.app_rekenkosten[slug] || 0);
+      // Team: vanaf een minimum aantal gebruikers korting op de toolprijs (niet op de rekenkosten).
+      const team = prijzen.team_korting && g >= (prijzen.team_min_gebruikers || Infinity);
+      const toolprijs = prijzen.app_niveaus[niveau] * (team ? 1 - prijzen.team_korting : 1);
+      const perStuk = toolprijs + (prijzen.app_rekenkosten[slug] || 0);
       regel("app", slug, aantal, aantal * perStuk);
     }
     if (keuze.erp > 0) {

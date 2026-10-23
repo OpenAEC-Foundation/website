@@ -304,7 +304,7 @@
     }
     hulp.hidden = false;
     const start = new URLSearchParams(location.search).get("plan");
-    zet((start && data.plannen[start]) || data.plannen.supercloud || { gebruikers: 1 });
+    zet((start && data.plannen[start]) || data.plannen.team || { gebruikers: 1 });
   });
 
 
