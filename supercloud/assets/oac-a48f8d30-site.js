@@ -212,6 +212,24 @@
     toepassen();
   }
 
+  // ---- Valuta ----------------------------------------------------------------
+  // De bezoeker kiest op de prijzenpagina een valuta; die keuze gaat mee naar de aanmelding.
+  const VALUTA_SLEUTEL = "oac-valuta";
+  function bewaardeValuta() {
+    try {
+      return localStorage.getItem(VALUTA_SLEUTEL);
+    } catch {
+      return null;
+    }
+  }
+  function bewaarValuta(v) {
+    try {
+      localStorage.setItem(VALUTA_SLEUTEL, v);
+    } catch {
+      // Zonder opslag geldt de keuze alleen voor deze pagina.
+    }
+  }
+
   // ---- Rekenhulp op de prijzenpagina ----------------------------------------
   // prijs.js laadt na dit script; bij DOMContentLoaded is het er altijd.
   document.addEventListener("DOMContentLoaded", () => {
@@ -219,7 +237,11 @@
     const dataEl = document.getElementById("prijzen");
     if (!hulp || !dataEl || !globalThis.oacPrijs) return;
     const data = JSON.parse(dataEl.textContent);
-    const geld = new Intl.NumberFormat(data.locale, { style: "currency", currency: "EUR", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const gevraagd = new URLSearchParams(location.search).get("valuta") || bewaardeValuta() || "";
+    let valuta = gevraagd.toUpperCase() in data.valutas ? gevraagd.toUpperCase() : Object.keys(data.valutas)[0];
+    const maakGeld = (v) => new Intl.NumberFormat(data.locale, { style: "currency", currency: v, minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    let geld = maakGeld(valuta);
+    const aanmeldPad = new URL(hulp.querySelector("[data-aanmeld-basis]").dataset.aanmeldBasis, location.href).pathname;
     const veld = (naam) => hulp.querySelectorAll(`[data-veld="${naam}"]`);
     const getal = (naam) => Math.max(0, Math.floor(Number(veld(naam)[0].value) || 0));
 
@@ -261,7 +283,7 @@
 
     function toon() {
       const keuze = lees();
-      const uit = globalThis.oacPrijs.bereken(data.prijzen, keuze);
+      const uit = globalThis.oacPrijs.bereken(data.valutas[valuta], keuze);
       hulp.querySelector("[data-totaal]").textContent = geld.format(uit.totaal);
       hulp.querySelector("[data-per-gebruiker]").textContent = uit.gratis ? "" : `${geld.format(uit.per_gebruiker)} ${data.per_gebruiker}`;
       hulp.querySelector("[data-gratis]").hidden = !uit.gratis;
@@ -290,6 +312,7 @@
       if (keuze.opslag) q.set("opslag", keuze.opslag);
       if (keuze.omgeving) q.set("omgeving", "1");
       q.set("sla", keuze.sla);
+      q.set("valuta", valuta);
       knop.href = `${knop.dataset.aanmeldBasis}&${q.toString()}`;
     }
 
@@ -302,9 +325,35 @@
         if (!hulp.contains(knop)) hulp.scrollIntoView({ behavior: "smooth", block: "start" });
       });
     }
+    // Valutakeuze: alle bedragen op de pagina, de rekenhulp en de aanmeldlinks.
+    function zetValuta(v) {
+      valuta = v;
+      geld = maakGeld(v);
+      for (const el of document.querySelectorAll("[data-v]")) el.textContent = JSON.parse(el.dataset.v)[v];
+      for (const a of document.querySelectorAll("a[href]")) {
+        if (a.hasAttribute("data-aanmeld-basis")) continue;
+        const url = new URL(a.href, location.href);
+        if (url.origin !== location.origin || url.pathname !== aanmeldPad) continue;
+        url.searchParams.set("valuta", v);
+        a.href = url.pathname + url.search + url.hash;
+      }
+      toon();
+    }
+    const keuzeEl = document.querySelector("[data-valuta-keuze]");
+    if (keuzeEl) {
+      const select = keuzeEl.querySelector("[data-valuta]");
+      select.value = valuta;
+      select.addEventListener("change", () => {
+        bewaarValuta(select.value);
+        zetValuta(select.value);
+      });
+      keuzeEl.hidden = false;
+    }
+
     hulp.hidden = false;
     const start = new URLSearchParams(location.search).get("plan");
     zet((start && data.plannen[start]) || data.plannen.team || { gebruikers: 1 });
+    zetValuta(valuta);
   });
 
 
@@ -312,10 +361,11 @@
   // De keuze van de site (plan, app, rekenhulp) gaat als verborgen velden mee.
   const amForm = document.querySelector("[data-aanmeldformulier]");
   if (amForm) {
-    const VELDEN = ["plan", "app", "sla", "type", "gebruikers", "apps", "erp", "opslag", "omgeving", "office", "ai", "extra_tb"];
+    const VELDEN = ["plan", "app", "sla", "type", "gebruikers", "apps", "erp", "opslag", "omgeving", "office", "ai", "extra_tb", "valuta"];
     const q = new URLSearchParams(location.search);
     for (const naam of VELDEN) {
-      const waarde = (q.get(naam) || "").trim();
+      // De valuta komt uit de link of anders uit de keuze op de prijzenpagina.
+      const waarde = (q.get(naam) || (naam === "valuta" && bewaardeValuta()) || "").trim();
       if (!waarde || waarde.length > 300) continue;
       const veld = document.createElement("input");
       veld.type = "hidden";
