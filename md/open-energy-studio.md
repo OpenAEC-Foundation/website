@@ -13,12 +13,12 @@
 ## Live stats
 
 - Stars: **1**
-- Commits: **1477**
+- Commits: **1480**
 - Forks: **2**
-- Open issues: **2**
+- Open issues: **4**
 - Releases: **4**
-- Total downloads: **42**
-- Downloads by platform: Windows (18), Linux (deb) (8), macOS (8), Linux (AppImage) (4), Windows (MSI) (2), Linux (rpm) (1), Other (1)
+- Total downloads: **45**
+- Downloads by platform: Windows (21), Linux (deb) (8), macOS (8), Linux (AppImage) (4), Windows (MSI) (2), Linux (rpm) (1), Other (1)
 
 ## Key features
 
@@ -60,9 +60,9 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 ## Direct downloads (most popular)
 
 - [Windows · Open.Energy.Studio_0.1.6-alpha_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.6-alpha_x64-setup.exe) (v0.1.7-alpha — 4.1 MB)
+- [Windows · Open.Energy.Studio_2026.43.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v2026.43.0/Open.Energy.Studio_2026.43.0_x64-setup.exe) (v2026.43.0 — 9.8 MB)
 - [macOS · Open.Energy.Studio_0.1.7-alpha_aarch64.dmg](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.7-alpha_aarch64.dmg) (v0.1.7-alpha — 6.9 MB)
 - [Windows · Open.Energy.Studio_0.1.7-alpha_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.7-alpha_x64-setup.exe) (v0.1.7-alpha — 5.7 MB)
-- [Windows · Open.Energy.Studio_2026.43.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v2026.43.0/Open.Energy.Studio_2026.43.0_x64-setup.exe) (v2026.43.0 — 9.8 MB)
 - [Linux (deb) · Open.Energy.Studio_0.1.6-alpha_amd64.deb](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.6-alpha_amd64.deb) (v0.1.7-alpha — 5.5 MB)
 - [Linux (AppImage) · Open.Energy.Studio_0.1.7-alpha_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.7-alpha_amd64.AppImage) (v0.1.7-alpha — 81.5 MB)
 - [Linux (deb) · Open.Energy.Studio_0.1.7-alpha_amd64.deb](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.7-alpha_amd64.deb) (v0.1.7-alpha — 7.1 MB)
