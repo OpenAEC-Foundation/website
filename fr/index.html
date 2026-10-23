@@ -1024,7 +1024,7 @@
             <a href="/fr/open-pointcloud-studio/#download" class="tool-link" data-i18n="tools.download">Télécharger →</a>
           </div>
         </article>
-        <article class="tool-card" data-repo="pile-plan-studio" data-categories="E,I,NL">
+        <article class="tool-card" data-repo="pile-plan-studio" data-categories="E,I,NL" data-catalog="general">
           <img class="tool-thumb" src="/shared/assets/screenshots/open-pile-plan-studio.png" alt="Open Pile Plan Studio — interactief paalplan met belastinglocaties en paalopties">
           <div>
             <div class="tool-cats"><span class="tool-cat tool-cat-e">E</span><span class="tool-cat tool-cat-i">I</span><span class="tool-cat tool-cat-nl" title="Nederlandse normen">NL</span></div>
@@ -1386,12 +1386,12 @@
         const btns = document.querySelectorAll('.cat-filter-btn');
 
         // Compute counts and render them
-        const isNl = (c) => (c.dataset.categories || '').split(',').map(s => s.trim()).includes('NL');
-        // Nederlandse tools (NL) staan standaard niet in de lijst; alleen onder de filter NL.
-        const counts = { all: cards.filter(c => !isNl(c)).length, A: 0, E: 0, C: 0, I: 0, NL: 0 };
+        const isNlOnly = (c) => (c.dataset.categories || '').split(',').map(s => s.trim()).includes('NL') && c.dataset.catalog !== 'general';
+        // Een algemene tool kan ook Nederlandse normen ondersteunen zonder uit de andere categorieën te verdwijnen.
+        const counts = { all: cards.filter(c => !isNlOnly(c)).length, A: 0, E: 0, C: 0, I: 0, NL: 0 };
         cards.forEach(c => {
           const cats = (c.dataset.categories || '').split(',').map(s => s.trim()).filter(Boolean);
-          cats.forEach(k => { if (counts[k] != null && (k === 'NL' || !cats.includes('NL'))) counts[k]++; });
+          cats.forEach(k => { if (counts[k] != null && (k === 'NL' || !isNlOnly(c))) counts[k]++; });
         });
         document.querySelectorAll('[data-cat-count]').forEach(el => {
           const k = el.getAttribute('data-cat-count');
@@ -1401,7 +1401,7 @@
         function apply(cat) {
           cards.forEach(c => {
             const cats = (c.dataset.categories || '').split(',').map(s => s.trim());
-            if (cat !== 'NL' && cats.includes('NL')) {
+            if (cat !== 'NL' && isNlOnly(c)) {
               c.classList.add('is-hidden');
               return;
             }
@@ -1415,7 +1415,7 @@
         }
 
         btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.cat)));
-        // Bij het laden: de standaardweergave, zonder de Nederlandse tools.
+        // Bij het laden: algemene tools, inclusief tools met aanvullende Nederlandse normen.
         apply('all');
       })();
 
