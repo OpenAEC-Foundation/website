@@ -34,43 +34,28 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/shared/style.css?v=20261015">
   <style>
-    .page-header { background: var(--night-build); padding: var(--sp-16) var(--sp-6) var(--sp-12); text-align: center; border-bottom: 3px solid transparent; border-image: var(--gradient-accent) 1; }
-    .page-header .section-label { display: block; color: var(--warm-gold); margin: 0 auto var(--sp-4); }
-    .page-header h1 { color: var(--blueprint-white); font-size: clamp(2.75rem, 7vw, 4rem); margin-bottom: var(--sp-4); }
-    .page-header h1 .accent { color: var(--warm-gold); }
-    .page-header .intro { max-width: 720px; margin: 0 auto; color: var(--blueprint-white); font-size: 1.125rem; line-height: 1.7; }
-    .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--sp-3); margin: var(--sp-6) 0 var(--sp-3); }
-    .page-header .btn-secondary, .cta-section .btn-secondary { color: var(--blueprint-white); border-color: var(--scaffold-gray); }
-    .page-header .explorer-note { max-width: 650px; margin: 0 auto; color: var(--scaffold-gray); font-size: .9375rem; }
-    .explorer-preview { max-width: 1100px; margin: var(--sp-8) auto 0; }
-    .explorer-preview a { display: block; border-radius: var(--radius-lg); }
-    .explorer-preview img { display: block; width: 100%; height: auto; border: 1px solid var(--scaffold-gray); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
-    .explorer-preview figcaption { margin-top: var(--sp-3); color: var(--scaffold-gray); font-size: .875rem; line-height: 1.6; }
-    .content-section { max-width: 850px; margin: 0 auto; }
-    .content-section + .content-section { margin-top: var(--sp-12); }
-    .content-section h2 { font-size: 1.75rem; margin-bottom: var(--sp-5); }
-    .content-section h3 { font-size: 1.125rem; margin-bottom: var(--sp-3); }
-    .content-section p { max-width: none; margin-bottom: var(--sp-4); line-height: 1.75; }
-    .content-section a:not(.btn) { text-decoration: underline; text-underline-offset: .2em; }
-    .content-section ul { padding-left: var(--sp-6); margin-bottom: var(--sp-5); }
-    .content-section li { padding: var(--sp-1) 0; }
-    .pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-4); margin: var(--sp-8) 0; }
-    .pillar { background: white; border: 1px solid var(--concrete); border-top: 3px solid var(--amber); border-radius: var(--radius-md); padding: var(--sp-5); box-shadow: var(--shadow-sm); }
-    .pillar p { font-size: .9375rem; margin-bottom: 0; }
-    .highlight-block { background: var(--night-build); border-left: 4px solid var(--amber); border-radius: var(--radius-lg); padding: var(--sp-8); margin: var(--sp-6) 0; color: var(--blueprint-white); }
-    .highlight-block h3 { color: var(--warm-gold); }
+    .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: var(--sp-3); margin: var(--sp-6) 0; }
+    .explorer-note { max-width: 680px; margin: 0 auto; color: var(--text-on-dark); font-size: .9375rem; line-height: 1.7; }
+    .explorer-preview a { display: block; position: relative; z-index: 1; border-radius: var(--radius-lg); }
+    .explorer-preview figcaption { position: relative; margin-top: var(--sp-4); color: var(--text-on-dark); font-size: .875rem; line-height: 1.6; }
+    .content-section { max-width: 1000px; margin: 0 auto; }
+    .reading-block + .reading-block { margin-top: var(--sp-16); }
+    .panel-split-text > .icon-tile { margin-bottom: var(--sp-4); }
+    .panel-split-body p { max-width: none; }
+    main p a:not(.btn) { text-decoration: underline; text-underline-offset: .2em; }
+    .pillars { margin-top: var(--sp-8); }
+    .status-note { margin-bottom: var(--sp-6); }
+    .status-note p { max-width: none; margin: 0; line-height: 1.75; }
+    .capabilities { margin-bottom: var(--sp-6); }
+    .ifccad-status > .container > p { max-width: 850px; margin: 0 auto; line-height: 1.75; color: var(--text-on-light); }
+    .ifccad-preservation h2 { color: white; margin-bottom: var(--sp-5); }
+    .ifccad-preservation p { max-width: none; color: var(--text-on-dark); line-height: 1.75; margin-bottom: var(--sp-4); }
+    .highlight-block { margin: var(--sp-6) 0; }
+    .highlight-block h3 { font-size: 1.2rem; margin-bottom: var(--sp-3); }
     .highlight-block p:last-child { margin-bottom: 0; }
-    .status-note { padding: var(--sp-5); background: var(--concrete); border-radius: var(--radius-md); margin-bottom: var(--sp-6); }
-    .status-note p:last-child { margin-bottom: 0; }
-    .capabilities { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--sp-5); margin: var(--sp-6) 0; }
-    .capability { padding: var(--sp-5); background: white; border: 1px solid var(--concrete); border-radius: var(--radius-md); }
-    .capability p { font-size: .9375rem; margin-bottom: 0; }
-    .cta-section { background: var(--deep-forge); color: var(--blueprint-white); }
-    .cta-section .hero-actions { justify-content: flex-start; }
-    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--sp-4); }
-    .footer-inner p { margin: 0; font-size: .8125rem; }
+    .ifccad-preservation .highlight-block h3 { color: var(--warm-gold); }
     a:focus-visible { outline: 3px solid var(--warm-gold); outline-offset: 4px; }
-    @media (max-width: 768px) { .pillars, .capabilities { grid-template-columns: 1fr; } .page-header { padding-top: var(--sp-12); } .highlight-block { padding: var(--sp-5); } .content-section h2 { font-size: 1.5rem; } .hero-actions .btn { width: 100%; max-width: 380px; } }
+    @media (max-width: 768px) { .hero-actions .btn { width: 100%; max-width: 380px; } .reading-block + .reading-block { margin-top: var(--sp-10); } }
   </style>
   <meta name="i18n-static" content="fr">
   <!-- schema:start -->
@@ -106,7 +91,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "fr",
-        "dateModified": "2026-10-22",
+        "dateModified": "2026-10-23",
         "breadcrumb": {
           "@id": "https://open-aec.com/fr/ifccad/#breadcrumb"
         }
@@ -134,7 +119,7 @@
   </script>
   <!-- schema:end -->
 </head>
-<body>
+<body class="page-panels">
   <div id="shared-nav"><!-- nav:start -->
 <nav class="navbar">
   <div class="nav-container">
@@ -167,16 +152,19 @@
 <!-- nav:end --></div>
   <script src="/shared/nav.js?v=20261015"></script>
   <script src="/shared/feedback.js?v=20261022" defer></script>
-  <header class="page-header">
-    <p class="section-label" data-i18n="hero.label">OpenAEC · format CAO ouvert</p>
+  <header class="product-head surface-spot panel">
+    <div class="product-head-inner">
+    <p class="pill-label" data-i18n="hero.label">OpenAEC · format CAO ouvert</p>
     <h1>IFC<span class="accent">CAD</span></h1>
-    <p class="intro" data-i18n="hero.intro">Un format ouvert pour des dessins CAO complets, fondé sur IFCX. Utilisable de manière autonome, avec l’ambition de relier durablement les dessins et le BIM.</p>
+    <p class="lead" data-i18n="hero.intro">Un format ouvert pour des dessins CAO complets, fondé sur IFCX. Utilisable de manière autonome, avec l’ambition de relier durablement les dessins et le BIM.</p>
     <div class="hero-actions">
-      <a href="https://ifccad-explorer.open-aec.com" class="btn btn-primary" data-i18n="hero.explorer">Découvrir IFCCAD dans le Format Explorer</a>
-      <a href="https://github.com/OpenAEC-Foundation/ifccad" class="btn btn-secondary" data-i18n="hero.github">Suivre le développement sur GitHub</a>
+      <a href="https://ifccad-explorer.open-aec.com" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="hero.explorer">Découvrir IFCCAD dans le Format Explorer</span></a>
+      <a href="https://github.com/OpenAEC-Foundation/ifccad" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n="hero.github">Suivre le développement sur GitHub</span></a>
     </div>
     <p class="explorer-note" data-i18n="hero.note">Explorez le format et essayez la conversion de fichiers DWG et DXF. L’Explorer montre aussi les informations que la conversion actuelle préserve et ses limites.</p>
-    <figure class="explorer-preview">
+
+      </div>
+    <figure class="explorer-preview shot-float">
       <a href="/shared/assets/screenshots/ifccad-format-explorer.png" target="_blank" rel="noopener">
         <img src="/shared/assets/screenshots/ifccad-format-explorer.png" alt="IFCCAD Format Explorer avec la structure du dessin et le plan d’une maison dans Open CAD Studio" data-i18n="hero.screenshotAlt" data-i18n-attr="alt" width="1920" height="948" decoding="async">
       </a>
@@ -184,98 +172,128 @@
     </figure>
   </header>
 
-  <main>
-    <section class="section">
-      <div class="content-section">
-        <h2 data-i18n="why.title">Pourquoi nous développons IFCCAD</h2>
-        <p data-i18n="why.p1">Les dessins CAO restent indispensables : pour les détails, les plans d’exécution, les projets existants et les conceptions qui ne nécessitent pas de maquette BIM. Pourtant, ces échanges reposent largement sur DWG, un format dont l’évolution est contrôlée par un éditeur de logiciels. OpenAEC souhaite développer une alternative ouverte permettant aux dessins de circuler entre applications et de rester accessibles à long terme.</p>
-        <p data-i18n="why.p2">IFCCAD doit préserver davantage que les lignes visibles. Les calques, les blocs, le texte, les cotations, les présentations et leurs relations font aussi partie d’un dessin exploitable. Notre objectif est de remplacer DWG comme format de travail et d’échange, avec une transition qui préserve le sens des fichiers DWG et DXF existants.</p>
-        <div class="pillars">
-          <article class="pillar"><h3 data-i18n="pillars.open.title">Ouvert et indépendant</h3><p data-i18n="pillars.open.desc">Un modèle de dessin documenté publiquement, que différentes applications CAO peuvent lire et écrire.</p></article>
-          <article class="pillar"><h3 data-i18n="pillars.standalone.title">Utilisable de manière autonome</h3><p data-i18n="pillars.standalone.desc">Un dessin CAO complet doit aussi être utilisable sans maquette BIM ni liaison BIM.</p></article>
-          <article class="pillar"><h3 data-i18n="pillars.bim.title">Connexion au BIM</h3><p data-i18n="pillars.bim.desc">Une base pour relier les dessins, les objets du bâtiment et le contenu CAO généré.</p></article>
-        </div>
-      </div>
-      <div class="content-section">
-        <h2 data-i18n="roundtrip.title">Des allers-retours fiables avec DWG et DXF</h2>
-        <p data-i18n="roundtrip.p1">Nous visons un <strong>aller-retour fidèle</strong> : convertir un fichier DWG ou DXF en IFCCAD, le modifier puis le réexporter en préservant la géométrie, la structure du dessin, les propriétés et les relations pertinentes. Il s’agit de préserver le sens et la possibilité de modifier le dessin ; les octets internes du fichier ou les identifiants CAO réattribués n’ont pas besoin d’être identiques.</p>
-        <p data-i18n="roundtrip.p2">La représentation native, la préservation et les diagnostics explicites de conversion se complètent. Les éléments pris en charge doivent être transférés de manière fiable ; les limites doivent être visibles. Les tests actuels qualifient des composants et des processus bien délimités, sans garantir encore un aller-retour complet pour chaque fichier DWG ou DXF. Nous souhaitons ensuite étendre cette approche à d’autres formats CAO.</p>
-      </div>
-      <div class="content-section">
-        <h2 data-i18n="studio.title">opencadcodec et Open CAD Studio</h2>
-        <p data-i18n="studio.p1">Pour lire et écrire les fichiers DWG et DXF, nous utilisons <a href="https://github.com/HakanSeven12/opencadcodec">opencadcodec</a>, le codec CAO de l’écosystème <a href="/fr/open-cad-studio/">Open CAD Studio</a>. Nos convertisseurs relient directement le modèle CAO de ce codec à IFCCAD. Les améliorations et les limites constatées sont également partagées avec le projet amont.</p>
-        <p data-i18n="studio.p2">Le Format Explorer peut déjà utiliser Open CAD Studio pour afficher le contenu CAO original et celui issu d’un aller-retour. Nous souhaitons aussi intégrer prochainement IFCCAD directement dans Open CAD Studio, afin d’inscrire le format dans un environnement de travail CAO concret.</p>
-      </div>
-      <div class="content-section">
-        <h2 data-i18n="profile.title">Un profil CAO au sein d’IFCX</h2>
-        <p data-i18n="profile.p1">IFCCAD utilise la structure et les possibilités de composition d’<a href="/fr/ifcx/">IFCX</a> pour les dessins CAO. IFCX permet de décrire les informations au moyen de schémas et d’espaces de noms. IFCCAD y ajoute le sens et les règles nécessaires à un dessin : géométrie, présentation, appartenance et références entre les composants du dessin.</p>
-        <p data-i18n="profile.p2">Nous souhaitons réutiliser directement les schémas IFCX existants lorsqu’ils peuvent exprimer la sémantique CAO nécessaire. Des définitions spécifiques temporaires comblent les lacunes actuelles. Nous explorons ainsi la place de la CAO dans l’écosystème IFCX en développement, tout en permettant à un fichier IFCCAD de décrire un dessin autonome.</p>
-        <p data-i18n="profile.p3">IFCCAD est actuellement un profil expérimental d’OpenAEC. Le profil et IFCX sont tous deux en développement ; IFCCAD n’est pas encore une norme CAO officielle de buildingSMART.</p>
-      </div>
+    <main>
+    <section class="section ifccad-intro">
+      <div class="container"><div class="panel-split on-light"><div class="panel-split-text"><h2 data-i18n="why.title">Pourquoi nous développons IFCCAD</h2></div><div class="panel-split-body"><p data-i18n="why.p1">Les dessins CAO restent indispensables : pour les détails, les plans d’exécution, les projets existants et les conceptions qui ne nécessitent pas de maquette BIM. Pourtant, ces échanges reposent largement sur DWG, un format dont l’évolution est contrôlée par un éditeur de logiciels. OpenAEC souhaite développer une alternative ouverte permettant aux dessins de circuler entre applications et de rester accessibles à long terme.</p>
+        <p data-i18n="why.p2">IFCCAD doit préserver davantage que les lignes visibles. Les calques, les blocs, le texte, les cotations, les présentations et leurs relations font aussi partie d’un dessin exploitable. Notre objectif est de remplacer DWG comme format de travail et d’échange, avec une transition qui préserve le sens des fichiers DWG et DXF existants.</p></div></div><div class="pillars grid-auto-3">
+          <article class="pillar card-lift"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div><h3 data-i18n="pillars.open.title">Ouvert et indépendant</h3><p data-i18n="pillars.open.desc">Un modèle de dessin documenté publiquement, que différentes applications CAO peuvent lire et écrire.</p></article>
+          <article class="pillar card-lift"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><h3 data-i18n="pillars.standalone.title">Utilisable de manière autonome</h3><p data-i18n="pillars.standalone.desc">Un dessin CAO complet doit aussi être utilisable sans maquette BIM ni liaison BIM.</p></article>
+          <article class="pillar card-lift"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div><h3 data-i18n="pillars.bim.title">Connexion au BIM</h3><p data-i18n="pillars.bim.desc">Une base pour relier les dessins, les objets du bâtiment et le contenu CAO généré.</p></article>
+        </div></div>
     </section>
 
-    <section class="section section-alt" aria-labelledby="development-title">
-      <div class="content-section">
-        <p class="section-label" data-i18n="status.label">État du développement · octobre 2026</p>
-        <h2 id="development-title" data-i18n="status.title">Ce qu’IFCCAD peut déjà stocker</h2>
-        <div class="status-note"><p data-i18n="status.intro">Il existe un modèle de dessin dédié, des schémas, une validation stricte, des lecteurs et des outils d’écriture, ainsi que des voies de conversion directes pour DWG et DXF. Le <a href="https://ifccad-explorer.open-aec.com">Format Explorer</a> permet d’inspecter le format et d’essayer les conversions. La prise en charge actuelle est délimitée : toutes les variantes et propriétés des composants CAO ci-dessous ne sont pas encore couvertes.</p></div>
-        <div class="capabilities">
-          <article class="capability"><h3 data-i18n="capabilities.geometry.title">Géométrie</h3><p data-i18n="capabilities.geometry.desc">Points, lignes, cercles et arcs, ellipses complètes et partielles, polylignes planes à segments droits et courbes, et polylignes spatiales à segments droits.</p></article>
-          <article class="capability"><h3 data-i18n="capabilities.appearance.title">Calques et présentation</h3><p data-i18n="capabilities.appearance.desc">Calques, couleurs, transparence, épaisseurs de ligne, types de ligne simples et réglages d’échelle, avec des choix distincts pour ByLayer, ByBlock et les propriétés explicites.</p></article>
-          <article class="capability"><h3 data-i18n="capabilities.blocks.title">Blocs et texte</h3><p data-i18n="capabilities.blocks.desc">Blocs locaux réutilisables et imbriqués, points d’insertion, rotation et échelle, ainsi que texte simple et multiligne dans les profils de mise en forme pris en charge.</p></article>
-          <article class="capability"><h3 data-i18n="capabilities.hatches.title">Hachures</h3><p data-i18n="capabilities.hatches.desc">Remplissages unis et motifs de lignes explicites avec contours enregistrés, îlots et références prises en charge vers la géométrie de délimitation.</p></article>
-          <article class="capability"><h3 data-i18n="capabilities.layouts.title">Espace objet et espace papier</h3><p data-i18n="capabilities.layouts.desc">Espace objet, plusieurs présentations papier, ordre des onglets, formats de feuille, réglages de tracé pris en charge et fenêtres avec caméras et découpage.</p></article>
-          <article class="capability"><h3 data-i18n="capabilities.workspace.title">Environnement de dessin</h3><p data-i18n="capabilities.workspace.desc">Définitions SCU prises en charge, fenêtres de l’espace objet et réglages de grille et d’accrochage, ainsi que visibilité et ordre d’affichage.</p></article>
+    <section class="section surface-dark panel">
+      <div class="panel-split"><div class="panel-split-text"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-move"/></svg></div><h2 data-i18n="roundtrip.title">Des allers-retours fiables avec DWG et DXF</h2></div><div class="panel-split-body"><p data-i18n="roundtrip.p1">Nous visons un <strong>aller-retour fidèle</strong> : convertir un fichier DWG ou DXF en IFCCAD, le modifier puis le réexporter en préservant la géométrie, la structure du dessin, les propriétés et les relations pertinentes. Il s’agit de préserver le sens et la possibilité de modifier le dessin ; les octets internes du fichier ou les identifiants CAO réattribués n’ont pas besoin d’être identiques.</p>
+        <p data-i18n="roundtrip.p2">La représentation native, la préservation et les diagnostics explicites de conversion se complètent. Les éléments pris en charge doivent être transférés de manière fiable ; les limites doivent être visibles. Les tests actuels qualifient des composants et des processus bien délimités, sans garantir encore un aller-retour complet pour chaque fichier DWG ou DXF. Nous souhaitons ensuite étendre cette approche à d’autres formats CAO.</p></div></div>
+    </section>
+
+    <section class="section">
+      <div class="container"><div class="reading-block"><div class="panel-split on-light"><div class="panel-split-text"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div><h2 data-i18n="studio.title">opencadcodec et Open CAD Studio</h2></div><div class="panel-split-body"><p data-i18n="studio.p1">Pour lire et écrire les fichiers DWG et DXF, nous utilisons <a href="https://github.com/HakanSeven12/opencadcodec">opencadcodec</a>, le codec CAO de l’écosystème <a href="/fr/open-cad-studio/">Open CAD Studio</a>. Nos convertisseurs relient directement le modèle CAO de ce codec à IFCCAD. Les améliorations et les limites constatées sont également partagées avec le projet amont.</p>
+        <p data-i18n="studio.p2">Le Format Explorer peut déjà utiliser Open CAD Studio pour afficher le contenu CAO original et celui issu d’un aller-retour. Nous souhaitons aussi intégrer prochainement IFCCAD directement dans Open CAD Studio, afin d’inscrire le format dans un environnement de travail CAO concret.</p></div></div></div><div class="reading-block"><div class="panel-split on-light"><div class="panel-split-text"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><h2 data-i18n="profile.title">Un profil CAO au sein d’IFCX</h2></div><div class="panel-split-body"><p data-i18n="profile.p1">IFCCAD utilise la structure et les possibilités de composition d’<a href="/fr/ifcx/">IFCX</a> pour les dessins CAO. IFCX permet de décrire les informations au moyen de schémas et d’espaces de noms. IFCCAD y ajoute le sens et les règles nécessaires à un dessin : géométrie, présentation, appartenance et références entre les composants du dessin.</p>
+        <p data-i18n="profile.p2">Nous souhaitons réutiliser directement les schémas IFCX existants lorsqu’ils peuvent exprimer la sémantique CAO nécessaire. Des définitions spécifiques temporaires comblent les lacunes actuelles. Nous explorons ainsi la place de la CAO dans l’écosystème IFCX en développement, tout en permettant à un fichier IFCCAD de décrire un dessin autonome.</p>
+        <p data-i18n="profile.p3">IFCCAD est actuellement un profil expérimental d’OpenAEC. Le profil et IFCX sont tous deux en développement ; IFCCAD n’est pas encore une norme CAO officielle de buildingSMART.</p></div></div></div></div>
+    </section>
+
+    <section class="section ifccad-status" aria-labelledby="development-title">
+      <div class="container"><div class="section-head"><p class="pill-label on-light" data-i18n="status.label">État du développement · octobre 2026</p>
+        <h2 id="development-title" data-i18n="status.title">Ce qu’IFCCAD peut déjà stocker</h2></div>
+        <div class="status-note card-lift"><p data-i18n="status.intro">Il existe un modèle de dessin dédié, des schémas, une validation stricte, des lecteurs et des outils d’écriture, ainsi que des voies de conversion directes pour DWG et DXF. Le <a href="https://ifccad-explorer.open-aec.com">Format Explorer</a> permet d’inspecter le format et d’essayer les conversions. La prise en charge actuelle est délimitée : toutes les variantes et propriétés des composants CAO ci-dessous ne sont pas encore couvertes.</p></div>
+        <div class="capabilities grid-auto-3">
+          <article class="capability card-lift"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-set-square"/></svg></div><h3 data-i18n="capabilities.geometry.title">Géométrie</h3><p data-i18n="capabilities.geometry.desc">Points, lignes, cercles et arcs, ellipses complètes et partielles, polylignes planes à segments droits et courbes, et polylignes spatiales à segments droits.</p></article>
+          <article class="capability card-lift"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><h3 data-i18n="capabilities.appearance.title">Calques et présentation</h3><p data-i18n="capabilities.appearance.desc">Calques, couleurs, transparence, épaisseurs de ligne, types de ligne simples et réglages d’échelle, avec des choix distincts pour ByLayer, ByBlock et les propriétés explicites.</p></article>
+          <article class="capability card-lift"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-text"/></svg></div><h3 data-i18n="capabilities.blocks.title">Blocs et texte</h3><p data-i18n="capabilities.blocks.desc">Blocs locaux réutilisables et imbriqués, points d’insertion, rotation et échelle, ainsi que texte simple et multiligne dans les profils de mise en forme pris en charge.</p></article>
+          <article class="capability card-lift"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-hatch"/></svg></div><h3 data-i18n="capabilities.hatches.title">Hachures</h3><p data-i18n="capabilities.hatches.desc">Remplissages unis et motifs de lignes explicites avec contours enregistrés, îlots et références prises en charge vers la géométrie de délimitation.</p></article>
+          <article class="capability card-lift"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><h3 data-i18n="capabilities.layouts.title">Espace objet et espace papier</h3><p data-i18n="capabilities.layouts.desc">Espace objet, plusieurs présentations papier, ordre des onglets, formats de feuille, réglages de tracé pris en charge et fenêtres avec caméras et découpage.</p></article>
+          <article class="capability card-lift"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div><h3 data-i18n="capabilities.workspace.title">Environnement de dessin</h3><p data-i18n="capabilities.workspace.desc">Définitions SCU prises en charge, fenêtres de l’espace objet et réglages de grille et d’accrochage, ainsi que visibilité et ordre d’affichage.</p></article>
         </div>
-        <p data-i18n="status.limits">Nous vérifions les conversions prises en charge en rouvrant les fichiers et en comparant leur contenu sémantique. Les fonctions non prises en charge et les pertes d’information sont signalées. La prise en charge complète des cotations, d’autres objets et du processus BIM associatif stable reste à développer. Le format et ses engagements de compatibilité sont encore provisoires.</p>
-      </div>
-      <div class="content-section">
-        <h2 data-i18n="preservation.title">La préservation et le pilote temporaire sur les splines</h2>
+        <p data-i18n="status.limits">Nous vérifions les conversions prises en charge en rouvrant les fichiers et en comparant leur contenu sémantique. Les fonctions non prises en charge et les pertes d’information sont signalées. La prise en charge complète des cotations, d’autres objets et du processus BIM associatif stable reste à développer. Le format et ses engagements de compatibilité sont encore provisoires.</p></div>
+    </section>
+
+    <section class="section surface-dark panel">
+      <div class="content-section ifccad-preservation"><h2 data-i18n="preservation.title">La préservation et le pilote temporaire sur les splines</h2>
         <p data-i18n="preservation.p1">Tous les composants CAO ne disposent pas immédiatement d’une représentation native dans IFCCAD. Avec la <strong>préservation</strong>, nous souhaitons conserver explicitement les informations sources qui ne trouvent pas encore entièrement leur place dans le modèle de dessin. Lors de la conversion retour, ces informations peuvent être rétablies si les relations et le contexte nécessaires restent valides. Les modifications natives sont prioritaires : un enregistrement source préservé ne doit jamais écraser silencieusement des modifications ultérieures.</p>
-        <div class="highlight-block">
+        <div class="highlight-block card-glass">
           <h3 data-i18n="preservation.pilotTitle">Les splines testent la préservation ; la prise en charge native suivra</h3>
           <p data-i18n="preservation.pilot">Les splines sont actuellement stockées par un pilote de préservation et réexportées dans les voies de conversion qualifiées. Nous les utilisons pour tester le mécanisme de préservation, du stockage à la restauration. Nous souhaitons bientôt les prendre en charge nativement comme des entités IFCCAD à part entière, dont la géométrie peut être modifiée.</p>
         </div>
-        <p data-i18n="preservation.limits">Le pilote actuel préserve les paramètres des splines et les données sources disponibles, mais ne propose pas encore de géométrie spline native ni de modification géométrique. La préservation complète la prise en charge native. Son extension à d’autres entités CAO et informations sources est prévue ; le pilote actuel ne garantit pas la conservation de toutes les informations d’un fichier DWG quelconque.</p>
-      </div>
+        <p data-i18n="preservation.limits">Le pilote actuel préserve les paramètres des splines et les données sources disponibles, mais ne propose pas encore de géométrie spline native ni de modification géométrique. La préservation complète la prise en charge native. Son extension à d’autres entités CAO et informations sources est prévue ; le pilote actuel ne garantit pas la conservation de toutes les informations d’un fichier DWG quelconque.</p></div>
     </section>
 
     <section class="section">
-      <div class="content-section">
-        <h2 data-i18n="storage.title">Des fichiers plus compacts et une lecture et une écriture efficaces</h2>
-        <p data-i18n="storage.p1">Des fichiers compacts, une consommation mémoire limitée et une lecture et une écriture efficaces sont des objectifs importants du développement. Nous y travaillons déjà, notamment avec un stockage binaire expérimental fondé sur CBOR et une compression supplémentaire.</p>
-        <p data-i18n="storage.p2">Ces essais sont propres à IFCCAD ; les choix définitifs de stockage ne sont pas encore arrêtés. Nous continuons à évaluer les améliorations selon la préservation du contenu des dessins et leur utilité pratique.</p>
-      </div>
-      <div class="content-section">
-        <h2 data-i18n="bim.title">Du BIM à la CAO, en préservant le travail de dessin manuel</h2>
-        <p data-i18n="bim.p1">Notre ambition dépasse la simple liaison entre un dessin et un objet BIM. Nous souhaitons aussi générer du contenu CAO à partir du BIM et le régénérer lorsque la maquette change. Le travail de dessin ajouté manuellement doit alors être préservé.</p>
-        <div class="highlight-block">
+      <div class="container"><div class="reading-block"><div class="panel-split on-light"><div class="panel-split-text"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><h2 data-i18n="storage.title">Des fichiers plus compacts et une lecture et une écriture efficaces</h2></div><div class="panel-split-body"><p data-i18n="storage.p1">Des fichiers compacts, une consommation mémoire limitée et une lecture et une écriture efficaces sont des objectifs importants du développement. Nous y travaillons déjà, notamment avec un stockage binaire expérimental fondé sur CBOR et une compression supplémentaire.</p>
+        <p data-i18n="storage.p2">Ces essais sont propres à IFCCAD ; les choix définitifs de stockage ne sont pas encore arrêtés. Nous continuons à évaluer les améliorations selon la préservation du contenu des dessins et leur utilité pratique.</p></div></div></div><div class="reading-block"><div class="panel-split on-light"><div class="panel-split-text"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div><h2 data-i18n="bim.title">Du BIM à la CAO, en préservant le travail de dessin manuel</h2></div><div class="panel-split-body"><p data-i18n="bim.p1">Notre ambition dépasse la simple liaison entre un dessin et un objet BIM. Nous souhaitons aussi générer du contenu CAO à partir du BIM et le régénérer lorsque la maquette change. Le travail de dessin ajouté manuellement doit alors être préservé.</p>
+        <div class="highlight-block card-lift">
           <h3 data-i18n="bim.exampleTitle">Un mur se déplace, le dessin reste lié</h3>
           <p data-i18n="bim.example">Imaginons qu’un dessinateur ajoute des cotations et des annotations à un plan généré depuis le BIM, puis le place sur une feuille avec des fenêtres. Lorsqu’un mur se déplace, nous souhaitons actualiser la géométrie générée, faire suivre les cotations associées et préserver les ajouts manuels ainsi que la mise en page.</p>
         </div>
-        <p data-i18n="bim.limits">Cela nécessite une identité stable et des relations associatives entre les objets BIM, les composants de dessin générés et les modifications CAO manuelles. Nous souhaitons éviter que chaque régénération produise une géométrie détachée à laquelle le dessinateur doit tout relier à nouveau. Lorsqu’un objet disparaît ou change fondamentalement, les relations invalides doivent pouvoir être identifiées. Cette liaison BIM et ce processus de régénération sont des objectifs de développement ; ils ne sont pas encore implémentés.</p>
-      </div>
+        <p data-i18n="bim.limits">Cela nécessite une identité stable et des relations associatives entre les objets BIM, les composants de dessin générés et les modifications CAO manuelles. Nous souhaitons éviter que chaque régénération produise une géométrie détachée à laquelle le dessinateur doit tout relier à nouveau. Lorsqu’un objet disparaît ou change fondamentalement, les relations invalides doivent pouvoir être identifiées. Cette liaison BIM et ce processus de régénération sont des objectifs de développement ; ils ne sont pas encore implémentés.</p></div></div></div></div>
     </section>
 
-    <section class="section cta-section" aria-labelledby="contribute-title">
-      <div class="content-section">
-        <h2 id="contribute-title" data-i18n="cta.title">Explorez IFCCAD et contribuez</h2>
+    <section class="section surface-dark panel" aria-labelledby="contribute-title">
+      <div class="panel-center"><h2 id="contribute-title" data-i18n="cta.title">Explorez IFCCAD et contribuez</h2>
         <p data-i18n="cta.desc">Essayez l’Explorer, consultez le code source ou partagez votre expérience pratique et des fichiers de test que vous êtes autorisé à partager. Les retours des utilisateurs CAO, des spécialistes BIM et des développeurs nous aident à orienter les prochaines étapes vers des processus de dessin réels.</p>
         <div class="hero-actions">
-          <a href="https://ifccad-explorer.open-aec.com" class="btn btn-primary" data-i18n="cta.explorer">Ouvrir le Format Explorer</a>
-          <a href="https://github.com/OpenAEC-Foundation/ifccad/issues" class="btn btn-secondary" data-i18n="cta.feedback">Retours et contributions sur GitHub</a>
-        </div>
-      </div>
+          <a href="https://ifccad-explorer.open-aec.com" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="cta.explorer">Ouvrir le Format Explorer</span></a>
+          <a href="https://github.com/OpenAEC-Foundation/ifccad/issues" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n="cta.feedback">Retours et contributions sur GitHub</span></a>
+        </div></div>
     </section>
   </main>
 
-  <footer class="footer page-footer" style="padding: var(--sp-6);">
-    <div class="content-section footer-inner">
-      <a href="/fr/" class="nav-brand">Open<span class="accent">AEC</span></a>
-      <a href="https://www.linkedin.com/company/23749451" rel="noopener">LinkedIn</a>
-      <p>&copy; 2026 OpenAEC Foundation</p>
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/fr/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Pages</h4>
+        <a href="/fr/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">À propos</a>
+        <a href="/fr/ifcx/">IFCX</a>
+        <a href="/fr/roadmap/" data-i18n-en="Roadmap 2026" data-i18n-fr="Feuille de route 2026" data-i18n-tr="2026 yol haritası" data-i18n-es="Hoja de ruta 2026">Feuille de route 2026</a>
+        <a href="/fr/architectuur/" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Architecture</a>
+        <a href="/fr/supporters/" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Partenaires</a>
+        <a href="/fr/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Demander un devis</a>
+        <a href="/fr/structuur/" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structure</a>
+        <a href="/fr/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">FAQ</a>
+        <a href="/fr/statistieken/" data-i18n-en="Timeline &amp; Statistics" data-i18n-fr="Chronologie &amp; statistiques" data-i18n-tr="Zaman çizelgesi &amp; istatistikler" data-i18n-es="Cronología &amp; estadísticas">Chronologie &amp; statistiques</a>
+        <a href="/fr/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Avertissement</a>
+        <a href="/fr/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Projet de statuts</a>
+        <a href="/fr/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Crédits</a>
+        <a href="/fr/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Politique &amp; positions</a>
+        <a href="/fr/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Réseaux sociaux</a>
+      </nav>
+      <nav class="site-footer-col" aria-label="Meer tools">
+        <h4 data-i18n-en="More tools" data-i18n-fr="Plus d'outils" data-i18n-tr="Daha fazla araç" data-i18n-es="Más herramientas">Plus d'outils</h4>
+        <a href="/fr/open-energy-studio/">Open Energy Studio</a>
+        <a href="/fr/open-safety-studio/">Open Safety Studio</a>
+        <a href="/fr/open-3d-viewer/">Open 3D Viewer</a>
+        <a href="/fr/open-books/">OpenBooks</a>
+        <a href="/fr/openaec-cloud/">SuperCloud</a>
+        <a href="/fr/openaec-docs/">OpenAEC Docs</a>
+        <a href="/fr/ext-drawing-statistics/">Drawing Statistics</a>
+        <a href="/fr/y-app/">Y-app</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Fondation en cours de constitution</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">Pays-Bas</span></p>
+      </div>
     </div>
-  </footer>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+          <a href="https://x.com/openaec" target="_blank" rel="noopener" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
   <script src="/shared/i18n.js?v=20261015"></script>
 </body>
 </html>
