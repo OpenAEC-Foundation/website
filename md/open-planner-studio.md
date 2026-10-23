@@ -12,13 +12,13 @@
 
 ## Live stats
 
-- Stars: **35**
-- Commits: **4569**
+- Stars: **37**
+- Commits: **4912**
 - Forks: **13**
-- Open issues: **39**
+- Open issues: **12**
 - Releases: **22**
-- Total downloads: **2,829**
-- Downloads by platform: Windows (1731), Linux (AppImage) (330), Linux (deb) (280), macOS (225), Linux (rpm) (114), Linux (snap) (77), Archive (72)
+- Total downloads: **2,909**
+- Downloads by platform: Windows (1802), Linux (AppImage) (333), Linux (deb) (285), macOS (226), Linux (rpm) (114), Linux (snap) (77), Archive (72)
 
 ## Key features
 
@@ -88,7 +88,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows · Open.Planner.Studio_2026.8.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.8.1/Open.Planner.Studio_2026.8.1_x64-setup.exe) (v2026.8.1 — 7.6 MB)
 - [Linux (rpm) · Open.Planner.Studio-2026.9.0-1.x86_64.rpm](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio-2026.9.0-1.x86_64.rpm) (v2026.9.0 — 8.8 MB)
 - [Windows · Open.Planner.Studio_2026.9.0_x64-setup.nsis.zip](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_x64-setup.nsis.zip) (v2026.9.0 — 7.4 MB)
-- [Linux (snap) · open-planner-studio_2026.9.0_amd64.snap](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/open-planner-studio_2026.9.0_amd64.snap) (v2026.9.0 — 8 MB)
+- [Windows · Open.Planner.Studio_2026.10.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.10.0/Open.Planner.Studio_2026.10.0_x64-setup.exe) (v2026.10.0 — 16.5 MB)
 
 ---
 
