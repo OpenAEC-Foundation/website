@@ -69,9 +69,8 @@ const PAGES = ['index.html', 'en/index.html', 'fr/index.html', 'tr/index.html', 
 //   commits en downloads zijn er niet (publiek) te meten; de score leunt
 //   daardoor op te weinig gegevens om de plek zelf te bepalen.
 const PINNED = new Map([
-  ['ifcx', 1],
-  // IFCCAD is the CAD profile using IFCX; keep the formats together.
-  ['ifccad', 2],
+  // Open CAD Studio is de uitgelichte tool en staat bovenaan.
+  ['openCad', 1],
   ['yapp', 6],
 ]);
 
