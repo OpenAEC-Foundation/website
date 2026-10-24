@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open BIM Studio — OpenAEC Foundation</title>
+  <meta name="description" content="A BIM modeller with a deliberately wide reach. At one end as direct as sketching: push, pull, try something and throw it away. At the other end properly…">
+  <link rel="canonical" href="https://open-aec.com/en/open-bim-studio/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-bim-studio/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/open-bim-studio/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/open-bim-studio/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/open-bim-studio/">
+  <link rel="alternate" hreflang="es" href="https://open-aec.com/es/open-bim-studio/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/open-bim-studio/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Open BIM Studio">
+  <meta property="og:description" content="A BIM modeller with a deliberately wide reach. At one end as direct as sketching: push, pull, try something and throw it away. At the other end properly…">
+  <meta property="og:url" content="https://open-aec.com/en/open-bim-studio/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-bim-studio.png">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open BIM Studio">
+  <meta name="twitter:description" content="A BIM modeller with a deliberately wide reach. At one end as direct as sketching: push, pull, try something and throw it away. At the other end properly…">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-bim-studio.png">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="open-bim-studio">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/shared/style.css?v=20261015">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open BIM Studio",
+    "applicationCategory": "DesignApplication",
+    "applicationSubCategory": "BIM",
+    "operatingSystem": "Linux",
+    "softwareVersion": "0.1.1",
+    "license": "https://www.mozilla.org/en-US/MPL/2.0/",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "url": "https://open-aec.com/open-bim-studio/",
+    "sameAs": "https://github.com/OpenAEC-Foundation/open-bim-studio",
+    "description": "Open-source BIM modeller in development, built in the DynLex programming language with a native Vulkan interface. Direct editing with Push/Pull, parametric building systems, reinforcement, steel connections, and plans, sections and sheets developed from the same model, with IFCX as the project format. Development preview.",
+    "featureList": [
+      "Building model: levels, grids, layered walls, floors, roofs, ceilings, openings, beams, columns, piles and spaces",
+      "Direct editing with grips, snapping, Push/Pull and face splitting",
+      "Parametric building systems, window systems, stairs, railings and component libraries",
+      "Parametric reinforcement: bars, cages, stirrups, area reinforcement and meshes, with schedules",
+      "Connection nodes with plates, bolts and screws",
+      "Plans, sections, 3D views, section boxes, dimensions, sheets and PDF/SVG output",
+      "IFC import and export, IFCX and binary IFCX project files",
+      "Local API and MCP adapter"
+    ],
+    "publisher": { "@type": "Organization", "name": "OpenAEC Foundation", "url": "https://open-aec.com" }
+  }
+  </script>
+
+  <style>
+    .hero-note { color: var(--text-on-dark); font-size: 0.9rem; line-height: 1.5; margin: var(--sp-5) auto 0; max-width: 640px; opacity: 0.85; }
+    .note-cards .split-card { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border-color: rgba(42,42,50,0.07); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); color: var(--text-on-light); }
+    .note-cards .split-card p { color: var(--text-on-light); }
+    .note-cards .split-card strong { color: var(--deep-forge); }
+    .note-cards .icon-tile { background: linear-gradient(145deg, rgba(217,119,6,0.18), rgba(217,119,6,0.05)); border-color: rgba(217,119,6,0.22); }
+    .dynlex-block { max-width: 820px; margin: 0 auto; text-align: center; }
+    .dynlex-block p { color: var(--text-on-light); font-size: 1.02rem; line-height: 1.7; margin: 0 auto var(--sp-4); max-width: 760px; }
+    .status-card { max-width: 820px; margin: 0 auto; text-align: center; background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(217,119,6,0.30); border-radius: var(--radius-lg); box-shadow: var(--shadow-float); padding: var(--sp-8); }
+    .status-card .badge-soon { display: inline-block; font-family: var(--font-code); font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--amber); background: rgba(217,119,6,0.10); border: 1px solid rgba(217,119,6,0.25); border-radius: var(--radius-full); padding: 3px 12px; margin-bottom: var(--sp-4); }
+    .status-card h2 { margin: 0 0 var(--sp-3); }
+    .status-card p { color: var(--text-on-light); line-height: 1.7; margin: 0 auto var(--sp-5); max-width: 640px; }
+    .limits-card { max-width: 900px; margin: 0 auto; display: flex; gap: var(--sp-5); align-items: flex-start; background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(217,119,6,0.35); border-left: 4px solid var(--amber); border-radius: var(--radius-lg); box-shadow: var(--shadow-float); padding: var(--sp-6) var(--sp-8); }
+    .limits-card .icon-tile { flex-shrink: 0; }
+    .limits-card h2 { font-size: 1.35rem; color: var(--deep-forge); margin: 0 0 var(--sp-3); }
+    .limits-card li { color: var(--text-on-light); font-size: 1rem; line-height: 1.7; margin-bottom: var(--sp-2); }
+    .limits-card ul { margin: 0; padding-left: var(--sp-5); }
+    .tech-chips { margin-bottom: var(--sp-6); }
+    .tech-desc { color: var(--text-on-light); font-size: 1.02rem; line-height: 1.7; max-width: 760px; margin: 0 auto; text-align: center; }
+    @media (max-width: 768px) {
+      .limits-card { flex-direction: column; padding: var(--sp-5); }
+      .status-card { padding: var(--sp-6) var(--sp-5); }
+    }
+  </style>
+
+  <meta name="i18n-static" content="en">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "en",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/openaec-foundation-io"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/en/open-bim-studio/#webpage",
+        "url": "https://open-aec.com/en/open-bim-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "en",
+        "dateModified": "2026-10-24",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/en/open-bim-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/en/open-bim-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/en/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Open BIM Studio",
+            "item": "https://open-aec.com/en/open-bim-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body class="page-panels">
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/en/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
+      <ul class="nav-links">
+        <li><a href="/en/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Ecosystem</a></li>
+        <li><a href="/en/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Roadmap</a></li>
+        <li><a href="/en/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Architecture</a></li>
+        <li><a href="/en/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Statistics</a></li>
+        <li><a href="/en/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">News</a></li>
+        <li><a href="/en/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Supporters</a></li>
+        <li><a href="/en/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">We support</a></li>
+        <li><a href="/en/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structure</a></li>
+      </ul>
+      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Feedback</span></a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/open-bim-studio/" hreflang="nl">NL</a>
+        <a class="lang-btn active" data-lang="en" href="/en/open-bim-studio/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/open-bim-studio/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/open-bim-studio/" hreflang="tr">TR</a>
+        <a class="lang-btn" data-lang="es" href="/es/open-bim-studio/" hreflang="es">ES</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js?v=20261015"></script>
+  <script src="/shared/feedback.js?v=20261022" defer></script>
+
+  <header class="product-head surface-spot">
+    <div class="product-head-inner">
+      <p class="pill-label" data-i18n="header.label">OpenAEC Ecosystem</p>
+      <h1 data-i18n="header.title">Open <span class="accent">BIM</span> Studio</h1>
+      <p class="lead" data-i18n="header.desc">A BIM modeller with a deliberately wide reach. At one end as direct as sketching: push, pull, try something and throw it away. At the other end properly technical: building systems, reinforcement, connections and drawings from the same model. All on IFCX.</p>
+      <div class="btn-group">
+        <a href="#status" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clock"/></svg><span data-i18n="cta.status">Coming soon</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-bim-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="cta.follow">Follow development</span></a>
+      </div>
+      <div class="chip-row">
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clock"/></svg><span data-i18n="header.badge">In development</span></span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg>BIM · IFCX</span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg><span data-i18n="header.built">Built in DynLex</span></span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-euro"/></svg>€ 0</span>
+      </div>
+      <p class="hero-note" data-i18n="header.note">A look at what we are building. There is a preview for testers, but you cannot model a project in it yet.</p>
+    </div>
+    <div class="shot-overlap"><div class="media-slider">
+      <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-bim-studio.png" width="1920" height="1040" alt="Open BIM Studio with the foundation plan of a pavilion: pad footings of 1800 by 1800 mm and ground beams of 300 by 400 mm with reinforcement, next to the reinforcement in 3D, a section and the reinforcement properties" data-i18n="slides.one" data-i18n-attr="alt"></div>
+        </div>
+      </div>
+    </div></div>
+  </header>
+
+  <section class="section after-overlap"><div class="container">
+    <div class="explainer"><div class="panel-split on-light">
+      <div class="panel-split-text">
+        <h2 data-i18n="what.title">What will Open BIM Studio be?</h2>
+        <p data-i18n="what.desc">Open BIM Studio is an open-source BIM modeller from the OpenAEC Foundation. You create and edit a building model, inspect it in 2D and 3D, and develop drawings, reinforcement details and schedules from that same model. The interface is native, on Vulkan, and the CAD kernel is written in DynLex, our own programming language.</p>
+      </div>
+      <ul class="split-cards note-cards">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-move"/></svg></div><div><p data-i18n="what.list1">Direct modelling with grips, snapping, Push/Pull and face splitting</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><p data-i18n="what.list2">Parametric building systems, window systems, stairs and railings</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg></div><div><p data-i18n="what.list3">Reinforcement: bars, cages, stirrups and meshes, with position marks and schedules</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-set-square"/></svg></div><div><p data-i18n="what.list4">Connections with plates, bolts and screws</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-printer"/></svg></div><div><p data-i18n="what.list5">Plans, sections and sheets from the model, as PDF or SVG</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div><div><p data-i18n="what.list6">IFCX as the project format, with IFC import and export</p></div></li>
+      </ul>
+    </div></div>
+  </div></section>
+
+  <section class="section surface-dark panel">
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label">BIM · DynLex</p>
+        <h2 data-i18n="why.title">Why <span class="accent">Open BIM</span> Studio?</h2>
+      </div>
+      <div class="panel-split-body">
+        <p data-i18n="why.desc1">BIM software usually makes you choose: a quick sketching tool where you try out forms freely, or a heavy package that knows everything about construction but feels slow. Open BIM Studio wants to be both, in one application: you start by pushing and pulling a mass and develop the same model all the way to reinforcement and connections.</p>
+        <p data-i18n="why.desc2">Everything lives in IFCX, the open data format of the OpenAEC ecosystem. What you model is readable straight away by the other tools — and by anyone who opens the file.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section"><div class="container">
+    <h2 data-i18n="features.title">What is already in it</h2>
+    <div class="features" id="bim-features" data-fold="6">
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-crane"/></svg></div>
+        <h4 data-i18n="features.model.title">Building model</h4>
+        <p data-i18n="features.model.desc">Levels, grids, layered walls, floors, roofs, ceilings, openings, beams, columns, piles and spaces.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-move"/></svg></div>
+        <h4 data-i18n="features.direct.title">Direct modelling</h4>
+        <p data-i18n="features.direct.desc">Selection, grips, numerical properties, snapping and transforms. Boundary editing with Tab, Push/Pull and face splitting.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div>
+        <h4 data-i18n="features.systems.title">Parametric systems</h4>
+        <p data-i18n="features.systems.desc">Building-system types with frames and panels, hosted window systems, stairs, railings and component libraries.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg></div>
+        <h4 data-i18n="features.rebar.title">Reinforcement</h4>
+        <p data-i18n="features.rebar.desc">Parametric bars, cages, stirrups, area reinforcement and meshes, with position labels, schedules and Dutch or international notation.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-set-square"/></svg></div>
+        <h4 data-i18n="features.connections.title">Connections</h4>
+        <p data-i18n="features.connections.desc">Modular connection nodes, member voids and added parts such as plates, bolts and screws.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-printer"/></svg></div>
+        <h4 data-i18n="features.drawings.title">Drawings from the model</h4>
+        <p data-i18n="features.drawings.desc">Plans, sections, 3D views, section boxes, dimensions, tags, drawing standards and sheets, output as PDF or SVG.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div>
+        <h4 data-i18n="features.exchange.title">Interchange</h4>
+        <p data-i18n="features.exchange.desc">IFC import and export, IFCX and binary IFCX as the project file, and DXF as reference geometry.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div>
+        <h4 data-i18n="features.automation.title">Automation</h4>
+        <p data-i18n="features.automation.desc">A local API and an MCP adapter, so scripts and AI assistants can carry out operations in the editor.</p>
+      </div>
+    </div>
+    <p class="more-row" data-fold-for="bim-features" hidden>
+      <button type="button" class="btn btn-secondary btn-lg more-btn" aria-expanded="false" aria-controls="bim-features">
+        <span data-fold-show class="more-label"><span data-i18n="features.showAll">Show all features</span> <span class="more-count" data-fold-count></span></span>
+        <span data-fold-hide hidden data-i18n="features.showLess">Show less</span>
+        <svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg>
+      </button>
+    </p>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="dynlex-block">
+      <div class="section-head">
+        <h2 data-i18n="dynlex.title">Built in DynLex</h2>
+      </div>
+      <p data-i18n="dynlex.desc1">DynLex is the programming language we are developing ourselves. Its syntax reads almost like English and compiles to native code through LLVM, so the modeller addresses the GPU and the CPU directly, with no runtime in between.</p>
+      <p data-i18n="dynlex.desc2">The language is deliberately small, and that is exactly why development goes so fast — for people, and as it turns out even more so for AI.</p>
+      <div class="btn-group" style="justify-content:center;">
+        <a href="https://github.com/OpenAEC-Foundation/dynlex" target="_blank" rel="noopener" class="btn btn-secondary"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="dynlex.link">DynLex on GitHub</span></a>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section" id="status"><div class="container">
+    <div class="status-card">
+      <span class="badge-soon" data-i18n="status.badge">Coming soon</span>
+      <h2 data-i18n="status.title">Not ready for projects yet</h2>
+      <p data-i18n="status.desc">Open BIM Studio is a development preview. A Linux version is ready for anyone who wants to help test; a tested Windows version is not there yet. Follow the development on GitHub, and report what you run into.</p>
+      <div class="btn-group" style="justify-content:center;">
+        <a href="https://github.com/OpenAEC-Foundation/open-bim-studio" target="_blank" rel="noopener" class="btn btn-primary"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="cta.follow">Follow development</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-bim-studio/issues" target="_blank" rel="noopener" class="btn btn-secondary"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n="status.report">Report something</span></a>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="limits-card">
+      <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div>
+      <div>
+        <h2 data-i18n="limits.title">What we are still working on</h2>
+        <ul>
+          <li data-i18n="limits.areas">The features above are areas that have been built, not a promise that every combination is complete and validated.</li>
+          <li data-i18n="limits.windows">The Windows version is in the repository, but there is no tested installer yet; the preview runs on Linux with Vulkan.</li>
+          <li data-i18n="limits.performance">Performance on large models and a full test of the interface are still in progress.</li>
+          <li data-i18n="limits.ifc">IFC and IFCX support is still growing and is not a certification. Not every imported object becomes fully parametric and editable; keep your source files.</li>
+        </ul>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="tech.title">Technology</h2>
+    </div>
+    <div class="chip-row chip-row-light tech-chips">
+      <span class="chip">DynLex</span>
+      <span class="chip">LLVM</span>
+      <span class="chip">Vulkan</span>
+      <span class="chip">GLFW</span>
+      <span class="chip">IFCX</span>
+      <span class="chip">IFC</span>
+      <span class="chip">MCP</span>
+      <span class="chip">MPL-2.0</span>
+    </div>
+    <p class="tech-desc" data-i18n="tech.desc">The BIM logic, the tools and the geometry are written in DynLex. The model keeps the semantic objects, a separate layer derives the geometry from them, and the drawing and scene modules turn that into 2D and 3D views.</p>
+  </div></section>
+
+  <!-- Release Notes (shared component) -->
+  <div data-release-notes="open-bim-studio"></div>
+  <script src="/shared/release-notes.js?v=20261022"></script>
+
+  <section class="section surface-spot panel">
+    <div class="panel-center">
+      <h2 data-i18n="header.title">Open <span class="accent">BIM</span> Studio</h2>
+      <div class="btn-group">
+        <a href="https://github.com/OpenAEC-Foundation/open-bim-studio" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg><span data-i18n="cta.follow">Follow development</span></a>
+        <a href="/en/ifcx/" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span data-i18n="cta.ifcx">About IFCX</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/en/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Pages</h4>
+        <a href="/en/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">About us</a>
+        <a href="/en/ifcx/">IFCX</a>
+        <a href="/en/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Request quote</a>
+        <a href="/en/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">FAQ</a>
+        <a href="/en/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Disclaimer</a>
+        <a href="/en/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Draft statutes</a>
+        <a href="/en/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Credits</a>
+        <a href="/en/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Policy &amp; positions</a>
+        <a href="/en/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Socials</a>
+      </nav>
+      <nav class="site-footer-col" aria-label="Meer tools">
+        <h4 data-i18n-en="More tools" data-i18n-fr="Plus d'outils" data-i18n-tr="Daha fazla araç" data-i18n-es="Más herramientas">More tools</h4>
+        <a href="/en/open-energy-studio/">Open Energy Studio</a>
+        <a href="/en/open-safety-studio/">Open Safety Studio</a>
+        <a href="/en/open-3d-viewer/">Open 3D Viewer</a>
+        <a href="/en/open-books/">OpenBooks</a>
+        <a href="/en/openaec-cloud/">SuperCloud</a>
+        <a href="/en/openaec-docs/">OpenAEC Docs</a>
+        <a href="/en/ext-drawing-statistics/">Drawing Statistics</a>
+        <a href="/en/y-app/">Y-app</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Foundation i.f.</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">The Netherlands</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+          <a href="https://x.com/openaec" target="_blank" rel="noopener" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.youtube.com/@openaecfoundation" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
+
+  <script>
+    // Lange lijsten: de eerste paar zichtbaar, de rest achter de vaste "Toon alles"-knop. Zonder JavaScript staat alles open.
+    document.querySelectorAll('[data-fold]').forEach(function (grid) {
+      var n = +grid.getAttribute('data-fold');
+      var items = Array.prototype.slice.call(grid.children);
+      var row = document.querySelector('[data-fold-for="' + grid.id + '"]');
+      if (!row || items.length <= n) return;
+      var btn = row.querySelector('.more-btn');
+      var show = btn.querySelector('[data-fold-show]');
+      var hide = btn.querySelector('[data-fold-hide]');
+      btn.querySelector('[data-fold-count]').textContent = '(' + items.length + ')';
+      function zet(open) {
+        items.forEach(function (c, i) { c.style.display = (!open && i >= n) ? 'none' : ''; });
+        show.hidden = open; hide.hidden = !open;
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      zet(false);
+      row.hidden = false;
+      btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') !== 'true';
+        zet(open);
+        if (!open) grid.scrollIntoView({ block: 'start' });
+      });
+    });
+  </script>
+  <script src="/shared/i18n.js?v=20261015"></script>
+</body>
+</html>
