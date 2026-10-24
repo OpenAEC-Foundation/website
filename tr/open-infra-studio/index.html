@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Infra Studio — OpenAEC Foundation</title>
+  <meta name="description" content="CBS doğrudan çiziminizde. Proje konumunu seçin; hava fotoğraflarını, haritaları ve Hollanda temel kayıtlarını içeri alın: NLCS katmanlarında BGT, kadastro…">
+  <link rel="canonical" href="https://open-aec.com/tr/open-infra-studio/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-infra-studio/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/open-infra-studio/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/open-infra-studio/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/open-infra-studio/">
+  <link rel="alternate" hreflang="es" href="https://open-aec.com/es/open-infra-studio/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/open-infra-studio/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Open Infra Studio">
+  <meta property="og:description" content="CBS doğrudan çiziminizde. Proje konumunu seçin; hava fotoğraflarını, haritaları ve Hollanda temel kayıtlarını içeri alın: NLCS katmanlarında BGT, kadastro…">
+  <meta property="og:url" content="https://open-aec.com/tr/open-infra-studio/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-infra-studio.png">
+  <meta property="og:locale" content="tr_TR">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open Infra Studio">
+  <meta name="twitter:description" content="CBS doğrudan çiziminizde. Proje konumunu seçin; hava fotoğraflarını, haritaları ve Hollanda temel kayıtlarını içeri alın: NLCS katmanlarında BGT, kadastro…">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-infra-studio.png">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="open-infra-studio">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/shared/style.css?v=20261015">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Open Infra Studio",
+    "applicationCategory": "EngineeringApplication",
+    "applicationSubCategory": "GIS",
+    "operatingSystem": "Windows, Linux, macOS",
+    "softwareVersion": "2026.43",
+    "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+    "url": "https://open-aec.com/open-infra-studio/",
+    "sameAs": "https://github.com/OpenAEC-Foundation/Open-Infra",
+    "description": "Open-source GIS plugin for Open CAD Studio. Sets the project location and coordinate system, then brings aerial photos, WMS, WFS, OpenStreetMap and Dutch base data from PDOK into the DWG: BGT, the cadastral map and KLIC deliveries on NLCS 5.02 layers with object data and a generated drawing sheet.",
+    "featureList": [
+      "Project location by map click, address, parcel or coordinates, with any coordinate system",
+      "Aerial photos and maps as WMS/TMS underlays",
+      "WFS vector data and OpenStreetMap themes worldwide",
+      "PDOK base registers in one click: aerial photo, AHN, BAG, NWB, ProRail, waterways",
+      "BGT on NLCS layers with the official NLCS-BGT 5.0 mapping",
+      "Cadastral map (BRK) with parcel boundaries and numbers",
+      "KLIC deliveries (IMKL 2.0) labelled per network operator",
+      "NLCS 5.02 drawing sheet with title block, legend, north arrow, scale bar and RD crosses"
+    ],
+    "isBasedOn": { "@type": "SoftwareApplication", "name": "Open CAD Studio", "url": "https://open-aec.com/open-cad-studio/" },
+    "publisher": { "@type": "Organization", "name": "OpenAEC Foundation", "url": "https://open-aec.com" }
+  }
+  </script>
+
+  <style>
+    .hero-note { color: var(--text-on-dark); font-size: 0.9rem; line-height: 1.5; margin: var(--sp-5) auto 0; max-width: 620px; opacity: 0.85; }
+    /* Lichte "Wat is"-kaarten direct onder de screenshots */
+    .note-cards .split-card { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border-color: rgba(42,42,50,0.07); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); color: var(--text-on-light); }
+    .note-cards .split-card p { color: var(--text-on-light); }
+    .note-cards .icon-tile { background: linear-gradient(145deg, rgba(217,119,6,0.18), rgba(217,119,6,0.05)); border-color: rgba(217,119,6,0.22); }
+    .split-card .step-num { font-family: var(--font-heading); font-weight: 700; font-size: 1.05rem; color: var(--warm-gold); }
+    /* Installeren: drie stappen, daarna de losse bestanden */
+    .install-intro { max-width: 760px; margin: 0 auto var(--sp-8); text-align: center; color: var(--text-on-light); font-size: 1.02rem; line-height: 1.7; }
+    .install-steps { max-width: 960px; margin: 0 auto var(--sp-10); }
+    .install-steps code { font-family: var(--font-code); font-size: 0.9em; background: rgba(217,119,6,0.10); padding: 1px 6px; border-radius: var(--radius-sm); overflow-wrap: anywhere; }
+    .install-steps .split-card { min-width: 0; }
+    .note-cards .split-card strong { color: var(--deep-forge); }
+    #download h3 { text-align: center; }
+    #download .download-lead { max-width: 720px; margin: 0 auto var(--sp-6); text-align: center; color: var(--text-on-light); font-size: 0.95rem; line-height: 1.6; }
+    #download .download-lead code { font-family: var(--font-code); font-size: 0.88em; overflow-wrap: anywhere; }
+    #download .download-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+    #download .download-item { flex: 0 1 220px; }
+    .compat-note { max-width: 720px; margin: var(--sp-6) auto 0; text-align: center; color: var(--text-on-light); font-size: 0.88rem; line-height: 1.6; opacity: 0.85; }
+    /* Voorbeeld: vijf commando's */
+    .example-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: var(--sp-8); align-items: start; max-width: 1100px; margin: 0 auto; }
+    .example-grid pre { margin: 0; max-width: 100%; font-size: 0.82rem; line-height: 1.7; overflow-x: auto; }
+    .example-facts { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--sp-3); }
+    .example-facts li { display: flex; justify-content: space-between; gap: var(--sp-4); border-bottom: 1px solid rgba(42,42,50,0.08); padding-bottom: var(--sp-2); color: var(--text-on-light); }
+    .example-facts strong { font-family: var(--font-heading); color: var(--deep-forge); white-space: nowrap; }
+    .example-caption { color: var(--text-on-light); font-size: 1rem; line-height: 1.7; margin: 0 0 var(--sp-5); }
+    .limits-card { max-width: 900px; margin: 0 auto; display: flex; gap: var(--sp-5); align-items: flex-start; background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(217,119,6,0.35); border-left: 4px solid var(--amber); border-radius: var(--radius-lg); box-shadow: var(--shadow-float); padding: var(--sp-6) var(--sp-8); }
+    .limits-card .icon-tile { flex-shrink: 0; }
+    .limits-card h2 { font-size: 1.35rem; color: var(--deep-forge); margin: 0 0 var(--sp-3); }
+    .limits-card p, .limits-card li { color: var(--text-on-light); font-size: 1rem; line-height: 1.7; }
+    .limits-card p { margin: 0 0 var(--sp-3); max-width: none; }
+    .limits-card ul { margin: 0; padding-left: var(--sp-5); }
+    .limits-card li { margin-bottom: var(--sp-2); }
+    .tech-chips { margin-bottom: var(--sp-6); }
+    .tech-desc { color: var(--text-on-light); font-size: 1.02rem; line-height: 1.7; max-width: 760px; margin: 0 auto; text-align: center; }
+    @media (max-width: 768px) {
+      .example-grid { grid-template-columns: minmax(0, 1fr); }
+      .limits-card { flex-direction: column; padding: var(--sp-5); }
+    }
+  </style>
+
+  <meta name="i18n-static" content="tr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "tr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/openaec-foundation-io"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/tr/open-infra-studio/#webpage",
+        "url": "https://open-aec.com/tr/open-infra-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "tr",
+        "dateModified": "2026-10-24",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/tr/open-infra-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/tr/open-infra-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/tr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Open Infra Studio",
+            "item": "https://open-aec.com/tr/open-infra-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body class="page-panels">
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/tr/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
+      <ul class="nav-links">
+        <li><a href="/tr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Ekosistem</a></li>
+        <li><a href="/tr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Yol haritası</a></li>
+        <li><a href="/tr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Mimari</a></li>
+        <li><a href="/tr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">İstatistikler</a></li>
+        <li><a href="/tr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Haberler</a></li>
+        <li><a href="/tr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Destekçiler</a></li>
+        <li><a href="/tr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">Desteklerimiz</a></li>
+        <li><a href="/tr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Yapı</a></li>
+      </ul>
+      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Geri bildirim</span></a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/open-infra-studio/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/open-infra-studio/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/open-infra-studio/" hreflang="fr">FR</a>
+        <a class="lang-btn active" data-lang="tr" href="/tr/open-infra-studio/" hreflang="tr">TR</a>
+        <a class="lang-btn" data-lang="es" href="/es/open-infra-studio/" hreflang="es">ES</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js?v=20261015"></script>
+  <script src="/shared/feedback.js?v=20261022" defer></script>
+
+  <header class="product-head surface-spot">
+    <div class="product-head-inner">
+      <p class="pill-label" data-i18n="header.label">OpenAEC Ekosistemi</p>
+      <h1 data-i18n="header.title">Open <span class="accent">Infra</span> Studio</h1>
+      <p class="lead" data-i18n="header.desc">CBS doğrudan çiziminizde. Proje konumunu seçin; hava fotoğraflarını, haritaları ve Hollanda temel kayıtlarını içeri alın: NLCS katmanlarında BGT, kadastro ve KLIC, nesne verileri ve eksiksiz bir pafta ile.</p>
+      <div class="btn-group">
+        <a href="#installeren" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="cta.install">Kur</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/Open-Infra" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="cta.github">GitHub</span></a>
+      </div>
+      <div class="chip-row">
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg><span data-i18n="header.plugin">Open CAD Studio için eklenti</span></span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-route"/></svg><span data-i18n="header.gww">Altyapı / inşaat</span></span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg>v2026.43 · Rust</span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-euro"/></svg>€ 0</span>
+      </div>
+      <p class="hero-note" data-i18n="header.note">Hollanda altyapı uygulaması için geliştirildi ve her ülkede kullanılabilir: WMS, WFS, OpenStreetMap ve her koordinat sistemi her yerde çalışır.</p>
+    </div>
+    <div class="shot-overlap"><div class="media-slider">
+      <div class="slider-container">
+        <div class="slider-track" id="sliderTrack">
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-infra-studio.png" width="2000" height="1413" alt="Dordrecht’teki Grote Kerk çevresindeki mevcut durumun A1 çizimi, 1:500 ölçek, NLCS katmanlarında BGT, kadastro, kablo ve borular, lejant ve antet" data-i18n="slides.sheet" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-infra-studio-lint.png" width="1600" height="840" loading="lazy" alt="Open Infra — GIS şerit sekmesi ve aynı çizim açık olan Open CAD Studio" data-i18n="slides.ribbon" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-infra-studio-bgt.png" width="1280" height="1000" loading="lazy" alt="NLCS’ye göre BGT, kadastro ve KLIC penceresi; alınan BGT haritada önizlenmiş ve NLCS ayarları" data-i18n="slides.bgt" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-infra-studio-wms.png" width="1280" height="1000" loading="lazy" alt="Dordrecht merkezinin üzerinde 8 cm PDOK hava fotoğrafı önizlemesiyle WMS / TMS penceresi" data-i18n="slides.wms" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-infra-studio-locatie.png" width="1280" height="1000" loading="lazy" alt="Coğrafi konum penceresi: haritada proje konumu ve içe aktarma alanı, adres arama ve koordinat sistemi olarak RD New" data-i18n="slides.location" data-i18n-attr="alt"></div>
+        </div>
+        <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Önceki" data-i18n="slides.prev" data-i18n-attr="aria-label">&lsaquo;</button>
+        <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Sonraki" data-i18n="slides.next" data-i18n-attr="aria-label">&rsaquo;</button>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div></div>
+  </header>
+
+  <section class="section after-overlap"><div class="container">
+    <div class="explainer"><div class="panel-split on-light">
+      <div class="panel-split-text">
+        <h2 data-i18n="what.title">Open Infra Studio nedir?</h2>
+        <p data-i18n="what.desc">Open Infra Studio, Open CAD Studio için açık kaynaklı bir eklentidir. Open Infra — GIS adlı şerit sekmesi, bir projenin coğrafi bağlamını ayrı indirmeler ve yeniden yazma olmadan doğrudan DWG’ye getirir. Çalışma penceresi, 2020’de FreeCAD için yaptığımız CBS çalışma tezgâhını izler.</p>
+      </div>
+      <ul class="split-cards note-cards">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pin"/></svg></div><div><p data-i18n="what.list1">Proje konumunu haritada ya da adres, parsel veya koordinatla seçin</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-strata"/></svg></div><div><p data-i18n="what.list2">NLCS katmanlarında BGT, kadastro haritası ve KLIC teslimatları</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg></div><div><p data-i18n="what.list3">Altlık olarak hava fotoğrafları, yükseklik (AHN) ve haritalar</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div><div><p data-i18n="what.list4">Dünya genelinde WMS, WFS ve OpenStreetMap</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-printer"/></svg></div><div><p data-i18n="what.list5">Antet, lejant, kuzey oku, ölçek çubuğu ve RD artılarıyla bir NLCS paftası</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-keyboard"/></svg></div><div><p data-i18n="what.list6">Şerit, betikler ve otomasyon için 28 CBS komutu</p></div></li>
+      </ul>
+    </div></div>
+  </div></section>
+
+  <section class="section" id="installeren"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="install.title">Kurulum</h2>
+    </div>
+    <p class="install-intro" data-i18n="install.intro">Open Infra Studio bir eklentidir, bu yüzden önce Open CAD Studio’yu kurun. Eklenti ardından Eklenti Yöneticisi ile birkaç tıklamada eklenir ve orada güncel kalır.</p>
+    <ul class="split-cards note-cards install-steps">
+      <li class="split-card"><div class="icon-tile step-num">1</div><div><p data-i18n="install.step1"><strong>Open CAD Studio’yu kurun</strong> Open CAD Studio’yu <a href="/tr/open-cad-studio/">ürün sayfasından</a> indirin ve başlatın.</p></div></li>
+      <li class="split-card"><div class="icon-tile step-num">2</div><div><p data-i18n="install.step2"><strong>Eklenti Yöneticisini açın</strong> <code>PLUGINS</code> yazın ya da başlangıç ekranında Plugins’e tıklayın, Add a repository’yi seçin ve <code>OpenAEC-Foundation/Open-Infra</code> girin.</p></div></li>
+      <li class="split-card"><div class="icon-tile step-num">3</div><div><p data-i18n="install.step3"><strong>Kurun ve yeniden başlatın</strong> En son sürümü kurun. Yeniden başlattıktan sonra Open Infra — GIS şerit sekmesi çiziminizdedir.</p></div></li>
+    </ul>
+
+    <div class="download-section" id="download">
+      <h3><span data-i18n="download.title">Elle kurulum</span> v2026.43</h3>
+      <p class="download-lead" data-i18n="download.lead">Sisteminize uygun dosyayı ve <code>plugin.toml</code> dosyasını indirin, ikisini de <code>&lt;config&gt;/OpenCADStudio/plugins/openaec.open-infra/</code> klasörüne koyun ve Open CAD Studio’yu yeniden başlatın.</p>
+      <div class="download-grid">
+        <div class="download-item">
+          <div class="os">Windows</div><div class="size">x86-64 · 12,5 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.43/openaec.open-infra-windows-x86_64.dll" data-gh-download="OpenAEC-Foundation/Open-Infra" data-platform="plugin-windows" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">İndir</span> .dll</a>
+        </div>
+        <div class="download-item">
+          <div class="os">Linux</div><div class="size">x86-64 · 20,4 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.43/openaec.open-infra-linux-x86_64.so" data-gh-download="OpenAEC-Foundation/Open-Infra" data-platform="plugin-linux" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">İndir</span> .so</a>
+        </div>
+        <div class="download-item">
+          <div class="os">macOS</div><div class="size" data-i18n="download.macSize">Apple silicon · 5,8 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.43/openaec.open-infra-macos-aarch64.dylib" data-gh-download="OpenAEC-Foundation/Open-Infra" data-platform="plugin-macos" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">İndir</span> .dylib</a>
+        </div>
+        <div class="download-item">
+          <div class="os" data-i18n="download.manifest">Manifesto</div><div class="size" data-i18n="download.manifestSize">Her sistemde gerekli</div>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.43/plugin.toml" data-gh-download="OpenAEC-Foundation/Open-Infra" data-platform="plugin-manifest" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">İndir</span> plugin.toml</a>
+        </div>
+      </div>
+      <p class="compat-note" data-i18n="download.compat">2026.43 sürümü Open CAD Studio v2026.42 için derlenmiştir. Open CAD Studio yalnızca kendi sürümüne göre derlenmiş bir eklentiyi yükler; Eklenti Yöneticisi doğru olanı sizin için seçer.</p>
+    </div>
+  </div></section>
+
+  <section class="section surface-dark panel">
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label">GWW · GIS</p>
+        <h2 data-i18n="why.title">Neden <span class="accent">Open Infra</span> Studio?</h2>
+      </div>
+      <div class="panel-split-body">
+        <p data-i18n="why.desc1">Bir altyapı çizimi mevcut durumla başlar. Bu genellikle PDOK’tan ayrı indirmeler, başka bir programda bir KLIC teslimatı, katmanları elle NLCS’ye göre düzenlemek ve anteti yeniden yazmak demektir. Open Infra Studio bunu çizimin içinde, tek bir pencerede, resmi NLCS-BGT eşlemesiyle ve antette kaynakları kendiliğinden belirterek yapar.</p>
+        <p data-i18n="why.desc2">Ücretsiz ve açık kaynaklı, Open CAD Studio üzerine kurulu. Eklenti çizimin yanında kendi işleminde çalışır; böylece harita verileri gelirken CAD penceresi yanıt vermeye devam eder.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section"><div class="container">
+    <h2 data-i18n="features.title">Özellikler</h2>
+    <div class="features" id="infra-features" data-fold="6">
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-strata"/></svg></div>
+        <h4 data-i18n="features.bgt.title">NLCS’ye göre BGT</h4>
+        <p data-i18n="features.bgt.desc">11 grupta 42 PDOK koleksiyonu, yalnızca güncel nesneler. Her nesne resmi NLCS-BGT 5.0 eşlemesinin (719 kural) en özgül kuralına gider; sokak adları ve kapı numaraları BGT dönüşlerini korur.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-route"/></svg></div>
+        <h4 data-i18n="features.klic.title">KLIC teslimatları</h4>
+        <p data-i18n="features.klic.desc">Kadaster teslimatını zip ya da alan bilgisi XML’i olarak açın. 13 IMKL 2.0 teması kendi katmanına gider; kablo ve borular şebeke işletmecisine göre çap ve malzemeyle etiketlenir.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-hatch"/></svg></div>
+        <h4 data-i18n="features.brk.title">Kadastro haritası</h4>
+        <p data-i18n="features.brk.desc">BRK’den parsel sınırları ve parsel numaraları, numaralar BRK dönüşlerinde, tek tıklamayla kadastro sınırlarının NLCS katmanına.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div>
+        <h4 data-i18n="features.nlcs.title">Yerleşik NLCS 5.02</h4>
+        <p data-i18n="features.nlcs.desc">3.659 nesne, 543 çizgi tipi ve 256 renk. Her katman, seçilen çizim durumunun NLCS rengini, çizgi kalınlığını ve çizgi tipini alır; çizgi tipleri kâğıt milimetresindedir ve çizim ölçeğini izler.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-printer"/></svg></div>
+        <h4 data-i18n="features.sheet.title">Pafta</h4>
+        <p data-i18n="features.sheet.desc">Çerçeve, içe aktarmaların kaynaklarını listeleyen antet, kullanılan NLCS katmanlarının lejantı, kuzey oku, ölçek çubuğu ve RD artıları. A3’ten A0’a yatay format kendiliğinden seçilir.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg></div>
+        <h4 data-i18n="features.pdok.title">Tek tıkla PDOK</h4>
+        <p data-i18n="features.pdok.desc">Hava fotoğrafı, kadastro haritası, AHN, BAG, parseller, NWB yol kesimleri, hektometre işaretleri, ProRail hatları ve su yolları; pencere açmadan, kayıtlı konumda.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pin"/></svg></div>
+        <h4 data-i18n="features.location.title">Proje konumu</h4>
+        <p data-i18n="features.location.desc">Haritaya tıklayın ya da bir adres, yer, parsel veya koordinat çifti arayın. Koordinat sistemini seçin, içe aktarma alanını çizin ve mutlak ya da göreli koordinatları seçin. Konum çizimin içinde saklanır.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div>
+        <h4 data-i18n="features.wms.title">Hava fotoğrafları ve haritalar</h4>
+        <p data-i18n="features.wms.desc">Bir WMS ya da TMS sunucusu seçin, katmanlarına göz atın ve haritada önizleyin. Görüntüler altlık olarak çizimin arkasına yerleşir. Hollanda, Flaman Bölgesi ve dünyanın geri kalanı için 19 sunucu ön ayarı, artı kendi sunucularınız.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-mesh"/></svg></div>
+        <h4 data-i18n="features.wfs.title">WFS vektör verileri</h4>
+        <p data-i18n="features.wfs.desc">Bir sunucu ve nesne tipi seçin, haritada test edin, ardından etiket özniteliğini, rengi ve içe aktarma alanına kırpmayı seçin.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div>
+        <h4 data-i18n="features.osm.title">Dünya genelinde OpenStreetMap</h4>
+        <p data-i18n="features.osm.desc">Binalar, yollar, demiryolu, su, yapılar, arazi kullanımı, kablo ve boru hatları, çitler ve kapı numaraları; dünyanın her yerinde.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div>
+        <h4 data-i18n="features.xdata.title">Nesne verileri</h4>
+        <p data-i18n="features.xdata.desc">Her nesne kaynak özniteliklerini korur: BGT’den yerel kimlik, işlev ve malzeme; KLIC’ten şebeke işletmecisi, çap ve malzeme.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-set-square"/></svg></div>
+        <h4 data-i18n="features.crs.title">Her koordinat sistemi</h4>
+        <p data-i18n="features.crs.desc">RD New, ETRS89 / UTM, Belçika Lambert, British National Grid ve Lambert-93 dahil 14 yerleşik sistem. Dünyanın her yerinde doğru UTM dilimi kendiliğinden; başka her EPSG kodu bir kez alınır ve çizimle saklanır.</p>
+      </div>
+    </div>
+    <p class="more-row" data-fold-for="infra-features" hidden>
+      <button type="button" class="btn btn-secondary btn-lg more-btn" aria-expanded="false" aria-controls="infra-features">
+        <span data-fold-show class="more-label"><span data-i18n="features.showAll">Tüm özellikleri göster</span> <span class="more-count" data-fold-count></span></span>
+        <span data-fold-hide hidden data-i18n="features.showLess">Daha az göster</span>
+        <svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg>
+      </button>
+    </p>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="example.title">Beş komut, bir çizim</h2>
+    </div>
+    <div class="example-grid">
+      <div>
+        <p class="example-caption" data-i18n="example.desc">Dordrecht’teki Grote Kerk çevresindeki mevcut durum: RD’de 300’e 250 metre, 1:500 ölçekte A1 paftada. Boş bir metrik çizimde bu beş komutla yapıldı.</p>
+        <pre><code>GIS_SITE RD 104885 425320 300 250 Dordrecht, Grote Kerk
+GIS_Q_BGT
+GIS_Q_BRK
+GIS_KLIC_IMPORT &lt;pad&gt;/Levering.zip
+GIS_TEKENBLAD Situatie bestaand</code></pre>
+      </div>
+      <ul class="example-facts">
+        <li><span data-i18n="example.entities">Nesneler</span><strong>3.439</strong></li>
+        <li><span data-i18n="example.bgt">BGT’den</span><strong>1.242</strong></li>
+        <li><span data-i18n="example.brk">Kadastrodan</span><strong>1.328</strong></li>
+        <li><span data-i18n="example.klic">KLIC teslimatından</span><strong>632</strong></li>
+        <li><span data-i18n="example.layers">NLCS katmanları</span><strong>68</strong></li>
+        <li><span data-i18n="example.xdata">Nesne verisiyle</span><strong>3.202</strong></li>
+        <li><span data-i18n="example.file">DWG dosyası</span><strong>0,7 MB</strong></li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="limits-card">
+      <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div>
+      <div>
+        <h2 data-i18n="limits.title">Bilmekte fayda var</h2>
+        <ul>
+          <li data-i18n="limits.rd"><strong>RD doğruluğu.</strong> RD’ye dönüşüm 7 parametreli dönüşümle yapılır, RDNAPTRANS’tan yaklaşık 0,2 metre farkla. Bu, altlıklar ve bağlam için yeterlidir. Aplikasyon için zaten RD’de olan verileri kullanın; PDOK, BGT, BRK ve KLIC verileri bu şekilde sağlar.</li>
+          <li data-i18n="limits.macos"><strong>macOS.</strong> Şeritteki hızlı düğmeler ve komutlar çalışır; çalışma penceresi henüz çalışmaz.</li>
+          <li data-i18n="limits.version"><strong>Open CAD Studio sürümü.</strong> Bir eklenti sürümü Open CAD Studio’nun tek bir sürümüne aittir. Open CAD Studio’yu güncellediğinizde eklentiyi de güncelleyin.</li>
+          <li data-i18n="limits.sources"><strong>Kaynaklar ve lisanslar.</strong> PDOK, Kadaster, Rijkswaterstaat ve ProRail verileri açık veridir; kaynağı belirtin, antet bunu içe aktarmalar için yapar. NLCS CC BY 4.0, OpenStreetMap ODbL lisanslıdır. Sentinel-2 uydu arka planı yalnızca ticari olmayan kullanım içindir.</li>
+        </ul>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="tech.title">Teknoloji</h2>
+    </div>
+    <div class="chip-row chip-row-light tech-chips">
+      <span class="chip">Rust</span>
+      <span class="chip">egui</span>
+      <span class="chip">proj4rs</span>
+      <span class="chip">OGC API Features</span>
+      <span class="chip">IMKL 2.0</span>
+      <span class="chip">NLCS 5.02</span>
+      <span class="chip">GPL-3.0</span>
+    </div>
+    <p class="tech-desc" data-i18n="tech.desc">Yaklaşık 6.900 satır Rust. CAD ana uygulamasına bağımlı olmayan bir CBS çekirdeği koordinatları, sunucuları, kırpmayı ve okumayı yapar; ayrı bir katman sonucu DWG nesnelerine dönüştürür. Windows, Linux ve macOS için sürümler.</p>
+  </div></section>
+
+  <!-- Release Notes (shared component) -->
+  <div data-release-notes="Open-Infra"></div>
+  <script src="/shared/release-notes.js?v=20261022"></script>
+
+  <section class="section surface-spot panel">
+    <div class="panel-center">
+      <h2 data-i18n="header.title">Open <span class="accent">Infra</span> Studio</h2>
+      <div class="btn-group">
+        <a href="#installeren" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="cta.install">Kur</span></a>
+        <a href="/tr/open-cad-studio/" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span data-i18n="cta.ocs">Open CAD Studio</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/Open-Infra" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg><span data-i18n="cta.github">GitHub</span></a>
+      </div>
+    </div>
+  </section>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/tr/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Sayfalar</h4>
+        <a href="/tr/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">Hakkımızda</a>
+        <a href="/tr/ifcx/">IFCX</a>
+        <a href="/tr/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Teklif iste</a>
+        <a href="/tr/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">SSS</a>
+        <a href="/tr/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Sorumluluk reddi</a>
+        <a href="/tr/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Taslak tüzük</a>
+        <a href="/tr/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Teşekkürler</a>
+        <a href="/tr/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Politika &amp; duruşlar</a>
+        <a href="/tr/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Sosyal medya</a>
+      </nav>
+      <nav class="site-footer-col" aria-label="Meer tools">
+        <h4 data-i18n-en="More tools" data-i18n-fr="Plus d'outils" data-i18n-tr="Daha fazla araç" data-i18n-es="Más herramientas">Daha fazla araç</h4>
+        <a href="/tr/open-energy-studio/">Open Energy Studio</a>
+        <a href="/tr/open-safety-studio/">Open Safety Studio</a>
+        <a href="/tr/open-3d-viewer/">Open 3D Viewer</a>
+        <a href="/tr/open-books/">OpenBooks</a>
+        <a href="/tr/openaec-cloud/">SuperCloud</a>
+        <a href="/tr/openaec-docs/">OpenAEC Docs</a>
+        <a href="/tr/ext-drawing-statistics/">Drawing Statistics</a>
+        <a href="/tr/y-app/">Y-app</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Kuruluş aşamasında vakıf</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">Hollanda</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+          <a href="https://x.com/openaec" target="_blank" rel="noopener" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.youtube.com/@openaecfoundation" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
+
+  <script>
+    (function(){
+      const track = document.getElementById('sliderTrack');
+      const dots = document.getElementById('sliderDots');
+      if (!track || !dots) return;
+      const slides = track.children.length;
+      let current = 0;
+      for(let i=0;i<slides;i++){
+        const d = document.createElement('button');
+        d.className = 'slider-dot' + (i===0?' active':'');
+        d.onclick = ()=>slideTo(i);
+        dots.appendChild(d);
+      }
+      window.slideMove = function(dir){slideTo(current+dir);};
+      window.slideTo = function(i){
+        current = (i+slides)%slides;
+        track.style.transform = 'translateX(-'+current*100+'%)';
+        dots.querySelectorAll('.slider-dot').forEach((d,idx)=>d.classList.toggle('active',idx===current));
+      };
+    })();
+    // Lange lijsten: de eerste paar zichtbaar, de rest achter de vaste "Toon alles"-knop. Zonder JavaScript staat alles open.
+    document.querySelectorAll('[data-fold]').forEach(function (grid) {
+      var n = +grid.getAttribute('data-fold');
+      var items = Array.prototype.slice.call(grid.children);
+      var row = document.querySelector('[data-fold-for="' + grid.id + '"]');
+      if (!row || items.length <= n) return;
+      var btn = row.querySelector('.more-btn');
+      var show = btn.querySelector('[data-fold-show]');
+      var hide = btn.querySelector('[data-fold-hide]');
+      btn.querySelector('[data-fold-count]').textContent = '(' + items.length + ')';
+      function zet(open) {
+        items.forEach(function (c, i) { c.style.display = (!open && i >= n) ? 'none' : ''; });
+        show.hidden = open; hide.hidden = !open;
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      }
+      zet(false);
+      row.hidden = false;
+      btn.addEventListener('click', function () {
+        var open = btn.getAttribute('aria-expanded') !== 'true';
+        zet(open);
+        if (!open) grid.scrollIntoView({ block: 'start' });
+      });
+    });
+  </script>
+  <script src="/shared/downloads.js?v=20261015"></script>
+  <script src="/shared/i18n.js?v=20261015"></script>
+</body>
+</html>

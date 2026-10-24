@@ -28,6 +28,7 @@ const TOOL_REPOS = [
   'openaec-installer',
   'open-geotechniek-studio',
   'pile-plan-studio',
+  'Open-Infra',
   'monty-ifc-viewer',
   'OpenAEC-BIM-validator',
   'openaec-bcf-platform',

@@ -35,6 +35,17 @@
     'linux-arm64-tar': /[_-]linux-(arm64|aarch64)\.tar\.gz$/i,
   };
 
+  // A plugin for Open CAD Studio ships as one native library per platform plus
+  // a manifest, not as an installer. Like the ARM keys, these are in no
+  // preference list: a button gets such a file only when its data-platform
+  // asks for it, so an ordinary download button never lands on a plugin.
+  const pluginFormats = {
+    'plugin-windows': /-windows-x86_64\.dll$/i,
+    'plugin-linux': /-linux-x86_64\.so$/i,
+    'plugin-macos': /-macos-aarch64\.dylib$/i,
+    'plugin-manifest': /^plugin\.toml$/i,
+  };
+
   // Per detected OS: the formats to try, in order.
   const preference = {
     windows: ['windows', 'windows-msi', 'windows-zip'],
@@ -47,7 +58,7 @@
   // download: a checksum, a signature, an updater manifest.
   function platformFor(name) {
     const matching = table => Object.keys(table).find(key => table[key].test(name));
-    return matching(armFormats) || matching(formats) || null;
+    return matching(armFormats) || matching(pluginFormats) || matching(formats) || null;
   }
 
   function downloadsForRelease(release, repo) {
