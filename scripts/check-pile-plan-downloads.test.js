@@ -48,7 +48,7 @@ test('offers only actual installer assets and their direct download URLs', () =>
 });
 
 test('every language page works without JavaScript and links to the installer, not a release page', () => {
-  const installer = assetUrl('v2026.43.1', 'Open.Pile.Plan.Studio_2026.43.1_x64-setup.exe');
+  const installer = assetUrl('v2026.43.2', 'Open.Pile.Plan.Studio_2026.43.2_x64-setup.exe');
   for (const language of ['', 'en/', 'fr/', 'tr/', 'es/']) {
     const html = fs.readFileSync(path.join(root, language, 'open-pile-plan-studio', 'index.html'), 'utf8');
     assert.ok(html.includes('id="download"'), `${language || 'nl/'}: download block missing`);
