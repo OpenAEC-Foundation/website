@@ -17,8 +17,8 @@
 - Forks: **1**
 - Open issues: **11**
 - Releases: **22**
-- Total downloads: **81**
-- Downloads by platform: Windows (81)
+- Total downloads: **85**
+- Downloads by platform: Windows (85)
 
 ## Key features
 
@@ -62,9 +62,9 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows · Open.Pile.Plan.Studio_2026.43.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.43.0/Open.Pile.Plan.Studio_2026.43.0_x64-setup.exe) (v2026.43.0 — 7.2 MB)
 - [Windows · Open.Pile.Plan.Studio_0.4.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v0.4.2-alpha/Open.Pile.Plan.Studio_0.4.2_x64-setup.exe) (v0.4.2-alpha — 7.2 MB)
 - [Windows · Pile.Plan.Studio_0.2.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v0.2.0-alpha/Pile.Plan.Studio_0.2.0_x64-setup.exe) (v0.2.0-alpha — 4.2 MB)
+- [Windows · Open.Pile.Plan.Studio_2026.43.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.43.2/Open.Pile.Plan.Studio_2026.43.2_x64-setup.exe) (v2026.43.2 — 7.4 MB)
 - [Windows · Pile.Plan.Studio_0.3.3_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v0.3.3-alpha/Pile.Plan.Studio_0.3.3_x64-setup.exe) (v0.3.3-alpha — 4.6 MB)
 - [Windows · Pile.Plan.Studio_0.3.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v0.3.2-alpha/Pile.Plan.Studio_0.3.2_x64-setup.exe) (v0.3.2-alpha — 4.4 MB)
-- [Windows · Pile.Plan.Studio_0.3.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v0.3.0-alpha/Pile.Plan.Studio_0.3.0_x64-setup.exe) (v0.3.0-alpha — 4.4 MB)
 
 ---
 
