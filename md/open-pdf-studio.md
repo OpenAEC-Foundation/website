@@ -12,13 +12,13 @@
 
 ## Live stats
 
-- Stars: **955**
+- Stars: **956**
 - Commits: **1615**
 - Forks: **93**
-- Open issues: **74**
+- Open issues: **76**
 - Releases: **81**
-- Total downloads: **32,586**
-- Downloads by platform: Windows (18350), Android (5682), Linux (AppImage) (2636), Linux (deb) (2601), macOS (2473), Archive (414), Linux (snap) (259), Other (78), Linux (rpm) (58), Windows (MSI) (35)
+- Total downloads: **32,724**
+- Downloads by platform: Windows (18453), Android (5694), Linux (AppImage) (2644), Linux (deb) (2611), macOS (2478), Archive (414), Linux (snap) (259), Other (78), Linux (rpm) (58), Windows (MSI) (35)
 
 ## Key features
 
@@ -72,9 +72,9 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Android · open-pdf-studio-release.apk](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v1.84.0/open-pdf-studio-release.apk) (v1.84.0 — 40.4 MB)
 - [Windows · Open.PDF.Studio_1.67.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v1.67.0/Open.PDF.Studio_1.67.0_x64-setup.exe) (v1.67.0 — 84.1 MB)
 - [Windows · Open.PDF.Studio_1.47.13_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v1.47.13/Open.PDF.Studio_1.47.13_x64-setup.exe) (v1.47.13 — 13.7 MB)
+- [Windows · Open.PDF.Studio_2026.43.4_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v2026.43.4/Open.PDF.Studio_2026.43.4_x64-setup.exe) (v2026.43.4 — 38.3 MB)
 - [Android · open-pdf-studio-release.apk](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v2026.39/open-pdf-studio-release.apk) (v2026.39 — 57.1 MB)
 - [Android · open-pdf-studio-release.apk](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v1.47.13/open-pdf-studio-release.apk) (v1.47.13 — 30.3 MB)
-- [Windows · Open.PDF.Studio_1.45.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v1.45.0/Open.PDF.Studio_1.45.0_x64-setup.exe) (v1.45.0 — 13.6 MB)
 
 ---
 

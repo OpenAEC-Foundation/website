@@ -15,10 +15,10 @@
 - Stars: **19**
 - Commits: **97**
 - Forks: **9**
-- Open issues: **19**
+- Open issues: **20**
 - Releases: **23**
-- Total downloads: **1,227**
-- Downloads by platform: Windows (804), Linux (AppImage) (128), macOS (84), Linux (deb) (81), Windows (MSI) (79), Linux (rpm) (29), Linux (snap) (22)
+- Total downloads: **1,239**
+- Downloads by platform: Windows (809), Linux (AppImage) (135), macOS (84), Linux (deb) (81), Windows (MSI) (79), Linux (rpm) (29), Linux (snap) (22)
 
 ## Key features
 

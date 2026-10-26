@@ -6,19 +6,19 @@
 **License:** GPL-3.0-only
 **Platforms:** Windows, Linux, macOS
 **Category:** GIS
-**Current version:** v2026.44.1 (2026-10-26)
+**Current version:** v2026.44.2 (2026-10-26)
 **Tool ID:** `open-infra-studio`
 **GitHub repo:** `OpenAEC-Foundation/Open-Infra`
 
 ## Live stats
 
 - Stars: **2**
-- Commits: **20**
+- Commits: **22**
 - Forks: **0**
 - Open issues: **4**
-- Releases: **5**
-- Total downloads: **57**
-- Downloads by platform: Other (44), Windows (13)
+- Releases: **6**
+- Total downloads: **134**
+- Downloads by platform: Other (112), Windows (22)
 
 ## Key features
 
@@ -60,18 +60,18 @@ Starting an infrastructure or civil drawing from the existing situation: the pro
 
 - Product page: https://open-aec.com/open-infra-studio/
 - GitHub repo: https://github.com/OpenAEC-Foundation/Open-Infra
-- Latest stable release: https://github.com/OpenAEC-Foundation/Open-Infra/releases/tag/v2026.44.1
+- Latest stable release: https://github.com/OpenAEC-Foundation/Open-Infra/releases/tag/v2026.44.2
 
 ## Direct downloads (most popular)
 
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.43/plugin.toml) (v2026.43)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v0.2.0/plugin.toml) (v0.2.0)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v0.2.1/plugin.toml) (v0.2.1)
-- [Windows · openaec.open-infra-windows-x86_64.dll](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.43/openaec.open-infra-windows-x86_64.dll) (v2026.43 — 12.5 MB)
+- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.44.1/plugin.toml) (v2026.44.1)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.44/plugin.toml) (v2026.44)
+- [Windows · openaec.open-infra-windows-x86_64.dll](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.43/openaec.open-infra-windows-x86_64.dll) (v2026.43 — 12.5 MB)
+- [Windows · openaec.open-infra-windows-x86_64.dll](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.44.1/openaec.open-infra-windows-x86_64.dll) (v2026.44.1 — 13.3 MB)
 - [Windows · openaec.open-infra-windows-x86_64.dll](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.44/openaec.open-infra-windows-x86_64.dll) (v2026.44 — 13.3 MB)
-- [Other · openaec.open-infra-linux-x86_64.so](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.43/openaec.open-infra-linux-x86_64.so) (v2026.43 — 20.4 MB)
-- [Other · openaec.open-infra-linux-x86_64.so](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.44.1/openaec.open-infra-linux-x86_64.so) (v2026.44.1 — 21.4 MB)
 
 ---
 
