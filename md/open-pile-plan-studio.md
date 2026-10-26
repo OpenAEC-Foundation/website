@@ -17,8 +17,8 @@
 - Forks: **1**
 - Open issues: **11**
 - Releases: **22**
-- Total downloads: **86**
-- Downloads by platform: Windows (86)
+- Total downloads: **87**
+- Downloads by platform: Windows (87)
 
 ## Key features
 

@@ -6,19 +6,19 @@
 **License:** GPL-3.0-only (application), LGPL-3.0-or-later (point-cloud library)
 **Platforms:** Windows, macOS, Linux
 **Category:** Reality Capture
-**Current version:** v0.9.5 (2026-10-13)
+**Current version:** v2026.44.0 (2026-10-26)
 **Tool ID:** `open-pointcloud-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-pointcloud-studio`
 
 ## Live stats
 
 - Stars: **29**
-- Commits: **432**
+- Commits: **545**
 - Forks: **3**
-- Open issues: **14**
-- Releases: **15**
-- Total downloads: **1,022**
-- Downloads by platform: Windows (633), Linux (AppImage) (101), Other (83), macOS (79), Archive (53), Linux (deb) (39), Windows (MSI) (34)
+- Open issues: **12**
+- Releases: **16**
+- Total downloads: **1,090**
+- Downloads by platform: Windows (646), Other (107), Linux (AppImage) (107), macOS (84), Archive (71), Linux (deb) (41), Windows (MSI) (34)
 
 ## Key features
 
@@ -67,24 +67,28 @@ Opening and inspecting laser scans and whole scan projects, cutting floor plans 
 
 - Product page: https://open-aec.com/open-pointcloud-studio/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-pointcloud-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v0.9.5
+- Latest stable release: https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v2026.44.0
 
 ## Direct downloads (current release)
 
-- [Archive · open-cad-studio-source_fc19afa7.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-cad-studio-source_fc19afa7.tar.gz) (v0.9.5 — 34.6 MB)
-- [Archive · open-cad-studio-vendor_fc19afa7.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-cad-studio-vendor_fc19afa7.tar.gz) (v0.9.5 — 10.7 MB)
-- [Other · open-pointcloud-studio-features.mp4](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-pointcloud-studio-features.mp4) (v0.9.5 — 4.7 MB)
-- [Linux (AppImage) · open-pointcloud-studio_0.9.5_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-pointcloud-studio_0.9.5_amd64.AppImage) (v0.9.5 — 54 MB)
-- [Linux (deb) · open-pointcloud-studio_0.9.5_amd64.deb](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-pointcloud-studio_0.9.5_amd64.deb) (v0.9.5 — 40.3 MB)
-- [Linux (AppImage), 64-bit ARM, experimental · open-pointcloud-studio_0.9.5_arm64.AppImage](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-pointcloud-studio_0.9.5_arm64.AppImage) (v0.9.5 — 51.7 MB)
-- [Linux (deb), 64-bit ARM, experimental · open-pointcloud-studio_0.9.5_arm64.deb](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-pointcloud-studio_0.9.5_arm64.deb) (v0.9.5 — 35.7 MB)
-- [Archive · open-pointcloud-studio_0.9.5_linux-amd64.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-pointcloud-studio_0.9.5_linux-amd64.tar.gz) (v0.9.5 — 58.7 MB)
-- [Archive, 64-bit ARM, experimental · open-pointcloud-studio_0.9.5_linux-arm64.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-pointcloud-studio_0.9.5_linux-arm64.tar.gz) (v0.9.5 — 56.1 MB)
-- [macOS · open-pointcloud-studio_0.9.5_macos-universal.dmg](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-pointcloud-studio_0.9.5_macos-universal.dmg) (v0.9.5 — 111.6 MB)
-- [Archive · open-pointcloud-studio_0.9.5_macos-universal.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-pointcloud-studio_0.9.5_macos-universal.tar.gz) (v0.9.5 — 100.9 MB)
-- [Windows · open-pointcloud-studio_0.9.5_windows-x64.zip](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-pointcloud-studio_0.9.5_windows-x64.zip) (v0.9.5 — 51.3 MB)
-- [Windows · open-pointcloud-studio_0.9.5_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/open-pointcloud-studio_0.9.5_x64-setup.exe) (v0.9.5 — 37.1 MB)
-- [Other · poster.png](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.9.5/poster.png) (v0.9.5 — 1 MB)
+- [Archive · open-cad-studio-source_fc19afa7.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-cad-studio-source_fc19afa7.tar.gz) (v2026.44.0 — 34.6 MB)
+- [Archive · open-cad-studio-vendor_fc19afa7.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-cad-studio-vendor_fc19afa7.tar.gz) (v2026.44.0 — 10.7 MB)
+- [Archive · open-pointcloud-studio-sdk_2026.44.0_linux-amd64-so.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio-sdk_2026.44.0_linux-amd64-so.tar.gz) (v2026.44.0 — 1.6 MB)
+- [Archive · open-pointcloud-studio-sdk_2026.44.0_linux-arm64-so.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio-sdk_2026.44.0_linux-arm64-so.tar.gz) (v2026.44.0 — 1.4 MB)
+- [Archive · open-pointcloud-studio-sdk_2026.44.0_macos-universal-dylib.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio-sdk_2026.44.0_macos-universal-dylib.tar.gz) (v2026.44.0 — 2.5 MB)
+- [Windows · open-pointcloud-studio-sdk_2026.44.0_windows-x64-dll.zip](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio-sdk_2026.44.0_windows-x64-dll.zip) (v2026.44.0 — 1.2 MB)
+- [Linux (AppImage) · open-pointcloud-studio_2026.44.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio_2026.44.0_amd64.AppImage) (v2026.44.0 — 54.2 MB)
+- [Linux (deb) · open-pointcloud-studio_2026.44.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio_2026.44.0_amd64.deb) (v2026.44.0 — 40.4 MB)
+- [Linux (AppImage), 64-bit ARM, experimental · open-pointcloud-studio_2026.44.0_arm64.AppImage](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio_2026.44.0_arm64.AppImage) (v2026.44.0 — 51.9 MB)
+- [Linux (deb), 64-bit ARM, experimental · open-pointcloud-studio_2026.44.0_arm64.deb](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio_2026.44.0_arm64.deb) (v2026.44.0 — 35.8 MB)
+- [Archive · open-pointcloud-studio_2026.44.0_linux-amd64.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio_2026.44.0_linux-amd64.tar.gz) (v2026.44.0 — 59 MB)
+- [Archive, 64-bit ARM, experimental · open-pointcloud-studio_2026.44.0_linux-arm64.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio_2026.44.0_linux-arm64.tar.gz) (v2026.44.0 — 56.4 MB)
+- [macOS · open-pointcloud-studio_2026.44.0_macos-universal.dmg](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio_2026.44.0_macos-universal.dmg) (v2026.44.0 — 112.4 MB)
+- [Archive · open-pointcloud-studio_2026.44.0_macos-universal.tar.gz](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio_2026.44.0_macos-universal.tar.gz) (v2026.44.0 — 101.7 MB)
+- [Other · open-pointcloud-studio_2026.44.0_verification.md](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio_2026.44.0_verification.md) (v2026.44.0)
+- [Windows · open-pointcloud-studio_2026.44.0_windows-x64.zip](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio_2026.44.0_windows-x64.zip) (v2026.44.0 — 51.9 MB)
+- [Windows · open-pointcloud-studio_2026.44.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/open-pointcloud-studio_2026.44.0_x64-setup.exe) (v2026.44.0 — 37.5 MB)
+- [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.44.0/SHA256SUMS) (v2026.44.0)
 
 ---
 

@@ -13,12 +13,12 @@
 ## Live stats
 
 - Stars: **19**
-- Commits: **96**
+- Commits: **97**
 - Forks: **9**
 - Open issues: **19**
 - Releases: **23**
-- Total downloads: **1,209**
-- Downloads by platform: Windows (791), Linux (AppImage) (125), macOS (82), Linux (deb) (81), Windows (MSI) (79), Linux (rpm) (29), Linux (snap) (22)
+- Total downloads: **1,227**
+- Downloads by platform: Windows (804), Linux (AppImage) (128), macOS (84), Linux (deb) (81), Windows (MSI) (79), Linux (rpm) (29), Linux (snap) (22)
 
 ## Key features
 
@@ -66,8 +66,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows · Open.Calc.Studio_0.10.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.10.0/Open.Calc.Studio_0.10.0_x64-setup.exe) (v0.10.0 — 22.7 MB)
 - [Linux (AppImage) · Open.Calc.Studio_0.13.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_amd64.AppImage) (v0.13.0 — 122.7 MB)
 - [Windows · Open.Calc.Studio_0.7.3_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.7.3/Open.Calc.Studio_0.7.3_x64-setup.exe) (v0.7.3 — 32.6 MB)
-- [Windows (MSI) · Open.Calc.Studio_0.13.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_x64_en-US.msi) (v0.13.0 — 46.1 MB)
 - [macOS · Open.Calc.Studio_0.13.0_aarch64.dmg](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_aarch64.dmg) (v0.13.0 — 45.1 MB)
+- [Windows (MSI) · Open.Calc.Studio_0.13.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_x64_en-US.msi) (v0.13.0 — 46.1 MB)
 - [Linux (deb) · Open.Calc.Studio_0.13.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_amd64.deb) (v0.13.0 — 51.5 MB)
 - [Linux (deb) · Open.Calc.Studio_0.10.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.10.0/Open.Calc.Studio_0.10.0_amd64.deb) (v0.10.0 — 31.2 MB)
 
