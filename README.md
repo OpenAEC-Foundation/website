@@ -2,6 +2,8 @@
 
 Official website for the Open AEC Foundation - an organization dedicated to developing, supporting and promoting open source software for the entire construction chain.
 
+Analytics setup and maintenance: [Google Analytics](docs/analytics.md).
+
 ## Repository Overview
 
 The OpenAEC Foundation maintains **16 open source repositories** for the AEC (Architecture, Engineering, Construction) industry. Below is a complete overview organized by category.

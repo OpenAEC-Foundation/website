@@ -1,5 +1,12 @@
 // Shared navigation loader — drop <script src="/shared/nav.js"></script> in any page
 (function() {
+  if (!document.getElementById('openaec-analytics-loader')) {
+    var analytics = document.createElement('script');
+    analytics.id = 'openaec-analytics-loader';
+    analytics.src = '/shared/analytics.js?v=20261026';
+    analytics.defer = true;
+    document.head.appendChild(analytics);
+  }
   function loadNav() {
     var placeholder = document.getElementById('shared-nav');
     if (!placeholder) {
