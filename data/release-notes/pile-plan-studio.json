@@ -1,20 +1,42 @@
 {
   "repo": "pile-plan-studio",
-  "generated": "2026-10-27T06:08:11.238Z",
-  "totalReleases": 23,
-  "totalChanges": 206,
+  "generated": "2026-10-27T16:15:47.397Z",
+  "totalReleases": 24,
+  "totalChanges": 219,
   "latestStable": {
-    "tag": "v2026.44.1",
-    "name": "Open Pile Plan Studio 2026.44.1 — Alpha",
-    "date": "2026-10-26",
-    "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v2026.44.1"
+    "tag": "v2026.44.2",
+    "name": "Open Pile Plan Studio 2026.44.2 — Alpha",
+    "date": "2026-10-27",
+    "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v2026.44.2"
   },
-  "latestChangelog": "This alpha improves pile-plan exports, inspection within grouped selections,\nand the readability of legends and side panels.\n\n### Added\n\n- Choose numeric pile sizes (`290`) or square dimensions (`290x290`) in one\n  shared Excel/CSV export block. The choice is remembered across restarts.\n  Square dimensions use the project's pile-shape settings; round and unknown\n  shapes retain numeric sizes and unassigned cells remain empty. (#52)\n- Re-import both export notations from CSV and XLSX. Equal square dimensions\n  accept `x`, `X` or `×`; unequal or invalid dimensions are rejected with a\n  source-cell diagnostic.\n- Inspect a member of a selected group or multiple selection by clicking it\n  again in the drawing. Keep the other context members visible with dashed\n  gray rings, show the inspected count, and return to the entire selection. (#53)\n\n### Improved and fixed\n\n- Prioritize CPTs for both hover and clicking during manual CPT editing, even\n  when load points are the stored foreground preference. Clear stale hover\n  candidates when that priority changes and retain explicit Space cycling.\n- Show the tip-level region color beside the numeric tip level in pile-option\n  rows when using size-colored symbols and tip-colored regions. Preserve both\n  color channels for single and multiple selections, even with regions hidden.\n  Inactive levels retain a gray indicator and an explicit inactive label. (#50)\n- Use consistent icons, aligned actions and one shared notation control for\n  Excel and CSV exports.\n- Apply the bundled interface font consistently to menus, dialogs and form\n  controls. Improve secondary-text contrast across light and dark themes.\n\n### Compatibility and limitations\n\n- Numeric export remains the default for existing API/MCP callers.\n- Supported IFCPP project versions and engineering calculations are unchanged.\n  Inspection context remains transient; export notation is a user preference.\n- The application remains Alpha; engineering results require professional review.",
+  "latestChangelog": "This alpha adds persistent pile-cap proposals and optional pile-count optimization,\nwith a compact overview for exploring changes within each pile plan.\n\n### Added\n\n- Propose one to twenty piles per cap using count, 90-degree rotation and Reset\n  controls beside the selection's grouping action. Keep proposals independently\n  in each pile plan, including after saving and reopening a project.\n- Open **Plan > Pile cap changes** to compare original and proposed pile counts.\n  Select and center a group at the current zoom, edit it directly above the list,\n  or reset every proposal in the active plan with one undoable action.\n- Optionally let the optimizer change pile counts in groups and at single-pile\n  locations. Choose individual allowed counts and a maximum, defaulting to six.\n  Existing larger groups are preserved, and locked groups retain their count.\n- Weight differences in pile count between neighboring caps alongside the\n  existing tip-level and pile-size weights.\n\n### Improved and fixed\n\n- Preserve insufficient-capacity and missing-data markers on proposal piles.\n  Make tip-level regions follow the proposed layout.\n- Keep the active plan's existing proposal display visible while count edits are\n  validated, avoiding a brief flash of the original source layout.\n- Reduce schematic spacing near neighboring locations while retaining symbol\n  sizes and distinguishable pile centers. Keep count controls in fixed positions.\n- Show compact, wrapping proposal and lock summaries in the explorer. Keep the\n  proposal overview's row order stable during edits.\n\n### Compatibility and limitations\n\n- **CSV/XLSX export is not available for pile plans containing pile-cap proposals.**\n  Save these plans as IFCPP, which retains all proposals, or export a separate\n  plan without proposals. Export is blocked to avoid silently exporting only the\n  original source locations.\n- IFCPP schema 6 stores per-plan proposals. Supported older project versions\n  remain readable. Proposal changes participate in recovery and undo/redo;\n  original load points and assignments are retained.\n- Proposals are indicative: original FEd values are added and redistributed\n  equally using the source members' combined CPT selections. Moments, eccentricity,\n  cap design and pile-group effects are not recalculated. Layout spacing is\n  schematic, and indicative costs include piles but exclude cap costs.\n- The application remains Alpha; engineering results require professional review.",
   "nightly": null,
   "groups": [
     {
       "minorVersion": "2026.44",
       "releases": [
+        {
+          "tag": "v2026.44.2",
+          "name": "Open Pile Plan Studio 2026.44.2 — Alpha",
+          "date": "2026-10-27",
+          "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v2026.44.2",
+          "changes": [
+            "Propose one to twenty piles per cap using count, 90-degree rotation and Reset controls beside the selection's grouping action. Keep proposals independently in each pile plan, including after saving and reopening a project.",
+            "Open **Plan > Pile cap changes** to compare original and proposed pile counts. Select and center a group at the current zoom, edit it directly above the list, or reset every proposal in the active plan with one undoable action.",
+            "Optionally let the optimizer change pile counts in groups and at single-pile locations. Choose individual allowed counts and a maximum, defaulting to six. Existing larger groups are preserved, and locked groups retain their count.",
+            "Weight differences in pile count between neighboring caps alongside the existing tip-level and pile-size weights.",
+            "Preserve insufficient-capacity and missing-data markers on proposal piles. Make tip-level regions follow the proposed layout.",
+            "Keep the active plan's existing proposal display visible while count edits are validated, avoiding a brief flash of the original source layout.",
+            "Reduce schematic spacing near neighboring locations while retaining symbol sizes and distinguishable pile centers. Keep count controls in fixed positions.",
+            "Show compact, wrapping proposal and lock summaries in the explorer. Keep the proposal overview's row order stable during edits.",
+            "**CSV/XLSX export is not available for pile plans containing pile-cap proposals.** Save these plans as IFCPP, which retains all proposals, or export a separate plan without proposals. Export is blocked to avoid silently exporting only the original source locations.",
+            "IFCPP schema 6 stores per-plan proposals. Supported older project versions remain readable. Proposal changes participate in recovery and undo/redo; original load points and assignments are retained.",
+            "Proposals are indicative: original FEd values are added and redistributed equally using the source members' combined CPT selections. Moments, eccentricity, cap design and pile-group effects are not recalculated. Layout spacing is schematic, and indicative costs include piles but exclude cap costs.",
+            "The application remains Alpha; engineering results require professional review.",
+            "Known visual issue: dashed group outlines can look fragmented at small symbol sizes. Tracked separately in [#54](https://github.com/OpenAEC-Foundation/pile-plan-studio/issues/54)."
+          ],
+          "patchNum": 2
+        },
         {
           "tag": "v2026.44.1",
           "name": "Open Pile Plan Studio 2026.44.1 — Alpha",
@@ -36,6 +58,19 @@
         }
       ],
       "allChanges": [
+        "Propose one to twenty piles per cap using count, 90-degree rotation and Reset controls beside the selection's grouping action. Keep proposals independently in each pile plan, including after saving and reopening a project.",
+        "Open **Plan > Pile cap changes** to compare original and proposed pile counts. Select and center a group at the current zoom, edit it directly above the list, or reset every proposal in the active plan with one undoable action.",
+        "Optionally let the optimizer change pile counts in groups and at single-pile locations. Choose individual allowed counts and a maximum, defaulting to six. Existing larger groups are preserved, and locked groups retain their count.",
+        "Weight differences in pile count between neighboring caps alongside the existing tip-level and pile-size weights.",
+        "Preserve insufficient-capacity and missing-data markers on proposal piles. Make tip-level regions follow the proposed layout.",
+        "Keep the active plan's existing proposal display visible while count edits are validated, avoiding a brief flash of the original source layout.",
+        "Reduce schematic spacing near neighboring locations while retaining symbol sizes and distinguishable pile centers. Keep count controls in fixed positions.",
+        "Show compact, wrapping proposal and lock summaries in the explorer. Keep the proposal overview's row order stable during edits.",
+        "**CSV/XLSX export is not available for pile plans containing pile-cap proposals.** Save these plans as IFCPP, which retains all proposals, or export a separate plan without proposals. Export is blocked to avoid silently exporting only the original source locations.",
+        "IFCPP schema 6 stores per-plan proposals. Supported older project versions remain readable. Proposal changes participate in recovery and undo/redo; original load points and assignments are retained.",
+        "Proposals are indicative: original FEd values are added and redistributed equally using the source members' combined CPT selections. Moments, eccentricity, cap design and pile-group effects are not recalculated. Layout spacing is schematic, and indicative costs include piles but exclude cap costs.",
+        "The application remains Alpha; engineering results require professional review.",
+        "Known visual issue: dashed group outlines can look fragmented at small symbol sizes. Tracked separately in [#54](https://github.com/OpenAEC-Foundation/pile-plan-studio/issues/54).",
         "Choose numeric pile sizes (`290`) or square dimensions (`290x290`) in one shared Excel/CSV export block. The choice is remembered across restarts. Square dimensions use the project's pile-shape settings; round and unknown shapes retain numeric sizes and unassigned cells remain empty. (#52)",
         "Re-import both export notations from CSV and XLSX. Equal square dimensions accept `x`, `X` or `×`; unequal or invalid dimensions are rejected with a source-cell diagnostic.",
         "Inspect a member of a selected group or multiple selection by clicking it again in the drawing. Keep the other context members visible with dashed gray rings, show the inspected count, and return to the entire selection. (#53)",
@@ -48,9 +83,9 @@
         "The application remains Alpha; engineering results require professional review."
       ],
       "firstDate": "2026-10-26",
-      "lastDate": "2026-10-26",
-      "releaseCount": 1,
-      "changeCount": 10
+      "lastDate": "2026-10-27",
+      "releaseCount": 2,
+      "changeCount": 23
     },
     {
       "minorVersion": "2026.43",

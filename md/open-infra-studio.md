@@ -13,12 +13,12 @@
 ## Live stats
 
 - Stars: **2**
-- Commits: **22**
+- Commits: **23**
 - Forks: **0**
 - Open issues: **11**
 - Releases: **6**
-- Total downloads: **153**
-- Downloads by platform: Other (128), Windows (25)
+- Total downloads: **178**
+- Downloads by platform: Other (149), Windows (29)
 
 ## Key features
 
@@ -69,9 +69,9 @@ Starting an infrastructure or civil drawing from the existing situation: the pro
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v0.2.1/plugin.toml) (v0.2.1)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.44.1/plugin.toml) (v2026.44.1)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.44/plugin.toml) (v2026.44)
+- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.44.2/plugin.toml) (v2026.44.2)
 - [Windows · openaec.open-infra-windows-x86_64.dll](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.43/openaec.open-infra-windows-x86_64.dll) (v2026.43 — 12.5 MB)
 - [Windows · openaec.open-infra-windows-x86_64.dll](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.44.1/openaec.open-infra-windows-x86_64.dll) (v2026.44.1 — 13.3 MB)
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra/releases/download/v2026.44.2/plugin.toml) (v2026.44.2)
 
 ---
 

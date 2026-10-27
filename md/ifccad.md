@@ -6,17 +6,17 @@
 **License:** MPL-2.0
 **Platforms:** Web
 **Category:** CAD Format
-**Current version:** n/a
+**Current version:** v2026.44.0 (2026-10-27)
 **Tool ID:** `ifccad`
 **GitHub repo:** `OpenAEC-Foundation/ifccad`
 
 ## Live stats
 
 - Stars: **16**
-- Commits: **255**
+- Commits: **258**
 - Forks: **1**
 - Open issues: **13**
-- Releases: **0**
+- Releases: **1**
 - Total downloads: **0**
 
 ## Key features
@@ -47,7 +47,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/ifccad/
 - Live demo: https://ifccad-explorer.open-aec.com
 - GitHub repo: https://github.com/OpenAEC-Foundation/ifccad
-- Latest stable release: https://github.com/OpenAEC-Foundation/ifccad/releases
+- Latest stable release: https://github.com/OpenAEC-Foundation/ifccad/releases/tag/v2026.44.0
 
 ---
 
