@@ -371,10 +371,17 @@ const smPath = path.join(ROOT, 'sitemap.xml');
 if (fs.existsSync(smPath)) {
   let sm = fs.readFileSync(smPath, 'utf8');
   sm = sm.replace(/\n?[ \t]*<!-- i18n:start -->[\s\S]*?<!-- i18n:end -->/g, '');
-  const rows = generated
+  // Alleen taalversies van pagina's die met de hand in de sitemap staan. Een
+  // pagina die lokaal klaarstaat maar nog niet gepubliceerd is, krijgt zo geen
+  // taal-URL's die op de live site een 404 geven.
+  const listed = new Set([...sm.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1].replace(ORIGIN, '')));
+  const published = generated.filter(u => listed.has(u.replace(/^\/[a-z]{2}(?=\/)/, '')));
+  const rows = published
     .map(u => `  <url><loc>${ORIGIN}${u}</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>`)
     .join('\n');
   sm = sm.replace(/(\n)?<\/urlset>/, `\n  <!-- i18n:start -->\n${rows}\n  <!-- i18n:end -->\n</urlset>`);
   fs.writeFileSync(smPath, sm.replace(/\r\n?/g, '\n'));
-  console.log(`  sitemap.xml: ${generated.length} taal-URL's toegevoegd`);
+  const skipped = generated.length - published.length;
+  console.log(`  sitemap.xml: ${published.length} taal-URL's toegevoegd` +
+    (skipped ? `, ${skipped} overgeslagen (Nederlandse pagina staat niet in de sitemap)` : ''));
 }

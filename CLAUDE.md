@@ -56,7 +56,7 @@ Four languages: **nl (default, the literal HTML text), en, fr, tr**. Preference 
 
 ### Product page skeleton
 
-`<tool-slug>/index.html`, `<html lang="nl">`, head order: charset → viewport → title → description → `meta name="i18n-page"` → favicon → `/shared/style.css` → inline `SoftwareApplication` JSON-LD → page-local `<style>` block. Body: `#shared-nav` + `nav.js` → `.page-header` → `.section` blocks → `<div data-release-notes="<repo-name>">` + `release-notes.js` → `.footer.page-footer` → page scripts → **`shared/i18n.js` last**.
+`<tool-slug>/index.html`, `<html lang="nl">`, head order: charset → viewport → title → description → `meta name="i18n-page"` → favicon → `/shared/style.css` → inline `SoftwareApplication` JSON-LD → page-local `<style>` block. Body: `#shared-nav` + `nav.js` → `<main id="main">` → `.page-header` → `.section` blocks → `<div data-release-notes="<repo-name>">` + `release-notes.js` → `</main>` → `.footer.page-footer` → page scripts → **`shared/i18n.js` last**. `node --test scripts/check-seo-basics.test.js` guards one title, a description, a canonical, one H1 and one `<main>` per page, and that every sitemap URL is a committed page. `build-i18n-pages.js` only lists a language URL in the sitemap when the Dutch page is in it, so a page that is not published yet stays out.
 
 Shared scripts are loaded with a uniform cache-bust query `?v=20260603` across all pages. Bump it everywhere or nowhere.
 
