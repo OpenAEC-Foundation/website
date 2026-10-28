@@ -17,8 +17,8 @@
 - Forks: **6**
 - Open issues: **3**
 - Releases: **8**
-- Total downloads: **509**
-- Downloads by platform: Windows (312), Linux (AppImage) (77), Windows (MSI) (45), Linux (rpm) (23), macOS (23), Linux (deb) (22), Archive (7)
+- Total downloads: **514**
+- Downloads by platform: Windows (317), Linux (AppImage) (77), Windows (MSI) (45), Linux (rpm) (23), macOS (23), Linux (deb) (22), Archive (7)
 
 ## Key features
 

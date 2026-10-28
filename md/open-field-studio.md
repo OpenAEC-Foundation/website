@@ -14,11 +14,11 @@
 
 - Stars: **4**
 - Commits: **36**
-- Forks: **3**
+- Forks: **4**
 - Open issues: **11**
 - Releases: **13**
-- Total downloads: **282**
-- Downloads by platform: Windows (176), Android (44), Linux (AppImage) (39), Linux (deb) (12), Windows (MSI) (10), Linux (rpm) (1)
+- Total downloads: **289**
+- Downloads by platform: Windows (181), Android (45), Linux (AppImage) (39), Linux (deb) (13), Windows (MSI) (10), Linux (rpm) (1)
 
 ## Key features
 
