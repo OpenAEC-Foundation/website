@@ -37,6 +37,7 @@ const CATS = {
   'openaec-cloud':              ['A','E','C','I'],
   'openaec-bcf-platform':       ['E','C'],
   'openaec-installer':          ['A','E','C','I'],
+  'open-paint-studio':          ['A','E','C','I'],
   'open-frame-studio':          ['A','C'],
 };
 
