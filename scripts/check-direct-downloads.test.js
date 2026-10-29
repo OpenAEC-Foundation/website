@@ -187,6 +187,30 @@ test('keeps recognising the file names of earlier releases', () => {
   }
 });
 
+test('gives each file of an Open Infra Studio release its own plugin key', () => {
+  const repo = 'OpenAEC-Foundation/Open-Infra-Studio';
+  const files = {
+    'plugin-windows': 'openaec.open-infra-windows-x86_64.dll',
+    'plugin-linux': 'openaec.open-infra-linux-x86_64.so',
+    'plugin-macos': 'openaec.open-infra-macos-aarch64.dylib',
+    'plugin-manifest': 'plugin.toml',
+    'plugin-civiel-windows': 'open-infra-civiel-windows-x86_64.zip',
+    'plugin-civiel-linux': 'open-infra-civiel-linux-x86_64.zip',
+    'plugin-civiel-macos': 'open-infra-civiel-macos-aarch64.zip',
+  };
+  const release = { assets: Object.values(files).sort().map(name => ({
+    name,
+    browser_download_url: `https://github.com/${repo}/releases/download/v2026.44.3/${name}`,
+    size: 1000,
+  })) };
+  const found = downloads.downloadsForRelease(release, repo);
+  assert.deepEqual(Object.keys(found).sort(), Object.keys(files).sort());
+  for (const [platform, name] of Object.entries(files)) assert.equal(found[platform].name, name, platform);
+  // A plugin release has no installer: a button without data-platform keeps its baked-in file.
+  assert.equal(downloads.pickAsset(found, null, 'windows'), null);
+  assert.equal(downloads.platformFor('open-pointcloud-studio-v0.7.0-windows.zip'), 'windows-zip');
+});
+
 test('offers the 0.8.0 package for the visitor OS and prefers that release over 0.7.0', () => {
   const available = downloads.downloadsForRelease(
     pointcloudRelease(pointcloudNames.concat(checksumNames).sort()), pointcloudRepo);

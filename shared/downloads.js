@@ -39,11 +39,16 @@
   // a manifest, not as an installer. Like the ARM keys, these are in no
   // preference list: a button gets such a file only when its data-platform
   // asks for it, so an ordinary download button never lands on a plugin.
+  // The Civiel plugin of Open Infra Studio comes in the same release as one
+  // zip per platform, holding its library and its own manifest.
   const pluginFormats = {
     'plugin-windows': /-windows-x86_64\.dll$/i,
     'plugin-linux': /-linux-x86_64\.so$/i,
     'plugin-macos': /-macos-aarch64\.dylib$/i,
     'plugin-manifest': /^plugin\.toml$/i,
+    'plugin-civiel-windows': /-civiel-windows-x86_64\.zip$/i,
+    'plugin-civiel-linux': /-civiel-linux-x86_64\.zip$/i,
+    'plugin-civiel-macos': /-civiel-macos-aarch64\.zip$/i,
   };
 
   // Per detected OS: the formats to try, in order.

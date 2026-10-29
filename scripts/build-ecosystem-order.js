@@ -31,9 +31,9 @@
  * niet ten opzichte van vandaag. Het script is daarmee idempotent: opnieuw
  * draaien zonder verse data geeft exact dezelfde volgorde.
  *
- * Uitzonderingen staan in PINNED: de IFCX-kaart staat vast op plek 1 (het
- * dataformaat waar de rest op draait, geen applicatie; de kaart is daarom
- * visueel uitgelicht met een amber rand) en Y-app vast op plek 6 (een
+ * Uitzonderingen staan in PINNED: Open CAD Studio staat vast op plek 1 (de
+ * uitgelichte tool), Open Infra Studio vast op plek 2 (een uitbreiding van
+ * Open CAD Studio, dus direct erachter) en Y-app vast op plek 6 (een
  * privé-repo, dus te weinig publieke gegevens voor een eerlijke score).
  *
  * Bronnen, in volgorde van betrouwbaarheid voor versie en releasedatum:
@@ -64,13 +64,15 @@ const PAGES = ['index.html', 'en/index.html', 'fr/index.html', 'tr/index.html', 
 
 // Kaarten met een vaste plek (1 = bovenaan); de rest vult de overige plekken
 // op volgorde van score.
-// - ifcx: het dataformaat waar de rest op draait, geen applicatie.
+// - openCad: Open CAD Studio is de uitgelichte tool en staat bovenaan.
+// - openInfra: Open Infra Studio is een plugin voor Open CAD Studio (de tabs
+//   GIS en Civiel in zijn lint) en staat daarom direct erachter, op 2.
 // - yapp: handmatig op 6 gezet. Y-app is een privé-repo, dus sterren,
 //   commits en downloads zijn er niet (publiek) te meten; de score leunt
 //   daardoor op te weinig gegevens om de plek zelf te bepalen.
 const PINNED = new Map([
-  // Open CAD Studio is de uitgelichte tool en staat bovenaan.
   ['openCad', 1],
+  ['openInfra', 2],
   ['yapp', 6],
 ]);
 
