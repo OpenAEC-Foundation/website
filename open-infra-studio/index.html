@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Infra Studio — OpenAEC Foundation</title>
-  <meta name="description" content="Open Infra Studio: open-source GIS en civiel ontwerp voor Open CAD Studio. Kaartdiensten wereldwijd, assen, profielen en corridors, plus BGT, kadaster en KLIC conform NLCS in de DWG.">
+  <meta name="description" content="Open Infra Studio: open-source GIS en civiel ontwerp voor Open CAD Studio. Kaartdiensten wereldwijd, assen, profielen en corridors, BGT, kadaster en KLIC conform NLCS, en export naar IFC 4.3.">
   <link rel="canonical" href="https://open-aec.com/open-infra-studio/">
   <!-- hreflang:start -->
   <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-infra-studio/">
@@ -23,7 +23,7 @@
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenAEC Foundation">
   <meta property="og:title" content="Open Infra Studio">
-  <meta property="og:description" content="GIS en civiel ontwerp in één tekening: kaartdiensten wereldwijd, een Civiel-tab voor assen, profielen en corridors, en BGT, kadaster en KLIC conform NLCS — een open-source plugin voor Open CAD Studio.">
+  <meta property="og:description" content="GIS en civiel ontwerp in één tekening: kaartdiensten wereldwijd, een Civiel-tab voor assen, profielen en corridors, BGT, kadaster en KLIC conform NLCS, en export naar IFC 4.3 — een open-source plugin voor Open CAD Studio.">
   <meta property="og:url" content="https://open-aec.com/open-infra-studio/">
   <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-infra-studio.png">
   <meta property="og:locale" content="nl_NL">
@@ -32,7 +32,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Open Infra Studio">
-  <meta name="twitter:description" content="GIS en civiel ontwerp in één tekening: kaartdiensten wereldwijd, een Civiel-tab voor assen, profielen en corridors, en BGT, kadaster en KLIC conform NLCS — een open-source plugin voor Open CAD Studio.">
+  <meta name="twitter:description" content="GIS en civiel ontwerp in één tekening: kaartdiensten wereldwijd, een Civiel-tab voor assen, profielen en corridors, BGT, kadaster en KLIC conform NLCS, en export naar IFC 4.3 — een open-source plugin voor Open CAD Studio.">
   <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-infra-studio.png">
 
   <!-- AI / LLM discoverability -->
@@ -53,14 +53,14 @@
     "applicationCategory": "EngineeringApplication",
     "applicationSubCategory": "GIS and civil design",
     "operatingSystem": "Windows, Linux, macOS",
-    "softwareVersion": "2026.44.3",
+    "softwareVersion": "2026.44.5",
     "softwareRequirements": "Open CAD Studio v2026.43 (plugin API 13)",
     "license": "https://www.gnu.org/licenses/gpl-3.0.html",
     "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
     "url": "https://open-aec.com/open-infra-studio/",
-    "downloadUrl": "https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.3/openaec.open-infra-windows-x86_64.dll",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/openaec.open-infra-windows-x86_64.dll",
     "sameAs": "https://github.com/OpenAEC-Foundation/Open-Infra-Studio",
-    "description": "Open-source GIS and civil design plugin for Open CAD Studio, for infrastructure and civil engineering anywhere in the world. Sets the project location in any coordinate system, loads map services, OpenStreetMap and 3D city models into the DWG, and adds a Civiel ribbon tab for survey points, terrain, alignments, profiles, corridors and earthworks. Plus Dutch base data (BGT, cadastre, KLIC, AHN, BRO) on NLCS 5.02 layers with object data and a generated drawing sheet.",
+    "description": "Open-source GIS and civil design plugin for Open CAD Studio, for infrastructure and civil engineering anywhere in the world. Sets the project location in any coordinate system, loads map services, OpenStreetMap and 3D city models into the DWG, and adds a Civiel ribbon tab for survey points, terrain, alignments, profiles, corridors and earthworks. Plus Dutch base data (BGT, cadastre, KLIC, AHN, BRO) on NLCS 5.02 layers with object data and a generated drawing sheet, and the whole drawing as georeferenced IFC 4.3.",
     "featureList": [
       "Project location anywhere in the world, in a built-in coordinate system, automatic UTM or any EPSG code",
       "Searchable catalogue of 600+ checked public WMS, WFS and tile services in 45 countries",
@@ -72,6 +72,7 @@
       "BGT, cadastral map (BRK) and KLIC deliveries (IMKL 2.0) on NLCS 5.02 layers with the official NLCS-BGT 5.0 mapping",
       "Design changes back to the BGT as an IMGeo-GML 2.1.1 mutation",
       "NLCS 5.02 drawing sheet with title block, legend, north arrow, scale bar and RD crosses",
+      "IFC 4.3 (IFC4X3_ADD2) export of the whole drawing: IFC classes from the NLCS layers, axes as IfcAlignment, IfcMapConversion georeference, object data as property sets",
       "Commands with arguments and JSON results, and an MCP server for AI agents"
     ],
     "isBasedOn": { "@type": "SoftwareApplication", "name": "Open CAD Studio", "url": "https://open-aec.com/open-cad-studio/" },
@@ -117,6 +118,14 @@
     .example-facts li { display: flex; justify-content: space-between; gap: var(--sp-4); border-bottom: 1px solid rgba(42,42,50,0.08); padding-bottom: var(--sp-2); color: var(--text-on-light); }
     .example-facts strong { font-family: var(--font-heading); color: var(--deep-forge); white-space: nowrap; }
     .example-caption { color: var(--text-on-light); font-size: 1rem; line-height: 1.7; margin: 0 0 var(--sp-5); }
+    /* Voorbeeldmodel Dordrecht: tekst en cijfers, drie beelden, de bestanden */
+    .model-links { justify-content: flex-start; flex-wrap: wrap; margin-top: var(--sp-5); }
+    .model-shots { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; max-width: 1100px; margin: var(--sp-10) auto 0; }
+    .model-shots figure { margin: 0; min-width: 0; }
+    .model-shots img { display: block; width: 100%; height: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-float); background: var(--night-build); }
+    .model-shots figcaption { color: var(--text-on-light); font-size: 0.88rem; line-height: 1.5; margin-top: var(--sp-2); }
+    .model-note { color: var(--text-on-light); font-size: 0.88rem; line-height: 1.6; margin: var(--sp-4) 0 0; opacity: 0.85; }
+    .model-note code, .format-card code { font-family: var(--font-code); font-size: 0.88em; overflow-wrap: anywhere; }
     .limits-card { max-width: 900px; margin: 0 auto; display: flex; gap: var(--sp-5); align-items: flex-start; background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(217,119,6,0.35); border-left: 4px solid var(--amber); border-radius: var(--radius-lg); box-shadow: var(--shadow-float); padding: var(--sp-6) var(--sp-8); }
     .limits-card .icon-tile { flex-shrink: 0; }
     .limits-card h2 { font-size: 1.35rem; color: var(--deep-forge); margin: 0 0 var(--sp-3); }
@@ -129,6 +138,7 @@
     @media (max-width: 768px) {
       .example-grid { grid-template-columns: minmax(0, 1fr); }
       .formats-grid { grid-template-columns: minmax(0, 1fr); }
+      .model-shots { grid-template-columns: minmax(0, 1fr); }
       .limits-card { flex-direction: column; padding: var(--sp-5); }
     }
   </style>
@@ -242,7 +252,7 @@
       <div class="chip-row">
         <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg><span data-i18n="header.plugin">Plugin voor Open CAD Studio v2026.43</span></span>
         <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-route"/></svg><span data-i18n="header.gww">GIS · Civiel</span></span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg>v2026.44.3 · Rust</span>
+        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg>v2026.44.5 · Rust</span>
         <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-euro"/></svg>€ 0</span>
       </div>
       <p class="hero-note" data-i18n="header.note">Internationaal eerst: de wereldwijde tools staan voorop, de Nederlandse modules zitten in één groep die je kunt uitzetten, en de taal volgt die van Open CAD Studio.</p>
@@ -277,7 +287,7 @@
         <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-route"/></svg></div><div><p data-i18n="what.list3">Civiel ontwerp: meetpunten, TIN, assen, profielen, corridors en grondverzet</p></div></li>
         <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div><div><p data-i18n="what.list4">3D-stadsmodellen uit CityGML en CityJSON, en de ondergrond in 3D</p></div></li>
         <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-strata"/></svg></div><div><p data-i18n="what.list5">BGT, kadaster en KLIC op NLCS-lagen, met een compleet tekenblad</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-keyboard"/></svg></div><div><p data-i18n="what.list6">Scriptbaar, met een MCP-server waarmee een AI-agent hele modellen bouwt</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-keyboard"/></svg></div><div><p data-i18n="what.list6">De hele tekening als IFC 4.3, en scriptbaar met een MCP-server voor AI-agents</p></div></li>
       </ul>
     </div></div>
   </div></section>
@@ -294,54 +304,55 @@
     <div class="section-head">
       <h2 data-i18n="install.title">Installeren</h2>
     </div>
-    <p class="install-intro" data-i18n="install.intro">Open Infra Studio is een plugin voor Open CAD Studio en bestaat uit twee delen: de GIS-plugin en de Civiel-plugin. Release 2026.44.3 vraagt Open CAD Studio v2026.43; installeer of werk dat dus eerst bij.</p>
+    <p class="install-intro" data-i18n="install.intro">Open Infra Studio is een plugin voor Open CAD Studio en bestaat uit twee delen: de GIS-plugin en de Civiel-plugin. Release 2026.44.5 vraagt Open CAD Studio v2026.43; installeer of werk dat dus eerst bij.</p>
     <ul class="split-cards note-cards install-steps">
       <li class="split-card"><div class="icon-tile step-num">1</div><div><p data-i18n="install.step1"><strong>Open CAD Studio v2026.43 installeren</strong> Download Open CAD Studio via de <a href="/open-cad-studio/">productpagina</a>, of werk je bestaande installatie bij naar v2026.43, en start het programma.</p></div></li>
-      <li class="split-card"><div class="icon-tile step-num">2</div><div><p data-i18n="install.step2"><strong>GIS-plugin via de Plugin Manager</strong> Typ <code>PLUGINS</code>, kies Add a repository en vul <code>OpenAEC-Foundation/Open-Infra-Studio</code> in. Kies de release en klik op Install.</p></div></li>
+      <li class="split-card"><div class="icon-tile step-num">2</div><div><p data-i18n="install.step2"><strong>GIS-plugin via de Plugin Manager</strong> Typ <code>PLUGINS</code>, kies Open Infra Studio uit de lijst, kies de release en klik op Install. In een oudere Open CAD Studio kies je Add a repository en vul je <code>OpenAEC-Foundation/Open-Infra-Studio</code> in.</p></div></li>
       <li class="split-card"><div class="icon-tile step-num">3</div><div><p data-i18n="install.step3"><strong>Civiel-plugin uitpakken</strong> Download <code>open-infra-civiel-&lt;platform&gt;.zip</code> hieronder en pak het uit in <code>&lt;config&gt;/OpenCADStudio/plugins/</code>. Dan staat daar de map <code>openaec.open-infra-civiel</code>.</p></div></li>
       <li class="split-card"><div class="icon-tile step-num">4</div><div><p data-i18n="install.step4"><strong>Herstarten</strong> Start Open CAD Studio opnieuw. Het lint toont dan de tabs GIS en Civiel.</p></div></li>
     </ul>
 
     <div class="download-section" id="download">
-      <h3><span data-i18n="download.title">Handmatig installeren</span> v2026.44.3</h3>
+      <h3><span data-i18n="download.title">Handmatig installeren</span> v2026.44.5</h3>
       <h4 class="download-group" data-i18n="download.gisTitle">GIS-plugin</h4>
       <p class="download-lead" data-i18n="download.lead">Download het bestand voor je systeem en <code>plugin.toml</code>, zet beide in <code>&lt;config&gt;/OpenCADStudio/plugins/openaec.open-infra/</code> en herstart Open CAD Studio.</p>
       <div class="download-grid">
         <div class="download-item">
-          <div class="os">Windows</div><div class="size" data-i18n="download.winSize">x86-64 · 20,5 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.3/openaec.open-infra-windows-x86_64.dll" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-windows" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> .dll</a>
+          <div class="os">Windows</div><div class="size" data-i18n="download.winSize">x86-64 · 20,8 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/openaec.open-infra-windows-x86_64.dll" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-windows" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> .dll</a>
         </div>
         <div class="download-item">
-          <div class="os">Linux</div><div class="size" data-i18n="download.linuxSize">x86-64 · 30,0 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.3/openaec.open-infra-linux-x86_64.so" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-linux" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> .so</a>
+          <div class="os">Linux</div><div class="size" data-i18n="download.linuxSize">x86-64 · 30,3 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/openaec.open-infra-linux-x86_64.so" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-linux" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> .so</a>
         </div>
         <div class="download-item">
-          <div class="os">macOS</div><div class="size" data-i18n="download.macSize">Apple silicon · 13,0 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.3/openaec.open-infra-macos-aarch64.dylib" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-macos" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> .dylib</a>
+          <div class="os">macOS</div><div class="size" data-i18n="download.macSize">Apple silicon · 13,3 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/openaec.open-infra-macos-aarch64.dylib" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-macos" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> .dylib</a>
         </div>
         <div class="download-item">
           <div class="os" data-i18n="download.manifest">Manifest</div><div class="size" data-i18n="download.manifestSize">Voor elk systeem nodig</div>
-          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.3/plugin.toml" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-manifest" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> plugin.toml</a>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/plugin.toml" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-manifest" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> plugin.toml</a>
         </div>
       </div>
       <h4 class="download-group" data-i18n="download.civielTitle">Civiel-plugin</h4>
       <p class="download-lead" data-i18n="download.civielLead">Pak het zip-bestand voor je systeem uit in <code>&lt;config&gt;/OpenCADStudio/plugins/</code>. Het bevat de map <code>openaec.open-infra-civiel</code> met de bibliotheek en zijn eigen <code>plugin.toml</code>. Herstart daarna Open CAD Studio.</p>
       <div class="download-grid">
         <div class="download-item">
-          <div class="os">Windows</div><div class="size" data-i18n="download.civielWinSize">x86-64 · 7,9 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.3/open-infra-civiel-windows-x86_64.zip" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-civiel-windows" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> .zip</a>
+          <div class="os">Windows</div><div class="size" data-i18n="download.civielWinSize">x86-64 · 8,0 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/open-infra-civiel-windows-x86_64.zip" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-civiel-windows" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> .zip</a>
         </div>
         <div class="download-item">
-          <div class="os">Linux</div><div class="size" data-i18n="download.civielLinuxSize">x86-64 · 10,5 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.3/open-infra-civiel-linux-x86_64.zip" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-civiel-linux" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> .zip</a>
+          <div class="os">Linux</div><div class="size" data-i18n="download.civielLinuxSize">x86-64 · 10,6 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/open-infra-civiel-linux-x86_64.zip" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-civiel-linux" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> .zip</a>
         </div>
         <div class="download-item">
-          <div class="os">macOS</div><div class="size" data-i18n="download.civielMacSize">Apple silicon · 3,4 MB</div>
-          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.3/open-infra-civiel-macos-aarch64.zip" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-civiel-macos" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> .zip</a>
+          <div class="os">macOS</div><div class="size" data-i18n="download.civielMacSize">Apple silicon · 3,5 MB</div>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/open-infra-civiel-macos-aarch64.zip" data-gh-download="OpenAEC-Foundation/Open-Infra-Studio" data-platform="plugin-civiel-macos" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.action">Download</span> .zip</a>
         </div>
       </div>
       <p class="compat-note" data-i18n="download.config"><code>&lt;config&gt;</code> is <code>%APPDATA%</code> op Windows, <code>~/.config</code> op Linux en <code>~/Library/Application Support</code> op macOS.</p>
-      <p class="compat-note" data-i18n="download.compat">Release 2026.44.3, uitgebracht op 29 oktober 2026, is de eerste die laadt in Open CAD Studio v2026.43 (plugin-API 13). Release 2026.44.2 en eerder zijn voor v2026.42. Open CAD Studio laadt alleen een plugin die tegen zijn eigen versie is gebouwd, dus werk de plugin samen met Open CAD Studio bij.</p>
+      <p class="compat-note" data-i18n="download.signed">De bibliotheken zijn ondertekend: op Windows met Authenticode en een tijdstempel (uitgever Impertio Studio B.V.), op macOS met een Developer ID en genotariseerd door Apple, en op Linux met een losse OpenPGP-handtekening (<code>.asc</code>) van de OpenAEC Foundation. De publieke sleutel <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/openaec-signing-public-key.asc"><code>openaec-signing-public-key.asc</code></a> staat in de release; de vingerafdruk is <code>13F6D414ADEE4ED4CD09AC60601D86C93C504D29</code>.</p>
+      <p class="compat-note" data-i18n="download.compat">Release 2026.44.5, uitgebracht op 29 oktober 2026, is gebouwd voor Open CAD Studio v2026.43 (plugin-API 13), net als elke release vanaf 2026.44.3. Release 2026.44.2 en eerder zijn voor v2026.42. Open CAD Studio laadt alleen een plugin die tegen zijn eigen versie is gebouwd, dus werk de plugin samen met Open CAD Studio bij.</p>
     </div>
   </div></section>
 
@@ -370,6 +381,11 @@
         <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-ruler"/></svg></div>
         <h4 data-i18n="features.civiel.title">De Civiel-tab</h4>
         <p data-i18n="features.civiel.desc">Een tweede tab in het lint voor civiel ontwerp: meetpunten en LandXML, een TIN met hoogtelijnen en hoogteanalyse, assen met kilometrering, lengte-, ontwerp- en dwarsprofielen, en corridors met taluds tot het maaiveld, grondverzet en een massabalans.</p>
+      </div>
+      <div class="feature">
+        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div>
+        <h4 data-i18n="features.ifc.title">Export naar IFC 4.3</h4>
+        <p data-i18n="features.ifc.desc">De hele tekening als IFC4X3_ADD2. Elk object krijgt zijn IFC-klasse uit zijn NLCS-laag en objectgegevens, van terrein, gebouwen en verharding tot kabels en leidingen, sonderingen met hun grondlagen, grondverzet en de corridor als IfcRoad. Assen worden een IfcAlignment met horizontaal en verticaal verloop. Gegeorefereerd met IfcMapConversion, met objectgegevens en NLCS-laag als property sets, en gecontroleerd met IfcOpenShell.</p>
       </div>
       <div class="feature">
         <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div>
@@ -488,6 +504,7 @@
         <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div>
         <h3 data-i18n="formats.write.title">Schrijven</h3>
         <ul>
+          <li data-i18n="formats.write.ifc"><strong>IFC 4.3</strong> de hele tekening als IFC4X3_ADD2, via GIS → Uitvoer → IFC 4x3 of Civiel → 3D-model → IFC 4x3 in het lint, met <code>GIS_IFC</code> of <code>CIV_IFC [BESTAND=] [SELECTIE] [TEKST=nee]</code>, of met de MCP-tool <code>ifc_export</code></li>
           <li data-i18n="formats.write.images"><strong>Kaartbeelden en puntenwolken</strong> PNG naast de tekening; puntenwolken als .rcs, gekoppeld aan de tekening</li>
           <li data-i18n="formats.write.csv"><strong>Tabellen</strong> meetpunten, de massabalans per corridor en hoeveelheden als CSV, hoeveelheden ook als tabel in de tekening</li>
           <li data-i18n="formats.write.mutation"><strong>BGT-mutatie</strong> IMGeo-GML 2.1.1 met een rapport</li>
@@ -506,7 +523,7 @@
         </ul>
       </div>
     </div>
-    <p class="formats-note" data-i18n="formats.note">Nog niet: JPEG 2000, E57 en PLY inlezen, exporteren naar LandXML, GeoJSON, Shapefile of GeoPackage, en IFC.</p>
+    <p class="formats-note" data-i18n="formats.note">Nog niet: JPEG 2000, E57, PLY en IFC inlezen, en exporteren naar LandXML, GeoJSON, Shapefile of GeoPackage.</p>
   </div></section>
 
   <section class="section"><div class="container">
@@ -534,6 +551,46 @@ GIS_TEKENBLAD Situatie bestaand</code></pre>
     </div>
   </div></section>
 
+  <section class="section" id="voorbeeldmodel"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="model.title">Voorbeeldmodel Dordrecht</h2>
+    </div>
+    <div class="example-grid">
+      <div>
+        <p class="example-caption" data-i18n="model.desc">De binnenstad van Dordrecht rond de Grote Kerk, 700 bij 560 meter, in één DWG met de plattegrond en het 3D-model. De plattegrond heeft de BGT, het kadaster en een KLIC-levering op NLCS-lagen. Het 3D-model heeft de BGT in 3D, de gebouwen uit de 3D BAG, de kabels en leidingen in 3D, sonderingen en boringen uit de BRO, en een straatontwerp met as, profielen en corridor. Dezelfde tekening staat er ook als IFC 4.3 bij. Alles is gemaakt met release 2026.44.5 in Open CAD Studio v2026.43, door een script dat in de map staat.</p>
+        <div class="btn-group model-links">
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/raw/main/examples/dordrecht-3d/dordrecht-3d.dwg" class="btn btn-primary"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="model.dwg">DWG downloaden (16 MB)</span></a>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/raw/main/examples/dordrecht-3d/dordrecht-3d.ifczip" class="btn btn-primary"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="model.ifc">IFC 4.3 downloaden (13 MB)</span></a>
+          <a href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio/tree/main/examples/dordrecht-3d" target="_blank" rel="noopener" class="btn btn-secondary"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="model.folder">De map op GitHub</span></a>
+        </div>
+        <p class="model-note" data-i18n="model.note">Het ifczip-bestand pakt uit tot <code>dordrecht-3d.ifc</code> (64 MB); veel IFC-viewers openen het ook zonder uitpakken. De DWG opent in Open CAD Studio v2026.43.</p>
+      </div>
+      <ul class="example-facts">
+        <li><span data-i18n="model.area">Gebied</span><strong>700 × 560 m</strong></li>
+        <li><span data-i18n="model.bgt">BGT-objecten</span><strong>5.057</strong></li>
+        <li><span data-i18n="model.buildings">Gebouwen uit de 3D BAG</span><strong>1.191</strong></li>
+        <li><span data-i18n="model.cables">Kabels en leidingen in 3D</span><strong>407</strong></li>
+        <li><span data-i18n="model.fittings">Appendages en putten als kolom</span><strong>131</strong></li>
+        <li><span data-i18n="model.cpts">Sonderingen en boringen</span><strong>25 + 2</strong></li>
+        <li><span data-i18n="model.ifcObjects">Objecten in de IFC 4.3</span><strong>20.067</strong></li>
+      </ul>
+    </div>
+    <div class="model-shots">
+      <figure>
+        <img src="/shared/assets/screenshots/open-infra-studio-voorbeeld-plattegrond.jpg" width="1600" height="801" loading="lazy" alt="De plattegrond van boven: BGT, kadaster en kabels en leidingen over het 3D-model, met rechts de dwarsprofielen en onderaan het lengteprofiel van het straatontwerp" data-i18n="model.planAlt" data-i18n-attr="alt">
+        <figcaption data-i18n="model.planCaption">De plattegrond</figcaption>
+      </figure>
+      <figure>
+        <img src="/shared/assets/screenshots/open-infra-studio-voorbeeld-3d.jpg" width="1600" height="801" loading="lazy" alt="Het 3D-model vanuit het noordoosten, met de Grote Kerk, de havens en de gebouwen uit de 3D BAG" data-i18n="model.modelAlt" data-i18n-attr="alt">
+        <figcaption data-i18n="model.modelCaption">Het 3D-model</figcaption>
+      </figure>
+      <figure>
+        <img src="/shared/assets/screenshots/open-infra-studio-voorbeeld-ondergrond.jpg" width="1600" height="801" loading="lazy" alt="Kabels, leidingen en putten rond de Grote Kerk, tussen de gebouwen uit de 3D BAG" data-i18n="model.groundAlt" data-i18n-attr="alt">
+        <figcaption data-i18n="model.groundCaption">Kabels, leidingen en putten rond de Grote Kerk</figcaption>
+      </figure>
+    </div>
+  </div></section>
+
   <section class="section"><div class="container">
     <div class="limits-card">
       <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div>
@@ -542,7 +599,7 @@ GIS_TEKENBLAD Situatie bestaand</code></pre>
         <ul>
           <li data-i18n="limits.rd"><strong>Nauwkeurigheid RD.</strong> Omrekenen naar RD gebeurt met de 7-parametertransformatie, op ongeveer 0,2 meter van RDNAPTRANS. Dat volstaat voor onderleggers en context. Gebruik voor maatvoering data die al in RD staat; PDOK, BGT, BRK en KLIC leveren het zo aan.</li>
           <li data-i18n="limits.macos"><strong>macOS.</strong> De snelknoppen in het lint en de commando's werken; het werkvenster nog niet.</li>
-          <li data-i18n="limits.version"><strong>Versie van Open CAD Studio.</strong> Release 2026.44.3 hoort bij Open CAD Studio v2026.43. Een plugin voor v2026.42 laadt niet in v2026.43, en andersom. Werk je Open CAD Studio bij, werk dan ook de plugin bij.</li>
+          <li data-i18n="limits.version"><strong>Versie van Open CAD Studio.</strong> Release 2026.44.5 hoort bij Open CAD Studio v2026.43. Een plugin voor v2026.42 laadt niet in v2026.43, en andersom. Werk je Open CAD Studio bij, werk dan ook de plugin bij.</li>
           <li data-i18n="limits.language"><strong>Taal en Nederlandse modules.</strong> De interface is Engels of Nederlands en volgt de taal van Open CAD Studio, met Engels als terugval. Naast de taalkeuze zet je de Nederlandse modules uit; na een herstart verdwijnen dan de groep Nederland en het menu 3D Nederland uit het lint.</li>
           <li data-i18n="limits.sources"><strong>Bronnen en licenties.</strong> De data van PDOK, het Kadaster, Rijkswaterstaat, ProRail, AHN en de BRO is open data; vermeld de bron, het titelblok doet dat voor de imports. NLCS en de 3D BAG vallen onder CC BY 4.0, OpenStreetMap onder de ODbL. De Sentinel-2-satellietachtergrond is alleen voor niet-commercieel gebruik.</li>
         </ul>
@@ -561,6 +618,7 @@ GIS_TEKENBLAD Situatie bestaand</code></pre>
       <span class="chip">OGC API Features</span>
       <span class="chip">CityGML / CityJSON</span>
       <span class="chip">LandXML</span>
+      <span class="chip">IFC 4.3</span>
       <span class="chip">IMKL 2.0</span>
       <span class="chip">NLCS 5.02</span>
       <span class="chip">MCP</span>

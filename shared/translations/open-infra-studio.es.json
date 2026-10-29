@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Open Infra Studio — OpenAEC Foundation",
-    "description": "SIG y diseño civil de código abierto para Open CAD Studio: servicios de mapas mundiales, ejes, perfiles y corredores, y BGT, catastro y KLIC según NLCS."
+    "description": "SIG y diseño civil de código abierto para Open CAD Studio: servicios de mapas mundiales, ejes y corredores, BGT y KLIC según NLCS, e IFC 4.3."
   },
   "header": {
     "label": "Ecosistema OpenAEC",
@@ -35,13 +35,13 @@
     "list3": "Diseño civil: puntos topográficos, TIN, ejes, perfiles, corredores y movimiento de tierras",
     "list4": "Modelos 3D de ciudades en CityGML y CityJSON, y el subsuelo en 3D",
     "list5": "BGT, catastro y KLIC en capas NLCS, con un cajetín completo",
-    "list6": "Programable, con un servidor MCP con el que un agente de IA construye modelos enteros"
+    "list6": "El dibujo entero como IFC 4.3, y programable con un servidor MCP para agentes de IA"
   },
   "install": {
     "title": "Instalar",
-    "intro": "Open Infra Studio es un plugin para Open CAD Studio y consta de dos partes: el plugin GIS y el plugin Civiel. La versión 2026.44.3 necesita Open CAD Studio v2026.43; instálalo o actualízalo primero.",
+    "intro": "Open Infra Studio es un plugin para Open CAD Studio y consta de dos partes: el plugin GIS y el plugin Civiel. La versión 2026.44.5 necesita Open CAD Studio v2026.43; instálalo o actualízalo primero.",
     "step1": "<strong>Instalar Open CAD Studio v2026.43</strong> Descarga Open CAD Studio desde su <a href=\"/open-cad-studio/\">página de producto</a>, o actualiza tu instalación a la v2026.43, e inícialo.",
-    "step2": "<strong>Plugin GIS con el gestor de plugins</strong> Escribe <code>PLUGINS</code>, elige Add a repository e introduce <code>OpenAEC-Foundation/Open-Infra-Studio</code>. Elige la versión y pulsa Install.",
+    "step2": "<strong>Plugin GIS con el gestor de plugins</strong> Escribe <code>PLUGINS</code>, elige Open Infra Studio en la lista, elige la versión y pulsa Install. En un Open CAD Studio más antiguo, elige Add a repository e introduce <code>OpenAEC-Foundation/Open-Infra-Studio</code>.",
     "step3": "<strong>Descomprimir el plugin Civiel</strong> Descarga <code>open-infra-civiel-&lt;platform&gt;.zip</code> más abajo y descomprímelo en <code>&lt;config&gt;/OpenCADStudio/plugins/</code>. Así aparece la carpeta <code>openaec.open-infra-civiel</code>.",
     "step4": "<strong>Reiniciar</strong> Reinicia Open CAD Studio. La cinta muestra entonces las pestañas GIS y Civiel."
   },
@@ -52,16 +52,17 @@
     "civielTitle": "Plugin Civiel",
     "civielLead": "Descomprime el archivo zip de tu sistema en <code>&lt;config&gt;/OpenCADStudio/plugins/</code>. Contiene la carpeta <code>openaec.open-infra-civiel</code> con la biblioteca y su propio <code>plugin.toml</code>. Después reinicia Open CAD Studio.",
     "action": "Descargar",
-    "winSize": "x86-64 · 20,5 MB",
-    "linuxSize": "x86-64 · 30,0 MB",
-    "macSize": "Apple silicon · 13,0 MB",
-    "civielWinSize": "x86-64 · 7,9 MB",
-    "civielLinuxSize": "x86-64 · 10,5 MB",
-    "civielMacSize": "Apple silicon · 3,4 MB",
+    "winSize": "x86-64 · 20,8 MB",
+    "linuxSize": "x86-64 · 30,3 MB",
+    "macSize": "Apple silicon · 13,3 MB",
+    "civielWinSize": "x86-64 · 8,0 MB",
+    "civielLinuxSize": "x86-64 · 10,6 MB",
+    "civielMacSize": "Apple silicon · 3,5 MB",
     "manifest": "Manifiesto",
     "manifestSize": "Necesario en todos los sistemas",
     "config": "<code>&lt;config&gt;</code> es <code>%APPDATA%</code> en Windows, <code>~/.config</code> en Linux y <code>~/Library/Application Support</code> en macOS.",
-    "compat": "La versión 2026.44.3, publicada el 29 de octubre de 2026, es la primera que se carga en Open CAD Studio v2026.43 (API de plugins 13). La 2026.44.2 y las anteriores son para la v2026.42. Open CAD Studio solo carga un plugin compilado para su propia versión, así que actualiza el plugin junto con Open CAD Studio."
+    "signed": "Las bibliotecas están firmadas: en Windows con Authenticode y sello de tiempo (editor Impertio Studio B.V.), en macOS con un Developer ID y notarizadas por Apple, y en Linux con una firma OpenPGP separada (<code>.asc</code>) de la OpenAEC Foundation. La clave pública <a href=\"https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/openaec-signing-public-key.asc\"><code>openaec-signing-public-key.asc</code></a> está en la versión; su huella es <code>13F6D414ADEE4ED4CD09AC60601D86C93C504D29</code>.",
+    "compat": "La versión 2026.44.5, publicada el 29 de octubre de 2026, está compilada para Open CAD Studio v2026.43 (API de plugins 13), como todas las versiones desde la 2026.44.3. La 2026.44.2 y las anteriores son para la v2026.42. Open CAD Studio solo carga un plugin compilado para su propia versión, así que actualiza el plugin junto con Open CAD Studio."
   },
   "why": {
     "title": "¿Por qué <span class=\"accent\">Open Infra</span> Studio?",
@@ -79,6 +80,10 @@
     "civiel": {
       "title": "La pestaña Civiel",
       "desc": "Una segunda pestaña de la cinta para diseño civil: puntos topográficos y LandXML, un TIN con curvas de nivel y análisis de cotas, ejes con PK, perfiles longitudinales, rasantes y secciones transversales, y corredores con taludes hasta el terreno, movimiento de tierras y diagrama de masas."
+    },
+    "ifc": {
+      "title": "Exportación a IFC 4.3",
+      "desc": "El dibujo entero como IFC4X3_ADD2. Cada objeto recibe su clase IFC según su capa NLCS y sus datos de objeto, desde el terreno, los edificios y los pavimentos hasta los cables y tuberías, los ensayos de penetración con sus capas de suelo, el movimiento de tierras y el corredor como IfcRoad. Los ejes se convierten en un IfcAlignment con trazado en planta y alzado. Georreferenciado con IfcMapConversion, con los datos de objeto y la capa NLCS como conjuntos de propiedades, y comprobado con IfcOpenShell."
     },
     "citygml": {
       "title": "CityGML y CityJSON",
@@ -163,6 +168,7 @@
     },
     "write": {
       "title": "Escribir",
+      "ifc": "<strong>IFC 4.3</strong> el dibujo entero como IFC4X3_ADD2, con GIS → Output → IFC 4x3 o Civiel → 3D model → IFC 4x3 en la cinta, con <code>GIS_IFC</code> o <code>CIV_IFC [BESTAND=] [SELECTIE] [TEKST=nee]</code>, o con la herramienta MCP <code>ifc_export</code>",
       "images": "<strong>Imágenes de mapas y nubes de puntos</strong> PNG junto al dibujo; nubes de puntos como .rcs, vinculadas al dibujo",
       "csv": "<strong>Tablas</strong> puntos topográficos, el diagrama de masas por corredor y mediciones en CSV, las mediciones también como tabla en el dibujo",
       "mutation": "<strong>Mutación BGT</strong> IMGeo-GML 2.1.1 con un informe",
@@ -176,7 +182,7 @@
       "heights": "<strong>Cotas y 3D</strong> WCS para mallas de cotas, COPC para nubes de puntos, la API de la 3D BAG",
       "other": "<strong>Otros</strong> BRO REST para ensayos de penetración y sondeos, búsqueda de direcciones con PDOK y Nominatim, epsg.io para sistemas de coordenadas"
     },
-    "note": "Todavía no: leer JPEG 2000, E57 y PLY, exportar a LandXML, GeoJSON, Shapefile o GeoPackage, ni IFC."
+    "note": "Todavía no: leer JPEG 2000, E57, PLY ni IFC, ni exportar a LandXML, GeoJSON, Shapefile o GeoPackage."
   },
   "example": {
     "title": "Cinco comandos, un dibujo",
@@ -189,11 +195,32 @@
     "xdata": "Con datos de objeto",
     "file": "Archivo DWG"
   },
+  "model": {
+    "title": "Modelo de ejemplo Dordrecht",
+    "desc": "El centro de Dordrecht alrededor de la Grote Kerk, 700 por 560 metros, en un solo DWG con la planta y el modelo 3D. La planta tiene la BGT, el catastro y una entrega KLIC en capas NLCS. El modelo 3D tiene la BGT en 3D, los edificios de la 3D BAG, los cables y tuberías en 3D, ensayos de penetración y sondeos de la BRO, y un diseño de calle con eje, perfiles y corredor. El mismo dibujo está también como IFC 4.3. Todo se hizo con la versión 2026.44.5 en Open CAD Studio v2026.43, mediante un script que está en la carpeta.",
+    "dwg": "Descargar el DWG (16 MB)",
+    "ifc": "Descargar el IFC 4.3 (13 MB)",
+    "folder": "La carpeta en GitHub",
+    "note": "El archivo ifczip se descomprime en <code>dordrecht-3d.ifc</code> (64 MB); muchos visores IFC también lo abren sin descomprimir. El DWG se abre en Open CAD Studio v2026.43.",
+    "area": "Zona",
+    "bgt": "Objetos BGT",
+    "buildings": "Edificios de la 3D BAG",
+    "cables": "Cables y tuberías en 3D",
+    "fittings": "Accesorios y pozos como columnas",
+    "cpts": "Ensayos de penetración y sondeos",
+    "ifcObjects": "Objetos en el IFC 4.3",
+    "planAlt": "La planta vista desde arriba: BGT, catastro, cables y tuberías sobre el modelo 3D, con las secciones transversales a la derecha y el perfil longitudinal del diseño de calle abajo",
+    "planCaption": "La planta",
+    "modelAlt": "El modelo 3D visto desde el noreste, con la Grote Kerk, los puertos y los edificios de la 3D BAG",
+    "modelCaption": "El modelo 3D",
+    "groundAlt": "Cables, tuberías y pozos alrededor de la Grote Kerk, entre los edificios de la 3D BAG",
+    "groundCaption": "Cables, tuberías y pozos alrededor de la Grote Kerk"
+  },
   "limits": {
     "title": "Conviene saber",
     "rd": "<strong>Precisión RD.</strong> La conversión a RD usa la transformación de 7 parámetros, a unos 0,2 metros de RDNAPTRANS. Basta para fondos y contexto. Para el replanteo, usa datos que ya estén en RD; PDOK, BGT, BRK y KLIC los entregan así.",
     "macos": "<strong>macOS.</strong> Los botones rápidos de la cinta y los comandos funcionan; la ventana de trabajo todavía no.",
-    "version": "<strong>Versión de Open CAD Studio.</strong> La versión 2026.44.3 corresponde a Open CAD Studio v2026.43. Un plugin para la v2026.42 no se carga en la v2026.43, ni al revés. Si actualizas Open CAD Studio, actualiza también el plugin.",
+    "version": "<strong>Versión de Open CAD Studio.</strong> La versión 2026.44.5 corresponde a Open CAD Studio v2026.43. Un plugin para la v2026.42 no se carga en la v2026.43, ni al revés. Si actualizas Open CAD Studio, actualiza también el plugin.",
     "language": "<strong>Idioma y módulos neerlandeses.</strong> La interfaz está en inglés o neerlandés y sigue el idioma de Open CAD Studio, con el inglés como respaldo. Junto a la elección de idioma puedes desactivar los módulos neerlandeses; tras reiniciar, el grupo Netherlands y el menú 3D Netherlands desaparecen de la cinta.",
     "sources": "<strong>Fuentes y licencias.</strong> Los datos de PDOK, el Kadaster, Rijkswaterstaat, ProRail, el AHN y la BRO son datos abiertos; cita la fuente, algo que el cajetín hace en las importaciones. NLCS y la 3D BAG son CC BY 4.0 y OpenStreetMap ODbL. El fondo satelital Sentinel-2 es solo para uso no comercial."
   },
