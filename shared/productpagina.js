@@ -135,15 +135,21 @@
     var REPO = section && section.getAttribute('data-pp-repo');
     if (!REPO) return;
     var state = { tag: null };
+    // Bestandsnamen van Tauri-builds (Naam_1.2.3_universal.dmg, Naam-1.2.3-1.x86_64.rpm) en van
+    // apps met een eigen release (naam_1.2.3_macos-universal.dmg, naam_1.2.3_x86_64.rpm).
     var match = {
       windows: /_x64-setup\.exe$/i,
       'windows-user': /_x64_user-setup\.exe$/i,
-      macos: /_universal\.dmg$/i,
+      'windows-zip': /_windows-x64\.zip$/i,
+      macos: /[_-]universal\.dmg$/i,
       'linux-deb': /_amd64\.deb$/i,
-      'linux-rpm': /\.x86_64\.rpm$/i,
+      'linux-rpm': /[._]x86_64\.rpm$/i,
       'linux-appimage': /_amd64\.AppImage$/i,
       'linux-snap': /_amd64\.snap$/i,
-      android: /\.apk$/i
+      'linux-tar': /_linux-x64\.tar\.gz$/i,
+      android: /\.apk$/i,
+      sha256sums: /^SHA256SUMS$/,
+      'sha256sums-asc': /^SHA256SUMS\.asc$/
     };
 
     // Zelfde herkenning als shared/downloads.js.
@@ -200,7 +206,9 @@
     function patch() {
       if (!state.tag) return;
       document.querySelectorAll('[data-pp-ver]').forEach(function (el) {
-        var want = el.innerHTML.replace(/v\d+\.\d+\.\d+/g, state.tag);
+        // De hele tag vervangen, ook een achtervoegsel als -alpha. Anders wordt
+        // "v0.1.0-alpha" bij elke ronde langer en blijft de observer lopen.
+        var want = el.innerHTML.replace(/v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?/g, state.tag);
         if (el.innerHTML !== want) el.innerHTML = want;
       });
     }

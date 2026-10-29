@@ -1,48 +1,62 @@
-# Open 3D Viewer
+# Open 3D Viewer Studio
 
-> Browser-based 3D viewer for inspecting BIM models without installing anything.
+> Viewer for the 3D models that architects, engineers and builders exchange: SketchUp, Tekla Structures, Revit, IFC, glTF, OBJ, STL, PLY, CityJSON, LandXML and DWG/DXF. Measure, section, explode and save as IFC 4, as a desktop app and in the browser.
 
-**Status:** preview
-**License:** LGPL-3.0
-**Platforms:** Web
+**Status:** beta
+**License:** LGPL-3.0-or-later
+**Platforms:** Windows, macOS, Linux, Web
 **Category:** BIM Viewer
-**Current version:** n/a
+**Current version:** v2026.44.17 (2026-10-30)
 **Tool ID:** `open-3d-viewer`
+**GitHub repo:** `OpenAEC-Foundation/open-3d-viewer`
+
+## Live stats
+
+- Stars: **0**
+- Commits: **0**
+- Forks: **0**
+- Open issues: **0**
+- Releases: **0**
+- Total downloads: **0**
 
 ## Key features
 
-- IFC viewing in the browser
-- Property inspection
-- Section tools
-- No install — pure web
+- Opens SketchUp (.skp, version 3 and later), Tekla Structures (.db1, beta), glTF/GLB, OBJ, STL, PLY, CityJSON/CityJSONSeq, LandXML TIN terrain and DWG/DXF model-space faces, on the desktop and in the browser
+- Opens IFC and Revit (.rvt, .rfa) in the desktop app, with levels, grids, rooms, saved views and schedules
+- Revit schedules as a table; a row selects its elements
+- Several models at once, each with its own visibility toggle
+- Measure distances, angles, areas and polygons
+- Section box and section plane with filled cuts
+- Exploded view per storey or per element
+- Save as IFC 4 (IfcTriangulatedFaceSet, storeys, classes, properties, materials)
+- OpenAEC Blueprint window: ribbon, File page, explorer, properties, five themes, Dutch and English, own shortcuts
+- MCP server open-3d-viewer-mcp for AI agents, local on 127.0.0.1 with a token
+- Signed installers for Windows, macOS and Linux
 
 ## Tech stack
 
-`TypeScript` · `WebGL` · `three.js`
+`Rust` · `iced` · `wgpu` · `WebGPU` · `WebAssembly`
 
 ## When to use this
 
-Sharing a quick 3D preview of a BIM model with a stakeholder who has no viewer installed.
-
-## Alternative to
-
-- Autodesk Viewer
-- BIMvision
-- IFC.js demo viewer
+Opening a model you were sent (SketchUp, Tekla, Revit, IFC) without the program it was made in, measuring or sectioning it, or saving it as IFC 4.
 
 ## Standards & integration
 
-- IFC 2x3
-- IFC 4
-- IFC 4.3
-
-All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
+- IFC 4 (export)
+- IFC (import, desktop app)
+- glTF
+- CityJSON
+- LandXML
+- MCP
 
 ## Download & links
 
 - Product page: https://open-aec.com/open-3d-viewer/
 - Live demo: https://open-3d-viewer.open-aec.com/
+- GitHub repo: https://github.com/OpenAEC-Foundation/open-3d-viewer
+- Latest stable release: https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/tag/v2026.44.17
 
 ---
 
-Part of the [OpenAEC Foundation](https://open-aec.com/) ecosystem — open-source software for buildings, civil infrastructure (GWW) and civil engineering. All tools communicate through **IFCX**.
+Part of the [OpenAEC Foundation](https://open-aec.com/) ecosystem — open-source software for buildings, civil infrastructure (GWW) and civil engineering.
