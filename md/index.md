@@ -21,6 +21,7 @@ Generated: 2026-10-29T06:06:27.016Z
 - [OpenAEC Installer](./openaec-installer.md) — Central hub to discover, install, update and launch every OpenAEC tool from one app. (`v0.2.4`)
 - [Open Paint Studio](./open-paint-studio.md) — Simple image editor in the spirit of MS Paint, with editable vector objects, a local API and an MCP server. (`v2026.43.2`)
 - [Monty IFC Viewer](./monty-ifc-viewer.md) — Lightweight IFC viewer for quick BIM model inspection. (`v1.0.1`)
+- [Open 3D Viewer Studio](./open-3d-viewer.md) — Viewer for the 3D models that architects, engineers and builders exchange: SketchUp, Tekla Structures, Revit, IFC, glTF, OBJ, STL, PLY, CityJSON, LandXML and DWG/DXF. Measure, section, explode and save as IFC 4, as a desktop app and in the browser. (`n/a`)
 - [Open Safety Studio](./open-safety-studio.md) — Safety plans for construction: health and safety plan (V&G), BLVC plan, risk matrix and safe maintenance, with the Dutch legal basis alongside. Live demo in the browser. (`n/a`)
 
 ## Alpha
@@ -30,10 +31,6 @@ Generated: 2026-10-29T06:06:27.016Z
 - [Open Field Studio](./open-field-studio.md) — Site inspection and quality control. Defect pinning on floorplans, NEN 2767 checklists, offline-first. (`v0.3.6`)
 - [Open Frame Studio](./open-frame-studio.md) — Design window and door frames (kozijnen) in 2D and 3D, with frame schedules, workshop drawings, cutting lists and IFC export. (`v0.6.0`)
 - [Y-app](./y-app.md) — Communication and collaboration for construction projects. (`n/a`)
-
-## Preview
-
-- [Open 3D Viewer](./open-3d-viewer.md) — Browser-based 3D viewer for inspecting BIM models without installing anything. (`n/a`)
 
 ## In development
 
