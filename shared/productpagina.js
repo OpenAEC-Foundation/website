@@ -137,6 +137,7 @@
     var state = { tag: null };
     var match = {
       windows: /_x64-setup\.exe$/i,
+      'windows-user': /_x64_user-setup\.exe$/i,
       macos: /_universal\.dmg$/i,
       'linux-deb': /_amd64\.deb$/i,
       'linux-rpm': /\.x86_64\.rpm$/i,
@@ -244,3 +245,81 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
     else start();
   })();
+
+// Kop: schermafbeeldingen-slider (openingsbeeld + hoogtepunten). Pijlen, bolletjes,
+// vegen en pijltoetsen; draait niet vanzelf. Zonder JavaScript zie je het eerste beeld.
+(function () {
+  var root = document.querySelector('[data-pp-slider]');
+  if (!root) return;
+  var track = root.querySelector('.slider-track');
+  var slides = Array.prototype.slice.call(root.querySelectorAll('.slider-slide'));
+  var dots = root.querySelector('.slider-dots');
+  var prev = root.querySelector('.slider-prev');
+  var next = root.querySelector('.slider-next');
+  if (!track || slides.length < 2) return;
+  var TEKST = {
+    nl: { prev: 'Vorige afbeelding', next: 'Volgende afbeelding', dot: 'Afbeelding ', label: 'Schermafbeeldingen' },
+    en: { prev: 'Previous image', next: 'Next image', dot: 'Image ', label: 'Screenshots' },
+    fr: { prev: 'Image précédente', next: 'Image suivante', dot: 'Image ', label: "Captures d'écran" },
+    tr: { prev: 'Önceki görsel', next: 'Sonraki görsel', dot: 'Görsel ', label: 'Ekran görüntüleri' },
+    es: { prev: 'Imagen anterior', next: 'Imagen siguiente', dot: 'Imagen ', label: 'Capturas de pantalla' }
+  };
+  var current = 0;
+  var buttons = slides.map(function (_, i) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'slider-dot';
+    b.addEventListener('click', function () { go(i); });
+    if (dots) dots.appendChild(b);
+    return b;
+  });
+
+  function label() {
+    var t = TEKST[(document.documentElement.lang || 'nl').slice(0, 2)] || TEKST.en;
+    root.setAttribute('aria-label', t.label);
+    if (prev) prev.setAttribute('aria-label', t.prev);
+    if (next) next.setAttribute('aria-label', t.next);
+    buttons.forEach(function (b, i) { b.setAttribute('aria-label', t.dot + (i + 1) + ' / ' + slides.length); });
+  }
+
+  function go(i) {
+    current = (i + slides.length) % slides.length;
+    track.style.transform = 'translateX(-' + current * 100 + '%)';
+    slides.forEach(function (s, n) {
+      var on = n === current;
+      s.setAttribute('aria-hidden', on ? 'false' : 'true');
+      // Alleen het zichtbare beeld en zijn buren laden.
+      if (Math.abs(n - current) <= 1 || Math.abs(n - current) === slides.length - 1) {
+        var img = s.querySelector('img[loading="lazy"]');
+        if (img) img.loading = 'eager';
+      }
+    });
+    buttons.forEach(function (b, n) {
+      b.classList.toggle('active', n === current);
+      if (n === current) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+    });
+  }
+
+  root.setAttribute('role', 'region');
+  root.setAttribute('aria-roledescription', 'carousel');
+  if (prev) prev.addEventListener('click', function () { go(current - 1); });
+  if (next) next.addEventListener('click', function () { go(current + 1); });
+  root.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft') { go(current - 1); e.preventDefault(); }
+    else if (e.key === 'ArrowRight') { go(current + 1); e.preventDefault(); }
+  });
+
+  // Vegen op telefoon en tablet: horizontaal meer dan 40 px, en meer dan verticaal.
+  var x0 = null, y0 = null;
+  track.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+  track.addEventListener('touchend', function (e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) go(current + (dx < 0 ? 1 : -1));
+    x0 = y0 = null;
+  }, { passive: true });
+
+  label();
+  go(0);
+  try { new MutationObserver(label).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] }); } catch (e) {}
+})();

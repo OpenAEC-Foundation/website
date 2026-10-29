@@ -38,7 +38,8 @@ const BLOCKS = [
     if (!/class="pp-tagline"/.test(head)) miss.push('tagline');
     if ((head.match(/class="btn btn-(?:glow|glass)/g) || []).length < 3) miss.push('3 knoppen');
     if (!/class="chip-row pp-proof"/.test(head)) miss.push('feitenchips');
-    if (!/<img\b/.test(head)) miss.push('schermafbeelding');
+    const slides = (head.match(/class="slider-slide"/g) || []).length;
+    if (!/class="media-slider[^"]*"[^>]*data-pp-slider/.test(head) || slides < 3) miss.push(`slider ${slides}/3 beelden`);
     return miss;
   } },
   { key: 'nav', name: 'Navigatie', find: (h) => h.search(/<nav class="pp-subnav"/) },
