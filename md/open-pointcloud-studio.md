@@ -12,13 +12,13 @@
 
 ## Live stats
 
-- Stars: **29**
+- Stars: **30**
 - Commits: **548**
 - Forks: **3**
 - Open issues: **11**
 - Releases: **17**
-- Total downloads: **1,291**
-- Downloads by platform: Windows (745), Other (159), Linux (AppImage) (114), Archive (96), macOS (95), Linux (deb) (48), Windows (MSI) (34)
+- Total downloads: **1,308**
+- Downloads by platform: Windows (757), Other (162), Linux (AppImage) (114), Archive (97), macOS (96), Linux (deb) (48), Windows (MSI) (34)
 
 ## Key features
 
