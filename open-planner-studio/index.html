@@ -47,6 +47,7 @@
   <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/shared/style.css?v=20261015">
+  <link rel="stylesheet" href="/shared/productpagina.css?v=20261029">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -179,133 +180,6 @@
     ]
   }
   </script>
-  <style>
-
-    /* Veelgestelde vragen: inklapbare kaarten */
-    .faq-list { max-width: 860px; margin: 0 auto; display: grid; gap: 12px; }
-    .faq-item { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); overflow: hidden; }
-    .faq-item > summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: var(--sp-4); padding: var(--sp-5) var(--sp-6); font-family: var(--font-heading); font-weight: 700; font-size: 1.08rem; color: var(--deep-forge); }
-    .faq-item > summary::-webkit-details-marker { display: none; }
-    .faq-item > summary .ico { color: var(--amber); width: 20px; height: 20px; flex-shrink: 0; transition: transform 0.2s ease; }
-    .faq-item[open] > summary .ico { transform: rotate(180deg); }
-    .faq-item > summary:hover { color: #B45309; }
-    .faq-a { padding: 0 var(--sp-6) var(--sp-5); color: var(--text-muted); font-size: 0.98rem; line-height: 1.7; }
-    .faq-a p { margin: 0; max-width: none; }
-    .faq-a a { color: #B45309; font-weight: 600; }
-
-
-    /* ── Productpagina-opbouw volgens discussie #342 ── */
-    :root { --opl-nav-h: 68px; }
-    .opl-anchor, #releases { scroll-margin-top: calc(var(--opl-nav-h) + var(--opl-sub-h, 56px) + 8px); }
-    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
-    .product-head .opl-tagline { font-family: var(--font-heading); color: white; font-weight: 600; font-size: clamp(1.35rem, 2.6vw, 1.75rem); line-height: 1.25; letter-spacing: -0.01em; max-width: 680px; margin: 0 auto var(--sp-3); }
-    .product-head .lead { margin-bottom: var(--sp-6); }
-    .product-head .btn-group { justify-content: center; }
-    .opl-proof { list-style: none; padding: 0; margin: var(--sp-6) 0 0; }
-    .opl-proof .chip { margin: 0; }
-
-    /* Smalle testers-balk onder de hero */
-    .opl-testers-wrap { padding-left: var(--sp-6); padding-right: var(--sp-6); padding-bottom: var(--sp-4); }
-    .opl-testers { max-width: 1040px; margin: 0 auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 6px 10px; text-align: center; background: rgba(217,119,6,0.1); border: 1px solid rgba(217,119,6,0.3); border-radius: var(--radius-full); padding: 10px 20px; color: var(--text-on-light); font-size: 0.95rem; line-height: 1.5; }
-    .opl-testers > .ico { color: var(--amber); width: 20px; height: 20px; flex-shrink: 0; }
-    .opl-testers a { display: inline-flex; align-items: center; gap: 6px; color: #B45309; font-weight: 700; }
-    .opl-testers a .ico { width: 16px; height: 16px; }
-
-    /* Plakkende navigatie binnen de pagina */
-    .opl-subnav { position: sticky; top: var(--opl-nav-h); z-index: 900; background: rgba(241,238,234,0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(42,42,50,0.08); margin-top: var(--sp-4); }
-    .opl-subnav-inner { max-width: 1040px; margin: 0 auto; display: flex; justify-content: center; gap: 4px; padding: 8px var(--sp-4); overflow-x: auto; scrollbar-width: none; }
-    .opl-subnav-inner::-webkit-scrollbar { display: none; }
-    .opl-subnav a { flex-shrink: 0; padding: 7px 14px; border-radius: var(--radius-full); color: var(--text-on-light); font-weight: 600; font-size: 0.92rem; text-decoration: none; white-space: nowrap; }
-    .opl-subnav a:hover { background: rgba(42,42,50,0.06); color: var(--deep-forge); }
-    .opl-subnav a.is-active { background: var(--night-build); color: white; }
-
-    /* Functies: tabbladen */
-    .opl-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0 auto var(--sp-10); }
-    .opl-tab { display: inline-flex; align-items: center; gap: 8px; font: inherit; font-weight: 600; font-size: 0.95rem; color: var(--text-on-light); background: white; border: 1px solid rgba(42,42,50,0.12); border-radius: var(--radius-full); padding: 9px 16px; cursor: pointer; transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease; }
-    .opl-tab .ico { width: 18px; height: 18px; color: var(--amber); }
-    .opl-tab:hover { border-color: rgba(217,119,6,0.6); }
-    .opl-tab[aria-selected="true"] { background: var(--night-build); border-color: var(--night-build); color: white; }
-    .opl-tab:focus-visible, .opl-subnav a:focus-visible, .opl-more:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; }
-    .opl-tab-count { font-family: var(--font-code); font-size: 0.78rem; opacity: 0.7; }
-    .opl-tab-count:empty { display: none; }
-
-    /* Hoogtepunten: grote beeld-tekstrijen */
-    .opl-hl { display: grid; gap: var(--sp-16); max-width: 1120px; margin: 0 auto; }
-    .opl-hl-row { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--sp-12); align-items: center; }
-    .opl-hl-row:nth-child(even) .opl-shot { order: 2; }
-    .opl-shot { margin: 0; aspect-ratio: 16 / 10; overflow: hidden; border-radius: var(--radius-lg); background: var(--night-build); border: 1px solid rgba(42,42,50,0.12); box-shadow: 0 30px 60px -30px rgba(42,42,50,0.6); }
-    .opl-shot img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: left top; }
-    .opl-kicker { font-family: var(--font-code); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.1em; color: #B45309; margin: 0 0 var(--sp-3); }
-    .opl-num { color: var(--amber); font-weight: 700; margin-right: 4px; }
-    .opl-hl-text h3 { font-size: clamp(1.45rem, 2.4vw, 1.9rem); line-height: 1.2; color: var(--deep-forge); margin: 0 0 var(--sp-4); }
-    .opl-hl-text p { color: var(--text-on-light); font-size: 1.05rem; line-height: 1.7; margin: 0 0 var(--sp-4); }
-    .opl-more { display: inline-flex; align-items: center; gap: 6px; color: #B45309; font-weight: 600; text-decoration: none; }
-    .opl-more:hover { color: var(--signal-orange); text-decoration: underline; }
-    .opl-more .ico { width: 16px; height: 16px; }
-
-    /* Compacte tegels */
-    .opl-tiles { list-style: none; padding: 0; margin: var(--sp-16) auto 0; max-width: 1120px; display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 18px; }
-    .opl-tile { display: flex; flex-direction: column; background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.08); border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 1px 2px rgba(42,42,50,0.05); }
-    .opl-tile-shot { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; object-position: left top; background: var(--night-build); border-bottom: 1px solid rgba(42,42,50,0.08); }
-    .opl-tile-body { display: flex; gap: 14px; align-items: flex-start; padding: var(--sp-5); }
-    .opl-tile .icon-tile { width: 40px; height: 40px; }
-    .opl-tile .icon-tile .ico { width: 22px; height: 22px; }
-    .opl-tile h3 { font-size: 1.05rem; color: var(--deep-forge); margin: 2px 0 6px; }
-    .opl-tile p { color: var(--text-on-light); font-size: 0.93rem; line-height: 1.6; margin: 0 0 var(--sp-3); }
-    .opl-tile .opl-more { font-size: 0.9rem; }
-    /* Met JavaScript: één paneel tegelijk. Zonder JavaScript staat alles open. */
-    .opl-js .opl-tiles { margin-top: 0; }
-    .opl-js [data-panel="highlights"][hidden], .opl-js .opl-tiles[hidden], .opl-tile[hidden] { display: none; }
-
-    /* Download */
-    .opl-dl { max-width: 900px; margin: 0 auto; text-align: center; }
-    .opl-dl h2 { color: white; font-size: clamp(1.7rem, 3vw, 2.2rem); margin: 0 0 var(--sp-3); }
-    .opl-dl-lead { color: var(--text-on-dark); font-size: 1.05rem; margin: 0 auto var(--sp-6); }
-    .opl-dl-main { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-    .opl-dl-main .btn { display: inline-flex; align-items: center; gap: 10px; }
-    .opl-dl [hidden] { display: none !important; }
-    .opl-dl-meta { color: var(--text-on-dark); font-size: 0.85rem; margin: var(--sp-3) 0 0; opacity: 0.85; }
-    .opl-dl-mobile { color: var(--text-on-dark); margin: var(--sp-4) auto 0; max-width: 560px; }
-    .opl-dl-other { margin-top: var(--sp-8); text-align: left; }
-    .opl-dl-other > summary { display: inline-flex; align-items: center; gap: 8px; cursor: pointer; list-style: none; color: var(--warm-gold); font-weight: 600; }
-    .opl-dl-other > summary::-webkit-details-marker { display: none; }
-    .opl-dl-other > summary .ico { width: 18px; height: 18px; transition: transform 0.2s ease; }
-    .opl-dl-other[open] > summary .ico { transform: rotate(180deg); }
-    .opl-dl-other { text-align: center; }
-    .opl-files { margin-top: var(--sp-5); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-2) var(--sp-8); text-align: left; background: rgba(255,255,255,0.04); border-radius: var(--radius-lg); padding: var(--sp-5) var(--sp-6); }
-    .opl-files h3 { color: white; font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; margin: 0 0 var(--sp-2); }
-    .opl-files ul { list-style: none; margin: 0; padding: 0; }
-    .opl-files li + li { border-top: 1px solid rgba(255,255,255,0.08); }
-    .opl-files a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 0; color: var(--text-on-dark); text-decoration: none; font-size: 0.92rem; }
-    .opl-files a .ico { width: 16px; height: 16px; flex-shrink: 0; color: rgba(255,255,255,0.45); transition: color 0.15s ease; }
-    .opl-files a:hover, .opl-files a:focus-visible { color: var(--warm-gold); }
-    .opl-files a:hover .ico, .opl-files a:focus-visible .ico { color: var(--warm-gold); }
-    .opl-files a:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; border-radius: 4px; }
-    .opl-file-size { font-family: var(--font-code); font-size: 0.8rem; opacity: 0.7; }
-    .opl-files a.is-primary { color: white; font-weight: 600; }
-    @media (max-width: 768px) { .opl-files { grid-template-columns: 1fr; gap: var(--sp-5); } }
-    .opl-dl-note a { color: var(--warm-gold); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
-    .opl-dl-note a:hover { color: white; }
-    .opl-dl-note { color: var(--text-on-dark); font-size: 0.92rem; margin: var(--sp-6) auto 0; }
-
-    /* Release notes: alleen de laatste drie, de rest achter een knop */
-    #releases:not(.opl-show-all) .rn-timeline > li:nth-child(n+4) { display: none; }
-    #releases .rn-viewall { display: none; }
-    .opl-rel-more { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 12px 24px; margin: calc(-1 * var(--sp-8)) auto var(--sp-12); padding: 0 var(--sp-6); }
-    .opl-rel-more a { display: inline-flex; align-items: center; gap: 6px; color: #B45309; font-weight: 600; }
-    .opl-rel-more a .ico { width: 16px; height: 16px; }
-
-    @media (max-width: 860px) {
-      .opl-hl { gap: var(--sp-12); }
-      .opl-hl-row { grid-template-columns: 1fr; gap: var(--sp-5); }
-      .opl-hl-row:nth-child(even) .opl-shot { order: 0; }
-      .opl-tabs { flex-wrap: nowrap; justify-content: flex-start; overflow-x: auto; padding-bottom: 6px; margin-left: calc(-1 * var(--sp-4)); margin-right: calc(-1 * var(--sp-4)); padding-left: var(--sp-4); padding-right: var(--sp-4); scrollbar-width: none; }
-      .opl-tabs::-webkit-scrollbar { display: none; }
-      .opl-tab { flex-shrink: 0; }
-      .opl-subnav-inner { justify-content: flex-start; }
-      .opl-testers { border-radius: var(--radius-lg); }
-    }
-  </style>
 
 
   <!-- schema:start -->
@@ -409,14 +283,14 @@
     <div class="product-head-inner">
       <p class="pill-label" data-i18n="header.label">Bouwplanning</p>
       <h1 data-i18n="header.title">Open <span class="accent">Planner</span> Studio</h1>
-      <p class="opl-tagline" data-i18n="header.tagline">Gratis bouwplanning die je MS Project- en P6-bestanden opent</p>
+      <p class="pp-tagline" data-i18n="header.tagline">Gratis bouwplanning die je MS Project- en P6-bestanden opent</p>
       <p class="lead" data-i18n="header.desc">Gantt, kritiek pad en resources, opgeslagen als open IFC-bestand. Op je computer of direct in de browser.</p>
       <div class="btn-group">
         <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span data-i18n="header.demoBtn">Open in de browser</span></a>
         <a href="#download" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="header.downloadBtn">Download</span></a>
         <a href="https://github.com/OpenAEC-Foundation/open-planner-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="header.sourceBtn">Broncode</span></a>
       </div>
-      <ul class="chip-row opl-proof">
+      <ul class="chip-row pp-proof">
         <li class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="header.proofMpp">Getest met echte MS Project- en P6-planningen</span></li>
         <li class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg><span data-i18n="header.proofLang">28 talen</span></li>
         <li class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg><span>Windows · macOS · Linux · Web</span></li>
@@ -428,12 +302,12 @@
     </div>
   </header>
 
-  <div class="after-overlap opl-testers-wrap">
-    <p class="opl-testers"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-users"/></svg><span data-i18n="testers.text"><strong>Testers gezocht:</strong> werkvoorbereiders, planners, projectleiders en BIM-coördinatoren.</span> <a href="mailto:maarten@open-aec.com?subject=Tester%20Open%20Planner%20Studio"><span data-i18n="testers.cta">Meld je aan</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></p>
+  <div class="after-overlap pp-notice-wrap">
+    <p class="pp-notice"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-users"/></svg><span data-i18n="testers.text"><strong>Testers gezocht:</strong> werkvoorbereiders, planners, projectleiders en BIM-coördinatoren.</span> <a href="mailto:maarten@open-aec.com?subject=Tester%20Open%20Planner%20Studio"><span data-i18n="testers.cta">Meld je aan</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></p>
   </div>
 
-  <nav class="opl-subnav" aria-label="Op deze pagina" data-i18n="subnav.label" data-i18n-attr="aria-label">
-    <div class="opl-subnav-inner">
+  <nav class="pp-subnav" aria-label="Op deze pagina" data-i18n="subnav.label" data-i18n-attr="aria-label">
+    <div class="pp-subnav-inner">
       <a href="#features" data-i18n="subnav.features">Functies</a>
       <a href="#download" data-i18n="subnav.download">Download</a>
       <a href="#whats-new" data-i18n="subnav.whatsnew">Nieuw</a>
@@ -442,140 +316,140 @@
     </div>
   </nav>
 
-  <section class="section opl-anchor" id="features"><div class="container">
+  <section class="section pp-anchor" id="features"><div class="container">
     <div class="section-head"><p class="pill-label" data-i18n="features.label">Functies</p><h2 data-i18n="features.heading">Alles wat een bouwplanner nodig heeft</h2><p data-i18n="features.sub">Begin bij de hoogtepunten of kies een onderwerp.</p></div>
-    <div class="opl-tabs" role="tablist" aria-label="Functies per onderwerp" data-i18n="features.tabsLabel" data-i18n-attr="aria-label" hidden>
-      <button type="button" class="opl-tab" role="tab" id="opl-tab-highlights" data-tab="highlights" aria-controls="opl-feature-panel" aria-selected="true" tabindex="0"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg><span data-i18n="tabs.highlights">Hoogtepunten</span> <span class="opl-tab-count" data-count="highlights"></span></button>
-      <button type="button" class="opl-tab" role="tab" id="opl-tab-scheduling" data-tab="scheduling" aria-controls="opl-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-gantt"/></svg><span data-i18n="tabs.scheduling">Planning</span> <span class="opl-tab-count" data-count="scheduling"></span></button>
-      <button type="button" class="opl-tab" role="tab" id="opl-tab-resources" data-tab="resources" aria-controls="opl-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-users"/></svg><span data-i18n="tabs.resources">Resources</span> <span class="opl-tab-count" data-count="resources"></span></button>
-      <button type="button" class="opl-tab" role="tab" id="opl-tab-interop" data-tab="interop" aria-controls="opl-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg><span data-i18n="tabs.interop">Uitwisseling</span> <span class="opl-tab-count" data-count="interop"></span></button>
-      <button type="button" class="opl-tab" role="tab" id="opl-tab-reporting" data-tab="reporting" aria-controls="opl-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-printer"/></svg><span data-i18n="tabs.reporting">Rapportage</span> <span class="opl-tab-count" data-count="reporting"></span></button>
-      <button type="button" class="opl-tab" role="tab" id="opl-tab-all" data-tab="all" aria-controls="opl-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg><span data-i18n="tabs.all">Alle functies</span> <span class="opl-tab-count" data-count="all"></span></button>
+    <div class="pp-tabs" role="tablist" aria-label="Functies per onderwerp" data-i18n="features.tabsLabel" data-i18n-attr="aria-label" hidden>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-highlights" data-tab="highlights" aria-controls="pp-feature-panel" aria-selected="true" tabindex="0"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg><span data-i18n="tabs.highlights">Hoogtepunten</span> <span class="pp-tab-count" data-count="highlights"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-scheduling" data-tab="scheduling" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-gantt"/></svg><span data-i18n="tabs.scheduling">Planning</span> <span class="pp-tab-count" data-count="scheduling"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-resources" data-tab="resources" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-users"/></svg><span data-i18n="tabs.resources">Resources</span> <span class="pp-tab-count" data-count="resources"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-interop" data-tab="interop" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg><span data-i18n="tabs.interop">Uitwisseling</span> <span class="pp-tab-count" data-count="interop"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-reporting" data-tab="reporting" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-printer"/></svg><span data-i18n="tabs.reporting">Rapportage</span> <span class="pp-tab-count" data-count="reporting"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-all" data-tab="all" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg><span data-i18n="tabs.all">Alle functies</span> <span class="pp-tab-count" data-count="all"></span></button>
     </div>
-    <div id="opl-feature-panel" role="tabpanel" aria-labelledby="opl-tab-highlights">
-      <div class="opl-hl" data-panel="highlights">
-        <article class="opl-hl-row">
-          <figure class="opl-shot"><img src="/shared/assets/screenshots/open-planner-studio-feat-critical-path.png" loading="lazy" decoding="async" alt="Gantt met rode balken op het kritieke pad en relatielijnen tussen de taken" data-i18n="hl.cpm.alt" data-i18n-attr="alt"></figure>
-          <div class="opl-hl-text">
-            <p class="opl-kicker"><span class="opl-num">01</span> <span data-i18n="hl.cpm.kicker">Planning</span></p>
+    <div id="pp-feature-panel" role="tabpanel" aria-labelledby="pp-tab-highlights">
+      <div class="pp-hl" data-panel="highlights">
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-planner-studio-feat-critical-path.png" loading="lazy" decoding="async" alt="Gantt met rode balken op het kritieke pad en relatielijnen tussen de taken" data-i18n="hl.cpm.alt" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">01</span> <span data-i18n="hl.cpm.kicker">Planning</span></p>
             <h3 data-i18n="hl.cpm.title">Zie wat je einddatum bepaalt</h3>
             <p data-i18n="hl.cpm.desc">De app berekent het kritieke pad, de speling en het bijna-kritieke werk. Meerdere kritieke paden en gemiste deadlines zie je meteen in de Gantt.</p>
-            <a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Critical-path-and-float" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+            <a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Critical-path-and-float" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
           </div>
         </article>
-        <article class="opl-hl-row">
-          <figure class="opl-shot"><img src="/shared/assets/screenshots/open-planner-studio-feat-file-import.png" loading="lazy" decoding="async" alt="Geïmporteerde MS Project XML-planning van kantoorgebouw Zuidas met taken en het kritieke pad" data-i18n="hl.files.alt" data-i18n-attr="alt"></figure>
-          <div class="opl-hl-text">
-            <p class="opl-kicker"><span class="opl-num">02</span> <span data-i18n="hl.files.kicker">Uitwisseling</span></p>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-planner-studio-feat-file-import.png" loading="lazy" decoding="async" alt="Geïmporteerde MS Project XML-planning van kantoorgebouw Zuidas met taken en het kritieke pad" data-i18n="hl.files.alt" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">02</span> <span data-i18n="hl.files.kicker">Uitwisseling</span></p>
             <h3 data-i18n="hl.files.title">Open je MS Project- en Primavera P6-bestanden</h3>
             <p data-i18n="hl.files.desc">Open .mpp- en .xer-bestanden rechtstreeks, zonder het oorspronkelijke programma. Op 216 .mpp-testbestanden kloppen de datums tot op de minuut. Met <em>Datums zoals opgeslagen</em> zie je de datums die het andere programma zelf heeft bewaard.</p>
-            <a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Files-and-formats" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+            <a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Files-and-formats" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
           </div>
         </article>
-        <article class="opl-hl-row">
-          <figure class="opl-shot"><img src="/shared/assets/screenshots/open-planner-studio-feat-task-table.png" loading="lazy" decoding="async" alt="Volledige tabelweergave met WBS, taaknamen, duur, datums en werksoort" data-i18n="hl.table.alt" data-i18n-attr="alt"></figure>
-          <div class="opl-hl-text">
-            <p class="opl-kicker"><span class="opl-num">03</span> <span data-i18n="hl.table.kicker">Taken invoeren</span></p>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-planner-studio-feat-task-table.png" loading="lazy" decoding="async" alt="Volledige tabelweergave met WBS, taaknamen, duur, datums en werksoort" data-i18n="hl.table.alt" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">03</span> <span data-i18n="hl.table.kicker">Taken invoeren</span></p>
             <h3 data-i18n="hl.table.title">Bewerk je planning als een spreadsheet</h3>
             <p data-i18n="hl.table.desc">Eén taaktabel naast de Gantt en als volledig scherm. Plak hele blokken uit Excel, bewerk afhankelijkheden in de cel en kies per taak dagen of uren.</p>
-            <a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Adding-tasks-and-milestones" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+            <a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Adding-tasks-and-milestones" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
           </div>
         </article>
-        <article class="opl-hl-row">
-          <figure class="opl-shot"><img src="/shared/assets/screenshots/open-planner-studio-feat-occupancy.png" loading="lazy" decoding="async" alt="Bezettingsoverzicht met dubbel geboekte dagen per resource en een histogram" data-i18n="hl.crews.alt" data-i18n-attr="alt"></figure>
-          <div class="opl-hl-text">
-            <p class="opl-kicker"><span class="opl-num">04</span> <span data-i18n="hl.crews.kicker">Resources</span></p>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-planner-studio-feat-occupancy.png" loading="lazy" decoding="async" alt="Bezettingsoverzicht met dubbel geboekte dagen per resource en een histogram" data-i18n="hl.crews.alt" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">04</span> <span data-i18n="hl.crews.kicker">Resources</span></p>
             <h3 data-i18n="hl.crews.title">Voorkom dat ploegen dubbel geboekt staan</h3>
             <p data-i18n="hl.crews.desc">Deel één resourcebibliotheek over al je projecten. Het bezettingsoverzicht telt alle open projecten op en markeert de dagen waarop de vraag groter is dan de capaciteit.</p>
-            <a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Using-the-occupancy-overview" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+            <a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Using-the-occupancy-overview" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
           </div>
         </article>
-        <article class="opl-hl-row">
-          <figure class="opl-shot"><img src="/shared/assets/screenshots/open-planner-studio-feat-reports.png" loading="lazy" decoding="async" alt="Rapport Planningsgezondheid met instellingen en de DCMA 14-puntsbeoordeling" data-i18n="hl.reports.alt" data-i18n-attr="alt"></figure>
-          <div class="opl-hl-text">
-            <p class="opl-kicker"><span class="opl-num">05</span> <span data-i18n="hl.reports.kicker">Rapportage</span></p>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-planner-studio-feat-reports.png" loading="lazy" decoding="async" alt="Rapport Planningsgezondheid met instellingen en de DCMA 14-puntsbeoordeling" data-i18n="hl.reports.alt" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">05</span> <span data-i18n="hl.reports.kicker">Rapportage</span></p>
             <h3 data-i18n="hl.reports.title">Rapporten die je zo kunt versturen</h3>
             <p data-i18n="hl.reports.desc">Kies uit elf rapporten, van de Gantt-afdruk tot een look-ahead en de DCMA 14-puntentoets. Je ziet een live afdrukvoorbeeld en maakt een PDF op A4 tot en met A1.</p>
-            <a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Report-types" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+            <a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Report-types" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
           </div>
         </article>
-        <article class="opl-hl-row">
-          <figure class="opl-shot"><img src="/shared/assets/screenshots/open-planner-studio-feat-ifc.png" loading="lazy" decoding="async" alt="IFC-editor met de kalender en taaktijden van kantoorgebouw Zuidas in IFC 4.3 ADD2" data-i18n="hl.ifc.alt" data-i18n-attr="alt"></figure>
-          <div class="opl-hl-text">
-            <p class="opl-kicker"><span class="opl-num">06</span> <span data-i18n="hl.ifc.kicker">Open standaard</span></p>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-planner-studio-feat-ifc.png" loading="lazy" decoding="async" alt="IFC-editor met de kalender en taaktijden van kantoorgebouw Zuidas in IFC 4.3 ADD2" data-i18n="hl.ifc.alt" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">06</span> <span data-i18n="hl.ifc.kicker">Open standaard</span></p>
             <h3 data-i18n="hl.ifc.title">Je planning is een open IFC-bestand</h3>
             <p data-i18n="hl.ifc.desc">Open Planner Studio slaat op in IFC 4.3, de open standaard van buildingSMART. Er is geen gesloten formaat, en BIM-software kan je planning naast het gebouwmodel leggen voor een 4D-analyse.</p>
-            <a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Choosing-the-IFC-schema" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+            <a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Choosing-the-IFC-schema" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
           </div>
         </article>
       </div>
-      <ul class="opl-tiles">
-        <li class="opl-tile" data-cats="scheduling"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-gantt"/></svg></div><div><h3 data-i18n="f.gantt.title">Gantt-diagram</h3><p data-i18n="f.gantt.desc">Sleep balken, leg relaties met de muis en zoom van het hele project tot op het uur.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Dragging-panning-and-zooming-in-the-Gantt" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="scheduling"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-route"/></svg></div><div><h3 data-i18n="f.cpm.title">Kritiek pad</h3><p data-i18n="f.cpm.desc">Speling, bijna-kritiek werk en meerdere kritieke paden, met constraints en deadlines.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Critical-path-and-float" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="scheduling"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg></div><div><h3 data-i18n="f.wbs.title">WBS en taaktabel</h3><p data-i18n="f.wbs.desc">Een inklapbare taakstructuur met WBS-sjablonen en eigen werksoorten. Je bewerkt alles zoals in een spreadsheet.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Adjusting-the-structure" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="scheduling interop"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div><div><h3 data-i18n="f.profiles.title">Rekenprofielen</h3><p data-i18n="f.profiles.desc">Reken zoals Primavera P6, zoals Microsoft Project of met het eigen profiel. Per rekenregel zie je wat het profiel doet.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Calculation-profiles-and-conventions" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="scheduling"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-calendar"/></svg></div><div><h3 data-i18n="f.calendars.title">Kalenders en urenplanning</h3><p data-i18n="f.calendars.desc">Feestdagen, bouwvak en eigen werktijden per kalender. Per taak plan je in dagen of in uren.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Calendars-and-working-days" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="scheduling"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-scissors"/></svg></div><div><h3 data-i18n="f.split.title">Taken splitsen</h3><p data-i18n="f.split.desc">Knip een balk op een datum en sleep de delen los. Een onderbreking haal je weer weg via het contextmenu.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Splitting-a-task" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="scheduling"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg></div><div><h3 data-i18n="f.progress.title">Baselines en voortgang</h3><p data-i18n="f.progress.desc">Leg meerdere baselines vast en werk de voortgang bij met een statusdatum en een voortgangslijn.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Progress-status-date-and-baseline" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="scheduling interop"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clipboard"/></svg></div><div><h3 data-i18n="f.progresssheet.title">Voortgang via een spreadsheet</h3><p data-i18n="f.progresssheet.desc">Exporteer een voortgangsblad als Excel of CSV, laat het invullen en lees het terug. Vooraf zie je precies wat er verandert.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Importing-progress-from-a-spreadsheet" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="scheduling"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><h3 data-i18n="f.layouts.title">Layouts</h3><p data-i18n="f.layouts.desc">Bewaar een weergave met filter, groepering, kolommen en tijdschaal als knop in het lint.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Creating-and-using-a-layout" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="scheduling"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><h3 data-i18n="f.warnings.title">Waarschuwingen</h3><p data-i18n="f.warnings.desc">Een lijst met de regels die je planning breekt. Eén klik en je staat op de taak, relatie of resource.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Notifications-and-warnings" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="resources"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-users"/></svg></div><div><h3 data-i18n="f.resources.title">Resources en nivelleren</h3><p data-i18n="f.resources.desc">Arbeid, materieel en onderaannemers met een histogram. Nivelleer overbelasting automatisch; per dag zie je waarom iemand overbezet is.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Resource-leveling" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="resources"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-set-square"/></svg></div><div><h3 data-i18n="f.workrules.title">Taaktypen</h3><p data-i18n="f.workrules.desc">Kies per taak vaste duur, vast werk of vaste inzet. Het taaktype bepaalt wat meebeweegt als je de duur of de inzet wijzigt.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Task-types-duration-units-and-work" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="resources"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div><div><h3 data-i18n="f.library.title">Resourcebibliotheek</h3><p data-i18n="f.library.desc">Deel één resourcepool over meerdere projecten en beheer hem op één plek. Afwijkingen in een project worden gemarkeerd.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/The-resource-library" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="resources"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pin"/></svg></div><div><h3 data-i18n="f.occupancy.title">Bezettingsoverzicht</h3><p data-i18n="f.occupancy.desc">Tel de inzet over al je open projecten op en zie op welke dagen een resource dubbel geboekt is.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Using-the-occupancy-overview" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="resources"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-hatch"/></svg></div><div><h3 data-i18n="f.contours.title">Urenverdeling</h3><p data-i18n="f.contours.desc">Verdeel het werk van een toewijzing over de duur met een curve, of pas de verdeling zelf aan.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Adjusting-the-hour-distribution" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="interop"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div><h3 data-i18n="f.mpp.title">MS Project (.mpp)</h3><p data-i18n="f.mpp.desc">Open .mpp-bestanden van MS Project 2010 tot en met 2021 rechtstreeks, zonder Microsoft Project.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Opening-an-MS-Project-file" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="interop"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-crane"/></svg></div><div><h3 data-i18n="f.xer.title">Primavera P6 (.xer en XML)</h3><p data-i18n="f.xer.desc">Open P6-bestanden met WBS, kalenders, resources en voortgang. Een bestand met meerdere projecten opent per project een tabblad.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Opening-a-Primavera-P6-file" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="interop"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div><div><h3 data-i18n="f.exchange.title">Import en export</h3><p data-i18n="f.exchange.desc">Exporteer naar MS Project XML, Primavera P6 XML, CSV en IFC. De app zegt per formaat wat er niet meegaat.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Import-and-export-formats" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="interop"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div><div><h3 data-i18n="f.ifc.title">IFC 4.3, ook voor 4D</h3><p data-i18n="f.ifc.desc">Je planning is een IFC-bestand. Kies bij opslaan IFC 4.3 of IFC4, zodat BIM-software het kan samenvoegen met je model.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Choosing-the-IFC-schema" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="interop"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><h3 data-i18n="f.ai.title">AI-assistent (optioneel)</h3><p data-i18n="f.ai.desc">Koppel in de desktop-app een AI-assistent zoals Claude Code. Je houdt de regie met een alleen-lezen-stand, back-ups en een logboek.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Connecting-an-AI-assistant" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="reporting"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><div><h3 data-i18n="f.reporttypes.title">Elf rapporttypen</h3><p data-i18n="f.reporttypes.desc">Gantt-afdruk, resourcediagram, mijlpalen, afwijking, look-ahead, voortgang, kritiek pad en meer, met een gedeelde rapportageperiode.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Report-types" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="reporting"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div><div><h3 data-i18n="f.dcma.title">DCMA 14-puntentoets</h3><p data-i18n="f.dcma.desc">Het rapport Planningsgezondheid begint met de DCMA 14-puntentoets. Een vlag is een reden om te kijken, geen fout.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Report-types" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="reporting resources"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-users"/></svg></div><div><h3 data-i18n="f.resdiagram.title">Resourcediagram</h3><p data-i18n="f.resdiagram.desc">De Gantt per resource, één blad per persoon, met de belasting per week of per maand.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Report-types" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats="reporting"><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-printer"/></svg></div><div><h3 data-i18n="f.print.title">Afdrukvoorbeeld en PDF</h3><p data-i18n="f.print.desc">Live afdrukvoorbeeld en PDF op A4, A3, A2 of A1, met baseline en statuslijn of voortgangslijn.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Making-and-printing-a-report" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats=""><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><h3 data-i18n="f.platforms.title">Desktop en browser</h3><p data-i18n="f.platforms.desc">Installeer op Windows, macOS of Linux, of werk direct in de browser, met openen en opslaan.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Installation" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats=""><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div><div><h3 data-i18n="f.autosave.title">Automatisch opslaan en herstel</h3><p data-i18n="f.autosave.desc">Laat de app je bestand regelmatig opslaan. Los daarvan bewaart crashherstel je werk als er iets misgaat.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Turning-on-AutoSave" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats=""><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><div><h3 data-i18n="f.help.title">Help in de app</h3><p data-i18n="f.help.desc">Druk op F1 voor 78 artikelen. Het vraagteken in een venster opent meteen het juiste artikel.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Home" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats=""><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div><div><h3 data-i18n="f.languages.title">28 talen</h3><p data-i18n="f.languages.desc">De interface en de Help zijn er in 28 talen, ook in Arabisch en Perzisch van rechts naar links.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/App-settings" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
-        <li class="opl-tile" data-cats=""><div class="opl-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-keyboard"/></svg></div><div><h3 data-i18n="f.shortcuts.title">Sneltoetsen en contextmenu's</h3><p data-i18n="f.shortcuts.desc">Alle sneltoetsen op één scherm via Ctrl+/, en een rechtermuismenu op rij, balk en tijdas.</p><a class="opl-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Keyboard-shortcuts" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+      <ul class="pp-tiles">
+        <li class="pp-tile" data-cats="scheduling"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-gantt"/></svg></div><div><h3 data-i18n="f.gantt.title">Gantt-diagram</h3><p data-i18n="f.gantt.desc">Sleep balken, leg relaties met de muis en zoom van het hele project tot op het uur.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Dragging-panning-and-zooming-in-the-Gantt" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="scheduling"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-route"/></svg></div><div><h3 data-i18n="f.cpm.title">Kritiek pad</h3><p data-i18n="f.cpm.desc">Speling, bijna-kritiek werk en meerdere kritieke paden, met constraints en deadlines.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Critical-path-and-float" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="scheduling"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg></div><div><h3 data-i18n="f.wbs.title">WBS en taaktabel</h3><p data-i18n="f.wbs.desc">Een inklapbare taakstructuur met WBS-sjablonen en eigen werksoorten. Je bewerkt alles zoals in een spreadsheet.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Adjusting-the-structure" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="scheduling interop"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div><div><h3 data-i18n="f.profiles.title">Rekenprofielen</h3><p data-i18n="f.profiles.desc">Reken zoals Primavera P6, zoals Microsoft Project of met het eigen profiel. Per rekenregel zie je wat het profiel doet.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Calculation-profiles-and-conventions" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="scheduling"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-calendar"/></svg></div><div><h3 data-i18n="f.calendars.title">Kalenders en urenplanning</h3><p data-i18n="f.calendars.desc">Feestdagen, bouwvak en eigen werktijden per kalender. Per taak plan je in dagen of in uren.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Calendars-and-working-days" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="scheduling"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-scissors"/></svg></div><div><h3 data-i18n="f.split.title">Taken splitsen</h3><p data-i18n="f.split.desc">Knip een balk op een datum en sleep de delen los. Een onderbreking haal je weer weg via het contextmenu.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Splitting-a-task" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="scheduling"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg></div><div><h3 data-i18n="f.progress.title">Baselines en voortgang</h3><p data-i18n="f.progress.desc">Leg meerdere baselines vast en werk de voortgang bij met een statusdatum en een voortgangslijn.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Progress-status-date-and-baseline" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="scheduling interop"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clipboard"/></svg></div><div><h3 data-i18n="f.progresssheet.title">Voortgang via een spreadsheet</h3><p data-i18n="f.progresssheet.desc">Exporteer een voortgangsblad als Excel of CSV, laat het invullen en lees het terug. Vooraf zie je precies wat er verandert.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Importing-progress-from-a-spreadsheet" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="scheduling"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><h3 data-i18n="f.layouts.title">Layouts</h3><p data-i18n="f.layouts.desc">Bewaar een weergave met filter, groepering, kolommen en tijdschaal als knop in het lint.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Creating-and-using-a-layout" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="scheduling"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><h3 data-i18n="f.warnings.title">Waarschuwingen</h3><p data-i18n="f.warnings.desc">Een lijst met de regels die je planning breekt. Eén klik en je staat op de taak, relatie of resource.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Notifications-and-warnings" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="resources"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-users"/></svg></div><div><h3 data-i18n="f.resources.title">Resources en nivelleren</h3><p data-i18n="f.resources.desc">Arbeid, materieel en onderaannemers met een histogram. Nivelleer overbelasting automatisch; per dag zie je waarom iemand overbezet is.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Resource-leveling" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="resources"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-set-square"/></svg></div><div><h3 data-i18n="f.workrules.title">Taaktypen</h3><p data-i18n="f.workrules.desc">Kies per taak vaste duur, vast werk of vaste inzet. Het taaktype bepaalt wat meebeweegt als je de duur of de inzet wijzigt.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Task-types-duration-units-and-work" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="resources"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div><div><h3 data-i18n="f.library.title">Resourcebibliotheek</h3><p data-i18n="f.library.desc">Deel één resourcepool over meerdere projecten en beheer hem op één plek. Afwijkingen in een project worden gemarkeerd.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/The-resource-library" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="resources"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pin"/></svg></div><div><h3 data-i18n="f.occupancy.title">Bezettingsoverzicht</h3><p data-i18n="f.occupancy.desc">Tel de inzet over al je open projecten op en zie op welke dagen een resource dubbel geboekt is.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Using-the-occupancy-overview" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="resources"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-hatch"/></svg></div><div><h3 data-i18n="f.contours.title">Urenverdeling</h3><p data-i18n="f.contours.desc">Verdeel het werk van een toewijzing over de duur met een curve, of pas de verdeling zelf aan.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Adjusting-the-hour-distribution" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="interop"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div><h3 data-i18n="f.mpp.title">MS Project (.mpp)</h3><p data-i18n="f.mpp.desc">Open .mpp-bestanden van MS Project 2010 tot en met 2021 rechtstreeks, zonder Microsoft Project.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Opening-an-MS-Project-file" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="interop"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-crane"/></svg></div><div><h3 data-i18n="f.xer.title">Primavera P6 (.xer en XML)</h3><p data-i18n="f.xer.desc">Open P6-bestanden met WBS, kalenders, resources en voortgang. Een bestand met meerdere projecten opent per project een tabblad.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Opening-a-Primavera-P6-file" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="interop"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div><div><h3 data-i18n="f.exchange.title">Import en export</h3><p data-i18n="f.exchange.desc">Exporteer naar MS Project XML, Primavera P6 XML, CSV en IFC. De app zegt per formaat wat er niet meegaat.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Import-and-export-formats" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="interop"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div><div><h3 data-i18n="f.ifc.title">IFC 4.3, ook voor 4D</h3><p data-i18n="f.ifc.desc">Je planning is een IFC-bestand. Kies bij opslaan IFC 4.3 of IFC4, zodat BIM-software het kan samenvoegen met je model.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Choosing-the-IFC-schema" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="interop"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><h3 data-i18n="f.ai.title">AI-assistent (optioneel)</h3><p data-i18n="f.ai.desc">Koppel in de desktop-app een AI-assistent zoals Claude Code. Je houdt de regie met een alleen-lezen-stand, back-ups en een logboek.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Connecting-an-AI-assistant" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="reporting"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><div><h3 data-i18n="f.reporttypes.title">Elf rapporttypen</h3><p data-i18n="f.reporttypes.desc">Gantt-afdruk, resourcediagram, mijlpalen, afwijking, look-ahead, voortgang, kritiek pad en meer, met een gedeelde rapportageperiode.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Report-types" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="reporting"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div><div><h3 data-i18n="f.dcma.title">DCMA 14-puntentoets</h3><p data-i18n="f.dcma.desc">Het rapport Planningsgezondheid begint met de DCMA 14-puntentoets. Een vlag is een reden om te kijken, geen fout.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Report-types" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="reporting resources"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-users"/></svg></div><div><h3 data-i18n="f.resdiagram.title">Resourcediagram</h3><p data-i18n="f.resdiagram.desc">De Gantt per resource, één blad per persoon, met de belasting per week of per maand.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Report-types" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats="reporting"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-printer"/></svg></div><div><h3 data-i18n="f.print.title">Afdrukvoorbeeld en PDF</h3><p data-i18n="f.print.desc">Live afdrukvoorbeeld en PDF op A4, A3, A2 of A1, met baseline en statuslijn of voortgangslijn.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Making-and-printing-a-report" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats=""><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><h3 data-i18n="f.platforms.title">Desktop en browser</h3><p data-i18n="f.platforms.desc">Installeer op Windows, macOS of Linux, of werk direct in de browser, met openen en opslaan.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Installation" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats=""><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div><div><h3 data-i18n="f.autosave.title">Automatisch opslaan en herstel</h3><p data-i18n="f.autosave.desc">Laat de app je bestand regelmatig opslaan. Los daarvan bewaart crashherstel je werk als er iets misgaat.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Turning-on-AutoSave" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats=""><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><div><h3 data-i18n="f.help.title">Help in de app</h3><p data-i18n="f.help.desc">Druk op F1 voor 78 artikelen. Het vraagteken in een venster opent meteen het juiste artikel.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Home" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats=""><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div><div><h3 data-i18n="f.languages.title">28 talen</h3><p data-i18n="f.languages.desc">De interface en de Help zijn er in 28 talen, ook in Arabisch en Perzisch van rechts naar links.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/App-settings" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
+        <li class="pp-tile" data-cats=""><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-keyboard"/></svg></div><div><h3 data-i18n="f.shortcuts.title">Sneltoetsen en contextmenu's</h3><p data-i18n="f.shortcuts.desc">Alle sneltoetsen op één scherm via Ctrl+/, en een rechtermuismenu op rij, balk en tijdas.</p><a class="pp-more" href="https://github.com/OpenAEC-Foundation/open-planner-studio/wiki/Keyboard-shortcuts" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Meer lezen</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></div></div></li>
       </ul>
     </div>
   </div></section>
 
-  <section class="section surface-dark panel opl-anchor" id="download">
-    <div class="opl-dl">
+  <section class="section surface-dark panel pp-anchor" id="download" data-pp-repo="OpenAEC-Foundation/open-planner-studio">
+    <div class="pp-dl">
       <p class="pill-label" data-i18n="download.label">Download</p>
-      <h2 data-i18n="download.title" data-opl-ver>Download v2026.10.0</h2>
-      <p class="opl-dl-lead" data-i18n="download.lead">Gratis en zonder account. De desktop-app meldt zelf wanneer er een nieuwe versie is.</p>
-      <div class="opl-dl-main" data-opl-main>
-        <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.10.0/Open.Planner.Studio_2026.10.0_x64-setup.exe" class="btn btn-glow btn-lg" data-opl-dl="windows" data-opl-primary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-os="windows" data-i18n="download.forWindows">Download voor Windows</span><span data-os="macos" data-i18n="download.forMac" hidden>Download voor macOS</span><span data-os="linux-appimage" data-i18n="download.forLinux" hidden>Download voor Linux</span></a>
+      <h2 data-i18n="download.title" data-pp-ver>Download v2026.10.0</h2>
+      <p class="pp-dl-lead" data-i18n="download.lead">Gratis en zonder account. De desktop-app meldt zelf wanneer er een nieuwe versie is.</p>
+      <div class="pp-dl-main" data-pp-main>
+        <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.10.0/Open.Planner.Studio_2026.10.0_x64-setup.exe" class="btn btn-glow btn-lg" data-pp-dl="windows" data-pp-primary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-os="windows" data-i18n="download.forWindows">Download voor Windows</span><span data-os="macos" data-i18n="download.forMac" hidden>Download voor macOS</span><span data-os="linux-appimage" data-i18n="download.forLinux" hidden>Download voor Linux</span></a>
         <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span data-i18n="download.browserBtn">Open in de browser</span></a>
       </div>
-      <p class="opl-dl-meta"><span data-os="windows" data-i18n="download.metaWindows">.exe-installer</span><span data-os="macos" data-i18n="download.metaMac" hidden>universele .dmg, Intel en Apple Silicon</span><span data-os="linux-appimage" data-i18n="download.metaLinux" hidden>AppImage, draait op de meeste distributies</span> · <span data-opl-primary-size>7.3 MB</span></p>
-      <p class="opl-dl-mobile" data-opl-mobile hidden data-i18n="download.mobileNote">Open Planner Studio is gemaakt voor een groot scherm. Open hem op je computer, of probeer hem hier in de browser.</p>
-      <details class="opl-dl-other" data-opl-other>
+      <p class="pp-dl-meta"><span data-os="windows" data-i18n="download.metaWindows">.exe-installer</span><span data-os="macos" data-i18n="download.metaMac" hidden>universele .dmg, Intel en Apple Silicon</span><span data-os="linux-appimage" data-i18n="download.metaLinux" hidden>AppImage, draait op de meeste distributies</span> · <span data-pp-primary-size>7.3 MB</span></p>
+      <p class="pp-dl-mobile" data-pp-mobile hidden data-i18n="download.mobileNote">Open Planner Studio is gemaakt voor een groot scherm. Open hem op je computer, of probeer hem hier in de browser.</p>
+      <details class="pp-dl-other" data-pp-other>
         <summary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg><span data-i18n="download.other">Andere platforms</span></summary>
-        <div class="opl-files">
-          <div class="opl-files-col"><h3>Windows</h3><ul>
-            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.10.0/Open.Planner.Studio_2026.10.0_x64-setup.exe" data-opl-dl="windows" data-opl-item="windows"><span class="opl-file"><span data-i18n="download.fileExe">Installer (.exe)</span><span class="opl-file-size"> · <span data-opl-size="windows">7.3 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+        <div class="pp-files">
+          <div class="pp-files-col"><h3>Windows</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.10.0/Open.Planner.Studio_2026.10.0_x64-setup.exe" data-pp-dl="windows" data-pp-item="windows"><span class="pp-file"><span data-i18n="download.fileExe">Installer (.exe)</span><span class="pp-file-size"> · <span data-pp-size="windows">7.3 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
           </ul></div>
-          <div class="opl-files-col"><h3>macOS</h3><ul>
-            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.10.0/Open.Planner.Studio_2026.10.0_universal.dmg" data-opl-dl="macos" data-opl-item="macos"><span class="opl-file"><span data-i18n="download.fileDmg">Universele .dmg</span><span class="opl-file-size"> · <span data-opl-size="macos">15.4 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          <div class="pp-files-col"><h3>macOS</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.10.0/Open.Planner.Studio_2026.10.0_universal.dmg" data-pp-dl="macos" data-pp-item="macos"><span class="pp-file"><span data-i18n="download.fileDmg">Universele .dmg</span><span class="pp-file-size"> · <span data-pp-size="macos">15.4 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
           </ul></div>
-          <div class="opl-files-col"><h3>Linux</h3><ul>
-            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.10.0/Open.Planner.Studio_2026.10.0_amd64.deb" data-opl-dl="linux-deb" data-opl-item="linux-deb"><span class="opl-file"><span data-i18n="download.fileDeb">.deb</span><span class="opl-file-size"> · <span data-opl-size="linux-deb">8.3 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
-            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.10.0/Open.Planner.Studio-2026.10.0-1.x86_64.rpm" data-opl-dl="linux-rpm" data-opl-item="linux-rpm"><span class="opl-file"><span data-i18n="download.fileRpm">.rpm</span><span class="opl-file-size"> · <span data-opl-size="linux-rpm">8.3 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
-            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.10.0/Open.Planner.Studio_2026.10.0_amd64.AppImage" data-opl-dl="linux-appimage" data-opl-item="linux-appimage"><span class="opl-file"><span data-i18n="download.fileAppImage">AppImage</span><span class="opl-file-size"> · <span data-opl-size="linux-appimage">82.2 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
-            <li><a href="https://snapcraft.io/open-planner-studio" target="_blank" rel="noopener"><span class="opl-file" data-i18n="download.snap">Snap Store</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></li>
+          <div class="pp-files-col"><h3>Linux</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.10.0/Open.Planner.Studio_2026.10.0_amd64.deb" data-pp-dl="linux-deb" data-pp-item="linux-deb"><span class="pp-file"><span data-i18n="download.fileDeb">.deb</span><span class="pp-file-size"> · <span data-pp-size="linux-deb">8.3 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.10.0/Open.Planner.Studio-2026.10.0-1.x86_64.rpm" data-pp-dl="linux-rpm" data-pp-item="linux-rpm"><span class="pp-file"><span data-i18n="download.fileRpm">.rpm</span><span class="pp-file-size"> · <span data-pp-size="linux-rpm">8.3 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.10.0/Open.Planner.Studio_2026.10.0_amd64.AppImage" data-pp-dl="linux-appimage" data-pp-item="linux-appimage"><span class="pp-file"><span data-i18n="download.fileAppImage">AppImage</span><span class="pp-file-size"> · <span data-pp-size="linux-appimage">82.2 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://snapcraft.io/open-planner-studio" target="_blank" rel="noopener"><span class="pp-file" data-i18n="download.snap">Snap Store</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></li>
           </ul></div>
         </div>
       </details>
-      <p class="opl-dl-note" data-i18n="download.browserNote">Liever niets installeren? De app draait ook <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener">volledig in de browser</a>, met openen en opslaan.</p>
+      <p class="pp-dl-note" data-i18n="download.browserNote">Liever niets installeren? De app draait ook <a href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener">volledig in de browser</a>, met openen en opslaan.</p>
     </div>
   </section>
 
-  <section class="section surface-dark panel opl-anchor" id="whats-new">
+  <section class="section surface-dark panel pp-anchor" id="whats-new">
     <div class="panel-split">
       <div class="panel-split-text">
         <p class="pill-label" data-i18n="whatsnew.label">Nieuw in v2026.43.0</p>
@@ -597,40 +471,40 @@
     </div>
   </section>
 
-  <section class="section opl-anchor" id="faq"><div class="container">
+  <section class="section pp-anchor" id="faq"><div class="container">
     <h2 data-i18n="faq.heading">Veelgestelde vragen</h2>
-    <div class="faq-list">
-      <details class="faq-item">
+    <div class="pp-faq-list">
+      <details class="pp-faq-item">
         <summary><span data-i18n="faq.import.q">Kan ik bestanden uit Microsoft Project of Primavera P6 openen?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
-        <div class="faq-a"><p data-i18n="faq.import.a">Ja. De app opent .mpp-bestanden (MS Project 2010 tot en met 2021) en .xer-bestanden van Primavera P6 rechtstreeks, zonder het oorspronkelijke programma. MS Project XML, Primavera P6 XML, CSV en IFC kun je openen én exporteren. Een .mpp of .xer verandert de app nooit: je slaat op als IFC.</p></div>
+        <div class="pp-faq-a"><p data-i18n="faq.import.a">Ja. De app opent .mpp-bestanden (MS Project 2010 tot en met 2021) en .xer-bestanden van Primavera P6 rechtstreeks, zonder het oorspronkelijke programma. MS Project XML, Primavera P6 XML, CSV en IFC kun je openen én exporteren. Een .mpp of .xer verandert de app nooit: je slaat op als IFC.</p></div>
       </details>
-      <details class="faq-item">
+      <details class="pp-faq-item">
         <summary><span data-i18n="faq.profiles.q">Rekent het net als P6 of MS Project?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
-        <div class="faq-a"><p data-i18n="faq.profiles.a">Dat kies je met het rekenprofiel: Primavera P6, Microsoft Project of Open Planner Studio. Een .xer opent met het P6-profiel en een .mpp met het MS Project-profiel. Met <em>Datums zoals opgeslagen</em> zie je daarnaast de datums die het andere programma zelf heeft berekend.</p></div>
+        <div class="pp-faq-a"><p data-i18n="faq.profiles.a">Dat kies je met het rekenprofiel: Primavera P6, Microsoft Project of Open Planner Studio. Een .xer opent met het P6-profiel en een .mpp met het MS Project-profiel. Met <em>Datums zoals opgeslagen</em> zie je daarnaast de datums die het andere programma zelf heeft berekend.</p></div>
       </details>
-      <details class="faq-item">
+      <details class="pp-faq-item">
         <summary><span data-i18n="faq.browser.q">Moet ik iets installeren?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
-        <div class="faq-a"><p data-i18n="faq.browser.a">Nee. De hele app draait in de browser, met openen, opslaan, automatisch opslaan en crashherstel. In Chrome en Edge sla je met Ctrl+S op in hetzelfde bestand; in Firefox en Safari kies je bij opslaan een bestand. Wil je toch installeren, dan zijn er versies voor Windows, macOS en Linux.</p></div>
+        <div class="pp-faq-a"><p data-i18n="faq.browser.a">Nee. De hele app draait in de browser, met openen, opslaan, automatisch opslaan en crashherstel. In Chrome en Edge sla je met Ctrl+S op in hetzelfde bestand; in Firefox en Safari kies je bij opslaan een bestand. Wil je toch installeren, dan zijn er versies voor Windows, macOS en Linux.</p></div>
       </details>
-      <details class="faq-item">
+      <details class="pp-faq-item">
         <summary><span data-i18n="faq.prijs.q">Wat kost Open Planner Studio?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
-        <div class="faq-a"><p data-i18n="faq.prijs.a">Niets. De app is gratis en open source onder de LGPL-3.0-licentie. Geen abonnement en geen licentiekosten per gebruiker.</p></div>
+        <div class="pp-faq-a"><p data-i18n="faq.prijs.a">Niets. De app is gratis en open source onder de LGPL-3.0-licentie. Geen abonnement en geen licentiekosten per gebruiker.</p></div>
       </details>
-      <details class="faq-item">
+      <details class="pp-faq-item">
         <summary><span data-i18n="faq.formaat.q">In welk bestandsformaat wordt mijn planning opgeslagen?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
-        <div class="faq-a"><p data-i18n="faq.formaat.a">In IFC 4.3, de open standaard van buildingSMART. Je planning ís een IFC-bestand; er is geen eigen, gesloten formaat. Daardoor blijft je data leesbaar buiten deze app, en kan BIM-software je planning naast een gebouwmodel leggen voor 4D-analyse.</p></div>
+        <div class="pp-faq-a"><p data-i18n="faq.formaat.a">In IFC 4.3, de open standaard van buildingSMART. Je planning ís een IFC-bestand; er is geen eigen, gesloten formaat. Daardoor blijft je data leesbaar buiten deze app, en kan BIM-software je planning naast een gebouwmodel leggen voor 4D-analyse.</p></div>
       </details>
-      <details class="faq-item">
+      <details class="pp-faq-item">
         <summary><span data-i18n="faq.platforms.q">Op welke systemen draait het?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
-        <div class="faq-a"><p data-i18n="faq.platforms.a">Windows (.exe), macOS (universele .dmg, voor Intel en Apple Silicon) en Linux (.deb, .rpm, AppImage en snap). Daarnaast volledig in de browser.</p></div>
+        <div class="pp-faq-a"><p data-i18n="faq.platforms.a">Windows (.exe), macOS (universele .dmg, voor Intel en Apple Silicon) en Linux (.deb, .rpm, AppImage en snap). Daarnaast volledig in de browser.</p></div>
       </details>
-      <details class="faq-item">
+      <details class="pp-faq-item">
         <summary><span data-i18n="faq.bouwpraktijk.q">Sluit het aan op de bouwpraktijk?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
-        <div class="faq-a"><p data-i18n="faq.bouwpraktijk.a">Ja. Je maakt kalenders met feestdagen, bouwvak en eigen werktijden, en plant per taak in dagen of in uren. Resources zijn arbeid, materieel, materiaal of onderaannemers, en de rapporten zijn gemaakt voor bouwoverleg en opdrachtgevers.</p></div>
+        <div class="pp-faq-a"><p data-i18n="faq.bouwpraktijk.a">Ja. Je maakt kalenders met feestdagen, bouwvak en eigen werktijden, en plant per taak in dagen of in uren. Resources zijn arbeid, materieel, materiaal of onderaannemers, en de rapporten zijn gemaakt voor bouwoverleg en opdrachtgevers.</p></div>
       </details>
-      <details class="faq-item">
+      <details class="pp-faq-item">
         <summary><span data-i18n="faq.ai.q">Wat kan een AI-assistent met mijn planning?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
-        <div class="faq-a"><p data-i18n="faq.ai.a">Dat is optioneel en staat standaard uit. Zet je de AI-modus aan in de desktop-app, dan kan een AI-client zoals Claude Code je open planning lezen en bewerken. Je houdt de regie: er is een pauzeknop, een alleen-lezen-stand, een automatische back-up vóór de eerste wijziging en een logboek met elke aanroep.</p></div>
+        <div class="pp-faq-a"><p data-i18n="faq.ai.a">Dat is optioneel en staat standaard uit. Zet je de AI-modus aan in de desktop-app, dan kan een AI-client zoals Claude Code je open planning lezen en bewerken. Je houdt de regie: er is een pauzeknop, een alleen-lezen-stand, een automatische back-up vóór de eerste wijziging en een logboek met elke aanroep.</p></div>
       </details>
     </div>
   </div></section>
@@ -649,7 +523,7 @@
 
 
   <!-- Release Notes (shared component) -->
-  <section id="releases" class="opl-releases">
+  <section id="releases" class="pp-releases">
   <div data-release-notes="open-planner-studio" data-release-notes-timeline>
 <!-- rn:start Gegenereerd door scripts/build-release-notes-static.js — niet met de hand bewerken -->
 <section class="rn-section"><div class="rn-container">
@@ -692,13 +566,14 @@
 </div></section>
 <!-- rn:end -->
 </div>
-  <p class="opl-rel-more">
+  <p class="pp-rel-more">
     <button type="button" class="btn btn-secondary" data-rel-toggle aria-expanded="false" hidden><span data-rel-show data-i18n="releases.showAll">Toon alle releases</span><span data-rel-hide hidden data-i18n="releases.showLess">Toon alleen de laatste drie</span></button>
     <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/releases" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="releases.github">Alle releases op GitHub</span></a>
     <a href="https://github.com/OpenAEC-Foundation/open-planner-studio/blob/main/docs/CHANGELOG.md" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="releases.changelog">Changelog</span></a>
   </p>
   </section>
   <script src="/shared/release-notes.js?v=20261022"></script>
+  <script src="/shared/productpagina.js?v=20261029"></script>
 
   <section class="section surface-spot panel">
     <div class="panel-center">
@@ -764,247 +639,6 @@
   </div>
 </footer>
 <!-- footer:end --></div>
-  <script>
-  // Functies: tabbladen. Zonder JavaScript staan de hoogtepunten en alle
-  // tegels gewoon onder elkaar; dit script maakt er tabbladen van.
-  (function () {
-    var tabs = Array.prototype.slice.call(document.querySelectorAll('.opl-tab'));
-    var list = document.querySelector('.opl-tabs');
-    var hl = document.querySelector('[data-panel="highlights"]');
-    var grid = document.querySelector('.opl-tiles');
-    var panel = document.getElementById('opl-feature-panel');
-    if (!tabs.length || !list || !hl || !grid || !panel) return;
-    var tiles = Array.prototype.slice.call(grid.querySelectorAll('.opl-tile'));
-    function inCat(tile, cat) {
-      return cat === 'all' || (' ' + (tile.getAttribute('data-cats') || '') + ' ').indexOf(' ' + cat + ' ') > -1;
-    }
-    tabs.forEach(function (tab) {
-      var cat = tab.getAttribute('data-tab');
-      var count = tab.querySelector('[data-count]');
-      if (!count) return;
-      if (cat === 'highlights') count.textContent = String(hl.querySelectorAll('.opl-hl-row').length);
-      else count.textContent = String(tiles.filter(function (t) { return inCat(t, cat); }).length);
-    });
-    function select(tab, focus) {
-      var cat = tab.getAttribute('data-tab');
-      tabs.forEach(function (t) {
-        var on = t === tab;
-        t.setAttribute('aria-selected', on ? 'true' : 'false');
-        t.tabIndex = on ? 0 : -1;
-      });
-      panel.setAttribute('aria-labelledby', tab.id);
-      hl.hidden = cat !== 'highlights';
-      grid.hidden = cat === 'highlights';
-      tiles.forEach(function (t) { t.hidden = cat === 'highlights' || !inCat(t, cat); });
-      if (focus) tab.focus();
-    }
-    tabs.forEach(function (tab, i) {
-      tab.addEventListener('click', function () { select(tab, false); });
-      tab.addEventListener('keydown', function (e) {
-        var next = null;
-        if (e.key === 'ArrowRight') next = tabs[(i + 1) % tabs.length];
-        else if (e.key === 'ArrowLeft') next = tabs[(i - 1 + tabs.length) % tabs.length];
-        else if (e.key === 'Home') next = tabs[0];
-        else if (e.key === 'End') next = tabs[tabs.length - 1];
-        if (next) { e.preventDefault(); select(next, true); }
-      });
-    });
-    document.documentElement.classList.add('opl-js');
-    list.hidden = false;
-    select(tabs[0], false);
-  })();
-  </script>
-  <script>
-  // Plakkende navigatie: zet de hoogte van de sitebalk in --opl-nav-h en
-  // markeer de sectie die nu in beeld is.
-  (function () {
-    var root = document.documentElement;
-    function measure() {
-      var nav = document.getElementById('shared-nav');
-      var h = nav ? nav.getBoundingClientRect().height : 0;
-      if (h > 0) root.style.setProperty('--opl-nav-h', Math.round(h) + 'px');
-    }
-    // Elke doelsectie krijgt een eigen scroll-margin-top: de kop van de
-    // sectie (niet de bovenrand met padding) komt dan 8 px onder de subnav.
-    var GAP = 8;
-    function headOf(sec) {
-      return sec.querySelector('.section-head, .pill-label, h2, .rn-header-block, .rn-title') || sec;
-    }
-    function setMargins() {
-      var sub = document.querySelector('.opl-subnav');
-      var navH = parseFloat(getComputedStyle(root).getPropertyValue('--opl-nav-h')) || 0;
-      var subH = sub ? sub.getBoundingClientRect().height : 0;
-      root.style.setProperty('--opl-sub-h', Math.round(subH) + 'px');
-      document.querySelectorAll('.opl-anchor, #releases').forEach(function (sec) {
-        var inner = headOf(sec).getBoundingClientRect().top - sec.getBoundingClientRect().top;
-        sec.style.scrollMarginTop = Math.round(navH + subH + GAP - inner) + 'px';
-      });
-    }
-    measure();
-    setMargins();
-    window.addEventListener('resize', function () { measure(); setMargins(); });
-    window.addEventListener('load', setMargins);
-    // Vlak voor een sprong opnieuw meten: de release notes worden pas laat
-    // door JavaScript opgebouwd en kunnen hun kop dan verplaatst hebben.
-    document.addEventListener('click', function (e) {
-      var a = e.target.closest && e.target.closest('a[href^="#"]');
-      if (a) { measure(); setMargins(); }
-    }, true);
-    document.addEventListener('nav:loaded', function () { measure(); setMargins(); });
-    var links = Array.prototype.slice.call(document.querySelectorAll('.opl-subnav a[href^="#"]'));
-    var sections = links.map(function (a) { return document.getElementById(a.getAttribute('href').slice(1)); });
-    function update() {
-      var line = (parseFloat(getComputedStyle(root).getPropertyValue('--opl-nav-h')) || 68) + 80;
-      var current = -1;
-      sections.forEach(function (s, i) { if (s && s.getBoundingClientRect().top <= line) current = i; });
-      links.forEach(function (a, i) {
-        var on = i === current;
-        a.classList.toggle('is-active', on);
-        if (on) a.setAttribute('aria-current', 'location'); else a.removeAttribute('aria-current');
-      });
-    }
-    var queued = false;
-    window.addEventListener('scroll', function () {
-      if (queued) return;
-      queued = true;
-      requestAnimationFrame(function () { queued = false; update(); });
-    }, { passive: true });
-    update();
-  })();
-  </script>
-  <script>
-  // Release notes: de laatste drie staan open, de rest achter een knop.
-  (function () {
-    var wrap = document.getElementById('releases');
-    var btn = document.querySelector('[data-rel-toggle]');
-    if (!wrap || !btn) return;
-    var show = btn.querySelector('[data-rel-show]');
-    var hide = btn.querySelector('[data-rel-hide]');
-    btn.hidden = false;
-    btn.addEventListener('click', function () {
-      var open = wrap.classList.toggle('opl-show-all');
-      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      show.hidden = open;
-      hide.hidden = !open;
-      if (!open) wrap.scrollIntoView({ block: 'start' });
-    });
-  })();
-  </script>
-  <script>
-  // Downloads: één hoofdknop voor het besturingssysteem van de bezoeker, de
-  // rest onder "Andere platforms". De versie, links en groottes komen live uit
-  // de nieuwste GitHub-release. Zonder JavaScript wijzen alle knoppen al naar
-  // de bestanden van de release die in de HTML staat.
-  (function () {
-    var REPO = 'OpenAEC-Foundation/open-planner-studio';
-    var state = { tag: null };
-    var match = {
-      windows: /_x64-setup\.exe$/i,
-      macos: /_universal\.dmg$/i,
-      'linux-deb': /_amd64\.deb$/i,
-      'linux-rpm': /\.x86_64\.rpm$/i,
-      'linux-appimage': /_amd64\.AppImage$/i,
-      'linux-snap': /_amd64\.snap$/i
-    };
-
-    // Zelfde herkenning als shared/downloads.js.
-    function detectOS(nav) {
-      var ua = String((nav && nav.userAgent) || '');
-      var platform = String((nav && nav.userAgentData && nav.userAgentData.platform) || (nav && nav.platform) || '');
-      if (/android/i.test(ua)) return 'mobile';
-      if (/iphone|ipad|ipod/i.test(ua)) return 'mobile';
-      if (/win/i.test(platform) || /windows/i.test(ua)) return 'windows';
-      if (/mac/i.test(platform) || /mac os x/i.test(ua)) return 'macos';
-      if (/linux|x11|cros/i.test(platform + ' ' + ua)) return 'linux-appimage';
-      return null;
-    }
-
-    function setPrimary(key) {
-      var primary = document.querySelector('[data-opl-primary]');
-      if (!primary) return;
-      primary.setAttribute('data-opl-dl', key);
-      var source = document.querySelector('.opl-files [data-opl-dl="' + key + '"]');
-      if (source) primary.href = source.href;
-      document.querySelectorAll('[data-os]').forEach(function (el) {
-        el.hidden = el.getAttribute('data-os') !== key;
-      });
-      document.querySelectorAll('[data-opl-item]').forEach(function (el) {
-        el.classList.toggle('is-primary', el.getAttribute('data-opl-item') === key);
-      });
-      var size = document.querySelector('[data-opl-size="' + key + '"]');
-      var target = document.querySelector('[data-opl-primary-size]');
-      if (size && target) target.textContent = size.textContent;
-    }
-
-    var os = detectOS(navigator);
-    if (os === 'mobile') {
-      // Op een telefoon is de browser de beste keuze; de installers blijven
-      // onder "Andere platforms".
-      var main = document.querySelector('[data-opl-primary]');
-      var meta = document.querySelector('.opl-dl-meta');
-      if (main) main.hidden = true;
-      if (meta) meta.hidden = true;
-      var note = document.querySelector('[data-opl-mobile]');
-      if (note) note.hidden = false;
-      var browserNote = document.querySelector('.opl-dl-note');
-      if (browserNote) browserNote.hidden = true;
-      os = null;
-    } else if (os) {
-      setPrimary(os);
-    }
-    var current = os || 'windows';
-
-    // Re-apply the version into the i18n-managed labels. Runs on load and again
-    // whenever i18n rewrites them (language switch) via the observer below.
-    function patch() {
-      if (!state.tag) return;
-      document.querySelectorAll('[data-opl-ver]').forEach(function (el) {
-        var want = el.innerHTML.replace(/v\d+\.\d+\.\d+/g, state.tag);
-        if (el.innerHTML !== want) el.innerHTML = want;
-      });
-    }
-
-    function fmtSize(bytes) {
-      return (bytes / 1048576).toFixed(1) + ' MB';
-    }
-
-    function apply(rel) {
-      state.tag = rel.tag_name;
-      var assets = rel.assets || [];
-      Object.keys(match).forEach(function (key) {
-        var re = match[key];
-        var hit = assets.filter(function (x) { return re.test(x.name); })[0];
-        document.querySelectorAll('[data-opl-dl="' + key + '"]').forEach(function (a) {
-          if (hit) a.href = hit.browser_download_url;
-        });
-        if (hit) {
-          document.querySelectorAll('[data-opl-size="' + key + '"]').forEach(function (el) {
-            el.textContent = fmtSize(hit.size);
-          });
-        }
-      });
-      setPrimary(current);
-      patch();
-    }
-
-    function start() {
-      try {
-        var obs = new MutationObserver(patch);
-        document.querySelectorAll('[data-opl-ver]').forEach(function (el) {
-          obs.observe(el, { childList: true, subtree: true, characterData: true });
-        });
-      } catch (e) {}
-
-      fetch('https://api.github.com/repos/' + REPO + '/releases/latest')
-        .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (rel) { if (rel && rel.tag_name) apply(rel); })
-        .catch(function () {});
-    }
-
-    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
-    else start();
-  })();
-  </script>
 <script src="/shared/i18n.js?v=20261015"></script>
 </body>
 </html>
