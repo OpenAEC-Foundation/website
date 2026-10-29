@@ -10,6 +10,21 @@ const stats = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'stats.json'), 
 // Curated catalog: which repos are user-facing tools + their metadata
 const TOOLS = [
   {
+    id: 'open-3d-viewer',
+    repo: 'open-3d-viewer',
+    name: 'Open 3D Viewer Studio',
+    category: 'BIM Viewer',
+    status: 'beta',
+    description: 'Inspect 3D and BIM models with navigation, properties, layers, section box, measurement, explode and IFC 4 export. Revit and IFC import are desktop-only. SKP support is partial; Tekla DB1 is beta with incomplete geometry and version support. Images show a development build.',
+    keywords: ['3D viewer', 'BIM', 'Revit', 'RVT', 'RFA', 'IFC', 'SketchUp partial', 'Tekla beta', 'section box', 'measurement'],
+    alternatives: ['Autodesk Viewer', 'BIMvision'],
+    license: 'LGPL-3.0-or-later viewer; proprietary Revit reader in standard desktop builds',
+    techStack: ['Rust', 'iced 0.14', 'wgpu', 'WebAssembly'],
+    platforms: ['Windows', 'Linux', 'macOS', 'Web (WebGPU; limited import)'],
+    productPage: 'https://open-aec.com/open-3d-viewer/',
+    liveDemo: 'https://open-3d-viewer.open-aec.com/',
+  },
+  {
   "id": "ifccad",
   "repo": "ifccad",
   "name": "IFCCAD",

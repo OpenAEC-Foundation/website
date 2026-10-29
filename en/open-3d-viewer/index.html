@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Open 3D Viewer — OpenAEC Foundation</title>
-  <meta name="description" content="Open source 3D viewer for viewing and inspecting BIM models in the browser.">
+  <title>Open 3D Viewer Studio - OpenAEC Foundation</title>
+  <meta name="description" content="Open 3D Viewer Studio: desktop Revit and IFC, 3D navigation, properties, layers, section box, measurement, explode and IFC export. With a WebGPU web…">
   <link rel="canonical" href="https://open-aec.com/en/open-3d-viewer/">
   <!-- hreflang:start -->
   <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-3d-viewer/">
@@ -17,21 +18,22 @@
 
 
 
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenAEC Foundation">
-  <meta property="og:title" content="Open 3D Viewer">
-  <meta property="og:description" content="Open source 3D viewer for viewing and inspecting BIM models in the browser.">
-  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-3d-viewer-rvt.jpg">
+  <meta property="og:title" content="Open 3D Viewer Studio - OpenAEC Foundation">
+  <meta property="og:description" content="Open 3D Viewer Studio: desktop Revit and IFC, 3D navigation, properties, layers, section box, measurement, explode and IFC export. With a WebGPU web…">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-3d-viewer-house.png">
   <meta property="og:url" content="https://open-aec.com/en/open-3d-viewer/">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="en_US">
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Open 3D Viewer">
-  <meta name="twitter:description" content="Open source 3D viewer for viewing and inspecting BIM models in the browser.">
-  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-3d-viewer-rvt.jpg">
+  <meta name="twitter:title" content="Open 3D Viewer Studio">
+  <meta name="twitter:description" content="Open 3D Viewer Studio: desktop Revit and IFC, 3D navigation, properties, layers, section box, measurement, explode and IFC export. With a WebGPU web…">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-3d-viewer-house.png">
 
   <!-- AI / LLM discoverability -->
   <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
@@ -42,6 +44,25 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/shared/style.css?v=20261015">
 
+  <style>
+    .studio-gallery figure { margin: 0; position: relative; }
+    .studio-gallery img, .studio-shot img { width: 100%; height: auto; display: block; border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+    .studio-gallery figcaption { color: var(--text-on-dark); padding: var(--sp-4) 0 var(--sp-8); }
+    .studio-shot { margin: var(--sp-12) 0 0; }
+    .studio-shot figcaption { color: var(--text-muted); text-align: center; padding-top: var(--sp-4); }
+    .studio-note { border-left: 3px solid var(--amber); padding-left: var(--sp-4); margin-top: var(--sp-6); }
+    .product-head .btn-secondary { color: var(--blueprint-white); border-color: var(--concrete); }
+    .studio-tekla { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-8); align-items: center; margin-top: var(--sp-12); }
+    .studio-tekla figure { margin: 0; }
+    .table-scroll { overflow-x: auto; max-width: 100%; }
+    .studio-formats { width: 100%; border-collapse: collapse; margin: var(--sp-6) 0; }
+    .studio-formats th, .studio-formats td { padding: var(--sp-4); text-align: left; vertical-align: top; border-bottom: 1px solid var(--concrete); }
+    .studio-formats thead { background: var(--deep-forge); color: var(--blueprint-white); }
+    .studio-formats tbody th { min-width: 160px; }
+    #desktop { scroll-margin-top: 100px; }
+    .feature h3 { font-size: 1.1rem; }
+    @media (max-width: 768px) { .studio-gallery { padding: 0 !important; } .studio-formats { min-width: 650px; } .studio-tekla { grid-template-columns: 1fr; } }
+  </style>
   <meta name="i18n-static" content="en">
   <!-- schema:start -->
   <script type="application/ld+json">
@@ -76,7 +97,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "en",
-        "dateModified": "2026-10-24",
+        "dateModified": "2026-10-29",
         "breadcrumb": {
           "@id": "https://open-aec.com/en/open-3d-viewer/#breadcrumb"
         }
@@ -139,98 +160,60 @@
 <script src="/shared/feedback.js?v=20261022" defer></script>
 
   <main id="main">
-
   <header class="product-head surface-spot">
     <div class="product-head-inner">
-      <p class="pill-label" data-i18n="header.label">OpenAEC Ecosystem</p>
-      <h1 data-i18n="header.title">Open <span class="accent">3D</span> Viewer</h1>
-      <p class="lead" data-i18n="header.desc">Open source 3D viewer for viewing and inspecting BIM models in the browser.</p>
-      <div class="btn-group">
-        <a href="https://open-3d-viewer.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span data-i18n="cta.demo">View live demo</span></a>
-      </div>
-      <div class="chip-row">
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-rocket"/></svg><span data-i18n="header.badge">Beta</span></span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg>IFC · SKP · STEP · OBJ · STL</span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg>Browser · WebGL</span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-euro"/></svg>€ 0</span>
-      </div>
+      <p class="pill-label">OpenAEC Ecosysteem</p>
+      <h1 data-i18n="studio.title">Open <span class="accent">3D</span> Viewer Studio</h1>
+      <p data-i18n="studio.desc" class="lead">Explore your 3D models. Navigate, select elements, cut sections and measure directly in the viewport.</p>
+      <div class="btn-group"><a href="https://open-3d-viewer.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><span data-i18n="studio.demo">Open web version</span></a><a href="#desktop" class="btn btn-secondary"><span data-i18n="studio.desktop">Desktop and file formats</span></a></div>
+      <div class="chip-row"><span class="chip" data-i18n="studio.beta">In development · beta</span><span class="chip">RVT · RFA · IFC · SKP · DB1</span><span class="chip" data-i18n="studio.platform">Desktop + WebGPU</span></div>
     </div>
-    <div class="media-slider shot-overlap">
-      <div class="slider-container">
-        <div class="slider-track" id="sliderTrack">
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-3d-viewer-rvt.jpg" alt="Open 3D Viewer Studio met een ingeladen RVT-model van 114K driehoeken, links de lagenlijst en rechts de modeleigenschappen" width="1920" height="1032"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-3d-viewer-lijnen.jpg" alt="Open 3D Viewer - weergave met verborgen lijnen" width="1920" height="1080"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-3d-viewer-start.jpg" alt="Open 3D Viewer - startscherm met voorbeeldbestanden" width="1920" height="1080"></div>
-        </div>
-        <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Vorige">&lsaquo;</button>
-        <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Volgende">&rsaquo;</button>
-      </div>
-      <div class="slider-dots" id="sliderDots"></div>
+    <div class="media-slider studio-gallery">
+      <figure><img src="/shared/assets/screenshots/open-3d-viewer-house.png" alt="Revit sample house in Open 3D Viewer Studio" width="1280" height="800" fetchpriority="high"><figcaption data-i18n="studio.shotHouse">Revit sample house in the desktop viewer, with layers and model information.</figcaption></figure>
     </div>
   </header>
-
-  <section class="section after-overlap"><div class="container">
-    <div class="panel-split on-light">
-      <div class="panel-split-text">
-        <h2 data-i18n="why.title">Why Open <span class="accent">3D</span> Viewer?</h2>
-      </div>
-      <div class="panel-split-body">
-        <p data-i18n="why.desc">Viewing BIM models often requires expensive desktop software. Open 3D Viewer offers a lightweight, browser-based 3D viewer that allows anyone to inspect IFC and other 3D models without installation.</p>
-      </div>
-    </div>
-  </div></section>
-
   <section class="section"><div class="container">
-    <h2 data-i18n="features.title">Features</h2>
-    <div class="features features-4 features-center">
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div>
-        <h4 data-i18n="features.webgl.title">WebGL 3D rendering</h4>
-        <p data-i18n="features.webgl.desc">Fast 3D rendering in the browser via WebGL. View complex models without plugins or installation.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div>
-        <h4 data-i18n="features.import.title">IFC/STEP/OBJ import</h4>
-        <p data-i18n="features.import.desc">Support for commonly used 3D formats including IFC, STEP and OBJ. Drag and drop files directly into the viewer.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div>
-        <h4 data-i18n="features.multiformat.title">More than twenty formats</h4>
-        <p data-i18n="features.multiformat.desc">GLB, OBJ, STL, FBX, SKP, STEP, DXF, IFC, 3MF, DAE, PLY, PCD, WRL, XYZ, VTK, G-code, KMZ, VOX, AMF, BLEND, IGES and more, including point clouds.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div>
-        <h4 data-i18n="features.modes.title">Display modes</h4>
-        <p data-i18n="features.modes.desc">Solid, wireframe, points or hidden line, with grid, ambient light and standard views.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clipboard"/></svg></div>
-        <h4 data-i18n="features.selection.title">Properties and layers</h4>
-        <p data-i18n="features.selection.desc">Click a model to see its file, vertex and triangle counts and bounding box. Switch layers on or off one by one.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-scissors"/></svg></div>
-        <h4 data-i18n="features.clipping.title">Sections &amp; clipping planes</h4>
-        <p data-i18n="features.clipping.desc">Create cross-sections through the model with clipping planes. View internal constructions and hidden elements.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-ruler"/></svg></div>
-        <h4 data-i18n="features.measure.title">Measurement tools</h4>
-        <p data-i18n="features.measure.desc">Measure distances and angles straight in the 3D model and view the model statistics.</p>
-      </div>
-    </div>
+    <div class="panel-split on-light"><div class="panel-split-text"><h2 data-i18n="studio.whyTitle">From model to insight</h2></div><div class="panel-split-body"><p data-i18n="studio.why">Open a model and explore its contents. Orbit your design, hide layers and select an element to inspect its available properties. Look inside with a section box or section plane; check distances, angles and areas with the measurement tools.</p><p data-i18n="studio.preview" class="studio-note">Images show a development build. Features and supported formats may differ from the web version or an earlier desktop download.</p></div></div>
   </div></section>
-
-  <section class="section surface-spot panel">
-    <div class="panel-center">
-      <h2 data-i18n="header.title">Open <span class="accent">3D</span> Viewer</h2>
-      <div class="btn-group">
-        <a href="https://open-3d-viewer.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span data-i18n="cta.demo">View live demo</span></a>
-      </div>
+  <section class="section"><div class="container">
+    <h2 data-i18n="studio.featuresTitle">Explore your model</h2>
+    <div class="features features-4 features-center"><div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div><h3 data-i18n="studio.features.0.0">Navigate in 3D</h3><p data-i18n="studio.features.0.1">Orbit, pan and zoom. Switch between isometric, top, front and right views, perspective and orthographic projection.</p></div>
+<div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clipboard"/></svg></div><h3 data-i18n="studio.features.1.0">Selection and properties</h3><p data-i18n="studio.features.1.1">Select an element and inspect the properties made available by its file reader.</p></div>
+<div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><h3 data-i18n="studio.features.2.0">Layer visibility</h3><p data-i18n="studio.features.2.1">Show or hide layers to focus on different parts of a model.</p></div>
+<div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div><h3 data-i18n="studio.features.3.0">Three render modes</h3><p data-i18n="studio.features.3.1">Switch between solid, wireframe and edges. Use the grid and view cube for orientation.</p></div>
+<div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-scissors"/></svg></div><h3 data-i18n="studio.features.4.0">Section box and section plane</h3><p data-i18n="studio.features.4.1">Cut through the model with a bounding box or plane, with filled cut surfaces.</p></div>
+<div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-ruler"/></svg></div><h3 data-i18n="studio.features.5.0">Measure in the model</h3><p data-i18n="studio.features.5.1">Measure distances, angles, polygons and areas. Results appear in the 3D viewport.</p></div>
+<div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><h3 data-i18n="studio.features.6.0">Explode</h3><p data-i18n="studio.features.6.1">Separate elements or storeys to explore the model structure.</p></div>
+<div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><h3 data-i18n="studio.features.7.0">Export to IFC</h3><p data-i18n="studio.features.7.1">Save an open model as IFC 4 with triangulated geometry and available element data. This is not a complete native roundtrip.</p></div>
     </div>
-  </section>
-
-  </main>
+    <figure class="studio-shot"><img src="/shared/assets/screenshots/open-3d-viewer-section-measure.png" alt="Revit house with section box and distance measurement in Open 3D Viewer Studio" width="1280" height="800" loading="lazy"><figcaption data-i18n="studio.shotTools">Section box and distance measurement in the same Revit model.</figcaption></figure>
+  </div></section>
+  <section class="section"><div class="container"><div class="studio-tekla">
+<figure class="studio-shot"><img src="/shared/assets/screenshots/open-3d-viewer-tekla.png" alt="Tekla DB1 model rendered in the Open 3D Viewer viewport" width="798" height="594" loading="lazy"><figcaption data-i18n="studio.teklaCaption">Tekla .db1 in the viewer — beta, with simplified geometry.</figcaption></figure>
+<div><h3 data-i18n="studio.teklaTitle">A real Tekla model, in beta</h3><p data-i18n="studio.teklaDesc">Captured from the desktop viewer with a real .db1 model. Geometry is still incomplete: this image previews the reader and is not a complete verification of the Tekla source model.</p></div>
+</div></div></section>
+  <section class="section" id="desktop"><div class="container">
+    <h2 data-i18n="studio.formatsTitle">Choose the format and platform</h2><p data-i18n="studio.formatsIntro">Revit and IFC import run in the desktop app. The web version uses WebGPU and supports fewer import formats. Files may not display completely or exactly as in their original application.</p>
+    <div class="table-scroll" role="region" tabindex="0" aria-label="Choose the format and platform" data-i18n="studio.formatsTitle" data-i18n-attr="aria-label"><table class="studio-formats"><thead><tr><th data-i18n="studio.format" scope="col">Format</th><th data-i18n="studio.desktopCol" scope="col">Desktop</th><th data-i18n="studio.web" scope="col">Web</th><th data-i18n="studio.notes" scope="col">What to know</th></tr></thead><tbody><tr><th data-i18n="studio.formats.0.0" scope="row">Revit .rvt / .rfa</th><td data-i18n="studio.formats.0.1">Yes</td><td data-i18n="studio.formats.0.2">No</td><td data-i18n="studio.formats.0.3">Categories, levels, grids, rooms and saved views where available in the file.</td></tr>
+<tr><th data-i18n="studio.formats.1.0" scope="row">IFC .ifc</th><td data-i18n="studio.formats.1.1">Yes</td><td data-i18n="studio.formats.1.2">No</td><td data-i18n="studio.formats.1.3">Geometry, placements, units and openings; selectable elements with IFC type, GlobalId and available properties.</td></tr>
+<tr><th data-i18n="studio.formats.2.0" scope="row">SketchUp .skp</th><td data-i18n="studio.formats.2.1">Partial</td><td data-i18n="studio.formats.2.2">Partial</td><td data-i18n="studio.formats.2.3">Partial reader for classic and 2021+ files. Some models fail; textures appear as colour tints.</td></tr>
+<tr><th data-i18n="studio.formats.3.0" scope="row">Tekla .db1</th><td data-i18n="studio.formats.3.1">Beta</td><td data-i18n="studio.formats.3.2">Beta</td><td data-i18n="studio.formats.3.3">Version dependent and incomplete. Profiles may be approximate boxes; cuts, offsets, rotations and chamfers are not fully applied.</td></tr>
+<tr><th data-i18n="studio.formats.4.0" scope="row">glTF .gltf / .glb</th><td data-i18n="studio.formats.4.1">Yes</td><td data-i18n="studio.formats.4.2">Yes</td><td data-i18n="studio.formats.4.3">In the browser: GLB or glTF with embedded buffers. Textures appear as average colour tints.</td></tr>
+<tr><th data-i18n="studio.formats.5.0" scope="row">Wavefront .obj</th><td data-i18n="studio.formats.5.1">Yes</td><td data-i18n="studio.formats.5.2">Yes</td><td data-i18n="studio.formats.5.3">MTL colours on desktop; no full texture rendering.</td></tr>
+<tr><th data-i18n="studio.formats.6.0" scope="row">STL .stl</th><td data-i18n="studio.formats.6.1">Yes</td><td data-i18n="studio.formats.6.2">Yes</td><td data-i18n="studio.formats.6.3">ASCII and binary.</td></tr>
+<tr><th data-i18n="studio.formats.7.0" scope="row">PLY .ply</th><td data-i18n="studio.formats.7.1">Yes</td><td data-i18n="studio.formats.7.2">Yes</td><td data-i18n="studio.formats.7.3">ASCII and binary, with faces. Point clouds without faces are not supported.</td></tr></tbody></table></div>
+    <p data-i18n="studio.limits" class="studio-note">STEP, DWG/DXF, FBX and point cloud formats such as E57 and LAS are not supported yet. Walk mode, multiple simultaneous models and full texture rendering are also unavailable.</p>
+    <h3 data-i18n="studio.licenseTitle">Desktop and web</h3><p data-i18n="studio.license">Built in Rust with iced and wgpu. The desktop app targets Windows, Linux and macOS; the web version requires a WebGPU browser. The viewer source is LGPL-3.0-or-later. The standard desktop build also includes a proprietary Revit reader, so the complete package is not wholly open source.</p>
+  </div></section>
+  <section class="section surface-spot panel"><div class="panel-center">
+    <h2 data-i18n="studio.videoTitle">Coming soon: a short demonstration</h2><p data-i18n="studio.video">A Revit sample house and a real Tekla model in the same viewer: orbit, select an element, inspect properties, use the section box and measure a distance. The video will follow once the new interface and Tekla demo model have been checked.</p>
+  </div></section>
+  <section class="section"><div class="container panel-center">
+    <h2 data-i18n="studio.endTitle">Try the web version</h2><p data-i18n="studio.end">Start in the browser with GLB, OBJ or STL. Use the desktop app for Revit and IFC.</p>
+    <div class="btn-group"><a href="https://open-3d-viewer.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><span data-i18n="studio.demo">Open web version</span></a></div>
+  </div></section>
+  <!-- Add a verified video here when the recording is available. No empty player. -->
+</main>
 
   <div id="shared-footer"><!-- footer:start -->
 <footer class="site-footer">
@@ -283,27 +266,7 @@
   </div>
 </footer>
 <!-- footer:end --></div>
-  <script>
-  (function(){
-    const track = document.getElementById('sliderTrack');
-    const dots = document.getElementById('sliderDots');
-    if (!track || !dots) return;
-    const slides = track.children.length;
-    let current = 0;
-    for(let i=0;i<slides;i++){
-      const d = document.createElement('button');
-      d.className = 'slider-dot' + (i===0?' active':'');
-      d.onclick = ()=>slideTo(i);
-      dots.appendChild(d);
-    }
-    window.slideMove = function(dir){slideTo(current+dir);};
-    window.slideTo = function(i){
-      current = (i+slides)%slides;
-      track.style.transform = 'translateX(-'+current*100+'%)';
-      dots.querySelectorAll('.slider-dot').forEach((d,idx)=>d.classList.toggle('active',idx===current));
-    };
-  })();
-  </script>
+
 <script src="/shared/i18n.js?v=20261015"></script>
 </body>
 </html>

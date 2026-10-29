@@ -1,42 +1,44 @@
-# Open 3D Viewer
+# Open 3D Viewer Studio
 
-> Browser-based 3D viewer for inspecting BIM models without installing anything.
+> Explore 3D and BIM models with selection, properties, layers, sections and measurement. Revit and IFC import are desktop-only. Screenshots show a development build.
 
-**Status:** preview
-**License:** LGPL-3.0
-**Platforms:** Web
+**Status:** beta
+**License:** LGPL-3.0-or-later viewer; proprietary Revit reader in standard desktop builds
+**Platforms:** Windows, Linux, macOS, Web (WebGPU; limited import)
 **Category:** BIM Viewer
 **Current version:** n/a
 **Tool ID:** `open-3d-viewer`
 
 ## Key features
 
-- IFC viewing in the browser
-- Property inspection
-- Section tools
-- No install — pure web
+- Orbit, pan, zoom; standard views and perspective or orthographic projection
+- Element selection, available properties and layer visibility
+- Solid, wireframe and edges render modes
+- Section box and section plane with cut fills
+- Distance, angle, polygon and area measurement
+- Explode by storey or element
+- IFC 4 export with triangulated geometry and available element data; not a full native roundtrip
+- Desktop imports: Revit RVT/RFA, IFC, partial SketchUp SKP, beta Tekla DB1, glTF/GLB, OBJ, STL and face-based PLY
+- Web imports exclude Revit and IFC; glTF needs embedded buffers
+- SKP is partial; Tekla geometry and database-version support are incomplete
+- No STEP, DWG/DXF, FBX, point clouds or full texture rendering
 
 ## Tech stack
 
-`TypeScript` · `WebGL` · `three.js`
+`Rust` · `iced 0.14` · `wgpu` · `WebAssembly`
 
 ## When to use this
 
-Sharing a quick 3D preview of a BIM model with a stakeholder who has no viewer installed.
+Inspect model geometry and available element data, cut sections and take measurements. Use desktop for Revit or IFC.
 
 ## Alternative to
 
 - Autodesk Viewer
 - BIMvision
-- IFC.js demo viewer
 
 ## Standards & integration
 
-- IFC 2x3
-- IFC 4
-- IFC 4.3
-
-All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
+- IFC 4 export
 
 ## Download & links
 
@@ -45,4 +47,4 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 
 ---
 
-Part of the [OpenAEC Foundation](https://open-aec.com/) ecosystem — open-source software for buildings, civil infrastructure (GWW) and civil engineering. All tools communicate through **IFCX**.
+Part of the [OpenAEC Foundation](https://open-aec.com/) ecosystem — open-source software for buildings, civil infrastructure (GWW) and civil engineering.
