@@ -19,8 +19,15 @@ assert.equal((homepage.match(/openPilePlan:\s*\{/g) || []).length, 5, 'homepage 
 
 assert.ok(exists('open-pile-plan-studio/index.html'), 'productpagina ontbreekt');
 includes('open-pile-plan-studio/index.html', '<title>Open Pile Plan Studio — OpenAEC Foundation</title>');
-includes('open-pile-plan-studio/index.html', 'v2026.43.2');
-includes('open-pile-plan-studio/index.html', 'https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.43.2/');
+// De versie staat niet vast in deze controle: elke release zet een nieuwe op de pagina.
+// Wel: de link zonder JavaScript is een rechtstreekse installer, tag en bestandsnaam horen
+// bij dezelfde versie, en die versie staat ook op de pagina.
+const installer = read('open-pile-plan-studio/index.html').match(
+  /https:\/\/github\.com\/OpenAEC-Foundation\/pile-plan-studio\/releases\/download\/v(\d+\.\d+\.\d+)\/Open\.Pile\.Plan\.Studio_(\d+\.\d+\.\d+)_x64-setup\.exe/
+);
+assert.ok(installer, 'open-pile-plan-studio/index.html mist een rechtstreekse Windows-installer');
+assert.equal(installer[1], installer[2], 'tag en bestandsnaam van de installer horen bij dezelfde versie');
+includes('open-pile-plan-studio/index.html', `v${installer[1]}`);
 includes('open-pile-plan-studio/index.html', 'content="open-pile-plan-studio"');
 includes('open-pile-plan-studio/index.html', 'MCP-toegang');
 includes('en/open-pile-plan-studio/index.html', 'MCP access');
