@@ -2,7 +2,7 @@
 
 > BCF 2.1 issue management platform. BCF API 2.1 server, IFC GlobalId linking, self-hosted with Docker.
 
-**Status:** in development
+**Status:** beta
 **License:** LGPL-3.0
 **Platforms:** Web (self-hosted)
 **Category:** Issue Management

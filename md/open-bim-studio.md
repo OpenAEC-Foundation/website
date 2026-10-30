@@ -2,7 +2,7 @@
 
 > Open-source BIM modeller in development, built in the DynLex programming language with a native Vulkan interface. It aims to be both as direct as sketching (selection, grips, snapping, Push/Pull, face splitting) and properly technical: parametric building systems, reinforcement (bars, cages, stirrups, meshes, schedules), connections with plates, bolts and screws, and plans, sections and sheets developed from the same model as PDF or SVG. IFCX and binary IFCX are the project format, with IFC import and export, plus a local API and an MCP adapter. A development preview: there is a Linux preview for testers; a tested Windows installer is not yet available.
 
-**Status:** in development
+**Status:** alpha
 **License:** MPL-2.0
 **Platforms:** Linux
 **Category:** BIM Modelling

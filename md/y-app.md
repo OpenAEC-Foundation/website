@@ -2,7 +2,7 @@
 
 > Communication and collaboration for construction projects.
 
-**Status:** alpha
+**Status:** beta
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux, Android, iOS
 **Category:** Communication

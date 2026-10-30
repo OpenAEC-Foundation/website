@@ -2,7 +2,7 @@
 
 > BIM document management on top of Nextcloud: project files and folders, project manifests and links with the BIM Validator and BCF platform.
 
-**Status:** in development
+**Status:** retired
 **License:** LGPL-3.0
 **Platforms:** Web, Self-hosted
 **Category:** Document Management

@@ -2,7 +2,7 @@
 
 > Lightweight IFC viewer for quick BIM model inspection.
 
-**Status:** beta
+**Status:** live
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux
 **Category:** BIM Viewer

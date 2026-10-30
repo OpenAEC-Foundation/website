@@ -2,7 +2,7 @@
 
 > 2D CAD application with drawing tools, DXF import/export, layers and dimensions.
 
-**Status:** beta
+**Status:** retired
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux
 **Category:** CAD

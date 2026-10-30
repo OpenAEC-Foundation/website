@@ -2,7 +2,7 @@
 
 > Building energy analysis and performance for the Dutch NTA 8800 / BENG framework.
 
-**Status:** alpha
+**Status:** beta
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux
 **Category:** Building Physics

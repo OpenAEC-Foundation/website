@@ -2,7 +2,7 @@
 
 > Site inspection and quality control. Defect pinning on floorplans, NEN 2767 checklists, offline-first.
 
-**Status:** alpha
+**Status:** beta
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux, Android, iOS
 **Category:** Field / Inspection

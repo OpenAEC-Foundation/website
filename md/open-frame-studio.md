@@ -2,7 +2,7 @@
 
 > Design window and door frames (kozijnen) in 2D and 3D, with frame schedules, workshop drawings, cutting lists and IFC export.
 
-**Status:** alpha
+**Status:** retired
 **License:** CC-BY-SA-4.0
 **Platforms:** Windows, macOS, Linux, Browser
 **Category:** Window & Door Frame Design

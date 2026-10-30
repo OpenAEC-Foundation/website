@@ -2,7 +2,7 @@
 
 > Simple image editor in the spirit of MS Paint, with editable vector objects, a local API and an MCP server.
 
-**Status:** beta
+**Status:** alpha
 **License:** MIT
 **Platforms:** Windows, macOS, Linux
 **Category:** Image Editing
