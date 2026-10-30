@@ -268,11 +268,14 @@
 
     function zet(keuze) {
       veld("gebruikers")[0].value = keuze.gebruikers || 1;
-      for (const naam of ["erp", "extra_tb", "office", "ai"]) veld(naam)[0].value = keuze[naam] || 0;
-      for (const el of veld("opslag")) el.checked = el.value === (keuze.opslag || "");
-      veld("omgeving")[0].checked = Boolean(keuze.omgeving);
-      for (const el of veld("sla")) el.checked = el.value === (keuze.sla || "basis");
-      for (const el of hulp.querySelectorAll("[data-app]")) el.value = (keuze.apps && keuze.apps[el.dataset.app]) || 0;
+      // Wat (nog) niet te koop is, staat uit en telt niet mee.
+      for (const naam of ["erp", "extra_tb", "office", "ai"]) veld(naam)[0].value = veld(naam)[0].disabled ? 0 : keuze[naam] || 0;
+      const opslagKeuze = [...veld("opslag")].find((el) => el.value === (keuze.opslag || "") && !el.disabled) ? keuze.opslag || "" : "";
+      for (const el of veld("opslag")) el.checked = el.value === opslagKeuze;
+      veld("omgeving")[0].checked = !veld("omgeving")[0].disabled && Boolean(keuze.omgeving);
+      const slaKeuze = [...veld("sla")].find((el) => el.value === keuze.sla && !el.disabled) ? keuze.sla : "basis";
+      for (const el of veld("sla")) el.checked = el.value === slaKeuze;
+      for (const el of hulp.querySelectorAll("[data-app]")) el.value = el.disabled ? 0 : (keuze.apps && keuze.apps[el.dataset.app]) || 0;
       toon();
     }
 
