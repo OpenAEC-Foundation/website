@@ -68,13 +68,13 @@ if (downloads && downloads.grandTotal) {
 }
 
 lines.push(
-  '- All tools LGPL-3.0 or LGPL-2.1, built with Rust + Tauri 2 + TypeScript',
+  '- Most tools LGPL-3.0 (some LGPL-2.1, MIT or MPL-2.0), built with Rust + Tauri 2 + TypeScript',
   '- Cross-platform: Windows, macOS, Linux, web',
   '',
   'Forks of external projects are excluded from these numbers: they are not our own software.',
   '',
-  'Available in four languages, each on its own URL:',
-  'Dutch at https://open-aec.com/, English at /en/, French at /fr/, Turkish at /tr/.',
+  'Available in five languages, each on its own URL:',
+  'Dutch at https://open-aec.com/, English at /en/, French at /fr/, Turkish at /tr/, Spanish at /es/.',
   '<!-- stats:end -->'
 );
 
