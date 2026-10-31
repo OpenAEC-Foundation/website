@@ -17,8 +17,8 @@
 - Forks: **0**
 - Open issues: **0**
 - Releases: **10**
-- Total downloads: **1,289**
-- Downloads by platform: Other (1191), Windows (83), Archive (15)
+- Total downloads: **3,108**
+- Downloads by platform: Other (2954), Windows (139), Archive (15)
 
 ## Key features
 
@@ -66,12 +66,12 @@ Starting an infrastructure or civil drawing from the existing situation: the pro
 
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.43/plugin.toml) (v2026.43)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v0.2.0/plugin.toml) (v0.2.0)
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v0.2.1/plugin.toml) (v0.2.1)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.2/plugin.toml) (v2026.44.2)
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44/plugin.toml) (v2026.44)
+- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v0.2.1/plugin.toml) (v0.2.1)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.1/plugin.toml) (v2026.44.1)
+- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44/plugin.toml) (v2026.44)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.3/plugin.toml) (v2026.44.3)
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.4/plugin.toml) (v2026.44.4)
+- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/plugin.toml) (v2026.44.5)
 
 ---
 

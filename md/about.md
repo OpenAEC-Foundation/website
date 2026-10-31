@@ -2,10 +2,6 @@
 
 > Open-source software ecosystem for the entire Architecture, Engineering & Construction (AEC) industry — buildings (B&U), civil infrastructure (GWW), and civil engineering (bridges, tunnels, roads, railways, water works). Mission: make all AEC software open source by end of 2026.
 
-# OpenAEC Foundation
-
-> Open-source software ecosystem for the entire Architecture, Engineering & Construction (AEC) industry — including buildings (B&U), civil infrastructure (GWW), and civil engineering (bridges, tunnels, roads, railways, water works). Mission: make all AEC software open source by end of 2026.
-
 ## ⭐ Featured tool
 
 **Open CAD Studio** — Full 2D and 3D CAD in Rust that reads and writes DWG and DXF natively (DWG R14 through 2018), with layouts and paper space, PDF plotting, command scripts, a JSON automation API and an MCP endpoint for AI assistants. Runs on Windows, macOS and Linux, and in the browser without installation. Free alternative to AutoCAD LT. A community project by independent developer Hakan Seven, part of the OpenAEC ecosystem; Open Infra Studio builds on it.

@@ -2,11 +2,11 @@
 
 > Machine-readable Markdown mirrors of the OpenAEC product pages. Use these when feeding the OpenAEC catalog to AI assistants (Claude, Continue, Cursor, etc).
 
-Generated: 2026-10-30T06:06:28.089Z
+Generated: 2026-10-31T06:04:59.655Z
 
-**Foundation totals:** 71 public repos · 4976 stars · 23726 commits · 96 contributors.
+**Foundation totals:** 71 public repos · 5001 stars · 23940 commits · 96 contributors.
 
-**Total downloads across tools:** 183,089 (25 repos).
+**Total downloads across tools:** 187,587 (25 repos).
 
 ## Live
 
@@ -19,15 +19,15 @@ Generated: 2026-10-30T06:06:28.089Z
 - [Open Calc Studio](./open-calc-studio.md) — Cost estimation and budgeting for buildings, civil infrastructure and GWW projects. STABU/RAW support, IFCX integration, MCP server for AI control. (`v0.13.0`)
 - [Open Energy Studio](./open-energy-studio.md) — Building energy analysis and performance for the Dutch NTA 8800 / BENG framework. (`v2026.44.0`)
 - [Open Planner Studio](./open-planner-studio.md) — Free, open-source construction scheduling with Gantt charts, critical path (CPM), WBS, resources, leveling, baselines and progress tracking. Opens Microsoft Project (.mpp) and Primavera P6 (.xer) files directly — .mpp dates match to the minute across a 216-file test corpus — and calculates with named scheduling profiles for Primavera P6, Microsoft Project or Open Planner Studio. Task types per task (fixed duration, units or work), task splitting, saved layouts, a progress sheet that round-trips through Excel or CSV, and eleven report types including a DCMA 14-point assessment. Saves natively as IFC 4.3 (ADD2), exports MS Project XML, Primavera P6 XML and CSV, and offers an optional MCP server for an AI assistant in the desktop app. Interface and Help in 28 languages. Runs on Windows, macOS and Linux and fully in the browser. (`v2026.43.0`)
-- [Open Pile Plan Studio](./open-pile-plan-studio.md) — Interactive pile-plan variants with load points, CPT selection, pile options, utilization, estimated costs and IFCPP project files. (`v2026.44.3`)
+- [Open Pile Plan Studio](./open-pile-plan-studio.md) — Interactive pile-plan variants with load points, CPT selection, pile options, utilization, estimated costs and IFCPP project files. (`v2026.44.4`)
 - [Open Pointcloud Studio](./open-pointcloud-studio.md) — Desktop application for viewing, measuring, editing and converting laser scans and other point clouds, and for turning them into section drawings, meshes and the flat faces of a building. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view. (`v2026.44.1`)
 - [Open Infra Studio](./open-infra-studio.md) — Open-source GIS plugin for Open CAD Studio. Sets the project location and coordinate system, then brings aerial photos, WMS/TMS underlays, WFS vector data, OpenStreetMap and Dutch base data from PDOK into the DWG. BGT, the cadastral map (BRK) and KLIC deliveries (IMKL 2.0) land on NLCS 5.02 layers with their source attributes as object data, through the official NLCS-BGT 5.0 mapping, and a drawing sheet with title block, legend, north arrow, scale bar and RD crosses is generated around the import area. (`n/a`)
 - [Open Speech Studio](./open-speech-studio.md) — Local speech-to-text using Whisper AI. CTRL+Win shortcut for OS-wide dictation. Privacy-first, no cloud. (`v0.12.2`)
 - [Open Field Studio](./open-field-studio.md) — Site inspection and quality control. Defect pinning on floorplans, NEN 2767 checklists, offline-first. (`v0.3.6`)
-- [OpenAEC Installer](./openaec-installer.md) — Central hub to discover, install, update and launch every OpenAEC tool from one app. (`v0.2.7`)
+- [OpenAEC Installer](./openaec-installer.md) — Central hub to discover, install, update and launch every OpenAEC tool from one app. (`v0.2.11`)
 - [BCF Manager Studio](./bcf-manager-studio.md) — BCF 2.1 issue management platform. BCF API 2.1 server, IFC GlobalId linking, self-hosted with Docker. (`n/a`)
 - [Y-app](./y-app.md) — Communication and collaboration for construction projects. (`n/a`)
-- [Open 3D Viewer Studio](./open-3d-viewer.md) — Viewer for the 3D models that architects, engineers and builders exchange: SketchUp, Tekla Structures, Revit, IFC, glTF, OBJ, STL, PLY, CityJSON, LandXML and DWG/DXF. Measure, section, explode and save as IFC 4, as a desktop app and in the browser. (`v2026.44.17`)
+- [Open 3D Viewer Studio](./open-3d-viewer.md) — Viewer for the 3D models that architects, engineers and builders exchange: SketchUp, Tekla Structures, Revit, IFC, glTF, OBJ, STL, PLY, CityJSON, LandXML and DWG/DXF. Measure, section, explode and save as IFC 4, as a desktop app and in the browser. (`v2026.44.18`)
 - [Open Safety Studio](./open-safety-studio.md) — Safety plans for construction: health and safety plan (V&G), BLVC plan, risk matrix and safe maintenance, with the Dutch legal basis alongside. Live demo in the browser. (`n/a`)
 
 ## Alpha
