@@ -17,8 +17,8 @@
 - Forks: **1**
 - Open issues: **13**
 - Releases: **2**
-- Total downloads: **9**
-- Downloads by platform: Other (6), Archive (3)
+- Total downloads: **11**
+- Downloads by platform: Other (6), Archive (5)
 
 ## Key features
 
@@ -52,8 +52,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 
 ## Direct downloads (most popular)
 
-- [Other · ifccad-2026.44.1-native.crate](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.44.1/ifccad-2026.44.1-native.crate) (v2026.44.1 — 0.6 MB)
 - [Archive · ifccad-2026.44.1-native.tar.gz](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.44.1/ifccad-2026.44.1-native.tar.gz) (v2026.44.1 — 0.6 MB)
+- [Other · ifccad-2026.44.1-native.crate](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.44.1/ifccad-2026.44.1-native.crate) (v2026.44.1 — 0.6 MB)
 - [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.44.1/SHA256SUMS) (v2026.44.1)
 - [Archive · ifccad-2026.44.0-native-source.tar.gz](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.44.0/ifccad-2026.44.0-native-source.tar.gz) (v2026.44.0 — 0.6 MB)
 - [Other · ifccad-2026.44.0-native.crate](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.44.0/ifccad-2026.44.0-native.crate) (v2026.44.0 — 0.5 MB)
