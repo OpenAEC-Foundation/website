@@ -12,13 +12,13 @@
 
 ## Live stats
 
-- Stars: **20**
-- Commits: **139**
+- Stars: **21**
+- Commits: **140**
 - Forks: **9**
-- Open issues: **22**
+- Open issues: **21**
 - Releases: **23**
-- Total downloads: **1,326**
-- Downloads by platform: Windows (893), Linux (AppImage) (156), Linux (deb) (88), Windows (MSI) (83), macOS (48), Linux (rpm) (32), Linux (snap) (26)
+- Total downloads: **1,333**
+- Downloads by platform: Windows (900), Linux (AppImage) (156), Linux (deb) (88), Windows (MSI) (83), macOS (48), Linux (rpm) (32), Linux (snap) (26)
 
 ## Key features
 
@@ -57,7 +57,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-calc-studio/
 - Live demo: https://open-calc-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-calc-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-calc-studio/releases/tag/v0.13.0
+- Latest release: https://github.com/OpenAEC-Foundation/open-calc-studio/releases/tag/v0.13.0
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-calc-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)

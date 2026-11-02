@@ -1,17 +1,55 @@
 {
   "repo": "pile-plan-studio",
-  "generated": "2026-11-02T06:06:57.513Z",
-  "totalReleases": 26,
-  "totalChanges": 255,
+  "generated": "2026-11-02T16:03:23.224Z",
+  "totalReleases": 27,
+  "totalChanges": 264,
   "latestStable": {
-    "tag": "v2026.44.4",
-    "name": "Open Pile Plan Studio 2026.44.4 — Alpha",
-    "date": "2026-10-30",
-    "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v2026.44.4"
+    "tag": "v2026.45.1",
+    "name": "Open Pile Plan Studio 2026.45.1 — Alpha",
+    "date": "2026-11-02",
+    "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v2026.45.1"
   },
-  "latestChangelog": "This alpha adds compression and tension checks, flexible source and pile-plan\nimports, and foundation advice for specific pile counts. It also improves\nlarge-project interaction and makes location review consistent across workflows.\n\n### Added\n\n- Import optional design tension loads from standard tables or RFEM envelopes.\n  Switch between compression and tension under **Plan**. Combined option statuses\n  and drawing markers expose failures or missing data in either direction;\n  status buttons switch directly to the affected direction. Zero demand passes\n  its check with zero utilization.\n- Include imported tension in cheapest default assignments and optimizer checks,\n  with an explicit optimizer setting for compression-only runs. Pile-cap\n  proposals redistribute compression and tension separately without netting.\n- Preview selected files before assigning columns, with automatic recognition,\n  editable header/data rows, worksheets and units. RFEM previews show processed\n  locations rather than the original envelope layout. Completely empty selected\n  force or resistance columns are rejected.\n- Add several foundation-advice files at once. Import a worksheet per pile size,\n  and advice applying to all cap counts or one exact count. Specific advice\n  overrides general advice for matching CPT/size/tip/direction keys; explicitly\n  missing specific values remain missing. Inspect the applicable advice for a\n  selected pile and CPT directly in the highlighted advice table.\n- Configure pile-plan import columns and identify locations by ID, coordinates,\n  or both. Reuse the visual location editor for source refreshes, pile-plan\n  imports and change tables, with editable tolerance, undo/redo and clear\n  import-location/project-location terminology.\n- Export proposed pile positions through configured CSV/XLSX exports, with\n  deterministic export IDs, original-location provenance and an optional\n  proposal code. Change tables treat replaced original positions as removed\n  and proposed positions as added, without automatically linking them.\n- Add optional governing-CPT, pile-length and technical-status export columns,\n  with configurable status text/codes. Configure each change-table coordinate\n  column to use old coordinates within the matching tolerance or new coordinates;\n  X/Y default to retaining the old coordinates for stable downstream matching.\n\n### Improved and fixed\n\n- Speed up pan, zoom and selection on large projects by reusing calculation\n  signatures, persistence snapshots and unchanged marker/group geometry. Replace\n  per-marker blur filters with shared status glows and enlarge the status halos.\n- Type symbol size and desired utilization limits directly by clicking their\n  values. Enter confirms, Escape cancels, and both close the editor. Overlapping\n  range handles can be separated again, including 0–0% and 100–100%.\n- Focus selected locations and their selected CPTs, or reduce a multiselection\n  to the inspected location. Sort the selection overview in spatial row order,\n  keeping groups together and sorting members within each group the same way.\n- Use one immediate tooltip layer, dismiss obsolete help after clicking,\n  dragging or expanding, and omit help that merely repeats visible text.\n  Source-data viewers now use the available panel height.\n- Keep location review stationary after manual selection and bring automatically\n  selected pending locations into view. Use the application undo/redo controls\n  for matching edits and support bulk nearest-location matching consistently.\n- Show optimizer-preview group conflicts for the displayed plan instead of the\n  original plan. Reject late assessments after switching back to a previous plan,\n  and restore completed technical assessments after a temporary pause.\n- Label missing costs explicitly in both themes; show an unknown total rather\n  than a zero subtotal when costs are missing. Correct Dutch CPT usage counts.\n\n### Compatibility and limitations\n\n- New saves use IFCPP schema 8. Supported older projects remain readable and\n  usable without tension data; absent tension import remains distinct from zero\n  demand and missing imported demand. Loads and resistances are supplied design\n  values; the application applies no additional factors.\n- Cap-specific resistance is a supplied per-pile design value. A one-pile advice\n  table is not an automatic fallback for larger caps. Cap geometry, moments,\n  eccentricity, soil-block effects and structural adequacy are not recalculated.\n- Compression and tension can share columns in a standard advice table. Matrix\n  layouts require separate worksheets for each direction.\n- The bundled sample retains its geometry and RFEM tension loads and includes\n  explicitly fictional tension resistances for software testing only. These\n  values must not be used for foundation design.\n- Proposed positions and export IDs are export representations, not new source\n  locations. Existing unconfigured API/MCP export contracts remain unchanged.\n- The application remains Alpha; engineering results require professional review.",
+  "latestChangelog": "This alpha adds signed Linux and macOS desktop packages alongside Windows,\nusing the same Rust engineering core and IFCPP project format.\n\n### Added\n\n- A universal macOS DMG for Apple Silicon and Intel, requiring macOS 15 or newer.\n  The app and DMG use Developer ID signing, Apple notarization and stapled tickets.\n- Linux x64 Debian and AppImage packages, tested on Ubuntu 22.04 and 24.04.\n  Detached OpenPGP signatures and a signed Linux checksum manifest are included.\n- An all-platform release build that waits for native tests, package inspection\n  and signed Linux/macOS interface acceptance before assembling a draft release.\n  Installer checksums and a source/build manifest accompany the downloads.\n\n### Improved and fixed\n\n- Open IFCPP projects from Finder both at startup and in an existing macOS app\n  window, including paths with spaces and Unicode characters.\n- Register the IFCPP file type and pass selected files to the installed Linux\n  app. The portable AppImage supports project arguments without installing a\n  system-wide file association.\n- Exercise the actual packaged drawing, native file dialogs, save/reopen,\n  CSV/XLSX exports and optimization progress/cancel/commit/undo on Linux and\n  both macOS architectures. The app contains no test automation plugin.\n\n### Compatibility and limitations\n\n- Engineering calculations, source-import rules and IFCPP schema 8 are unchanged\n  from 2026.44.4. Supported older IFCPP projects remain readable.\n- Linux coverage is Ubuntu 22.04/24.04 x64; AppImage execution uses FUSE.\n  macOS coverage is macOS 15 on Apple Silicon and Intel.\n- Existing Windows Authenticode signing remains in place. Linux download\n  signatures do not configure an apt repository or an application updater.\n- MCP client readiness is tracked separately in issue #48.\n- The application remains Alpha; engineering results require professional review.",
   "nightly": null,
   "groups": [
+    {
+      "minorVersion": "2026.45",
+      "releases": [
+        {
+          "tag": "v2026.45.1",
+          "name": "Open Pile Plan Studio 2026.45.1 — Alpha",
+          "date": "2026-11-02",
+          "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v2026.45.1",
+          "changes": [
+            "A universal macOS DMG for Apple Silicon and Intel, requiring macOS 15 or newer. The app and DMG use Developer ID signing, Apple notarization and stapled tickets.",
+            "An all-platform release build that waits for native tests, package inspection and signed Linux/macOS interface acceptance before assembling a draft release. Installer checksums and a source/build manifest accompany the downloads.",
+            "Open IFCPP projects from Finder both at startup and in an existing macOS app window, including paths with spaces and Unicode characters.",
+            "Register the IFCPP file type and pass selected files to the installed Linux app. The portable AppImage supports project arguments without installing a system-wide file association.",
+            "Exercise the actual packaged drawing, native file dialogs, save/reopen, CSV/XLSX exports and optimization progress/cancel/commit/undo on Linux and both macOS architectures. The app contains no test automation plugin.",
+            "Engineering calculations, source-import rules and IFCPP schema 8 are unchanged from 2026.44.4. Supported older IFCPP projects remain readable.",
+            "Existing Windows Authenticode signing remains in place. Linux download signatures do not configure an apt repository or an application updater.",
+            "MCP client readiness is tracked separately in issue #48.",
+            "The application remains Alpha; engineering results require professional review."
+          ],
+          "patchNum": 1
+        }
+      ],
+      "allChanges": [
+        "A universal macOS DMG for Apple Silicon and Intel, requiring macOS 15 or newer. The app and DMG use Developer ID signing, Apple notarization and stapled tickets.",
+        "An all-platform release build that waits for native tests, package inspection and signed Linux/macOS interface acceptance before assembling a draft release. Installer checksums and a source/build manifest accompany the downloads.",
+        "Open IFCPP projects from Finder both at startup and in an existing macOS app window, including paths with spaces and Unicode characters.",
+        "Register the IFCPP file type and pass selected files to the installed Linux app. The portable AppImage supports project arguments without installing a system-wide file association.",
+        "Exercise the actual packaged drawing, native file dialogs, save/reopen, CSV/XLSX exports and optimization progress/cancel/commit/undo on Linux and both macOS architectures. The app contains no test automation plugin.",
+        "Engineering calculations, source-import rules and IFCPP schema 8 are unchanged from 2026.44.4. Supported older IFCPP projects remain readable.",
+        "Existing Windows Authenticode signing remains in place. Linux download signatures do not configure an apt repository or an application updater.",
+        "MCP client readiness is tracked separately in issue #48.",
+        "The application remains Alpha; engineering results require professional review."
+      ],
+      "firstDate": "2026-11-02",
+      "lastDate": "2026-11-02",
+      "releaseCount": 1,
+      "changeCount": 9
+    },
     {
       "minorVersion": "2026.44",
       "releases": [

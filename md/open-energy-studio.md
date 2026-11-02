@@ -54,7 +54,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-energy-studio/
 - Live demo: https://open-energy-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-energy-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-energy-studio/releases/tag/v2026.44.0
+- Latest release: https://github.com/OpenAEC-Foundation/open-energy-studio/releases/tag/v2026.44.0
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-energy-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)

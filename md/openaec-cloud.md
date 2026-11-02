@@ -53,7 +53,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/openaec-cloud/
 - Live demo: https://openaec-cloud.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/openaec-cloud
-- Latest stable release: https://github.com/OpenAEC-Foundation/openaec-cloud/releases
+- Latest release: https://github.com/OpenAEC-Foundation/openaec-cloud/releases
 - Nightly builds: https://github.com/OpenAEC-Foundation/openaec-cloud/releases/tag/nightly
 
 ---

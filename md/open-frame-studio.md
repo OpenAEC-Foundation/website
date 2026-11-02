@@ -17,8 +17,8 @@
 - Forks: **6**
 - Open issues: **4**
 - Releases: **8**
-- Total downloads: **555**
-- Downloads by platform: Windows (352), Linux (AppImage) (79), Windows (MSI) (47), macOS (24), Linux (rpm) (23), Linux (deb) (23), Archive (7)
+- Total downloads: **556**
+- Downloads by platform: Windows (353), Linux (AppImage) (79), Windows (MSI) (47), macOS (24), Linux (rpm) (23), Linux (deb) (23), Archive (7)
 
 ## Key features
 
@@ -54,7 +54,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-frame-studio/
 - Live demo: https://open-frame-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-frame-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/v0.6.0
+- Latest release: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/v0.6.0
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)

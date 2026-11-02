@@ -13,12 +13,12 @@
 ## Live stats
 
 - Stars: **19**
-- Commits: **270**
+- Commits: **274**
 - Forks: **1**
 - Open issues: **13**
 - Releases: **3**
-- Total downloads: **11**
-- Downloads by platform: Other (6), Archive (5)
+- Total downloads: **14**
+- Downloads by platform: Other (8), Archive (6)
 
 ## Key features
 
@@ -51,6 +51,12 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Live demo: https://ifccad-explorer.open-aec.com
 - GitHub repo: https://github.com/OpenAEC-Foundation/ifccad
 - Latest release: https://github.com/OpenAEC-Foundation/ifccad/releases/tag/v2026.45.0
+
+## Direct downloads (current release)
+
+- [Other · ifccad-2026.45.0-native.crate](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.45.0/ifccad-2026.45.0-native.crate) (v2026.45.0 — 0.6 MB)
+- [Archive · ifccad-2026.45.0-native.tar.gz](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.45.0/ifccad-2026.45.0-native.tar.gz) (v2026.45.0 — 0.6 MB)
+- [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.45.0/SHA256SUMS) (v2026.45.0)
 
 ---
 

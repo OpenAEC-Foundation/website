@@ -16,9 +16,9 @@
 - Commits: **0**
 - Forks: **0**
 - Open issues: **0**
-- Releases: **10**
-- Total downloads: **6,473**
-- Downloads by platform: Other (6247), Windows (209), Archive (17)
+- Releases: **9**
+- Total downloads: **7,693**
+- Downloads by platform: Other (7453), Windows (223), Archive (17)
 
 ## Key features
 
@@ -60,7 +60,7 @@ Starting an infrastructure or civil drawing from the existing situation: the pro
 
 - Product page: https://open-aec.com/open-infra-studio/
 - GitHub repo: https://github.com/OpenAEC-Foundation/Open-Infra
-- Latest stable release: https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/tag/v2026.44.5
+- Latest release: https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/tag/v2026.44.5
 
 ## Direct downloads (most popular)
 

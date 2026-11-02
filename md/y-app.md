@@ -16,7 +16,7 @@
 - Commits: **0**
 - Forks: **0**
 - Open issues: **0**
-- Releases: **0**
+- Releases: **39**
 - Total downloads: **0**
 
 ## Key features
@@ -51,7 +51,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/y-app/
 - Live demo: https://y-app.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/Y-app
-- Latest stable release: https://github.com/OpenAEC-Foundation/Y-app/releases/tag/v0.34.0
+- Latest release: https://github.com/OpenAEC-Foundation/Y-app/releases/tag/v0.34.0
 - Nightly builds: https://github.com/OpenAEC-Foundation/Y-app/releases/tag/nightly
 
 ---

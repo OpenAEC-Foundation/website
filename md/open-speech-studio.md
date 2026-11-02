@@ -17,8 +17,8 @@
 - Forks: **3**
 - Open issues: **23**
 - Releases: **7**
-- Total downloads: **622**
-- Downloads by platform: Windows (450), Linux (deb) (74), Windows (MSI) (49), Linux (AppImage) (35), macOS (8), Linux (rpm) (6)
+- Total downloads: **625**
+- Downloads by platform: Windows (453), Linux (deb) (74), Windows (MSI) (49), Linux (AppImage) (35), macOS (8), Linux (rpm) (6)
 
 ## Key features
 
@@ -47,7 +47,7 @@ Hands-free site notes, dictation for inspection reports, confidential dictation 
 - Product page: https://open-aec.com/open-speech-studio/
 - Live demo: https://open-speech-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-speech-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-speech-studio/releases/tag/v0.12.2
+- Latest release: https://github.com/OpenAEC-Foundation/open-speech-studio/releases/tag/v0.12.2
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-speech-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)

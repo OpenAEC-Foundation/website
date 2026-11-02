@@ -17,8 +17,8 @@
 - Forks: **3**
 - Open issues: **18**
 - Releases: **17**
-- Total downloads: **1,428**
-- Downloads by platform: Windows (834), Other (176), Linux (AppImage) (126), Archive (105), macOS (96), Linux (deb) (57), Windows (MSI) (34)
+- Total downloads: **1,444**
+- Downloads by platform: Windows (847), Other (176), Linux (AppImage) (128), Archive (105), macOS (96), Linux (deb) (58), Windows (MSI) (34)
 
 ## Key features
 
@@ -67,7 +67,7 @@ Opening and inspecting laser scans and whole scan projects, cutting floor plans 
 
 - Product page: https://open-aec.com/open-pointcloud-studio/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-pointcloud-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v2026.44.1
+- Latest release: https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v2026.44.1
 
 ## Direct downloads (current release)
 

@@ -16,7 +16,7 @@
 - Commits: **0**
 - Forks: **0**
 - Open issues: **0**
-- Releases: **0**
+- Releases: **25**
 - Total downloads: **0**
 
 ## Key features
@@ -54,7 +54,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-2d-studio/
 - Live demo: https://open-2d-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-2d-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-2d-studio/releases/tag/v0.35.0
+- Latest release: https://github.com/OpenAEC-Foundation/open-2d-studio/releases/tag/v0.35.0
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-2d-studio/releases/tag/nightly
 
 ---

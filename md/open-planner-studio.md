@@ -12,13 +12,13 @@
 
 ## Live stats
 
-- Stars: **47**
-- Commits: **6057**
+- Stars: **49**
+- Commits: **6257**
 - Forks: **18**
-- Open issues: **34**
+- Open issues: **33**
 - Releases: **24**
-- Total downloads: **3,951**
-- Downloads by platform: Windows (2427), Linux (AppImage) (475), Linux (deb) (351), macOS (304), Linux (rpm) (152), Archive (123), Linux (snap) (105), Other (14)
+- Total downloads: **4,005**
+- Downloads by platform: Windows (2473), Linux (AppImage) (478), Linux (deb) (354), macOS (305), Linux (rpm) (152), Archive (123), Linux (snap) (105), Other (15)
 
 ## Key features
 
@@ -76,7 +76,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-planner-studio/
 - Live demo: https://open-planner-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-planner-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-planner-studio/releases/tag/v2026.44.0
+- Latest release: https://github.com/OpenAEC-Foundation/open-planner-studio/releases/tag/v2026.44.0
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-planner-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)

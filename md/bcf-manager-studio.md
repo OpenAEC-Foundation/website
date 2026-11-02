@@ -53,7 +53,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/bcf-manager-studio/
 - Live demo: https://bcf-manager-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/openaec-bcf-platform
-- Latest stable release: https://github.com/OpenAEC-Foundation/openaec-bcf-platform/releases
+- Latest release: https://github.com/OpenAEC-Foundation/openaec-bcf-platform/releases
 - Nightly builds: https://github.com/OpenAEC-Foundation/openaec-bcf-platform/releases/tag/nightly
 
 ---

@@ -58,7 +58,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/bim-validator/
 - Live demo: https://bim-validator.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator
-- Latest stable release: https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases
+- Latest release: https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases
 - Nightly builds: https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/tag/nightly
 
 ---

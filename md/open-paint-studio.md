@@ -17,8 +17,8 @@
 - Forks: **0**
 - Open issues: **3**
 - Releases: **1**
-- Total downloads: **70**
-- Downloads by platform: Windows (35), Linux (AppImage) (13), Linux (deb) (8), macOS (8), Other (6)
+- Total downloads: **73**
+- Downloads by platform: Windows (38), Linux (AppImage) (13), Linux (deb) (8), macOS (8), Other (6)
 
 ## Key features
 
@@ -53,7 +53,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-paint-studio/
 - Live demo: https://open-paint-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-paint-studio
-- Latest stable release: https://github.com/OpenAEC-Foundation/open-paint-studio/releases/tag/v2026.43.2
+- Latest release: https://github.com/OpenAEC-Foundation/open-paint-studio/releases/tag/v2026.43.2
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-paint-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
