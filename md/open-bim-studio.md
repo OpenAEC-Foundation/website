@@ -13,8 +13,8 @@
 ## Live stats
 
 - Stars: **9**
-- Commits: **753**
-- Forks: **3**
+- Commits: **772**
+- Forks: **4**
 - Open issues: **48**
 - Releases: **2**
 - Total downloads: **254**
