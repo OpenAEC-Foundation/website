@@ -60,6 +60,16 @@ test('every language page works without JavaScript and links to the installer, n
     assert.ok(html.includes('id="download"'), `${language || 'nl/'}: download block missing`);
     assert.ok(html.includes(`href="${installer}"`), `${language || 'nl/'}: installer fallback missing`);
     assert.ok(html.includes('href="#download"'), `${language || 'nl/'}: download navigation missing`);
+    for (const [platform, suffix] of Object.entries({
+      windows: 'x64-setup.exe', macos: 'universal.dmg',
+      'linux-deb': 'amd64.deb', 'linux-appimage': 'amd64.AppImage',
+    })) {
+      const card = html.match(new RegExp(`<div class="download-item" data-pile-download="${platform}"([^>]*)>([\\s\\S]*?)(?=\\n      </div>)`));
+      assert.ok(card, `${language || 'nl/'}: ${platform} download missing`);
+      assert.ok(!/\bhidden\b/.test(card[1]), `${language || 'nl/'}: ${platform} hidden without JavaScript`);
+      const url = assetUrl(found[1], `Open.Pile.Plan.Studio_${found[3]}_${suffix}`);
+      assert.ok(card[2].includes(`href="${url}"`), `${language || 'nl/'}: ${platform} direct fallback missing`);
+    }
   }
 });
 
