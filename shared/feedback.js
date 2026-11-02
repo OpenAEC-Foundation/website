@@ -4,7 +4,7 @@
 // separate feedback page (its href stays as the no-JS fallback). A report is sent to Open Feedback
 // Studio: /api/feedback opens a GitHub issue in the repo mapped to the chosen app (D1 table
 // app_repos, app id = page slug), exactly like Open Planner Studio does. Apps whose repo is private
-// say so in the dialog and show no GitHub link; IFCCAD always goes to /api/private-feedback.
+// say so in the dialog and show no GitHub link. Explicitly private apps use /api/private-feedback.
 (function () {
   'use strict';
   var API = 'https://open-feedback-studio.pages.dev/api/';
@@ -37,7 +37,7 @@
     ['open-calculations-studio', 'Open Calculations Studio', 'OpenAEC-Foundation/Open-Calculations-Studio', 'team'],
     ['open-safety-studio', 'Open Safety Studio', 'OpenAEC-Foundation/open-safety-studio', 'team'],
     ['open-3d-viewer', 'Open 3D Viewer', 'OpenAEC-Foundation/open-3d-viewer', 'team'],
-    ['ifccad', 'IFCCAD', null, 'private']
+    ['ifccad', 'IFCCAD', 'OpenAEC-Foundation/ifccad', 'public']
   ];
 
   var T = {
