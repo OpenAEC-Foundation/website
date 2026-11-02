@@ -20,3 +20,7 @@ feedback:
 node --test scripts/check-feedback.test.cjs
 node --check shared/feedback.js
 ```
+
+The server caches shared script URLs as immutable for one week. When changing
+feedback behavior, update the feedback script version consistently in all HTML
+pages; the current reference is /shared/feedback.js?v=20261102.
