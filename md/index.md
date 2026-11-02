@@ -2,11 +2,11 @@
 
 > Machine-readable Markdown mirrors of the OpenAEC product pages. Use these when feeding the OpenAEC catalog to AI assistants (Claude, Continue, Cursor, etc).
 
-Generated: 2026-11-01T06:05:24.808Z
+Generated: 2026-11-02T06:07:20.353Z
 
-**Foundation totals:** 72 public repos · 5021 stars · 24366 commits · 97 contributors.
+**Foundation totals:** 72 public repos · 5054 stars · 24419 commits · 97 contributors.
 
-**Total downloads across tools:** 191,135 (25 repos).
+**Total downloads across tools:** 196,932 (25 repos).
 
 ## Live
 
@@ -15,7 +15,7 @@ Generated: 2026-11-01T06:05:24.808Z
 
 ## Beta
 
-- [Open PDF Studio](./open-pdf-studio.md) — Open-source PDF editor and annotator with a custom Rust PDF engine. 20+ annotation tools, measurement, redaction, OCR, forms. Vector PDF rendering optimized for CAD drawings. (`v2026.44.5`)
+- [Open PDF Studio](./open-pdf-studio.md) — Open-source PDF editor and annotator with a custom Rust PDF engine. 20+ annotation tools, measurement, redaction, OCR, forms. Vector PDF rendering optimized for CAD drawings. (`v2026.44.8`)
 - [Open Calc Studio](./open-calc-studio.md) — Cost estimation and budgeting for buildings, civil infrastructure and GWW projects. STABU/RAW support, IFCX integration, MCP server for AI control. (`v0.13.0`)
 - [Open Energy Studio](./open-energy-studio.md) — Building energy analysis and performance for the Dutch NTA 8800 / BENG framework. (`v2026.44.0`)
 - [Open Planner Studio](./open-planner-studio.md) — Free, open-source construction scheduling with Gantt charts, critical path (CPM), WBS, resources, leveling, baselines and progress tracking. Opens Microsoft Project (.mpp) and Primavera P6 (.xer) files directly — .mpp dates match to the minute across a 216-file test corpus — and calculates with named scheduling profiles for Primavera P6, Microsoft Project or Open Planner Studio. Task types per task (fixed duration, units or work), task splitting, saved layouts, a progress sheet that round-trips through Excel or CSV, and eleven report types including a DCMA 14-point assessment. Saves natively as IFC 4.3 (ADD2), exports MS Project XML, Primavera P6 XML and CSV, and offers an optional MCP server for an AI assistant in the desktop app. Interface and Help in 28 languages. Runs on Windows, macOS and Linux and fully in the browser. (`v2026.44.0`)
