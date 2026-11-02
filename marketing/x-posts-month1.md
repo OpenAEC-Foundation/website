@@ -162,7 +162,7 @@ STEP files? Plain text maar met een grammatica uit de jaren '90.
 ```
 3/ Wat OpenAEC tools al doen met IFCX:
 
-• Open Calculations Studio exporteert berekeningen live als IFCX namespace
+• Open CalcSheet Studio exporteert berekeningen live als IFCX namespace
 • Open Heatloss Studio exporteert warmteverlies per ruimte als IFCX
 • Open Geotechniek Studio koppelt sondering aan model via IFCX
 

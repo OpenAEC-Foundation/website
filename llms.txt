@@ -59,7 +59,7 @@ Roadmap: https://open-aec.com/roadmap/ · Machine-readable catalog: https://open
 - [Open 3D Viewer Studio](https://open-aec.com/open-3d-viewer/) — v2026.44.17. View, measure and section building models (SketchUp, Tekla, Revit, IFC and more), on the desktop and in the browser.
 - [Open Energy Studio](https://open-aec.com/open-energy-studio/) — v2026.44.0. Energy performance to NTA 8800: BENG, energy label and summer overheating, with report.
 - [Open Calc Studio](https://open-aec.com/open-calc-studio/) — v0.13.0. Cost estimates and budgets for buildings, infrastructure and civil works (STABU/RAW). Alternative to Dutch cost estimation software.
-- [Open Structural Calculation Studio](https://open-aec.com/open-calculations-studio/) — Structural hand calculations with units, formulas, drawings and IFC export.
+- [Open CalcSheet Studio](https://open-aec.com/open-calcsheet-studio/) — Structural hand calculations with units, formulas, drawings and IFC export.
 - [Open Speech Studio](https://open-aec.com/open-speech-studio/) — v0.12.2. Local speech-to-text and meeting notes for project meetings, without the cloud. Alternative to Dragon.
 - [Open Field Studio](https://open-aec.com/open-field-studio/) — v0.3.6. Inspection and handover: defects on the floor plan, NEN 2767 checklists and signatures. Works offline.
 - [Y-app](https://open-aec.com/y-app/) — v0.34.0. The everything app for construction companies: mail, ERP, hours, quotes, projects and planning in one tool, on ERPNext.

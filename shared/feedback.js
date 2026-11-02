@@ -34,11 +34,14 @@
     ['open-books', 'OpenBooks', 'OpenAEC-Foundation/open-books', 'public'],
     ['ext-drawing-statistics', 'Drawing Statistics', 'OpenAEC-Foundation/ext-drawing-statistics', 'public'],
     ['y-app', 'Y-app', 'OpenAEC-Foundation/Y-app', 'team'],
-    ['open-calculations-studio', 'Open Calculations Studio', 'OpenAEC-Foundation/Open-Calculations-Studio', 'team'],
+    ['open-calculations-studio', 'Open CalcSheet Studio', 'OpenAEC-Foundation/Open-Calculations-Studio', 'team'],
     ['open-safety-studio', 'Open Safety Studio', 'OpenAEC-Foundation/open-safety-studio', 'team'],
     ['open-3d-viewer', 'Open 3D Viewer', 'OpenAEC-Foundation/open-3d-viewer', 'team'],
     ['ifccad', 'IFCCAD', 'OpenAEC-Foundation/ifccad', 'public']
   ];
+
+  // Page slug -> app id where they differ: app_repos (outside this repo) knows this app by its former slug.
+  var PAGE_APP = { 'open-calcsheet-studio': 'open-calculations-studio' };
 
   var T = {
     nl: { title: 'Feedback geven', close: 'Sluiten', app: 'Over welke app gaat het?', general: 'Website / algemeen', kind: 'Soort melding',
@@ -137,6 +140,7 @@
   function app(id) { for (var i = 0; i < APPS.length; i++) if (APPS[i][0] === id) return APPS[i]; return APPS[0]; }
   function fromPath() {
     var seg = location.pathname.replace(/^\/(en|fr|tr|es)(\/|$)/, '/').split('/').filter(Boolean)[0] || '';
+    seg = PAGE_APP[seg] || seg;
     for (var i = 0; i < APPS.length; i++) if (APPS[i][0] === seg) return seg;
     return 'website';
   }

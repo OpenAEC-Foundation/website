@@ -33,7 +33,7 @@
  *
  * Uitzonderingen staan in PINNED: Open CAD Studio staat vast op plek 1 (de
  * uitgelichte tool), Open Infra Studio vast op plek 2 (een uitbreiding van
- * Open CAD Studio, dus direct erachter), Open Structural Calculation Studio
+ * Open CAD Studio, dus direct erachter), Open CalcSheet Studio
  * vast op plek 5 en Y-app vast op plek 6 (beide privé-repo's, dus te weinig
  * publieke gegevens voor een eerlijke score).
  *
