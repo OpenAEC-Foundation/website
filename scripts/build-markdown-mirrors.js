@@ -97,7 +97,7 @@ const TOOLS = [
   "name": "IFCCAD",
   "category": "CAD Format",
   "status": "in development",
-  "description": "An open CAD drawing format based on IFCX. Usable on its own, with development towards reliable DWG/DXF exchange and future BIM integration.",
+  "description": "Experimental open CAD drawing profile using IFCX, with a native source alpha, nine dimension kinds, polyline widths and extrusion thickness. The Explorer opens IFCX in Open CAD Studio and exchanges supported DWG/DXF content.",
   "keywords": [
     "IFCCAD",
     "IFCX",
@@ -121,12 +121,15 @@ const TOOLS = [
   "productPage": "https://open-aec.com/ifccad/",
   "liveDemo": "https://ifccad-explorer.open-aec.com",
   "nightly": false,
+  "currentReleaseOnly": true,
   "features": [
-    "Open, standalone CAD drawing profile using IFCX; no BIM model required",
-    "Format Explorer for inspecting drawing structure and trying DWG/DXF conversion",
-    "Development towards faithful round trips, with explicit conversion diagnostics and a bounded preservation pilot",
-    "BIM integration and associative regeneration remain development goals"
-  ],
+  "Native source alpha with schemas, examples and strict validation; no general alpha file-compatibility guarantee",
+  "Nine ordinary dimension kinds with optional stored graphics, planar polyline widths, primitive extrusion thickness and native SOLID/TRACE",
+  "Solid, line-pattern and gradient Hatch storage with classic editing and boundary records",
+  "Explorer opens the actual IFCX snapshot in Open CAD Studio and offers supported DWG/DXF exchange",
+  "Experimental CBOR and CBOR + Zstd store the typed drawing projection, not arbitrary IFCX information",
+  "Spline preservation is not supported in current CAD exchange; native editable splines and associative BIM regeneration remain planned"
+],
   "whenToUse": "Exploring an open alternative to DWG, inspecting IFCCAD drawings and testing supported conversion routes. Experimental; complete round trips and associative BIM regeneration are not yet guaranteed.",
   "standards": [
     "IFCX",
@@ -733,7 +736,16 @@ function directDownloads(tool, dl, releaseInfo) {
   const assets = dl && Array.isArray(dl.latestAssets)
     ? dl.latestAssets.filter(keep)
     : ranked.filter(a => a.tag === releaseInfo?.latestStable?.tag);
-  return { heading: 'Direct downloads (current release)', assets };
+  return { heading: 'Direct downloads (current release)', assets: releaseInfo?.latestStable?.tag ? assets.filter(a => a.tag === releaseInfo.latestStable.tag) : assets };
+}
+
+function currentReleaseMetadata(repoStats, releaseInfo) {
+  const notes = releaseInfo?.latestStable;
+  const useNotes = notes?.date && (!repoStats?.latestReleaseDate || notes.date >= repoStats.latestReleaseDate);
+  return {
+    tag: (useNotes ? notes.tag : repoStats?.latestRelease) || notes?.tag || 'n/a',
+    date: (useNotes ? notes.date : repoStats?.latestReleaseDate) || notes?.date || null,
+  };
 }
 
 function buildToolMarkdown(tool, stats, downloads, releaseInfo) {
@@ -741,19 +753,16 @@ function buildToolMarkdown(tool, stats, downloads, releaseInfo) {
   const dl = tool.repo ? findDownloads(downloads, tool.repo) : null;
   const ranked = tool.repo ? findRanked(downloads, tool.repo) : null;
 
-  const version = repoStats?.latestRelease
-    || releaseInfo?.latestStable?.tag
-    || 'n/a';
-  const releaseDate = repoStats?.latestReleaseDate
-    || releaseInfo?.latestStable?.date
-    || null;
+  const current = currentReleaseMetadata(repoStats, releaseInfo);
+  const version = current.tag;
+  const releaseDate = current.date;
 
   const stars = repoStats?.stars ?? 0;
   const commits = repoStats?.commits ?? 0;
   const forks = repoStats?.forks ?? 0;
   const issues = repoStats?.openIssues ?? 0;
   const totalDownloads = ranked?.downloads ?? 0;
-  const totalReleases = ranked?.releases ?? repoStats?.releases ?? 0;
+  const totalReleases = releaseInfo?.totalReleases ?? ranked?.releases ?? repoStats?.releases ?? 0;
 
   const productPage = `${SITE_BASE}/${tool.id}/`;
   const liveDemo = typeof tool.liveDemo === 'string' ? tool.liveDemo : `https://${tool.id}.open-aec.com/`;
@@ -850,7 +859,7 @@ function buildToolMarkdown(tool, stats, downloads, releaseInfo) {
   lines.push(`- Product page: ${productPage}`);
   if (tool.liveDemo !== false) lines.push(`- Live demo: ${liveDemo}`);
   if (githubRepo) lines.push(`- GitHub repo: ${githubRepo}`);
-  if (latestReleaseUrl) lines.push(`- Latest stable release: ${latestReleaseUrl}`);
+  if (latestReleaseUrl) lines.push(`- Latest release: ${latestReleaseUrl}`);
   if (nightlyUrl) lines.push(`- Nightly builds: ${nightlyUrl}`);
   lines.push('');
 
@@ -910,7 +919,8 @@ function buildIndexMarkdown(tools, stats, downloads, generatedAt) {
     lines.push('');
     for (const t of list) {
       const repoStats = t.repo ? findRepoStats(stats, t.repo) : null;
-      const v = repoStats?.latestRelease || 'n/a';
+      const releaseInfo = t.repo ? readJson('data/release-notes/' + t.repo + '.json') : null;
+      const v = currentReleaseMetadata(repoStats, releaseInfo).tag;
       lines.push(`- [${t.name}](./${t.id}.md) — ${t.description} (\`${v}\`)`);
     }
     lines.push('');
@@ -1047,4 +1057,4 @@ function main() {
 
 if (require.main === module) main();
 
-module.exports = { TOOLS, buildToolMarkdown };
+module.exports = { TOOLS, buildToolMarkdown, currentReleaseMetadata };

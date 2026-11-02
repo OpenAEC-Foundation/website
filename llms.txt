@@ -74,7 +74,7 @@ Roadmap: https://open-aec.com/roadmap/ · Machine-readable catalog: https://open
 
 ### In development
 - [IFCX](https://open-aec.com/ifcx/) — The open data format of the OpenAEC ecosystem (see below).
-- [IFCCAD](https://open-aec.com/ifccad/) — Open CAD drawing format based on IFCX, with exchange towards DWG and DXF (see below).
+- [IFCCAD](https://open-aec.com/ifccad/) — Open CAD format using IFCX, with a native alpha, dimensions and DWG/DXF exchange through the Format Explorer (see below).
 - Open Office Studio — Open source word processor, spreadsheet and presentations in the OpenAEC style. GitHub: https://github.com/OpenAEC-Foundation/open-office-studio
 - Open FEM Studio — Finite elements for frames and plates in 2D and 3D, with Eurocode checks. First release v2026.44.0. GitHub: https://github.com/OpenAEC-Foundation/open-fem-studio
 - [OpenAEC SuperCloud](https://open-aec.com/openaec-cloud/) — Own cloud, account and sign-in for the whole OpenAEC ecosystem. Self-hosted and open.
@@ -100,7 +100,7 @@ Side-by-side comparisons with commercial software: https://open-aec.com/vs/
 
 ## Standards & data formats
 
-- [IFCCAD](https://open-aec.com/ifccad/) — Experimental open CAD drawing profile using IFCX. Standalone drawings, development towards faithful DWG/DXF round trips and future BIM integration. [Format Explorer](https://ifccad-explorer.open-aec.com). Licensed under MPL-2.0.
+- [IFCCAD](https://open-aec.com/ifccad/) — Experimental open CAD drawing profile using IFCX, with a native source alpha, nine dimension kinds, polyline widths and extrusion thickness. The Explorer opens IFCX in Open CAD Studio and exchanges supported DWG/DXF content. [Format Explorer](https://ifccad-explorer.open-aec.com). Native alpha: https://github.com/OpenAEC-Foundation/ifccad/releases/tag/v2026.45.0. MPL-2.0.
 
 
 OpenAEC tools communicate through **IFCX** — the next generation of buildingSMART's IFC format. IFCX is open, namespace-based, and extensible. More and more OpenAEC tools read and write IFCX natively, so data flows between calculation, validation, drawings, 3D viewers and planning without conversion or data loss.

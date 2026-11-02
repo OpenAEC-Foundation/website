@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
+const { currentReleaseMetadata } = require('./build-markdown-mirrors.js');
 const stats = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'stats.json'), 'utf8'));
 const indexPath = path.join(ROOT, 'index.html');
 let html = fs.readFileSync(indexPath, 'utf8');
@@ -92,7 +93,10 @@ html = html.replace(articleRegex, (match, before, repoName, after, inner) => {
   const repo = repoMap[repoName.toLowerCase()];
   if (!repo) return match;
 
-  const newStatsHtml = buildStatsHtml(repo, downloadMap[repoName.toLowerCase()] || 0);
+  const notesFile = path.join(ROOT, 'data/release-notes', repoName + '.json');
+  const notes = fs.existsSync(notesFile) ? JSON.parse(fs.readFileSync(notesFile, 'utf8')) : null;
+  const current = currentReleaseMetadata(repo, notes);
+  const newStatsHtml = buildStatsHtml({ ...repo, latestRelease: current.tag === 'n/a' ? null : current.tag }, downloadMap[repoName.toLowerCase()] || 0);
 
   // Remove any existing <div class="tool-stats">...</div> block within this article
   let newInner = inner.replace(/<div class="tool-stats">[\s\S]*?<\/div>\s*/g, '');

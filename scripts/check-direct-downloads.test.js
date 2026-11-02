@@ -424,3 +424,31 @@ test('the mirror of any other tool keeps its list of most downloaded files', () 
   assert.match(links[0], /^- \[Windows · Open\.Pointcloud\.Studio_0\.3\.0_x64-setup\.exe\]/);
   assert.ok(links.every(line => !line.includes('/v0.8.0/')));
 });
+
+// A release published after the daily statistics must not leave the public mirror on an older version.
+test('product mirror uses the freshest dated release metadata', () => {
+  const { TOOLS, buildToolMarkdown } = require('./build-markdown-mirrors.js');
+  const tool = TOOLS.find(t => t.id === 'ifccad');
+  const notes = { latestStable: { tag: 'v2026.45.0', date: '2026-11-02', url: 'https://github.com/OpenAEC-Foundation/ifccad/releases/tag/v2026.45.0' } };
+  for (const sample of [
+    { latestRelease: 'v2026.44.1', latestReleaseDate: '2026-10-29', expected: 'v2026.45.0' },
+    { latestRelease: 'v2026.45.1', latestReleaseDate: '2026-11-03', expected: 'v2026.45.1' },
+  ]) {
+    const stats = { repos: [{ name: 'ifccad', ...sample }] };
+    const md = buildToolMarkdown(tool, stats, null, notes);
+    assert.ok(md.includes('**Current version:** ' + sample.expected));
+  }
+});
+
+test('native alpha mirror does not offer older source archives after a new release', () => {
+  const { TOOLS, buildToolMarkdown } = require('./build-markdown-mirrors.js');
+  const tool = TOOLS.find(t => t.id === 'ifccad');
+  const stats = { repos: [{ name: 'ifccad', latestRelease: 'v2026.44.1', latestReleaseDate: '2026-10-29' }] };
+  const oldAsset = { name: 'ifccad-2026.44.1-native.tar.gz', tag: 'v2026.44.1', url: 'https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.44.1/ifccad-2026.44.1-native.tar.gz' };
+  const downloads = { perTool: [{ repo: 'ifccad', latestAssets: [oldAsset], topAssets: [oldAsset] }] };
+  const notes = { totalReleases: 3, latestStable: { tag: 'v2026.45.0', date: '2026-11-02', url: 'https://github.com/OpenAEC-Foundation/ifccad/releases/tag/v2026.45.0' } };
+  const md = buildToolMarkdown(tool, stats, downloads, notes);
+  assert.ok(md.includes('**Current version:** v2026.45.0'));
+  assert.ok(md.includes('Releases: **3**'));
+  assert.ok(!md.includes(oldAsset.url));
+});

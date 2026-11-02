@@ -1,14 +1,14 @@
 {
   "meta": {
     "title": "IFCCAD — OpenAEC Foundation",
-    "description": "IFCCAD: un formato de dibujo CAD abierto basado en IFCX. Dibujos independientes, conexión con BIM y desarrollo hacia un intercambio DWG y DXF fiable."
+    "description": "IFCCAD: formato CAD abierto sobre IFCX, con alfa nativa, cotas, espesor de extrusión e intercambio DWG/DXF en el Format Explorer."
   },
   "hero": {
     "label": "OpenAEC · formato CAD abierto",
     "intro": "Un formato abierto para dibujos CAD completos, basado en IFCX. Utilizable de forma independiente, con la ambición de conectar los dibujos y el BIM a largo plazo.",
     "explorer": "Explora IFCCAD en el Format Explorer",
     "github": "Sigue el desarrollo en GitHub",
-    "note": "Explora el formato y prueba la conversión de archivos DWG y DXF. El Explorer también muestra qué información conserva la conversión actual y cuáles son sus límites.",
+    "note": "Abre un archivo IFCCAD, DWG o DXF, o prueba los ejemplos incluidos. Inspecciona la estructura y las propiedades junto al dibujo en Open CAD Studio. Los archivos de dibujo se procesan localmente en tu navegador.",
     "screenshotAlt": "IFCCAD Format Explorer con la estructura del dibujo y la planta de una vivienda en Open CAD Studio",
     "screenshotCaption": "El IFCCAD Format Explorer muestra la estructura del dibujo junto a la planta en Open CAD Studio."
   },
@@ -34,12 +34,12 @@
   "roundtrip": {
     "title": "Conversiones de ida y vuelta fiables con DWG y DXF",
     "p1": "Trabajamos para lograr una <strong>conversión de ida y vuelta fiel</strong>: convertir DWG o DXF a IFCCAD, trabajar con él y volver a exportarlo conservando la geometría, la estructura del dibujo, las propiedades y las relaciones pertinentes. Se trata de conservar el significado y la capacidad de edición; los bytes internos del archivo o los identificadores CAD reasignados no tienen por qué ser idénticos.",
-    "p2": "La representación nativa, la preservación y los diagnósticos explícitos de conversión se complementan. Los elementos compatibles deben transferirse de forma fiable; las limitaciones deben ser visibles. Las pruebas actuales validan componentes y flujos de trabajo delimitados, todavía no una conversión completa de ida y vuelta de cualquier archivo DWG o DXF. Más adelante queremos extender este enfoque a otros formatos CAD."
+    "p2": "El intercambio actual utiliza la misma capa de dibujo compartida que Open CAD Studio. Comprobamos los ejemplos compatibles volviendo a leer los archivos DWG y DXF exportados. Esto valida casos delimitados; no garantiza la igualdad completa de geometría, propiedades, visualización y capacidad de edición para cualquier dibujo. Más adelante queremos admitir otros formatos CAD."
   },
   "studio": {
-    "title": "opencadcodec y Open CAD Studio",
-    "p1": "Para leer y escribir DWG y DXF utilizamos <a href=\"https://github.com/HakanSeven12/opencadcodec\">opencadcodec</a>, el códec CAD del ecosistema de <a href=\"/open-cad-studio/\">Open CAD Studio</a>. Nuestros conversores conectan directamente el modelo CAD de ese códec con IFCCAD. Las mejoras y las limitaciones detectadas también se comparten con el proyecto de origen.",
-    "p2": "El Format Explorer ya puede utilizar Open CAD Studio para visualizar el contenido CAD original y el obtenido tras la conversión de ida y vuelta. También queremos integrar IFCCAD directamente en Open CAD Studio próximamente, para que el formato forme parte de un entorno de trabajo CAD práctico."
+    "title": "IFCCAD en Open CAD Studio",
+    "p1": "El Explorer y <a href=\"/open-cad-studio/\">Open CAD Studio</a> utilizan el intercambio IFCCAD compartido mediante <a href=\"https://github.com/HakanSeven12/opencaddocument\">opencaddocument</a>. Por debajo, <a href=\"https://github.com/HakanSeven12/opencadcodec\">opencadcodec</a> lee y escribe DWG y DXF. Así desarrollamos una vía común entre el modelo de dibujo abierto y el entorno CAD.",
+    "p2": "Open CAD Studio abre ahora el archivo IFCX real para la vista previa del dibujo en el Explorer. No necesita un DWG o DXF regenerado como paso intermedio. La exportación CAD sigue siendo un paso independiente; almacenamiento, conversión, visualización y edición requieren sus propias comprobaciones."
   },
   "profile": {
     "title": "Un perfil CAD dentro de IFCX",
@@ -48,19 +48,22 @@
     "p3": "IFCCAD es actualmente un perfil experimental de OpenAEC. Tanto el perfil como IFCX están en desarrollo; IFCCAD todavía no es un estándar CAD oficial de buildingSMART."
   },
   "status": {
-    "label": "Estado del desarrollo · octubre de 2026",
+    "label": "Estado del desarrollo · noviembre de 2026",
     "title": "Qué puede almacenar ya IFCCAD",
-    "intro": "Existen un modelo de dibujo propio, esquemas, validación estricta, lectores y herramientas de escritura, y vías de conversión directas para DWG y DXF. El <a href=\"https://ifccad-explorer.open-aec.com\">Format Explorer</a> permite inspeccionar el formato y probar la conversión. La compatibilidad actual tiene límites definidos: todavía no se cubren todas las variantes y propiedades de los componentes CAD que se indican a continuación.",
-    "limits": "Comprobamos las conversiones compatibles volviendo a abrir los archivos y comparando su contenido semántico. Se informa de la falta de compatibilidad y de la pérdida de información. La compatibilidad completa con las cotas, más tipos de objetos y el flujo BIM asociativo estable siguen siendo trabajo futuro. El formato y sus compromisos de compatibilidad todavía son provisionales."
+    "intro": "IFCCAD cuenta con un modelo de dibujo propio, esquemas, validación estricta, lectores y herramientas de escritura. El <a href=\"https://ifccad-explorer.open-aec.com\">Format Explorer</a> abre IFCCAD, DWG y DXF e incluye un catálogo de entidades y la planta de una vivienda. Las capacidades siguientes describen el almacenamiento nativo; el intercambio CAD y la visualización admiten perfiles delimitados de ese contenido.",
+    "limits": "Nueve tipos de cota, las anchuras de polilínea y el espesor de extrusión forman parte del modelo nativo. Esto todavía no resuelve la visualización completa, las actualizaciones asociativas generales ni la regeneración. Los mensajes de conversión ayudan a mostrar limitaciones, pero todavía no cubren todas las pérdidas de información posibles.",
+    "releaseTitle": "Alfa nativa 2026.45.0",
+    "release": "La <a href=\"https://github.com/OpenAEC-Foundation/ifccad/releases/tag/v2026.45.0\">alfa nativa actual</a> proporciona el núcleo, los esquemas y los ejemplos como paquete de código fuente para desarrolladores. El Explorer es una aplicación de navegador publicada por separado. Ambos siguen en desarrollo.",
+    "compatibility": "Los archivos pueden cambiar entre versiones alfa. La compatibilidad con archivos IFCCAD anteriores y la migración automática todavía no están garantizadas; conserva los archivos de dibujo originales."
   },
   "capabilities": {
     "geometry": {
       "title": "Geometría",
-      "desc": "Puntos, líneas, círculos y arcos, elipses completas y parciales, polilíneas planas con segmentos rectos y curvos, y polilíneas espaciales con segmentos rectos."
+      "desc": "Puntos, líneas, círculos y arcos, elipses completas y parciales, polilíneas planas y espaciales y caras SOLID/TRACE nativas."
     },
     "appearance": {
       "title": "Capas y presentación",
-      "desc": "Capas, colores, transparencia, grosores de línea, tipos de línea sencillos y ajustes de escala, con opciones separadas para ByLayer, ByBlock y propiedades explícitas."
+      "desc": "Capas, colores, transparencia, grosores de línea, tipos de línea simples y complejos y ajustes de escala, con ByLayer, ByBlock y propiedades explícitas."
     },
     "blocks": {
       "title": "Bloques y texto",
@@ -68,7 +71,7 @@
     },
     "hatches": {
       "title": "Sombreados",
-      "desc": "Rellenos sólidos y patrones de líneas explícitos con contornos almacenados, islas y referencias compatibles a la geometría delimitadora."
+      "desc": "Sombreados sólidos, con patrones de líneas y con degradados, con contornos almacenados, datos de asociación y registros adicionales para la edición CAD clásica y la construcción de límites."
     },
     "layouts": {
       "title": "Espacio modelo y espacio papel",
@@ -77,26 +80,34 @@
     "workspace": {
       "title": "Entorno de dibujo",
       "desc": "Definiciones de UCS compatibles, ventanas del modelo y ajustes de rejilla y referencia, además de visibilidad y orden de dibujo."
+    },
+    "dimensions": {
+      "title": "Cotas",
+      "desc": "Los nueve tipos de cota habituales, con información de medición y formato, referencias a la geometría de origen compatible y gráficos de cotas almacenados opcionales. Las actualizaciones automáticas y una visualización totalmente idéntica siguen siendo temas de desarrollo independientes."
+    },
+    "thickness": {
+      "title": "Espesor y anchuras de polilínea",
+      "desc": "Espesor de extrusión para puntos, líneas, círculos, arcos y polilíneas planas. Las anchuras de polilínea pueden ser constantes o variar por segmento. Estas propiedades son independientes del grosor de línea impreso."
     }
   },
   "preservation": {
-    "title": "Preservación y el piloto temporal de splines",
-    "p1": "No todos los componentes CAD disponen de inmediato de una representación nativa en IFCCAD. Con la <strong>preservación</strong> queremos conservar explícitamente la información de origen que todavía no encaja por completo en el modelo de dibujo. En la conversión de vuelta, esa información puede recuperarse si las relaciones y el contexto necesarios siguen siendo válidos. Las modificaciones nativas tienen prioridad: un registro de origen preservado nunca debe sobrescribir silenciosamente cambios posteriores.",
-    "pilotTitle": "Las splines prueban la preservación; la compatibilidad nativa llegará después",
-    "pilot": "Actualmente las splines se almacenan mediante un piloto de preservación y se vuelven a exportar dentro de las vías de conversión validadas. Las utilizamos para probar el mecanismo de preservación desde el almacenamiento hasta la recuperación. Queremos ofrecer pronto compatibilidad nativa como entidades IFCCAD completas cuya geometría pueda editarse.",
-    "limits": "El piloto actual conserva los parámetros de las splines y los datos de origen disponibles, pero todavía no ofrece geometría spline nativa ni edición geométrica. La preservación complementa la compatibilidad nativa. Está prevista una preservación más amplia para otras entidades CAD e información de origen adicional; el piloto actual no garantiza conservar toda la información de cualquier archivo DWG."
+    "title": "Información de origen y contenido CAD no compatible",
+    "p1": "No toda la información de origen encaja todavía en el modelo nativo. Con la <strong>preservación</strong> queremos conservarla explícitamente y recuperarla cuando las relaciones y el contexto lo permitan. Esto sigue siendo un objetivo; el intercambio CAD actual no ofrece una garantía general de preservación.",
+    "pilotTitle": "La compatibilidad nativa con splines sigue prevista",
+    "pilot": "Las splines todavía no tienen una representación IFCCAD nativa cuya geometría pueda editarse. La vía de intercambio CAD actual tampoco las captura ni las restaura mediante preservación. Al importarlas pueden notificarse como limitación u omitirse.",
+    "limits": "Al volver a descargar un archivo IFCX/JSON abierto, el Explorer conserva el origen original. Esto es distinto de comprender todo el contenido CAD de forma nativa o restaurarlo por completo después de convertirlo a DWG o DXF."
   },
   "storage": {
     "title": "Archivos más compactos y lectura y escritura eficientes",
-    "p1": "Los archivos compactos, el uso limitado de memoria y la lectura y escritura eficientes son objetivos importantes del desarrollo. Ya estamos trabajando en ellos, entre otras cosas con almacenamiento binario experimental basado en CBOR y compresión adicional.",
-    "p2": "Son experimentos específicos de IFCCAD; las decisiones definitivas de almacenamiento todavía no están tomadas. Seguimos evaluando las mejoras según la conservación del contenido del dibujo y su utilidad práctica."
+    "p1": "Además de IFCX/JSON legible, IFCCAD puede escribir y leer CBOR experimental y CBOR con compresión Zstd. El Explorer ofrece estas variantes binarias como opciones de descarga. Es almacenamiento binario del modelo de dibujo IFCCAD, no un formato IFCX binario general.",
+    "p2": "La salida binaria contiene el modelo de dibujo compatible; la información IFCX adicional que quede fuera de él no se incluye automáticamente. El tamaño, la memoria y la lectura y escritura eficientes siguen siendo objetivos, sin una garantía general de rendimiento."
   },
   "bim": {
     "title": "Del BIM al CAD, conservando el trabajo de dibujo manual",
     "p1": "Nuestra ambición va más allá de vincular un dibujo con un objeto BIM. También queremos generar contenido CAD a partir del BIM y regenerarlo cuando cambie el modelo. El trabajo de dibujo añadido manualmente debe conservarse durante ese proceso.",
     "exampleTitle": "Una pared se desplaza y el dibujo sigue conectado",
     "example": "Imagina que un delineante añade cotas y anotaciones a una planta generada desde BIM y la coloca en una hoja con ventanas gráficas. Cuando una pared se desplaza, queremos actualizar la geometría generada, hacer que las cotas asociadas la sigan y conservar las adiciones manuales y la composición de la hoja.",
-    "limits": "Esto requiere identidad estable y relaciones asociativas entre los objetos BIM, los componentes de dibujo generados y las modificaciones CAD manuales. Queremos evitar que cada regeneración produzca geometría desconectada a la que el delineante deba volver a vincularlo todo. Cuando los objetos desaparezcan o cambien de forma fundamental, las relaciones no válidas deben poder identificarse. Esta conexión BIM y este flujo de regeneración son objetivos de desarrollo; todavía no se han implementado."
+    "limits": "Esto requiere identidad estable, relaciones con el origen y un procesamiento fiable de los cambios. Los próximos pasos se centran en contextos compartidos de escala de anotación y actualizaciones asociativas delimitadas. La integración BIM y la regeneración que conserva el trabajo CAD manual siguen siendo ambiciones; este flujo completo todavía no se ha implementado."
   },
   "cta": {
     "title": "Explora IFCCAD y contribuye",

@@ -1,14 +1,14 @@
 {
   "meta": {
     "title": "IFCCAD — OpenAEC Foundation",
-    "description": "IFCCAD: IFCX tabanlı açık bir CAD çizim formatı. Bağımsız çizimler, BIM bağlantısı ve güvenilir DWG ve DXF alışverişine yönelik geliştirme."
+    "description": "IFCCAD: IFCX kullanan açık CAD formatı; yerel alfa, ölçülendirme, ekstrüzyon kalınlığı ve Format Explorer’da DWG/DXF alışverişi."
   },
   "hero": {
     "label": "OpenAEC · açık CAD formatı",
     "intro": "IFCX üzerine kurulu, kapsamlı CAD çizimleri için açık bir format. Tek başına kullanılabilir; çizimler ile BIM arasında kalıcı bir bağ kurmayı hedefler.",
     "explorer": "IFCCAD’i Format Explorer’da keşfedin",
     "github": "Geliştirmeyi GitHub’da takip edin",
-    "note": "Formatı inceleyin ve DWG ile DXF dosyalarını dönüştürmeyi deneyin. Explorer, mevcut dönüşümün hangi bilgileri koruduğunu ve sınırlarını da gösterir.",
+    "note": "Bir IFCCAD, DWG veya DXF dosyası açın ya da yerleşik örnekleri deneyin. Çizim yapısını ve özelliklerini Open CAD Studio’daki çizimin yanında inceleyin. Çizim dosyaları tarayıcınızda yerel olarak işlenir.",
     "screenshotAlt": "IFCCAD Format Explorer’da çizim yapısı ve Open CAD Studio’da bir evin kat planı",
     "screenshotCaption": "IFCCAD Format Explorer, çizim yapısını Open CAD Studio’daki kat planının yanında gösterir."
   },
@@ -34,12 +34,12 @@
   "roundtrip": {
     "title": "DWG ve DXF ile güvenilir gidiş-dönüş",
     "p1": "<strong>Aslına sadık bir gidiş-dönüş</strong> hedefliyoruz: DWG veya DXF’yi IFCCAD’e dönüştürmek, üzerinde çalışmak ve geometriyi, çizim yapısını, özellikleri ve ilgili ilişkileri koruyarak geri yazmak. Amaç, anlamı ve düzenlenebilirliği korumaktır; dosyanın iç baytlarının veya yeniden atanan CAD tanıtıcılarının aynı olması gerekmez.",
-    "p2": "Yerel temsil, preservation ve açık dönüşüm tanıları birbirini tamamlar. Desteklenen içerik güvenilir biçimde aktarılmalı, sınırlamalar görünür olmalıdır. Mevcut testler, her DWG veya DXF dosyasının eksiksiz gidiş-dönüşünü değil, belirli bileşenleri ve iş akışlarını doğrular. Daha sonra aynı yaklaşımı diğer CAD formatlarına da genişletmek istiyoruz."
+    "p2": "Mevcut alışveriş, Open CAD Studio ile aynı ortak çizim katmanını kullanır. Desteklenen örnekleri, dışa aktarılan DWG ve DXF dosyalarını yeniden okuyarak kontrol ediyoruz. Bu, sınırlı durumları doğrular; her çizimde geometri, özellik, görünüm ve düzenlenebilirliğin tamamen aynı kalacağını garanti etmez. Daha sonra başka CAD formatlarını da desteklemek istiyoruz."
   },
   "studio": {
-    "title": "opencadcodec ve Open CAD Studio",
-    "p1": "DWG ve DXF okuma ve yazma işlemlerinde, <a href=\"/open-cad-studio/\">Open CAD Studio</a> ekosistemindeki CAD codec’i <a href=\"https://github.com/HakanSeven12/opencadcodec\">opencadcodec</a> ile çalışıyoruz. Dönüştürücülerimiz bu codec’in CAD modelini doğrudan IFCCAD’e bağlar. İyileştirmeler ve tespit edilen sınırlamalar kaynak projeyle de paylaşılır.",
-    "p2": "Format Explorer, özgün ve gidiş-dönüş dönüşümü yapılmış CAD içeriğini görüntülemek için Open CAD Studio’yu şimdiden kullanabiliyor. Yakında IFCCAD’i doğrudan Open CAD Studio’ya da entegre ederek formatı pratik bir CAD çalışma ortamının parçası yapmak istiyoruz."
+    "title": "Open CAD Studio’da IFCCAD",
+    "p1": "Explorer ve <a href=\"/open-cad-studio/\">Open CAD Studio</a>, <a href=\"https://github.com/HakanSeven12/opencaddocument\">opencaddocument</a> üzerinden ortak IFCCAD alışverişini kullanır. Alt katmanda <a href=\"https://github.com/HakanSeven12/opencadcodec\">opencadcodec</a>, DWG ve DXF okur ve yazar. Böylece açık çizim modeli ile CAD ortamı arasında tek bir ortak yol geliştiriyoruz.",
+    "p2": "Open CAD Studio artık Explorer’daki çizim önizlemesi için gerçek IFCX dosyasını açar. Ara adım olarak yeniden üretilmiş bir DWG veya DXF gerekmez. CAD dışa aktarımı ayrı bir adımdır; doğru depolama, dönüşüm, görüntüleme ve düzenleme ayrı ayrı doğrulama gerektirir."
   },
   "profile": {
     "title": "IFCX içinde bir CAD profili",
@@ -48,19 +48,22 @@
     "p3": "IFCCAD şu anda deneysel bir OpenAEC profilidir. Hem profil hem de IFCX geliştirme aşamasındadır; IFCCAD henüz resmî bir buildingSMART CAD standardı değildir."
   },
   "status": {
-    "label": "Geliştirme durumu · Ekim 2026",
+    "label": "Geliştirme durumu · Kasım 2026",
     "title": "IFCCAD şu anda neleri saklayabiliyor?",
-    "intro": "Özel bir çizim modeli, şemalar, sıkı doğrulama, okuyucular ve yazıcılar ile DWG ve DXF için doğrudan dönüşüm yolları mevcut. <a href=\"https://ifccad-explorer.open-aec.com\">Format Explorer</a>, formatı incelemeyi ve dönüşümü denemeyi sağlar. Mevcut desteğin sınırları bellidir: aşağıdaki CAD bileşenlerinin tüm çeşitleri ve özellikleri henüz kapsanmıyor.",
-    "limits": "Desteklenen dönüşümleri, dosyaları yeniden açıp anlamsal içeriklerini karşılaştırarak test ediyoruz. Eksik destek ve bilgi kaybı raporlanır. Tam ölçülendirme desteği, daha geniş nesne desteği ve kararlı ilişkisel BIM iş akışı sonraki çalışmalardır. Format ve uyumluluk taahhütleri henüz geçicidir."
+    "intro": "IFCCAD’in özel bir çizim modeli, şemaları, sıkı doğrulaması, okuyucuları ve yazıcıları vardır. <a href=\"https://ifccad-explorer.open-aec.com\">Format Explorer</a>, IFCCAD, DWG ve DXF açar; denemek için bir varlık kataloğu ve ev kat planı içerir. Aşağıdaki özellikler yerel depolamayı tanımlar; CAD alışverişi ve görüntüleme bu içeriğin sınırlı profillerini destekler.",
+    "limits": "Dokuz ölçülendirme türü, çoklu çizgi genişlikleri ve ekstrüzyon kalınlığı yerel modelin parçasıdır. Bu, tam çizim görünümünü, genel ilişkisel güncellemeleri veya yeniden üretimi henüz çözmez. Dönüşüm mesajları sınırlamaları gösterir, ancak tüm olası bilgi kayıplarını henüz kapsamaz.",
+    "releaseTitle": "Yerel alfa 2026.45.0",
+    "release": "<a href=\"https://github.com/OpenAEC-Foundation/ifccad/releases/tag/v2026.45.0\">Güncel yerel alfa</a>, çekirdeği, şemaları ve örnekleri geliştiriciler için kaynak kod paketi olarak sunar. Explorer, ayrı yayımlanan bir tarayıcı uygulamasıdır. Her ikisi de geliştirilmektedir.",
+    "compatibility": "Dosyalar alfa sürümleri arasında değişebilir. Eski IFCCAD dosyalarıyla uyumluluk ve otomatik geçiş henüz garanti edilmez; özgün çizim dosyalarını saklayın."
   },
   "capabilities": {
     "geometry": {
       "title": "Geometri",
-      "desc": "Noktalar, çizgiler, çemberler ve yaylar; tam ve kısmi elipsler; düz ve eğri parçalardan oluşan düzlemsel çoklu çizgiler ve düz parçalardan oluşan uzaysal çoklu çizgiler."
+      "desc": "Noktalar, çizgiler, çemberler ve yaylar, tam ve kısmi elipsler, düzlemsel ve uzaysal çoklu çizgiler ve yerel SOLID/TRACE yüzleri."
     },
     "appearance": {
       "title": "Katmanlar ve sunum",
-      "desc": "Katmanlar, renkler, saydamlık, çizgi kalınlıkları, basit çizgi tipleri ve ölçek ayarları; ByLayer, ByBlock ve açıkça belirtilen özellikler için ayrı seçeneklerle."
+      "desc": "Katmanlar, renkler, saydamlık, çizgi kalınlıkları, basit ve karmaşık çizgi tipleri ve ölçek ayarları; ByLayer, ByBlock ve açık özelliklerle."
     },
     "blocks": {
       "title": "Bloklar ve metin",
@@ -68,7 +71,7 @@
     },
     "hatches": {
       "title": "Taramalar",
-      "desc": "Saklanan sınırlar, adalar ve sınır geometrisine desteklenen referanslarla birlikte düz dolgular ve açıkça tanımlanmış çizgi desenleri."
+      "desc": "Düz, çizgi desenli ve gradyan taramalar; saklanan sınırlar, ilişki verileri ve klasik CAD düzenleme ile sınır oluşturma için ek kayıtlarla."
     },
     "layouts": {
       "title": "Model alanı ve kâğıt alanı",
@@ -77,26 +80,34 @@
     "workspace": {
       "title": "Çizim ortamı",
       "desc": "Desteklenen UCS tanımları, model görünüm pencereleri, ızgara ve yakalama ayarları, görünürlük ve çizim sırası."
+    },
+    "dimensions": {
+      "title": "Ölçülendirme",
+      "desc": "Dokuz yaygın ölçülendirme türünün tamamı; ölçüm ve biçimlendirme bilgileri, desteklenen kaynak geometrisine referanslar ve isteğe bağlı saklanan ölçülendirme grafikleriyle. Otomatik güncellemeler ve tamamen aynı görünüm ayrı geliştirme konularıdır."
+    },
+    "thickness": {
+      "title": "Kalınlık ve çoklu çizgi genişlikleri",
+      "desc": "Noktalar, çizgiler, çemberler, yaylar ve düzlemsel çoklu çizgiler için ekstrüzyon kalınlığı. Çoklu çizgi genişlikleri sabit olabilir veya segmente göre değişebilir. Bu özellikler baskı çizgi kalınlığından ayrıdır."
     }
   },
   "preservation": {
-    "title": "Preservation ve geçici spline pilotu",
-    "p1": "Her CAD bileşeninin hemen bir yerel IFCCAD temsili bulunmaz. <strong>Preservation</strong> ile henüz çizim modeline tam olarak uymayan kaynak bilgileri açıkça saklamayı hedefliyoruz. Geri dönüşümde, gerekli ilişkiler ve bağlam hâlâ geçerliyse bu bilgiler geri yazılabilir. Yerel düzenlemeler önceliklidir: saklanan bir kaynak kaydı sonraki değişiklikleri sessizce geçersiz kılmamalıdır.",
-    "pilotTitle": "Spline’lar preservation’ı test ediyor; yerel destek gelecek",
-    "pilot": "Spline’lar şu anda bir preservation pilotu üzerinden saklanıyor ve doğrulanmış dönüşüm yolları kapsamında geri yazılıyor. Burada spline’ları, saklamadan geri yüklemeye kadar preservation mekanizmasını test etmek için kullanıyoruz. Yakında bunları geometrik olarak düzenlenebilir, tam işlevli IFCCAD varlıkları olarak yerel biçimde desteklemek istiyoruz.",
-    "limits": "Mevcut pilot, spline parametrelerini ve mevcut kaynak verileri korur; ancak henüz yerel spline geometrisi veya geometrik düzenleme sağlamaz. Preservation, yerel desteği tamamlar. Diğer CAD varlıkları ve ek kaynak bilgiler için daha kapsamlı preservation planlanıyor; mevcut pilot, herhangi bir DWG dosyasındaki tüm bilgilerin korunacağını garanti etmez."
+    "title": "Kaynak bilgileri ve desteklenmeyen CAD içeriği",
+    "p1": "Tüm kaynak bilgileri henüz yerel çizim modeline uymaz. <strong>Preservation</strong> ile bu bilgileri açıkça saklamayı ve ilişkiler ile bağlam izin verdiğinde geri yüklemeyi hedefliyoruz. Bu hâlâ bir geliştirme hedefidir; mevcut CAD alışverişi genel bir preservation garantisi sunmaz.",
+    "pilotTitle": "Yerel spline desteği planlanıyor",
+    "pilot": "Spline’ların henüz geometrik olarak düzenlenebilir yerel bir IFCCAD temsili yoktur. Mevcut CAD alışveriş yolu da bunları preservation üzerinden yakalamaz veya geri yüklemez. İçe aktarımda sınırlama olarak bildirilebilir ya da atlanabilirler.",
+    "limits": "Açılmış bir IFCX/JSON dosyası yeniden indirildiğinde Explorer özgün kaynağı korur. Bu, tüm CAD içeriğini yerel olarak anlamaktan veya DWG ya da DXF dönüşümünden sonra bütünüyle geri yüklemekten farklıdır."
   },
   "storage": {
     "title": "Daha küçük dosyalar, verimli okuma ve yazma",
-    "p1": "Küçük dosyalar, sınırlı bellek kullanımı ve verimli okuma ve yazma önemli geliştirme hedefleridir. CBOR tabanlı deneysel ikili depolama ve ek sıkıştırma dâhil, bunlar üzerinde şimdiden çalışıyoruz.",
-    "p2": "Bunlar IFCCAD’e özgü deneylerdir; nihai depolama tercihleri henüz belirlenmedi. İyileştirmeleri, çizim içeriğinin korunması ve pratik kullanılabilirlik açısından değerlendirmeye devam ediyoruz."
+    "p1": "Okunabilir IFCX/JSON yanında IFCCAD, deneysel CBOR ve Zstd sıkıştırmalı CBOR yazıp okuyabilir. Explorer bu ikili çeşitleri indirme seçeneği olarak sunar. Bu, IFCCAD çizim modelinin ikili depolamasıdır; genel bir ikili IFCX formatı değildir.",
+    "p2": "İkili çıktı desteklenen çizim modelini içerir; model dışındaki ek IFCX bilgileri otomatik olarak dâhil edilmez. Dosya boyutu, bellek kullanımı ve verimli okuma ve yazma, genel bir performans garantisi olmadan geliştirme hedefleri olmaya devam eder."
   },
   "bim": {
     "title": "El ile yapılan çizim çalışmalarını koruyarak BIM’den CAD’e",
     "p1": "Hedefimiz, bir çizim ile BIM nesnesi arasında bağlantı kurmanın ötesine geçiyor. BIM’den CAD içeriği üretmek ve model değiştiğinde yeniden üretmek de istiyoruz. Bu süreçte el ile eklenen çizim çalışmaları korunmalıdır.",
     "exampleTitle": "Bir duvar yer değiştirir, çizimin bağlantısı korunur",
     "example": "Bir teknik ressamın, BIM’den üretilmiş bir kat planına ölçülendirme ve açıklamalar eklediğini ve bunu görünüm pencereleriyle bir paftaya yerleştirdiğini düşünün. Bir duvar yer değiştirdiğinde, üretilen geometriyi güncellemek, ilişkili ölçülerin bunu izlemesini sağlamak ve el ile yapılan eklemeler ile pafta düzenini korumak istiyoruz.",
-    "limits": "Bu, BIM nesneleri, üretilen çizim bileşenleri ve el ile yapılan CAD düzenlemeleri arasında kararlı kimlikler ve ilişkisel bağlar gerektirir. Her yeniden üretimin, teknik ressamın her şeyi yeniden bağlamasını gerektiren kopuk geometri oluşturmasını önlemek istiyoruz. Nesneler kaybolduğunda veya temelden değiştiğinde geçersiz ilişkiler tanımlanabilir olmalıdır. Bu BIM bağlantısı ve yeniden üretim iş akışı geliştirme hedefleridir; henüz uygulanmadılar."
+    "limits": "Bu; kararlı kimlikler, kaynak ilişkileri ve güvenilir değişiklik işleme gerektirir. Sonraki adımlar ortak açıklama ölçeği bağlamlarına ve sınırlı ilişkisel güncellemelere odaklanır. BIM entegrasyonu ve el ile yapılan CAD çalışmalarını koruyan yeniden üretim hedef olarak kalır; bu tam iş akışı henüz uygulanmadı."
   },
   "cta": {
     "title": "IFCCAD’i keşfedin ve katkıda bulunun",

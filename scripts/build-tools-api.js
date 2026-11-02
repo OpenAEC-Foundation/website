@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
+const { currentReleaseMetadata } = require('./build-markdown-mirrors.js');
 const stats = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'stats.json'), 'utf8'));
 
 // Curated catalog: which repos are user-facing tools + their metadata
@@ -15,7 +16,7 @@ const TOOLS = [
   "name": "IFCCAD",
   "category": "CAD Format",
   "status": "in development",
-  "description": "An open CAD drawing format based on IFCX. Usable on its own, with development towards reliable DWG/DXF exchange and future BIM integration.",
+  "description": "Experimental open CAD drawing profile using IFCX, with a native source alpha, nine dimension kinds, polyline widths and extrusion thickness. The Explorer opens IFCX in Open CAD Studio and exchanges supported DWG/DXF content.",
   "keywords": [
     "IFCCAD",
     "IFCX",
@@ -392,6 +393,9 @@ stats.repos.forEach(r => { repoMap[r.name.toLowerCase()] = r; });
 // Enrich tools with live stats from GitHub
 const enriched = TOOLS.map(tool => {
   const repo = repoMap[tool.repo.toLowerCase()];
+  const notesFile = path.join(ROOT, 'data/release-notes', tool.repo + '.json');
+  const notes = fs.existsSync(notesFile) ? JSON.parse(fs.readFileSync(notesFile, 'utf8')) : null;
+  const current = currentReleaseMetadata(repo, notes);
   return {
     ...tool,
     githubRepo: `https://github.com/OpenAEC-Foundation/${tool.repo}`,
@@ -400,9 +404,9 @@ const enriched = TOOLS.map(tool => {
       stars: repo.stars,
       forks: repo.forks,
       openIssues: repo.openIssues,
-      latestVersion: repo.latestRelease,
-      latestReleaseDate: repo.latestReleaseDate,
-      releases: repo.releases,
+      latestVersion: current.tag === 'n/a' ? null : current.tag,
+      latestReleaseDate: current.date,
+      releases: notes?.totalReleases ?? repo.releases,
       createdAt: repo.createdAt,
       updatedAt: repo.updatedAt,
     } : null,

@@ -1,12 +1,12 @@
 # IFCCAD
 
-> An open CAD drawing format based on IFCX. Usable on its own, with development towards reliable DWG/DXF exchange and future BIM integration.
+> Experimental open CAD drawing profile using IFCX, with a native source alpha, nine dimension kinds, polyline widths and extrusion thickness. The Explorer opens IFCX in Open CAD Studio and exchanges supported DWG/DXF content.
 
 **Status:** in development
 **License:** MPL-2.0
 **Platforms:** Web
 **Category:** CAD Format
-**Current version:** v2026.44.1 (2026-10-29)
+**Current version:** v2026.45.0 (2026-11-02)
 **Tool ID:** `ifccad`
 **GitHub repo:** `OpenAEC-Foundation/ifccad`
 
@@ -16,16 +16,18 @@
 - Commits: **270**
 - Forks: **1**
 - Open issues: **13**
-- Releases: **2**
+- Releases: **3**
 - Total downloads: **11**
 - Downloads by platform: Other (6), Archive (5)
 
 ## Key features
 
-- Open, standalone CAD drawing profile using IFCX; no BIM model required
-- Format Explorer for inspecting drawing structure and trying DWG/DXF conversion
-- Development towards faithful round trips, with explicit conversion diagnostics and a bounded preservation pilot
-- BIM integration and associative regeneration remain development goals
+- Native source alpha with schemas, examples and strict validation; no general alpha file-compatibility guarantee
+- Nine ordinary dimension kinds with optional stored graphics, planar polyline widths, primitive extrusion thickness and native SOLID/TRACE
+- Solid, line-pattern and gradient Hatch storage with classic editing and boundary records
+- Explorer opens the actual IFCX snapshot in Open CAD Studio and offers supported DWG/DXF exchange
+- Experimental CBOR and CBOR + Zstd store the typed drawing projection, not arbitrary IFCX information
+- Spline preservation is not supported in current CAD exchange; native editable splines and associative BIM regeneration remain planned
 
 ## Tech stack
 
@@ -48,16 +50,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/ifccad/
 - Live demo: https://ifccad-explorer.open-aec.com
 - GitHub repo: https://github.com/OpenAEC-Foundation/ifccad
-- Latest stable release: https://github.com/OpenAEC-Foundation/ifccad/releases/tag/v2026.44.1
-
-## Direct downloads (most popular)
-
-- [Archive · ifccad-2026.44.1-native.tar.gz](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.44.1/ifccad-2026.44.1-native.tar.gz) (v2026.44.1 — 0.6 MB)
-- [Other · ifccad-2026.44.1-native.crate](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.44.1/ifccad-2026.44.1-native.crate) (v2026.44.1 — 0.6 MB)
-- [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.44.1/SHA256SUMS) (v2026.44.1)
-- [Archive · ifccad-2026.44.0-native-source.tar.gz](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.44.0/ifccad-2026.44.0-native-source.tar.gz) (v2026.44.0 — 0.6 MB)
-- [Other · ifccad-2026.44.0-native.crate](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.44.0/ifccad-2026.44.0-native.crate) (v2026.44.0 — 0.5 MB)
-- [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.44.0/SHA256SUMS) (v2026.44.0)
+- Latest release: https://github.com/OpenAEC-Foundation/ifccad/releases/tag/v2026.45.0
 
 ---
 
