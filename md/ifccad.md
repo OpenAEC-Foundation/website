@@ -27,7 +27,7 @@
 - Solid, line-pattern and gradient Hatch storage with classic editing and boundary records
 - Explorer opens the actual IFCX snapshot in Open CAD Studio and offers supported DWG/DXF exchange
 - Experimental CBOR and CBOR + Zstd store the typed drawing projection, not arbitrary IFCX information
-- Spline preservation is not supported in current CAD exchange; native editable splines and associative BIM regeneration remain planned
+- Additional native entity families and associative BIM regeneration remain development goals
 
 ## Tech stack
 
