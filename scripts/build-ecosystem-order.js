@@ -33,8 +33,9 @@
  *
  * Uitzonderingen staan in PINNED: Open CAD Studio staat vast op plek 1 (de
  * uitgelichte tool), Open Infra Studio vast op plek 2 (een uitbreiding van
- * Open CAD Studio, dus direct erachter) en Y-app vast op plek 6 (een
- * privé-repo, dus te weinig publieke gegevens voor een eerlijke score).
+ * Open CAD Studio, dus direct erachter), Open Structural Calculation Studio
+ * vast op plek 5 en Y-app vast op plek 6 (beide privé-repo's, dus te weinig
+ * publieke gegevens voor een eerlijke score).
  *
  * Bronnen, in volgorde van betrouwbaarheid voor versie en releasedatum:
  * data/release-notes/<repo>.json (de echte releasegeschiedenis) en pas
@@ -73,6 +74,7 @@ const PAGES = ['index.html', 'en/index.html', 'fr/index.html', 'tr/index.html', 
 const PINNED = new Map([
   ['openCad', 1],
   ['openInfra', 2],
+  ['openCalculations', 5],
   ['yapp', 6],
 ]);
 
