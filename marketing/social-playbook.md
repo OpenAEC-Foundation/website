@@ -69,7 +69,7 @@
 | 4 | Reel | Open Geotechniek Studio: .gef → Robertson in één klik | 25s screencast |
 | 5 | Foto | Rick op laptop, "Code-review monday" met logo overlay | 1× foto |
 | 6 | Carousel | "Waarom open source thuishoort in de bouw" | 7 slides |
-| 7 | Reel | Open Calculations Studio: windbelasting + IFCX export | 30s |
+| 7 | Reel | Open CalcSheet Studio: windbelasting + IFCX export | 30s |
 | 8 | Carousel | "Onze supporters" | 1 slide per logo, 12 totaal |
 | 9 | Reel | Open Field Studio: pin een gebrek op een plattegrond | 15s |
 | 10 | Quote-graphic | Rick quote over IFCX-toekomst | 1× graphic |
@@ -93,7 +93,7 @@
 - Open PDF Studio: `#PDF #Bluebeam #DocumentControl`
 - Open Geotechniek: `#Sondering #BRO #Kadaster #Geotechniek #Funderingen`
 - Open Calc: `#STABU #RAW #Calculatie`
-- Open Calculations: `#CalcPAD #Constructie #Windbelasting`
+- Open CalcSheet: `#CalcPAD #Constructie #Windbelasting`
 
 ---
 
@@ -173,7 +173,7 @@ Lage moeite, hoge ROI voor open-source publiek. **Niet origineel content maken**
 2. "Open Geotechniek Studio: van .GEF tot rapport"
 3. "IFCX uitgelegd: wat zit erin en waarom"
 4. "Een open BIM-keten van ontwerp tot oplevering" (overview)
-5. "Open Calculations Studio: een windbelasting in 4 minuten"
+5. "Open CalcSheet Studio: een windbelasting in 4 minuten"
 
 Elke video → embedden op de bijbehorende productpagina.
 

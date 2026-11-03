@@ -11,7 +11,7 @@ Legend: 🔥 = hoge prioriteit · 🟡 = nice-to-have · ❄ = pas later
 | **Cobouw** | Bouw breed (B&U + GWW) | redactie@cobouw.nl, freelance auteurs Hans van Eerden / Will Jansen | 🔥 |
 | **Bouw en ICT** (vakblad.nl) | Bouw-IT, BIM, ERP, software | hoofdredacteur via [bouwenict.nl/contact](https://www.bouwenict.nl/contact) | 🔥 |
 | **BIM Magazine NL** | BIM-modelleurs, BIM-managers | bimmagazine.nl/contact — ze publiceren artikelen van leveranciers | 🔥 |
-| **De Constructeur** | Constructeurs, ingenieurs | redactie@deconstructeur.nl — hoek: Open Calculations Studio = open opvolger CalcPAD | 🔥 |
+| **De Constructeur** | Constructeurs, ingenieurs | redactie@deconstructeur.nl — hoek: Open CalcSheet Studio = open opvolger CalcPAD | 🔥 |
 | **Geotechniek vakblad** (KIVI) | Civiele ingenieurs, geo's | kivi.nl/geotechniek — artikel over BRO + Open Geotechniek Studio | 🔥 |
 | **Vakblad De Aannemer** | Uitvoerend bouwbedrijf | aannemervak.nl — minder relevant; pas later | 🟡 |
 | **BNA-magazine** | Architecten | bna.nl/communicatie — pitch Open 2D Studio | 🟡 |

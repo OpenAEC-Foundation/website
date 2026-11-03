@@ -40,7 +40,7 @@
 4. Hoe OpenAEC tools het gebruiken
 5. Wat moet er nog gebeuren voordat IFCX productie-rijp is
 
-**USP**: We hebben echt werkende code (Open Calculations Studio doet live IFCX export). Geen ander artikel in NL kan dat tonen.
+**USP**: We hebben echt werkende code (Open CalcSheet Studio doet live IFCX export). Geen ander artikel in NL kan dat tonen.
 
 ---
 
@@ -64,7 +64,7 @@
 
 ---
 
-## 4. 🟡 "Open Calculations Studio: een open opvolger van CalcPAD"
+## 4. 🟡 "Open CalcSheet Studio: een open opvolger van CalcPAD"
 
 **Voor**: De Constructeur (KIVI) + LinkedIn-uitsnede  
 **Type**: Product-introductie  
@@ -105,7 +105,7 @@
 
 **Haak**: IFC 4.3 voegt IfcRoad, IfcBridge, IfcTunnel, IfcRail en IfcMarineFacility toe. Wij testen in de praktijk wat dat betekent voor sondering → fundering → kunstwerk-uitwisseling.
 
-**USP**: Echt werkende IFC 4.3 export uit Open Calculations + Open Geotechniek.
+**USP**: Echt werkende IFC 4.3 export uit Open CalcSheet + Open Geotechniek.
 
 ---
 

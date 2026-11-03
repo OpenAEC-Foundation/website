@@ -71,6 +71,7 @@ function label(segment) {
     .replace(/\bBim\b/g, 'BIM')
     .replace(/\bPdf\b/g, 'PDF')
     .replace(/\bCad\b/g, 'CAD')
+    .replace(/\bCalcsheet\b/g, 'CalcSheet')
     .replace(/\bFaq\b/g, 'FAQ');
 }
 
