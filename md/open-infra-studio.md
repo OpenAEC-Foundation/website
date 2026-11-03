@@ -6,7 +6,7 @@
 **License:** GPL-3.0-only
 **Platforms:** Windows, Linux, macOS
 **Category:** GIS
-**Current version:** v2026.44.5 (2026-10-29)
+**Current version:** v2026.45.1 (2026-11-03)
 **Tool ID:** `open-infra-studio`
 **GitHub repo:** `OpenAEC-Foundation/Open-Infra`
 
@@ -16,9 +16,9 @@
 - Commits: **0**
 - Forks: **0**
 - Open issues: **0**
-- Releases: **9**
-- Total downloads: **8,347**
-- Downloads by platform: Other (8097), Windows (233), Archive (17)
+- Releases: **11**
+- Total downloads: **9,112**
+- Downloads by platform: Other (8843), Windows (246), Archive (23)
 
 ## Key features
 
@@ -60,16 +60,16 @@ Starting an infrastructure or civil drawing from the existing situation: the pro
 
 - Product page: https://open-aec.com/open-infra-studio/
 - GitHub repo: https://github.com/OpenAEC-Foundation/Open-Infra
-- Latest release: https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/tag/v2026.44.5
+- Latest release: https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/tag/v2026.45.1
 
 ## Direct downloads (most popular)
 
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.43/plugin.toml) (v2026.43)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.2/plugin.toml) (v2026.44.2)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.1/plugin.toml) (v2026.44.1)
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v0.2.0/plugin.toml) (v0.2.0)
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v0.2.1/plugin.toml) (v0.2.1)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44/plugin.toml) (v2026.44)
+- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v0.2.1/plugin.toml) (v0.2.1)
+- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v0.2.0/plugin.toml) (v0.2.0)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/plugin.toml) (v2026.44.5)
 - [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.3/plugin.toml) (v2026.44.3)
 
