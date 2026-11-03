@@ -34,7 +34,7 @@
     ['open-books', 'OpenBooks', 'OpenAEC-Foundation/open-books', 'public'],
     ['ext-drawing-statistics', 'Drawing Statistics', 'OpenAEC-Foundation/ext-drawing-statistics', 'public'],
     ['y-app', 'Y-app', 'OpenAEC-Foundation/Y-app', 'team'],
-    ['open-calculations-studio', 'Open CalcSheet Studio', 'OpenAEC-Foundation/Open-Calculations-Studio', 'team'],
+    ['open-calculations-studio', 'Open CalcSheet Studio', 'OpenAEC-Foundation/Open-CalcSheet-Studio', 'team'],
     ['open-safety-studio', 'Open Safety Studio', 'OpenAEC-Foundation/open-safety-studio', 'team'],
     ['open-3d-viewer', 'Open 3D Viewer', 'OpenAEC-Foundation/open-3d-viewer', 'team'],
     ['ifccad', 'IFCCAD', 'OpenAEC-Foundation/ifccad', 'public']

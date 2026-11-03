@@ -18,6 +18,7 @@ const TOOL_REPOS = [
   'open-pdf-studio',
   'open-2d-studio',
   'open-calc-studio',
+  'Open-CalcSheet-Studio',
   'open-energy-studio',
   'open-planner-studio',
   'open-pointcloud-studio',
