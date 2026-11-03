@@ -425,6 +425,7 @@ const output = {
     website: 'https://open-aec.com',
     github: 'https://github.com/OpenAEC-Foundation',
     linkedin: 'https://www.linkedin.com/company/openaec-foundation-io',
+    mastodon: 'https://mastodon.social/@openaec',
     email: 'info@open-aec.com',
     license: 'Most tools LGPL-3.0 (some LGPL-2.1, MIT, MPL-2.0 or CC-BY-SA-4.0)',
     pricing: 'Free / open source. Services (consulting, hosting, custom development) priced ~20% below market.',

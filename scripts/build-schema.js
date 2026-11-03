@@ -136,6 +136,7 @@ for (const file of htmlFiles(ROOT)) {
         sameAs: [
           'https://github.com/OpenAEC-Foundation',
           'https://www.linkedin.com/company/openaec-foundation-io',
+          'https://mastodon.social/@openaec',
         ],
       },
       {
