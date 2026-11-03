@@ -1,17 +1,57 @@
 {
   "repo": "open-pointcloud-studio",
-  "generated": "2026-11-02T16:03:13.269Z",
-  "totalReleases": 17,
-  "totalChanges": 216,
+  "generated": "2026-11-03T06:05:03.669Z",
+  "totalReleases": 18,
+  "totalChanges": 226,
   "latestStable": {
-    "tag": "v2026.44.1",
-    "name": "Open Pointcloud Studio v2026.44.1",
-    "date": "2026-10-26",
-    "url": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v2026.44.1"
+    "tag": "v2026.45.1",
+    "name": "Open Pointcloud Studio v2026.45.1",
+    "date": "2026-11-03",
+    "url": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v2026.45.1"
   },
-  "latestChangelog": "- The macOS disk image carries a Developer ID signature of its own as well as the app inside it, so macOS also accepts the downloaded image itself.\n- The window has one bar at the top on Windows and macOS: the title strip of the application, with buttons to minimize, maximize or restore and close the window, instead of the system title bar above it. Dragging the strip moves the window, a double click maximizes or restores it, and on Windows the edges still resize it and snapping still works.",
+  "latestChangelog": "- E57 exports now retain station photos, spherical and cylindrical panoramas, masks, camera poses and scan associations after filtering, section export and colouring points from photos. Edits that cannot preserve camera poses fail explicitly instead of silently dropping the images.\n- Photo editing in Properties adds 2:1 JPG or PNG panoramas at a chosen point and camera height, and moves, turns, renames or deletes existing photos. Undo and Redo restore edits; a sidecar keeps them between sessions and E57 export embeds the image data.\n- Scan registration fits corresponding point pairs or a manual translation and vertical rotation, then refines overlapping surfaces with bounded point-to-plane ICP. It reports residuals, RMS and p95, shows a deviation-coloured preview, exports full-resolution registered E57 scans or scenes, and saves reusable transformation matrices. A section box clips the moving scan after its coarse alignment, so fine alignment works when the two input coordinate frames differ.\n- Merge visible scans and the command-line merge accept mixed input formats and write E57, LAS or LAZ. E57 can retain stations and images or write only points; mixed LAS/LAZ layouts normalise common attributes to LAS 1.4 while compatible LAS records keep their original attributes. Keeping stations also preserves PCD VIEWPOINT poses and individual PTX scan blocks, with their origins and orientations; non-E57 inputs without a station pose do not acquire an artificial origin station.\n- Prepare for Autodesk ReCap exports an E57 with its images and import instructions. ReCap creates its RCP/RCS files after import; direct RCP/RCS writing still requires Autodesk SDK access and licensing arrangements.\n- The native API and MCP add photo editing, scan registration and ReCap preparation commands at API revision 12. The command line can apply a saved registration matrix with `--apply-registration`.\n- Signed Linux releases include the public signing key. Verification checks its fingerprint and signatures offline, without depending on a keyserver.",
   "nightly": null,
   "groups": [
+    {
+      "minorVersion": "2026.45",
+      "releases": [
+        {
+          "tag": "v2026.45.1",
+          "name": "Open Pointcloud Studio v2026.45.1",
+          "date": "2026-11-03",
+          "url": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v2026.45.1",
+          "changes": [
+            "E57 exports now retain station photos, spherical and cylindrical panoramas, masks, camera poses and scan associations after filtering, section export and colouring points from photos. Edits that cannot preserve camera poses fail explicitly instead of silently dropping the images.",
+            "Photo editing in Properties adds 2:1 JPG or PNG panoramas at a chosen point and camera height, and moves, turns, renames or deletes existing photos. Undo and Redo restore edits; a sidecar keeps them between sessions and E57 export embeds the image data.",
+            "Scan registration fits corresponding point pairs or a manual translation and vertical rotation, then refines overlapping surfaces with bounded point-to-plane ICP. It reports residuals, RMS and p95, shows a deviation-coloured preview, exports full-resolution registered E57 scans or scenes, and saves reusable transformation matrices. A section box clips the moving scan after its coarse alignment, so fine alignment works when the two input coordinate frames differ.",
+            "Merge visible scans and the command-line merge accept mixed input formats and write E57, LAS or LAZ. E57 can retain stations and images or write only points; mixed LAS/LAZ layouts normalise common attributes to LAS 1.4 while compatible LAS records keep their original attributes. Keeping stations also preserves PCD VIEWPOINT poses and individual PTX scan blocks, with their origins and orientations; non-E57 inputs without a station pose do not acquire an artificial origin station.",
+            "Prepare for Autodesk ReCap exports an E57 with its images and import instructions. ReCap creates its RCP/RCS files after import; direct RCP/RCS writing still requires Autodesk SDK access and licensing arrangements.",
+            "The native API and MCP add photo editing, scan registration and ReCap preparation commands at API revision 12. The command line can apply a saved registration matrix with `--apply-registration`.",
+            "Signed Linux releases include the public signing key. Verification checks its fingerprint and signatures offline, without depending on a keyserver.",
+            "**Library** for programs of your own: the point-cloud core as a C library (ABI 1.0), with its header, an example and the notices of the crates it is built from. `open-pointcloud-studio-sdk_2026.45.1_windows-x64-dll.zip` for Windows x64, `open-pointcloud-studio-sdk_2026.45.1_macos-universal-dylib.tar.gz` for macOS 11 and later on both processor types, `open-pointcloud-studio-sdk_2026.45.1_linux-amd64-so.tar.gz` and `open-pointcloud-studio-sdk_2026.45.1_linux-arm64-so.tar.gz` for Linux with a C library of version 2.35 or newer. It is licensed LGPL-3.0-or-later; `docs/library.md` in the repository describes it.",
+            "**Cloud API**, the service of the point-cloud core over HTTP and MCP for programs and servers, as a container image for Linux x86-64: `ghcr.io/openaec-foundation/open-pointcloud-studio-api:2026.45.1`. Its digest is `sha256:417e869953dac1584dbf185149cc15e69a1664326aa9a44f00e05c8108120a14`, and `gh attestation verify oci://ghcr.io/openaec-foundation/open-pointcloud-studio-api@sha256:417e869953dac1584dbf185149cc15e69a1664326aa9a44f00e05c8108120a14 --repo OpenAEC-Foundation/open-pointcloud-studio` checks its build attestation. `docs/cloud-api.md` in the repository describes it.",
+            "**Source of Open CAD Studio**: `open-cad-studio-source_fc19afa7.tar.gz` holds the source that the Open CAD Studio in every package was built from, and `open-cad-studio-vendor_fc19afa7.tar.gz` the crates it was built with from git repositories; see Licence below."
+          ],
+          "patchNum": 1
+        }
+      ],
+      "allChanges": [
+        "E57 exports now retain station photos, spherical and cylindrical panoramas, masks, camera poses and scan associations after filtering, section export and colouring points from photos. Edits that cannot preserve camera poses fail explicitly instead of silently dropping the images.",
+        "Photo editing in Properties adds 2:1 JPG or PNG panoramas at a chosen point and camera height, and moves, turns, renames or deletes existing photos. Undo and Redo restore edits; a sidecar keeps them between sessions and E57 export embeds the image data.",
+        "Scan registration fits corresponding point pairs or a manual translation and vertical rotation, then refines overlapping surfaces with bounded point-to-plane ICP. It reports residuals, RMS and p95, shows a deviation-coloured preview, exports full-resolution registered E57 scans or scenes, and saves reusable transformation matrices. A section box clips the moving scan after its coarse alignment, so fine alignment works when the two input coordinate frames differ.",
+        "Merge visible scans and the command-line merge accept mixed input formats and write E57, LAS or LAZ. E57 can retain stations and images or write only points; mixed LAS/LAZ layouts normalise common attributes to LAS 1.4 while compatible LAS records keep their original attributes. Keeping stations also preserves PCD VIEWPOINT poses and individual PTX scan blocks, with their origins and orientations; non-E57 inputs without a station pose do not acquire an artificial origin station.",
+        "Prepare for Autodesk ReCap exports an E57 with its images and import instructions. ReCap creates its RCP/RCS files after import; direct RCP/RCS writing still requires Autodesk SDK access and licensing arrangements.",
+        "The native API and MCP add photo editing, scan registration and ReCap preparation commands at API revision 12. The command line can apply a saved registration matrix with `--apply-registration`.",
+        "Signed Linux releases include the public signing key. Verification checks its fingerprint and signatures offline, without depending on a keyserver.",
+        "**Library** for programs of your own: the point-cloud core as a C library (ABI 1.0), with its header, an example and the notices of the crates it is built from. `open-pointcloud-studio-sdk_2026.45.1_windows-x64-dll.zip` for Windows x64, `open-pointcloud-studio-sdk_2026.45.1_macos-universal-dylib.tar.gz` for macOS 11 and later on both processor types, `open-pointcloud-studio-sdk_2026.45.1_linux-amd64-so.tar.gz` and `open-pointcloud-studio-sdk_2026.45.1_linux-arm64-so.tar.gz` for Linux with a C library of version 2.35 or newer. It is licensed LGPL-3.0-or-later; `docs/library.md` in the repository describes it.",
+        "**Cloud API**, the service of the point-cloud core over HTTP and MCP for programs and servers, as a container image for Linux x86-64: `ghcr.io/openaec-foundation/open-pointcloud-studio-api:2026.45.1`. Its digest is `sha256:417e869953dac1584dbf185149cc15e69a1664326aa9a44f00e05c8108120a14`, and `gh attestation verify oci://ghcr.io/openaec-foundation/open-pointcloud-studio-api@sha256:417e869953dac1584dbf185149cc15e69a1664326aa9a44f00e05c8108120a14 --repo OpenAEC-Foundation/open-pointcloud-studio` checks its build attestation. `docs/cloud-api.md` in the repository describes it.",
+        "**Source of Open CAD Studio**: `open-cad-studio-source_fc19afa7.tar.gz` holds the source that the Open CAD Studio in every package was built from, and `open-cad-studio-vendor_fc19afa7.tar.gz` the crates it was built with from git repositories; see Licence below."
+      ],
+      "firstDate": "2026-11-03",
+      "lastDate": "2026-11-03",
+      "releaseCount": 1,
+      "changeCount": 10
+    },
     {
       "minorVersion": "2026.44",
       "releases": [

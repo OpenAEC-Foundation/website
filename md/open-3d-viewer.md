@@ -6,19 +6,19 @@
 **License:** LGPL-3.0-or-later
 **Platforms:** Windows, macOS, Linux, Web
 **Category:** BIM Viewer
-**Current version:** v2026.44.19 (2026-10-31)
+**Current version:** v2026.45.5 (2026-11-03)
 **Tool ID:** `open-3d-viewer`
 **GitHub repo:** `OpenAEC-Foundation/open-3d-viewer`
 
 ## Live stats
 
 - Stars: **1**
-- Commits: **104**
+- Commits: **174**
 - Forks: **0**
-- Open issues: **16**
-- Releases: **4**
-- Total downloads: **123**
-- Downloads by platform: Windows (51), Linux (AppImage) (19), Linux (deb) (13), macOS (13), Archive (10), Other (10), Linux (rpm) (7)
+- Open issues: **9**
+- Releases: **10**
+- Total downloads: **179**
+- Downloads by platform: Windows (69), Linux (AppImage) (26), Linux (deb) (19), macOS (19), Other (17), Archive (16), Linux (rpm) (13)
 
 ## Key features
 
@@ -56,12 +56,12 @@ Opening a model you were sent (SketchUp, Tekla, Revit, IFC) without the program 
 - Product page: https://open-aec.com/open-3d-viewer/
 - Live demo: https://open-3d-viewer.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-3d-viewer
-- Latest release: https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/tag/v2026.44.19
+- Latest release: https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/tag/v2026.45.5
 
 ## Direct downloads (most popular)
 
-- [Windows · open-3d-viewer_2026.44.18_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.44.18/open-3d-viewer_2026.44.18_x64-setup.exe) (v2026.44.18 — 11.7 MB)
 - [Windows · open-3d-viewer_2026.44.19_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.44.19/open-3d-viewer_2026.44.19_x64-setup.exe) (v2026.44.19 — 11.7 MB)
+- [Windows · open-3d-viewer_2026.44.18_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.44.18/open-3d-viewer_2026.44.18_x64-setup.exe) (v2026.44.18 — 11.7 MB)
 - [Windows · open-3d-viewer_2026.44.19_windows-x64.zip](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.44.19/open-3d-viewer_2026.44.19_windows-x64.zip) (v2026.44.19 — 17.5 MB)
 - [Linux (AppImage) · Open.3D.Viewer.Studio_0.1.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v0.1.0-alpha/Open.3D.Viewer.Studio_0.1.0_amd64.AppImage) (v0.1.0-alpha — 110.2 MB)
 - [Linux (AppImage) · open-3d-viewer_2026.44.18_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.44.18/open-3d-viewer_2026.44.18_amd64.AppImage) (v2026.44.18 — 17.5 MB)
