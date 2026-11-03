@@ -137,6 +137,7 @@ Supported standards:
 - All social channels: https://open-aec.com/socials/
 - LinkedIn: https://www.linkedin.com/company/openaec-foundation-io
 - Mastodon: https://mastodon.social/@openaec
+- Threads: https://www.threads.com/@openaec
 - WhatsApp channel: https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42
 - Contact: info@open-aec.com
 
