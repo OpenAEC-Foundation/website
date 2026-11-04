@@ -17,8 +17,8 @@
 - Forks: **1**
 - Open issues: **12**
 - Releases: **2**
-- Total downloads: **592**
-- Downloads by platform: Windows (390), Linux (AppImage) (109), Windows (MSI) (51), Linux (deb) (35), Linux (rpm) (4), Archive (2), macOS (1)
+- Total downloads: **610**
+- Downloads by platform: Windows (397), Linux (AppImage) (118), Windows (MSI) (51), Linux (deb) (36), Linux (rpm) (4), macOS (2), Archive (2)
 
 ## Key features
 
@@ -66,8 +66,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows (MSI) · Monty.IFC.Viewer_1.0.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/monty-ifc-viewer/releases/download/v1.0.1/Monty.IFC.Viewer_1.0.0_x64_en-US.msi) (v1.0.1 — 3.5 MB)
 - [Linux (deb) · Monty.IFC.Viewer_1.0.0_amd64.deb](https://github.com/OpenAEC-Foundation/monty-ifc-viewer/releases/download/v1.0.1/Monty.IFC.Viewer_1.0.0_amd64.deb) (v1.0.1 — 3.6 MB)
 - [Linux (rpm) · Monty.IFC.Viewer-1.0.0-1.x86_64.rpm](https://github.com/OpenAEC-Foundation/monty-ifc-viewer/releases/download/v1.0.1/Monty.IFC.Viewer-1.0.0-1.x86_64.rpm) (v1.0.1 — 3.6 MB)
-- [Archive · Monty.IFC.Viewer_aarch64.app.tar.gz](https://github.com/OpenAEC-Foundation/monty-ifc-viewer/releases/download/v1.0.1/Monty.IFC.Viewer_aarch64.app.tar.gz) (v1.0.1 — 3.5 MB)
 - [macOS · Monty.IFC.Viewer_1.0.0_aarch64.dmg](https://github.com/OpenAEC-Foundation/monty-ifc-viewer/releases/download/v1.0.1/Monty.IFC.Viewer_1.0.0_aarch64.dmg) (v1.0.1 — 4 MB)
+- [Archive · Monty.IFC.Viewer_aarch64.app.tar.gz](https://github.com/OpenAEC-Foundation/monty-ifc-viewer/releases/download/v1.0.1/Monty.IFC.Viewer_aarch64.app.tar.gz) (v1.0.1 — 3.5 MB)
 
 ---
 
