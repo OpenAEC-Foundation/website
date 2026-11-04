@@ -161,12 +161,76 @@ html:not(.js) body { overflow: auto; }
   .slide .drie, .slide .zes, .slide .kolommen, .slide .splits, .slide .traject, .slide .grafieken, .ifcx { flex: none; }
   .slide .voet.klein { padding-right: 0; }
 }
+.item video { width: 100%; max-height: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius-lg); background: #000; box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+.scdia { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
+.afnamen { display: grid; gap: clamp(3px, .8vh, 8px); }
+.afname { display: flex; align-items: center; gap: 10px; padding: clamp(4px, .9vh, 9px) 10px; border-radius: var(--radius-md); background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); color: inherit; text-decoration: none; }
+.afname:hover { border-color: var(--amber); background: rgba(217,119,6,.14); }
+.afname > span:last-child { display: grid; min-width: 0; }
+.afname strong { font-family: var(--font-heading); font-size: clamp(.86rem, 1.2vw, 1.08rem); color: #fff; line-height: 1.2; }
+.afname small { font-size: clamp(.72rem, .92vw, .86rem); color: #d4d4d8; line-height: 1.25; }
+.bouwdia { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); background: linear-gradient(90deg, rgba(42,42,50,.93) 50%, rgba(42,42,50,.68)), url(/presentatie/assets/onprem.webp) center / cover; }
+.gebouw { height: 100%; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+.dak { flex: none; height: clamp(26px, 7vh, 54px); margin: 0 3%; background: var(--amber); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.gebouw .laag { flex: none; border-radius: 0; margin: 0 5%; padding: clamp(8px, 1.8vh, 18px) clamp(12px, 1.5vw, 22px); border: 2px solid rgba(255,255,255,.28); border-top: 0; background: rgba(20,20,24,.82); display: flex; flex-direction: column; gap: 6px; }
+.gebouw .laag.eigen { background: rgba(217,119,6,.2); border-color: var(--amber); }
+.gebouw .laag.erp { background: var(--amber); border-color: var(--amber); }
+.gebouw .laag.erp span { color: #fff; }
+.gebouw a.laag.erp:hover { background: #b45f05; }
+.gebouw .laag.fundering { margin: 0; background: repeating-linear-gradient(135deg, #4a4a54 0 10px, #40404a 10px 20px); border-color: #6b6b76; border-top: 2px solid #6b6b76; }
+.eigen-rij { display: flex; flex-wrap: wrap; gap: 6px; }
+.gebouw .eigen-rij span { font-size: clamp(.72rem, .95vw, .88rem); color: #fff; border: 1px dashed rgba(255,255,255,.65); border-radius: var(--radius-sm); padding: 3px 9px; }
+.iconen { display: flex; flex-wrap: wrap; gap: clamp(4px, .55vw, 8px); }
+.iconen img { width: clamp(20px, 2.2vw, 30px); height: clamp(20px, 2.2vw, 30px); display: block; border-radius: 6px; }
+.iconen a:hover img { outline: 2px solid var(--amber); outline-offset: 1px; }
+.palen { flex: none; height: clamp(16px, 5vh, 40px); margin: 0 7%; background: repeating-linear-gradient(90deg, #6b6b76 0 8px, transparent 8px 12%); }
+.trajectdia { gap: clamp(8px, 1.6vh, 18px); }
+.trajectkop { position: relative; display: flex; align-items: flex-end; flex-wrap: wrap; gap: 6px clamp(16px, 2.4vw, 36px); }
+.trajectkop > div:first-child, .trajectkop > .groot { position: relative; z-index: 1; }
+.slide h2.groot-kop { font-size: clamp(2.2rem, 5vw, 4.4rem); line-height: 1; }
+.chaos { position: absolute; left: 48%; right: 0; top: -14px; bottom: -6px; pointer-events: none; }
+.chaos img { position: absolute; width: clamp(20px, 2.8vw, 38px); height: clamp(20px, 2.8vw, 38px); opacity: .85; filter: drop-shadow(0 6px 10px rgba(0,0,0,.5)); }
+.trajectkop .groot { max-width: 21em; }
+.planning { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(170px, 21%); gap: clamp(10px, 1.4vw, 20px); }
+.gantt { display: grid; grid-template-columns: minmax(84px, 13%) repeat(12, minmax(0, 1fr)); grid-template-rows: auto repeat(5, minmax(0, 1fr)); gap: 6px 0; align-items: center; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-lg); padding: clamp(8px, 1.4vh, 14px) clamp(10px, 1.2vw, 16px); min-height: 0; }
+.g-maand { font-family: var(--font-code); font-size: clamp(.68rem, .9vw, .84rem); color: #a8a29e; text-align: center; border-bottom: 1px solid rgba(255,255,255,.14); padding-bottom: 4px; align-self: end; }
+.g-maand:first-child { grid-row: 1; }
+.g-maand { grid-row: 1; }
+.g-label { grid-column: 1; font-size: clamp(.72rem, .95vw, .9rem); color: #d4d4d8; line-height: 1.15; padding-right: 8px; }
+.balk { align-self: stretch; display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: 3px clamp(8px, .9vw, 14px); border-radius: var(--radius-sm); color: #fff; text-decoration: none; line-height: 1.15; }
+.balk strong { font-family: var(--font-heading); font-size: clamp(.74rem, 1.05vw, 1rem); font-weight: 600; }
+.balk span { font-size: clamp(.68rem, .85vw, .82rem); opacity: .9; }
+.balk.een { background: #EA580C; }
+.balk.twee { background: var(--amber); }
+.balk.drie-b { background: #B45309; }
+a.balk:hover { filter: brightness(1.15); }
+.balk.oud { background: linear-gradient(90deg, rgba(168,162,158,.75) 35%, rgba(168,162,158,.08)); }
+.weken { display: flex; justify-content: space-between; align-items: center; padding: 0 3px; }
+.weken i { width: clamp(9px, 1.1vw, 15px); height: clamp(9px, 1.1vw, 15px); border-radius: 50%; background: var(--warm-gold); }
+.na { display: flex; flex-direction: column; gap: clamp(6px, 1.4vh, 14px); padding: clamp(10px, 1.6vh, 18px); border-radius: var(--radius-lg); background: rgba(217,119,6,.16); border: 1px solid rgba(217,119,6,.5); }
+.slide p.na-cijfer { margin-top: auto; font-family: var(--font-heading); color: #fff; font-size: clamp(.86rem, 1.15vw, 1.05rem); }
+.na-cijfer strong { color: var(--warm-gold); font-size: 1.6em; }
+.trajectdia .voet.klein { text-align: left; }
+.merklink { color: inherit; text-decoration: none; }
+.woordmerk { display: inline-flex; align-items: center; gap: clamp(8px, 1vw, 16px); font-family: var(--font-heading); font-weight: 700; font-size: clamp(1.7rem, 3.4vw, 3rem); letter-spacing: -0.02em; color: #fff; line-height: 1; }
+.woordmerk img { height: clamp(44px, 9vh, 76px); width: auto; display: block; }
+.slotdia { background: linear-gradient(rgba(30,30,36,.62), rgba(30,30,36,.82)), url(/presentatie/assets/verzenden.webp) center / cover; }
+.scdia .chips .chip-s { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.22); color: #e7e5e4; }
+@media (max-width: 768px) {
+  .bouwdia .gebouw { height: auto; }
+  .chaos { display: none; }
+  .planning { grid-template-columns: 1fr; flex: none; }
+  .gantt { display: flex; flex-direction: column; align-items: stretch; }
+  .g-maand { display: none; }
+  .g-label { padding-top: 6px; }
+  .balk { padding: 6px; }
+}
 @media print {
   @page { size: 16in 9in; margin: 0; }
   html, body { height: auto; overflow: visible; }
   .js .slide, .slide { display: flex !important; height: 9in; break-after: page; animation: none; }
   .js .tool { display: grid !important; }
-  .bediening, .voortgang, .pijlk, .stippen { display: none !important; }
+  .bediening, .voortgang, .pijlk, .stippen, .chaos { display: none !important; }
 }
 </style>
 </head>
@@ -174,7 +238,7 @@ html:not(.js) body { overflow: auto; }
 <main id="main">
 <section class="slide titel">
 <div class="opening">
-  <a href="/" target="_blank" rel="noopener"><img class="merk" src="/shared/assets/logo/openaec-logo-v2-amber-on-dark.svg" alt="OpenAEC" width="320" height="84"></a>
+  <a class="merklink" href="/" target="_blank" rel="noopener"><span class="woordmerk"><img src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="72" height="72"><span>Open<span class="a">AEC</span></span></span></a>
   <p class="voor" id="voor" hidden></p>
   <h1>Alle bouwsoftware <span class="a">open source</span> voor eind 2026</h1>
   <p class="groot">Van ontwerp tot oplevering en beheer, voor bouw, utiliteit, GWW en civiel. Want nu werken bouwbedrijven met losse programma's die elkaar niet verstaan.</p>
@@ -502,98 +566,64 @@ html:not(.js) body { overflow: auto; }
   <div class="lnks"><a class="lnk " href="/bcf-manager-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Productpagina</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/openaec-bcf-platform" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
 </div>
 </section>
-<section class="slide ">
-<div class="kop rij"><div><p class="label">Alles samen</p><h2>De OpenAEC <span class="a">SuperCloud</span></h2></div><a class="lnk " href="/supercloud/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Naar de SuperCloud</span></a></div>
-<p class="groot smal">Alle software die je bedrijf nodig heeft, op één plek en met één account. Niets is verplicht: begin met één tool en breid uit wanneer je wilt.</p>
-<div class="drie pijlers">
-  <div class="blok"><img loading="lazy" src="/presentatie/assets/pijler-werken.webp" alt="Conceptbeeld van de pijler Werken"><h3>Werken</h3><p>Administratie, uren, inkoop, verkoop en HR in ERPNext, met een eenvoudige werkplek.</p></div>
-  <div class="blok"><img loading="lazy" src="/presentatie/assets/pijler-rekenen.webp" alt="Conceptbeeld van de pijler Ontwerpen en rekenen"><h3>Ontwerpen en rekenen</h3><p>CAD, BIM, PDF, constructie, energie, geotechniek en begroten, met open rekenregels.</p></div>
-  <div class="blok"><img loading="lazy" src="/presentatie/assets/pijler-opslag.webp" alt="Conceptbeeld van de pijler Opslaan en samenwerken"><h3>Opslaan en samenwerken</h3><p>Projectbestanden met versies, documenten en 3D-modellen die je met partners deelt.</p></div>
-</div>
-<p class="voet klein">Conceptbeelden</p>
-</section>
-<section class="slide ">
-<div class="kop"><p class="label">Wat je bij ons afneemt</p><h2>De software is open. <span class="a">De zorg nemen wij over.</span></h2></div>
-<div class="zes">
-<a class="blok link" href="/y-app/" target="_blank" rel="noopener"><h3>ERPNext</h3><p>Offertes, facturen, inkoop, boekhouding en uren in één systeem.</p></a>
-<a class="blok link" href="/supercloud/" target="_blank" rel="noopener"><h3>Hosting</h3><p>Een afgeschermde omgeving in een EU-datacentrum, of op je eigen servers.</p></a>
-<a class="blok link" href="/supercloud/" target="_blank" rel="noopener"><h3>Eén account</h3><p>Eén inlog voor alle apps, met tweestapsverificatie of een passkey.</p></a>
-<a class="blok link" href="/openaec-cloud/" target="_blank" rel="noopener"><h3>Bestanden</h3><p>Projectmappen synchroniseren en grote bestanden versturen, versleuteld in de EU.</p></a>
-<a class="blok link" href="/supercloud/" target="_blank" rel="noopener"><h3>AI in de EU</h3><p>Standaard alleen modellen in de EU. Je gegevens worden niet gebruikt voor training.</p></a>
-<a class="blok link" href="/structuur/" target="_blank" rel="noopener"><h3>Beheer en maatwerk</h3><p>OpenAEC Studio BV zorgt voor implementatie, updates en ondersteuning.</p></a>
-</div>
-<p class="voet">Geen lock-in: alle broncode openbaar, volledige export op elk moment, maandelijks opzegbaar.</p>
-</section>
-<section class="slide ">
-<div class="kop"><p class="label">En dan het mooiste</p><h2>Jullie <span class="a">eigen tools</span> erbovenop</h2></div>
-<div class="splits">
-  <div class="stapel">
-    <div class="laag eigen"><strong>Jullie eigen tools</strong><span>door medewerkers zelf gebouwd met AI</span></div>
-    <a class="laag" href="#3"><strong>OpenAEC-tools</strong><span>CAD, PDF, begroten, plannen, bouwplaats</span></a>
-    <a class="laag" href="/y-app/" target="_blank" rel="noopener"><strong>ERPNext</strong><span>administratie, projecten, gegevens</span></a>
-    <a class="laag" href="/supercloud/" target="_blank" rel="noopener"><strong>Hosting</strong><span>SuperCloud of eigen servers</span></a>
+<section class="slide tool scdia">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><video controls preload="none" playsinline poster="/presentatie/assets/zo-werkt-het-poster.webp" src="/presentatie/assets/zo-werkt-het.mp4" aria-label="Film: zo werkt de OpenAEC SuperCloud"></video></div><div class="item"><img loading="lazy" decoding="async" src="/presentatie/assets/pijler-werken.webp" alt="Conceptbeeld: werken"></div><div class="item"><img loading="lazy" decoding="async" src="/presentatie/assets/pijler-rekenen.webp" alt="Conceptbeeld: ontwerpen en rekenen"></div><div class="item"><img loading="lazy" decoding="async" src="/presentatie/assets/pijler-opslag.webp" alt="Conceptbeeld: opslaan en samenwerken"></div><div class="item"><img loading="lazy" decoding="async" src="/presentatie/assets/onprem.webp" alt="Conceptbeeld: op je eigen servers"></div><div class="item"><img loading="lazy" decoding="async" src="/presentatie/assets/verzenden.webp" alt="Conceptbeeld: bestanden versturen"></div><button type="button" class="pijlk vorige" aria-label="Vorig beeld">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Volgend beeld">&rsaquo;</button><div class="stippen" role="group" aria-label="Beelden"></div></div></figure>
+<div class="info">
+  <p class="label">Alles samen, op één plek</p>
+  <h2><a href="/supercloud/" target="_blank" rel="noopener">OpenAEC <span class="a">SuperCloud</span></a></h2>
+  <div class="afnamen">
+    <a class="afname" href="https://frappeframework.com/" target="_blank" rel="noopener"><img class="app" src="/presentatie/assets/icoon-erp-bundel.svg" alt="" width="40" height="40"><span><strong>ERPNext of Frappe Framework</strong><small>Compleet ERP, of alleen het platform eronder</small></span></a>
+    <a class="afname" href="/supercloud/" target="_blank" rel="noopener"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></span><span><strong>Hosting</strong><small>In een EU-datacentrum of op je eigen servers</small></span></a>
+    <a class="afname" href="/supercloud/" target="_blank" rel="noopener"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-lock"/></svg></span><span><strong>Eén account</strong><small>Eén inlog voor alle apps</small></span></a>
+    <a class="afname" href="/openaec-cloud/" target="_blank" rel="noopener"><img class="app" src="/presentatie/assets/icoon-openaec-storage.svg" alt="" width="40" height="40"><span><strong>Bestanden</strong><small>Synchroniseren en versturen, versleuteld in de EU</small></span></a>
+    <a class="afname" href="/supercloud/" target="_blank" rel="noopener"><img class="app" src="/presentatie/assets/icoon-ai-eu.svg" alt="" width="40" height="40"><span><strong>AI in de EU</strong><small>Geen training op je gegevens</small></span></a>
+    <a class="afname" href="/structuur/" target="_blank" rel="noopener"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></span><span><strong>Beheer en maatwerk</strong><small>Door OpenAEC Studio BV</small></span></a>
   </div>
-  <div class="tekst">
-    <p class="groot">Met AI bouwen medewerkers nu zelf hun tools. Dat heet vibe-coding, en het gaat niet meer weg.</p>
-    <p class="groot">Dus niet meer losse scripts op iemands laptop, maar op ERPNext: één plek, met inlog en rechten en jullie eigen gegevens.</p>
+  <p class="chips"><span class="chip-s">Alles open source</span><span class="chip-s">Volledige export</span><span class="chip-s">Maandelijks opzegbaar</span></p>
+</div>
+</section>
+<section class="slide tool bouwdia">
+<div class="gebouw" role="img" aria-label="Doorsnede van een gebouw: bovenop jullie eigen tools, daaronder de OpenAEC-tools, dan ERPNext of Frappe Framework, en als fundering de hosting">
+  <div class="dak"></div>
+  <div class="laag eigen"><strong>Jullie eigen tools</strong><div class="eigen-rij"><span>Urenapp</span><span>Materiaalbon</span><span>Keuringslijst</span><span>+ jouw idee</span></div></div>
+  <div class="laag tools"><strong>OpenAEC-tools</strong><div class="iconen"><a href="#5" title="Open CAD Studio"><img src="/presentatie/assets/icoon-open-cad-studio.svg" alt="Open CAD Studio" width="36" height="36" loading="lazy"></a><a href="#6" title="Open Infra Studio"><img src="/presentatie/assets/icoon-open-infra.svg" alt="Open Infra Studio" width="36" height="36" loading="lazy"></a><a href="#7" title="Open BIM Studio"><img src="/presentatie/assets/icoon-open-bim-studio.svg" alt="Open BIM Studio" width="36" height="36" loading="lazy"></a><a href="#9" title="Open PDF Studio"><img src="/presentatie/assets/icoon-open-pdf-studio.svg" alt="Open PDF Studio" width="36" height="36" loading="lazy"></a><a href="#10" title="Open Office Studio"><img src="/presentatie/assets/icoon-open-office-studio.svg" alt="Open Office Studio" width="36" height="36" loading="lazy"></a><a href="#11" title="Y-app"><img src="/presentatie/assets/icoon-y-next.svg" alt="Y-app" width="36" height="36" loading="lazy"></a><a href="#12" title="Open Speech Studio"><img src="/presentatie/assets/icoon-open-speech-studio.svg" alt="Open Speech Studio" width="36" height="36" loading="lazy"></a><a href="#15" title="Open CalcSheet Studio"><img src="/presentatie/assets/icoon-open-calculations-studio.svg" alt="Open CalcSheet Studio" width="36" height="36" loading="lazy"></a><a href="#16" title="Open FEM Studio"><img src="/presentatie/assets/icoon-open-fem-studio.svg" alt="Open FEM Studio" width="36" height="36" loading="lazy"></a><a href="#17" title="Open Pile Plan Studio"><img src="/presentatie/assets/icoon-pile-plan-studio.svg" alt="Open Pile Plan Studio" width="36" height="36" loading="lazy"></a><a href="#18" title="Open Geotechniek Studio"><img src="/presentatie/assets/icoon-open-geotechniek-studio.svg" alt="Open Geotechniek Studio" width="36" height="36" loading="lazy"></a><a href="#19" title="Open Energy Studio"><img src="/presentatie/assets/icoon-open-energy-studio.svg" alt="Open Energy Studio" width="36" height="36" loading="lazy"></a><a href="#20" title="Open Heatloss Studio"><img src="/presentatie/assets/icoon-open-heatloss-studio.svg" alt="Open Heatloss Studio" width="36" height="36" loading="lazy"></a><a href="#21" title="Open Calc Studio"><img src="/presentatie/assets/icoon-open-calc-studio.svg" alt="Open Calc Studio" width="36" height="36" loading="lazy"></a><a href="#22" title="Open Planner Studio"><img src="/presentatie/assets/icoon-open-planner-studio.svg" alt="Open Planner Studio" width="36" height="36" loading="lazy"></a><a href="#23" title="Open Field Studio"><img src="/presentatie/assets/icoon-open-field-studio.svg" alt="Open Field Studio" width="36" height="36" loading="lazy"></a><a href="#24" title="Monty IFC Viewer"><img src="/presentatie/assets/icoon-monty-ifc-viewer.svg" alt="Monty IFC Viewer" width="36" height="36" loading="lazy"></a><a href="#25" title="Open 3D Viewer Studio"><img src="/presentatie/assets/icoon-open-3d-viewer.svg" alt="Open 3D Viewer Studio" width="36" height="36" loading="lazy"></a><a href="#26" title="Open Pointcloud Studio"><img src="/presentatie/assets/icoon-open-pointcloud-studio.svg" alt="Open Pointcloud Studio" width="36" height="36" loading="lazy"></a><a href="#27" title="Open BIM Validator Studio"><img src="/presentatie/assets/icoon-open-bim-validator.svg" alt="Open BIM Validator Studio" width="36" height="36" loading="lazy"></a></div></div>
+  <a class="laag erp" href="https://frappeframework.com/" target="_blank" rel="noopener"><strong>ERPNext of Frappe Framework</strong><span>administratie, projecten en jullie gegevens</span></a>
+  <a class="laag fundering" href="/supercloud/" target="_blank" rel="noopener"><strong>Hosting</strong><span>SuperCloud of eigen servers</span></a>
+  <div class="palen"></div>
+</div>
+<div class="info">
+  <p class="label">En dan het mooiste</p>
+  <h2>Jullie <span class="a">eigen tools</span> erbovenop</h2>
+  <p class="groot">Met AI bouwen medewerkers nu zelf hun tools. Dat heet vibe-coding, en het gaat niet meer weg.</p>
+  <p class="groot sterk">Dus niet meer op iemands laptop, maar op één fundering.</p>
+</div>
+</section>
+<section class="slide trajectdia">
+<div class="kop trajectkop">
+  <div><p class="label">Eerlijk is eerlijk</p><h2 class="groot-kop">En <span class="a">nu</span>?</h2></div>
+  <p class="groot">Alles morgen de deur uit? Dat doe je niet. <span class="sterk">Dit is veranderingsmanagement.</span></p>
+  <div class="chaos" aria-hidden="true"><img src="/presentatie/assets/icoon-open-cad-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:4%;top:18%;transform:rotate(-24deg)"><img src="/presentatie/assets/icoon-open-infra.svg" alt="" width="36" height="36" loading="lazy" style="left:16%;top:52%;transform:rotate(31deg)"><img src="/presentatie/assets/icoon-open-bim-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:27%;top:8%;transform:rotate(12deg)"><img src="/presentatie/assets/icoon-open-pdf-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:37%;top:58%;transform:rotate(-38deg)"><img src="/presentatie/assets/icoon-open-office-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:47%;top:22%;transform:rotate(48deg)"><img src="/presentatie/assets/icoon-y-next.svg" alt="" width="36" height="36" loading="lazy" style="left:57%;top:62%;transform:rotate(-12deg)"><img src="/presentatie/assets/icoon-open-speech-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:64%;top:4%;transform:rotate(26deg)"><img src="/presentatie/assets/icoon-open-calculations-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:72%;top:42%;transform:rotate(-46deg)"><img src="/presentatie/assets/icoon-open-fem-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:80%;top:12%;transform:rotate(58deg)"><img src="/presentatie/assets/icoon-pile-plan-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:86%;top:60%;transform:rotate(18deg)"><img src="/presentatie/assets/icoon-open-geotechniek-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:93%;top:28%;transform:rotate(-28deg)"><img src="/presentatie/assets/icoon-open-energy-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:97%;top:2%;transform:rotate(40deg)"></div>
+</div>
+<div class="planning">
+  <div class="gantt">
+    <div class="g-maand" style="grid-column:2/6">Maand 1</div><div class="g-maand" style="grid-column:6/10">Maand 2</div><div class="g-maand" style="grid-column:10/14">Maand 3</div>
+    <div class="g-label" style="grid-row:2">Training</div><div class="balk een" style="grid-column:2/6;grid-row:2"><strong>Eerst de mensen</strong></div>
+    <div class="g-label" style="grid-row:3">Platform</div><a class="balk twee" style="grid-column:5/10;grid-row:3" href="https://frappeframework.com/" target="_blank" rel="noopener"><strong>ERPNext of Frappe Framework inrichten</strong><span>en eigen tools erop</span></a>
+    <div class="g-label" style="grid-row:4">Tools</div><a class="balk drie-b" style="grid-column:8/14;grid-row:4" href="#3"><strong>Open CAD Studio en de rest, één voor één</strong></a>
+    <div class="g-label" style="grid-row:5">Bestaande software</div><div class="balk oud" style="grid-column:2/14;grid-row:5"><strong>Blijft staan tot het nieuwe werkt</strong></div>
+    <div class="g-label" style="grid-row:6">Consultant</div><div class="weken" style="grid-column:2/14;grid-row:6" role="img" aria-label="13 weken, elke week 4 uur"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="na">
+    <h3>Na 3 maanden</h3>
+    <ul class="usps"><li>Platform draait</li><li>Eigen tools op één plek</li><li>Eerste tools in gebruik</li><li>Mensen die zelf verder kunnen</li></ul>
+    <p class="na-cijfer"><strong>3</strong> maanden · <strong>4</strong> uur per week</p>
   </div>
 </div>
+<p class="voet klein">Indicatieve planning. Elke week komt een consultant van ons langs: zo'n 50 uur in totaal.</p>
 </section>
-<section class="slide scheiding">
+<section class="slide slotdia">
 <div class="midden">
-  <p class="label">Eerlijk is eerlijk</p>
-  <h2 class="reus">En <span class="a">nu</span>?</h2>
-  <p class="groot">Na zo'n verhaal is de eerste reactie ontreddering. Alles morgen de deur uit? Dat doe je niet.</p>
-  <p class="groot sterk">Dit is geen softwareproject. Dit is veranderingsmanagement.</p>
-</div>
-</section>
-<section class="slide ">
-<div class="kop"><p class="label">Het implementatietraject</p><h2>3 maanden, <span class="a">4 uur per week</span></h2></div>
-<div class="traject">
-  <a class="stap" href="#34"><span class="nr">1</span><h3>Training</h3><p>Eerst de mensen: wat kan er, en hoe werk je ermee?</p></a>
-  <div class="pijl" aria-hidden="true"></div>
-  <a class="stap" href="#35"><span class="nr">2</span><h3>ERPNext inrichten</h3><p>Wij richten ERPNext in, en iedereen zet zijn eigen tools erop.</p></a>
-  <div class="pijl" aria-hidden="true"></div>
-  <a class="stap" href="#36"><span class="nr">3</span><h3>Tools integreren</h3><p>Open CAD Studio en de andere tools stap voor stap in het werk.</p></a>
-</div>
-<p class="voet">Elke week komt een consultant van ons bij jullie langs: zo'n 50 uur in totaal, en de organisatie groeit mee.</p>
-</section>
-<section class="slide ">
-<div class="kop"><p class="label">Stap 1</p><h2>Training: <span class="a">eerst de mensen</span></h2></div>
-<ul class="punten">
-  <li>Samen kijken wat er nu kan, met jullie eigen werk als voorbeeld.</li>
-  <li>Leren werken met AI en je eerste eigen tool bouwen.</li>
-  <li>Zien wie er energie van krijgt: zij trekken de rest mee.</li>
-</ul>
-</section>
-<section class="slide ">
-<div class="kop"><p class="label">Stap 2</p><h2>ERPNext inrichten: <span class="a">één plek voor alles</span></h2></div>
-<ul class="punten">
-  <li>Wij richten ERPNext in voor jullie organisatie.</li>
-  <li>Iedereen kan zijn gevibe-code tools op ERPNext zetten.</li>
-  <li>Zo groeit de organisatie mee, in plaats van dat het haar overkomt.</li>
-</ul>
-</section>
-<section class="slide ">
-<div class="kop"><p class="label">Stap 3</p><h2>Tools integreren: <span class="a">één voor één</span></h2></div>
-<ul class="punten">
-  <li><a href="#5">Open CAD Studio</a> en de <a href="#3">andere OpenAEC-tools</a> komen in het dagelijkse werk.</li>
-  <li>Eén tool tegelijk, te beginnen waar het meeste te winnen is.</li>
-  <li>Je bestaande software blijft staan tot het nieuwe werkt. Niemand drukt morgen op delete.</li>
-</ul>
-</section>
-<section class="slide ">
-<div class="kop"><p class="label">Het doel na 3 maanden</p><h2>Niet klaar, maar <span class="a">zelf op weg</span></h2></div>
-<div class="zes vier">
-  <div class="blok"><h3>ERPNext draait</h3><p>Ingericht en in gebruik.</p></div>
-  <div class="blok"><h3>Eigen tools op één plek</h3><p>Niet meer verspreid over laptops.</p></div>
-  <div class="blok"><h3>Eerste tools in gebruik</h3><p>Naast je bestaande software.</p></div>
-  <div class="blok"><h3>Mensen die zelf verder kunnen</h3><p>De kennis zit bij jullie, niet alleen bij ons.</p></div>
-</div>
-</section>
-<section class="slide titel">
-<div class="midden">
-  <img class="merk" src="/shared/assets/logo/openaec-logo-v2-amber-on-dark.svg" alt="OpenAEC" width="320" height="84">
+  <span class="woordmerk"><img src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="72" height="72"><span>Open<span class="a">AEC</span></span></span>
   <h2 class="reus">We zijn <span class="a">open</span>.</h2>
   <p class="groot">Build free. Build together.</p>
   <p class="contact"><a href="mailto:info@open-aec.com">info@open-aec.com</a> · <a href="https://open-aec.com/" target="_blank" rel="noopener">open-aec.com</a></p>
@@ -618,6 +648,8 @@ html:not(.js) body { overflow: auto; }
 
   // ── doorklikbare beelden en video's binnen een dia ──
   function zetVideo(item, aan) {
+    var film = item.querySelector('video');
+    if (film && !aan) film.pause();
     var f = item.querySelector('iframe');
     if (!f) return;
     if (aan && !f.getAttribute('src')) f.setAttribute('src', f.dataset.src);
