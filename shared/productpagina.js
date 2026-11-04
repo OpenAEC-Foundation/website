@@ -291,11 +291,19 @@
   }
 
   function go(i) {
+    var vorige = current;
     current = (i + slides.length) % slides.length;
     track.style.transform = 'translateX(-' + current * 100 + '%)';
+    // Een video op een verlaten dia mag niet doorspelen: opnieuw laden stopt hem.
+    if (vorige !== current) {
+      var video = slides[vorige].querySelector('iframe');
+      if (video) video.src = video.src;
+    }
     slides.forEach(function (s, n) {
       var on = n === current;
       s.setAttribute('aria-hidden', on ? 'false' : 'true');
+      var kader = s.querySelector('iframe');
+      if (kader) kader.tabIndex = on ? 0 : -1;
       // Alleen het zichtbare beeld en zijn buren laden.
       if (Math.abs(n - current) <= 1 || Math.abs(n - current) === slides.length - 1) {
         var img = s.querySelector('img[loading="lazy"]');
