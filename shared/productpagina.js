@@ -134,6 +134,9 @@
     var section = document.getElementById('download');
     var REPO = section && section.getAttribute('data-pp-repo');
     if (!REPO) return;
+    // Meerdere apps in één release: data-pp-prefix kiest de bestanden van deze app.
+    var PREFIX = section.getAttribute('data-pp-prefix') || '';
+    var PRE = section.hasAttribute('data-pp-prereleases');
     var state = { tag: null };
     // Bestandsnamen van Tauri-builds (Naam_1.2.3_universal.dmg, Naam-1.2.3-1.x86_64.rpm) en van
     // apps met een eigen release (naam_1.2.3_macos-universal.dmg, naam_1.2.3_x86_64.rpm).
@@ -141,7 +144,7 @@
       windows: /_x64-setup\.exe$/i,
       'windows-user': /_x64_user-setup\.exe$/i,
       'windows-zip': /_windows-x64\.zip$/i,
-      macos: /[_-]universal\.dmg$/i,
+      macos: /[_-](?:universal|aarch64)\.dmg$/i,
       'linux-deb': /_amd64\.deb$/i,
       'linux-rpm': /[._]x86_64\.rpm$/i,
       'linux-appimage': /_amd64\.AppImage$/i,
@@ -222,7 +225,8 @@
       var assets = rel.assets || [];
       Object.keys(match).forEach(function (key) {
         var re = match[key];
-        var hit = assets.filter(function (x) { return re.test(x.name); })[0];
+        var hit = assets.filter(function (x) { return x.name.indexOf(PREFIX) === 0 && re.test(x.name); })[0] ||
+          assets.filter(function (x) { return re.test(x.name) && /^SHA256SUMS/.test(x.name); })[0];
         document.querySelectorAll('[data-pp-dl="' + key + '"]').forEach(function (a) {
           if (hit) a.href = hit.browser_download_url;
         });
@@ -231,6 +235,13 @@
             el.textContent = fmtSize(hit.size);
           });
         }
+      });
+      // Losse apps uit dezelfde release: <a data-pp-app="Naam_" data-pp-app-os="windows">.
+      document.querySelectorAll('[data-pp-app]').forEach(function (a) {
+        var re = match[a.getAttribute('data-pp-app-os')];
+        var prefix = a.getAttribute('data-pp-app');
+        var hit = re && assets.filter(function (x) { return x.name.indexOf(prefix) === 0 && re.test(x.name); })[0];
+        if (hit) a.href = hit.browser_download_url;
       });
       setPrimary(current);
       patch();
@@ -244,9 +255,13 @@
         });
       } catch (e) {}
 
-      fetch('https://api.github.com/repos/' + REPO + '/releases/latest')
+      // Een repo met alleen pre-releases heeft geen /releases/latest; data-pp-prereleases neemt de nieuwste.
+      fetch('https://api.github.com/repos/' + REPO + (PRE ? '/releases?per_page=10' : '/releases/latest'))
         .then(function (r) { return r.ok ? r.json() : null; })
-        .then(function (rel) { if (rel && rel.tag_name) apply(rel); })
+        .then(function (rel) {
+          if (PRE && Array.isArray(rel)) rel = rel.filter(function (x) { return !x.draft; })[0];
+          if (rel && rel.tag_name) apply(rel);
+        })
         .catch(function () {});
     }
 

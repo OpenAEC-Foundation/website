@@ -35,6 +35,7 @@ Generated: 2026-11-05T06:05:57.616Z
 
 - [Open BIM Studio](./open-bim-studio.md) — Open-source BIM modeller in development, built in the DynLex programming language with a native Vulkan interface. It aims to be both as direct as sketching (selection, grips, snapping, Push/Pull, face splitting) and properly technical: parametric building systems, reinforcement (bars, cages, stirrups, meshes, schedules), connections with plates, bolts and screws, and plans, sections and sheets developed from the same model as PDF or SVG. IFCX and binary IFCX are the project format, with IFC import and export, plus a local API and an MCP adapter. A development preview: there is a Linux preview for testers; a tested Windows installer is not yet available. (`v0.1.1`)
 - [Open Heatloss Studio](./open-heatloss-studio.md) — Heat loss calculations for buildings per NEN 12831 and ISSO 51:2023. Rust calculation engine, IFCX integration, PDF reports. (`v0.1.1-pr13.alpha`)
+- [Open Office Studio](./open-office-studio.md) — Open-source office suite: documents, spreadsheets, presentations, notes, Access databases and email in one desktop app, without an account or telemetry. Development releases, not yet signed off for production work. (`v2026.44.8`)
 - [Open Paint Studio](./open-paint-studio.md) — Simple image editor in the spirit of MS Paint, with editable vector objects, a local API and an MCP server. (`v2026.43.2`)
 
 ## In development

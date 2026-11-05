@@ -28,6 +28,7 @@ const TOOL_REPOS = [
   'open-frame-studio',
   'openaec-installer',
   'open-paint-studio',
+  'open-office-studio',
   'open-3d-viewer',
   'open-geotechniek-studio',
   'pile-plan-studio',
