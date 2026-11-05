@@ -72,6 +72,15 @@ jobs:
       # productpagina's en stempelt softwareVersion in de JSON-LD. Zonder deze
       # stap staat die tekst alleen via JavaScript in de DOM en loopt de
       # crawlbare versie achter op wat bezoekers zien.
+
+      - name: Open Infra Studio-versies ophalen
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/generate-infra-compat.js
+
+      - name: Open Infra Studio-versietabel bijwerken
+        run: node scripts/build-infra-versions.js
+
       - name: Render latest changelog + softwareVersion into product pages
         run: node scripts/build-release-notes-static.js
 

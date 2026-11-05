@@ -34,6 +34,8 @@ const STEPS = [
   // changelog van de nieuwste versie als statische HTML in de productpagina's,
   // plus softwareVersion in de JSON-LD. Zonder deze stap is die tekst alleen
   // via JavaScript zichtbaar en dus niet voor crawlers.
+  { name: 'Fetch Open Infra Studio versions per Open CAD Studio version',    cmd: 'node scripts/generate-infra-compat.js' },
+  { name: 'Write the Open Infra Studio version table and versions',          cmd: 'node scripts/build-infra-versions.js' },
   { name: 'Render latest changelog + softwareVersion into product pages',  cmd: 'node scripts/build-release-notes-static.js' },
   { name: 'Build /api/tools.json machine-readable catalog',               cmd: 'node scripts/build-tools-api.js' },
   { name: 'Build markdown mirrors for AI assistants',                     cmd: 'node scripts/build-markdown-mirrors.js' },
