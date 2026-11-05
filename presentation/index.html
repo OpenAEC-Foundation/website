@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Presentation — OpenAEC Foundation</title>
+<meta name="description" content="The OpenAEC ecosystem in one presentation: our goal, the growth figures, all tools, the OpenAEC SuperCloud and the 3-month implementation path.">
+<meta name="robots" content="noindex,nofollow">
+<link rel="canonical" href="https://open-aec.com/presentation/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="OpenAEC Foundation">
+<meta property="og:title" content="Presentation — OpenAEC Foundation">
+<meta property="og:description" content="The OpenAEC ecosystem in one presentation: our goal, the growth figures, all tools, the OpenAEC SuperCloud and the 3-month implementation path.">
+<meta property="og:url" content="https://open-aec.com/presentation/">
+<meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-cad-studio.jpeg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Presentation — OpenAEC Foundation">
+<meta name="twitter:description" content="The OpenAEC ecosystem in one presentation: our goal, the growth figures, all tools, the OpenAEC SuperCloud and the 3-month implementation path.">
+<meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-cad-studio.jpeg">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly summary">
+<link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tool catalog">
+<link rel="icon" href="/favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="stylesheet" href="/shared/style.css?v=20261015">
+<style>
+html, body { height: 100%; }
+body { margin: 0; background: var(--night-build); color: var(--blueprint-white); overflow: hidden; }
+#main { display: block; height: 100%; }
+.slide { position: relative; box-sizing: border-box; height: 100dvh; padding: clamp(22px, 4.5vh, 56px) clamp(20px, 4.5vw, 72px) clamp(56px, 8.5vh, 80px); background: radial-gradient(1200px 600px at 85% -10%, rgba(217,119,6,.14), transparent 60%), var(--night-build); color: var(--blueprint-white); overflow: hidden; display: flex; flex-direction: column; gap: clamp(12px, 2.6vh, 30px); }
+.slide::before { content: ''; position: absolute; inset: 0 0 auto 0; height: 4px; background: var(--gradient-accent); }
+.js .slide { display: none; }
+.js .slide.actief { display: flex; animation: in .25s ease; }
+@keyframes in { from { opacity: 0; } to { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .js .slide.actief { animation: none; } }
+.slide h1, .slide h2, .slide h3 { font-family: var(--font-heading); color: inherit; margin: 0; }
+.slide h1 { font-size: clamp(2rem, 5vw, 4.4rem); line-height: 1.08; letter-spacing: -0.03em; }
+.slide h2 { font-size: clamp(1.5rem, 3.2vw, 2.8rem); line-height: 1.12; letter-spacing: -0.02em; }
+.slide h2 a { color: inherit; text-decoration: none; }
+.slide h2 a:hover { text-decoration: underline; text-decoration-color: var(--amber); }
+.slide h2.reus { font-size: clamp(2.2rem, 6vw, 5.2rem); }
+.slide h3 { font-size: clamp(1rem, 1.55vw, 1.4rem); color: var(--warm-gold); line-height: 1.2; }
+.slide p { margin: 0; max-width: none; line-height: 1.42; color: #d4d4d8; font-size: clamp(.9rem, 1.25vw, 1.12rem); }
+.slide .groot { font-size: clamp(1.02rem, 1.75vw, 1.5rem); line-height: 1.35; color: #e7e5e4; }
+.slide .smal { max-width: 62em; flex: none; }
+.slide .sterk { color: var(--warm-gold); font-family: var(--font-heading); font-weight: 600; }
+.slide .a { color: var(--amber); }
+.slide p.label { font-family: var(--font-code); font-size: clamp(.68rem, .92vw, .84rem); letter-spacing: .12em; text-transform: uppercase; color: var(--warm-gold); margin-bottom: .45em; }
+.kop { flex: none; }
+.kop.rij { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 10px 24px; }
+.midden { margin: auto; text-align: center; display: flex; flex-direction: column; align-items: center; gap: clamp(14px, 3vh, 30px); max-width: 1200px; }
+.midden-lnks { justify-content: center; }
+.opening { margin: auto; width: 100%; max-width: 1240px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 2.2vh, 24px); }
+.merk { height: clamp(70px, 15vh, 140px); width: auto; display: block; }
+.slide p.voor { font-family: var(--font-code); color: var(--warm-gold); border: 1px solid rgba(217,119,6,.4); border-radius: var(--radius-full); padding: 4px 16px; }
+.contact a { color: var(--warm-gold); text-decoration: none; }
+.contact a:hover { text-decoration: underline; }
+.slide p.contact { font-family: var(--font-code); font-size: clamp(1rem, 1.6vw, 1.4rem); }
+.blok { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-lg); padding: clamp(12px, 2.1vh, 24px); display: flex; flex-direction: column; gap: 8px; min-height: 0; color: inherit; text-decoration: none; text-align: left; }
+a.blok:hover, a.stap:hover, a.laag:hover { border-color: var(--amber); background: rgba(217,119,6,.12); }
+.drie, .zes, .kolommen, .splits, .traject, .grafieken { flex: 1; min-height: 0; }
+.drie { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 1.6vw, 24px); align-content: center; }
+.drie.klein { flex: none; width: 100%; }
+.zes { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(10px, 1.5vw, 20px); align-content: center; }
+.zes.vier { grid-template-columns: repeat(2, 1fr); }
+.slide p.getal { font-family: var(--font-heading); font-weight: 700; font-size: clamp(1.8rem, 3.6vw, 3.2rem); color: var(--amber); line-height: 1; }
+.bron { font-size: .8em; color: #a8a29e; }
+.pijlers .blok img { width: 100%; height: clamp(80px, 21vh, 230px); object-fit: cover; border-radius: var(--radius-md); }
+.grafieken { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: clamp(10px, 1.4vw, 18px); }
+.grafiek { position: relative; display: flex; flex-direction: column; min-height: 0; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-lg); padding: clamp(10px, 1.7vh, 18px) clamp(12px, 1.4vw, 20px) 8px; }
+.g-kop { flex: none; display: flex; flex-wrap: wrap; align-items: baseline; gap: 2px 14px; }
+.slide p.g-getal { font-family: var(--font-heading); font-weight: 700; font-size: clamp(1.3rem, 2.5vw, 2.2rem); color: #fff; line-height: 1.1; }
+.slide p.g-groei { color: #d4d4d8; font-size: clamp(.78rem, 1.02vw, .95rem); }
+.g-plot { flex: 1; min-height: 0; position: relative; }
+.g-plot svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.g-tip { position: absolute; z-index: 3; pointer-events: none; transform: translate(-50%, -110%); background: #111114; border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius-sm); padding: 4px 9px; font-size: .8rem; color: #fff; white-space: nowrap; }
+.slide .voet { flex: none; color: #d4d4d8; font-size: clamp(.92rem, 1.4vw, 1.25rem); text-align: center; }
+.slide .voet.klein { font-size: clamp(.72rem, .95vw, .86rem); color: #a8a29e; padding-right: 160px; }
+.kolommen { display: grid; grid-template-columns: repeat(5, 1fr); gap: clamp(8px, 1.1vw, 16px); align-content: stretch; }
+.kolom { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-lg); padding: clamp(10px, 1.7vh, 18px) clamp(8px, .9vw, 14px); min-height: 0; }
+.kolom h3 { font-size: clamp(.9rem, 1.3vw, 1.2rem); margin-bottom: .7em; }
+.kolom ul { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(2px, .7vh, 8px); }
+.kolom a { display: flex; align-items: center; gap: 9px; color: #e7e5e4; text-decoration: none; font-size: clamp(.76rem, 1.03vw, .98rem); line-height: 1.15; padding: 3px; border-radius: var(--radius-sm); }
+.kolom a:hover { background: rgba(217,119,6,.18); color: #fff; }
+.app { flex: none; width: clamp(24px, 2.7vw, 36px); height: clamp(24px, 2.7vw, 36px); border-radius: 8px; object-fit: contain; }
+.app-s { display: inline-grid; place-items: center; background: rgba(217,119,6,.16); color: var(--amber); }
+.app-s .ico { width: 62%; height: 62%; }
+.splits { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(20px, 4vw, 64px); align-items: center; }
+.tekst { display: grid; gap: clamp(14px, 3vh, 28px); }
+.ifcxdia .ifcx, .tool { min-height: 0; }
+.ifcx { flex: 1; display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); gap: clamp(16px, 2.6vw, 44px); align-items: center; }
+.code { margin: 0; background: #17171c; border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius-md); padding: clamp(8px, 1.4vh, 16px) 14px; overflow: hidden; font-family: var(--font-code); font-size: clamp(.62rem, .86vw, .84rem); line-height: 1.4; color: #fde68a; }
+.tool { display: grid; grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr); gap: clamp(16px, 2.6vw, 44px); align-items: center; }
+.js .tool.actief { display: grid; }
+.kijker { margin: 0; height: 100%; min-height: 0; min-width: 0; }
+.kader { position: relative; height: 100%; display: flex; align-items: center; justify-content: center; }
+.item { display: none; width: 100%; height: 100%; align-items: center; justify-content: center; }
+.item.aan { display: flex; }
+.item img { max-width: 100%; max-height: 100%; object-fit: contain; border-radius: var(--radius-lg); box-shadow: 0 20px 50px rgba(0,0,0,.45); background: #fff; }
+.meer .item img { cursor: pointer; }
+.item iframe { width: 100%; aspect-ratio: 16 / 9; max-height: 100%; border: 0; border-radius: var(--radius-lg); background: #000; box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+.pijlk { position: absolute; top: 50%; transform: translateY(-50%); width: 42px; height: 42px; border-radius: 50%; border: 1px solid rgba(255,255,255,.28); background: rgba(20,20,24,.72); color: #fff; font-size: 1.4rem; line-height: 1; cursor: pointer; z-index: 2; }
+.pijlk.vorige { left: 8px; }
+.pijlk.volgende { right: 8px; }
+.pijlk:hover { background: var(--amber); border-color: var(--amber); }
+.pijlk:focus-visible, .stip:focus-visible, .bediening button:focus-visible { outline: 2px solid var(--warm-gold); outline-offset: 2px; }
+.stippen { position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); display: flex; gap: 6px; padding: 5px 9px; border-radius: var(--radius-full); background: rgba(20,20,24,.72); z-index: 2; }
+.stip { width: 12px; height: 12px; padding: 0; border-radius: 50%; border: 0; background: rgba(255,255,255,.4); cursor: pointer; }
+.stip.video { border-radius: 2px; }
+.stip.aan { background: var(--amber); }
+.info { display: flex; flex-direction: column; gap: clamp(7px, 1.5vh, 16px); min-width: 0; }
+.naam { display: flex; align-items: center; gap: 12px; }
+.naam .app { width: clamp(30px, 3.4vw, 46px); height: clamp(30px, 3.4vw, 46px); }
+.slide p.wat { color: #e7e5e4; font-size: clamp(.92rem, 1.35vw, 1.2rem); line-height: 1.3; }
+.usps { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(4px, 1vh, 10px); }
+.usps li { position: relative; padding-left: 1.5em; font-size: clamp(.82rem, 1.14vw, 1.05rem); line-height: 1.28; color: #d4d4d8; }
+.usps li::before { content: ''; position: absolute; left: .15em; top: .28em; width: .4em; height: .72em; border: solid var(--amber); border-width: 0 2px 2px 0; transform: rotate(40deg); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip-s { font-family: var(--font-code); font-size: clamp(.64rem, .82vw, .76rem); padding: 3px 10px; border-radius: var(--radius-full); background: rgba(22,163,74,.16); border: 1px solid rgba(22,163,74,.45); color: #bbf7d0; }
+.chip-s.dev { background: rgba(217,119,6,.14); border-color: rgba(217,119,6,.45); color: #fde68a; }
+.lnks { display: flex; flex-wrap: wrap; gap: 6px; }
+.lnk { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.06); color: #fff; font-size: clamp(.74rem, .95vw, .9rem); font-weight: 500; text-decoration: none; white-space: nowrap; }
+.lnk .ico { width: 14px; height: 14px; color: var(--warm-gold); flex: none; }
+.lnk:hover { background: var(--amber); border-color: var(--amber); color: #fff; }
+.lnk:hover .ico { color: #fff; }
+.scheiding { background: radial-gradient(900px 500px at 50% 40%, rgba(217,119,6,.24), transparent 70%), var(--night-build); }
+.stapel { display: grid; gap: 8px; }
+.laag { display: flex; flex-direction: column; gap: 2px; padding: clamp(10px, 2vh, 20px) clamp(14px, 1.6vw, 24px); border-radius: var(--radius-md); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12); color: inherit; text-decoration: none; }
+.laag strong { font-family: var(--font-heading); font-size: clamp(1rem, 1.6vw, 1.4rem); color: #fff; }
+.laag span { font-size: clamp(.8rem, 1.1vw, 1rem); color: #d4d4d8; }
+.laag.eigen { background: var(--amber); border-color: var(--amber); }
+.laag.eigen span { color: #fff; }
+.traject { display: flex; align-items: center; gap: clamp(6px, 1vw, 14px); }
+.stap { flex: 1; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); border-radius: var(--radius-lg); padding: clamp(16px, 3vh, 34px); display: grid; gap: 10px; color: inherit; text-decoration: none; }
+.nr { font-family: var(--font-heading); font-weight: 700; font-size: clamp(1.8rem, 3.6vw, 3.2rem); color: var(--amber); line-height: 1; }
+.pijl { flex: none; width: clamp(14px, 2vw, 28px); height: clamp(14px, 2vw, 28px); border-top: 3px solid var(--amber); border-right: 3px solid var(--amber); transform: rotate(45deg); margin-right: 8px; }
+.punten { flex: 1; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; justify-content: center; gap: clamp(14px, 3.5vh, 36px); max-width: 1100px; }
+.punten li { font-size: clamp(1.1rem, 2.3vw, 2rem); line-height: 1.3; padding-left: 1.2em; position: relative; color: #e7e5e4; }
+.punten li::before { content: ''; position: absolute; left: 0; top: .5em; width: .5em; height: .5em; border-radius: 2px; background: var(--amber); }
+.punten a { color: var(--warm-gold); }
+.bediening { display: none; position: fixed; right: clamp(10px, 1.6vw, 24px); bottom: clamp(8px, 1.4vh, 16px); z-index: 5; align-items: center; gap: 8px; font-family: var(--font-code); font-size: .82rem; color: #d4d4d8; }
+.js .bediening { display: flex; }
+.bediening button { width: 40px; height: 40px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; font-size: 1.1rem; cursor: pointer; }
+.bediening button:hover { background: var(--amber); border-color: var(--amber); }
+.taal { display: inline-grid; place-items: center; width: 40px; height: 40px; box-sizing: border-box; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; font-weight: 600; text-decoration: none; }
+.taal:hover { background: var(--amber); border-color: var(--amber); color: #fff; }
+.voortgang { position: fixed; left: 0; bottom: 0; height: 4px; width: 0; background: var(--amber); z-index: 5; transition: width .2s ease; }
+html:not(.js) body { overflow: auto; }
+@media (max-width: 768px) {
+  .slide { overflow-y: auto; padding-bottom: 76px; }
+  .drie, .zes, .zes.vier, .splits, .tool, .ifcx, .grafieken { grid-template-columns: 1fr; }
+  .grafieken { grid-template-rows: none; grid-auto-rows: 210px; }
+  .kolommen { grid-template-columns: repeat(2, 1fr); }
+  .tool { align-content: start; }
+  .tool, .ifcx { display: flex; flex-direction: column; flex: none; align-items: stretch; }
+  .js .tool.actief { display: flex; }
+  .kijker, .kader { height: auto; }
+  .kader { min-height: 200px; }
+  .item img { max-height: 42vh; }
+  .traject { flex-direction: column; align-items: stretch; }
+  .pijl { align-self: center; transform: rotate(135deg); margin: 0 0 6px; }
+  .pijlers .blok img { height: 90px; }
+  .slide .drie, .slide .zes, .slide .kolommen, .slide .splits, .slide .traject, .slide .grafieken, .ifcx { flex: none; }
+  .slide .voet.klein { padding-right: 0; }
+}
+.item video { width: 100%; max-height: 100%; aspect-ratio: 16 / 9; border-radius: var(--radius-lg); background: #000; box-shadow: 0 20px 50px rgba(0,0,0,.45); }
+.scdia { grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); }
+.afnamen { display: grid; gap: clamp(3px, .8vh, 8px); }
+.afname { display: flex; align-items: center; gap: 10px; padding: clamp(4px, .9vh, 9px) 10px; border-radius: var(--radius-md); background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); color: inherit; text-decoration: none; }
+.afname:hover { border-color: var(--amber); background: rgba(217,119,6,.14); }
+.afname > span:last-child { display: grid; min-width: 0; }
+.afname strong { font-family: var(--font-heading); font-size: clamp(.86rem, 1.2vw, 1.08rem); color: #fff; line-height: 1.2; }
+.afname small { font-size: clamp(.72rem, .92vw, .86rem); color: #d4d4d8; line-height: 1.25; }
+.bouwdia { grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); background: linear-gradient(90deg, rgba(42,42,50,.93) 50%, rgba(42,42,50,.68)), url(/presentatie/assets/onprem.webp) center / cover; }
+.gebouw { height: 100%; min-height: 0; display: flex; flex-direction: column; justify-content: center; }
+.dak { flex: none; height: clamp(26px, 7vh, 54px); margin: 0 3%; background: var(--amber); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+.gebouw .laag { flex: none; border-radius: 0; margin: 0 5%; padding: clamp(8px, 1.8vh, 18px) clamp(12px, 1.5vw, 22px); border: 2px solid rgba(255,255,255,.28); border-top: 0; background: rgba(20,20,24,.82); display: flex; flex-direction: column; gap: 6px; }
+.gebouw .laag.eigen { background: rgba(217,119,6,.2); border-color: var(--amber); }
+.gebouw .laag.erp { background: var(--amber); border-color: var(--amber); }
+.gebouw .laag.erp span { color: #fff; }
+.gebouw a.laag.erp:hover { background: #b45f05; }
+.gebouw .laag.fundering { margin: 0; background: repeating-linear-gradient(135deg, #4a4a54 0 10px, #40404a 10px 20px); border-color: #6b6b76; border-top: 2px solid #6b6b76; }
+.eigen-rij { display: flex; flex-wrap: wrap; gap: 6px; }
+.gebouw .eigen-rij span { font-size: clamp(.72rem, .95vw, .88rem); color: #fff; border: 1px dashed rgba(255,255,255,.65); border-radius: var(--radius-sm); padding: 3px 9px; }
+.iconen { display: flex; flex-wrap: wrap; gap: clamp(4px, .55vw, 8px); }
+.iconen img { width: clamp(20px, 2.2vw, 30px); height: clamp(20px, 2.2vw, 30px); display: block; border-radius: 6px; }
+.iconen a:hover img { outline: 2px solid var(--amber); outline-offset: 1px; }
+.palen { flex: none; height: clamp(16px, 5vh, 40px); margin: 0 7%; background: repeating-linear-gradient(90deg, #6b6b76 0 8px, transparent 8px 12%); }
+.trajectdia { gap: clamp(8px, 1.6vh, 18px); }
+.trajectkop { position: relative; display: flex; align-items: flex-end; flex-wrap: wrap; gap: 6px clamp(16px, 2.4vw, 36px); }
+.trajectkop > div:first-child, .trajectkop > .groot { position: relative; z-index: 1; }
+.slide h2.groot-kop { font-size: clamp(2.2rem, 5vw, 4.4rem); line-height: 1; }
+.chaos { position: absolute; left: 48%; right: 0; top: -14px; bottom: -6px; pointer-events: none; }
+.chaos img { position: absolute; width: clamp(20px, 2.8vw, 38px); height: clamp(20px, 2.8vw, 38px); opacity: .85; filter: drop-shadow(0 6px 10px rgba(0,0,0,.5)); }
+.trajectkop .groot { max-width: 21em; }
+.planning { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) minmax(170px, 21%); gap: clamp(10px, 1.4vw, 20px); }
+.gantt { display: grid; grid-template-columns: minmax(84px, 13%) repeat(12, minmax(0, 1fr)); grid-template-rows: auto repeat(5, minmax(0, 1fr)); gap: 6px 0; align-items: center; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-radius: var(--radius-lg); padding: clamp(8px, 1.4vh, 14px) clamp(10px, 1.2vw, 16px); min-height: 0; }
+.g-maand { font-family: var(--font-code); font-size: clamp(.68rem, .9vw, .84rem); color: #a8a29e; text-align: center; border-bottom: 1px solid rgba(255,255,255,.14); padding-bottom: 4px; align-self: end; }
+.g-maand:first-child { grid-row: 1; }
+.g-maand { grid-row: 1; }
+.g-label { grid-column: 1; font-size: clamp(.72rem, .95vw, .9rem); color: #d4d4d8; line-height: 1.15; padding-right: 8px; }
+.balk { align-self: stretch; display: flex; flex-direction: column; justify-content: center; min-width: 0; padding: 3px clamp(8px, .9vw, 14px); border-radius: var(--radius-sm); color: #fff; text-decoration: none; line-height: 1.15; }
+.balk strong { font-family: var(--font-heading); font-size: clamp(.74rem, 1.05vw, 1rem); font-weight: 600; }
+.balk span { font-size: clamp(.68rem, .85vw, .82rem); opacity: .9; }
+.balk.een { background: #EA580C; }
+.balk.twee { background: var(--amber); }
+.balk.drie-b { background: #B45309; }
+a.balk:hover { filter: brightness(1.15); }
+.balk.oud { background: linear-gradient(90deg, rgba(168,162,158,.75) 35%, rgba(168,162,158,.08)); }
+.weken { display: flex; justify-content: space-between; align-items: center; padding: 0 3px; }
+.weken i { width: clamp(9px, 1.1vw, 15px); height: clamp(9px, 1.1vw, 15px); border-radius: 50%; background: var(--warm-gold); }
+.na { display: flex; flex-direction: column; gap: clamp(6px, 1.4vh, 14px); padding: clamp(10px, 1.6vh, 18px); border-radius: var(--radius-lg); background: rgba(217,119,6,.16); border: 1px solid rgba(217,119,6,.5); }
+.slide p.na-cijfer { margin-top: auto; font-family: var(--font-heading); color: #fff; font-size: clamp(.86rem, 1.15vw, 1.05rem); }
+.na-cijfer strong { color: var(--warm-gold); font-size: 1.6em; }
+.trajectdia .voet.klein { text-align: left; }
+.merklink { color: inherit; text-decoration: none; }
+.woordmerk { display: inline-flex; align-items: center; gap: clamp(8px, 1vw, 16px); font-family: var(--font-heading); font-weight: 700; font-size: clamp(1.7rem, 3.4vw, 3rem); letter-spacing: -0.02em; color: #fff; line-height: 1; }
+.woordmerk img { height: clamp(44px, 9vh, 76px); width: auto; display: block; }
+.slotdia { background: linear-gradient(rgba(30,30,36,.62), rgba(30,30,36,.82)), url(/presentatie/assets/verzenden.webp) center / cover; }
+.scdia .chips .chip-s { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.22); color: #e7e5e4; }
+@media (max-width: 768px) {
+  .bouwdia .gebouw { height: auto; }
+  .chaos { display: none; }
+  .planning { grid-template-columns: 1fr; flex: none; }
+  .gantt { display: flex; flex-direction: column; align-items: stretch; }
+  .g-maand { display: none; }
+  .g-label { padding-top: 6px; }
+  .balk { padding: 6px; }
+}
+@media print {
+  @page { size: 16in 9in; margin: 0; }
+  html, body { height: auto; overflow: visible; }
+  .js .slide, .slide { display: flex !important; height: 9in; break-after: page; animation: none; }
+  .js .tool { display: grid !important; }
+  .bediening, .voortgang, .pijlk, .stippen, .chaos { display: none !important; }
+}
+</style>
+</head>
+<body>
+<main id="main">
+<section class="slide titel">
+<div class="opening">
+  <a class="merklink" href="/en/" target="_blank" rel="noopener"><span class="woordmerk"><img src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="72" height="72"><span>Open<span class="a">AEC</span></span></span></a>
+  <p class="voor" id="voor" hidden></p>
+  <h1>All construction software <span class="a">open source</span> by the end of 2026</h1>
+  <p class="groot">From design to handover and maintenance, for buildings, infrastructure and civil works. Because today, construction companies work with separate programs that do not understand each other.</p>
+  <div class="drie klein">
+    <div class="blok"><p class="getal">35%</p><p>of working time goes to searching, coordinating and fixing mistakes.<span class="bron"> Source: FMI (US), 2018</span></p></div>
+    <div class="blok"><p class="getal">Scattered</p><p>Every program has its own account, controls and file format.</p></div>
+    <div class="blok"><p class="getal">Locked in</p><p>Closed formats and licences make switching expensive.</p></div>
+  </div>
+</div>
+</section>
+<section class="slide statistiek">
+<div class="kop rij"><div><p class="label">Where we are now</p><h2>This is how <span class="a">fast it goes</span></h2></div><a class="lnk " href="/en/statistieken/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>All figures per tool</span></a></div>
+<div class="grafieken"><div class="grafiek" data-reeks="downloads">
+    <div class="g-kop"><h3>Downloads</h3><p class="g-getal" data-waarde>209,442</p><p class="g-groei" data-groei></p></div>
+    <div class="g-plot" data-plot role="img" aria-label="Downloads over time, now 209,442"></div>
+    <div class="g-tip" data-tip hidden></div>
+  </div><div class="grafiek" data-reeks="commits">
+    <div class="g-kop"><h3>Commits</h3><p class="g-getal" data-waarde>25,359</p><p class="g-groei" data-groei></p></div>
+    <div class="g-plot" data-plot role="img" aria-label="Commits over time, now 25,359"></div>
+    <div class="g-tip" data-tip hidden></div>
+  </div><div class="grafiek" data-reeks="stars">
+    <div class="g-kop"><h3>GitHub stars</h3><p class="g-getal" data-waarde>5,106</p><p class="g-groei" data-groei></p></div>
+    <div class="g-plot" data-plot role="img" aria-label="GitHub stars over time, now 5,106"></div>
+    <div class="g-tip" data-tip hidden></div>
+  </div><div class="grafiek" data-reeks="contributors">
+    <div class="g-kop"><h3>Contributors</h3><p class="g-getal" data-waarde>105</p><p class="g-groei" data-groei></p></div>
+    <div class="g-plot" data-plot role="img" aria-label="Contributors over time, now 105"></div>
+    <div class="g-tip" data-tip hidden></div>
+  </div></div>
+<p class="voet klein">The Open CAD Studio counter was added to the downloads on 12 September, which explains the jump. Source: GitHub, updated daily.</p>
+</section>
+<section class="slide overzicht">
+<div class="kop rij"><div><p class="label">The ecosystem</p><h2>24 tools for <span class="a">the whole chain</span></h2></div><div class="lnks"><a class="lnk " href="/en/openaec-installer/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>OpenAEC Installer</span></a><a class="lnk " href="/en/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>All tools on the website</span></a></div></div>
+<div class="kolommen"><div class="kolom"><h3>Drawing and design</h3><ul><li><a href="#5"><img class="app" src="/presentatie/assets/icoon-open-cad-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open CAD Studio</span></a></li><li><a href="#6"><img class="app" src="/presentatie/assets/icoon-open-infra.svg" alt="" width="40" height="40" loading="lazy"><span>Open Infra Studio</span></a></li><li><a href="#7"><img class="app" src="/presentatie/assets/icoon-open-bim-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open BIM Studio</span></a></li><li><a href="#8"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-ruler"/></svg></span><span>IFCCAD</span></a></li></ul></div><div class="kolom"><h3>Documents and office</h3><ul><li><a href="#9"><img class="app" src="/presentatie/assets/icoon-open-pdf-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open PDF Studio</span></a></li><li><a href="#10"><img class="app" src="/presentatie/assets/icoon-open-office-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open Office Studio</span></a></li><li><a href="#11"><img class="app" src="/presentatie/assets/icoon-y-next.svg" alt="" width="40" height="40" loading="lazy"><span>Y-app</span></a></li><li><a href="#12"><img class="app" src="/presentatie/assets/icoon-open-speech-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open Speech Studio</span></a></li><li><a href="#13"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pen"/></svg></span><span>Open Paint Studio</span></a></li><li><a href="#14"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></span><span>Open Books Studio</span></a></li></ul></div><div class="kolom"><h3>Calculating and checking</h3><ul><li><a href="#15"><img class="app" src="/presentatie/assets/icoon-open-calculations-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open CalcSheet Studio</span></a></li><li><a href="#16"><img class="app" src="/presentatie/assets/icoon-open-fem-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open FEM Studio</span></a></li><li><a href="#17"><img class="app" src="/presentatie/assets/icoon-pile-plan-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open Pile Plan Studio</span></a></li><li><a href="#18"><img class="app" src="/presentatie/assets/icoon-open-geotechniek-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open Geotechniek Studio</span></a></li><li><a href="#19"><img class="app" src="/presentatie/assets/icoon-open-energy-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open Energy Studio</span></a></li><li><a href="#20"><img class="app" src="/presentatie/assets/icoon-open-heatloss-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open Heatloss Studio</span></a></li></ul></div><div class="kolom"><h3>Estimating and planning</h3><ul><li><a href="#21"><img class="app" src="/presentatie/assets/icoon-open-calc-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open Calc Studio</span></a></li><li><a href="#22"><img class="app" src="/presentatie/assets/icoon-open-planner-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open Planner Studio</span></a></li></ul></div><div class="kolom"><h3>Site and models</h3><ul><li><a href="#23"><img class="app" src="/presentatie/assets/icoon-open-field-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open Field Studio</span></a></li><li><a href="#24"><img class="app" src="/presentatie/assets/icoon-monty-ifc-viewer.svg" alt="" width="40" height="40" loading="lazy"><span>Monty IFC Viewer</span></a></li><li><a href="#25"><img class="app" src="/presentatie/assets/icoon-open-3d-viewer.svg" alt="" width="40" height="40" loading="lazy"><span>Open 3D Viewer Studio</span></a></li><li><a href="#26"><img class="app" src="/presentatie/assets/icoon-open-pointcloud-studio.svg" alt="" width="40" height="40" loading="lazy"><span>Open Pointcloud Studio</span></a></li><li><a href="#27"><img class="app" src="/presentatie/assets/icoon-open-bim-validator.svg" alt="" width="40" height="40" loading="lazy"><span>Open BIM Validator Studio</span></a></li><li><a href="#28"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg></span><span>BCF Manager Studio</span></a></li></ul></div></div>
+</section>
+<section class="slide ifcxdia">
+<div class="ifcx">
+  <figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-calcsheet-studio-feat-ifc.png" alt="The IFC tab of Open CalcSheet Studio with the spatial tree and the generated file"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/ifcx.png" alt="Map of IFCX: the IFC classes, the extensions and the OpenAEC tools that use them"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/ifccad-format-explorer.png" alt="The IFCCAD Format Explorer with a drawing and the IFCX data behind it"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+  <div class="info">
+    <p class="label">The connection</p>
+    <h2>One open language: <span class="a">IFCX</span></h2>
+    <p class="groot">Drawings, models and calculations in the same open format, plainly readable.</p>
+    <pre class="code" aria-label="Shortened fragment of an IFCX file"><code>{
+  &quot;header&quot;: {
+    &quot;ifcxVersion&quot;: &quot;ifcx_alpha&quot;,
+    &quot;author&quot;: &quot;OpenAEC&quot;
+  },
+  &quot;data&quot;: [
+    {
+      &quot;path&quot;: &quot;/cad/d1/layout/1&quot;,
+      &quot;children&quot;: { &quot;0&quot;: &quot;/cad/d1/e1&quot; },
+      &quot;attributes&quot;: {
+        &quot;ifccad::layout&quot;: {
+          &quot;kind&quot;: &quot;Model&quot;
+        }
+      }
+    }
+  ]
+}</code></pre>
+    <div class="lnks"><a class="lnk " href="/en/ifcx/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>More about IFCX</span></a><a class="lnk " href="https://ifccad-explorer.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try the Explorer</span></a></div>
+  </div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item video"><iframe data-src="https://www.youtube-nocookie.com/embed/IdJ2wTX7QcY" title="Video: Open CAD Studio" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-cad-studio.jpeg" alt="Open CAD Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-cad-studio-3d.jpg" alt="Open CAD Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-cad-studio-3.png" alt="Open CAD Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-cad-studio-2.png" alt="Open CAD Studio: screenshot 4"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Drawing and design · 1 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-cad-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-cad-studio/" target="_blank" rel="noopener">Open CAD Studio</a></h2></div>
+  <p class="wat">Full 2D and 3D CAD, a community project by Hakan Seven.</p>
+  <ul class="usps"><li>Reads and writes DWG and DXF, from R13 to R2018</li><li>2D and 3D in one program, built in Rust</li><li>XREF, WBLOCK and hatch as you are used to</li><li>Exchange through STL, STEP and OBJ, and plot to PDF</li></ul>
+  <p class="chips"><span class="chip-s">Community</span><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-cad-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="/en/open-cad-studio/#download" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>Download</span></a><a class="lnk " href="https://github.com/HakanSeven12/OpenCADStudio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item video"><iframe data-src="https://www.youtube-nocookie.com/embed/XM0yHp4r6yA" title="Video: Open Infra Studio" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-infra-studio.png" alt="Open Infra Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-infra-studio-bgt.png" alt="Open Infra Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-infra-studio-wms.png" alt="Open Infra Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-infra-studio-corridor.png" alt="Open Infra Studio: screenshot 4"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-infra-studio-3d.png" alt="Open Infra Studio: screenshot 5"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-infra-studio-voorbeeld-plattegrond.jpg" alt="Open Infra Studio: screenshot 6"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-infra-studio-voorbeeld-ondergrond.jpg" alt="Open Infra Studio: screenshot 7"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Drawing and design · 2 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-infra.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-infra-studio/" target="_blank" rel="noopener">Open Infra Studio</a></h2></div>
+  <p class="wat">GIS and civil design in Open CAD Studio.</p>
+  <ul class="usps"><li>Aerial photo, cadastre, AHN and BAG in one click from PDOK</li><li>BGT through the official NLCS-BGT 5.0 mapping</li><li>Alignments, profiles and KLIC to NLCS</li><li>Export to IFC 4.3</li></ul>
+  <p class="chips"><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-infra-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="/en/open-infra-studio/#download" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>Download</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/Open-Infra-Studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-bim-studio-hero.png" alt="Open BIM Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-bim-studio-plan.png" alt="Open BIM Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-bim-studio-steel-3d.png" alt="Open BIM Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-bim-studio-reinforcement.png" alt="Open BIM Studio: screenshot 4"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-bim-studio-schedule.png" alt="Open BIM Studio: screenshot 5"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-bim-studio-elevation.png" alt="Open BIM Studio: screenshot 6"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Drawing and design · 3 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-bim-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-bim-studio/" target="_blank" rel="noopener">Open BIM Studio</a></h2></div>
+  <p class="wat">BIM modeller for buildings and structures.</p>
+  <ul class="usps"><li>Walls, floors, roofs, windows, columns and piles</li><li>Reinforcement: bars, cages and stirrups, with schedules</li><li>Drawings and schedules straight from the model</li><li>IFC import and export</li></ul>
+  <p class="chips"><span class="chip-s dev">In development</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-bim-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/open-bim-studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/ifccad-format-explorer.png" alt="IFCCAD: screenshot 1"></div></div></figure>
+<div class="info">
+  <p class="label">Drawing and design · 4 of 24</p>
+  <div class="naam"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-ruler"/></svg></span><h2><a href="/en/ifccad/" target="_blank" rel="noopener">IFCCAD</a></h2></div>
+  <p class="wat">Open CAD format on IFCX.</p>
+  <ul class="usps"><li>Drawings in an open format instead of a closed one</li><li>Nine dimension kinds and hatches</li><li>Exchange with DWG and DXF through the Format Explorer</li><li>View it straight in the browser</li></ul>
+  <p class="chips"><span class="chip-s dev">In development</span></p>
+  <div class="lnks"><a class="lnk " href="/en/ifccad/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://ifccad-explorer.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try online</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/ifccad" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pdf-studio-hero.png" alt="Open PDF Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pdf-studio-feat-tekeningen.png" alt="Open PDF Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pdf-studio-feat-annoteren.png" alt="Open PDF Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pdf-studio-feat-meten.png" alt="Open PDF Studio: screenshot 4"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pdf-studio-feat-vergelijken.png" alt="Open PDF Studio: screenshot 5"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pdf-studio-feat-paginas.png" alt="Open PDF Studio: screenshot 6"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pdf-studio-feat-delen.png" alt="Open PDF Studio: screenshot 7"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Documents and office · 5 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-pdf-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-pdf-studio/" target="_blank" rel="noopener">Open PDF Studio</a></h2></div>
+  <p class="wat">PDF editor for construction drawings, with its own engine.</p>
+  <ul class="usps"><li>Mark up with clouds, callouts and NEN 1414 symbols</li><li>Measure to scale: distance, area and perimeter</li><li>OCR for scanned drawings</li><li>Redaction that really removes content</li><li>In 39 languages</li></ul>
+  <p class="chips"><span class="chip-s">Available</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-pdf-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://open-pdf-studio.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try online</span></a><a class="lnk " href="/en/open-pdf-studio/#download" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>Download</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/open-pdf-studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-office-studio-writer.jpg" alt="Open Office Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-office-studio-spreadsheet.jpg" alt="Open Office Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-office-studio-presentation.jpg" alt="Open Office Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-office-studio-email.jpg" alt="Open Office Studio: screenshot 4"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-office-studio-notition.jpg" alt="Open Office Studio: screenshot 5"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Documents and office · 6 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-office-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="https://github.com/OpenAEC-Foundation/open-office-studio" target="_blank" rel="noopener">Open Office Studio</a></h2></div>
+  <p class="wat">Open source office suite in one program.</p>
+  <ul class="usps"><li>Opens and saves Word, Excel and PowerPoint files</li><li>Documents, spreadsheets, presentations, notes and email</li><li>Works locally on Windows, macOS and Linux</li></ul>
+  <p class="chips"><span class="chip-s dev">In development</span></p>
+  <div class="lnks"><a class="lnk " href="https://github.com/OpenAEC-Foundation/open-office-studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/y-app.jpeg" alt="Y-app: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/y-app-2.png" alt="Y-app: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/y-app-3.png" alt="Y-app: screenshot 3"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Documents and office · 7 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-y-next.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/y-app/" target="_blank" rel="noopener">Y-app</a></h2></div>
+  <p class="wat">The everything app on ERPNext.</p>
+  <ul class="usps"><li>Email, ERP, hours, quotes, projects and scheduling on one screen</li><li>Several companies under one account</li><li>Employees only see what they need</li><li>Connects to chat, files and an AI assistant</li></ul>
+  <p class="chips"><span class="chip-s">Available</span><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/y-app/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-speech-studio-tts.png" alt="Open Speech Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-speech-studio-models.png" alt="Open Speech Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-speech-studio-settings.png" alt="Open Speech Studio: screenshot 3"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Documents and office · 8 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-speech-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-speech-studio/" target="_blank" rel="noopener">Open Speech Studio</a></h2></div>
+  <p class="wat">Speech to text and minutes for project meetings.</p>
+  <ul class="usps"><li>Fully local: no cloud and no telemetry</li><li>Dictate in any program with one hotkey</li><li>Minutes of your meetings</li><li>Several languages and models</li></ul>
+  <p class="chips"><span class="chip-s">Available</span><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-speech-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/open-speech-studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-paint-studio-overzicht.png" alt="Open Paint Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-paint-studio-tekst.png" alt="Open Paint Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-paint-studio-donker.png" alt="Open Paint Studio: screenshot 3"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Documents and office · 9 of 24</p>
+  <div class="naam"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pen"/></svg></span><h2><a href="/en/open-paint-studio/" target="_blank" rel="noopener">Open Paint Studio</a></h2></div>
+  <p class="wat">Simple image editor for sketching and marking up.</p>
+  <ul class="usps"><li>Shapes and text stay editable</li><li>Opens PSD, HEIC, camera RAW, SVG and IFCX</li><li>Exports editable SVG</li><li>MCP server for AI assistants</li></ul>
+  <p class="chips"><span class="chip-s">Available</span><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-paint-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="/en/open-paint-studio/#download" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>Download</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/open-paint-studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-books-collectie.jpg" alt="Open Books Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-books-boeken.jpg" alt="Open Books Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-books-lezer.jpg" alt="Open Books Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-books-tekening.jpg" alt="Open Books Studio: screenshot 4"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Documents and office · 10 of 24</p>
+  <div class="naam"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></span><h2><a href="/en/open-books/" target="_blank" rel="noopener">Open Books Studio</a></h2></div>
+  <p class="wat">Old building engineering books, scanned and searchable.</p>
+  <ul class="usps"><li>Standard works by Wattjes, Gugel, Vandepitte and others</li><li>Searchable and readable straight in the browser</li><li>For research and restoration</li></ul>
+  <p class="chips"><span class="chip-s">Available</span><span class="chip-s dev">In development</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-books/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://open-books.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try online</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/open-books" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item video"><iframe data-src="https://www.youtube-nocookie.com/embed/-1suWprVB7o" title="Video: Open CalcSheet Studio" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-calcsheet-studio-hero.png" alt="Open CalcSheet Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-calcsheet-studio-feat-rekenblad.png" alt="Open CalcSheet Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-calcsheet-studio-feat-rapport.png" alt="Open CalcSheet Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-calcsheet-studio-feat-bladen.png" alt="Open CalcSheet Studio: screenshot 4"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-calcsheet-studio-feat-modules.png" alt="Open CalcSheet Studio: screenshot 5"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-calcsheet-studio-feat-ifc.png" alt="Open CalcSheet Studio: screenshot 6"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Calculating and checking · 11 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-calculations-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-calcsheet-studio/" target="_blank" rel="noopener">Open CalcSheet Studio</a></h2></div>
+  <p class="wat">Structural calculations you can read back.</p>
+  <ul class="usps"><li>Every result shows its formula, numbers and units</li><li>All your sheets become one report, in your own house style</li><li>Modules to the Eurocodes with the Dutch national annex</li><li>IFCX and IFC4x3, and opens Calcpad files (.cpd)</li></ul>
+  <p class="chips"><span class="chip-s dev">In development</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-calcsheet-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://open-calculations-studio.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try online</span></a><a class="lnk " href="/en/open-calcsheet-studio/#download" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>Download</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-fem-studio-overzicht.png" alt="Open FEM Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-fem-studio-staalhal.png" alt="Open FEM Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-fem-studio-momenten.png" alt="Open FEM Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-fem-studio-toetsing.png" alt="Open FEM Studio: screenshot 4"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-fem-studio-metselwerk.png" alt="Open FEM Studio: screenshot 5"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Calculating and checking · 12 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-fem-studio.svg" alt="" width="40" height="40" loading="lazy"><h2>Open FEM Studio</h2></div>
+  <p class="wat">Finite elements for frames and plates.</p>
+  <ul class="usps"><li>Frames, beams and plates in 2D</li><li>Frames with shells, slabs and walls in 3D</li><li>Checks to the Eurocodes with the Dutch national annex</li><li>Calculation report as PDF</li><li>Alpha: not yet for real projects</li></ul>
+  <p class="chips"><span class="chip-s dev">In development</span></p>
+  <div class="lnks"></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pile-plan-studio.png" alt="Open Pile Plan Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pile-plan-studio-import.png" alt="Open Pile Plan Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pile-plan-studio-optimization.png" alt="Open Pile Plan Studio: screenshot 3"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Calculating and checking · 13 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-pile-plan-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-pile-plan-studio/" target="_blank" rel="noopener">Open Pile Plan Studio</a></h2></div>
+  <p class="wat">From loads and CPTs to a pile plan.</p>
+  <ul class="usps"><li>Import loads, CPTs and advice from CSV and XLSX</li><li>Automatically selects the CPT per load point</li><li>Optimises pile configurations for cost</li><li>Several pile plan variants side by side</li></ul>
+  <p class="chips"><span class="chip-s">Available</span><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-pile-plan-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://pile-plan-studio.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try online</span></a><a class="lnk " href="/en/open-pile-plan-studio/#download" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>Download</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/pile-plan-studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-geotechniek-studio-1.jpg" alt="Open Geotechniek Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-geotechniek-studio-2.jpg" alt="Open Geotechniek Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-geotechniek-studio-3.jpg" alt="Open Geotechniek Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-geotechniek-studio-4.png" alt="Open Geotechniek Studio: screenshot 4"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-geotechniek-studio-5.jpg" alt="Open Geotechniek Studio: screenshot 5"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Calculating and checking · 14 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-geotechniek-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-geotechniek-studio/" target="_blank" rel="noopener">Open Geotechniek Studio</a></h2></div>
+  <p class="wat">View and analyse CPTs and boreholes.</p>
+  <ul class="usps"><li>Reads CPT, GEF and BRO-xml, and boreholes</li><li>Robertson classification and soil build-up</li><li>Map with BRO and cadastre layers</li><li>PDF report and export to IFC and IFCX</li></ul>
+  <p class="chips"><span class="chip-s">Available</span><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-geotechniek-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://open-geotechniek-studio.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try online</span></a><a class="lnk " href="/en/open-geotechniek-studio/#download" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>Download</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/open-geotechniek-studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-energy-studio.jpeg" alt="Open Energy Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-energy-studio-2.jpeg" alt="Open Energy Studio: screenshot 2"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Calculating and checking · 15 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-energy-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-energy-studio/" target="_blank" rel="noopener">Open Energy Studio</a></h2></div>
+  <p class="wat">Energy performance of buildings.</p>
+  <ul class="usps"><li>Calculates to NTA 8800</li><li>BENG 1, 2 and 3, energy label and TOjuli</li><li>Building data from IFCX</li><li>Report as PDF</li></ul>
+  <p class="chips"><span class="chip-s">Available</span><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-energy-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://open-energy-studio.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try online</span></a><a class="lnk " href="/en/open-energy-studio/#download" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>Download</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/open-energy-studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-heatloss-studio.png" alt="Open Heatloss Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-heatloss-1.png" alt="Open Heatloss Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-heatloss-2.png" alt="Open Heatloss Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-heatloss-3.png" alt="Open Heatloss Studio: screenshot 4"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-heatloss-4.png" alt="Open Heatloss Studio: screenshot 5"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-heatloss-5.png" alt="Open Heatloss Studio: screenshot 6"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-heatloss-6.png" alt="Open Heatloss Studio: screenshot 7"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-heatloss-7.png" alt="Open Heatloss Studio: screenshot 8"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Calculating and checking · 16 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-heatloss-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-heatloss-studio/" target="_blank" rel="noopener">Open Heatloss Studio</a></h2></div>
+  <p class="wat">Heat loss calculation per room.</p>
+  <ul class="usps"><li>To NEN 12831 and ISSO 51:2023</li><li>Catalogue and editor for U-values</li><li>Climate data per municipality</li><li>Geometry from IFCX and report as PDF</li></ul>
+  <p class="chips"><span class="chip-s">Available</span><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-heatloss-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://open-heatloss-studio.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try online</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/open-heatloss-studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-calc-studio-new.png" alt="Open Calc Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-calc-studio-es-presupuesto.png" alt="Open Calc Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-calc-studio-es-informe.png" alt="Open Calc Studio: screenshot 3"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Estimating and planning · 17 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-calc-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-calc-studio/" target="_blank" rel="noopener">Open Calc Studio</a></h2></div>
+  <p class="wat">Cost estimates and budgets.</p>
+  <ul class="usps"><li>For buildings, infrastructure and civil projects</li><li>Works with STABU and RAW</li><li>Quantities from IFCX</li><li>Export to PDF and spreadsheet, and MCP for AI</li></ul>
+  <p class="chips"><span class="chip-s">Available</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-calc-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://open-calc-studio.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try online</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/open-calc-studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item video"><iframe data-src="https://www.youtube-nocookie.com/embed/0dRAptqNHrk" title="Video: Open Planner Studio" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="item video"><iframe data-src="https://www.youtube-nocookie.com/embed/8FSzS-fXIt8" title="Video: Open Planner Studio" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-planner-studio-hero.png" alt="Open Planner Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-planner-studio-feat-critical-path.png" alt="Open Planner Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-planner-studio-feat-file-import.png" alt="Open Planner Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-planner-studio-feat-task-table.png" alt="Open Planner Studio: screenshot 4"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-planner-studio-feat-occupancy.png" alt="Open Planner Studio: screenshot 5"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-planner-studio-feat-reports.png" alt="Open Planner Studio: screenshot 6"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-planner-studio-feat-ifc.png" alt="Open Planner Studio: screenshot 7"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Estimating and planning · 18 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-planner-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-planner-studio/" target="_blank" rel="noopener">Open Planner Studio</a></h2></div>
+  <p class="wat">Scheduling for buildings, infrastructure and civil works.</p>
+  <ul class="usps"><li>Opens Microsoft Project (.mpp) and Primavera P6 (.xer) directly</li><li>Calculates like P6 or MS Project, your choice</li><li>Gantt, critical path, resources and progress</li><li>In 28 languages</li></ul>
+  <p class="chips"><span class="chip-s">Available</span><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-planner-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://open-planner-studio.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try online</span></a><a class="lnk " href="/en/open-planner-studio/#download" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>Download</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/open-planner-studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-field-studio.jpeg" alt="Open Field Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-field-studio-2.jpeg" alt="Open Field Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-field-studio-3.jpeg" alt="Open Field Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-field-studio-4.jpeg" alt="Open Field Studio: screenshot 4"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-field-studio-5.jpeg" alt="Open Field Studio: screenshot 5"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-field-studio-6.jpeg" alt="Open Field Studio: screenshot 6"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-field-studio-7.jpeg" alt="Open Field Studio: screenshot 7"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-field-studio-8.jpeg" alt="Open Field Studio: screenshot 8"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Site and models · 19 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-field-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-field-studio/" target="_blank" rel="noopener">Open Field Studio</a></h2></div>
+  <p class="wat">Inspection and handover on site.</p>
+  <ul class="usps"><li>Pin defects on the floor plan or PDF</li><li>Checklists, including NEN 2767</li><li>Photo and signature included</li><li>Works offline, and exports to BCF</li></ul>
+  <p class="chips"><span class="chip-s">Available</span><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-field-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://open-field-studio.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try online</span></a><a class="lnk " href="/en/open-field-studio/#download" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>Download</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/Open-Field-Studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/monty-ifc-viewer.png" alt="Monty IFC Viewer: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/monty-ifc-viewer.jpeg" alt="Monty IFC Viewer: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/monty-ifc-viewer-2.png" alt="Monty IFC Viewer: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/monty-ifc-viewer-3.png" alt="Monty IFC Viewer: screenshot 4"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Site and models · 20 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-monty-ifc-viewer.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/monty-ifc-viewer/" target="_blank" rel="noopener">Monty IFC Viewer</a></h2></div>
+  <p class="wat">IFC viewer for assembly on site.</p>
+  <ul class="usps"><li>On tablet and phone, loads fast</li><li>Opens IFC 2x3, IFC 4 and IFC 4.3</li><li>Properties and spatial tree</li><li>Sections and isolate</li></ul>
+  <p class="chips"><span class="chip-s">Available</span><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/monty-ifc-viewer/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://monty-ifc-viewer.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try online</span></a><a class="lnk " href="/en/monty-ifc-viewer/#download" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>Download</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/monty-ifc-viewer" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item video"><iframe data-src="https://www.youtube-nocookie.com/embed/EMRJEpYeKBk" title="Video: Open 3D Viewer Studio" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="item video"><iframe data-src="https://www.youtube-nocookie.com/embed/cxHO8M8W2Ow" title="Video: Open 3D Viewer Studio" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-3d-viewer-hero.png" alt="Open 3D Viewer Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-3d-viewer-feat-openen.png" alt="Open 3D Viewer Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-3d-viewer-feat-revit.png" alt="Open 3D Viewer Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-3d-viewer-feat-bekijken.png" alt="Open 3D Viewer Studio: screenshot 4"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-3d-viewer-feat-uit-elkaar.png" alt="Open 3D Viewer Studio: screenshot 5"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-3d-viewer-feat-werkplek.png" alt="Open 3D Viewer Studio: screenshot 6"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Site and models · 21 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-3d-viewer.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-3d-viewer/" target="_blank" rel="noopener">Open 3D Viewer Studio</a></h2></div>
+  <p class="wat">View, measure and section building models.</p>
+  <ul class="usps"><li>Opens Revit (.rvt, .rfa), Tekla Structures, SketchUp and IFC</li><li>Revit schedules as a table: a row selects its elements</li><li>Several models at once</li><li>Measure, section and explode</li></ul>
+  <p class="chips"><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-3d-viewer/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://open-3d-viewer.open-aec.com/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span>Try online</span></a><a class="lnk " href="/en/open-3d-viewer/#download" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>Download</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/open-3d-viewer" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pointcloud-studio.jpeg" alt="Open Pointcloud Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pointcloud-studio-2.jpg" alt="Open Pointcloud Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pointcloud-studio-3.jpg" alt="Open Pointcloud Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pointcloud-studio-4.jpg" alt="Open Pointcloud Studio: screenshot 4"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pointcloud-studio-5.jpg" alt="Open Pointcloud Studio: screenshot 5"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pointcloud-studio-6.jpg" alt="Open Pointcloud Studio: screenshot 6"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Site and models · 22 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-pointcloud-studio.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/open-pointcloud-studio/" target="_blank" rel="noopener">Open Pointcloud Studio</a></h2></div>
+  <p class="wat">Open, measure and section point clouds.</p>
+  <ul class="usps"><li>Opens LAS, LAZ, E57, PLY, PCD and PTS</li><li>Complete scan projects in one go</li><li>Large files stay usable</li><li>Measuring and sections with a section box</li></ul>
+  <p class="chips"><span class="chip-s">Beta</span></p>
+  <div class="lnks"><a class="lnk " href="/en/open-pointcloud-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="/en/open-pointcloud-studio/#download" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span>Download</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/bim-validator.png" alt="Open BIM Validator Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/bim-validator-2.png" alt="Open BIM Validator Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/bim-validator-3.png" alt="Open BIM Validator Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/bim-validator-4.png" alt="Open BIM Validator Studio: screenshot 4"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Site and models · 23 of 24</p>
+  <div class="naam"><img class="app" src="/presentatie/assets/icoon-open-bim-validator.svg" alt="" width="40" height="40" loading="lazy"><h2><a href="/en/bim-validator/" target="_blank" rel="noopener">Open BIM Validator Studio</a></h2></div>
+  <p class="wat">Check IFC models against requirements.</p>
+  <ul class="usps"><li>Checks against IDS, the NL-BIM Basis ILS and the RVB BIM Norm</li><li>In the browser, no installation</li><li>Failed elements straight in 3D</li><li>Export findings to BCF</li></ul>
+  <p class="chips"><span class="chip-s">Available</span></p>
+  <div class="lnks"><a class="lnk " href="/en/bim-validator/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/bcf-manager-studio-dashboard.jpg" alt="BCF Manager Studio: screenshot 1"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/bcf-manager-studio-issue.jpg" alt="BCF Manager Studio: screenshot 2"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/bcf-manager-studio-issues.jpg" alt="BCF Manager Studio: screenshot 3"></div><div class="item"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/bcf-manager-studio-projecten.jpg" alt="BCF Manager Studio: screenshot 4"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">Site and models · 24 of 24</p>
+  <div class="naam"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg></span><h2><a href="/en/bcf-manager-studio/" target="_blank" rel="noopener">BCF Manager Studio</a></h2></div>
+  <p class="wat">Issue management for BIM projects.</p>
+  <ul class="usps"><li>BCF 2.1: topics, comments and viewpoints</li><li>Full BCF API 2.1 server</li><li>Linked to IFC elements, with a 3D viewer</li><li>Permissions per project</li></ul>
+  <p class="chips"><span class="chip-s dev">In development</span></p>
+  <div class="lnks"><a class="lnk " href="/en/bcf-manager-studio/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span>Product page</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation/openaec-bcf-platform" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a></div>
+</div>
+</section>
+<section class="slide tool scdia">
+<figure class="kijker" data-kijker><div class="kader"><div class="item"><video controls preload="none" playsinline poster="/presentatie/assets/how-it-works-poster.webp" src="/presentatie/assets/how-it-works.mp4" aria-label="Film: how the OpenAEC SuperCloud works"></video></div><div class="item"><img loading="lazy" decoding="async" src="/presentatie/assets/pijler-werken.webp" alt="Concept image: work"></div><div class="item"><img loading="lazy" decoding="async" src="/presentatie/assets/pijler-rekenen.webp" alt="Concept image: design and calculate"></div><div class="item"><img loading="lazy" decoding="async" src="/presentatie/assets/pijler-opslag.webp" alt="Concept image: store and collaborate"></div><div class="item"><img loading="lazy" decoding="async" src="/presentatie/assets/onprem.webp" alt="Concept image: on your own servers"></div><div class="item"><img loading="lazy" decoding="async" src="/presentatie/assets/verzenden.webp" alt="Concept image: send files"></div><button type="button" class="pijlk vorige" aria-label="Previous image">&lsaquo;</button><button type="button" class="pijlk volgende" aria-label="Next image">&rsaquo;</button><div class="stippen" role="group" aria-label="Images"></div></div></figure>
+<div class="info">
+  <p class="label">All together, in one place</p>
+  <h2><a href="/supercloud/en/" target="_blank" rel="noopener">OpenAEC <span class="a">SuperCloud</span></a></h2>
+  <div class="afnamen">
+    <a class="afname" href="https://frappeframework.com/" target="_blank" rel="noopener"><img class="app" src="/presentatie/assets/icoon-erp-bundel.svg" alt="" width="40" height="40"><span><strong>ERPNext or Frappe Framework</strong><small>Complete ERP, or just the platform underneath</small></span></a>
+    <a class="afname" href="/supercloud/en/" target="_blank" rel="noopener"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></span><span><strong>Hosting</strong><small>In an EU data centre or on your own servers</small></span></a>
+    <a class="afname" href="/supercloud/en/" target="_blank" rel="noopener"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-lock"/></svg></span><span><strong>One account</strong><small>One sign-in for all apps</small></span></a>
+    <a class="afname" href="/en/openaec-cloud/" target="_blank" rel="noopener"><img class="app" src="/presentatie/assets/icoon-openaec-storage.svg" alt="" width="40" height="40"><span><strong>Files</strong><small>Sync and send, encrypted in the EU</small></span></a>
+    <a class="afname" href="/supercloud/en/" target="_blank" rel="noopener"><img class="app" src="/presentatie/assets/icoon-ai-eu.svg" alt="" width="40" height="40"><span><strong>AI in the EU</strong><small>No training on your data</small></span></a>
+    <a class="afname" href="/en/structuur/" target="_blank" rel="noopener"><span class="app app-s"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></span><span><strong>Management and custom work</strong><small>By OpenAEC Studio BV</small></span></a>
+  </div>
+  <p class="chips"><span class="chip-s">All open source</span><span class="chip-s">Full export</span><span class="chip-s">Cancel monthly</span></p>
+</div>
+</section>
+<section class="slide tool bouwdia">
+<div class="gebouw" role="img" aria-label="Cross-section of a building: on top your own tools, below that the OpenAEC tools, then ERPNext or Frappe Framework, and hosting as the foundation">
+  <div class="dak"></div>
+  <div class="laag eigen"><strong>Your own tools</strong><div class="eigen-rij"><span>Hours app</span><span>Material slip</span><span>Inspection list</span><span>+ your idea</span></div></div>
+  <div class="laag tools"><strong>OpenAEC-tools</strong><div class="iconen"><a href="#5" title="Open CAD Studio"><img src="/presentatie/assets/icoon-open-cad-studio.svg" alt="Open CAD Studio" width="36" height="36" loading="lazy"></a><a href="#6" title="Open Infra Studio"><img src="/presentatie/assets/icoon-open-infra.svg" alt="Open Infra Studio" width="36" height="36" loading="lazy"></a><a href="#7" title="Open BIM Studio"><img src="/presentatie/assets/icoon-open-bim-studio.svg" alt="Open BIM Studio" width="36" height="36" loading="lazy"></a><a href="#9" title="Open PDF Studio"><img src="/presentatie/assets/icoon-open-pdf-studio.svg" alt="Open PDF Studio" width="36" height="36" loading="lazy"></a><a href="#10" title="Open Office Studio"><img src="/presentatie/assets/icoon-open-office-studio.svg" alt="Open Office Studio" width="36" height="36" loading="lazy"></a><a href="#11" title="Y-app"><img src="/presentatie/assets/icoon-y-next.svg" alt="Y-app" width="36" height="36" loading="lazy"></a><a href="#12" title="Open Speech Studio"><img src="/presentatie/assets/icoon-open-speech-studio.svg" alt="Open Speech Studio" width="36" height="36" loading="lazy"></a><a href="#15" title="Open CalcSheet Studio"><img src="/presentatie/assets/icoon-open-calculations-studio.svg" alt="Open CalcSheet Studio" width="36" height="36" loading="lazy"></a><a href="#16" title="Open FEM Studio"><img src="/presentatie/assets/icoon-open-fem-studio.svg" alt="Open FEM Studio" width="36" height="36" loading="lazy"></a><a href="#17" title="Open Pile Plan Studio"><img src="/presentatie/assets/icoon-pile-plan-studio.svg" alt="Open Pile Plan Studio" width="36" height="36" loading="lazy"></a><a href="#18" title="Open Geotechniek Studio"><img src="/presentatie/assets/icoon-open-geotechniek-studio.svg" alt="Open Geotechniek Studio" width="36" height="36" loading="lazy"></a><a href="#19" title="Open Energy Studio"><img src="/presentatie/assets/icoon-open-energy-studio.svg" alt="Open Energy Studio" width="36" height="36" loading="lazy"></a><a href="#20" title="Open Heatloss Studio"><img src="/presentatie/assets/icoon-open-heatloss-studio.svg" alt="Open Heatloss Studio" width="36" height="36" loading="lazy"></a><a href="#21" title="Open Calc Studio"><img src="/presentatie/assets/icoon-open-calc-studio.svg" alt="Open Calc Studio" width="36" height="36" loading="lazy"></a><a href="#22" title="Open Planner Studio"><img src="/presentatie/assets/icoon-open-planner-studio.svg" alt="Open Planner Studio" width="36" height="36" loading="lazy"></a><a href="#23" title="Open Field Studio"><img src="/presentatie/assets/icoon-open-field-studio.svg" alt="Open Field Studio" width="36" height="36" loading="lazy"></a><a href="#24" title="Monty IFC Viewer"><img src="/presentatie/assets/icoon-monty-ifc-viewer.svg" alt="Monty IFC Viewer" width="36" height="36" loading="lazy"></a><a href="#25" title="Open 3D Viewer Studio"><img src="/presentatie/assets/icoon-open-3d-viewer.svg" alt="Open 3D Viewer Studio" width="36" height="36" loading="lazy"></a><a href="#26" title="Open Pointcloud Studio"><img src="/presentatie/assets/icoon-open-pointcloud-studio.svg" alt="Open Pointcloud Studio" width="36" height="36" loading="lazy"></a><a href="#27" title="Open BIM Validator Studio"><img src="/presentatie/assets/icoon-open-bim-validator.svg" alt="Open BIM Validator Studio" width="36" height="36" loading="lazy"></a></div></div>
+  <a class="laag erp" href="https://frappeframework.com/" target="_blank" rel="noopener"><strong>ERPNext or Frappe Framework</strong><span>administration, projects and your data</span></a>
+  <a class="laag fundering" href="/supercloud/en/" target="_blank" rel="noopener"><strong>Hosting</strong><span>SuperCloud or your own servers</span></a>
+  <div class="palen"></div>
+</div>
+<div class="info">
+  <p class="label">And the best part</p>
+  <h2>Your <span class="a">own tools</span> on top</h2>
+  <p class="groot">With AI, employees now build their own tools. It is called vibe coding, and it is not going away.</p>
+  <p class="groot sterk">So no longer on someone's laptop, but on one foundation.</p>
+</div>
+</section>
+<section class="slide trajectdia">
+<div class="kop trajectkop">
+  <div><p class="label">To be honest</p><h2 class="groot-kop">And <span class="a">now</span>?</h2></div>
+  <p class="groot">Throw everything out tomorrow? You would not do that. <span class="sterk">This is change management.</span></p>
+  <div class="chaos" aria-hidden="true"><img src="/presentatie/assets/icoon-open-cad-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:4%;top:18%;transform:rotate(-24deg)"><img src="/presentatie/assets/icoon-open-infra.svg" alt="" width="36" height="36" loading="lazy" style="left:16%;top:52%;transform:rotate(31deg)"><img src="/presentatie/assets/icoon-open-bim-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:27%;top:8%;transform:rotate(12deg)"><img src="/presentatie/assets/icoon-open-pdf-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:37%;top:58%;transform:rotate(-38deg)"><img src="/presentatie/assets/icoon-open-office-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:47%;top:22%;transform:rotate(48deg)"><img src="/presentatie/assets/icoon-y-next.svg" alt="" width="36" height="36" loading="lazy" style="left:57%;top:62%;transform:rotate(-12deg)"><img src="/presentatie/assets/icoon-open-speech-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:64%;top:4%;transform:rotate(26deg)"><img src="/presentatie/assets/icoon-open-calculations-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:72%;top:42%;transform:rotate(-46deg)"><img src="/presentatie/assets/icoon-open-fem-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:80%;top:12%;transform:rotate(58deg)"><img src="/presentatie/assets/icoon-pile-plan-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:86%;top:60%;transform:rotate(18deg)"><img src="/presentatie/assets/icoon-open-geotechniek-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:93%;top:28%;transform:rotate(-28deg)"><img src="/presentatie/assets/icoon-open-energy-studio.svg" alt="" width="36" height="36" loading="lazy" style="left:97%;top:2%;transform:rotate(40deg)"></div>
+</div>
+<div class="planning">
+  <div class="gantt">
+    <div class="g-maand" style="grid-column:2/6">Month 1</div><div class="g-maand" style="grid-column:6/10">Month 2</div><div class="g-maand" style="grid-column:10/14">Month 3</div>
+    <div class="g-label" style="grid-row:2">Training</div><div class="balk een" style="grid-column:2/6;grid-row:2"><strong>People first</strong></div>
+    <div class="g-label" style="grid-row:3">Platform</div><a class="balk twee" style="grid-column:5/10;grid-row:3" href="https://frappeframework.com/" target="_blank" rel="noopener"><strong>Set up ERPNext or Frappe Framework</strong><span>and put your own tools on it</span></a>
+    <div class="g-label" style="grid-row:4">Tools</div><a class="balk drie-b" style="grid-column:8/14;grid-row:4" href="#3"><strong>Open CAD Studio and the rest, one by one</strong></a>
+    <div class="g-label" style="grid-row:5">Existing software</div><div class="balk oud" style="grid-column:2/14;grid-row:5"><strong>Stays until the new works</strong></div>
+    <div class="g-label" style="grid-row:6">Consultant</div><div class="weken" style="grid-column:2/14;grid-row:6" role="img" aria-label="13 weeks, 4 hours every week"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  </div>
+  <div class="na">
+    <h3>After 3 months</h3>
+    <ul class="usps"><li>Platform running</li><li>Own tools in one place</li><li>First tools in use</li><li>People who can carry on themselves</li></ul>
+    <p class="na-cijfer"><strong>3</strong> months · <strong>4</strong> hours a week</p>
+  </div>
+</div>
+<p class="voet klein">Indicative schedule. One of our consultants visits every week: about 50 hours in total.</p>
+</section>
+<section class="slide slotdia">
+<div class="midden">
+  <span class="woordmerk"><img src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="72" height="72"><span>Open<span class="a">AEC</span></span></span>
+  <h2 class="reus">We are <span class="a">open</span>.</h2>
+  <p class="groot">Build free. Build together.</p>
+  <p class="contact"><a href="mailto:info@open-aec.com">info@open-aec.com</a> · <a href="https://open-aec.com/" target="_blank" rel="noopener">open-aec.com</a></p>
+  <div class="lnks midden-lnks"><a class="lnk " href="/supercloud/en/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>SuperCloud</span></a><a class="lnk " href="/en/aan-de-slag/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>Get started</span></a><a class="lnk " href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>GitHub</span></a><a class="lnk " href="https://www.youtube.com/@openaecfoundation" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>YouTube</span></a><a class="lnk " href="/en/socials/" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span>Follow us</span></a></div>
+</div>
+</section>
+</main>
+<div class="voortgang" id="voortgang"></div>
+<div class="bediening">
+  <a class="taal" id="taal" href="/presentatie/" hreflang="nl" aria-label="Nederlandse versie">NL</a>
+  <span id="teller" aria-live="polite"></span>
+  <button type="button" id="vorige" aria-label="Previous slide">&lsaquo;</button>
+  <button type="button" id="volgende" aria-label="Next slide">&rsaquo;</button>
+</div>
+<script>
+(function () {
+  var root = document.documentElement;
+  root.classList.add('js');
+  var dia = [].slice.call(document.querySelectorAll('.slide'));
+  var teller = document.getElementById('teller');
+  var taal = document.getElementById('taal');
+  var balk = document.getElementById('voortgang');
+  var nu = -1;
+
+  // ── doorklikbare beelden en video's binnen een dia ──
+  function zetVideo(item, aan) {
+    var film = item.querySelector('video');
+    if (film && !aan) film.pause();
+    var f = item.querySelector('iframe');
+    if (!f) return;
+    if (aan && !f.getAttribute('src')) f.setAttribute('src', f.dataset.src);
+    if (!aan && f.getAttribute('src')) f.removeAttribute('src');
+  }
+  function maakKijker(k) {
+    var items = [].slice.call(k.querySelectorAll('.item'));
+    var stippen = [];
+    var i = 0;
+    var stipBox = k.querySelector('.stippen');
+    function toon(n) {
+      i = (n + items.length) % items.length;
+      items.forEach(function (it, j) {
+        it.classList.toggle('aan', j === i);
+        zetVideo(it, j === i && k.closest('.slide').classList.contains('actief'));
+      });
+      stippen.forEach(function (s, j) {
+        s.classList.toggle('aan', j === i);
+        if (j === i) s.setAttribute('aria-current', 'true'); else s.removeAttribute('aria-current');
+      });
+      var volgend = items[(i + 1) % items.length].querySelector('img');
+      if (volgend) new Image().src = volgend.src;
+    }
+    if (items.length > 1) {
+      k.classList.add('meer');
+      items.forEach(function (it, j) {
+        var s = document.createElement('button');
+        s.type = 'button';
+        s.className = 'stip' + (it.classList.contains('video') ? ' video' : '');
+        s.setAttribute('aria-label', (it.classList.contains('video') ? 'Video ' : 'Image ') + (j + 1) + ' of ' + items.length);
+        s.addEventListener('click', function () { toon(j); });
+        stipBox.appendChild(s);
+        stippen.push(s);
+        var b = it.querySelector('img');
+        if (b) b.addEventListener('click', function () { toon(i + 1); });
+      });
+      k.querySelector('.vorige').addEventListener('click', function () { toon(i - 1); });
+      k.querySelector('.volgende').addEventListener('click', function () { toon(i + 1); });
+    }
+    k.stap = function (d) { if (items.length > 1) toon(i + d); };
+    k.ververs = function () { toon(i); };
+    items[0].classList.add('aan');
+    if (stippen[0]) stippen[0].classList.add('aan');
+  }
+
+  function go(i) {
+    i = Math.max(0, Math.min(dia.length - 1, i));
+    if (i === nu) return;
+    var oud = dia[nu];
+    if (oud) {
+      oud.classList.remove('actief');
+      oud.querySelectorAll('.item').forEach(function (it) { zetVideo(it, false); });
+    }
+    nu = i;
+    var s = dia[nu];
+    s.classList.add('actief');
+    s.scrollTop = 0;
+    var k = s.querySelector('[data-kijker]');
+    if (k) k.ververs();
+    if (s.querySelector('[data-plot]')) tekenAlles();
+    teller.textContent = (nu + 1) + ' / ' + dia.length;
+    taal.href = taal.getAttribute('href').split(/[?#]/)[0] + location.search + '#' + (nu + 1);
+    balk.style.width = ((nu + 1) / dia.length * 100) + '%';
+    try { history.replaceState(null, '', location.pathname + location.search + '#' + (nu + 1)); } catch (e) {}
+    // De volgende dia alvast laden, zodat het eerste beeld er meteen staat.
+    if (dia[nu + 1]) {
+      var b = dia[nu + 1].querySelector('.item img');
+      if (b) new Image().src = b.src;
+    }
+  }
+  document.getElementById('vorige').addEventListener('click', function () { go(nu - 1); });
+  document.getElementById('volgende').addEventListener('click', function () { go(nu + 1); });
+  document.addEventListener('keydown', function (e) {
+    if (e.altKey || e.ctrlKey || e.metaKey) return;
+    var k = e.key;
+    var kijk = dia[nu] && dia[nu].querySelector('[data-kijker]');
+    if (k === 'ArrowRight' || k === 'PageDown' || k === ' ') { go(nu + 1); e.preventDefault(); }
+    else if (k === 'ArrowLeft' || k === 'PageUp') { go(nu - 1); e.preventDefault(); }
+    else if (k === 'ArrowDown') { if (kijk) kijk.stap(1); else go(nu + 1); e.preventDefault(); }
+    else if (k === 'ArrowUp') { if (kijk) kijk.stap(-1); else go(nu - 1); e.preventDefault(); }
+    else if (k === 'Home') { go(0); e.preventDefault(); }
+    else if (k === 'End') { go(dia.length - 1); e.preventDefault(); }
+    else if (k === 'f' || k === 'F') {
+      if (document.fullscreenElement) document.exitFullscreen();
+      else if (root.requestFullscreen) root.requestFullscreen();
+    }
+  });
+  var tx = null, ty = null, opKijker = null;
+  document.addEventListener('touchstart', function (e) {
+    tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+    opKijker = e.target.closest ? e.target.closest('[data-kijker]') : null;
+  }, { passive: true });
+  document.addEventListener('touchend', function (e) {
+    if (tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx, dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) {
+      if (opKijker && opKijker.classList.contains('meer')) opKijker.stap(dx < 0 ? 1 : -1);
+      else go(nu + (dx < 0 ? 1 : -1));
+    }
+    tx = null;
+  }, { passive: true });
+  window.addEventListener('hashchange', function () { var n = parseInt(location.hash.slice(1), 10); if (n) go(n - 1); });
+
+  // ── grafieken: één reeks per grafiek, één as ──
+  var REEKSEN = {"downloads":[["2026-05-19",5166],["2026-05-20",5224],["2026-05-21",5380],["2026-05-27",5807],["2026-06-01",6246],["2026-06-03",6349],["2026-06-12",7200],["2026-06-17",7636],["2026-06-18",7774],["2026-06-24",8447],["2026-06-30",8943],["2026-07-17",11315],["2026-07-27",12865],["2026-08-05",14724],["2026-08-24",19451],["2026-09-02",20966],["2026-09-07",22698],["2026-09-11",24318],["2026-09-12",58011],["2026-09-14",62474],["2026-09-22",80578],["2026-09-23",81450],["2026-09-24",84899],["2026-09-25",86593],["2026-09-26",88150],["2026-09-27",89421],["2026-09-28",91131],["2026-09-29",93531],["2026-09-30",95591],["2026-10-01",97314],["2026-10-02",97676],["2026-10-03",98473],["2026-10-04",99892],["2026-10-05",101515],["2026-10-06",103110],["2026-10-07",105447],["2026-10-08",107966],["2026-10-09",110288],["2026-10-10",113130],["2026-10-11",115463],["2026-10-12",118410],["2026-10-13",123367],["2026-10-14",128186],["2026-10-15",132061],["2026-10-19",145672],["2026-10-20",148195],["2026-10-21",151272],["2026-10-22",155597],["2026-10-23",160399],["2026-10-24",161964],["2026-10-25",164375],["2026-10-26",170647],["2026-10-27",175346],["2026-10-28",178890],["2026-10-29",180679],["2026-10-30",183089],["2026-10-31",187587],["2026-11-01",191135],["2026-11-02",198567],["2026-11-03",202925],["2026-11-04",209442]],"commits":[["2025-12-01",216],["2025-12-08",216],["2025-12-15",216],["2025-12-22",216],["2025-12-29",216],["2026-01-05",216],["2026-01-12",366],["2026-01-19",1644],["2026-01-26",1981],["2026-02-02",1987],["2026-02-09",2117],["2026-02-16",2403],["2026-02-23",2471],["2026-03-02",2750],["2026-03-09",2776],["2026-03-16",2794],["2026-05-21",4060],["2026-05-28",4228],["2026-06-04",4362],["2026-06-11",4362],["2026-06-18",5377],["2026-07-01",5532],["2026-07-08",6050],["2026-07-15",6630],["2026-07-22",7244],["2026-08-29",10224],["2026-09-05",10859],["2026-09-12",12002],["2026-09-19",12239],["2026-09-26",13880],["2026-10-06",15571],["2026-10-13",17465],["2026-10-20",19034],["2026-10-27",22487],["2026-11-03",25063],["2026-11-04",25359]],"stars":[["2025-12-01",3],["2025-12-08",3],["2025-12-15",3],["2025-12-22",3],["2025-12-29",3],["2026-01-05",3],["2026-01-12",4],["2026-01-19",6],["2026-01-26",49],["2026-02-02",49],["2026-02-09",49],["2026-02-16",49],["2026-02-23",49],["2026-03-02",51],["2026-03-09",51],["2026-03-16",51],["2026-03-23",213],["2026-03-30",213],["2026-04-06",214],["2026-04-13",214],["2026-04-20",255],["2026-04-27",255],["2026-05-04",255],["2026-05-25",403],["2026-06-01",427],["2026-06-08",434],["2026-06-15",522],["2026-06-22",556],["2026-06-29",583],["2026-07-06",644],["2026-07-13",690],["2026-07-20",713],["2026-07-27",766],["2026-08-03",766],["2026-08-10",967],["2026-08-17",967],["2026-08-24",1787],["2026-08-31",1844],["2026-09-07",2114],["2026-09-14",2889],["2026-09-21",2889],["2026-09-28",3397],["2026-10-06",3585],["2026-10-13",4107],["2026-10-20",4560],["2026-10-27",4857],["2026-11-03",5089],["2026-11-04",5106]],"contributors":[["2025-12-01",7],["2025-12-08",7],["2025-12-15",7],["2025-12-22",7],["2025-12-29",7],["2026-01-05",7],["2026-01-12",11],["2026-01-19",19],["2026-01-26",24],["2026-02-02",24],["2026-02-09",27],["2026-02-16",28],["2026-02-23",30],["2026-03-02",32],["2026-03-09",32],["2026-03-16",32],["2026-03-23",32],["2026-03-30",32],["2026-04-06",32],["2026-04-13",32],["2026-04-20",32],["2026-04-27",32],["2026-05-04",32],["2026-05-11",32],["2026-05-18",32],["2026-05-25",32],["2026-06-01",32],["2026-06-08",32],["2026-06-15",36],["2026-06-22",37],["2026-09-01",37],["2026-09-08",41],["2026-09-15",47],["2026-09-22",60],["2026-09-29",62],["2026-10-06",67],["2026-10-13",73],["2026-10-20",84],["2026-10-27",92],["2026-11-03",101],["2026-11-04",105]]};
+  var NOOT = { downloads: { datum: '2026-09-12', tekst: 'Open CAD Studio added' } };
+  var MAANDEN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+  var fmt = function (n) { return Number(n).toLocaleString('en-GB'); };
+  var kort = function (n) { return n >= 1e6 ? (n / 1e6) + ' M' : n >= 1e3 ? (n / 1e3) + 'k' : String(n); };
+  var ms = function (d) { return Date.parse(d + 'T00:00:00Z'); };
+  function datum(d) { var p = d.split('-'); return +p[2] + ' ' + MAANDEN[+p[1] - 1] + ' ' + p[0]; }
+  function netteMax(v) {
+    var m = Math.pow(10, Math.floor(Math.log10(v || 1)));
+    var r = [1, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10];
+    for (var i = 0; i < r.length; i++) if (r[i] * m >= v) return r[i] * m;
+    return 10 * m;
+  }
+  function teken(tegel) {
+    var naam = tegel.dataset.reeks;
+    var pts = REEKSEN[naam];
+    var box = tegel.querySelector('[data-plot]');
+    var w = box.clientWidth, h = box.clientHeight;
+    if (!pts || !pts.length || w < 40 || h < 30) return;
+    var L = 46, R = 12, T = 8, B = 20;
+    var x0 = ms(pts[0][0]), x1 = ms(pts[pts.length - 1][0]);
+    var yMax = netteMax(pts[pts.length - 1][1]);
+    var X = function (d) { return L + (ms(d) - x0) / ((x1 - x0) || 1) * (w - L - R); };
+    var Y = function (v) { return T + (1 - v / yMax) * (h - T - B); };
+    var svg = '';
+    [0, .5, 1].forEach(function (f) {
+      var y = Y(yMax * f);
+      svg += '<line x1="' + L + '" x2="' + (w - R) + '" y1="' + y + '" y2="' + y + '" stroke="rgba(255,255,255,.1)"/>';
+      svg += '<text x="' + (L - 7) + '" y="' + (y + 4) + '" text-anchor="end" font-size="11" fill="#a8a29e">' + kort(yMax * f) + '</text>';
+    });
+    var d0 = new Date(x0), stap = (x1 - x0) > 200 * 864e5 ? 2 : 1;
+    var m = new Date(Date.UTC(d0.getUTCFullYear(), d0.getUTCMonth() + 1, 1));
+    while (m.getTime() <= x1) {
+      if (m.getUTCMonth() % stap === 0) {
+        var mx = L + (m.getTime() - x0) / ((x1 - x0) || 1) * (w - L - R);
+        svg += '<text x="' + mx + '" y="' + (h - 5) + '" text-anchor="middle" font-size="11" fill="#a8a29e">' + MAANDEN[m.getUTCMonth()] + '</text>';
+      }
+      m = new Date(Date.UTC(m.getUTCFullYear(), m.getUTCMonth() + 1, 1));
+    }
+    var lijn = pts.map(function (p, i) { return (i ? 'L' : 'M') + X(p[0]).toFixed(1) + ' ' + Y(p[1]).toFixed(1); }).join('');
+    svg += '<path d="' + lijn + 'L' + X(pts[pts.length - 1][0]) + ' ' + Y(0) + 'L' + X(pts[0][0]) + ' ' + Y(0) + 'Z" fill="rgba(245,158,11,.14)"/>';
+    svg += '<path d="' + lijn + '" fill="none" stroke="#F59E0B" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>';
+    var noot = NOOT[naam];
+    if (noot && ms(noot.datum) > x0) {
+      var nx = X(noot.datum);
+      svg += '<line x1="' + nx + '" x2="' + nx + '" y1="' + T + '" y2="' + Y(0) + '" stroke="#a8a29e" stroke-dasharray="3 3"/>';
+      svg += '<text x="' + (nx - 6) + '" y="' + (T + 11) + '" text-anchor="end" font-size="11" fill="#d4d4d8">' + noot.tekst + '</text>';
+    }
+    var laatst = pts[pts.length - 1];
+    svg += '<circle cx="' + X(laatst[0]) + '" cy="' + Y(laatst[1]) + '" r="4.5" fill="#F59E0B" stroke="#2A2A32" stroke-width="2"/>';
+    svg += '<line class="kruis" x1="0" x2="0" y1="' + T + '" y2="' + Y(0) + '" stroke="#fff" stroke-opacity=".5" visibility="hidden"/>';
+    svg += '<circle class="punt" r="4.5" fill="#fff" stroke="#2A2A32" stroke-width="2" visibility="hidden"/>';
+    box.innerHTML = '<svg viewBox="0 0 ' + w + ' ' + h + '" aria-hidden="true">' + svg + '</svg>';
+    var tip = tegel.querySelector('[data-tip]');
+    var kruis = box.querySelector('.kruis'), punt = box.querySelector('.punt');
+    box.onpointermove = function (e) {
+      var r = box.getBoundingClientRect();
+      var px = e.clientX - r.left;
+      var best = pts[0], af = Infinity;
+      pts.forEach(function (p) { var a = Math.abs(X(p[0]) - px); if (a < af) { af = a; best = p; } });
+      var bx = X(best[0]), by = Y(best[1]);
+      kruis.setAttribute('x1', bx); kruis.setAttribute('x2', bx); kruis.setAttribute('visibility', 'visible');
+      punt.setAttribute('cx', bx); punt.setAttribute('cy', by); punt.setAttribute('visibility', 'visible');
+      tip.hidden = false;
+      tip.textContent = datum(best[0]) + ': ' + fmt(best[1]);
+      var tr = tegel.getBoundingClientRect();
+      tip.style.left = Math.max(70, Math.min(tr.width - 70, r.left - tr.left + bx)) + 'px';
+      tip.style.top = Math.max(26, r.top - tr.top + by) + 'px';
+    };
+    box.onpointerleave = function () { tip.hidden = true; kruis.setAttribute('visibility', 'hidden'); punt.setAttribute('visibility', 'hidden'); };
+    tegel.querySelector('[data-waarde]').textContent = fmt(laatst[1]);
+    var grens = x1 - 30 * 864e5, basis = pts[0];
+    pts.forEach(function (p) { if (ms(p[0]) <= grens) basis = p; });
+    tegel.querySelector('[data-groei]').textContent = '+' + fmt(laatst[1] - basis[1]) + ' in 30 days';
+  }
+  function tekenAlles() { document.querySelectorAll('.grafiek').forEach(teken); }
+  // Een rekenfout in een oude dagmeting mag de lijn niet vervormen: de tellers lopen alleen op,
+  // dus een punt dat hoger is dan een latere meting valt weg.
+  function schoon(pts) {
+    var uit = [], laag = Infinity;
+    for (var i = pts.length - 1; i >= 0; i--) if (pts[i][1] <= laag) { uit.unshift(pts[i]); laag = pts[i][1]; }
+    return uit;
+  }
+
+  // Met ?voor=Naam staat de naam van de gast op de eerste dia, zonder dat die in de pagina staat.
+  var zoek = new URLSearchParams(location.search);
+  var voor = zoek.get('voor') || zoek.get('for');
+  if (voor) {
+    var v = document.getElementById('voor');
+    v.textContent = 'For ' + voor;
+    v.hidden = false;
+  }
+  document.querySelectorAll('[data-kijker]').forEach(maakKijker);
+  go((parseInt(location.hash.slice(1), 10) || 1) - 1);
+
+  fetch('/data/stats.json').then(function (r) { return r.json(); }).then(function (d) {
+    var t = d.timeSeries;
+    if (!t || !t.days) return;
+    ['commits', 'stars', 'contributors'].forEach(function (veld) {
+      var pts = t.days.map(function (x) { return [x, t.data[x] && t.data[x][veld]]; }).filter(function (x) { return typeof x[1] === 'number'; });
+      if (pts.length) REEKSEN[veld] = schoon(pts);
+    });
+    if (dia[nu].querySelector('[data-plot]')) tekenAlles();
+  }).catch(function () {});
+  fetch('/data/downloads.json').then(function (r) { return r.json(); }).then(function (d) {
+    var pts = REEKSEN.downloads, vandaag = (d.generated || '').slice(0, 10);
+    if (typeof d.grandTotal === 'number' && vandaag > pts[pts.length - 1][0]) pts.push([vandaag, d.grandTotal]);
+    if (dia[nu].querySelector('[data-plot]')) tekenAlles();
+  }).catch(function () {});
+  var wacht;
+  window.addEventListener('resize', function () { clearTimeout(wacht); wacht = setTimeout(function () { if (dia[nu].querySelector('[data-plot]')) tekenAlles(); }, 120); });
+})();
+</script>
+</body>
+</html>

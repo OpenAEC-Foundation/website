@@ -142,6 +142,8 @@ a.blok:hover, a.stap:hover, a.laag:hover { border-color: var(--amber); backgroun
 .js .bediening { display: flex; }
 .bediening button { width: 40px; height: 40px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; font-size: 1.1rem; cursor: pointer; }
 .bediening button:hover { background: var(--amber); border-color: var(--amber); }
+.taal { display: inline-grid; place-items: center; width: 40px; height: 40px; box-sizing: border-box; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,.2); background: rgba(255,255,255,.08); color: #fff; font-weight: 600; text-decoration: none; }
+.taal:hover { background: var(--amber); border-color: var(--amber); color: #fff; }
 .voortgang { position: fixed; left: 0; bottom: 0; height: 4px; width: 0; background: var(--amber); z-index: 5; transition: width .2s ease; }
 html:not(.js) body { overflow: auto; }
 @media (max-width: 768px) {
@@ -633,6 +635,7 @@ a.balk:hover { filter: brightness(1.15); }
 </main>
 <div class="voortgang" id="voortgang"></div>
 <div class="bediening">
+  <a class="taal" id="taal" href="/presentation/" hreflang="en" aria-label="English version">EN</a>
   <span id="teller" aria-live="polite"></span>
   <button type="button" id="vorige" aria-label="Vorige dia">&lsaquo;</button>
   <button type="button" id="volgende" aria-label="Volgende dia">&rsaquo;</button>
@@ -643,6 +646,7 @@ a.balk:hover { filter: brightness(1.15); }
   root.classList.add('js');
   var dia = [].slice.call(document.querySelectorAll('.slide'));
   var teller = document.getElementById('teller');
+  var taal = document.getElementById('taal');
   var balk = document.getElementById('voortgang');
   var nu = -1;
 
@@ -711,6 +715,7 @@ a.balk:hover { filter: brightness(1.15); }
     if (k) k.ververs();
     if (s.querySelector('[data-plot]')) tekenAlles();
     teller.textContent = (nu + 1) + ' / ' + dia.length;
+    taal.href = taal.getAttribute('href').split(/[?#]/)[0] + location.search + '#' + (nu + 1);
     balk.style.width = ((nu + 1) / dia.length * 100) + '%';
     try { history.replaceState(null, '', location.pathname + location.search + '#' + (nu + 1)); } catch (e) {}
     // De volgende dia alvast laden, zodat het eerste beeld er meteen staat.
@@ -838,7 +843,8 @@ a.balk:hover { filter: brightness(1.15); }
   }
 
   // Met ?voor=Naam staat de naam van de gast op de eerste dia, zonder dat die in de pagina staat.
-  var voor = new URLSearchParams(location.search).get('voor');
+  var zoek = new URLSearchParams(location.search);
+  var voor = zoek.get('voor') || zoek.get('for');
   if (voor) {
     var v = document.getElementById('voor');
     v.textContent = 'Voor ' + voor;
