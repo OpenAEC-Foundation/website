@@ -24,19 +24,11 @@
   })();
   const VERSION_QUERY = VERSION ? '?v=' + encodeURIComponent(VERSION) : '';
 
-  // URL-taal > stored preference > browser language > English.
+  // URL-taal > stored preference > English. De browsertaal telt bewust niet mee: de standaard is Engels.
   function getCurrentLang() {
     if (STATIC_LANG) return STATIC_LANG;
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) return stored;
-    const supported = ['nl', 'en', 'fr', 'tr', 'es'];
-    const list = (navigator.languages && navigator.languages.length)
-      ? navigator.languages
-      : [navigator.language || 'en'];
-    for (let i = 0; i < list.length; i++) {
-      const code = String(list[i] || '').toLowerCase().split('-')[0];
-      if (supported.indexOf(code) !== -1) return code;
-    }
     return 'en';
   }
 

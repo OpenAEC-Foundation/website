@@ -17,7 +17,7 @@
   <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/">
   <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/">
   <link rel="alternate" hreflang="es" href="https://open-aec.com/es/">
-  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/en/">
   <!-- hreflang:end -->
 
 
@@ -3134,14 +3134,6 @@
       if (STATIC_LANG) return STATIC_LANG;
       const stored = localStorage.getItem('openaec-lang');
       if (stored) return stored;
-      const supported = ['nl', 'en', 'fr', 'tr', 'es'];
-      const list = (navigator.languages && navigator.languages.length)
-        ? navigator.languages
-        : [navigator.language || 'en'];
-      for (let i = 0; i < list.length; i++) {
-        const code = String(list[i] || '').toLowerCase().split('-')[0];
-        if (supported.indexOf(code) !== -1) return code;
-      }
       return 'en';
     }
 
@@ -3176,6 +3168,7 @@
         this.currentLang = lang;
         if (persist) localStorage.setItem('openaec-lang', lang);
         document.documentElement.lang = lang;
+        if (window.renderNews) window.renderNews(lang);
         // Non-EN, non-NL languages fall back to EN, then to NL (HTML default).
         const fallback = (lang !== 'nl' && lang !== 'en') ? 'en' : null;
         document.querySelectorAll('[data-i18n]').forEach(element => {
@@ -3250,26 +3243,60 @@
     });
   </script>
   <script>
-  // Auto-news feed (auto + manual sources, sorted by date desc)
-  Promise.all([
-    fetch('/data/news.json').then(r => r.ok ? r.json() : []),
-    fetch('/data/manual-news.json').then(r => r.ok ? r.json() : []).catch(() => [])
-  ])
-    .then(([autoNews, manualNews]) => {
-      const news = [...manualNews, ...autoNews].sort((a, b) => b.date.localeCompare(a.date));
+  // Auto-news feed (auto + manual sources, sorted by date desc), in the language of the page.
+  (function () {
+    // Dezelfde vertaling als op /nieuws/: handmatige items hebben eigen velden per taal,
+    // de gegenereerde hebben vaste Nederlandse zinnen.
+    function tGenTitle(t, l) {
+      t = String(t);
+      if (l === 'fr') return t.replace(/\buitgebracht\b/g, 'publié').replace(/^Nieuwe repository:/, 'Nouveau dépôt :').replace(/(\d+) releases\b/g, '$1 versions');
+      if (l === 'tr') return t.replace(/\buitgebracht\b/g, 'yayınlandı').replace(/^Nieuwe repository:/, 'Yeni depo:').replace(/(\d+) releases\b/g, '$1 sürüm');
+      if (l === 'es') return t.replace(/\buitgebracht\b/g, 'publicado').replace(/^Nieuwe repository:/, 'Nuevo repositorio:').replace(/(\d+) releases\b/g, '$1 versiones');
+      if (l === 'en') return t.replace(/\buitgebracht\b/g, 'released').replace(/^Nieuwe repository:/, 'New repository:');
+      return t;
+    }
+    function tGenDesc(d, l) {
+      d = String(d);
+      if (l === 'fr') return d.replace(/^Versies:/, 'Versions :').replace(/^Nieuw project gestart$/, 'Nouveau projet lancé');
+      if (l === 'tr') return d.replace(/^Versies:/, 'Sürümler:').replace(/^Nieuw project gestart$/, 'Yeni proje başlatıldı');
+      if (l === 'es') return d.replace(/^Versies:/, 'Versiones:').replace(/^Nieuw project gestart$/, 'Nuevo proyecto iniciado');
+      if (l === 'en') return d.replace(/^Versies:/, 'Versions:').replace(/^Nieuw project gestart$/, 'New project started');
+      return d;
+    }
+    function vertaal(item, l) {
+      if (l === 'nl') return { title: item.title, description: item.description };
+      return {
+        title: item['title_' + l] || item.title_en || tGenTitle(item.title, l),
+        description: item['description_' + l] || item.description_en || tGenDesc(item.description, l)
+      };
+    }
+    let items = [];
+    window.renderNews = function (lang) {
       const feed = document.getElementById('news-feed');
-      if (!feed || !news.length) return;
-      feed.innerHTML = news.slice(0, 5).map(item => `
+      if (!feed || !items.length) return;
+      feed.innerHTML = items.map(item => {
+        const t = vertaal(item, lang);
+        return `
         <div class="news-item">
           <span class="news-date">${item.date}</span>
           <div>
-            <a href="${item.url}" target="_blank">${item.title}</a>
-            <p>${item.description}</p>
+            <a href="${item.url}" target="_blank">${t.title}</a>
+            <p>${t.description}</p>
           </div>
         </div>
-      `).join('');
-    })
-    .catch(() => {});
+      `;
+      }).join('');
+    };
+    Promise.all([
+      fetch('/data/news.json').then(r => r.ok ? r.json() : []),
+      fetch('/data/manual-news.json').then(r => r.ok ? r.json() : []).catch(() => [])
+    ])
+      .then(([autoNews, manualNews]) => {
+        items = [...manualNews, ...autoNews].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 5);
+        window.renderNews(i18n.currentLang);
+      })
+      .catch(() => {});
+  })();
   </script>
   <script>
   // Live stats for the Open CAD Studio card (external repo HakanSeven12/OpenCADStudio).

@@ -64,7 +64,7 @@ assert.ok(
   'BIM Validator mist release-notescomponent',
 );
 assert.ok(
-  validator.includes('<script src="/shared/release-notes.js?v=20261022"></script>'),
+  /<script src="\/shared\/release-notes\.js\?v=\d+"><\/script>/.test(validator),
   'BIM Validator laadt het release-notesscript niet',
 );
 // Datums en links staan op het donkere paneel: warm goud (#F59E0B) haalt daar ruim AA.

@@ -232,7 +232,8 @@ function alternates(url) {
     const href = l === 'nl' ? ORIGIN + url : `${ORIGIN}/${l}${url}`;
     return `  <link rel="alternate" hreflang="${l}" href="${href}">`;
   });
-  lines.push(`  <link rel="alternate" hreflang="x-default" href="${ORIGIN + url}">`);
+  // De standaardtaal is Engels, dus daar wijst x-default ook naartoe.
+  lines.push(`  <link rel="alternate" hreflang="x-default" href="${ORIGIN}/en${url}">`);
   return lines.join('\n');
 }
 
@@ -255,7 +256,7 @@ function plain(value, max = 155) {
 const LANG_BOOT = [
   '<!-- lang-boot:start -->',
   '<style>html.lang-pending body{visibility:hidden}</style>',
-  '<script>(function(){try{var l=localStorage.getItem("openaec-lang");if(!l){var a=navigator.languages&&navigator.languages.length?navigator.languages:[navigator.language||"en"];l="en";for(var i=0;i<a.length;i++){var c=String(a[i]||"").toLowerCase().split("-")[0];if("nl en fr tr es".split(" ").indexOf(c)>-1){l=c;break}}}if(l!=="nl"){var d=document.documentElement;d.classList.add("lang-pending");setTimeout(function(){d.classList.remove("lang-pending")},3000)}}catch(e){}})()</script>',
+  '<script>(function(){try{var l=localStorage.getItem("openaec-lang");l=l||"en";if(l!=="nl"){var d=document.documentElement;d.classList.add("lang-pending");setTimeout(function(){d.classList.remove("lang-pending")},3000)}}catch(e){}})()</script>',
   '<!-- lang-boot:end -->',
 ].join('\n  ');
 const LANG_BOOT_RE = /[ \t]*<!-- lang-boot:start -->[\s\S]*?<!-- lang-boot:end -->\n?/g;

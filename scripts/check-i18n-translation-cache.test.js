@@ -27,7 +27,8 @@ function requestsFor({ src, lang, staticLang = null, page = 'open-pointcloud-stu
     URL,
     window: {},
     navigator: { languages: [lang] },
-    localStorage: { getItem: () => null, setItem() {} },
+    // De taal komt uit de opgeslagen keuze: de browsertaal telt niet mee.
+    localStorage: { getItem: () => lang, setItem() {} },
     fetch: url => { requested.push(url); return Promise.resolve({ ok: false }); },
     document: {
       title: 'Open Pointcloud Studio',
@@ -45,7 +46,7 @@ function requestsFor({ src, lang, staticLang = null, page = 'open-pointcloud-stu
 
 test('translation files are requested under the version of the script address', () => {
   for (const src of ['/shared/i18n.js?v=20261004', 'https://open-aec.com/shared/i18n.js?v=20261004']) {
-    assert.deepEqual(requestsFor({ src, lang: 'fr-FR' }), [
+    assert.deepEqual(requestsFor({ src, lang: 'fr' }), [
       '/shared/translations/open-pointcloud-studio.json?v=20261004',
       '/shared/translations/open-pointcloud-studio.fr.json?v=20261004',
     ]);
@@ -67,7 +68,7 @@ test('a script address without a version asks for the plain file, as before', ()
 });
 
 test('a Dutch visitor and a page in its own language request no translation file', () => {
-  assert.deepEqual(requestsFor({ src: '/shared/i18n.js?v=20261004', lang: 'nl-NL' }), []);
+  assert.deepEqual(requestsFor({ src: '/shared/i18n.js?v=20261004', lang: 'nl' }), []);
   assert.deepEqual(requestsFor({ src: '/shared/i18n.js?v=20261004', lang: 'nl', staticLang: 'fr' }), []);
 });
 
