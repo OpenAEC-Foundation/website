@@ -1,6 +1,6 @@
 # Open Infra Studio
 
-> Open-source GIS plugin for Open CAD Studio. Sets the project location and coordinate system, then brings aerial photos, WMS/TMS underlays, WFS vector data, OpenStreetMap and Dutch base data from PDOK into the DWG. BGT, the cadastral map (BRK) and KLIC deliveries (IMKL 2.0) land on NLCS 5.02 layers with their source attributes as object data, through the official NLCS-BGT 5.0 mapping, and a drawing sheet with title block, legend, north arrow, scale bar and RD crosses is generated around the import area.
+> Open-source GIS and civil design plugin for Open CAD Studio. Sets the project location and coordinate system, then brings aerial photos, WMS/TMS underlays, WFS vector data, OpenStreetMap and Dutch base data from PDOK into the DWG. BGT, the cadastral map (BRK) and KLIC deliveries (IMKL 2.0) land on NLCS 5.02 layers with their source attributes as object data, through the official NLCS-BGT 5.0 mapping, and a drawing sheet with title block, legend, north arrow, scale bar and RD crosses is generated around the import area.
 
 **Status:** beta
 **License:** GPL-3.0-only
@@ -34,7 +34,14 @@
 - Object data: every entity keeps its source attributes
 - NLCS drawing sheet: frame, title block with data sources, legend of the layers used, north arrow, scale bar and RD crosses, A3 to A0 chosen automatically
 - 14 built-in coordinate systems, automatic UTM worldwide, any EPSG code
-- 28 GIS commands for the ribbon, scripts and automation
+- Civil design: survey points, TIN, clothoid alignments and rail with cant and turnouts, corridors with junctions, grading with exact volumes
+- Sewer design: manholes and pipes with invert levels, length profile, checks and export to GWSW-OroX and CSV
+- Plan production: sheet sets along an alignment, every sheet as PDF, labels that follow their source
+- Terrain with its aerial or satellite photo anywhere in the world, and terrain from point clouds (LAS, LAZ, COPC, E57, PLY, PTS, XYZ)
+- Regional profiles for the Netherlands, the United States and International; 94 parametric NLCS objects; Dutch spatial plans
+- LandXML 1.2 and IFC 4.3 export; import of QGIS server connections
+- 35 GIS commands for the ribbon, scripts and automation
+- Release 2026.45.1 and later need Open CAD Studio v2026.44 (plugin API 14)
 
 ## Tech stack
 

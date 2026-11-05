@@ -165,7 +165,7 @@ const TOOLS = [
     name: 'Open Infra Studio',
     category: 'GIS',
     status: 'beta',
-    description: 'Open-source GIS plugin for Open CAD Studio. Sets the project location and coordinate system, then brings aerial photos, WMS/TMS underlays, WFS vector data, OpenStreetMap and Dutch base data from PDOK into the DWG. BGT, the cadastral map (BRK) and KLIC deliveries (IMKL 2.0) land on NLCS 5.02 layers with their source attributes as object data, through the official NLCS-BGT 5.0 mapping, and a drawing sheet with title block, legend, north arrow, scale bar and RD crosses is generated around the import area.',
+    description: 'Open-source GIS and civil design plugin for Open CAD Studio. Sets the project location and coordinate system, then brings aerial photos, WMS/TMS underlays, WFS vector data, OpenStreetMap and Dutch base data from PDOK into the DWG. BGT, the cadastral map (BRK) and KLIC deliveries (IMKL 2.0) land on NLCS 5.02 layers with their source attributes as object data, through the official NLCS-BGT 5.0 mapping, and a drawing sheet with title block, legend, north arrow, scale bar and RD crosses is generated around the import area.',
     keywords: ['GIS', 'infrastructure', 'civil engineering', 'GWW', 'BGT', 'BRK', 'cadastre', 'KLIC', 'IMKL', 'PDOK', 'NLCS', 'WMS', 'WFS', 'OpenStreetMap', 'RD New', 'EPSG:28992', 'DWG', 'Open CAD Studio plugin'],
     alternatives: [],
     license: 'GPL-3.0-only',
