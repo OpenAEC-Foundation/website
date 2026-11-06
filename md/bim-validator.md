@@ -6,18 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Web
 **Category:** BIM Validation
-**Current version:** n/a
+**Current version:** v2026.45.5 (2026-11-05)
 **Tool ID:** `bim-validator`
 **GitHub repo:** `OpenAEC-Foundation/OpenAEC-BIM-validator`
 
 ## Live stats
 
 - Stars: **3**
-- Commits: **75**
+- Commits: **109**
 - Forks: **2**
 - Open issues: **23**
-- Releases: **0**
-- Total downloads: **0**
+- Releases: **3**
+- Total downloads: **20**
+- Downloads by platform: Other (12), Windows (5), Archive (3)
 
 ## Key features
 
@@ -58,8 +59,19 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/bim-validator/
 - Live demo: https://bim-validator.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator
-- Latest release: https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases
+- Latest release: https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/tag/v2026.45.5
 - Nightly builds: https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/tag/nightly
+
+## Direct downloads (most popular)
+
+- [Windows · BIM.Validator_2026.45.4_x64-setup.exe](https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/download/v2026.45.4/BIM.Validator_2026.45.4_x64-setup.exe) (v2026.45.4 — 79 MB)
+- [Windows · BIM.Validator_2026.45.5_x64-setup.exe](https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/download/v2026.45.5/BIM.Validator_2026.45.5_x64-setup.exe) (v2026.45.5 — 81.5 MB)
+- [Other · FRONTEND-RUST-NOTICES.txt](https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/download/v2026.45.5/FRONTEND-RUST-NOTICES.txt) (v2026.45.5 — 4.6 MB)
+- [Other · ifc_validator-2026.45.5-py3-none-any.whl](https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/download/v2026.45.5/ifc_validator-2026.45.5-py3-none-any.whl) (v2026.45.5)
+- [Archive · ifc_validator-2026.45.5.tar.gz](https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/download/v2026.45.5/ifc_validator-2026.45.5.tar.gz) (v2026.45.5 — 0.1 MB)
+- [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/download/v2026.45.5/SHA256SUMS) (v2026.45.5)
+- [Other · THIRD-PARTY-NOTICES.txt](https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/download/v2026.45.5/THIRD-PARTY-NOTICES.txt) (v2026.45.5 — 0.7 MB)
+- [Other · FRONTEND-RUST-NOTICES.txt](https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/download/v2026.45.4/FRONTEND-RUST-NOTICES.txt) (v2026.45.4 — 4.6 MB)
 
 ---
 

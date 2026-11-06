@@ -6,7 +6,7 @@
 **License:** GPL-3.0-only
 **Platforms:** Windows, Linux, macOS
 **Category:** GIS
-**Current version:** v2026.45.3 (2026-11-03)
+**Current version:** v2026.45.4 (2026-11-05)
 **Tool ID:** `open-infra-studio`
 **GitHub repo:** `OpenAEC-Foundation/Open-Infra`
 
@@ -16,9 +16,9 @@
 - Commits: **0**
 - Forks: **0**
 - Open issues: **0**
-- Releases: **13**
-- Total downloads: **13,712**
-- Downloads by platform: Other (13228), Windows (432), Archive (52)
+- Releases: **14**
+- Total downloads: **15,691**
+- Downloads by platform: Other (15081), Windows (550), Archive (60)
 
 ## Key features
 
@@ -67,7 +67,7 @@ Starting an infrastructure or civil drawing from the existing situation: the pro
 
 - Product page: https://open-aec.com/open-infra-studio/
 - GitHub repo: https://github.com/OpenAEC-Foundation/Open-Infra
-- Latest release: https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/tag/v2026.45.3
+- Latest release: https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/tag/v2026.45.4
 
 ## Direct downloads (most popular)
 

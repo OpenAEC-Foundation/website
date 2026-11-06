@@ -15,10 +15,10 @@
 - Stars: **8**
 - Commits: **93**
 - Forks: **3**
-- Open issues: **23**
+- Open issues: **24**
 - Releases: **7**
-- Total downloads: **644**
-- Downloads by platform: Windows (467), Linux (deb) (75), Windows (MSI) (50), Linux (AppImage) (37), macOS (9), Linux (rpm) (6)
+- Total downloads: **660**
+- Downloads by platform: Windows (478), Linux (deb) (76), Windows (MSI) (51), Linux (AppImage) (40), macOS (9), Linux (rpm) (6)
 
 ## Key features
 
@@ -59,7 +59,7 @@ Hands-free site notes, dictation for inspection reports, confidential dictation 
 - [Windows (MSI) · Open.Speech.Studio_0.10.3_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.3/Open.Speech.Studio_0.10.3_x64_en-US.msi) (v0.10.3 — 846.3 MB)
 - [Windows · Open.Speech.Studio_0.10.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.0/Open.Speech.Studio_0.10.0_x64-setup.exe) (v0.10.0 — 679.2 MB)
 - [Windows (MSI) · Open.Speech.Studio_0.12.2_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.12.2/Open.Speech.Studio_0.12.2_x64_en-US.msi) (v0.12.2 — 846.4 MB)
-- [Windows · Open.Speech.Studio_0.10.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.10.1/Open.Speech.Studio_0.10.1_x64-setup.exe) (v0.10.1 — 680.8 MB)
+- [Linux (deb) · Open.Speech.Studio_0.12.2_amd64.deb](https://github.com/OpenAEC-Foundation/open-speech-studio/releases/download/v0.12.2/Open.Speech.Studio_0.12.2_amd64.deb) (v0.12.2 — 431.8 MB)
 
 ---
 
