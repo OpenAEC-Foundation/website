@@ -17,8 +17,8 @@
 - Forks: **2**
 - Open issues: **11**
 - Releases: **22**
-- Total downloads: **1,936**
-- Downloads by platform: Windows (913), Linux (AppImage) (673), Linux (deb) (201), macOS (72), Windows (MSI) (59), Linux (snap) (17), Other (1)
+- Total downloads: **2,020**
+- Downloads by platform: Windows (978), Linux (AppImage) (683), Linux (deb) (201), macOS (80), Windows (MSI) (60), Linux (snap) (17), Other (1)
 
 ## Key features
 
@@ -59,7 +59,7 @@ Installing and keeping all OpenAEC tools up to date on one workstation without v
 - [Linux (deb) · OpenAEC.Installer_0.2.2_amd64.deb](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_amd64.deb) (v0.2.2 — 5.5 MB)
 - [Windows · OpenAEC.Installer_0.2.12_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.12/OpenAEC.Installer_0.2.12_x64-setup.exe) (v0.2.12 — 4.8 MB)
 - [Linux (AppImage) · OpenAEC.Installer_0.2.4_amd64.AppImage](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.4/OpenAEC.Installer_0.2.4_amd64.AppImage) (v0.2.4 — 80 MB)
-- [Windows · OpenAEC.Installer_0.2.7_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.7/OpenAEC.Installer_0.2.7_x64-setup.exe) (v0.2.7 — 4.8 MB)
+- [Linux (AppImage) · OpenAEC.Installer_0.2.14_amd64.AppImage](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.14/OpenAEC.Installer_0.2.14_amd64.AppImage) (v0.2.14 — 80.4 MB)
 
 ---
 

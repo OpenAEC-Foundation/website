@@ -6,19 +6,19 @@
 **License:** Apache-2.0
 **Platforms:** Windows, macOS, Linux
 **Category:** Office Suite
-**Current version:** v2026.45.1 (2026-11-05)
+**Current version:** v2026.45.4 (2026-11-06)
 **Tool ID:** `open-office-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-office-studio`
 
 ## Live stats
 
-- Stars: **4**
-- Commits: **373**
+- Stars: **5**
+- Commits: **410**
 - Forks: **4**
-- Open issues: **95**
-- Releases: **1**
-- Total downloads: **583**
-- Downloads by platform: Windows (243), Linux (AppImage) (113), Linux (deb) (113), macOS (99), Other (15)
+- Open issues: **91**
+- Releases: **4**
+- Total downloads: **1,173**
+- Downloads by platform: Windows (429), Linux (deb) (253), Linux (AppImage) (241), macOS (230), Other (20)
 
 ## Key features
 
@@ -47,7 +47,7 @@ Local office work on your own computer, without an account or cloud service. Tes
 
 - Product page: https://open-aec.com/open-office-studio/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-office-studio
-- Latest release: https://github.com/OpenAEC-Foundation/open-office-studio/releases/tag/v2026.45.1
+- Latest release: https://github.com/OpenAEC-Foundation/open-office-studio/releases/tag/v2026.45.4
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-office-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
@@ -57,9 +57,9 @@ Local office work on your own computer, without an account or cloud service. Tes
 - [Windows · Open.Spreadsheet.Studio_2026.44.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Spreadsheet.Studio_2026.44.8_x64-setup.exe) (v2026.44.8 — 63.6 MB)
 - [Windows · Open.Writer.Studio_2026.44.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Writer.Studio_2026.44.8_x64-setup.exe) (v2026.44.8 — 63.6 MB)
 - [Windows · Open.Email.Studio_2026.44.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Email.Studio_2026.44.8_x64-setup.exe) (v2026.44.8 — 63.6 MB)
-- [Linux (AppImage) · Open.Office.Studio_2026.44.8_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Office.Studio_2026.44.8_amd64.AppImage) (v2026.44.8 — 139.7 MB)
+- [Windows · Open.Office.Studio_2026.45.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.2/Open.Office.Studio_2026.45.2_x64-setup.exe) (v2026.45.2 — 66.4 MB)
 - [Windows · Open.Office.Studio_2026.45.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.1/Open.Office.Studio_2026.45.1_x64-setup.exe) (v2026.45.1 — 66.4 MB)
-- [Windows · Open.Notition.Studio_2026.44.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Notition.Studio_2026.44.8_x64-setup.exe) (v2026.44.8 — 63.6 MB)
+- [Linux (AppImage) · Open.Office.Studio_2026.44.8_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Office.Studio_2026.44.8_amd64.AppImage) (v2026.44.8 — 139.7 MB)
 
 ---
 

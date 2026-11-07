@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux
 **Category:** Building Physics
-**Current version:** v2026.44.0 (2026-10-26)
+**Current version:** v2026.45.0 (2026-11-06)
 **Tool ID:** `open-energy-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-energy-studio`
 
 ## Live stats
 
 - Stars: **1**
-- Commits: **1488**
+- Commits: **1489**
 - Forks: **2**
-- Open issues: **12**
-- Releases: **5**
-- Total downloads: **78**
-- Downloads by platform: Windows (32), Linux (deb) (18), Linux (AppImage) (12), Windows (MSI) (6), Linux (rpm) (4), macOS (4), Other (2)
+- Open issues: **13**
+- Releases: **6**
+- Total downloads: **102**
+- Downloads by platform: Windows (37), Linux (deb) (23), Linux (AppImage) (15), macOS (9), Windows (MSI) (7), Other (5), Linux (rpm) (4), Archive (2)
 
 ## Key features
 
@@ -54,7 +54,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-energy-studio/
 - Live demo: https://open-energy-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-energy-studio
-- Latest release: https://github.com/OpenAEC-Foundation/open-energy-studio/releases/tag/v2026.44.0
+- Latest release: https://github.com/OpenAEC-Foundation/open-energy-studio/releases/tag/v2026.45.0
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-energy-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
@@ -64,9 +64,9 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Linux (AppImage) · Open.Energy.Studio_2026.44.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v2026.44.0/Open.Energy.Studio_2026.44.0_amd64.AppImage) (v2026.44.0 — 85.3 MB)
 - [Windows · Open.Energy.Studio_2026.44.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v2026.44.0/Open.Energy.Studio_2026.44.0_x64-setup.exe) (v2026.44.0 — 9.8 MB)
 - [Linux (deb) · Open.Energy.Studio_0.1.6-alpha_amd64.deb](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.6-alpha_amd64.deb) (v0.1.7-alpha — 5.5 MB)
-- [Linux (AppImage) · Open.Energy.Studio_0.1.7-alpha_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.7-alpha_amd64.AppImage) (v0.1.7-alpha — 81.5 MB)
 - [Linux (deb) · Open.Energy.Studio_0.1.7-alpha_amd64.deb](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.7-alpha_amd64.deb) (v0.1.7-alpha — 7.1 MB)
 - [Windows · Open.Energy.Studio_0.1.7-alpha_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.7-alpha_x64-setup.exe) (v0.1.7-alpha — 5.7 MB)
+- [Linux (deb) · Open.Energy.Studio_2026.43.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v2026.43.0/Open.Energy.Studio_2026.43.0_amd64.deb) (v2026.43.0 — 11.2 MB)
 
 ---
 
