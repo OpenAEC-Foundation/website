@@ -24,6 +24,7 @@ const STEPS = [
   { name: 'Generate release highlights (product timeline copy)',          cmd: 'node scripts/generate-release-highlights.js' },
   { name: 'Generate downloads stats (+ daily snapshot)',                  cmd: 'node scripts/generate-downloads.js' },
   { name: 'Compute download trends (weekly deltas)',                      cmd: 'node scripts/compute-download-trends.js' },
+  { name: 'Fetch recent GitHub Discussions for /forum/',                  cmd: 'node scripts/generate-forum.js' },
   { name: 'Update homepage tool stats (static HTML injection)',           cmd: 'node scripts/build-homepage-stats.js' },
   // Na stats, release-notes en downloads: sorteert de kaarten in de sectie
   // #ecosysteem op volwassenheid en activiteit. Draait vóór build-i18n-pages,

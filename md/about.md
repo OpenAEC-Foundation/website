@@ -2,6 +2,10 @@
 
 > Open-source software ecosystem for the entire Architecture, Engineering & Construction (AEC) industry — buildings (B&U), civil infrastructure (GWW), and civil engineering (bridges, tunnels, roads, railways, water works). Mission: make all AEC software open source by end of 2026.
 
+# OpenAEC Foundation
+
+> Open-source software ecosystem for the entire Architecture, Engineering & Construction (AEC) industry — including buildings (B&U), civil infrastructure (GWW), and civil engineering (bridges, tunnels, roads, railways, water works). Mission: make all AEC software open source by end of 2026.
+
 ## ⭐ Featured tool
 
 **Open CAD Studio** — Full 2D and 3D CAD in Rust that reads and writes DWG and DXF natively (DWG R14 through 2018), with layouts and paper space, PDF plotting, command scripts, a JSON automation API and an MCP endpoint for AI assistants. Runs on Windows, macOS and Linux, and in the browser without installation. Free alternative to AutoCAD LT. A community project by independent developer Hakan Seven, part of the OpenAEC ecosystem; Open Infra Studio builds on it.
@@ -148,14 +152,14 @@ Most tools are LGPL-3.0 licensed; some are LGPL-2.1, MIT (Open Paint Studio) or 
 <!-- stats:start -->
 ## Key facts (generated, do not edit by hand)
 
-Last updated: 2026-11-04
+Last updated: 2026-11-07
 
-- 71 public repositories on GitHub (71 total including private)
-- 25,359 commits by 105 contributors
-- 5,106 GitHub stars, 649 forks
-- 2,215 issues closed, 1,981 pull requests merged
-- 25 tools in the catalog — machine-readable at https://open-aec.com/api/tools.json
-- 209,442 downloads across 26 released tools
+- 73 public repositories on GitHub (143 total including private)
+- 26,797 commits by 106 contributors
+- 5,222 GitHub stars, 660 forks
+- 2,765 issues closed, 2,490 pull requests merged
+- 26 tools in the catalog — machine-readable at https://open-aec.com/api/tools.json
+- 232,063 downloads across 28 released tools
 - Most tools LGPL-3.0 (some LGPL-2.1, MIT or MPL-2.0), built with Rust + Tauri 2 + TypeScript
 - Cross-platform: Windows, macOS, Linux, web
 

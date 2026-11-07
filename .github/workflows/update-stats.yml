@@ -52,6 +52,12 @@ jobs:
       - name: Compute download trends (weekly deltas)
         run: node scripts/compute-download-trends.js
 
+      # Recente GitHub Discussions voor /forum/. GraphQL werkt alleen met token.
+      - name: Fetch recent GitHub Discussions for the forum page
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/generate-forum.js
+
       # Nieuwswaardige signalen voor de socials (releases, pieken, mijlpalen).
       # Leest stats, downloads en release-notes, dus na de stappen hierboven.
       # Een lokale skill maakt er posts van; dit script post zelf niets.
