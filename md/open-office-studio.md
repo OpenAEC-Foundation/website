@@ -12,13 +12,13 @@
 
 ## Live stats
 
-- Stars: **5**
+- Stars: **6**
 - Commits: **410**
 - Forks: **4**
 - Open issues: **91**
 - Releases: **4**
-- Total downloads: **1,173**
-- Downloads by platform: Windows (429), Linux (deb) (253), Linux (AppImage) (241), macOS (230), Other (20)
+- Total downloads: **1,191**
+- Downloads by platform: Windows (435), Linux (AppImage) (253), Linux (deb) (253), macOS (230), Other (20)
 
 ## Key features
 
@@ -57,9 +57,9 @@ Local office work on your own computer, without an account or cloud service. Tes
 - [Windows · Open.Spreadsheet.Studio_2026.44.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Spreadsheet.Studio_2026.44.8_x64-setup.exe) (v2026.44.8 — 63.6 MB)
 - [Windows · Open.Writer.Studio_2026.44.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Writer.Studio_2026.44.8_x64-setup.exe) (v2026.44.8 — 63.6 MB)
 - [Windows · Open.Email.Studio_2026.44.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Email.Studio_2026.44.8_x64-setup.exe) (v2026.44.8 — 63.6 MB)
+- [Windows · Open.Office.Studio_2026.45.4_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.4/Open.Office.Studio_2026.45.4_x64-setup.exe) (v2026.45.4 — 68.2 MB)
 - [Windows · Open.Office.Studio_2026.45.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.2/Open.Office.Studio_2026.45.2_x64-setup.exe) (v2026.45.2 — 66.4 MB)
-- [Windows · Open.Office.Studio_2026.45.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.1/Open.Office.Studio_2026.45.1_x64-setup.exe) (v2026.45.1 — 66.4 MB)
-- [Linux (AppImage) · Open.Office.Studio_2026.44.8_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Office.Studio_2026.44.8_amd64.AppImage) (v2026.44.8 — 139.7 MB)
+- [Linux (AppImage) · Open.Database.Studio_2026.45.4_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.4/Open.Database.Studio_2026.45.4_amd64.AppImage) (v2026.45.4 — 114 MB)
 
 ---
 

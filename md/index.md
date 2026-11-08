@@ -2,11 +2,11 @@
 
 > Machine-readable Markdown mirrors of the OpenAEC product pages. Use these when feeding the OpenAEC catalog to AI assistants (Claude, Continue, Cursor, etc).
 
-Generated: 2026-11-07T06:04:56.577Z
+Generated: 2026-11-08T06:05:03.241Z
 
-**Foundation totals:** 73 public repos · 5211 stars · 26695 commits · 106 contributors.
+**Foundation totals:** 73 public repos · 5255 stars · 27118 commits · 106 contributors.
 
-**Total downloads across tools:** 228,641 (26 repos).
+**Total downloads across tools:** 233,675 (26 repos).
 
 ## Live
 
