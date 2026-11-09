@@ -2,7 +2,7 @@
   "id": "tekeningstandaard-nl",
   "country": "NL",
   "language": "nl",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "updated": "2026-11-09",
   "status": "concept",
   "statusValues": {
@@ -28,7 +28,7 @@
       },
       {
         "name": "Tekening",
-        "text": "Plattegrond, doorsnede, gevel, detail, schema, staat."
+        "text": "Locatie-, assemblage- en componenttekeningen en staten, de indeling uit NEN 2574."
       },
       {
         "name": "Regels",
@@ -36,7 +36,7 @@
       }
     ]
   },
-  "phasesLead": "De fasen en hun codes volgen de Standaardtaakbeschrijving DNR-STB 2014 van BNA en NLingenieurs; het nummer is de fase uit die regeling. De STB noemt ook schalen voor het voorontwerp en het definitief ontwerp. Werktekeningen en revisie vallen buiten de STB en zijn gangbare praktijk.",
+  "phasesLead": "De fasen en hun codes volgen de Standaardtaakbeschrijving DNR-STB 2014 van BNA en NLingenieurs. NEN 2574 beschrijft per fase en per soort tekening wat de tekening moet laten zien. Werktekeningen van aannemer en leveranciers horen bij het uitvoeringsgereed ontwerp. Revisie valt buiten de STB en is gangbare praktijk.",
   "phases": [
     {
       "code": "SO",
@@ -85,45 +85,38 @@
     {
       "code": "TO",
       "name": "Technisch ontwerp",
-      "purpose": "Technische uitwerking met aansluitingen en details, geschikt om aan te besteden.",
+      "purpose": "Het plan zo nauwkeurig vastgelegd dat er samen met het bestek een definitieve prijs op kan worden gemaakt.",
       "scales": [
+        "1:100",
         "1:50",
         "1:20",
         "1:5"
       ],
       "status": "norm",
       "sources": [
-        "dnr-stb"
+        "dnr-stb",
+        "nen-2574",
+        "rrbouw-130"
       ],
       "dnr": "06"
     },
     {
       "code": "UO",
       "name": "Uitvoeringsgereed ontwerp",
-      "purpose": "Alles wat nodig is om te bouwen, afgestemd op de werktekeningen van aannemer en leveranciers.",
+      "purpose": "Alles wat nodig is om te bouwen: de uitgewerkte bestektekeningen, plus de werktekeningen van aannemer en leveranciers.",
       "scales": [
         "1:50",
         "1:20",
-        "1:5"
+        "1:5",
+        "1:1"
       ],
       "status": "norm",
       "sources": [
-        "dnr-stb"
+        "dnr-stb",
+        "nen-2574",
+        "rrbouw-130"
       ],
       "dnr": "08"
-    },
-    {
-      "code": "WT",
-      "name": "Werktekeningen",
-      "purpose": "Productie- en montagetekeningen van aannemer en leveranciers.",
-      "scales": [
-        "1:50",
-        "1:20",
-        "1:10",
-        "1:5"
-      ],
-      "status": "gangbaar",
-      "sources": []
     },
     {
       "code": "RV",
@@ -142,7 +135,7 @@
     {
       "id": "architectuur",
       "name": "Architectuur",
-      "description": "Het ontwerp van het gebouw: indeling, vorm, gevels en materialen. In de ontwerpfasen tekent de architect, vanaf het technisch ontwerp vaak samen met een bouwkundig tekenaar.",
+      "description": "Het ontwerp van het gebouw: indeling, vorm, gevels en materialen, van structuurontwerp tot definitief ontwerp. De technische uitwerking vanaf het technisch ontwerp staat bij bouwkunde.",
       "drawings": [
         {
           "name": "Situatietekening",
@@ -150,9 +143,7 @@
           "phases": {
             "SO": "1:500",
             "VO": "1:500",
-            "DO": "1:500",
-            "TO": "1:500",
-            "UO": "1:500"
+            "DO": "1:500"
           }
         },
         {
@@ -161,8 +152,6 @@
             "SO": "1:200",
             "VO": "1:100",
             "DO": "1:100",
-            "TO": "1:50",
-            "UO": "1:50",
             "RV": "1:100"
           }
         },
@@ -172,8 +161,6 @@
             "SO": "1:200",
             "VO": "1:100",
             "DO": "1:100",
-            "TO": "1:50",
-            "UO": "1:50",
             "RV": "1:100"
           }
         },
@@ -182,26 +169,20 @@
           "phases": {
             "SO": "1:200",
             "VO": "1:100",
-            "DO": "1:100",
-            "TO": "1:50",
-            "UO": "1:50"
+            "DO": "1:100"
           }
         },
         {
           "name": "Principedetails",
           "note": "aansluitingen op hoofdlijnen",
           "phases": {
-            "DO": "1:10",
-            "TO": "1:5",
-            "UO": "1:5"
+            "DO": "1:10"
           }
         },
         {
           "name": "Kozijnstaat",
           "phases": {
-            "DO": "1:50",
-            "TO": "1:50",
-            "UO": "1:20"
+            "DO": "1:50"
           }
         }
       ],
@@ -213,64 +194,839 @@
         {
           "text": "Ruimten krijgen een naam en een nummer; vanaf DO ook het oppervlak.",
           "status": "gangbaar"
+        },
+        {
+          "text": "Een plattegrond is een horizontale doorsnede op 1 meter boven vloerpeil; wat erboven ligt, wordt gestippeld.",
+          "status": "gangbaar",
+          "sources": [
+            "rrbouw-130",
+            "nen-2574"
+          ]
         }
       ]
     },
     {
       "id": "bouwkunde",
       "name": "Bouwkunde",
-      "description": "De technische uitwerking van het architectonisch ontwerp: opbouw van wanden, vloeren en daken, aansluitingen, sparingen en maatvoering voor de bouwplaats.",
+      "description": "De technische uitwerking van het ontwerp tot bestek- en uitvoeringstekeningen: indeling, maatvoering, opbouw van wanden, vloeren en daken, aansluitingen, kozijnen en trappen. In het technisch ontwerp tekent meestal de architect, in de uitvoering de aannemer en de leveranciers.",
       "drawings": [
         {
-          "name": "Bouwkundige plattegronden",
-          "note": "met maatvoering en wandopbouw",
+          "name": "Situatie",
           "phases": {
-            "TO": "1:50",
-            "UO": "1:50",
-            "WT": "1:50",
-            "RV": "1:50"
+            "TO": "1:200 / 1:500"
           }
         },
         {
-          "name": "Bouwkundige doorsneden",
+          "name": "Terreininrichting",
           "phases": {
-            "TO": "1:50",
-            "UO": "1:50",
-            "WT": "1:50"
+            "UO": "1:200"
+          }
+        },
+        {
+          "name": "Plattegronden",
+          "phases": {
+            "TO": "1:100"
+          }
+        },
+        {
+          "name": "Matenplannen",
+          "note": "ook deelmatenplannen",
+          "phases": {
+            "UO": "1:50 / 1:20"
+          }
+        },
+        {
+          "name": "Gevels en aanzichten",
+          "phases": {
+            "TO": "1:100 / 1:200",
+            "UO": "1:50 / 1:20"
+          }
+        },
+        {
+          "name": "Doorsneden",
+          "phases": {
+            "TO": "1:100",
+            "UO": "1:50 / 1:20"
+          }
+        },
+        {
+          "name": "Deeldoorsneden",
+          "phases": {
+            "TO": "1:20 / 1:50",
+            "UO": "1:50 / 1:20"
+          }
+        },
+        {
+          "name": "Gevelfragmenten",
+          "phases": {
+            "TO": "1:20 / 1:50"
+          }
+        },
+        {
+          "name": "Trappen en trappenhuizen",
+          "phases": {
+            "TO": "1:50 / 1:20",
+            "UO": "1:20"
           }
         },
         {
           "name": "Details",
+          "note": "bestekdetails in TO, uitvoeringsdetails in UO",
           "phases": {
-            "TO": "1:5",
-            "UO": "1:5",
-            "WT": "1:5"
+            "TO": "1:5 / 1:1",
+            "UO": "1:5 / 1:1"
           }
         },
         {
-          "name": "Sparingstekening",
-          "note": "afgestemd met constructie en installaties",
+          "name": "Kozijnoverzichten",
           "phases": {
-            "UO": "1:50",
-            "WT": "1:50"
+            "UO": "1:50 / 1:20"
           }
         },
         {
-          "name": "Maatvoeringstekening",
+          "name": "Prefab beton, kunststeen, natuursteen",
           "phases": {
-            "UO": "1:50",
-            "WT": "1:50"
+            "UO": "1:50 / 1:20"
+          }
+        },
+        {
+          "name": "Metaalwerken en klein ijzerwerk",
+          "phases": {
+            "UO": "1:20"
           }
         }
       ],
       "rules": [
         {
-          "text": "Maten in millimeters, als kettingmaat en totaalmaat, vanaf de stramienen.",
-          "status": "gangbaar"
+          "text": "Schalen en inhoud voor TO en UO volgens de richtlijn kwaliteit tekenwerk, die NEN 2574 uitwerkt.",
+          "status": "gangbaar",
+          "sources": [
+            "rrbouw-130",
+            "nen-2574"
+          ]
         },
         {
-          "text": "De opbouw van elke wand, vloer en dak staat in een legenda of op de details.",
-          "status": "gangbaar"
+          "text": "Bruto inhoud en bruto oppervlakte op de plattegronden volgens NEN 2580.",
+          "status": "norm",
+          "sources": [
+            "nen-2580"
+          ]
+        },
+        {
+          "text": "De opbouw van wanden, vloeren en daken staat in een renvooi of op de details.",
+          "status": "gangbaar",
+          "sources": [
+            "rrbouw-130"
+          ]
+        }
+      ],
+      "cards": [
+        {
+          "phase": "TO",
+          "name": "Situatie",
+          "scale": "1:200 / 1:500",
+          "general": [
+            "Definitieve positionering gebouw op locatie",
+            "Definitieve oriëntatie (noordpijl)",
+            "Definitieve bouwmassa en bouwblokgrenzen",
+            "Parkeervoorzieningen",
+            "Definitieve terreinindeling",
+            "Definitieve hoofd- en neventoegangen"
+          ],
+          "dimensions": [
+            "Terreinprofiel (hoogtematen) gerelateerd aan N.A.P. (bouwpeil)",
+            "Hoofdafmetingen terrein en gebouw",
+            "Meetpunten en/of markante punten belendingen t.o.v. RD",
+            "Erfgrens en rooilijnen",
+            "Kadastrale gegevens en perceelafmetingen (incl. meetcoördinaten)",
+            "Afmetingen bebouwd oppervlak"
+          ],
+          "specific": [
+            "Terreinontsluiting (wegen, slagbomen, hekwerken)",
+            "Groenvoorzieningen",
+            "Straatwerk",
+            "Terreinverlichting",
+            "Terreinmeubilair",
+            "Belendingen",
+            "Eventueel indeling in bouwblokken / typen",
+            "Omvang bouwterrein tijdens bouw",
+            "Straatnamen",
+            "Terreinleidingen (incl. nutsleidingen)",
+            "Onderscheid in bestaande en nieuwe situatie",
+            "Inrichting parkeervoorzieningen op eigen terrein",
+            "Brandhydranten",
+            "Opstelplaats brandweerauto",
+            "Aansluiting droge blusleiding",
+            "Sleutelkluis"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Plattegronden",
+          "scale": "1:100",
+          "general": [
+            "Definitieve indeling",
+            "Definitieve inrichting (vast en los)",
+            "Specificaties van ruimten en bouwdelen",
+            "Ruimtebenaming -nummering en oppervlak",
+            "Ruimtelijke reservering van constructies en installaties"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Hoofdafmetingen gebouw",
+            "Bruto inhoud in m3 volgens NEN 2580",
+            "Bruto oppervlakte in m2 volgens NEN 2580"
+          ],
+          "specific": [
+            "Draairichting deuren",
+            "Verwijzingen naar doorsneden, fragmenten, trappen en details",
+            "Leidingschachten",
+            "Trappen, hellingbanen vloerranden en balustraden",
+            "Kozijnmerken",
+            "Afwerkingen van vloeren, wanden, plafonds en trappen",
+            "Gebouwdilataties",
+            "Specifieke installatieonderdelen: sanitair, hwa, riolering, drainage, vet- en olieafscheiders, meterkasten, droge blusleiding, gaskast, c.v., trafo, hydrofoor, sprinkler, LAN, SER, MER, liften, roltrappen, kruipluiken, koelmachines, watermeterruimte",
+            "Gevelreiniging, luchtbehandeling",
+            "Specifiek voor dakplattegrond: opstortingen en verhogingen, roosters, daklichten, dakluiken liftmachinekamers, glazenwasinstallatie, afschot, spuwers, afvoeren dakrandbreedtes en hoogten, hijsluiken, tegelpaden",
+            "Onderscheid in bestaande en nieuwe situatie",
+            "Aanduiding en oppervlakken van bestemmingen",
+            "Beoogde en huidige gebruik van het bouwwerk",
+            "Aanduiding van gebruiksoppervlak, verblijfsgebied, verblijf- en verkeersruimte",
+            "Brand- en rookcompartimentering",
+            "Brand- en rookwerendheid (wbdbo-eisen)",
+            "Blusvoorzieningen",
+            "Brandmeldinstallatie en rookmelders",
+            "Brandweerlift",
+            "Noodverlichting, vluchtwegaanduiding met loopafstanden",
+            "Noodstroomvoorzieningen",
+            "Stallingruimte voor fietsen",
+            "Ruimte voor opslag huishoudelijk afval",
+            "Aanduidingen m.b.t. geluidsisolatie en thermische isolatie",
+            "Voorzieningen integrale toegankelijkheid (miva)",
+            "Opstelplaats kooktoestel, stooktoestellen, warmwatertoestel",
+            "Inbraakveiligheid"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Gevels",
+          "scale": "1:100 / 1:200",
+          "general": [
+            "Specificaties van bouwdelen",
+            "Definitieve indeling gevel"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Hoofdafmetingen gebouw"
+          ],
+          "specific": [
+            "Omschrijving op tekening van toe te passen materialen",
+            "Omschrijving op tekening van toe te passen kleuren",
+            "Draairichting deuren",
+            "Metselwerkondersteuningen",
+            "Kozijnmerken",
+            "Verwijzing naar doorsneden en details",
+            "Geveldilataties",
+            "Hwa en noodoverlaten",
+            "Gevels van belendende bebouwing",
+            "Eisen m.b.t. geluidsisolatie en thermische isolatie",
+            "Brandwerendheid",
+            "Ventilatievoorzieningen",
+            "Zonwering"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Doorsneden",
+          "scale": "1:100",
+          "general": [
+            "Definitieve indeling",
+            "Definitieve inrichting",
+            "Specificaties van ruimten en bouwdelen",
+            "Ruimtelijke reservering van constructies en installaties"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingshoogte (vrije hoogte)",
+            "Verdiepingspeil t.o.v. peil"
+          ],
+          "specific": [
+            "Doorsneden in meest relevante richtingen maken (lengte- en dwars)",
+            "Omschrijving op tekening van toe te passen materialen",
+            "Ruimtebenaming en -nummering",
+            "Verwijzing naar deeldoorsneden en details",
+            "Plafonds",
+            "Onderscheid in bestaande en nieuwe situatie",
+            "Aantal bouwlagen",
+            "Eisen m.b.t. geluidsisolatie en thermische isolatie",
+            "Brandwerendheid"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Deeldoorsneden",
+          "scale": "1:20 / 1:50",
+          "general": [
+            "Kenmerkende fragmenten in doorsnede",
+            "Specificaties van ruimten en bouwdelen",
+            "Omschrijving op tekening van toe te passen materialen",
+            "Omschrijving op tekening van toe te passen afwerkingen"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil"
+          ],
+          "specific": [
+            "Verwijzing naar doorsneden en details",
+            "Plafonds",
+            "Metselwerkondersteuningen",
+            "Brandwerendheid"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Gevelfragmenten",
+          "scale": "1:20 / 1:50",
+          "general": [
+            "Kenmerkende fragmenten in aanzicht"
+          ],
+          "dimensions": [
+            "Voor de globale beeldvorming en bouwfysische en",
+            "Installatietechnische berekeningen",
+            "Omschrijving op tekening van toe te passen materialen",
+            "Omschrijving op tekening van toe te passen kleuren",
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Peilmaten gevelopeningen t.o.v. peil",
+            "Bij metselwerk: verband – koppenmaat - lagenmaat"
+          ],
+          "specific": [
+            "Geveldilataties",
+            "Brandwerendheid gevelonderdelen",
+            "Verwijzing naar doorsneden en details",
+            "Metselwerkondersteuningen",
+            "Kozijnmerken",
+            "Zonwering",
+            "Ventilatie"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Trappen en trappenhuizen",
+          "scale": "1:50 / 1:20 en details 1:5",
+          "general": [
+            "Kenmerkende details (ook van balustraden)",
+            "Materialisatie van de onderdelen",
+            "Looprichting van de trappen",
+            "Omschrijving op tekening van toe te passen materialen"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil"
+          ],
+          "specific": [
+            "Brandwerendheid en rookwerendheid",
+            "Eisen m.b.t. vluchtroutes (o.a. draairichting deuren)",
+            "Ventilatievoorzieningen",
+            "Portalen en sluizen"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Bestekdetails",
+          "scale": "1:5 / 1:1",
+          "general": [
+            "Kenmerkende details (relevant i.v.m. de prijsvorming)",
+            "Specificatie materialen",
+            "Omschrijving op tekening van toe te passen materialen"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingsvloer t.o.v. peil"
+          ],
+          "specific": [
+            "Isolatiedikten (Rc-waarde)",
+            "Luchtdichting, kierdichting",
+            "Waterdichting",
+            "Brandwerendheid materialen",
+            "Afmeting naden (wering ongedierte)"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Terreininrichting",
+          "scale": "1:200",
+          "general": [
+            "Oriëntatie (noordpijl)",
+            "Parkeervoorzieningen",
+            "Materialisatie straatwerk",
+            "Terreinindeling",
+            "Hoofd- en neventoegangen"
+          ],
+          "dimensions": [
+            "Terreinprofiel (hoogtematen) gerelateerd aan N.A.P.",
+            "Hoofd- en detailmaatvoering van terreinonderdelen",
+            "Hoofdafmetingen terrein en gebouw",
+            "Erfgrens en rooilijnen",
+            "Positionering gebouw op lokatie",
+            "Meetpunten en/of markante punten belendingen t.o.v. RD"
+          ],
+          "specific": [
+            "Terreinontsluiting (wegen, slagbomen, hekwerken)",
+            "Kadestrale gegevens en perceelafmetingen (incl. meetcoördinaten)",
+            "Groenvoorzieningen",
+            "Terreinverlichting",
+            "Terreinmeubilair",
+            "Eventueel indeling in bouwblokken / typen",
+            "Straatnamen",
+            "Terreinleidingen (incl. Nutsleidingen)",
+            "Onderscheid in bestaande en nieuwe situatie",
+            "Brandhydranten",
+            "Opstelplaats brandweerauto",
+            "Aansluiting droge blusleiding",
+            "Sleutelkluisjes",
+            "Leidingtracé"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Details terreininrichting",
+          "scale": "1:20",
+          "general": [
+            "Oriëntatie (noordpijl)",
+            "Parkeervoorzieningen",
+            "Materialisatie straatwerk",
+            "Terreinindeling",
+            "Hoofd- en neventoegangen"
+          ],
+          "dimensions": [
+            "Terreinprofiel (hoogtematen) gerelateerd aan N.A.P.",
+            "Hoofd- en detailmaatvoering van terreinonderdelen",
+            "Hoofdafmetingen terrein en gebouw",
+            "Erfgrens en rooilijnen",
+            "Positionering gebouw op lokatie",
+            "Meetpunten en/of markante punten belendingen t.o.v. RD"
+          ],
+          "specific": [
+            "Terreinontsluiting (wegen, slagbomen, hekwerken)",
+            "Kadestrale gegevens en perceelafmetingen (incl. meetcoördinaten)",
+            "Groenvoorzieningen",
+            "Terreinverlichting",
+            "Terreinmeubilair",
+            "Eventueel indeling in bouwblokken / typen",
+            "Straatnamen",
+            "Terreinleidingen (incl. Nutsleidingen)",
+            "Onderscheid in bestaande en nieuwe situatie",
+            "Brandhydranten",
+            "Opstelplaats brandweerauto",
+            "Aansluiting droge blusleiding",
+            "Sleutelkluisjes",
+            "Leidingtracé"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Matenplannen",
+          "scale": "1:50 / 1:20",
+          "general": [
+            "Definitieve inrichting (vast en los)",
+            "Afwerkingen van vloeren, wanden, plafonds en trappen",
+            "Specificaties van ruimten en bouwdelen",
+            "Ruimtebenaming -nummering en oppervlak"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil"
+          ],
+          "specific": [
+            "Draairichting deuren",
+            "Verwijzingen naar doorsneden, fragmenten, trappen en details",
+            "Leidingschachten",
+            "Trappen, hellingbanen vloerranden en balustraden",
+            "Kozijnmerken",
+            "Gebouwdilataties",
+            "Specifieke installatie-onderdelen: sanitair, hwa, riolering, drainage, vet- en olieafscheiders, meterkasten, droge blusleiding, gaskast, c.v., trafo, hydrofoor, sprinkler, LAN, SER, MER, liften, roltrappen, kruipluiken, koelmachines, watermeterruimte, gevelreiniging, luchtbehandeling verwarmingsinstallatie, valbeveiliging.",
+            "Specifiek voor dakplattegrond: opstortingen en verhogingen, roosters, daklichten, dakluiken liftmachinekamers, glazenwasinstallatie, afschot, spuwers, afvoeren dakrandbreedtes en hoogten, hijsluiken, tegelpaden",
+            "Onderscheid in bestaande en nieuwe situatie",
+            "Brand- en rookcompartimentering",
+            "Brandwerendheid en rookwerendheid (wbdbo-eisen)",
+            "Noodverlichting, vluchtwegaanduiding met loopafstanden",
+            "Noodstroomvoorzieningen",
+            "Blusvoorzieningen",
+            "Brandmeldinstallatie en rookmelders",
+            "Voorzieningen integrale toegankelijkheid (miva)",
+            "Brandweerlift",
+            "Opstelplaats kooktoestel, stooktoestellen, warmwatertoestel",
+            "Materialisatie wanden (soorten en typen)",
+            "Verwijzing naar details"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Deelmatenplannen",
+          "scale": "1:50 / 1:20",
+          "general": [
+            "Definitieve inrichting (vast en los)",
+            "Afwerkingen van vloeren, wanden, plafonds en trappen",
+            "Specificaties van ruimten en bouwdelen",
+            "Ruimtebenaming -nummering en oppervlak"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil"
+          ],
+          "specific": [
+            "Draairichting deuren",
+            "Verwijzingen naar doorsneden, fragmenten, trappen en details",
+            "Leidingschachten",
+            "Trappen, hellingbanen vloerranden en balustraden",
+            "Kozijnmerken",
+            "Gebouwdilataties",
+            "Specifieke installatie-onderdelen: sanitair, hwa, riolering, drainage, vet- en olieafscheiders, meterkasten, droge blusleiding, gaskast, c.v., trafo, hydrofoor, sprinkler, LAN, SER, MER, liften, roltrappen, kruipluiken, koelmachines, watermeterruimte, gevelreiniging, luchtbehandeling verwarmingsinstallatie, valbeveiliging.",
+            "Specifiek voor dakplattegrond: opstortingen en verhogingen, roosters, daklichten, dakluiken liftmachinekamers, glazenwasinstallatie, afschot, spuwers, afvoeren dakrandbreedtes en hoogten, hijsluiken, tegelpaden",
+            "Onderscheid in bestaande en nieuwe situatie",
+            "Brand- en rookcompartimentering",
+            "Brandwerendheid en rookwerendheid (wbdbo-eisen)",
+            "Noodverlichting, vluchtwegaanduiding met loopafstanden",
+            "Noodstroomvoorzieningen",
+            "Blusvoorzieningen",
+            "Brandmeldinstallatie en rookmelders",
+            "Voorzieningen integrale toegankelijkheid (miva)",
+            "Brandweerlift",
+            "Opstelplaats kooktoestel, stooktoestellen, warmwatertoestel",
+            "Materialisatie wanden (soorten en typen)",
+            "Verwijzing naar details"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Doorsneden",
+          "scale": "1:50 / 1:20",
+          "general": [
+            "Omschrijving op tekening van toe te passen materialen en afwerking",
+            "Omschrijving op tekening van toe te passen kleuren",
+            "Indeling",
+            "Inrichting",
+            "Specificaties van ruimten en bouwdelen",
+            "Constructies en installaties"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Voegverdelingen tegelwerk",
+            "Metselwerk koppenmaat (lagenmaat)"
+          ],
+          "specific": [
+            "Inpassing van bouwkundige elementen",
+            "Ruimtebenaming en -nummering",
+            "Verwijzing naar doorsneden / aanzichten en details",
+            "Draairichting deuren",
+            "Metselwerkondersteuningen",
+            "Kozijnmerken",
+            "Geveldilataties",
+            "Plafonds",
+            "Onderscheid in bestaande en nieuwe situatie",
+            "Aantal bouwlagen",
+            "Eisen m.b.t. geluidsisolatie en thermische isolatie",
+            "Brandwerendheid",
+            "Ventilatievoorzieningen",
+            "Waterslagen",
+            "Zonwering",
+            "Noodoverlopen"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Deeldoorsneden",
+          "scale": "1:50 / 1:20",
+          "general": [
+            "Omschrijving op tekening van toe te passen materialen en afwerking",
+            "Omschrijving op tekening van toe te passen kleuren",
+            "Indeling",
+            "Inrichting",
+            "Specificaties van ruimten en bouwdelen",
+            "Constructies en installaties"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Voegverdelingen tegelwerk",
+            "Metselwerk koppenmaat (lagenmaat)"
+          ],
+          "specific": [
+            "Inpassing van bouwkundige elementen",
+            "Ruimtebenaming en -nummering",
+            "Verwijzing naar doorsneden / aanzichten en details",
+            "Draairichting deuren",
+            "Metselwerkondersteuningen",
+            "Kozijnmerken",
+            "Geveldilataties",
+            "Plafonds",
+            "Onderscheid in bestaande en nieuwe situatie",
+            "Aantal bouwlagen",
+            "Eisen m.b.t. geluidsisolatie en thermische isolatie",
+            "Brandwerendheid",
+            "Ventilatievoorzieningen",
+            "Waterslagen",
+            "Zonwering",
+            "Noodoverlopen"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Aanzichten",
+          "scale": "1:50 / 1:20",
+          "general": [
+            "Omschrijving op tekening van toe te passen materialen en afwerking",
+            "Omschrijving op tekening van toe te passen kleuren",
+            "Indeling",
+            "Inrichting",
+            "Specificaties van ruimten en bouwdelen",
+            "Constructies en installaties"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Voegverdelingen tegelwerk",
+            "Metselwerk koppenmaat (lagenmaat)"
+          ],
+          "specific": [
+            "Inpassing van bouwkundige elementen",
+            "Ruimtebenaming en –nummering",
+            "Verwijzing naar doorsneden / aanzichten en details",
+            "Draairichting deuren",
+            "Metselwerkondersteuningen",
+            "Kozijnmerken",
+            "Geveldilataties",
+            "Plafonds",
+            "Onderscheid in bestaande en nieuwe situatie",
+            "Aantal bouwlagen",
+            "Eisen m.b.t. geluidsisolatie en thermische isolatie",
+            "Brandwerendheid",
+            "Ventilatievoorzieningen",
+            "Waterslagen",
+            "Zonwering",
+            "Noodoverlopen"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Trappenhuis",
+          "scale": "1:20 en details 1:5",
+          "general": [
+            "Kenmerkende plattegronden en doorsneden",
+            "Materialisatie van de onderdelen",
+            "Merken en aantallen",
+            "Looprichting van de trappen",
+            "Oppervlaktebehandeling"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil"
+          ],
+          "specific": [
+            "Brandwerendheidseisen en rookwerendheidseisen",
+            "Bevestiging / verankering"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Trapdetails",
+          "scale": "1:20 en details 1:5",
+          "general": [
+            "Kenmerkende (aansluit-)details (ook van balustraden)",
+            "Materialisatie van de onderdelen",
+            "Looprichting van de trappen",
+            "Oppervlaktebehandeling"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil"
+          ],
+          "specific": [
+            "Brandwerendheidseisen en rookwerendheidseisen",
+            "Bevestiging / verankering",
+            "Merken en aantallen"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Prefab beton-, kunststeen- en natuursteenelementen",
+          "scale": "1:50 / 1:20 en details 1:5",
+          "general": [
+            "Kenmerkende (aansluit-)details",
+            "Merken en aantallen",
+            "Materialisatie van de onderdelen",
+            "Oppervlaktebehandeling"
+          ],
+          "dimensions": [
+            "Maten tot stramien in geval van kenmerkende aansluitdetails",
+            "Peilmaten"
+          ],
+          "specific": [
+            "Brandwerendheidseisen",
+            "Voegdichtingen",
+            "Bevestiging / verankering"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Metaalwerken en klein ijzerwerk",
+          "scale": "1:20 en details 1:5",
+          "general": [
+            "Kenmerkende (aansluit-)details",
+            "Merken en aantallen",
+            "Materialisatie van de onderdelen",
+            "Oppervlaktebehandeling"
+          ],
+          "dimensions": [
+            "Maten tot stramien in geval van kenmerkende aansluitdetails",
+            "Peilmaten"
+          ],
+          "specific": [
+            "Brandwerendheidseisen",
+            "Voegdichtingen",
+            "Bevestiging / verankering"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Kozijnoverzichten en details",
+          "scale": "1:50 / 1:20 en details 1:5 / 1:1",
+          "general": [
+            "Materiaalkeuze van alle onderdelen t.b.v. de kozijnen (paneelvulling, glasvulling, ramen en deuren)",
+            "Brandwerendheidseisen",
+            "Geluidwerendheidseisen",
+            "Luchtdichtheidseisen",
+            "Inbraakwerendheidseisen",
+            "Draairichtingen",
+            "Glassoort (ZTA, LTA)",
+            "Sluitvolgorde",
+            "Aantallen",
+            "Merken",
+            "Positionering",
+            "Kleuren (RAL) en oppervlaktebehandeling",
+            "Glansgraad"
+          ],
+          "dimensions": [
+            "Verdiepingspeil t.o.v. peil",
+            "Maten tot stramien in geval van kenmerkende aansluitdetails"
+          ],
+          "specific": [
+            "Doorvalbeveiliging",
+            "Ventilatieroosters, suskasten",
+            "Hardstenen dorpels en neuten",
+            "Vensterbanken",
+            "Voorzieningen als schopplaten, randbescherming, spion, valdorpels, deurdrangers en brievenbus",
+            "Electra-voorzieningen in kozijn en deur (autom. sloten)",
+            "Deurenstaat (apart overzicht)",
+            "Ventilatie op de deur",
+            "Zonwering",
+            "Hang- en sluitwerk (separate staat van maken)",
+            "Details uittekenen van hang- en sluitwerk passing ruimtebeslag"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Uitvoeringsdetails",
+          "scale": "1:5 / 1:1",
+          "general": [
+            "Kenmerkende details",
+            "Specificatie materialen",
+            "Omschrijving op tekening van toe te passen materialen"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil"
+          ],
+          "specific": [
+            "Isolatiedikten (Rc-waarde)",
+            "Luchtdichting, kierdichting",
+            "Waterdichting",
+            "Brandwerendheid materialen",
+            "Afm. naden (wering ongedierte)",
+            "Valbeveiliging voor onderhoud"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
         }
       ]
     },
@@ -283,57 +1039,106 @@
           "name": "Palenplan",
           "phases": {
             "DO": "1:100",
-            "TO": "1:50",
-            "UO": "1:50",
-            "WT": "1:50"
+            "TO": "1:100",
+            "UO": "1:50 / 1:100"
+          }
+        },
+        {
+          "name": "Bouwputoverzicht",
+          "phases": {
+            "TO": "1:100 / 1:200",
+            "UO": "1:50 / 1:100"
           }
         },
         {
           "name": "Funderingsplan",
           "phases": {
             "VO": "1:200",
-            "DO": "1:100",
-            "TO": "1:50",
-            "UO": "1:50",
-            "WT": "1:50"
+            "DO": "1:100"
           }
         },
         {
-          "name": "Vloer- en balklagenplannen",
+          "name": "Plattegronden beton",
+          "note": "vorm, in UO met sparingen",
           "phases": {
             "VO": "1:200",
             "DO": "1:100",
-            "TO": "1:50",
-            "UO": "1:50",
-            "WT": "1:50"
-          }
-        },
-        {
-          "name": "Constructieve doorsneden",
-          "phases": {
-            "DO": "1:100",
-            "TO": "1:50",
+            "TO": "1:100 / 1:200",
             "UO": "1:50"
           }
         },
         {
           "name": "Wapeningstekeningen",
           "phases": {
-            "TO": "1:20",
-            "UO": "1:20",
-            "WT": "1:20"
+            "UO": "1:50"
           }
         },
         {
-          "name": "Staalconstructie",
-          "note": "overzicht en verbindingen",
+          "name": "Doorsneden beton",
           "phases": {
-            "UO": "1:50",
-            "WT": "1:10"
+            "DO": "1:100",
+            "TO": "1:100"
+          }
+        },
+        {
+          "name": "Aanzichten beton",
+          "note": "in UO prefab elementen",
+          "phases": {
+            "TO": "1:100",
+            "UO": "1:50"
+          }
+        },
+        {
+          "name": "Details beton",
+          "phases": {
+            "TO": "1:20 / 1:50",
+            "UO": "1:20 / 1:10"
+          }
+        },
+        {
+          "name": "Plattegronden staal",
+          "phases": {
+            "TO": "1:100 / 1:200",
+            "UO": "1:50"
+          }
+        },
+        {
+          "name": "Doorsneden staal",
+          "phases": {
+            "TO": "1:100",
+            "UO": "1:50"
+          }
+        },
+        {
+          "name": "Aanzichten staal",
+          "phases": {
+            "TO": "1:100"
+          }
+        },
+        {
+          "name": "Details staal",
+          "phases": {
+            "TO": "1:20 / 1:10",
+            "UO": "1:20 / 1:10"
           }
         }
       ],
       "rules": [
+        {
+          "text": "Schalen en inhoud voor TO en UO volgens de richtlijn kwaliteit tekenwerk, die NEN 2574 uitwerkt.",
+          "status": "gangbaar",
+          "sources": [
+            "rrbouw-130",
+            "nen-2574"
+          ]
+        },
+        {
+          "text": "Op een constructieplattegrond worden onderliggende elementen gestippeld getekend.",
+          "status": "gangbaar",
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
         {
           "text": "Wapening volgens de norm voor wapeningstekeningen: positienummers, staafvormen en een buigstaat.",
           "status": "norm",
@@ -351,6 +1156,522 @@
         {
           "text": "Elk element krijgt een merk of positienummer dat terugkomt in de staten.",
           "status": "gangbaar"
+        }
+      ],
+      "cards": [
+        {
+          "phase": "TO",
+          "name": "Palenplan",
+          "scale": "1:100",
+          "general": [
+            "Globale locatie palen",
+            "Paalnummering",
+            "Paalweergave middels symbolen",
+            "Locatie sonderingen / boringen met nummering",
+            "Principe detail aansluiting paal met fundering",
+            "Palenstaat, waarin per paalsymbool: paaltype, doorsnede/diameter, aantal, globaal inheiveau tov N.A.P, maximale belasting",
+            "Legenda: peil t.o.v. N.A.P. verwijzing naar grondmechanisch rapport"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen"
+          ],
+          "specific": [
+            "Bestaande bebouwing",
+            "Aardingsvoorzieningen",
+            "Verwijzing naar grondmechanisch rapport",
+            "Bestaande leidingtracé",
+            "Startpunt heiwerk"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Bouwputoverzicht",
+          "scale": "1:100 / 1:200",
+          "general": [
+            "Type bouwputomgrenzing",
+            "Diepwand, damwand, palenwand, berlinerwand, schermen, taluds, enz.",
+            "Doorsnede/diameter/afmeting/locatie van anker-/stempelelementen",
+            "Type verankering/stempeling",
+            "Doorsnede/diameter/afmeting/locatie van bouwputomgrenzingselementen",
+            "Fasering/werkvolgorde",
+            "Ontgravingsniveau",
+            "Grondwaterniveau",
+            "Verkeersbelastingen aan buitenzijde put",
+            "(voorspan)krachten ankers/stempels",
+            "Legenda: peil t.o.v. peil"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen"
+          ],
+          "specific": [
+            "Bestaande bebouwing",
+            "Verwijzing naar geotechnisch bemalingsrapport",
+            "Materiaalaanduidingen",
+            "Positie bemaling"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Plattegronden beton",
+          "scale": "1:100 / 1:200 en details 1:20 / 1:10 (staal) 1:20 / 1:50 (beton)",
+          "general": [
+            "Type (prefab / insitu), vorm en globale locatie van constr.-elementen: poeren, funderingsstroken, balken, vloeren, kolommen, wanden, kernen, trappen, bordessen, dragend metselwerk stabiliteitsverbanden",
+            "Dilataties, krimpstroken",
+            "Locatie van doorsneden en details",
+            "Veranderlijke belasting"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Niveau en niveauverschillen"
+          ],
+          "specific": [
+            "Sparingen vanuit installaties welke invloed hebben op de constructie",
+            "Indicatie knooppuntverbindingen",
+            "Plattegrond en details combineren op tekening",
+            "Materiaalaanduidingen",
+            "Overgang in constructies",
+            "Toog"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Doorsneden beton",
+          "scale": "1:100",
+          "general": [
+            "Type (prefab / insitu), vorm en globale locatie van constr.-elementen: poeren, funderingsstroken, balken, vloeren, kolommen, wanden, kernen, trappen, bordessen, dragend metselwerk stabiliteitsverbanden"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Niveau en niveauverschillen"
+          ],
+          "specific": [
+            "Materiaalaanduidingen",
+            "Situering in het bouwplan"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Details beton",
+          "scale": "details 1:20 / 1:50 (beton), 1:20 / 1:10 (staal)",
+          "general": [
+            "Principe details"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil"
+          ],
+          "specific": [
+            "Indicatie knooppuntverbindingen",
+            "Materiaalaanduidingen"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Aanzichten beton",
+          "scale": "1:100",
+          "general": [
+            "Type, vorm en globale locatie van constructie-elementen: balken, vloeren, kolommen, stabiliteitsverbanden",
+            "Verwijzing naar bijhorende tekeningen"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Niveau en niveauverschillen"
+          ],
+          "specific": [
+            "Materiaalaanduidingen",
+            "Situering in bouwplan"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Plattegronden staal",
+          "scale": "1:100 / 1:200 en details 1:20 / 1:10 (staal) 1:20 / 1:50 (beton)",
+          "general": [
+            "Type (prefab / insitu), vorm en globale locatie van constr.-elementen: poeren, funderingsstroken, balken, vloeren, kolommen, wanden, kernen, trappen, bordessen, dragend metselwerk stabiliteitsverbanden",
+            "Dilataties, krimpstroken",
+            "Locatie van doorsneden en details",
+            "Veranderlijke belasting"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Niveau en niveauverschillen"
+          ],
+          "specific": [
+            "Sparingen vanuit installaties welke invloed hebben op de constructie",
+            "Indicatie knooppuntverbindingen",
+            "Plattegrond en details combineren op tekening",
+            "Materiaalaanduidingen",
+            "Overgang in constructies",
+            "Toog"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Doorsneden staal",
+          "scale": "1:100",
+          "general": [
+            "Type, vorm en globale locatie van constructie-elementen: poeren, funderingsstroken, balken, vloeren, kolommen, wanden, kernen, trappen, bordessen, dragend metselwerk stabiliteitsverbanden"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Niveau en niveauverschillen"
+          ],
+          "specific": [
+            "Materiaalaanduidingen",
+            "Situering in het bouwplan"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Details staal",
+          "scale": "details 1:20 / 1:50 (beton), 1:20 / 1:10 (staal)",
+          "general": [
+            "Principe details"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil"
+          ],
+          "specific": [
+            "Indicatie knooppuntverbindingen",
+            "Materiaalaanduidingen"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "TO",
+          "name": "Aanzichten staal",
+          "scale": "1:100",
+          "general": [
+            "Type, vorm en globale locatie van constructie-elementen: balken, vloeren, kolommen, stabiliteitsverbanden",
+            "Verwijzing naar bijhorende tekeningen"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Niveau en niveauverschillen"
+          ],
+          "specific": [
+            "Materiaalaanduidingen",
+            "Situering in bouwplan"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Palenplan",
+          "scale": "1:50 / 1:100",
+          "general": [
+            "Locatie palen",
+            "Paalnummering",
+            "Paalweergave middels symbolen",
+            "Locatie sonderingen / boringen met nummering",
+            "Principe detail aansluiting paal met fundering",
+            "Palenstaat, waarin per paalsymbool: paaltype, doorsnede/diameter, aantal, inheinveau tov N.A.P, maximale belasting afkaphoogte af te leiden van plattegrond fundering",
+            "Legenda peil t.o.v. peil verwijzing naar grondmechanisch rapport"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen"
+          ],
+          "specific": [
+            "Bestaande bebouwing",
+            "Aardingsvoorzieningen",
+            "Verwijzing naar geotechnisch rapport",
+            "Startpunt heien",
+            "Leidingtracés"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Bouwputoverzicht",
+          "scale": "1:50 / 1:100",
+          "general": [
+            "Type bouwputomgrenzing: diepwand, damwand, palenwand,berlinerwand, schermen, taluds, enz.",
+            "Doorsnede/diameter/afmeting/locatie van anker-/stempelelementen",
+            "Type verankering/stempeling",
+            "Doorsnede/diameter/afmeting/locatie van bouwputomgrenzingselementen",
+            "Fasering/werkvolgorde",
+            "Verwijzing naar grondmechanish-/bemalings rapport",
+            "Ontgravingsniveau",
+            "Grondwaterniveau",
+            "Verkeersbelastingen aan buitenzijde put (voorspan)krachten ankers/stempels",
+            "Legenda peil t.o.v. peil"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen"
+          ],
+          "specific": [
+            "Bestaande bebouwing",
+            "Verwijzing naar geotechnisch bemalingsrapport",
+            "Materiaalaanduiding",
+            "Positie stempels",
+            "Bemaling",
+            "Aanvulhoogte buitenzijde damwand"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Betonvorm",
+          "scale": "1:50 en details 1:20 / 1:10",
+          "general": [
+            "Type (prefab / insitu), vorm en locatie van constr.-elementen: poeren, funderingsstroken, balken, vloeren, kolommen, wanden, kernen, trappen, bordessen, dragend metselwerk",
+            "Dilataties, krimpstroken",
+            "Locatie van doorsneden en details",
+            "Sparingen vanuit installaties welke invloed hebben op de constructie",
+            "In te storten delen voor zover van invloed",
+            "Betonstempel met opgave: betonkwaliteit milieuklasse, staalkwaliteit wapening, betondekking",
+            "Veranderlijke belasting",
+            "Verwijzing naar bijbehorende tekeningen"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderling bemating stramienen",
+            "Niveau en niveauverschillen"
+          ],
+          "specific": [
+            "Situering in het bouwplan",
+            "Indien mogelijk details opnemen op tekening",
+            "Volgorde bouw vanuit constructief oogpunt",
+            "Volgorde bouw voor tijdelijke voorzieningen",
+            "Veiligheid permanente gebouwinstallaties",
+            "Hoofd draagconstructie aangeven",
+            "Overgang constructieafmetingen",
+            "Oppervlakte in constructieafwerkingen",
+            "Toog"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Betonwapening",
+          "scale": "1:50 en details 1:20 / 1:10",
+          "general": [
+            "Wapening, bestaande uit staven dan wel netten, qua vorm afgestemd",
+            "Op de vorm van de constructie elementen: poeren, funderingsstroken, balken, vloeren, kolommen, wanden, kernen, trappen, bordessen",
+            "Staafdiameter",
+            "H.o.h. afstanden, maaswijdte",
+            "Laagaanduiding",
+            "Staaflocatie in doorsnede",
+            "Stekkenbakken, stekankers / stekeinden",
+            "Principe wapening rond sparingen",
+            "Betonstempel met opgave: betonkwaliteit milieuklasse, staalkwaliteit wapening, betondekking",
+            "Tabel met las- en verankeringslengten",
+            "Verwijzing naar bijbehorende tekeningen"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil"
+          ],
+          "specific": [
+            "Actuele vormtekening als onderlegger",
+            "Aanduiding alleen geldig voor wapening",
+            "Situering in het bouwplan"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Betonsparingen",
+          "scale": "1:50 en details 1:20 / 1:10",
+          "general": [
+            "Detailvorming en locatie van constructie-elementen",
+            "Te maken sparingen t.g.v. installaties e.d.",
+            "In te storten delen voor zover van invloed op de betonvorm en/of wapening",
+            "Verwijzing naar bijbehorende tekeningen"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Niveau en niveauverschillen"
+          ],
+          "specific": [
+            "Situering in het bouwplan !!!! p o t e L n e g g el r e o p ts a a n g nir eloi R"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Aanzichten prefab beton",
+          "scale": "1:50 en details 1:20 / 1:10",
+          "general": [
+            "Type, vorm en locatie van constructie-elementen",
+            "Locatie van doorsneden en details",
+            "Sparingen vanuit installaties welke invloed hebben op de constructie",
+            "In te storten delen voor zover van invloed",
+            "Verwijzing naar bijbehorende tekeningen",
+            "Materiaalaanduidingen"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Niveau en niveauverschillen"
+          ],
+          "specific": [
+            "Situering in het bouwplan",
+            "Codering van elementen",
+            "Bouwvolgorde",
+            "Hijs / montage voorzieningen",
+            "Voorzieningen koudebruggen"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Details beton",
+          "scale": "1:20 / 1:10",
+          "general": [
+            "Detailvorm van constructie-elementen",
+            "In te storten delen voor zover van invloed op de betonvorm",
+            "Verwijzing naar bijbehorende tekeningen"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Niveau en niveauverschillen"
+          ],
+          "specific": [
+            "Aanduiding vellingkanten",
+            "Eisen oppervlakte behandeling"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Plattegronden staal",
+          "scale": "1:50 en 1:20 / 1:10 (details)",
+          "general": [
+            "Type, vorm en locatie van constructie-elementen: balken, vloeren, kolommen, stabiliteitsverbanden",
+            "Dilataties",
+            "Indicatie knooppuntverbindingen",
+            "Locatie van doorsneden en details",
+            "Staalstempel met opgave: staalkwaliteit, boutkwaliteit, minimum lasdikte, conservering",
+            "Veranderlijke belasting",
+            "Verwijzing naar bijbehorende tekeningen",
+            "Situering in het bouwplan"
+          ],
+          "dimensions": [
+            "Stramienen",
+            "Onderlinge bemating stramienen",
+            "Verdiepingspeil t.o.v. peil",
+            "Niveau en níveauverschillen"
+          ],
+          "specific": [
+            "Situering in het bouwplan",
+            "Toog",
+            "Aanduiding hoofddraagconstructie",
+            "Sparingen met name door het staal",
+            "Bouwvolgorde"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Doorsneden staal",
+          "scale": "1:50",
+          "general": [
+            "Type, vorm en locatie van constructie-elementen: balken, vloeren, kolommen, stabiliteitsverbanden dilataties verwijzing principe details indicatie knooppuntverbindingen staalstempel met opgave: staalkwaliteit, boutkwaliteit, minimum lasdikte, conservering verwijzing naar bijbehorende tekeningen"
+          ],
+          "dimensions": [
+            "Stramienen onderlinge bemating stramienen verdiepingspeil t.o.v. peil niveau en niveauverschillen"
+          ],
+          "specific": [
+            "Situering in het bouwplan"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
+        },
+        {
+          "phase": "UO",
+          "name": "Details staal",
+          "scale": "1:20 / 1:10",
+          "general": [
+            "Detailvorming van constructie-elementen",
+            "Dilataties",
+            "Indicatie knooppuntverbindingen",
+            "Staalstempel met opgave: staalkwaliteit, boutkwaliteit, minimum lasdikte, conservering",
+            "Verwijzing naar bijbehorende tekeningen"
+          ],
+          "dimensions": [
+            "Stramien",
+            "Onderlinge bemating stramien",
+            "Verdiepingspeil t.o.v. peil",
+            "Niveau en niveauverschillen"
+          ],
+          "specific": [
+            "Situering in het bouwplan",
+            "Verankering vloer - staal"
+          ],
+          "sources": [
+            "rrbouw-130"
+          ]
         }
       ]
     },
@@ -375,7 +1696,6 @@
             "DO": "1:100",
             "TO": "1:50",
             "UO": "1:50",
-            "WT": "1:50",
             "RV": "1:50"
           }
         },
@@ -383,8 +1703,7 @@
           "name": "Installatieruimten",
           "phases": {
             "TO": "1:20",
-            "UO": "1:20",
-            "WT": "1:20"
+            "UO": "1:20"
           }
         }
       ],
@@ -426,7 +1745,6 @@
             "DO": "1:100",
             "TO": "1:50",
             "UO": "1:50",
-            "WT": "1:50",
             "RV": "1:50"
           }
         },
@@ -435,7 +1753,6 @@
           "phases": {
             "TO": "1:50",
             "UO": "1:50",
-            "WT": "1:50",
             "RV": "1:50"
           }
         },
@@ -444,7 +1761,6 @@
           "phases": {
             "TO": "zonder schaal",
             "UO": "zonder schaal",
-            "WT": "zonder schaal",
             "RV": "zonder schaal"
           }
         }
@@ -471,7 +1787,6 @@
             "DO": "1:100",
             "TO": "1:50",
             "UO": "1:50",
-            "WT": "1:50",
             "RV": "1:50"
           }
         },
@@ -480,15 +1795,13 @@
           "phases": {
             "TO": "1:50",
             "UO": "1:50",
-            "WT": "1:50",
             "RV": "1:50"
           }
         },
         {
           "name": "Isometrieën",
           "phases": {
-            "UO": "zonder schaal",
-            "WT": "zonder schaal"
+            "UO": "zonder schaal"
           }
         }
       ],
@@ -530,6 +1843,13 @@
           "status": "norm",
           "sources": [
             "nlcs"
+          ]
+        },
+        {
+          "text": "Voor tekeningen van betonconstructies in de infra heeft Rijkswaterstaat een eigen richtlijn.",
+          "status": "norm",
+          "sources": [
+            "rtw-kw-bc"
           ]
         }
       ]
@@ -685,7 +2005,7 @@
       "iso-3098"
     ],
     "titleBlock": {
-      "text": "Rechtsonder op elke tekening, leesbaar als de tekening tot A4 is gevouwen.",
+      "text": "Rechtsonder op elke tekening. Minimaal: projectnaam, tekeningnummer, tekeningnaam, opdrachtgever, opsteller, schaal, datum en status. Een verkleinde situatie in het stempel laat zien welk deel van het gebouw de tekening toont.",
       "fields": [
         {
           "name": "Opdrachtgever",
@@ -728,17 +2048,22 @@
           "required": false
         },
         {
-          "name": "Status (concept, ter goedkeuring, definitief)",
-          "required": false
+          "name": "Status",
+          "required": true
         },
         {
           "name": "Bestandsnaam",
+          "required": false
+        },
+        {
+          "name": "Sleutelplan: verkleinde situatie met het getekende deel",
           "required": false
         }
       ],
       "status": "norm",
       "sources": [
-        "iso-7200"
+        "iso-7200",
+        "rrbouw-130"
       ]
     },
     "other": [
@@ -782,111 +2107,81 @@
         "status": "voorstel"
       },
       {
-        "topic": "Revisies",
-        "text": "Elke wijziging krijgt een revisieletter met datum en omschrijving in het revisieblok, en een wolk om het gewijzigde deel.",
-        "status": "gangbaar"
-      },
-      {
         "topic": "Vouwen",
         "text": "Tekeningen worden tot A4 gevouwen met het titelblok zichtbaar aan de voorkant.",
         "status": "norm",
         "sources": [
           "nen-379"
         ]
+      },
+      {
+        "topic": "Wijzigingen",
+        "text": "Elke wijziging krijgt een wijzigingspijl op de tekening en een omschrijving met datum rechtsonder, en de tekening een nieuwe wijzigingsletter of -cijfer.",
+        "status": "gangbaar",
+        "sources": [
+          "rrbouw-130"
+        ]
+      },
+      {
+        "topic": "Maatvoering vanaf stramienen",
+        "text": "Elke maat gaat uit van de stramienen, ook het middelpunt van ronde vormen. Stramienen en verdiepingspeilen zijn uniek gecodeerd en veranderen niet tijdens het werk.",
+        "status": "gangbaar",
+        "sources": [
+          "rrbouw-130",
+          "nen-2574"
+        ]
+      },
+      {
+        "topic": "Maattekst",
+        "text": "Maatgetallen zijn van hoogstens twee zijden leesbaar.",
+        "status": "gangbaar",
+        "sources": [
+          "rrbouw-130"
+        ]
+      },
+      {
+        "topic": "Maten niet overschrijven",
+        "text": "Tekenen op ware grootte in CAD; maatgetallen komen automatisch uit de tekening en worden nooit met de hand aangepast.",
+        "status": "gangbaar",
+        "sources": [
+          "rrbouw-130"
+        ]
+      },
+      {
+        "topic": "Verwijzingen",
+        "text": "Verwijzingen naar andere tekeningen en details noemen het tekeningnummer.",
+        "status": "gangbaar",
+        "sources": [
+          "rrbouw-130"
+        ]
+      },
+      {
+        "topic": "Doorsneden",
+        "text": "Doorsneden lopen zo veel mogelijk in een rechte lijn, op de plekken die ertoe doen.",
+        "status": "gangbaar",
+        "sources": [
+          "rrbouw-130"
+        ]
+      },
+      {
+        "topic": "Verkleiningen",
+        "text": "Een verkleinde afdruk vermeldt duidelijk dat het een verkleining is.",
+        "status": "gangbaar",
+        "sources": [
+          "rrbouw-130"
+        ]
+      },
+      {
+        "topic": "Renvooi",
+        "text": "Waar nodig een renvooi met de materiaalarceringen, brandwerendheid of isolatie die op die tekening voorkomen.",
+        "status": "gangbaar",
+        "sources": [
+          "rrbouw-130"
+        ]
       }
     ]
   },
-  "hatchesLead": "Arceringen laten in een doorsnede zien van welk materiaal een onderdeel is. De Nederlandse norm daarvoor is NEN 47 uit 1970; de patronen daarin zijn niet openbaar. De NLCS-arceringen voor infra zijn wel openbaar en vrij te gebruiken. Hieronder ons voorstel voor een standaardset, die we nog naast beide leggen.",
-  "hatches": [
-    {
-      "id": "metselwerk",
-      "name": "Metselwerk",
-      "description": "Baksteen en kalkzandsteen in doorsnede",
-      "pattern": {
-        "type": "lines",
-        "angle": 45,
-        "spacing": 4,
-        "lineWidth": 0.6
-      },
-      "status": "voorstel"
-    },
-    {
-      "id": "beton",
-      "name": "Beton, ongewapend",
-      "description": "Stort- en prefab beton zonder wapening",
-      "pattern": {
-        "type": "dots",
-        "spacing": 6,
-        "lineWidth": 0.8
-      },
-      "status": "voorstel"
-    },
-    {
-      "id": "gewapend-beton",
-      "name": "Gewapend beton",
-      "description": "Constructief beton in doorsnede",
-      "pattern": {
-        "type": "crosshatch",
-        "angle": 45,
-        "spacing": 6,
-        "lineWidth": 0.5
-      },
-      "status": "voorstel"
-    },
-    {
-      "id": "hout",
-      "name": "Hout",
-      "description": "Balken, stijlen en kozijnen in doorsnede",
-      "pattern": {
-        "type": "lines",
-        "angle": 135,
-        "spacing": 8,
-        "lineWidth": 0.5
-      },
-      "status": "voorstel"
-    },
-    {
-      "id": "isolatie",
-      "name": "Isolatie",
-      "description": "Zachte en harde isolatie",
-      "pattern": {
-        "type": "insulation",
-        "lineWidth": 0.8
-      },
-      "status": "gangbaar"
-    },
-    {
-      "id": "staal",
-      "name": "Staal",
-      "description": "Kleine staalprofielen in doorsnede, volledig zwart",
-      "pattern": {
-        "type": "solid",
-        "fill": "#2A2A32"
-      },
-      "status": "gangbaar"
-    },
-    {
-      "id": "grond",
-      "name": "Grond",
-      "description": "Onverroerde grond onder en naast de fundering",
-      "pattern": {
-        "type": "lines",
-        "angle": 45,
-        "spacing": 12,
-        "lineWidth": 0.4
-      },
-      "status": "voorstel"
-    },
-    {
-      "id": "glas",
-      "name": "Glas",
-      "description": "Beglazing: twee dunne lijnen zonder arcering",
-      "pattern": {
-        "type": "none"
-      },
-      "status": "gangbaar"
-    }
-  ],
+  "hatchesLead": "NEN 47 legt vast hoe materialen in doorsnede op bouwkundige tekeningen worden aangeduid. Per materiaal hangt de arcering af van de schaal: op 1:100 eenvoudiger dan op 1:5. Een B betekent dat het materiaal ook in woorden wordt beschreven, omdat de arcering alleen niet genoeg zegt. Voor wapening op betontekeningen gelden aparte normen.",
   "classification": {
     "lead": "Lagen en codes maken een tekening doorzoekbaar en koppelbaar aan een model. Voor infra is er een landelijke CAD-standaard; voor gebouwen werken veel bureaus met de NL-SfB-codering, die ook de BIM basis ILS voorschrijft.",
     "items": [
@@ -1018,10 +2313,31 @@
       "url": "https://www.dekempenaer.nl/content/uploads/2015/07/standaardtaakbeschrijving_2014_toelichting.pdf"
     },
     {
+      "id": "nen-2574",
+      "short": "NEN 2574",
+      "title": "NEN 2574:1993, Tekeningen in de bouw — Indeling van gegevens op tekeningen voor gebouwen",
+      "url": "https://www.nen.nl/nen-2574-1993-nl-8163"
+    },
+    {
+      "id": "rrbouw-130",
+      "short": "RRBOUW 130",
+      "title": "RRBOUW-rapport 130, Kwaliteit van tekenwerk in de bouw (Stichting Research Rationalisatie Bouw, 2007), deel B: richtlijn kwaliteit tekenwerk",
+      "note": "werkt NEN 2574 en de DNR uit per tekening, voor TO en UO",
+      "url": "https://maken.wikiwijs.nl/userfiles/7b10591c1d98de029b811b96339632bce22205ad.pdf"
+    },
+    {
       "id": "nen-47",
       "short": "NEN 47",
       "title": "NEN 47:1970, Technische tekeningen — Doorsnede-aanduidingen van materialen op bouwkundige tekeningen",
-      "url": "https://www.nen.nl/nen-47-1970-nl-7779"
+      "url": "https://www.nen.nl/nen-47-1970-nl-7779",
+      "note": "voor gewapend beton op constructietekeningen verwijst de norm naar NEN 6135 tot en met 6142"
+    },
+    {
+      "id": "nen-47-weergave",
+      "short": "tabel NEN 47",
+      "title": "Arceringen (doorsnede-aanduidingen), Industrieel produceren met hout",
+      "note": "openbare weergave van de NEN 47-tabel; de patronen hier zijn daaruit nagetekend en nog te controleren tegen de norm zelf",
+      "url": "https://industrieelproducerenmethout.nl/algemene-kennis-houttechniek-2/productiegegevens-lezen/2-afspraken-voor-het-tekenen/2.2-arceringen-doorsnede-aanduidingen/"
     },
     {
       "id": "iso-128",
@@ -1082,6 +2398,13 @@
       "url": "https://www.nen.nl/nen-en-iso-4157-1-1999-nl-83142"
     },
     {
+      "id": "nen-2580",
+      "short": "NEN 2580",
+      "title": "NEN 2580, Oppervlakten en inhouden van gebouwen",
+      "note": "genoemd in de richtlijn kwaliteit tekenwerk",
+      "url": ""
+    },
+    {
       "id": "iso-3766",
       "short": "NEN-EN-ISO 3766",
       "title": "NEN-EN-ISO 3766:2004, Bouwkundige tekeningen — Vereenvoudigde tekenwijze van betonwapening",
@@ -1121,6 +2444,12 @@
       "url": "https://www.digigo.nu/standaarden/nlcs/"
     },
     {
+      "id": "rtw-kw-bc",
+      "short": "RTW-KW 2.0-BC",
+      "title": "Richtlijn voor het tekenwerk van betonconstructies, RTW-KW 2.0-BC (Rijkswaterstaat)",
+      "url": "https://open.rijkswaterstaat.nl/@71950/richtlijn-tekenwerk-betonconstructies"
+    },
+    {
       "id": "nl-sfb",
       "short": "NL-SfB",
       "title": "NL-SfB, classificatie van bouwdelen (Ketenstandaard Bouw en Techniek)",
@@ -1154,6 +2483,764 @@
   ],
   "hatchesSources": [
     "nen-47",
-    "nlcs"
-  ]
+    "nen-47-weergave"
+  ],
+  "hatchScales": [
+    "1:100",
+    "1:50",
+    "1:20",
+    "1:10",
+    "1:5",
+    "1:1"
+  ],
+  "nen47": [
+    {
+      "nr": "50",
+      "name": "Steen en beton",
+      "items": [
+        {
+          "nr": "1",
+          "name": "Metselwerk van baksteen",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50"
+              ],
+              "pattern": {
+                "type": "lines",
+                "angle": 0,
+                "spacing": 1.6,
+                "lineWidth": 1.1
+              }
+            },
+            {
+              "scales": [
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "band"
+              }
+            },
+            {
+              "scales": [
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "lines",
+                "angle": 45,
+                "spacing": 9,
+                "lineWidth": 0.9
+              }
+            }
+          ]
+        },
+        {
+          "nr": "2",
+          "name": "Speciale steenachtige materialen",
+          "describe": true,
+          "note": "bijvoorbeeld cementraam, vuurvast materiaal, raamdorpelsteen, dakpannen",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "crosshatch",
+                "angle": 45,
+                "spacing": 11,
+                "lineWidth": 0.9
+              }
+            }
+          ]
+        },
+        {
+          "nr": "3",
+          "name": "Metselwerk van niet-gebakken kunststeen",
+          "describe": true,
+          "note": "bijvoorbeeld kalkzandsteen, betonblokken",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "lines",
+                "angle": 45,
+                "spacing": 11,
+                "lineWidth": 0.9
+              }
+            }
+          ]
+        },
+        {
+          "nr": "4",
+          "name": "Niet-dragende lichte scheidingswanden",
+          "note": "is de wand dragend: gebakken steen als nr. 1, niet-gebakken steen als nr. 3",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50"
+              ],
+              "pattern": {
+                "type": "blocks",
+                "fill": "lines-h"
+              }
+            },
+            {
+              "scales": [
+                "1:20",
+                "1:10"
+              ],
+              "pattern": {
+                "type": "blocks",
+                "fill": "lines-v"
+              }
+            },
+            {
+              "scales": [
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "none"
+              },
+              "describe": true
+            }
+          ]
+        },
+        {
+          "nr": "5",
+          "name": "Gewapend beton, in het werk gestort",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50"
+              ],
+              "pattern": {
+                "type": "dots",
+                "spacing": 4,
+                "lineWidth": 0.6
+              }
+            },
+            {
+              "scales": [
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "solid",
+                "fill": "#D6D3D1"
+              }
+            }
+          ]
+        },
+        {
+          "nr": "6",
+          "name": "Gewapend beton, niet in het werk gestort",
+          "note": "prefab, bijvoorbeeld systeemvloeren",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "lines",
+                "angle": 45,
+                "spacing": 11,
+                "lineWidth": 0.9,
+                "background": "#D6D3D1"
+              }
+            }
+          ]
+        },
+        {
+          "nr": "7",
+          "name": "Ongewapend beton, in het werk gestort",
+          "describe": true,
+          "note": "bijvoorbeeld vulbeton, lichtbeton, werkvloeren",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "crosshatch",
+                "angle": 45,
+                "spacing": 11,
+                "lineWidth": 0.9,
+                "background": "#D6D3D1"
+              }
+            }
+          ]
+        },
+        {
+          "nr": "7a",
+          "name": "Ongewapend beton, niet in het werk gestort",
+          "describe": true,
+          "sameAs": "2",
+          "note": "bijvoorbeeld betonbroodjes; arcering als nr. 2",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "crosshatch",
+                "angle": 45,
+                "spacing": 11,
+                "lineWidth": 0.9
+              }
+            }
+          ]
+        },
+        {
+          "nr": "8",
+          "name": "Sierbeton",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "lines",
+                "angle": 45,
+                "spacing": 11,
+                "lineWidth": 0.9,
+                "dash": [
+                  5,
+                  3
+                ],
+                "background": "#D6D3D1"
+              }
+            }
+          ]
+        },
+        {
+          "nr": "9",
+          "name": "Natuursteen",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "lines",
+                "angle": 45,
+                "spacing": 11,
+                "lineWidth": 0.9,
+                "dash": [
+                  5,
+                  3
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "nr": "10",
+          "name": "Enkele vloer- en wandafwerking",
+          "describe": true,
+          "note": "bijvoorbeeld pleisterwerk",
+          "variants": [
+            {
+              "scales": [
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "finish"
+              }
+            }
+          ]
+        },
+        {
+          "nr": "11",
+          "name": "Samengestelde vloer- en wandafwerking",
+          "describe": true,
+          "variants": [
+            {
+              "scales": [
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "finish",
+                "layered": true
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nr": "51",
+      "name": "Hout en plaatmateriaal",
+      "items": [
+        {
+          "nr": "12",
+          "name": "Naaldhout",
+          "variants": [
+            {
+              "scales": [
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "lines",
+                "angle": 45,
+                "spacing": 11,
+                "lineWidth": 0.9
+              }
+            }
+          ]
+        },
+        {
+          "nr": "13",
+          "name": "Loofhout",
+          "variants": [
+            {
+              "scales": [
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "crosshatch",
+                "angle": 45,
+                "spacing": 11,
+                "lineWidth": 0.9
+              }
+            }
+          ]
+        },
+        {
+          "nr": "14",
+          "name": "Naald- en loofhout, langshout",
+          "variants": [
+            {
+              "scales": [
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "lines",
+                "angle": 0,
+                "spacing": 4,
+                "lineWidth": 0.8
+              }
+            }
+          ]
+        },
+        {
+          "nr": "14a",
+          "name": "Triplex en ander gelamineerd plaatmateriaal",
+          "describe": true,
+          "variants": [
+            {
+              "scales": [
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "plies"
+              }
+            }
+          ]
+        },
+        {
+          "nr": "15",
+          "name": "Lijmnaad",
+          "variants": [
+            {
+              "scales": [
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "dotline"
+              }
+            }
+          ]
+        },
+        {
+          "nr": "16",
+          "name": "Bekledingsplaat, geen triplex",
+          "describe": true,
+          "variants": [
+            {
+              "scales": [
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "lines",
+                "angle": 90,
+                "spacing": 5,
+                "lineWidth": 0.8
+              }
+            }
+          ]
+        },
+        {
+          "nr": "17",
+          "name": "Isolatieplaat",
+          "describe": true,
+          "note": "zigzaglijn met hoeken van 60°",
+          "variants": [
+            {
+              "scales": [
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "insulation",
+                "lineWidth": 0.9
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nr": "52",
+      "name": "Metalen",
+      "items": [
+        {
+          "nr": "18",
+          "name": "Staal",
+          "note": "op constructietekeningen mag de doorsnede open blijven",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "lines",
+                "angle": 0,
+                "spacing": 1.6,
+                "lineWidth": 1.1
+              }
+            },
+            {
+              "scales": [
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "lines",
+                "angle": 45,
+                "spacing": 11,
+                "lineWidth": 2.4
+              }
+            }
+          ]
+        },
+        {
+          "nr": "19",
+          "name": "Aluminium, brons, koper en dergelijke",
+          "describe": true,
+          "variants": [
+            {
+              "scales": [
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "none"
+              }
+            }
+          ]
+        },
+        {
+          "nr": "20",
+          "name": "Lood",
+          "describe": true,
+          "note": "met vermelding van de zwaarte",
+          "variants": [
+            {
+              "scales": [
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "strip",
+                "dashed": true
+              }
+            }
+          ]
+        },
+        {
+          "nr": "21",
+          "name": "Zink",
+          "describe": true,
+          "note": "met vermelding van het nummer",
+          "variants": [
+            {
+              "scales": [
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "strip"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "nr": "53",
+      "name": "Overige materialen",
+      "items": [
+        {
+          "nr": "22",
+          "name": "Kunststof",
+          "describe": true,
+          "variants": [
+            {
+              "scales": [
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "lines",
+                "angle": 45,
+                "spacing": 4,
+                "lineWidth": 0.8
+              }
+            }
+          ]
+        },
+        {
+          "nr": "23",
+          "name": "Afdichtingsmiddel",
+          "describe": true,
+          "variants": [
+            {
+              "scales": [
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "specks"
+              }
+            }
+          ]
+        },
+        {
+          "nr": "24",
+          "name": "Bitumenweefsel en folie",
+          "describe": true,
+          "variants": [
+            {
+              "scales": [
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "strip",
+                "double": true
+              }
+            }
+          ]
+        },
+        {
+          "nr": "25",
+          "name": "Maaiveld",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "ground"
+              }
+            }
+          ]
+        },
+        {
+          "nr": "26",
+          "name": "Zand",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "specks"
+              }
+            }
+          ]
+        },
+        {
+          "nr": "27",
+          "name": "Grind",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "pebbles"
+              }
+            }
+          ]
+        },
+        {
+          "nr": "28",
+          "name": "Water",
+          "variants": [
+            {
+              "scales": [
+                "1:100",
+                "1:50",
+                "1:20",
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "waves"
+              }
+            }
+          ]
+        },
+        {
+          "nr": "29",
+          "name": "Glas",
+          "describe": true,
+          "variants": [
+            {
+              "scales": [
+                "1:10",
+                "1:5",
+                "1:1"
+              ],
+              "pattern": {
+                "type": "lines",
+                "angle": 0,
+                "spacing": 4,
+                "lineWidth": 0.6,
+                "inset": true
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "drawingCategories": {
+    "lead": "NEN 2574 deelt tekeningen in vier soorten in, naar de internationale indeling uit ISO 1046.",
+    "items": [
+      {
+        "code": "L",
+        "name": "Locatietekeningen",
+        "text": "overzichten: situatie, plattegronden, gevels"
+      },
+      {
+        "code": "A",
+        "name": "Assemblagetekeningen",
+        "text": "hoe delen samenkomen: doorsneden en details"
+      },
+      {
+        "code": "C",
+        "name": "Componenttekeningen",
+        "text": "één product als thema: een kozijn, een prefab element, een trap"
+      },
+      {
+        "code": "S",
+        "name": "Staten",
+        "text": "lijsten en technische omschrijvingen"
+      }
+    ],
+    "sources": [
+      "nen-2574",
+      "rrbouw-130"
+    ]
+  }
 }
