@@ -15,10 +15,10 @@
 - Stars: **6**
 - Commits: **410**
 - Forks: **4**
-- Open issues: **91**
+- Open issues: **104**
 - Releases: **4**
-- Total downloads: **1,216**
-- Downloads by platform: Windows (444), Linux (AppImage) (260), Linux (deb) (259), macOS (233), Other (20)
+- Total downloads: **1,219**
+- Downloads by platform: Windows (444), Linux (AppImage) (261), Linux (deb) (261), macOS (233), Other (20)
 
 ## Key features
 
@@ -59,7 +59,7 @@ Local office work on your own computer, without an account or cloud service. Tes
 - [Windows · Open.Writer.Studio_2026.44.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Writer.Studio_2026.44.8_x64-setup.exe) (v2026.44.8 — 63.6 MB)
 - [Windows · Open.Database.Studio_2026.44.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Database.Studio_2026.44.8_x64-setup.exe) (v2026.44.8 — 39.1 MB)
 - [Windows · Open.Email.Studio_2026.44.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Email.Studio_2026.44.8_x64-setup.exe) (v2026.44.8 — 63.6 MB)
-- [Windows · Open.Office.Studio_2026.45.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.2/Open.Office.Studio_2026.45.2_x64-setup.exe) (v2026.45.2 — 66.4 MB)
+- [Linux (AppImage) · Open.Office.Studio_2026.45.4_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.4/Open.Office.Studio_2026.45.4_amd64.AppImage) (v2026.45.4 — 144.7 MB)
 
 ---
 

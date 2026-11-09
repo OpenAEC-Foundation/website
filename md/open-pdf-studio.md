@@ -12,13 +12,13 @@
 
 ## Live stats
 
-- Stars: **1024**
+- Stars: **1026**
 - Commits: **1902**
 - Forks: **102**
 - Open issues: **60**
 - Releases: **85**
-- Total downloads: **39,770**
-- Downloads by platform: Windows (22843), Android (6305), Linux (deb) (3095), Linux (AppImage) (3062), macOS (2975), Archive (789), Linux (snap) (362), Other (222), Linux (rpm) (71), Windows (MSI) (46)
+- Total downloads: **39,907**
+- Downloads by platform: Windows (22933), Android (6314), Linux (deb) (3106), Linux (AppImage) (3070), macOS (2978), Archive (799), Linux (snap) (362), Other (228), Linux (rpm) (71), Windows (MSI) (46)
 
 ## Key features
 
@@ -74,7 +74,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows · Open.PDF.Studio_1.47.13_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v1.47.13/Open.PDF.Studio_1.47.13_x64-setup.exe) (v1.47.13 — 13.7 MB)
 - [Windows · Open.PDF.Studio_2026.43.4_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v2026.43.4/Open.PDF.Studio_2026.43.4_x64-setup.exe) (v2026.43.4 — 38.3 MB)
 - [Windows · Open.PDF.Studio_2026.44.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v2026.44.8/Open.PDF.Studio_2026.44.8_x64-setup.exe) (v2026.44.8 — 39.6 MB)
-- [Android · open-pdf-studio-release.apk](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v2026.39/open-pdf-studio-release.apk) (v2026.39 — 57.1 MB)
+- [Windows · Open.PDF.Studio_2026.45.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v2026.45.0/Open.PDF.Studio_2026.45.0_x64-setup.exe) (v2026.45.0 — 41.1 MB)
 
 ---
 

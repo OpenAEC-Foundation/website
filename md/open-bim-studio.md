@@ -15,7 +15,7 @@
 - Stars: **17**
 - Commits: **950**
 - Forks: **4**
-- Open issues: **50**
+- Open issues: **51**
 - Releases: **2**
 - Total downloads: **268**
 - Downloads by platform: Archive (188), Other (80)

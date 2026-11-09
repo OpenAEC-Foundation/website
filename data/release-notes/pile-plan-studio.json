@@ -1,17 +1,65 @@
 {
   "repo": "pile-plan-studio",
-  "generated": "2026-11-09T06:06:37.479Z",
-  "totalReleases": 27,
-  "totalChanges": 264,
+  "generated": "2026-11-09T09:57:05.889Z",
+  "totalReleases": 28,
+  "totalChanges": 278,
   "latestStable": {
-    "tag": "v2026.45.1",
-    "name": "Open Pile Plan Studio 2026.45.1 — Alpha",
-    "date": "2026-11-02",
-    "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v2026.45.1"
+    "tag": "v2026.46.0",
+    "name": "Open Pile Plan Studio 2026.46.0 — Alpha",
+    "date": "2026-11-09",
+    "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v2026.46.0"
   },
-  "latestChangelog": "This alpha adds signed Linux and macOS desktop packages alongside Windows,\nusing the same Rust engineering core and IFCPP project format.\n\n### Added\n\n- A universal macOS DMG for Apple Silicon and Intel, requiring macOS 15 or newer.\n  The app and DMG use Developer ID signing, Apple notarization and stapled tickets.\n- Linux x64 Debian and AppImage packages, tested on Ubuntu 22.04 and 24.04.\n  Detached OpenPGP signatures and a signed Linux checksum manifest are included.\n- An all-platform release build that waits for native tests, package inspection\n  and signed Linux/macOS interface acceptance before assembling a draft release.\n  Installer checksums and a source/build manifest accompany the downloads.\n\n### Improved and fixed\n\n- Open IFCPP projects from Finder both at startup and in an existing macOS app\n  window, including paths with spaces and Unicode characters.\n- Register the IFCPP file type and pass selected files to the installed Linux\n  app. The portable AppImage supports project arguments without installing a\n  system-wide file association.\n- Exercise the actual packaged drawing, native file dialogs, save/reopen,\n  CSV/XLSX exports and optimization progress/cancel/commit/undo on Linux and\n  both macOS architectures. The app contains no test automation plugin.\n\n### Compatibility and limitations\n\n- Engineering calculations, source-import rules and IFCPP schema 8 are unchanged\n  from 2026.44.4. Supported older IFCPP projects remain readable.\n- Linux coverage is Ubuntu 22.04/24.04 x64; AppImage execution uses FUSE.\n  macOS coverage is macOS 15 on Apple Silicon and Intel.\n- Existing Windows Authenticode signing remains in place. Linux download\n  signatures do not configure an apt repository or an application updater.\n- MCP client readiness is tracked separately in issue #48.\n- The application remains Alpha; engineering results require professional review.",
+  "latestChangelog": "This alpha brings the application interface onto the shared OpenAEC Blueprint\ncomponents, with consistent controls and themes across the browser and desktop.\nIt also adopts the approved white pile cap with three amber piles as its app logo.\n\n### Added\n\n- Apply the approved app logo consistently to the title bar, About page, browser\n  favicon, Windows app/installer icons, macOS Dock icon and Linux package icons.\n  Keep the original artwork and reproducible icon-generation checks in the source.\n\n### Improved\n\n- Migrate settings, inspection and optimization panels, imports/exports, source\n  viewers, explorer, legend editor, ribbon, File menu, title and status bars to\n  shared Blueprint controls. Retain compact layouts and Dutch/English labels.\n- Improve icon clarity, table headings, ordinary-button readability, numeric\n  stepping and alignment, and tooltips outside scrolling panels.\n- Let the plan workspace follow the theme or use a separate light/dark background.\n  Improve CPT labels and selection contrast, including high-contrast themes.\n- Reopen recent IFCPP files on desktop. In the browser, retain up to ten local\n  copies and offer **Save locally and continue** when switching projects with\n  edits. Downloading an IFCPP remains a separate action; edits are not saved\n  automatically into recent copies.\n- Send public feedback through Open Feedback Studio without requiring a GitHub\n  account, with optional images and private contact details for the maintainers.\n\n### Fixed\n\n- Run native project calculations and file processing off the desktop event\n  thread. Limit tip-level-region requests to assigned configuration candidates\n  instead of repeatedly transferring the full pile-option catalogue. Transfer\n  bulk desktop analyses as compressed bytes while retaining all result facts\n  and the original command route for older WebViews.\n- Stop or cancel desktop optimization even during solver phases that cannot\n  service interruption callbacks. Confirm that the isolated solver process has\n  exited before finishing; Stop retains the latest validated solution, while\n  Cancel discards it. A new optimization can then start normally.\n- Finish lasso selection when releasing outside the viewer in browser and desktop.\n  Clear unfinished rectangles on focus loss or leaving selection/lock editing,\n  preventing stale lock gestures from surviving their editing mode.\n- Recognize standard foundation-advice column order when generic spreadsheet\n  headings omit CPT and tip-level names, without overriding explicit mappings.\n- Clarify pile-assignment import choices after columns are linked manually and\n  improve import-column row spacing.\n- Keep current edits available when local project storage fails and show the\n  error inside the project-switch warning.\n\n### Compatibility\n\n- Retain the signed Windows, Linux and universal macOS package routes introduced\n  in 2026.45.1. Engineering calculations and IFCPP schema 8 are unchanged;\n  supported older IFCPP projects remain readable.\n- The application remains Alpha; engineering results require professional review.",
   "nightly": null,
   "groups": [
+    {
+      "minorVersion": "2026.46",
+      "releases": [
+        {
+          "tag": "v2026.46.0",
+          "name": "Open Pile Plan Studio 2026.46.0 — Alpha",
+          "date": "2026-11-09",
+          "url": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v2026.46.0",
+          "changes": [
+            "Apply the approved app logo consistently to the title bar, About page, browser favicon, Windows app/installer icons, macOS Dock icon and Linux package icons. Keep the original artwork and reproducible icon-generation checks in the source.",
+            "Migrate settings, inspection and optimization panels, imports/exports, source viewers, explorer, legend editor, ribbon, File menu, title and status bars to shared Blueprint controls. Retain compact layouts and Dutch/English labels.",
+            "Improve icon clarity, table headings, ordinary-button readability, numeric stepping and alignment, and tooltips outside scrolling panels.",
+            "Let the plan workspace follow the theme or use a separate light/dark background. Improve CPT labels and selection contrast, including high-contrast themes.",
+            "Reopen recent IFCPP files on desktop. In the browser, retain up to ten local copies and offer **Save locally and continue** when switching projects with edits. Downloading an IFCPP remains a separate action; edits are not saved automatically into recent copies.",
+            "Send public feedback through Open Feedback Studio without requiring a GitHub account, with optional images and private contact details for the maintainers.",
+            "Run native project calculations and file processing off the desktop event thread. Limit tip-level-region requests to assigned configuration candidates instead of repeatedly transferring the full pile-option catalogue. Transfer bulk desktop analyses as compressed bytes while retaining all result facts and the original command route for older WebViews.",
+            "Stop or cancel desktop optimization even during solver phases that cannot service interruption callbacks. Confirm that the isolated solver process has exited before finishing; Stop retains the latest validated solution, while Cancel discards it. A new optimization can then start normally.",
+            "Finish lasso selection when releasing outside the viewer in browser and desktop. Clear unfinished rectangles on focus loss or leaving selection/lock editing, preventing stale lock gestures from surviving their editing mode.",
+            "Recognize standard foundation-advice column order when generic spreadsheet headings omit CPT and tip-level names, without overriding explicit mappings.",
+            "Clarify pile-assignment import choices after columns are linked manually and improve import-column row spacing.",
+            "Keep current edits available when local project storage fails and show the error inside the project-switch warning.",
+            "Retain the signed Windows, Linux and universal macOS package routes introduced in 2026.45.1. Engineering calculations and IFCPP schema 8 are unchanged; supported older IFCPP projects remain readable.",
+            "The application remains Alpha; engineering results require professional review."
+          ],
+          "patchNum": 0
+        }
+      ],
+      "allChanges": [
+        "Apply the approved app logo consistently to the title bar, About page, browser favicon, Windows app/installer icons, macOS Dock icon and Linux package icons. Keep the original artwork and reproducible icon-generation checks in the source.",
+        "Migrate settings, inspection and optimization panels, imports/exports, source viewers, explorer, legend editor, ribbon, File menu, title and status bars to shared Blueprint controls. Retain compact layouts and Dutch/English labels.",
+        "Improve icon clarity, table headings, ordinary-button readability, numeric stepping and alignment, and tooltips outside scrolling panels.",
+        "Let the plan workspace follow the theme or use a separate light/dark background. Improve CPT labels and selection contrast, including high-contrast themes.",
+        "Reopen recent IFCPP files on desktop. In the browser, retain up to ten local copies and offer **Save locally and continue** when switching projects with edits. Downloading an IFCPP remains a separate action; edits are not saved automatically into recent copies.",
+        "Send public feedback through Open Feedback Studio without requiring a GitHub account, with optional images and private contact details for the maintainers.",
+        "Run native project calculations and file processing off the desktop event thread. Limit tip-level-region requests to assigned configuration candidates instead of repeatedly transferring the full pile-option catalogue. Transfer bulk desktop analyses as compressed bytes while retaining all result facts and the original command route for older WebViews.",
+        "Stop or cancel desktop optimization even during solver phases that cannot service interruption callbacks. Confirm that the isolated solver process has exited before finishing; Stop retains the latest validated solution, while Cancel discards it. A new optimization can then start normally.",
+        "Finish lasso selection when releasing outside the viewer in browser and desktop. Clear unfinished rectangles on focus loss or leaving selection/lock editing, preventing stale lock gestures from surviving their editing mode.",
+        "Recognize standard foundation-advice column order when generic spreadsheet headings omit CPT and tip-level names, without overriding explicit mappings.",
+        "Clarify pile-assignment import choices after columns are linked manually and improve import-column row spacing.",
+        "Keep current edits available when local project storage fails and show the error inside the project-switch warning.",
+        "Retain the signed Windows, Linux and universal macOS package routes introduced in 2026.45.1. Engineering calculations and IFCPP schema 8 are unchanged; supported older IFCPP projects remain readable.",
+        "The application remains Alpha; engineering results require professional review."
+      ],
+      "firstDate": "2026-11-09",
+      "lastDate": "2026-11-09",
+      "releaseCount": 1,
+      "changeCount": 14
+    },
     {
       "minorVersion": "2026.45",
       "releases": [
