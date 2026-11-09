@@ -329,9 +329,11 @@ async function main() {
         continue;
       }
 
-      // Group releases by date for this repo
+      // Group releases by date for this repo. Nightly builds are no news: they
+      // stay out of the feed on the homepage, /nieuws/ and the language copies.
       const releasesByDate = {};
       releases.forEach(rel => {
+        if (/nightly/i.test(`${rel.tag_name || ''} ${rel.name || ''}`)) return;
         const relDate = rel.published_at?.substring(0, 10);
         if (relDate && relDate >= newsCutoff) {
           if (!releasesByDate[relDate]) releasesByDate[relDate] = [];
