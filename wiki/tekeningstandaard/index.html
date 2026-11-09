@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tekeningstandaard voor de bouw — OpenAEC Wiki</title>
+  <meta name="description" content="Wat er op een Nederlandse bouwtekening hoort, per discipline en per ontwerpfase: schalen, lijndiktes, tekst, arceringen, titelblok en de inhoud per tekening. Open data, als basis voor tekeningen en BIM-modellen.">
+  <link rel="canonical" href="https://open-aec.com/wiki/tekeningstandaard/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Tekeningstandaard voor de bouw — OpenAEC Wiki">
+  <meta property="og:description" content="Wat er op een Nederlandse bouwtekening hoort, per discipline en per ontwerpfase: schalen, lijndiktes, tekst, arceringen, titelblok en de inhoud per tekening. Open data, als basis voor tekeningen en BIM-modellen.">
+  <meta property="og:url" content="https://open-aec.com/wiki/tekeningstandaard/">
+  <meta property="og:locale" content="nl_NL">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tekeningstandaard voor de bouw — OpenAEC Wiki">
+  <meta name="twitter:description" content="Wat er op een Nederlandse bouwtekening hoort, per discipline en per ontwerpfase: schalen, lijndiktes, tekst, arceringen, titelblok en de inhoud per tekening. Open data, als basis voor tekeningen en BIM-modellen.">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <link rel="alternate" type="application/json" href="/data/tekeningstandaard/nl.json" title="Tekeningstandaard NL (dataset)">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/shared/style.css?v=20261015">
+  <style>
+    .ts-layout { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--sp-10); align-items: start; }
+    .ts-toc { position: sticky; top: 96px; font-size: 0.9rem; }
+    .ts-toc strong { display: block; font-family: var(--font-code); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #B45309; margin-bottom: var(--sp-3); }
+    .ts-toc a { display: block; color: var(--text-on-light); text-decoration: none; padding: 5px 0 5px 12px; border-left: 2px solid rgba(42,42,50,0.1); }
+    .ts-toc a:hover { color: #B45309; border-left-color: var(--amber); }
+    .ts-body { min-width: 0; }
+    .ts-intro { color: var(--text-on-light); line-height: 1.7; }
+    .ts-intro p + p { margin-top: var(--sp-3); }
+    .ts-download { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin: var(--sp-6) 0 var(--sp-4); }
+    .ts-section { margin-top: var(--sp-12); scroll-margin-top: 96px; }
+    .ts-section h2 { font-size: 1.6rem; color: var(--deep-forge); margin: 0 0 var(--sp-3); }
+    .ts-section h3 { font-size: 1.15rem; color: var(--deep-forge); margin: var(--sp-8) 0 var(--sp-3); }
+    .ts-section p, .ts-section li { color: var(--text-on-light); line-height: 1.65; }
+    .ts-lead { max-width: 760px; }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; }
+    .ts-table { width: 100%; border-collapse: collapse; font-size: 0.92rem; margin-top: var(--sp-2); }
+    .ts-table th { text-align: left; font-family: var(--font-code); font-weight: 500; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: #B45309; padding: 8px 10px; border-bottom: 2px solid rgba(217,119,6,0.35); white-space: nowrap; }
+    .ts-table td { padding: 9px 10px; border-bottom: 1px solid rgba(42,42,50,0.1); vertical-align: top; color: var(--text-on-light); line-height: 1.5; }
+    .ts-table td strong { color: var(--deep-forge); }
+    .ts-matrix td:not(:first-child), .ts-matrix th:not(:first-child) { text-align: center; }
+    .ts-scale { font-family: var(--font-code); font-size: 0.82rem; color: var(--deep-forge); background: rgba(217,119,6,0.1); border-radius: var(--radius-sm); padding: 2px 6px; white-space: nowrap; }
+    .ts-none { color: rgba(42,42,50,0.35); }
+    .ts-sub { display: block; font-size: 0.82rem; color: var(--text-on-light); margin-top: 2px; }
+    .ts-discipline { margin-top: var(--sp-8); }
+    .ts-discipline h3 { margin-top: 0; }
+    .ts-status { display: inline-block; font-family: var(--font-code); font-size: 0.7rem; letter-spacing: 0.03em; border-radius: var(--radius-full); padding: 1px 8px; white-space: nowrap; vertical-align: 1px; border: 1px solid; }
+    .ts-status-norm { color: #166534; border-color: rgba(22,101,52,0.35); background: rgba(22,163,74,0.08); }
+    .ts-status-gangbaar { color: #1E40AF; border-color: rgba(30,64,175,0.3); background: rgba(59,130,246,0.08); }
+    .ts-status-voorstel { color: #B45309; border-color: rgba(217,119,6,0.35); background: rgba(217,119,6,0.08); }
+    .ts-status-open { color: #57534E; border-color: rgba(87,83,78,0.3); background: rgba(87,83,78,0.06); }
+    .ts-cite { font-size: 0.8rem; color: #B45309; text-decoration: none; white-space: nowrap; }
+    .ts-cite:hover { text-decoration: underline; }
+    .ts-src { font-size: 0.85rem; margin-top: var(--sp-2); }
+    .ts-note { font-size: 0.9rem; margin-top: var(--sp-4); }
+    .ts-note a { color: #B45309; font-weight: 600; }
+    .ts-steps { list-style: none; counter-reset: st; padding: 0; margin: var(--sp-4) 0 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: var(--sp-3); }
+    .ts-steps li { counter-increment: st; background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.08); border-top: 3px solid var(--amber); border-radius: var(--radius-md); padding: var(--sp-4); }
+    .ts-steps li::before { content: counter(st); font-family: var(--font-code); font-size: 0.8rem; color: #B45309; }
+    .ts-steps strong { display: block; color: var(--deep-forge); font-family: var(--font-heading); margin: 2px 0 4px; }
+    .ts-steps span { display: block; font-size: 0.86rem; line-height: 1.45; }
+    .ts-chip { display: inline-block; font-family: var(--font-code); font-size: 0.85rem; color: var(--deep-forge); background: #FFFFFF; border: 1px solid rgba(42,42,50,0.15); border-radius: var(--radius-sm); padding: 3px 9px; margin: 0 4px 6px 0; }
+    .ts-lines { display: grid; gap: 10px; margin-top: var(--sp-2); }
+    .ts-line { display: grid; grid-template-columns: 120px 80px minmax(0, 1fr); align-items: center; gap: var(--sp-4); }
+    .ts-line span { display: block; background: var(--deep-forge); border-radius: 1px; }
+    .ts-line em { font-style: normal; color: var(--text-on-light); font-size: 0.9rem; }
+    .ts-fields { columns: 2; padding-left: 1.2rem; }
+    .ts-fields li { break-inside: avoid; }
+    .ts-req { font-family: var(--font-code); font-size: 0.7rem; color: #B45309; }
+    .ts-rules { padding-left: 1.2rem; }
+    .ts-rules li { margin: 0.45rem 0; }
+    .ts-rules li::marker, .ts-fields li::marker { color: var(--amber); }
+    .ts-hatches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-4); margin-top: var(--sp-4); }
+    .ts-hatch { display: flex; gap: var(--sp-3); align-items: flex-start; margin: 0; padding: var(--sp-3); background: #FFFFFF; border: 1px solid rgba(42,42,50,0.08); border-radius: var(--radius-md); }
+    .ts-swatch { flex: none; border-radius: 2px; }
+    .ts-hatch figcaption { font-size: 0.85rem; line-height: 1.4; color: var(--text-on-light); }
+    .ts-hatch figcaption strong { display: block; color: var(--deep-forge); }
+    .ts-hatch figcaption span { display: block; margin: 2px 0 6px; }
+    .ts-sources { padding-left: 1.4rem; }
+    .ts-sources li { margin: 0.4rem 0; scroll-margin-top: 96px; }
+    .ts-sources a { color: #B45309; word-break: break-word; }
+    @media (max-width: 1024px) { .ts-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } .ts-hatches { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 768px) {
+      .ts-layout { grid-template-columns: minmax(0, 1fr); gap: var(--sp-6); }
+      .ts-toc { position: static; }
+      .ts-steps, .ts-hatches { grid-template-columns: minmax(0, 1fr); }
+      .ts-fields { columns: 1; }
+      .ts-line { grid-template-columns: 70px 70px minmax(0, 1fr); gap: var(--sp-3); }
+    }
+  </style>
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "nl",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/openaec-foundation-io",
+          "https://mastodon.social/@openaec",
+          "https://www.threads.com/@openaec"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/wiki/tekeningstandaard/#webpage",
+        "url": "https://open-aec.com/wiki/tekeningstandaard/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "nl",
+        "dateModified": "2026-11-09",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/wiki/tekeningstandaard/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/wiki/tekeningstandaard/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Wiki",
+            "item": "https://open-aec.com/wiki"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Tekeningstandaard",
+            "item": "https://open-aec.com/wiki/tekeningstandaard/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
+      <ul class="nav-links">
+        <li><a href="/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Ecosysteem</a></li>
+        <li><a href="/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Roadmap</a></li>
+        <li><a href="/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Architectuur</a></li>
+        <li><a href="/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Statistieken</a></li>
+        <li><a href="/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Nieuws</a></li>
+        <li><a href="/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Supporters</a></li>
+        <li><a href="/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">Wij steunen</a></li>
+        <li><a href="/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structuur</a></li>
+      </ul>
+      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Feedback</span></a>
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="nl">NL</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="tr">TR</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20261015"></script>
+<script src="/shared/feedback.js?v=20261102" defer></script>
+
+  <main id="main">
+
+  <header class="product-head surface-spot">
+    <div class="product-head-inner">
+      <p class="pill-label"><a href="/wiki/" style="color: inherit; text-decoration: none;">Wiki</a> · concept</p>
+      <h1>Tekening<span class="accent">standaard</span></h1>
+      <p class="lead">Wat er op een bouwtekening hoort, per discipline en per ontwerpfase. We beginnen bij Nederland; andere landen volgen in dezelfde opzet.</p>
+    </div>
+  </header>
+
+  <section class="section"><div class="container">
+    <div class="ts-layout">
+      <nav class="ts-toc" aria-label="Inhoud">
+        <strong>Inhoud</strong>
+        <a href="#opbouw">Opbouw</a>
+        <a href="#fasen">Fasen</a>
+        <a href="#disciplines">Disciplines</a>
+        <a href="#algemeen">Algemene regels</a>
+        <a href="#arceringen">Arceringen</a>
+        <a href="#classificatie">Lagen en classificatie</a>
+        <a href="#bim">Van tekening naar BIM</a>
+        <a href="#landen">Andere landen</a>
+        <a href="#bronnen">Bronnen</a>
+      </nav>
+      <div class="ts-body">
+        <div class="ts-intro">
+          <p>Een tekeningstandaard legt vast hoe een bouwtekening eruitziet en wat erop staat: welke schaal bij welke fase hoort, hoe dik een doorsneden wand wordt getekend, hoe beton zich onderscheidt van metselwerk en welke gegevens in het titelblok staan. Zulke afspraken staan nu verspreid over normen, bureauhandboeken en de ervaring van tekenaars.</p>
+          <p>Hier leggen we ze op één plek vast, als open data. Een mens leest deze pagina; een tekenprogramma of BIM-model leest de dataset eronder. Zo kunnen tools een tekening automatisch volgens de standaard opmaken, en kan een model weten welke informatie het in welke fase moet bevatten.</p>
+        </div>
+        <div class="ts-download">
+          <a class="btn btn-primary" href="/data/tekeningstandaard/nl.json" download>Download de dataset (JSON)</a>
+          <a class="btn btn-secondary" href="https://github.com/OpenAEC-Foundation/website/blob/main/data/tekeningstandaard/nl.json" target="_blank" rel="noopener">Bijdragen op GitHub</a>
+        </div>
+        <!-- standaard:start -->
+    <section class="ts-section" id="opbouw">
+      <h2>Hoe de standaard is opgebouwd</h2>
+      <p class="ts-lead">De standaard is opgebouwd in vijf lagen. Elke laag verfijnt de vorige, zodat een tool precies kan opzoeken welke regel voor welke tekening geldt.</p>
+      
+  <ol class="ts-steps">
+    <li><strong>Land</strong><span>Nederland eerst. Een ander land krijgt een eigen dataset met dezelfde opbouw.</span></li><li><strong>Discipline</strong><span>Architectuur, bouwkunde, constructie, installaties en infra.</span></li><li><strong>Fase</strong><span>Van structuurontwerp tot revisie; elke fase vraagt een ander detailniveau.</span></li><li><strong>Tekening</strong><span>Plattegrond, doorsnede, gevel, detail, schema, staat.</span></li><li><strong>Regels</strong><span>Schaal, lijnen, tekst, arceringen, titelblok en inhoud.</span></li>
+  </ol>
+  <p class="ts-note">Elke regel heeft een status: <span class="ts-status ts-status-norm">norm</span> uit een gepubliceerde norm, <span class="ts-status ts-status-gangbaar">gangbare praktijk</span> zonder norm maar breed gebruikt, <span class="ts-status ts-status-voorstel">voorstel OpenAEC</span> onze eigen afspraak, en <span class="ts-status ts-status-open">nog uitzoeken</span> voor wat nog moet worden uitgezocht.</p>
+    </section>
+
+    <section class="ts-section" id="fasen">
+      <h2>Fasen</h2>
+      <p class="ts-lead">De fasen en hun codes volgen de Standaardtaakbeschrijving DNR-STB 2014 van BNA en NLingenieurs; het nummer is de fase uit die regeling. De STB noemt ook schalen voor het voorontwerp en het definitief ontwerp. Werktekeningen en revisie vallen buiten de STB en zijn gangbare praktijk.</p>
+      <div class="table-scroll"><table class="ts-table "><thead><tr><th>code</th><th>fase</th><th>wat de tekening moet laten zien</th><th>gangbare schalen</th><th>status</th></tr></thead><tbody><tr><td><code>SO</code></td><td><strong>Structuurontwerp</strong></td><td>Ruimtelijke opzet: massa, situering en hoofdindeling. Volgens de STB een facultatieve fase.</td><td>1:500, 1:200</td><td><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-dnr-stb">DNR-STB 2014</a></td></tr><tr><td><code>VO</code></td><td><strong>Voorontwerp</strong></td><td>Indeling, hoofdmaten, hoofddraagconstructie en het installatieconcept.</td><td>1:200, 1:100</td><td><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-dnr-stb">DNR-STB 2014</a></td></tr><tr><td><code>DO</code></td><td><strong>Definitief ontwerp</strong></td><td>Alle ruimten en maten, materialen gekozen, constructie en installaties ingepast. Basis voor de omgevingsvergunning.</td><td>1:200, 1:100, 1:50 fragmenten, 1:5 principedetails</td><td><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-dnr-stb">DNR-STB 2014</a></td></tr><tr><td><code>TO</code></td><td><strong>Technisch ontwerp</strong></td><td>Technische uitwerking met aansluitingen en details, geschikt om aan te besteden.</td><td>1:50, 1:20, 1:5</td><td><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-dnr-stb">DNR-STB 2014</a></td></tr><tr><td><code>UO</code></td><td><strong>Uitvoeringsgereed ontwerp</strong></td><td>Alles wat nodig is om te bouwen, afgestemd op de werktekeningen van aannemer en leveranciers.</td><td>1:50, 1:20, 1:5</td><td><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-dnr-stb">DNR-STB 2014</a></td></tr><tr><td><code>WT</code></td><td><strong>Werktekeningen</strong></td><td>Productie- en montagetekeningen van aannemer en leveranciers.</td><td>1:50, 1:20, 1:10, 1:5</td><td><span class="ts-status ts-status-gangbaar">gangbare praktijk</span> </td></tr><tr><td><code>RV</code></td><td><strong>Revisie</strong></td><td>De situatie zoals gebouwd, voor beheer en onderhoud.</td><td>1:100, 1:50</td><td><span class="ts-status ts-status-gangbaar">gangbare praktijk</span> </td></tr></tbody></table></div>
+    </section>
+
+    <section class="ts-section" id="disciplines">
+      <h2>Disciplines en tekeningen per fase</h2>
+      <p class="ts-lead">Per discipline staat hieronder welke tekeningen in welke fase worden gemaakt, en op welke schaal. Voor het voorontwerp en het definitief ontwerp komen de schalen uit de DNR-STB 2014; de overige zijn gangbare praktijk, geen norm. Een bureau kan er per project van afwijken.</p>
+      
+    <div class="ts-discipline" id="discipline-architectuur">
+      <h3>Architectuur</h3>
+      <p>Het ontwerp van het gebouw: indeling, vorm, gevels en materialen. In de ontwerpfasen tekent de architect, vanaf het technisch ontwerp vaak samen met een bouwkundig tekenaar.</p>
+      <div class="table-scroll"><table class="ts-table ts-matrix"><thead><tr><th>tekening</th><th><code>SO</code></th><th><code>VO</code></th><th><code>DO</code></th><th><code>TO</code></th><th><code>UO</code></th><th><code>WT</code></th><th><code>RV</code></th></tr></thead><tbody><tr><td><strong>Situatietekening</strong><span class="ts-sub">met erfgrenzen, noordpijl en peil</span></td><td><span class="ts-scale">1:500</span></td><td><span class="ts-scale">1:500</span></td><td><span class="ts-scale">1:500</span></td><td><span class="ts-scale">1:500</span></td><td><span class="ts-scale">1:500</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Plattegronden</strong></td><td><span class="ts-scale">1:200</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:100</span></td></tr><tr><td><strong>Doorsneden</strong></td><td><span class="ts-scale">1:200</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:100</span></td></tr><tr><td><strong>Gevels</strong></td><td><span class="ts-scale">1:200</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Principedetails</strong><span class="ts-sub">aansluitingen op hoofdlijnen</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:10</span></td><td><span class="ts-scale">1:5</span></td><td><span class="ts-scale">1:5</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Kozijnstaat</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:20</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td></tr></tbody></table></div>
+      <ul class="ts-rules"><li>Plattegronden krijgen een noordpijl en verwijzingen naar de doorsneden. <span class="ts-status ts-status-gangbaar">gangbare praktijk</span> </li><li>Ruimten krijgen een naam en een nummer; vanaf DO ook het oppervlak. <span class="ts-status ts-status-gangbaar">gangbare praktijk</span> </li></ul>
+    </div>
+    <div class="ts-discipline" id="discipline-bouwkunde">
+      <h3>Bouwkunde</h3>
+      <p>De technische uitwerking van het architectonisch ontwerp: opbouw van wanden, vloeren en daken, aansluitingen, sparingen en maatvoering voor de bouwplaats.</p>
+      <div class="table-scroll"><table class="ts-table ts-matrix"><thead><tr><th>tekening</th><th><code>SO</code></th><th><code>VO</code></th><th><code>DO</code></th><th><code>TO</code></th><th><code>UO</code></th><th><code>WT</code></th><th><code>RV</code></th></tr></thead><tbody><tr><td><strong>Bouwkundige plattegronden</strong><span class="ts-sub">met maatvoering en wandopbouw</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td></tr><tr><td><strong>Bouwkundige doorsneden</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Details</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:5</span></td><td><span class="ts-scale">1:5</span></td><td><span class="ts-scale">1:5</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Sparingstekening</strong><span class="ts-sub">afgestemd met constructie en installaties</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Maatvoeringstekening</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-none">–</span></td></tr></tbody></table></div>
+      <ul class="ts-rules"><li>Maten in millimeters, als kettingmaat en totaalmaat, vanaf de stramienen. <span class="ts-status ts-status-gangbaar">gangbare praktijk</span> </li><li>De opbouw van elke wand, vloer en dak staat in een legenda of op de details. <span class="ts-status ts-status-gangbaar">gangbare praktijk</span> </li></ul>
+    </div>
+    <div class="ts-discipline" id="discipline-constructie">
+      <h3>Constructie</h3>
+      <p>Het draagsysteem: fundering, kolommen, liggers, vloeren en stabiliteit. De constructeur tekent, de leveranciers maken de werktekeningen van staal, prefab beton en wapening.</p>
+      <div class="table-scroll"><table class="ts-table ts-matrix"><thead><tr><th>tekening</th><th><code>SO</code></th><th><code>VO</code></th><th><code>DO</code></th><th><code>TO</code></th><th><code>UO</code></th><th><code>WT</code></th><th><code>RV</code></th></tr></thead><tbody><tr><td><strong>Palenplan</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Funderingsplan</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:200</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Vloer- en balklagenplannen</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:200</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Constructieve doorsneden</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Wapeningstekeningen</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:20</span></td><td><span class="ts-scale">1:20</span></td><td><span class="ts-scale">1:20</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Staalconstructie</strong><span class="ts-sub">overzicht en verbindingen</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:10</span></td><td><span class="ts-none">–</span></td></tr></tbody></table></div>
+      <ul class="ts-rules"><li>Wapening volgens de norm voor wapeningstekeningen: positienummers, staafvormen en een buigstaat. <span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-iso-3766">NEN-EN-ISO 3766</a></li><li>Staalprofielen worden aangeduid volgens de norm voor staven en profielen. <span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-iso-5261">NEN-EN-ISO 5261</a></li><li>Elk element krijgt een merk of positienummer dat terugkomt in de staten. <span class="ts-status ts-status-gangbaar">gangbare praktijk</span> </li></ul>
+    </div>
+    <div class="ts-discipline" id="discipline-installaties-w">
+      <h3>Installaties: werktuigbouwkundig <code>W</code></h3>
+      <p>Verwarming, koeling en ventilatie. Eerst als principe, vanaf DO ingepast in het gebouw, en in de werktekeningen met alle kanalen en leidingen op maat.</p>
+      <div class="table-scroll"><table class="ts-table ts-matrix"><thead><tr><th>tekening</th><th><code>SO</code></th><th><code>VO</code></th><th><code>DO</code></th><th><code>TO</code></th><th><code>UO</code></th><th><code>WT</code></th><th><code>RV</code></th></tr></thead><tbody><tr><td><strong>Principeschema's</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">zonder schaal</span></td><td><span class="ts-scale">zonder schaal</span></td><td><span class="ts-scale">zonder schaal</span></td><td><span class="ts-scale">zonder schaal</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Plattegronden kanalen en leidingen</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td></tr><tr><td><strong>Installatieruimten</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:20</span></td><td><span class="ts-scale">1:20</span></td><td><span class="ts-scale">1:20</span></td><td><span class="ts-none">–</span></td></tr></tbody></table></div>
+      <ul class="ts-rules"><li>Symbolen voor warmte- en luchttechnische installaties volgens NEN 2322; deze norm uit 1973 is nog geldig. <span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-nen-2322">NEN 2322</a></li><li>Symbolen voor leidingen en appendages volgens NEN 3048, die deels is vervangen; welke delen nog gelden, zoeken we uit. <span class="ts-status ts-status-open">nog uitzoeken</span> <a class="ts-cite" href="#bron-nen-3048">NEN 3048</a></li></ul>
+    </div>
+    <div class="ts-discipline" id="discipline-installaties-e">
+      <h3>Installaties: elektrotechnisch <code>E</code></h3>
+      <p>Verlichting, wandcontactdozen, data, beveiliging en de verdeelinrichtingen.</p>
+      <div class="table-scroll"><table class="ts-table ts-matrix"><thead><tr><th>tekening</th><th><code>SO</code></th><th><code>VO</code></th><th><code>DO</code></th><th><code>TO</code></th><th><code>UO</code></th><th><code>WT</code></th><th><code>RV</code></th></tr></thead><tbody><tr><td><strong>Principeschema's</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">zonder schaal</span></td><td><span class="ts-scale">zonder schaal</span></td><td><span class="ts-scale">zonder schaal</span></td><td><span class="ts-scale">zonder schaal</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Plattegronden verlichting</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td></tr><tr><td><strong>Plattegronden wandcontactdozen en data</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td></tr><tr><td><strong>Eenlijnschema's verdelers</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">zonder schaal</span></td><td><span class="ts-scale">zonder schaal</span></td><td><span class="ts-scale">zonder schaal</span></td><td><span class="ts-scale">zonder schaal</span></td></tr></tbody></table></div>
+      <ul class="ts-rules"><li>Elektrotechnische symbolen volgens NEN 5152, de Nederlandse vertaling van IEC 60617. <span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-nen-5152">NEN 5152</a></li></ul>
+    </div>
+    <div class="ts-discipline" id="discipline-installaties-s">
+      <h3>Installaties: sanitair en riolering <code>S</code></h3>
+      <p>Water, sanitair, binnenriolering en hemelwaterafvoer.</p>
+      <div class="table-scroll"><table class="ts-table ts-matrix"><thead><tr><th>tekening</th><th><code>SO</code></th><th><code>VO</code></th><th><code>DO</code></th><th><code>TO</code></th><th><code>UO</code></th><th><code>WT</code></th><th><code>RV</code></th></tr></thead><tbody><tr><td><strong>Plattegronden riolering en hemelwater</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td></tr><tr><td><strong>Plattegronden water en sanitair</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-scale">1:50</span></td></tr><tr><td><strong>Isometrieën</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">zonder schaal</span></td><td><span class="ts-scale">zonder schaal</span></td><td><span class="ts-none">–</span></td></tr></tbody></table></div>
+      
+    </div>
+    <div class="ts-discipline" id="discipline-infra">
+      <h3>Infra en GWW</h3>
+      <p>Wegen, kabels en leidingen, riolering buiten het gebouw en terrein. Hier is een landelijke CAD-standaard voor lagen, lijnen en symbolen.</p>
+      <div class="table-scroll"><table class="ts-table ts-matrix"><thead><tr><th>tekening</th><th><code>SO</code></th><th><code>VO</code></th><th><code>DO</code></th><th><code>TO</code></th><th><code>UO</code></th><th><code>WT</code></th><th><code>RV</code></th></tr></thead><tbody><tr><td><strong>Overzichtstekening</strong></td><td><span class="ts-scale">1:1000</span></td><td><span class="ts-scale">1:1000</span></td><td><span class="ts-scale">1:500</span></td><td><span class="ts-scale">1:500</span></td><td><span class="ts-scale">1:500</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Lengte- en dwarsprofielen</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:100</span></td><td><span class="ts-scale">1:50</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td></tr><tr><td><strong>Revisietekening</strong></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-none">–</span></td><td><span class="ts-scale">1:500</span></td></tr></tbody></table></div>
+      <ul class="ts-rules"><li>Lagen, lijnsoorten, arceringen en symbolen volgens de Nederlandse CAD Standaard. <span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-nlcs">NLCS</a></li></ul>
+    </div>
+    </section>
+
+    <section class="ts-section" id="algemeen">
+      <h2>Algemene regels voor elke tekening</h2>
+      <p class="ts-lead">Deze regels gelden voor elke tekening, ongeacht discipline of fase. De reeksen (formaten, schalen, lijndiktes, teksthoogtes) komen uit normen voor technisch tekenen; welke waarde je waarvoor gebruikt, is gangbare praktijk.</p>
+      
+  <h3>Papierformaten</h3>
+  <div class="table-scroll"><table class="ts-table "><thead><tr><th>formaat</th><th>maat (mm)</th><th>gebruik</th></tr></thead><tbody><tr><td><code>A0</code></td><td>841 × 1189</td><td>grote plattegronden en situaties</td></tr><tr><td><code>A1</code></td><td>594 × 841</td><td>de gangbare bouwtekening</td></tr><tr><td><code>A2</code></td><td>420 × 594</td><td>kleinere plattegronden, details</td></tr><tr><td><code>A3</code></td><td>297 × 420</td><td>details, staten, schetsen</td></tr><tr><td><code>A4</code></td><td>210 × 297</td><td>staten, lijsten, gevouwen formaat</td></tr></tbody></table></div>
+  <p class="ts-src"><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-iso-5457">NEN-EN-ISO 5457</a></p>
+
+  <h3>Schalen</h3>
+  <p><span class="ts-chip">1:1</span> <span class="ts-chip">1:2</span> <span class="ts-chip">1:5</span> <span class="ts-chip">1:10</span> <span class="ts-chip">1:20</span> <span class="ts-chip">1:50</span> <span class="ts-chip">1:100</span> <span class="ts-chip">1:200</span> <span class="ts-chip">1:500</span> <span class="ts-chip">1:1000</span> <span class="ts-chip">1:2000</span> <span class="ts-chip">1:5000</span></p>
+  <p class="ts-src"><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-iso-5455">NEN-ISO 5455</a></p>
+
+  <h3>Lijndiktes</h3>
+  <div class="ts-lines"><div class="ts-line"><span style="height:0.6px"></span><code>0.13 mm</code><em>arceringen, hulplijnen</em></div><div class="ts-line"><span style="height:0.6px"></span><code>0.18 mm</code><em>maatlijnen, teksten, meubilair</em></div><div class="ts-line"><span style="height:0.75px"></span><code>0.25 mm</code><em>zichtlijnen en aanzichten</em></div><div class="ts-line"><span style="height:1.0499999999999998px"></span><code>0.35 mm</code><em>doorsneden niet-dragende delen</em></div><div class="ts-line"><span style="height:1.5px"></span><code>0.5 mm</code><em>doorsneden dragende delen</em></div><div class="ts-line"><span style="height:2.0999999999999996px"></span><code>0.7 mm</code><em>contouren die moeten opvallen</em></div><div class="ts-line"><span style="height:3px"></span><code>1 mm</code><em>bijzondere nadruk, kaders</em></div></div>
+  <p class="ts-src"><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-iso-128">NEN-EN-ISO 128-2</a></p>
+
+  <h3>Lijnsoorten</h3>
+  <div class="table-scroll"><table class="ts-table "><thead><tr><th>lijn</th><th>gebruik</th></tr></thead><tbody><tr><td><strong>Doorgetrokken, dik</strong></td><td>doorsneden: wat het snijvlak raakt</td></tr><tr><td><strong>Doorgetrokken, dun</strong></td><td>aanzichten, maatlijnen, arceringen</td></tr><tr><td><strong>Gestreept</strong></td><td>onzichtbare of verborgen delen, en wat boven het snijvlak ligt</td></tr><tr><td><strong>Streep-punt</strong></td><td>hartlijnen, stramienen en symmetrieassen</td></tr><tr><td><strong>Streep-twee-punten</strong></td><td>contouren van aangrenzende of verplaatsbare delen</td></tr></tbody></table></div>
+  <p class="ts-src"><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-iso-128">NEN-EN-ISO 128-2</a></p>
+
+  <h3>Tekst</h3>
+  <div class="table-scroll"><table class="ts-table "><thead><tr><th>teksthoogte op papier</th><th>gebruik</th></tr></thead><tbody><tr><td><code>1.8 mm</code></td><td>kleinste tekst, alleen in uitzonderingen</td></tr><tr><td><code>2.5 mm</code></td><td>maatgetallen, notities</td></tr><tr><td><code>3.5 mm</code></td><td>ruimtenamen, aanduidingen</td></tr><tr><td><code>5 mm</code></td><td>kopjes, detailnummers</td></tr><tr><td><code>7 mm</code></td><td>titels van aanzichten en doorsneden</td></tr><tr><td><code>10 mm</code></td><td>tekeningtitel</td></tr><tr><td><code>14 mm</code></td><td>grote titels op situaties</td></tr><tr><td><code>20 mm</code></td><td>uitzonderlijk groot, bijvoorbeeld op bouwborden</td></tr></tbody></table></div>
+  <p class="ts-src"><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-iso-3098">NEN-EN-ISO 3098-1</a></p>
+
+  <h3>Titelblok</h3>
+  <p>Rechtsonder op elke tekening, leesbaar als de tekening tot A4 is gevouwen.</p>
+  <ul class="ts-fields"><li><strong>Opdrachtgever</strong> <span class="ts-req">verplicht</span></li><li><strong>Project en adres</strong> <span class="ts-req">verplicht</span></li><li><strong>Tekeningtitel</strong> <span class="ts-req">verplicht</span></li><li><strong>Tekeningnummer</strong> <span class="ts-req">verplicht</span></li><li><strong>Revisie en datum</strong> <span class="ts-req">verplicht</span></li><li><strong>Schaal en papierformaat</strong> <span class="ts-req">verplicht</span></li><li><strong>Fase</strong> <span class="ts-req">verplicht</span></li><li><strong>Discipline</strong> <span class="ts-req">verplicht</span></li><li><strong>Ontwerper en tekenaar</strong> <span class="ts-req">verplicht</span></li><li><strong>Gecontroleerd door</strong></li><li><strong>Status (concept, ter goedkeuring, definitief)</strong></li><li><strong>Bestandsnaam</strong></li></ul>
+  <p class="ts-src"><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-iso-7200">NEN-EN-ISO 7200</a></p>
+
+  <h3>Overige afspraken</h3>
+  <ul class="ts-rules"><li><strong>Algemene presentatie.</strong> Hoe bouwtekeningen in het algemeen worden gepresenteerd: aanzichten, doorsneden en vereenvoudigingen. <span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-iso-7519">ISO 7519</a></li><li><strong>Peil.</strong> Hoogten worden gegeven ten opzichte van peil (P), meestal de bovenkant van de afgewerkte vloer op de begane grond, met de hoogte van peil ten opzichte van NAP op de situatie. <span class="ts-status ts-status-gangbaar">gangbare praktijk</span> </li><li><strong>Maatvoering.</strong> Maten in millimeters zonder eenheid; hoogten in meters ten opzichte van peil. <span class="ts-status ts-status-gangbaar">gangbare praktijk</span> <a class="ts-cite" href="#bron-iso-129">NEN-EN-ISO 129-1</a></li><li><strong>Stramienen.</strong> In de ene richting cijfers, in de andere letters, met streep-puntlijnen en een bolletje aan het eind. <span class="ts-status ts-status-gangbaar">gangbare praktijk</span> </li><li><strong>Aanduidingen.</strong> Verwijzingen naar gebouwdelen, doorsneden en details, en de naamgeving en nummering van ruimten, volgens de norm voor aanduidingssystemen in de bouw. <span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-iso-4157">NEN-EN-ISO 4157</a></li><li><strong>Tekeningnummer.</strong> Projectnummer, discipline, fase en volgnummer, bijvoorbeeld 2026-014-A-DO-101. <span class="ts-status ts-status-voorstel">voorstel OpenAEC</span> </li><li><strong>Revisies.</strong> Elke wijziging krijgt een revisieletter met datum en omschrijving in het revisieblok, en een wolk om het gewijzigde deel. <span class="ts-status ts-status-gangbaar">gangbare praktijk</span> </li><li><strong>Vouwen.</strong> Tekeningen worden tot A4 gevouwen met het titelblok zichtbaar aan de voorkant. <span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-nen-379">NEN 379</a></li></ul>
+    </section>
+
+    <section class="ts-section" id="arceringen">
+      <h2>Arceringen</h2>
+      <p class="ts-lead">Arceringen laten in een doorsnede zien van welk materiaal een onderdeel is. De Nederlandse norm daarvoor is NEN 47 uit 1970; de patronen daarin zijn niet openbaar. De NLCS-arceringen voor infra zijn wel openbaar en vrij te gebruiken. Hieronder ons voorstel voor een standaardset, die we nog naast beide leggen. <a class="ts-cite" href="#bron-nen-47">NEN 47</a> <a class="ts-cite" href="#bron-nlcs">NLCS</a></p>
+      
+  <div class="ts-hatches">
+    <figure class="ts-hatch">
+      <svg class="ts-swatch" viewBox="0 0 88 56" width="88" height="56" role="img" aria-label="Metselwerk"><defs><pattern id="pat-metselwerk" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" stroke="#2A2A32" stroke-width="0.6"/></pattern></defs><rect x="0.5" y="0.5" width="87" height="55" fill="#FFFFFF"/><rect x="0.5" y="0.5" width="87" height="55" fill="url(#pat-metselwerk)" stroke="#2A2A32"/></svg>
+      <figcaption><strong>Metselwerk</strong><span>Baksteen en kalkzandsteen in doorsnede</span><span class="ts-status ts-status-voorstel">voorstel OpenAEC</span></figcaption>
+    </figure>
+    <figure class="ts-hatch">
+      <svg class="ts-swatch" viewBox="0 0 88 56" width="88" height="56" role="img" aria-label="Beton, ongewapend"><defs><pattern id="pat-beton" width="6" height="6" patternUnits="userSpaceOnUse"><circle cx="3" cy="3" r="0.8" fill="#2A2A32"/></pattern></defs><rect x="0.5" y="0.5" width="87" height="55" fill="#FFFFFF"/><rect x="0.5" y="0.5" width="87" height="55" fill="url(#pat-beton)" stroke="#2A2A32"/></svg>
+      <figcaption><strong>Beton, ongewapend</strong><span>Stort- en prefab beton zonder wapening</span><span class="ts-status ts-status-voorstel">voorstel OpenAEC</span></figcaption>
+    </figure>
+    <figure class="ts-hatch">
+      <svg class="ts-swatch" viewBox="0 0 88 56" width="88" height="56" role="img" aria-label="Gewapend beton"><defs><pattern id="pat-gewapend-beton" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="#2A2A32" stroke-width="0.5"/><line x1="0" y1="0" x2="6" y2="0" stroke="#2A2A32" stroke-width="0.5"/></pattern></defs><rect x="0.5" y="0.5" width="87" height="55" fill="#FFFFFF"/><rect x="0.5" y="0.5" width="87" height="55" fill="url(#pat-gewapend-beton)" stroke="#2A2A32"/></svg>
+      <figcaption><strong>Gewapend beton</strong><span>Constructief beton in doorsnede</span><span class="ts-status ts-status-voorstel">voorstel OpenAEC</span></figcaption>
+    </figure>
+    <figure class="ts-hatch">
+      <svg class="ts-swatch" viewBox="0 0 88 56" width="88" height="56" role="img" aria-label="Hout"><defs><pattern id="pat-hout" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(135)"><line x1="0" y1="0" x2="0" y2="8" stroke="#2A2A32" stroke-width="0.5"/></pattern></defs><rect x="0.5" y="0.5" width="87" height="55" fill="#FFFFFF"/><rect x="0.5" y="0.5" width="87" height="55" fill="url(#pat-hout)" stroke="#2A2A32"/></svg>
+      <figcaption><strong>Hout</strong><span>Balken, stijlen en kozijnen in doorsnede</span><span class="ts-status ts-status-voorstel">voorstel OpenAEC</span></figcaption>
+    </figure>
+    <figure class="ts-hatch">
+      <svg class="ts-swatch" viewBox="0 0 88 56" width="88" height="56" role="img" aria-label="Isolatie"><rect x="0.5" y="0.5" width="87" height="55" fill="#FFFFFF" stroke="#2A2A32"/><path d="M0 50 L7.333333333333333 6 L14.666666666666666 50 L22 6 L29.333333333333332 50 L36.666666666666664 6 L44 50 L51.333333333333336 6 L58.666666666666664 50 L66 6 L73.33333333333333 50 L80.66666666666666 6 L88 50" fill="none" stroke="#2A2A32" stroke-width="0.8"/></svg>
+      <figcaption><strong>Isolatie</strong><span>Zachte en harde isolatie</span><span class="ts-status ts-status-gangbaar">gangbare praktijk</span></figcaption>
+    </figure>
+    <figure class="ts-hatch">
+      <svg class="ts-swatch" viewBox="0 0 88 56" width="88" height="56" role="img" aria-label="Staal"><defs></defs><rect x="0.5" y="0.5" width="87" height="55" fill="#FFFFFF"/><rect x="0.5" y="0.5" width="87" height="55" fill="#2A2A32" stroke="#2A2A32"/></svg>
+      <figcaption><strong>Staal</strong><span>Kleine staalprofielen in doorsnede, volledig zwart</span><span class="ts-status ts-status-gangbaar">gangbare praktijk</span></figcaption>
+    </figure>
+    <figure class="ts-hatch">
+      <svg class="ts-swatch" viewBox="0 0 88 56" width="88" height="56" role="img" aria-label="Grond"><defs><pattern id="pat-grond" width="12" height="12" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="12" stroke="#2A2A32" stroke-width="0.4"/></pattern></defs><rect x="0.5" y="0.5" width="87" height="55" fill="#FFFFFF"/><rect x="0.5" y="0.5" width="87" height="55" fill="url(#pat-grond)" stroke="#2A2A32"/></svg>
+      <figcaption><strong>Grond</strong><span>Onverroerde grond onder en naast de fundering</span><span class="ts-status ts-status-voorstel">voorstel OpenAEC</span></figcaption>
+    </figure>
+    <figure class="ts-hatch">
+      <svg class="ts-swatch" viewBox="0 0 88 56" width="88" height="56" role="img" aria-label="Glas"><defs></defs><rect x="0.5" y="0.5" width="87" height="55" fill="#FFFFFF"/><rect x="0.5" y="0.5" width="87" height="55" fill="#FFFFFF" stroke="#2A2A32"/></svg>
+      <figcaption><strong>Glas</strong><span>Beglazing: twee dunne lijnen zonder arcering</span><span class="ts-status ts-status-gangbaar">gangbare praktijk</span></figcaption>
+    </figure></div>
+    </section>
+
+    <section class="ts-section" id="classificatie">
+      <h2>Lagen en classificatie</h2>
+      <p class="ts-lead">Lagen en codes maken een tekening doorzoekbaar en koppelbaar aan een model. Voor infra is er een landelijke CAD-standaard; voor gebouwen werken veel bureaus met de NL-SfB-codering, die ook de BIM basis ILS voorschrijft.</p>
+      <div class="table-scroll"><table class="ts-table "><thead><tr><th>afspraak</th><th>waarvoor</th><th>beheer</th><th>status</th></tr></thead><tbody><tr><td><strong>NL-SfB</strong></td><td>Codering van bouwdelen in vier cijfers, bijvoorbeeld 21 voor buitenwanden en 23 voor vloeren</td><td>Ketenstandaard Bouw en Techniek (sinds 1 april 2026)</td><td><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-nl-sfb">NL-SfB</a></td></tr><tr><td><strong>BIM basis ILS</strong></td><td>Basisafspraken voor BIM-modellen: NL-SfB-code per element, bouwlagen, ruimten, materialen en eenduidige namen</td><td>digiGO</td><td><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-bim-basis-ils">BIM basis ILS</a></td></tr><tr><td><strong>NLCS</strong></td><td>Lagen, lijnsoorten, arceringen, symbolen, titelblok en plotinstellingen voor infra en GWW; versie 5.0.2, vrij te gebruiken onder CC BY 4.0</td><td>digiGO</td><td><span class="ts-status ts-status-norm">norm</span> <a class="ts-cite" href="#bron-nlcs">NLCS</a></td></tr><tr><td><strong>Laagnamen voor gebouwen</strong></td><td>Laagnaam opgebouwd uit discipline, NL-SfB-code en omschrijving, bijvoorbeeld A-21-buitenwand</td><td>OpenAEC</td><td><span class="ts-status ts-status-voorstel">voorstel OpenAEC</span> </td></tr></tbody></table></div>
+    </section>
+
+    <section class="ts-section" id="bim">
+      <h2>Van tekening naar BIM</h2>
+      <p class="ts-lead">Elke afspraak op een tekening heeft een plek in een BIM-model. Daarmee kan een model zijn eigen tekeningen volgens deze standaard maken, in IFC en in IFCX.</p>
+      <div class="table-scroll"><table class="ts-table "><thead><tr><th>tekeningafspraak</th><th>in het model</th><th>in IFC</th></tr></thead><tbody><tr><td>Stramienen</td><td>het stramien van het gebouw</td><td><code>IfcGrid</code></td></tr><tr><td>Peil en verdiepingen</td><td>bouwlagen met hun hoogte</td><td><code>IfcBuildingStorey</code></td></tr><tr><td>Ruimtenaam, -nummer en oppervlak</td><td>ruimten</td><td><code>IfcSpace</code></td></tr><tr><td>Materiaal en arcering</td><td>het materiaal van een element</td><td><code>IfcMaterial, IfcFillAreaStyleHatching</code></td></tr><tr><td>Lijndikte en lijnsoort</td><td>de weergavestijl</td><td><code>IfcCurveStyle</code></td></tr><tr><td>Laag</td><td>laagtoewijzing</td><td><code>IfcPresentationLayerAssignment</code></td></tr><tr><td>NL-SfB-code</td><td>classificatie van het element</td><td><code>IfcClassificationReference</code></td></tr><tr><td>Maatvoering en teksten</td><td>annotaties</td><td><code>IfcAnnotation</code></td></tr><tr><td>Titelblok</td><td>documentgegevens van de tekening</td><td><code>IfcDocumentInformation</code></td></tr></tbody></table></div>
+    </section>
+
+    <section class="ts-section" id="landen">
+      <h2>Andere landen</h2>
+      <p class="ts-lead">Andere landen krijgen een eigen dataset met dezelfde opbouw. Dan kan een tool een tekening van de ene standaard naar de andere omzetten.</p>
+      <div class="table-scroll"><table class="ts-table "><thead><tr><th>land</th><th>vertrekpunt</th><th>status</th></tr></thead><tbody><tr><td><strong>Duitsland</strong></td><td>DIN EN ISO 7519 (2025), die DIN 1356-1 vervangt <a class="ts-cite" href="#bron-din-1356">DIN 1356-1</a></td><td><span class="ts-status ts-status-open">nog uitzoeken</span></td></tr><tr><td><strong>België</strong></td><td>waarschijnlijk de NBN EN ISO-reeks; nog uitzoeken </td><td><span class="ts-status ts-status-open">nog uitzoeken</span></td></tr><tr><td><strong>Verenigd Koninkrijk</strong></td><td>BS 1192 is in 2019 ingetrokken; voor informatiemanagement geldt de ISO 19650-reeks <a class="ts-cite" href="#bron-bs-1192">BS 1192</a></td><td><span class="ts-status ts-status-open">nog uitzoeken</span></td></tr><tr><td><strong>Verenigde Staten</strong></td><td>United States National CAD Standard, versie 7 (2024), van NIBS <a class="ts-cite" href="#bron-us-ncs">US NCS</a></td><td><span class="ts-status ts-status-open">nog uitzoeken</span></td></tr></tbody></table></div>
+    </section>
+
+    <section class="ts-section" id="bronnen">
+      <h2>Bronnen</h2>
+      
+      
+  <ol class="ts-sources"><li id="bron-dnr-stb"><strong>DNR-STB 2014, Standaardtaakbeschrijving (BNA en NLingenieurs), toelichting</strong> <a href="https://www.dekempenaer.nl/content/uploads/2015/07/standaardtaakbeschrijving_2014_toelichting.pdf" target="_blank" rel="noopener">www.dekempenaer.nl/content/uploads/2015/07/standaardtaakbeschrijving_2014_toelichting.pdf</a></li><li id="bron-nen-47"><strong>NEN 47:1970, Technische tekeningen — Doorsnede-aanduidingen van materialen op bouwkundige tekeningen</strong> <a href="https://www.nen.nl/nen-47-1970-nl-7779" target="_blank" rel="noopener">www.nen.nl/nen-47-1970-nl-7779</a></li><li id="bron-iso-128"><strong>NEN-EN-ISO 128-2:2022, Technische tekeningen — Algemene principes voor de weergave — Deel 2: Basisafspraken over lijnen</strong> — de lijndiktereeks is gecontroleerd in de editie 2020 <a href="https://www.nen.nl/nen-en-iso-128-2-2022-en-303554" target="_blank" rel="noopener">www.nen.nl/nen-en-iso-128-2-2022-en-303554</a></li><li id="bron-iso-7519"><strong>ISO 7519:2025, algemene presentatieprincipes voor bouwtekeningen</strong> — de Nederlandse overname NEN-EN-ISO 7519:1997 staat nog als geldig <a href="https://www.nen.nl/en/iso-7519-2025-en-334807" target="_blank" rel="noopener">www.nen.nl/en/iso-7519-2025-en-334807</a></li><li id="bron-iso-3098"><strong>NEN-EN-ISO 3098-1:2015, Technische productdocumentatie — Schrift — Deel 1: Algemene eisen</strong> — de reeks teksthoogtes is gecontroleerd in de voorganger uit 1997 <a href="https://www.nen.nl/en/nen-en-iso-3098-1-2015-en-204751" target="_blank" rel="noopener">www.nen.nl/en/nen-en-iso-3098-1-2015-en-204751</a></li><li id="bron-iso-5455"><strong>NEN-ISO 5455:1990, Technische tekeningen — Schalen</strong> <a href="https://www.nen.nl/nen-iso-5455-1990-nl-9393" target="_blank" rel="noopener">www.nen.nl/nen-iso-5455-1990-nl-9393</a></li><li id="bron-iso-5457"><strong>NEN-EN-ISO 5457:1999, Technische productdocumentatie — Formaten en inrichting van tekenbladen</strong> <a href="https://www.nen.nl/en/nen-en-iso-5457-1999-nl-42494" target="_blank" rel="noopener">www.nen.nl/en/nen-en-iso-5457-1999-nl-42494</a></li><li id="bron-nen-379"><strong>NEN 379:2003, Technische productdocumentatie — Vouwen en inhechten van tekenbladen</strong> <a href="https://www.nen.nl/nen-379-2003-nl-87327" target="_blank" rel="noopener">www.nen.nl/nen-379-2003-nl-87327</a></li><li id="bron-iso-7200"><strong>NEN-EN-ISO 7200:2004, Technische productdocumentatie — Gegevensvelden in titelblokken</strong> <a href="https://www.nen.nl/nen-en-iso-7200-2004-nl-92590" target="_blank" rel="noopener">www.nen.nl/nen-en-iso-7200-2004-nl-92590</a></li><li id="bron-iso-129"><strong>NEN-EN-ISO 129-1:2019, Technische tekeningen — Inschrijving van maten en toleranties — Deel 1: Algemene principes</strong> <a href="https://www.nen.nl/nen-en-iso-129-1-2019-en-264346" target="_blank" rel="noopener">www.nen.nl/nen-en-iso-129-1-2019-en-264346</a></li><li id="bron-iso-4157"><strong>NEN-EN-ISO 4157-1:1999, Bouwkundige tekeningen — Aanduidingssystemen — Deel 1: Gebouwen en delen van gebouwen</strong> — deel 2 gaat over ruimtenamen en -nummers <a href="https://www.nen.nl/nen-en-iso-4157-1-1999-nl-83142" target="_blank" rel="noopener">www.nen.nl/nen-en-iso-4157-1-1999-nl-83142</a></li><li id="bron-iso-3766"><strong>NEN-EN-ISO 3766:2004, Bouwkundige tekeningen — Vereenvoudigde tekenwijze van betonwapening</strong> <a href="https://www.nen.nl/nen-en-iso-3766-2004-en-89572" target="_blank" rel="noopener">www.nen.nl/nen-en-iso-3766-2004-en-89572</a></li><li id="bron-iso-5261"><strong>NEN-EN-ISO 5261:1999, Technische tekeningen — Vereenvoudigde weergaven van staven en profielen</strong> <a href="https://www.nen.nl/nen-en-iso-5261-1999-en-41667" target="_blank" rel="noopener">www.nen.nl/nen-en-iso-5261-1999-en-41667</a></li><li id="bron-nen-5152"><strong>NEN 5152:2016, Technische tekeningen — Elektrotechnische symbolen</strong> — vertaling van IEC 60617 <a href="https://www.nen.nl/nen-5152-2016-nl-221283" target="_blank" rel="noopener">www.nen.nl/nen-5152-2016-nl-221283</a></li><li id="bron-nen-2322"><strong>NEN 2322:1973, Technische tekeningen — Symbolen voor warmte- en luchttechnische installaties</strong> <a href="https://www.nen.nl/nen-2322-1973-nl-6506" target="_blank" rel="noopener">www.nen.nl/nen-2322-1973-nl-6506</a></li><li id="bron-nen-3048"><strong>NEN 3048:1967, Symbolen voor pijpleidingen en toebehoren</strong> — deels vervangen <a href="https://www.nen.nl/en/nen-3048-1967-nl-7295" target="_blank" rel="noopener">www.nen.nl/en/nen-3048-1967-nl-7295</a></li><li id="bron-nlcs"><strong>NLCS, Nederlandse CAD-Standaard voor de GWW (digiGO), versie 5.0.2</strong> — CC BY 4.0 <a href="https://www.digigo.nu/standaarden/nlcs/" target="_blank" rel="noopener">www.digigo.nu/standaarden/nlcs/</a></li><li id="bron-nl-sfb"><strong>NL-SfB, classificatie van bouwdelen (Ketenstandaard Bouw en Techniek)</strong> <a href="https://ketenstandaard.nl/nlbe-sfb-facts/geschiedenis-en-beheer/" target="_blank" rel="noopener">ketenstandaard.nl/nlbe-sfb-facts/geschiedenis-en-beheer/</a></li><li id="bron-bim-basis-ils"><strong>BIM basis ILS (digiGO)</strong> <a href="https://www.digigo.nu/ilsen-en-richtlijnen/bim-basis-ils/" target="_blank" rel="noopener">www.digigo.nu/ilsen-en-richtlijnen/bim-basis-ils/</a></li><li id="bron-din-1356"><strong>DIN 1356-1:2024, Bauzeichnungen — Teil 1: Grundregeln der Darstellung</strong> — vervangen door DIN EN ISO 7519:2025 <a href="https://www.dinmedia.de/de/norm/din-1356-1/325728444" target="_blank" rel="noopener">www.dinmedia.de/de/norm/din-1356-1/325728444</a></li><li id="bron-bs-1192"><strong>BS 1192:2007+A2:2016, ingetrokken per 16 januari 2019</strong> <a href="https://knowledge.bsigroup.com/products/collaborative-production-of-architectural-engineering-and-construction-information-code-of-practice" target="_blank" rel="noopener">knowledge.bsigroup.com/products/collaborative-production-of-architectural-engineering-and-construction-information-code-of-practice</a></li><li id="bron-us-ncs"><strong>United States National CAD Standard, versie 7 (NIBS)</strong> <a href="https://nibs.org/projects/united-states-national-cad-standard-ncs/" target="_blank" rel="noopener">nibs.org/projects/united-states-national-cad-standard-ncs/</a></li></ol>
+  <p class="ts-note">Bijgewerkt op 2026-11-09 · versie 0.1.0 · <a href="/data/tekeningstandaard/nl.json">download de dataset (JSON)</a></p>
+    </section>
+    <!-- standaard:end -->
+      </div>
+    </div>
+  </div></section>
+
+  </main>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Open source software voor de volledige AEC-keten (bouw, utiliteit, GWW en civiele techniek) — van ontwerp tot oplevering en beheer.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Pagina's</h4>
+        <a href="/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">Over ons</a>
+        <a href="/ifcx/">IFCX</a>
+        <a href="/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Offerte aanvragen</a>
+        <a href="/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">FAQ</a>
+        <a href="/wiki/" data-i18n-en="Wiki" data-i18n-fr="Wiki" data-i18n-tr="Wiki" data-i18n-es="Wiki">Wiki</a>
+        <a href="/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Disclaimer</a>
+        <a href="/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Concept statuten</a>
+        <a href="/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Credits</a>
+        <a href="/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Beleid & standpunten</a>
+        <a href="/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Socials</a>
+      </nav>
+      <nav class="site-footer-col" aria-label="Meer tools">
+        <h4 data-i18n-en="More tools" data-i18n-fr="Plus d'outils" data-i18n-tr="Daha fazla araç" data-i18n-es="Más herramientas">Meer tools</h4>
+        <a href="/open-energy-studio/">Open Energy Studio</a>
+        <a href="/open-safety-studio/">Open Safety Studio</a>
+        <a href="/open-3d-viewer/">Open 3D Viewer</a>
+        <a href="/open-books/">OpenBooks</a>
+        <a href="/openaec-cloud/">SuperCloud</a>
+        <a href="/openaec-docs/">OpenAEC Docs</a>
+        <a href="/ext-drawing-statistics/">Drawing Statistics</a>
+        <a href="/y-app/">Y-app</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Stichting i.o.</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">Nederland</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation i.o. — Open source voor een open bouw- en infrasector</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+          <a href="https://x.com/openaec" target="_blank" rel="noopener" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.youtube.com/@openaecfoundation" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://mastodon.social/@openaec" target="_blank" rel="me noopener" aria-label="Mastodon" title="Mastodon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg></a>
+          <a href="https://www.threads.com/@openaec" target="_blank" rel="noopener" aria-label="Threads" title="Threads"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
+  <script src="/shared/i18n.js?v=20261105"></script>
+</body>
+</html>
