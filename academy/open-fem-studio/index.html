@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursus Open FEM Studio: rekenmodel staalconstructie in 3D — OpenAEC Academy</title>
+  <meta name="description" content="Gratis cursus van ongeveer twee uur: teken een staalconstructie als 3D-rekenmodel in Open FEM Studio. Knopen, scharnieren, stabiliteit, belastingen en combinaties, met twee oefeningen en een checklist.">
+  <link rel="canonical" href="https://open-aec.com/academy/open-fem-studio/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Cursus Open FEM Studio: rekenmodel staalconstructie in 3D">
+  <meta property="og:description" content="Gratis cursus van ongeveer twee uur: teken een staalconstructie als 3D-rekenmodel in Open FEM Studio. Knopen, scharnieren, stabiliteit, belastingen en combinaties, met twee oefeningen en een checklist.">
+  <meta property="og:url" content="https://open-aec.com/academy/open-fem-studio/">
+  <meta property="og:locale" content="nl_NL">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/academy/open-fem-studio-stabiliteit.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cursus Open FEM Studio: rekenmodel staalconstructie in 3D">
+  <meta name="twitter:description" content="Gratis cursus van ongeveer twee uur: teken een staalconstructie als 3D-rekenmodel in Open FEM Studio. Knopen, scharnieren, stabiliteit, belastingen en combinaties, met twee oefeningen en een checklist.">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/academy/open-fem-studio-stabiliteit.png">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/shared/style.css?v=20261015">
+  <style>
+    .fc-layout { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--sp-10); align-items: start; }
+    .fc-toc { position: sticky; top: 96px; font-size: 0.9rem; }
+    .fc-toc strong { display: block; font-family: var(--font-code); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #B45309; margin-bottom: var(--sp-3); }
+    .fc-toc a { display: block; color: var(--text-on-light); text-decoration: none; padding: 5px 0 5px 12px; border-left: 2px solid rgba(42,42,50,0.1); }
+    .fc-toc a:hover { color: #B45309; border-left-color: var(--amber); }
+    .fc-body { min-width: 0; max-width: 780px; }
+    .fc-body p, .fc-body li { color: var(--text-on-light); line-height: 1.7; }
+    .fc-body p + p { margin-top: var(--sp-3); }
+    .fc-body h2 { font-size: 1.55rem; color: var(--deep-forge); margin: var(--sp-12) 0 var(--sp-3); scroll-margin-top: 96px; }
+    .fc-body h3 { font-size: 1.15rem; color: var(--deep-forge); margin: var(--sp-8) 0 var(--sp-2); scroll-margin-top: 96px; }
+    .fc-body ul, .fc-body ol { padding-left: 1.3rem; margin: var(--sp-3) 0; }
+    .fc-body li { margin: 0.35rem 0; }
+    .fc-body li::marker { color: var(--amber); }
+    .fc-body strong { color: var(--deep-forge); }
+    .fc-body a { color: #B45309; font-weight: 600; }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; margin: var(--sp-4) 0; }
+    .fc-table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+    .fc-table th { text-align: left; font-family: var(--font-code); font-weight: 500; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: #B45309; padding: 8px 10px; border-bottom: 2px solid rgba(217,119,6,0.35); }
+    .fc-table td { padding: 9px 10px; border-bottom: 1px solid rgba(42,42,50,0.1); vertical-align: top; color: var(--text-on-light); line-height: 1.5; }
+    .fc-figure { margin: var(--sp-6) 0; }
+    .fc-figure img { width: 100%; height: auto; display: block; border: 1px solid rgba(42,42,50,0.08); border-radius: var(--radius-md); background: #FFFFFF; }
+    .fc-figure figcaption { font-family: var(--font-code); font-size: 0.78rem; color: var(--text-on-light); margin-top: var(--sp-2); }
+    .fc-checklist { list-style: none; padding-left: 0; }
+    .fc-check { display: flex; gap: 10px; align-items: flex-start; }
+    .fc-check input { width: 18px; height: 18px; margin-top: 4px; flex: none; accent-color: var(--amber); }
+    .fc-check label { cursor: pointer; }
+    .fc-note { margin-top: var(--sp-12); padding-top: var(--sp-5); border-top: 1px solid rgba(42,42,50,0.1); font-size: 0.92rem; }
+    @media (max-width: 768px) { .fc-layout { grid-template-columns: minmax(0, 1fr); gap: var(--sp-6); } .fc-toc { position: static; } }
+  </style>
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "nl",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/openaec-foundation-io",
+          "https://mastodon.social/@openaec",
+          "https://www.threads.com/@openaec"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/academy/open-fem-studio/#webpage",
+        "url": "https://open-aec.com/academy/open-fem-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "nl",
+        "dateModified": "2026-11-10",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/academy/open-fem-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/academy/open-fem-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Academy",
+            "item": "https://open-aec.com/academy"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Open Fem Studio",
+            "item": "https://open-aec.com/academy/open-fem-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
+      <ul class="nav-links">
+        <li><a href="/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Ecosysteem</a></li>
+        <li><a href="/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Roadmap</a></li>
+        <li><a href="/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Architectuur</a></li>
+        <li><a href="/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Statistieken</a></li>
+        <li><a href="/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Nieuws</a></li>
+        <li><a href="/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Supporters</a></li>
+        <li><a href="/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">Wij steunen</a></li>
+        <li><a href="/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structuur</a></li>
+      </ul>
+      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Feedback</span></a>
+      <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="nl">NL</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="fr">FR</button>
+        <button class="lang-btn" data-lang="tr">TR</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20261015"></script>
+<script src="/shared/feedback.js?v=20261102" defer></script>
+
+  <main id="main">
+
+  <header class="product-head surface-spot">
+    <div class="product-head-inner">
+      <p class="pill-label"><a href="/academy/" style="color: inherit; text-decoration: none;">Academy</a> · cursus Open FEM Studio</p>
+      <h1>Rekenmodel staalconstructie <span class="accent">in 3D</span></h1>
+      <p class="lead">In ongeveer twee uur leer je een staalconstructie als 3D-rekenmodel tekenen in Open FEM Studio: waar knopen moeten zitten, welke aansluitingen scharnieren en hoe je de belastingen erop zet.</p>
+    </div>
+  </header>
+
+  <section class="section"><div class="container">
+    <div class="fc-layout">
+      <nav class="fc-toc" aria-label="Inhoud">
+        <strong>Inhoud</strong>
+        <a href="#zo-werk-je-met-deze-cursus">Zo werk je met deze cursus</a>
+        <a href="#deel-1-wat-een-rekenmodel-is">Deel 1 — Wat een rekenmodel is</a>
+        <a href="#staven-opsplitsen-wanneer-wel-en-wanneer-niet">Staven opsplitsen: wanneer wel en wanneer niet</a>
+        <a href="#aansluitingen-scharnierend-of-momentvast">Aansluitingen: scharnierend of momentvast</a>
+        <a href="#stabiliteit-hoe-een-hal-blijft-staan">Stabiliteit: hoe een hal blijft staan</a>
+        <a href="#oefening-deel-1-een-kleine-hal-tekenen">Oefening deel 1: een kleine hal tekenen</a>
+        <a href="#deel-2-belastinggevallen">Deel 2 — Belastinggevallen</a>
+        <a href="#van-vlakbelasting-naar-staaf">Van vlakbelasting naar staaf</a>
+        <a href="#combinaties-veiligheidsfactoren-en-scheefstand">Combinaties, veiligheidsfactoren en scheefstand</a>
+        <a href="#oefening-deel-2-belastingen-op-de-hal">Oefening deel 2: belastingen op de hal</a>
+        <a href="#checklist-voordat-je-het-model-inlevert">Checklist voordat je het model inlevert</a>
+      </nav>
+      <div class="fc-body">
+
+
+<p>Na deze cursus van ongeveer twee uur kun je een staalconstructie als 3D-rekenmodel tekenen in Open FEM Studio: je weet waar knopen moeten zitten, welke aansluitingen scharnieren en hoe je de belastingen erop zet.</p>
+<h2 id="zo-werk-je-met-deze-cursus">Zo werk je met deze cursus</h2>
+<p>De cursus heeft twee delen van ongeveer een uur. Per onderdeel lees je eerst de uitleg; aan het eind van elk deel doe je een oefening in Open FEM Studio.</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th>Deel</th><th>Onderdeel</th><th>Tijd (min)</th></tr></thead><tbody><tr><td>1</td><td>Wat een rekenmodel is</td><td>10</td></tr><tr><td>1</td><td>Staven opsplitsen</td><td>15</td></tr><tr><td>1</td><td>Aansluitingen: scharnier of stijf</td><td>15</td></tr><tr><td>1</td><td>Stabiliteit van een hal</td><td>10</td></tr><tr><td>1</td><td>Oefening: een hal tekenen</td><td>20</td></tr><tr><td>2</td><td>Belastinggevallen</td><td>10</td></tr><tr><td>2</td><td>Van vlakbelasting naar staaf</td><td>10</td></tr><tr><td>2</td><td>Combinaties en scheefstand</td><td>10</td></tr><tr><td>2</td><td>Oefening: lasten, rekenen, controleren</td><td>20</td></tr><tr><td>2</td><td>Checklist</td><td>5</td></tr></tbody></table></div>
+<p>Je hebt nodig: Open FEM Studio 2026.45 of nieuwer, een muis met scrollwiel, en deze cursus naast je scherm. Alle lengtes typ je in <strong>millimeters</strong>: 5000, niet 5.</p>
+<p>Jij tekent het model; de constructeur bepaalt het ontwerp. Twijfel je over een aansluiting, oplegging of last, schrijf je vraag dan op en vraag het. Een model wordt altijd door een constructeur gecontroleerd voordat het gebruikt wordt.</p>
+<h2 id="deel-1-wat-een-rekenmodel-is">Deel 1 — Wat een rekenmodel is</h2>
+<p>Een rekenmodel is een vereenvoudigde versie van de constructie: alleen de onderdelen die kracht dragen, als lijnen en punten. Drie bouwstenen:</p>
+<ul><li><strong>Staaf</strong> — een lijn met een profiel en een materiaal, bijvoorbeeld een kolom HEA 200 in S235.</li><li><strong>Knoop</strong> — een punt waar staven aan elkaar vastzitten, of waar een oplegging zit.</li><li><strong>Oplegging</strong> — de plek waar de constructie op de fundering staat.</li></ul>
+<p>Je tekent een staaf op zijn <strong>hartlijn</strong>, de systeemlijn, en niet op de buitenkant van het profiel. Een ligger die in het echt tegen de flens van een kolom zit, raakt de kolom in het model in het snijpunt van hun hartlijnen. Bij een hal is dat verschil te verwaarlozen; als het ergens wel telt, zegt de constructeur het.</p>
+<p>Wat geen kracht draagt, laat je weg. Gevelbeplating, kozijnen en isolatie zijn geen staven maar een <strong>last</strong> op de staven. Ook bouten, kopplaten en lassen teken je niet: die zitten in de keuze scharnierend of momentvast.</p>
+<h3 id="van-2d-naar-3d">Van 2D naar 3D</h3>
+<p>In 2D heeft een knoop drie vrijheidsgraden: verplaatsen in twee richtingen en draaien. In 3D zijn het er <strong>zes</strong>: drie verplaatsingen (X, Y, Z) en drie rotaties. In Open FEM Studio wijst Z omhoog; X en Y liggen in het horizontale vlak.</p>
+<p>Daardoor denk je in 3D in alle richtingen. Een portaal dat in zijn eigen vlak stijf is, kan zijwaarts gewoon omvallen. Dat komt terug bij Stabiliteit.</p>
+<p>Elke staaf heeft ook eigen, <strong>lokale assen</strong>: x langs de staaf, y en z dwars erop. Bij een I-profiel valt de ene dwarsas samen met de sterke as en de andere met de zwakke. Zet de weergave <strong>Lokale assen en eindscharnieren</strong> aan om ze te zien; staat een profiel verkeerd gedraaid, dan pas je de stand aan in het eigenschappenpaneel.</p>
+<h2 id="staven-opsplitsen-wanneer-wel-en-wanneer-niet">Staven opsplitsen: wanneer wel en wanneer niet</h2>
+<p>Een knoop hoort waar staven in het echt aan elkaar vastzitten, of waar een oplegging zit. Nergens anders.</p>
+<p>Twee staven die elkaar kruisen zonder gedeelde knoop, zijn in het model <strong>niet</strong> verbonden. Ze gaan door elkaar heen en er gaat geen kracht van de ene naar de andere. Dit is de meest gemaakte fout in een 3D-model.</p>
+<figure class="fc-figure"><img src="/shared/assets/academy/open-fem-studio-knopen.png" alt="Kruisende staven: zonder knoop niet verbonden, met een gedeelde knoop wel, en een knoop naast de hartlijn geeft een knik" width="1344" height="578" loading="lazy"><figcaption>kruisende staven · zonder knoop, met knoop, knoop naast de hartlijn</figcaption></figure>
+<p>Alleen met een gedeelde knoop gaat er kracht over. Ligt die knoop net naast de hartlijn, dan zit er een knik in de staaf.</p>
+<h3 id="wel-een-knoop">Wel een knoop</h3>
+<ol><li>Waar een andere staaf aansluit: een gording op een spant, een ligger op een kolom, een verband op een kolomkop.</li><li>Op een oplegging.</li><li>Waar het profiel verandert: dan zijn het twee staven.</li><li>Waar een scharnier in de lijn zit, zoals bij een gerberligger.</li></ol>
+<h3 id="geen-knoop-nodig">Geen knoop nodig</h3>
+<ul><li><strong>Voor een last.</strong> Een puntlast of lijnlast zet je op elke plek van een staaf, zonder te knippen.</li><li><strong>Om het netjes te maken.</strong> Een extra knoop voegt niets toe.</li></ul>
+<h3 id="wat-het-programma-voor-je-doet">Wat het programma voor je doet</h3>
+<ul><li>Met de instelling <strong>Knopen automatisch samenvoegen en aansluiten</strong> splitst het programma een staaf zelf zodra je er een knoop op zet, of als een nieuwe staaf door een bestaande knoop loopt. Een punt dat binnen de verbindingstolerantie van een knoop ligt (standaard 5 mm), wordt die knoop.</li><li>De <strong>Modelcontrole</strong> meldt een knoop die op een staaf ligt zonder eraan vast te zitten. <strong>Verbind</strong> splitst de staaf op die knoop; de lintknop <strong>Knopen aansluiten</strong> doet dat voor het hele model in één keer.</li><li>Ligt een knoop net naast de hartlijn, dan krijgt de staaf daar een <strong>knik</strong> en meldt het programma dat. Snap daarom op knopen en raster, en kijk de coördinaten na.</li></ul>
+<p><strong>Let op — dit ziet het programma niet.</strong> Kruisen twee staven elkaar zonder dat er op die plek een knoop is, dan meldt de modelcontrole niets. Het programma kan niet weten of ze in het echt vastzitten. Dat moet jij zien: draai het model rond en kijk bij elke kruising of er een knoop hoort.</p>
+<h3 id="splitsen-en-de-kniklengte">Splitsen en de kniklengte</h3>
+<p>Knip je een staaf waar verder niets aansluit — zelfde profiel, in elkaars verlengde, geen oplegging, geen scharnier — dan toetst het programma de delen weer als <strong>één</strong> staaf. De kniklengte blijft dan de hele lengte.</p>
+<p>Sluit er op die knoop wél iets aan, zoals een gording of een verband, dan is het een echte knoop en wordt elk deel apart getoetst. Verbind dus alleen wat in het echt verbonden is: een gording die aan een spant vastzit wel, een leiding die er alleen langs loopt niet.</p>
+<h2 id="aansluitingen-scharnierend-of-momentvast">Aansluitingen: scharnierend of momentvast</h2>
+<p>Elk staafeind is momentvast of scharnierend. Een scharnier draagt krachten over, maar geen buigend moment.</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th>Wat gaat over het staafeind</th><th>Momentvast</th><th>Scharnierend</th></tr></thead><tbody><tr><td>Normaalkracht N</td><td>ja</td><td>ja</td></tr><tr><td>Dwarskrachten Vy en Vz</td><td>ja</td><td>ja</td></tr><tr><td>Torsie Mx</td><td>ja</td><td>ja</td></tr><tr><td>Buigend moment My</td><td>ja</td><td>nee</td></tr><tr><td>Buigend moment Mz</td><td>ja</td><td>nee</td></tr></tbody></table></div>
+<p>Een scharnier laat in 3D dus de buiging om <strong>beide</strong> dwarsassen los. De torsie houdt <strong>Scharnierend</strong> bewust vast: laat je torsie aan beide einden los, dan kan de staaf vrij om zijn eigen as draaien. Dat is een mechanisme, en dan rekent het model niet.</p>
+<h3 id="in-staal">In staal</h3>
+<p>Welke aansluiting het is, bepaalt de constructeur; jij tekent wat op de schets staat. Als vuistregel:</p>
+<ul><li>Een lipverbinding of een kopplaat zonder verstijving, bij een ligger op een kolom: <strong>scharnierend</strong>.</li><li>Een gelaste of zwaar gebouten spanthoek met verstijvingen of een voute: <strong>momentvast</strong>.</li><li>Een verband: aan beide einden <strong>scharnierend</strong>. Een slanke staaf of strip die alleen trek kan opnemen, krijgt <strong>Trek-alleen</strong>: onder druk doet hij niet mee en toont het programma hem als inactief.</li></ul>
+<h3 id="in-het-programma">In het programma</h3>
+<ul><li>Eigenschappenpaneel, <strong>Eindscharnieren</strong>: <strong>Momentvast</strong> of <strong>Scharnierend</strong>, voor beide einden tegelijk.</li><li>Gereedschap <strong>Scharnier staafeind</strong>: één eind scharnierend maken; nog een klik maakt het weer vast.</li><li>Lintknop <strong>Liggers scharnierend</strong>: maakt in één keer elk liggereind op een kolomkop scharnierend. Kolommen blijven doorgaand. Zou een deel daardoor wegdraaien, zoals een luifel die alleen aan één kolomkop hangt, dan laat het programma dat eind momentvast en meldt het.</li><li>De weergave <strong>Lokale assen en eindscharnieren</strong> laat zien waar elk scharnier zit.</li></ul>
+<h3 id="opleggingen">Opleggingen</h3>
+<p>Ook bij een oplegging kies je wat vastzit en wat mag draaien.</p>
+<ul><li><strong>Ruimtelijk scharnier</strong> — verplaatsen kan niet, draaien wel. Een kolomvoet met een kleine voetplaat en vier ankers reken je meestal zo.</li><li><strong>Inklemming</strong> — niets kan verplaatsen of draaien. Alleen als de voet en de fundering daarvoor ontworpen zijn.</li><li><strong>Scharnier om X, Y of Z</strong> of een <strong>rol</strong> — alleen als de schets het zegt.</li></ul>
+<p>Kies je een inklemming die er in het echt niet is, dan lijkt de constructie stijver en sterker dan ze is. Twijfel je, kies dan het scharnier en vraag het na.</p>
+<h2 id="stabiliteit-hoe-een-hal-blijft-staan">Stabiliteit: hoe een hal blijft staan</h2>
+<p>Een hal blijft alleen staan als hij in <strong>beide</strong> richtingen een weg heeft om horizontale krachten, zoals wind, naar de fundering te brengen.</p>
+<p>Wind duwt tegen de gevels. Die kracht moet via staven en aansluitingen naar de opleggingen. Ontbreekt die weg in één richting, dan valt de hal in die richting om; in het model heet dat een <strong>mechanisme</strong>.</p>
+<figure class="fc-figure"><img src="/shared/assets/academy/open-fem-studio-stabiliteit.png" alt="Stabiliteit van een hal: portaal met stijve hoeken staat, overal scharnieren is een mechanisme, een windverband houdt de langsgevel recht" width="1344" height="654" loading="lazy"><figcaption>stabiliteit · portaal met stijve hoeken, mechanisme, windverband</figcaption></figure>
+<p>Dwars houden de stijve spanthoeken het portaal recht; in de lengte doet het windverband dat. Met alleen scharnieren klapt de constructie om.</p>
+<h3 id="dwars-de-portalen">Dwars: de portalen</h3>
+<p>Dwars op de hal dragen de <strong>portalen</strong> de wind: twee kolommen met een spant erover. Een portaal blijft alleen staan als hij stijf is, met momentvaste spanthoeken of ingeklemde kolomvoeten. Een portaal met overal scharnieren is een parallellogram dat zo omklapt.</p>
+<h3 id="in-de-lengte-de-windverbanden">In de lengte: de windverbanden</h3>
+<p>In de lengterichting hangen de portalen alleen met gordingen en scharnieren aan elkaar, en daar dragen ze niets. Daarvoor zijn er <strong>windverbanden</strong>: kruizen van staven of strips in het dak en in de langsgevels, meestal in een eindvak.</p>
+<p>De weg van de kracht: de wind op de kopgevel gaat via de gordingen naar het dakverband, het dakverband brengt hem naar de wandverbanden, en die brengen hem naar de fundering. Een verband loopt altijd van knoop naar knoop, nooit naar een plek halverwege een staaf zonder knoop.</p>
+<p>Een betonvloer of een stijve dakschijf kan ook stabiliteit geven; in het programma heet dat een <strong>schijf</strong>. Gebruik die alleen als de constructeur het zegt.</p>
+<h3 id="zo-merk-je-het">Zo merk je het</h3>
+<p>Mist er een weg, dan waarschuwt het programma voor een mechanisme. Kijk dan in welke richting het model niet vastzit. Bijna altijd is het een vergeten verband, een scharnier te veel, of een kruising zonder knoop.</p>
+<p>Bij kruizen van trek-alleen staven is er nog een oorzaak. Onder alleen verticale last worden de kolommen een fractie korter, en dan staan beide diagonalen van een kruis een beetje op druk. Het programma zet ze dan allebei uit en het vak verliest zijn verband. De toets rekent altijd in tweede orde, en meldt dan een mechanisme terwijl je model goed is. Zet daarom de <strong>Kruisregel</strong> aan: van elk kruis blijft dan de diagonaal met de grootste normaalkracht meedoen.</p>
+<h2 id="oefening-deel-1-een-kleine-hal-tekenen">Oefening deel 1: een kleine hal tekenen</h2>
+<p>Je tekent een hal van 12 m breed, 12 m lang en 5 m hoog, met een plat dak: drie portalen op 6 m van elkaar. De profielen zijn alleen voor de oefening en niet ontworpen.</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th>Onderdeel</th><th>Profiel</th><th>Materiaal</th><th>Aansluiting</th></tr></thead><tbody><tr><td>Kolommen</td><td>HEA 200</td><td>S235</td><td>momentvast aan het spant</td></tr><tr><td>Spanten</td><td>IPE 360</td><td>S235</td><td>momentvast aan de kolommen</td></tr><tr><td>Gordingen, h.o.h. 3000 mm</td><td>IPE 160</td><td>S235</td><td>scharnierend</td></tr><tr><td>Windverbanden</td><td>RD 16</td><td>S235</td><td>scharnierend, trek-alleen</td></tr></tbody></table></div>
+<p>X is de breedte, Y de lengte, Z de hoogte. De portalen staan op Y = 0, Y = 6000 en Y = 12000.</p>
+<ol><li>Maak een nieuw 3D-project. Zet in de instellingen <strong>Knopen automatisch samenvoegen en aansluiten</strong> aan en laat de verbindingstolerantie op 5 mm.</li><li><strong>Kolommen.</strong> Zet met <strong>Knoop toevoegen</strong> de zes voeten op Z = 0 en de zes koppen op Z = 5000, in de hoeken van elk portaal: X = 0 en X = 12000. Teken met <strong>Staaf toevoegen</strong> van elke voet naar zijn kop.</li><li><strong>Spanten.</strong> Teken op elke Y een staaf van kop naar kop, van X = 0 naar X = 12000.</li><li><strong>Gordingen.</strong> Teken ze op X = 0, 3000, 6000, 9000 en 12000, en <strong>per vak</strong>: van Y = 0 naar 6000 en van 6000 naar 12000. Bij elke eindknoop die op een spant valt, splitst het programma dat spant; je ziet de melding <em>… staven gesplitst op de knopen die erop lagen</em>.</li><li><strong>Scharnieren.</strong> Selecteer alle gordingen en kies in het eigenschappenpaneel <strong>Scharnierend</strong>. Spanten en kolommen blijven <strong>Momentvast</strong>.</li><li><strong>Opleggingen.</strong> Geef de zes voeten een <strong>Ruimtelijk scharnier</strong>.</li><li><strong>Windverbanden</strong> in het eerste vak, van Y = 0 tot 6000. In het dak: een kruis van X = 0 tot 6000 en een van X = 6000 tot 12000, van spant naar spant. In beide langsgevels (X = 0 en X = 12000): een kruis van voet naar kop. Geef ze <strong>Scharnierend</strong> en <strong>Trek-alleen</strong>. Zet daarna in de balk met belastinggevallen de <strong>Kruisregel</strong> aan; die verschijnt zodra het model trek-alleen staven heeft.</li><li>Open de <strong>Modelcontrole</strong>. Er hoort niets te staan. Staat er een knoop op een staaf, lees dan waarom en kies <strong>Verbind</strong> als ze in het echt aan elkaar vastzitten.</li><li>Zet <strong>Lokale assen en eindscharnieren</strong> aan en loop elk staafeind na tegen de tabel hierboven.</li></ol>
+<p>Waarom per vak bij stap 4? Een lange gording van Y = 0 naar 12000 kruist het middelste spant zonder knoop. Die twee zijn dan niet verbonden, en de modelcontrole meldt dat niet.</p>
+<p>Waarom niet de lintknop <strong>Liggers scharnierend</strong>? Die zou ook de spanten scharnierend op de kolommen zetten. Met scharnierende voeten is het portaal dan geen portaal meer en valt de hal dwars om.</p>
+<p><strong>Controlevragen</strong></p>
+<ul><li>Waarom moeten de spanthoeken hier momentvast zijn?</li><li>Wat gebeurt er als je de wandverbanden weglaat?</li><li>De dakverbanden kruisen de gording op X = 3000 zonder knoop. Is dat fout?</li></ul>
+<p>Antwoorden: (1) de voeten zijn scharnierend, dus dwars geeft alleen de stijve hoek stabiliteit; (2) in de lengte is er dan geen weg naar de fundering: een mechanisme; (3) nee, in het echt zitten ze daar ook niet aan elkaar vast.</p>
+<h2 id="deel-2-belastinggevallen">Deel 2 — Belastinggevallen</h2>
+<p>Je zet elke soort last in een eigen <strong>belastinggeval</strong>. Het programma combineert die gevallen daarna met veiligheidsfactoren. Een nieuw project heeft er al vijf: Eigen gewicht, Permanent (G), Variabel (Q), Sneeuw (S) en Wind (W). Je voegt alleen toe wat ontbreekt.</p>
+<p>Waarom apart? Sneeuw en wind zijn er niet altijd tegelijk, en elke soort krijgt een eigen factor. Een geval waarin alles bij elkaar staat, kan het programma niet goed combineren.</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th>Belastinggeval</th><th>Soort</th><th>Wat erin zit</th><th>Hoe in het programma</th></tr></thead><tbody><tr><td>Eigen gewicht</td><td>permanent</td><td>de staven zelf</td><td>rekent het programma uit het profiel; jij doet niets</td></tr><tr><td>Permanent (G)</td><td>permanent</td><td>de afwerking: dakopbouw, gevelbekleding, installaties</td><td>belastingvlak; de bekleding via de schilpanelen</td></tr><tr><td>Variabel (Q)</td><td>veranderlijk</td><td>de dakbelasting: mensen die het dak onderhouden</td><td><strong>Dakgebruik categorie H</strong> in de generator, of een belastingvlak</td></tr><tr><td>Sneeuw (S)</td><td>veranderlijk</td><td>sneeuw op het dak</td><td><strong>Grondsneeuwlast sₖ</strong> in de generator</td></tr><tr><td>Wind (W)</td><td>veranderlijk</td><td>druk en zuiging op gevels en dak</td><td><strong>Wind op gevel en dak</strong> in de generator</td></tr></tbody></table></div>
+<p>De generator is <strong>3D-schillasten genereren</strong>. Hij maakt zelf de belastinggevallen en de belastingvlakken, en laat lasten die je al met de hand had gezet staan.</p>
+<h3 id="sneeuw">Sneeuw</h3>
+<p>In heel Nederland is de grondsneeuwlast sₖ = 0,7 kN/m². Op een plat of flauw dak telt daarvan 80 %: 0,8 × 0,7 = 0,56 kN/m² op het dak. Je vult in de generator sₖ in; de vormfactor rekent hij zelf.</p>
+<h3 id="wind">Wind</h3>
+<p>Hoeveel wind er staat, hangt af van de plek: het <strong>windgebied</strong> (I, II of III), de <strong>terreincategorie</strong> (kust, onbebouwd of bebouwd) en de hoogte van de hal. Elke zone van gevel en dak krijgt een eigen druk of zuiging. De wind kan uit verschillende richtingen komen, dus maakt de generator meerdere windgevallen.</p>
+<p>Laat constructiefactor en achtergrondlekkage op de standaardwaarde, tenzij de constructeur iets anders zegt.</p>
+<h2 id="van-vlakbelasting-naar-staaf">Van vlakbelasting naar staaf</h2>
+<p>Een last in kN/m² zet je met een <strong>belastingvlak</strong> op het model. Het programma verdeelt die last over de liggers in het vlak en maakt er gewone lijnlasten van.</p>
+<p>Je tekent een belastingvlak met zijn hoeken op knopen, en geeft het een belastinggeval en een q in kN/m².</p>
+<h3 id="lastrichting">Lastrichting</h3>
+<ul><li><strong>Zwaartekracht (−Z), per m² horizontale projectie</strong> — voor sneeuw en dakbelasting. Bij een schuin dak telt het oppervlak zoals je het van bovenaf ziet.</li><li><strong>Verticaal (−Z), per m² werkelijk vlak</strong> — voor het gewicht van dakplaten op een schuin dak.</li><li><strong>Loodrecht op het vlak, per m² vlak</strong> — voor wind. Of een positieve q de gevel in drukt of eruit trekt, hangt af van hoe het vlak ligt. Kijk daarom naar de pijl op het tekenvlak; wijst hij de verkeerde kant op, kies dan <strong>Richting omkeren</strong>.</li></ul>
+<h3 id="afdracht">Afdracht</h3>
+<ul><li><strong>Eén richting (overspanning)</strong> — een dakplaat overspant van gording naar gording. Kies als <strong>Overspanningsrichting</strong> de richting dwars op de gordingen. Elke gording krijgt dan een strook van de halve afstand tot zijn buren: de <strong>belastingbreedte</strong>.</li><li><strong>Twee richtingen (45°-lijnen)</strong> — een plaat die op vier randen ligt, zoals een vloer. Elk punt gaat naar de dichtstbijzijnde ligger, en uit de hoeken lopen 45°-lijnen.</li></ul>
+<figure class="fc-figure"><img src="/shared/assets/academy/open-fem-studio-belastingbreedte.png" alt="Dak in bovenaanzicht: elke gording draagt de strook tot halverwege zijn buren; middengording 1,68 kN/m, randgording 0,84 kN/m" width="1344" height="670" loading="lazy"><figcaption>één richting · belastingbreedte per gording</figcaption></figure>
+<p>De dakplaat overspant van gording naar gording. Een middengording draagt daardoor een strook van 3,0 m, een randgording de helft.</p>
+<p>Onder <strong>Liggers in het vlak</strong> staat per staaf wat hij doet: (draagt), (langs, geen last) of (schuin, geen last). Windverbanden krijgen dus vanzelf niets. Draagt een staaf in het echt niets, vink hem dan uit; zijn deel gaat naar de andere liggers.</p>
+<h3 id="rekenvoorbeeld">Rekenvoorbeeld</h3>
+<p>Gordingen op 3000 mm, sneeuw 0,56 kN/m², één richting dwars op de gordingen:</p>
+<ul><li>een middengording draagt 3,0 m: 0,56 × 3,0 = <strong>1,68 kN/m</strong>;</li><li>een randgording draagt 1,5 m: 0,56 × 1,5 = <strong>0,84 kN/m</strong>.</li></ul>
+<h3 id="controle">Controle</h3>
+<p>Onder <strong>Afgeleide lijnlasten</strong> zie je wat elke staaf krijgt. Daaronder staat <strong>Totaal afgedragen … kN · q × A = … kN</strong>: die twee getallen horen gelijk te zijn. Wijken ze af, of meldt het programma een rand zonder ligger, kijk dan of het vlak wel op de juiste liggers ligt.</p>
+<h2 id="combinaties-veiligheidsfactoren-en-scheefstand">Combinaties, veiligheidsfactoren en scheefstand</h2>
+<p>Het programma maakt de combinaties zelf. Jij zorgt dat elk belastinggeval het juiste soort heeft en dat er niets ontbreekt.</p>
+<p>Een <strong>combinatie</strong> is een optelling van belastinggevallen, elk met een factor. Er zijn twee soorten:</p>
+<ul><li><strong>UGT</strong>, de uiterste grenstoestand — is de constructie sterk en stabiel genoeg? Met veiligheidsfactoren.</li><li><strong>BGT</strong>, de bruikbaarheidsgrenstoestand — buigt ze niet te ver door? Zonder veiligheidsfactoren.</li></ul>
+<p>Voor nieuwbouw in gevolgklasse CC2 gelden in Nederland deze factoren in de UGT:</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th>Last</th><th>Factor</th></tr></thead><tbody><tr><td>Permanent, ongunstig (vergelijking 6.10a)</td><td>1,35</td></tr><tr><td>Permanent, ongunstig (vergelijking 6.10b)</td><td>1,2</td></tr><tr><td>Permanent, gunstig, bijvoorbeeld bij opwaartse wind</td><td>0,9</td></tr><tr><td>Veranderlijk, de leidende last</td><td>1,5</td></tr><tr><td>Veranderlijk, meegaand</td><td>1,5 × ψ₀, met ψ₀ per soort last</td></tr></tbody></table></div>
+<p>Elke veranderlijke last is in een van de combinaties de leidende. Daarom zie je meerdere UGT-combinaties, plus een voor opwaartse wind waarin het eigen gewicht gunstig werkt (0,9).</p>
+<p>De ψ₀-factoren en de lijst combinaties vult het programma zelf in. Jij kijkt na:</p>
+<ul><li>heeft elk belastinggeval het juiste soort: permanent of veranderlijk, en welk type?</li><li>komt elk veranderlijk geval in de lijst voor?</li><li>is er een combinatie met gunstig eigen gewicht voor de wind?</li></ul>
+<h3 id="scheefstand">Scheefstand</h3>
+<p>Geen kolom staat precies loodrecht. Daarom toetst het programma altijd in <strong>tweede orde</strong> (P-Δ) en met een <strong>initiële scheefstand</strong> φ: standaard 1/200, in te stellen in de projectinstellingen. In het rapport staat dat als <em>2e orde (P-Δ) + scheefstand</em>.</p>
+<p>Tweede orde betekent: het programma rekent met de vervormde stand. Een kolom die iets scheef staat, krijgt door zijn eigen last een extra moment, en dat neemt het programma mee. Je zet hiervoor zelf <strong>geen</strong> extra horizontale last op het model.</p>
+<h2 id="oefening-deel-2-belastingen-op-de-hal">Oefening deel 2: belastingen op de hal</h2>
+<p>Je zet vier belastinggevallen op de hal uit deel 1, rekent, en controleert of de uitkomst klopt. De windwaarde is een oefenwaarde: in het echt hangt wind af van de plek en verschilt hij per zone.</p>
+<ol><li><strong>Belastinggevallen.</strong> Je nieuwe project heeft er al vijf. Gebruik <em>Permanent (G)</em> voor de afwerking, <em>Sneeuw (S)</em> voor de sneeuw en <em>Wind (W)</em> voor de wind op de langsgevel. Voeg er één toe: <em>Wind kopgevel</em>, soort wind. <em>Variabel (Q)</em> laat je leeg; de dakbelasting doen we in deze oefening niet. Het eigen gewicht rekent het programma zelf.</li><li><strong>Afwerking.</strong> Teken een belastingvlak op het hele dak, met de hoeken op de vier dakhoeken. Kies belastinggeval Permanent (G), q = 0,3 kN/m², <strong>Zwaartekracht</strong>, <strong>Eén richting</strong> en als overspanningsrichting <strong>Globale X</strong>, dwars op de gordingen.</li><li><strong>Sneeuw.</strong> Kies bij het dakvlak <strong>Kopie naar belastinggeval…</strong>, kies Sneeuw (S) en zet q op 0,56 kN/m².</li><li><strong>Wind langsgevel.</strong> Teken een belastingvlak op de gevel X = 0, van (0; 0; 0) via (0; 12000; 0) en (0; 12000; 5000) naar (0; 0; 5000), in belastinggeval Wind (W). Kies <strong>Loodrecht op het vlak</strong>, q = 0,6 kN/m², één richting langs <strong>Globale Y</strong>. De pijl moet de hal in wijzen; zo niet, kies <strong>Richting omkeren</strong>.</li><li><strong>Wind kopgevel.</strong> Hetzelfde in belastinggeval Wind kopgevel, op de gevel Y = 0, van (0; 0; 0) via (12000; 0; 0) en (12000; 0; 5000) naar (0; 0; 5000), één richting langs <strong>Globale X</strong>.</li><li><strong>Combinaties.</strong> Laat het programma de standaardcombinaties maken en loop de drie vragen uit het vorige hoofdstuk na.</li><li><strong>Rekenen.</strong></li></ol>
+<h3 id="controleer-de-uitkomst">Controleer de uitkomst</h3>
+<p>Reken eerst zelf na wat elk geval aan last geeft, en vergelijk dat met <strong>Totaal afgedragen</strong> bij het belastingvlak en met de som van de reacties:</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th>Belastinggeval</th><th>Zelf uitgerekend</th><th>Som van de reacties</th></tr></thead><tbody><tr><td>Permanent (G), afwerking</td><td>0,3 × 12 × 12 = 43,2 kN</td><td>verticaal, 43,2 kN</td></tr><tr><td>Sneeuw (S)</td><td>0,56 × 12 × 12 = 80,6 kN</td><td>verticaal, 80,6 kN</td></tr><tr><td>Wind (W), langsgevel</td><td>0,6 × 12 × 5 = 36,0 kN</td><td>in X, 36,0 kN</td></tr><tr><td>Wind kopgevel</td><td>0,6 × 12 × 5 = 36,0 kN</td><td>in Y, 36,0 kN</td></tr></tbody></table></div>
+<p>Het eigen gewicht rekent het programma uit de profielen. Voor deze hal is dat ongeveer 42,9 kN verticaal: zo'n 4,4 ton staal. Zie je bij Eigen gewicht een heel ander getal, dan klopt er een profiel niet.</p>
+<p>Klopt een som niet, dan staat er een last verkeerd: het verkeerde geval, de verkeerde richting, of een vlak dat niet op de liggers ligt.</p>
+<p>Kijk daarna naar het gedrag:</p>
+<ul><li>Bij <strong>wind op de langsgevel</strong> zwaaien de portalen opzij: bovenin het middelste portaal ongeveer 28 mm, zonder factoren. Dat is de stijve spanthoek aan het werk.</li><li>Bij <strong>wind op de kopgevel</strong> houden de wandverbanden de hal tegen. Per kruis is één diagonaal actief en staat de andere als inactief (trek-alleen): die zou op druk staan. De kop van de hal schuift maar zo'n 3 mm op.</li><li>Er hoort geen waarschuwing voor een mechanisme te staan.</li><li>De unity checks noteer je; het oordeel daarover is aan de constructeur.</li></ul>
+<p>In een echt project zet je sneeuw en wind niet met de hand. Dan teken je de gevel- en dakpanelen van de gebouwschil en gebruik je <strong>3D-schillasten genereren</strong>; je begeleider laat zien hoe.</p>
+<h2 id="checklist-voordat-je-het-model-inlevert">Checklist voordat je het model inlevert</h2>
+<p>Loop deze lijst na en vink af. Wat je niet kunt afvinken, schrijf je als vraag op voor de constructeur.</p>
+<p><strong>Geometrie</strong></p>
+<ul class="fc-checklist"><li class="fc-check"><input type="checkbox" id="chk-1"><label for="chk-1">Elke staaf ligt op zijn hartlijn, zonder onbedoelde knik.</label></li><li class="fc-check"><input type="checkbox" id="chk-2"><label for="chk-2">Waar staven in het echt vastzitten, delen ze één knoop. Ik heb het model rondgedraaid en elke kruising bekeken.</label></li><li class="fc-check"><input type="checkbox" id="chk-3"><label for="chk-3">Er zitten geen knopen waar niets aansluit, tenzij daar een reden voor is.</label></li><li class="fc-check"><input type="checkbox" id="chk-4"><label for="chk-4">Profiel, materiaal en stand van de doorsnede kloppen per staaf.</label></li><li class="fc-check"><input type="checkbox" id="chk-5"><label for="chk-5">De modelcontrole meldt niets meer.</label></li></ul>
+<p><strong>Aansluitingen en stabiliteit</strong></p>
+<ul class="fc-checklist"><li class="fc-check"><input type="checkbox" id="chk-6"><label for="chk-6">Elk staafeind is momentvast of scharnierend volgens de schets.</label></li><li class="fc-check"><input type="checkbox" id="chk-7"><label for="chk-7">Nergens staat torsie aan beide einden van een staaf los.</label></li><li class="fc-check"><input type="checkbox" id="chk-8"><label for="chk-8">De opleggingen kloppen met de schets: scharnier of inklemming.</label></li><li class="fc-check"><input type="checkbox" id="chk-9"><label for="chk-9">Er is in beide richtingen een weg naar de fundering: portalen of verbanden.</label></li><li class="fc-check"><input type="checkbox" id="chk-10"><label for="chk-10">Verbanden die alleen trek opnemen, staan op Trek-alleen, en bij kruizen staat de Kruisregel aan.</label></li><li class="fc-check"><input type="checkbox" id="chk-11"><label for="chk-11">Het programma waarschuwt niet voor een mechanisme.</label></li></ul>
+<p><strong>Belastingen</strong></p>
+<ul class="fc-checklist"><li class="fc-check"><input type="checkbox" id="chk-12"><label for="chk-12">Elke last staat in het juiste belastinggeval, met het juiste soort.</label></li><li class="fc-check"><input type="checkbox" id="chk-13"><label for="chk-13">Elk belastingvlak heeft de juiste lastrichting en afdracht, en Totaal afgedragen is gelijk aan q × A.</label></li><li class="fc-check"><input type="checkbox" id="chk-14"><label for="chk-14">Elk veranderlijk geval komt in de combinaties voor, en er is een combinatie voor opwaartse wind.</label></li><li class="fc-check"><input type="checkbox" id="chk-15"><label for="chk-15">De scheefstand staat zoals de constructeur hem wil.</label></li><li class="fc-check"><input type="checkbox" id="chk-16"><label for="chk-16">Per belastinggeval is de som van de reacties gelijk aan de som van de lasten.</label></li></ul>
+<p><strong>Inleveren</strong></p>
+<ul class="fc-checklist"><li class="fc-check"><input type="checkbox" id="chk-17"><label for="chk-17">Het model is opgeslagen, met een duidelijke naam.</label></li><li class="fc-check"><input type="checkbox" id="chk-18"><label for="chk-18">Mijn vragen en twijfels staan op papier voor de constructeur.</label></li></ul>
+        <p class="fc-note">Deze cursus hoort bij de <a href="/academy/">OpenAEC Academy</a>. Klopt er iets niet, of mis je iets? Laat het weten via de knop Feedback rechtsboven.</p>
+      </div>
+    </div>
+  </div></section>
+
+  </main>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Open source software voor de volledige AEC-keten (bouw, utiliteit, GWW en civiele techniek) — van ontwerp tot oplevering en beheer.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Pagina's</h4>
+        <a href="/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">Over ons</a>
+        <a href="/ifcx/">IFCX</a>
+        <a href="/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Offerte aanvragen</a>
+        <a href="/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">FAQ</a>
+        <a href="/wiki/" data-i18n-en="Wiki" data-i18n-fr="Wiki" data-i18n-tr="Wiki" data-i18n-es="Wiki">Wiki</a>
+        <a href="/academy/" data-i18n-en="Academy" data-i18n-fr="Academy" data-i18n-tr="Academy" data-i18n-es="Academy">Academy</a>
+        <a href="/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Disclaimer</a>
+        <a href="/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Concept statuten</a>
+        <a href="/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Credits</a>
+        <a href="/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Beleid & standpunten</a>
+        <a href="/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Socials</a>
+      </nav>
+      <nav class="site-footer-col" aria-label="Meer tools">
+        <h4 data-i18n-en="More tools" data-i18n-fr="Plus d'outils" data-i18n-tr="Daha fazla araç" data-i18n-es="Más herramientas">Meer tools</h4>
+        <a href="/open-energy-studio/">Open Energy Studio</a>
+        <a href="/open-safety-studio/">Open Safety Studio</a>
+        <a href="/open-3d-viewer/">Open 3D Viewer</a>
+        <a href="/open-books/">OpenBooks</a>
+        <a href="/openaec-cloud/">SuperCloud</a>
+        <a href="/openaec-docs/">OpenAEC Docs</a>
+        <a href="/ext-drawing-statistics/">Drawing Statistics</a>
+        <a href="/y-app/">Y-app</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Stichting i.o.</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">Nederland</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation i.o. — Open source voor een open bouw- en infrasector</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+          <a href="https://x.com/openaec" target="_blank" rel="noopener" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.youtube.com/@openaecfoundation" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://mastodon.social/@openaec" target="_blank" rel="me noopener" aria-label="Mastodon" title="Mastodon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg></a>
+          <a href="https://www.threads.com/@openaec" target="_blank" rel="noopener" aria-label="Threads" title="Threads"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
+  <script src="/shared/i18n.js?v=20261105"></script>
+</body>
+</html>
