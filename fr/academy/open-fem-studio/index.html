@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open FEM Studio course: 3D steel structure analysis model — OpenAEC Academy</title>
+  <meta name="description" content="Free course of about two hours: draw a steel structure as a 3D analysis model in Open FEM Studio. Nodes, hinges, stability, loads and combinations, with…">
+  <link rel="canonical" href="https://open-aec.com/fr/academy/open-fem-studio/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/academy/open-fem-studio/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/academy/open-fem-studio/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/academy/open-fem-studio/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/academy/open-fem-studio/">
+  <link rel="alternate" hreflang="es" href="https://open-aec.com/es/academy/open-fem-studio/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/en/academy/open-fem-studio/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Open FEM Studio course: 3D steel structure analysis model — OpenAEC Academy">
+  <meta property="og:description" content="Free course of about two hours: draw a steel structure as a 3D analysis model in Open FEM Studio. Nodes, hinges, stability, loads and combinations, with…">
+  <meta property="og:url" content="https://open-aec.com/fr/academy/open-fem-studio/">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/academy/open-fem-studio-stabiliteit.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cursus Open FEM Studio: rekenmodel staalconstructie in 3D">
+  <meta name="twitter:description" content="Free course of about two hours: draw a steel structure as a 3D analysis model in Open FEM Studio. Nodes, hinges, stability, loads and combinations, with…">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/academy/open-fem-studio-stabiliteit.png">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="academy-open-fem-studio">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/shared/style.css?v=20261015">
+  <style>
+    .fc-layout { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--sp-10); align-items: start; }
+    .fc-toc { position: sticky; top: 96px; font-size: 0.9rem; }
+    .fc-toc strong { display: block; font-family: var(--font-code); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #B45309; margin-bottom: var(--sp-3); }
+    .fc-toc a { display: block; color: var(--text-on-light); text-decoration: none; padding: 5px 0 5px 12px; border-left: 2px solid rgba(42,42,50,0.1); }
+    .fc-toc a:hover { color: #B45309; border-left-color: var(--amber); }
+    .fc-body { min-width: 0; max-width: 780px; }
+    .fc-body p, .fc-body li { color: var(--text-on-light); line-height: 1.7; }
+    .fc-body p + p { margin-top: var(--sp-3); }
+    .fc-body h2 { font-size: 1.55rem; color: var(--deep-forge); margin: var(--sp-12) 0 var(--sp-3); scroll-margin-top: 96px; }
+    .fc-body h3 { font-size: 1.15rem; color: var(--deep-forge); margin: var(--sp-8) 0 var(--sp-2); scroll-margin-top: 96px; }
+    .fc-body ul, .fc-body ol { padding-left: 1.3rem; margin: var(--sp-3) 0; }
+    .fc-body li { margin: 0.35rem 0; }
+    .fc-body li::marker { color: var(--amber); }
+    .fc-body strong { color: var(--deep-forge); }
+    .fc-body a { color: #B45309; font-weight: 600; }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; margin: var(--sp-4) 0; }
+    .fc-table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+    .fc-table th { text-align: left; font-family: var(--font-code); font-weight: 500; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: #B45309; padding: 8px 10px; border-bottom: 2px solid rgba(217,119,6,0.35); }
+    .fc-table td { padding: 9px 10px; border-bottom: 1px solid rgba(42,42,50,0.1); vertical-align: top; color: var(--text-on-light); line-height: 1.5; }
+    .fc-figure { margin: var(--sp-6) 0; }
+    .fc-figure img { width: 100%; height: auto; display: block; border: 1px solid rgba(42,42,50,0.08); border-radius: var(--radius-md); background: #FFFFFF; }
+    .fc-figure figcaption { font-family: var(--font-code); font-size: 0.78rem; color: var(--text-on-light); margin-top: var(--sp-2); }
+    .fc-checklist { list-style: none; padding-left: 0; }
+    .fc-check { display: flex; gap: 10px; align-items: flex-start; }
+    .fc-check input { width: 18px; height: 18px; margin-top: 4px; flex: none; accent-color: var(--amber); }
+    .fc-check label { cursor: pointer; }
+    .fc-note { margin-top: var(--sp-12); padding-top: var(--sp-5); border-top: 1px solid rgba(42,42,50,0.1); font-size: 0.92rem; }
+    @media (max-width: 768px) { .fc-layout { grid-template-columns: minmax(0, 1fr); gap: var(--sp-6); } .fc-toc { position: static; } }
+  </style>
+  <meta name="i18n-static" content="fr">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "fr",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/openaec-foundation-io",
+          "https://mastodon.social/@openaec",
+          "https://www.threads.com/@openaec"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/fr/academy/open-fem-studio/#webpage",
+        "url": "https://open-aec.com/fr/academy/open-fem-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "fr",
+        "dateModified": "2026-11-10",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/fr/academy/open-fem-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/fr/academy/open-fem-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/fr/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Academy",
+            "item": "https://open-aec.com/fr/academy"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Open Fem Studio",
+            "item": "https://open-aec.com/fr/academy/open-fem-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/fr/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
+      <ul class="nav-links">
+        <li><a href="/fr/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Écosystème</a></li>
+        <li><a href="/fr/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Feuille de route</a></li>
+        <li><a href="/fr/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Architecture</a></li>
+        <li><a href="/fr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Statistiques</a></li>
+        <li><a href="/fr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Actualités</a></li>
+        <li><a href="/fr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Partenaires</a></li>
+        <li><a href="/fr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structure</a></li>
+      </ul>
+      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Commentaires</span></a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/academy/open-fem-studio/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/academy/open-fem-studio/" hreflang="en">EN</a>
+        <a class="lang-btn active" data-lang="fr" href="/fr/academy/open-fem-studio/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/academy/open-fem-studio/" hreflang="tr">TR</a>
+        <a class="lang-btn" data-lang="es" href="/es/academy/open-fem-studio/" hreflang="es">ES</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20261015"></script>
+<script src="/shared/feedback.js?v=20261102" defer></script>
+
+  <main id="main">
+
+  <header class="product-head surface-spot">
+    <div class="product-head-inner">
+      <p class="pill-label" data-i18n="header.label"><a href="/academy/" style="color: inherit; text-decoration: none;">Academy</a> · Open FEM Studio course</p>
+      <h1 data-i18n="header.title">3D analysis model of a <span class="accent">steel structure</span></h1>
+      <p class="lead" data-i18n="header.desc">In about two hours you learn to draw a steel structure as a 3D analysis model in Open FEM Studio: where nodes belong, which connections are pinned and how to put the loads on it.</p>
+    </div>
+  </header>
+
+  <section class="section"><div class="container">
+    <div class="fc-layout">
+      <nav class="fc-toc" aria-label="Inhoud">
+        <strong data-i18n="toc">Contents</strong>
+        <a href="#zo-werk-je-met-deze-cursus" data-i18n="c.b2">How to work with this course</a>
+        <a href="#deel-1-wat-een-rekenmodel-is" data-i18n="c.b39">Part 1 — What an analysis model is</a>
+        <a href="#staven-opsplitsen-wanneer-wel-en-wanneer-niet" data-i18n="c.b50">Splitting members: when to and when not to</a>
+        <a href="#aansluitingen-scharnierend-of-momentvast" data-i18n="c.b71">Connections: pinned or moment-fixed</a>
+        <a href="#stabiliteit-hoe-een-hal-blijft-staan" data-i18n="c.b108">Stability: how a hall stays up</a>
+        <a href="#oefening-deel-1-een-kleine-hal-tekenen" data-i18n="c.b122">Exercise part 1: drawing a small hall</a>
+        <a href="#deel-2-belastinggevallen" data-i18n="c.b161">Part 2 — Load cases</a>
+        <a href="#van-vlakbelasting-naar-staaf" data-i18n="c.b194">From area load to member</a>
+        <a href="#combinaties-veiligheidsfactoren-en-scheefstand" data-i18n="c.b213">Combinations, safety factors and imperfection</a>
+        <a href="#oefening-deel-2-belastingen-op-de-hal" data-i18n="c.b239">Exercise part 2: loads on the hall</a>
+        <a href="#checklist-voordat-je-het-model-inlevert" data-i18n="c.b273">Checklist before you hand in the model</a>
+      </nav>
+      <div class="fc-body">
+
+
+<p data-i18n="c.b1">After this course of about two hours you can draw a steel structure as a 3D analysis model in Open FEM Studio: you know where nodes belong, which connections are pinned and how to put the loads on it.</p>
+<h2 id="zo-werk-je-met-deze-cursus" data-i18n="c.b2">How to work with this course</h2>
+<p data-i18n="c.b3">The course has two parts of about an hour each. For every section you first read the explanation; at the end of each part you do an exercise in Open FEM Studio.</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th data-i18n="c.b4">Part</th><th data-i18n="c.b5">Section</th><th data-i18n="c.b6">Time (min)</th></tr></thead><tbody><tr><td data-i18n="c.b7">1</td><td data-i18n="c.b8">What an analysis model is</td><td data-i18n="c.b9">10</td></tr><tr><td data-i18n="c.b10">1</td><td data-i18n="c.b11">Splitting members</td><td data-i18n="c.b12">15</td></tr><tr><td data-i18n="c.b13">1</td><td data-i18n="c.b14">Connections: pinned or rigid</td><td data-i18n="c.b15">15</td></tr><tr><td data-i18n="c.b16">1</td><td data-i18n="c.b17">Stability of a hall</td><td data-i18n="c.b18">10</td></tr><tr><td data-i18n="c.b19">1</td><td data-i18n="c.b20">Exercise: drawing a hall</td><td data-i18n="c.b21">20</td></tr><tr><td data-i18n="c.b22">2</td><td data-i18n="c.b23">Load cases</td><td data-i18n="c.b24">10</td></tr><tr><td data-i18n="c.b25">2</td><td data-i18n="c.b26">From area load to member</td><td data-i18n="c.b27">10</td></tr><tr><td data-i18n="c.b28">2</td><td data-i18n="c.b29">Combinations and imperfection</td><td data-i18n="c.b30">10</td></tr><tr><td data-i18n="c.b31">2</td><td data-i18n="c.b32">Exercise: loads, analysis, checking</td><td data-i18n="c.b33">20</td></tr><tr><td data-i18n="c.b34">2</td><td data-i18n="c.b35">Checklist</td><td data-i18n="c.b36">5</td></tr></tbody></table></div>
+<p data-i18n="c.b37">You need: Open FEM Studio 2026.45 or newer, a mouse with a scroll wheel, and this course next to your screen. You type all lengths in <strong>millimetres</strong>: 5000, not 5.</p>
+<p data-i18n="c.b38">You draw the model; the structural engineer decides the design. In doubt about a connection, support or load? Write your question down and ask. A model is always checked by a structural engineer before it is used.</p>
+<h2 id="deel-1-wat-een-rekenmodel-is" data-i18n="c.b39">Part 1 — What an analysis model is</h2>
+<p data-i18n="c.b40">An analysis model is a simplified version of the structure: only the parts that carry force, as lines and points. Three building blocks:</p>
+<ul><li data-i18n="c.b41"><strong>Member</strong> — a line with a section and a material, for example an HEA 200 column in S235.</li><li data-i18n="c.b42"><strong>Node</strong> — a point where members are connected to each other, or where there is a support.</li><li data-i18n="c.b43"><strong>Support</strong> — the place where the structure stands on the foundation.</li></ul>
+<p data-i18n="c.b44">You draw a member on its <strong>centre line</strong>, the system line, not on the outside of the section. A beam that in reality sits against the flange of a column meets the column in the model where their centre lines intersect. In a hall that difference is negligible; where it does matter, the structural engineer will tell you.</p>
+<p data-i18n="c.b45">What carries no force, you leave out. Wall cladding, window frames and insulation are not members but a <strong>load</strong> on the members. Bolts, end plates and welds are not drawn either: they are captured by the choice of pinned or moment-fixed.</p>
+<h3 id="van-2d-naar-3d" data-i18n="c.b46">From 2D to 3D</h3>
+<p data-i18n="c.b47">In 2D a node has three degrees of freedom: displacement in two directions and rotation. In 3D there are <strong>six</strong>: three displacements (X, Y, Z) and three rotations. In Open FEM Studio Z points up; X and Y lie in the horizontal plane.</p>
+<p data-i18n="c.b48">So in 3D you think in every direction. A portal frame that is rigid in its own plane can simply fall over sideways. That comes back under Stability.</p>
+<p data-i18n="c.b49">Every member also has its own <strong>local axes</strong>: x along the member, y and z across it. In an I-section one cross axis coincides with the strong axis and the other with the weak axis. Turn on the <strong>Local axes and end releases</strong> view to see them; if a section is rotated the wrong way, adjust its orientation in the properties panel.</p>
+<h2 id="staven-opsplitsen-wanneer-wel-en-wanneer-niet" data-i18n="c.b50">Splitting members: when to and when not to</h2>
+<p data-i18n="c.b51">A node belongs where members are really connected to each other, or where there is a support. Nowhere else.</p>
+<p data-i18n="c.b52">Two members that cross without a shared node are <strong>not</strong> connected in the model. They pass through each other and no force goes from one to the other. This is the most common mistake in a 3D model.</p>
+<figure class="fc-figure"><img src="/shared/assets/academy/open-fem-studio-knopen.png" alt="Kruisende staven: zonder knoop niet verbonden, met een gedeelde knoop wel, en een knoop naast de hartlijn geeft een knik" width="1344" height="578" loading="lazy"><figcaption data-i18n="c.b53">crossing members · without a node, with a node, node next to the centre line</figcaption></figure>
+<p data-i18n="c.b54">Only with a shared node does force pass between them. If that node lies just off the centre line, the member gets a kink.</p>
+<h3 id="wel-een-knoop" data-i18n="c.b55">A node is needed</h3>
+<ol><li data-i18n="c.b56">Where another member connects: a purlin on a rafter, a beam on a column, a brace on a column head.</li><li data-i18n="c.b57">At a support.</li><li data-i18n="c.b58">Where the section changes: then they are two members.</li><li data-i18n="c.b59">Where there is a hinge in the line, as in a Gerber beam.</li></ol>
+<h3 id="geen-knoop-nodig" data-i18n="c.b60">No node needed</h3>
+<ul><li data-i18n="c.b61"><strong>For a load.</strong> You can put a point load or line load anywhere on a member, without splitting it.</li><li data-i18n="c.b62"><strong>To make it tidy.</strong> An extra node adds nothing.</li></ul>
+<h3 id="wat-het-programma-voor-je-doet" data-i18n="c.b63">What the program does for you</h3>
+<ul><li data-i18n="c.b64">With the setting <strong>Merge and connect nodes automatically</strong> the program splits a member itself as soon as you put a node on it, or when a new member runs through an existing node. A point that lies within the connection tolerance of a node (5 mm by default) becomes that node.</li><li data-i18n="c.b65">The <strong>model check</strong> reports a node that lies on a member without being connected to it. <strong>Connect</strong> splits the member at that node; the ribbon button <strong>Connect nodes</strong> does this for the whole model at once.</li><li data-i18n="c.b66">If a node lies just off the centre line, the member gets a <strong>kink</strong> there and the program reports it. So snap to nodes and the grid, and check the coordinates.</li></ul>
+<p data-i18n="c.b67"><strong>Watch out — the program does not see this.</strong> If two members cross without a node at that spot, the model check reports nothing. The program cannot know whether they are really connected. You have to see it: rotate the model and check at every crossing whether a node belongs there.</p>
+<h3 id="splitsen-en-de-kniklengte" data-i18n="c.b68">Splitting and the buckling length</h3>
+<p data-i18n="c.b69">If you split a member where nothing else connects — same section, in line with each other, no support, no hinge — the program checks the parts again as <strong>one</strong> member. The buckling length then remains the full length.</p>
+<p data-i18n="c.b70">If something does connect at that node, such as a purlin or a brace, it is a real node and each part is checked separately. So only connect what is really connected: a purlin fixed to a rafter yes, a pipe that merely runs alongside it no.</p>
+<h2 id="aansluitingen-scharnierend-of-momentvast" data-i18n="c.b71">Connections: pinned or moment-fixed</h2>
+<p data-i18n="c.b72">Every member end is moment-fixed or pinned. A hinge transfers forces, but no bending moment.</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th data-i18n="c.b73">What passes through the member end</th><th data-i18n="c.b74">Moment-fixed</th><th data-i18n="c.b75">Pinned</th></tr></thead><tbody><tr><td data-i18n="c.b76">Axial force N</td><td data-i18n="c.b77">yes</td><td data-i18n="c.b78">yes</td></tr><tr><td data-i18n="c.b79">Shear forces Vy and Vz</td><td data-i18n="c.b80">yes</td><td data-i18n="c.b81">yes</td></tr><tr><td data-i18n="c.b82">Torsion Mx</td><td data-i18n="c.b83">yes</td><td data-i18n="c.b84">yes</td></tr><tr><td data-i18n="c.b85">Bending moment My</td><td data-i18n="c.b86">yes</td><td data-i18n="c.b87">no</td></tr><tr><td data-i18n="c.b88">Bending moment Mz</td><td data-i18n="c.b89">yes</td><td data-i18n="c.b90">no</td></tr></tbody></table></div>
+<p data-i18n="c.b91">So in 3D a hinge releases bending about <strong>both</strong> cross axes. <strong>Pinned</strong> deliberately keeps torsion fixed: release torsion at both ends and the member can spin freely about its own axis. That is a mechanism, and then the model does not solve.</p>
+<h3 id="in-staal" data-i18n="c.b92">In steel</h3>
+<p data-i18n="c.b93">Which connection it is, the structural engineer decides; you draw what is on the sketch. As a rule of thumb:</p>
+<ul><li data-i18n="c.b94">A fin plate or an end plate without stiffeners, for a beam on a column: <strong>pinned</strong>.</li><li data-i18n="c.b95">A welded or heavily bolted rafter corner with stiffeners or a haunch: <strong>moment-fixed</strong>.</li><li data-i18n="c.b96">A brace: <strong>pinned</strong> at both ends. A slender rod or strip that can only take tension gets <strong>Tension only</strong>: under compression it does not take part and the program shows it as inactive.</li></ul>
+<h3 id="in-het-programma" data-i18n="c.b97">In the program</h3>
+<ul><li data-i18n="c.b98">Properties panel, <strong>End releases</strong>: <strong>Moment-fixed</strong> or <strong>Pinned</strong>, for both ends at once.</li><li data-i18n="c.b99">Tool <strong>Member-end hinge</strong>: makes one end pinned; another click makes it fixed again.</li><li data-i18n="c.b100">Ribbon button <strong>Pin beams</strong>: makes every beam end on a column head pinned in one go. Columns stay continuous. If part of the structure would then swing away, such as a canopy hanging from a single column head, the program leaves that end moment-fixed and reports it.</li><li data-i18n="c.b101">The <strong>Local axes and end releases</strong> view shows where every hinge is.</li></ul>
+<h3 id="opleggingen" data-i18n="c.b102">Supports</h3>
+<p data-i18n="c.b103">At a support too, you choose what is fixed and what may rotate.</p>
+<ul><li data-i18n="c.b104"><strong>Spatial pin</strong> — no displacement, rotation is free. A column base with a small base plate and four anchors is usually calculated this way.</li><li data-i18n="c.b105"><strong>Fixed</strong> — nothing can displace or rotate. Only if the base and the foundation are designed for it.</li><li data-i18n="c.b106"><strong>Hinge about X, Y or Z</strong> or a <strong>roller</strong> — only if the sketch says so.</li></ul>
+<p data-i18n="c.b107">If you choose a fixed support that does not exist in reality, the structure looks stiffer and stronger than it is. In doubt, choose the pin and check.</p>
+<h2 id="stabiliteit-hoe-een-hal-blijft-staan" data-i18n="c.b108">Stability: how a hall stays up</h2>
+<p data-i18n="c.b109">A hall only stays up if in <strong>both</strong> directions it has a path to bring horizontal forces, such as wind, down to the foundation.</p>
+<p data-i18n="c.b110">Wind pushes against the walls. That force has to reach the supports through members and connections. If that path is missing in one direction, the hall falls over in that direction; in the model this is called a <strong>mechanism</strong>.</p>
+<figure class="fc-figure"><img src="/shared/assets/academy/open-fem-studio-stabiliteit.png" alt="Stabiliteit van een hal: portaal met stijve hoeken staat, overal scharnieren is een mechanisme, een windverband houdt de langsgevel recht" width="1344" height="654" loading="lazy"><figcaption data-i18n="c.b111">stability · portal frame with rigid corners, mechanism, wind bracing</figcaption></figure>
+<p data-i18n="c.b112">Across the hall the rigid rafter corners keep the portal upright; lengthwise the wind bracing does. With only hinges the structure collapses.</p>
+<h3 id="dwars-de-portalen" data-i18n="c.b113">Across: the portal frames</h3>
+<p data-i18n="c.b114">Across the hall the <strong>portal frames</strong> carry the wind: two columns with a rafter on top. A portal only stands if it is rigid, with moment-fixed rafter corners or fixed column bases. A portal with hinges everywhere is a parallelogram that simply folds over.</p>
+<h3 id="in-de-lengte-de-windverbanden" data-i18n="c.b115">Lengthwise: the wind bracing</h3>
+<p data-i18n="c.b116">Lengthwise the portal frames are only linked by purlins and hinges, and there they carry nothing. That is what <strong>wind bracing</strong> is for: crosses of rods or strips in the roof and in the side walls, usually in an end bay.</p>
+<p data-i18n="c.b117">The path of the force: the wind on the gable wall goes through the purlins to the roof bracing, the roof bracing takes it to the wall bracing, and the wall bracing takes it to the foundation. A brace always runs from node to node, never to a point halfway along a member without a node.</p>
+<p data-i18n="c.b118">A concrete floor or a stiff roof deck can also provide stability; in the program this is a <strong>diaphragm</strong>. Only use one if the structural engineer says so.</p>
+<h3 id="zo-merk-je-het" data-i18n="c.b119">How you notice it</h3>
+<p data-i18n="c.b120">If a path is missing, the program warns about a mechanism. Then check in which direction the model is not held. It is almost always a forgotten brace, one hinge too many, or a crossing without a node.</p>
+<p data-i18n="c.b121">With crosses of tension-only members there is one more cause. Under vertical load alone the columns become a fraction shorter, and then both diagonals of a cross are slightly in compression. The program then switches them both off and the bay loses its bracing. The check always runs second order, and then reports a mechanism while your model is fine. So turn on the <strong>Cross rule</strong>: of each cross, the diagonal with the largest axial force then stays active.</p>
+<h2 id="oefening-deel-1-een-kleine-hal-tekenen" data-i18n="c.b122">Exercise part 1: drawing a small hall</h2>
+<p data-i18n="c.b123">You draw a hall 12 m wide, 12 m long and 5 m high, with a flat roof: three portal frames 6 m apart. The sections are only for the exercise and have not been designed.</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th data-i18n="c.b124">Part</th><th data-i18n="c.b125">Section</th><th data-i18n="c.b126">Material</th><th data-i18n="c.b127">Connection</th></tr></thead><tbody><tr><td data-i18n="c.b128">Columns</td><td data-i18n="c.b129">HEA 200</td><td data-i18n="c.b130">S235</td><td data-i18n="c.b131">moment-fixed to the rafter</td></tr><tr><td data-i18n="c.b132">Rafters</td><td data-i18n="c.b133">IPE 360</td><td data-i18n="c.b134">S235</td><td data-i18n="c.b135">moment-fixed to the columns</td></tr><tr><td data-i18n="c.b136">Purlins, 3000 mm centres</td><td data-i18n="c.b137">IPE 160</td><td data-i18n="c.b138">S235</td><td data-i18n="c.b139">pinned</td></tr><tr><td data-i18n="c.b140">Wind bracing</td><td data-i18n="c.b141">RD 16</td><td data-i18n="c.b142">S235</td><td data-i18n="c.b143">pinned, tension only</td></tr></tbody></table></div>
+<p data-i18n="c.b144">X is the width, Y the length, Z the height. The portal frames are at Y = 0, Y = 6000 and Y = 12000.</p>
+<ol><li data-i18n="c.b145">Create a new 3D project. In the settings, turn on <strong>Merge and connect nodes automatically</strong> and leave the connection tolerance at 5 mm.</li><li data-i18n="c.b146"><strong>Columns.</strong> With <strong>Add node</strong>, place the six bases at Z = 0 and the six heads at Z = 5000, in the corners of each portal frame: X = 0 and X = 12000. With <strong>Add member</strong>, draw from each base to its head.</li><li data-i18n="c.b147"><strong>Rafters.</strong> At each Y, draw a member from head to head, from X = 0 to X = 12000.</li><li data-i18n="c.b148"><strong>Purlins.</strong> Draw them at X = 0, 3000, 6000, 9000 and 12000, and <strong>per bay</strong>: from Y = 0 to 6000 and from 6000 to 12000. At every end node that falls on a rafter, the program splits that rafter; you see the message <em>… members split at the nodes lying on them</em>.</li><li data-i18n="c.b149"><strong>Hinges.</strong> Select all purlins and choose <strong>Pinned</strong> in the properties panel. Rafters and columns stay <strong>Moment-fixed</strong>.</li><li data-i18n="c.b150"><strong>Supports.</strong> Give the six bases a <strong>Spatial pin</strong>.</li><li data-i18n="c.b151"><strong>Wind bracing</strong> in the first bay, from Y = 0 to 6000. In the roof: one cross from X = 0 to 6000 and one from X = 6000 to 12000, from rafter to rafter. In both side walls (X = 0 and X = 12000): a cross from base to head. Make them <strong>Pinned</strong> and <strong>Tension only</strong>. Then turn on the <strong>Cross rule</strong> in the load case bar; it appears as soon as the model has tension-only members.</li><li data-i18n="c.b152">Open the <strong>model check</strong>. It should show nothing. If there is a node on a member, read why and choose <strong>Connect</strong> if they are really connected.</li><li data-i18n="c.b153">Turn on <strong>Local axes and end releases</strong> and check every member end against the table above.</li></ol>
+<p data-i18n="c.b154">Why per bay in step 4? A long purlin from Y = 0 to 12000 crosses the middle rafter without a node. The two are then not connected, and the model check does not report it.</p>
+<p data-i18n="c.b155">Why not the ribbon button <strong>Pin beams</strong>? It would also pin the rafters to the columns. With pinned bases the portal is then no longer a portal and the hall falls over sideways.</p>
+<p data-i18n="c.b156"><strong>Check questions</strong></p>
+<ul><li data-i18n="c.b157">Why do the rafter corners have to be moment-fixed here?</li><li data-i18n="c.b158">What happens if you leave out the wall bracing?</li><li data-i18n="c.b159">The roof bracing crosses the purlin at X = 3000 without a node. Is that wrong?</li></ul>
+<p data-i18n="c.b160">Answers: (1) the bases are pinned, so across the hall only the rigid corner gives stability; (2) lengthwise there is then no path to the foundation: a mechanism; (3) no, in reality they are not connected there either.</p>
+<h2 id="deel-2-belastinggevallen" data-i18n="c.b161">Part 2 — Load cases</h2>
+<p data-i18n="c.b162">You put each kind of load in its own <strong>load case</strong>. The program then combines those cases with safety factors. A new project already has five: Self-weight, Permanent (G), Variable (Q), Snow (S) and Wind (W). You only add what is missing.</p>
+<p data-i18n="c.b163">Why separate? Snow and wind do not always occur together, and each kind gets its own factor. A case in which everything is lumped together cannot be combined properly by the program.</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th data-i18n="c.b164">Load case</th><th data-i18n="c.b165">Kind</th><th data-i18n="c.b166">What it contains</th><th data-i18n="c.b167">How in the program</th></tr></thead><tbody><tr><td data-i18n="c.b168">Self-weight</td><td data-i18n="c.b169">permanent</td><td data-i18n="c.b170">the members themselves</td><td data-i18n="c.b171">calculated by the program from the section; you do nothing</td></tr><tr><td data-i18n="c.b172">Permanent (G)</td><td data-i18n="c.b173">permanent</td><td data-i18n="c.b174">the finishes: roof build-up, wall cladding, services</td><td data-i18n="c.b175">load panel; the cladding through the envelope panels</td></tr><tr><td data-i18n="c.b176">Variable (Q)</td><td data-i18n="c.b177">variable</td><td data-i18n="c.b178">the roof imposed load: people maintaining the roof</td><td data-i18n="c.b179"><strong>Roof imposed load category H</strong> in the generator, or a load panel</td></tr><tr><td data-i18n="c.b180">Snow (S)</td><td data-i18n="c.b181">variable</td><td data-i18n="c.b182">snow on the roof</td><td data-i18n="c.b183"><strong>Ground snow load sₖ</strong> in the generator</td></tr><tr><td data-i18n="c.b184">Wind (W)</td><td data-i18n="c.b185">variable</td><td data-i18n="c.b186">pressure and suction on walls and roof</td><td data-i18n="c.b187"><strong>Wind on walls and roof</strong> in the generator</td></tr></tbody></table></div>
+<p data-i18n="c.b188">The generator is <strong>Generate 3D envelope loads</strong>. It creates the load cases and load panels itself, and leaves loads you had already placed by hand in place.</p>
+<h3 id="sneeuw" data-i18n="c.b189">Snow</h3>
+<p data-i18n="c.b190">Throughout the Netherlands the ground snow load is sₖ = 0.7 kN/m². On a flat or shallow roof 80 % of it counts: 0.8 × 0.7 = 0.56 kN/m² on the roof. You enter sₖ in the generator; it calculates the shape coefficient itself.</p>
+<h3 id="wind" data-i18n="c.b191">Wind</h3>
+<p data-i18n="c.b192">How much wind there is depends on the location: the <strong>wind zone</strong> (I, II or III), the <strong>terrain category</strong> (coast, open country or built-up) and the height of the hall. Each zone of wall and roof gets its own pressure or suction. Wind can come from different directions, so the generator creates several wind cases.</p>
+<p data-i18n="c.b193">Leave the structural factor and background leakage at their default values, unless the structural engineer says otherwise.</p>
+<h2 id="van-vlakbelasting-naar-staaf" data-i18n="c.b194">From area load to member</h2>
+<p data-i18n="c.b195">You put a load in kN/m² on the model with a <strong>load panel</strong>. The program distributes that load over the beams in the panel and turns it into ordinary line loads.</p>
+<p data-i18n="c.b196">You draw a load panel with its corners on nodes, and give it a load case and a q in kN/m².</p>
+<h3 id="lastrichting" data-i18n="c.b197">Load direction</h3>
+<ul><li data-i18n="c.b198"><strong>Gravity (−Z), per m² horizontal projection</strong> — for snow and roof imposed load. On a sloping roof the area counts as seen from above.</li><li data-i18n="c.b199"><strong>Vertical (−Z), per m² actual panel area</strong> — for the weight of roof sheets on a sloping roof.</li><li data-i18n="c.b200"><strong>Normal to the panel, per m² panel</strong> — for wind. Whether a positive q pushes the wall in or pulls it out depends on how the panel lies. So look at the arrow on the canvas; if it points the wrong way, choose <strong>Reverse direction</strong>.</li></ul>
+<h3 id="afdracht" data-i18n="c.b201">Load transfer</h3>
+<ul><li data-i18n="c.b202"><strong>One-way (span)</strong> — a roof sheet spans from purlin to purlin. As <strong>Span direction</strong> choose the direction across the purlins. Each purlin then receives a strip of half the distance to its neighbours: the <strong>loaded width</strong>.</li><li data-i18n="c.b203"><strong>Two-way (45° lines)</strong> — a slab resting on four edges, such as a floor. Each point goes to the nearest beam, and 45° lines run from the corners.</li></ul>
+<figure class="fc-figure"><img src="/shared/assets/academy/open-fem-studio-belastingbreedte.png" alt="Dak in bovenaanzicht: elke gording draagt de strook tot halverwege zijn buren; middengording 1,68 kN/m, randgording 0,84 kN/m" width="1344" height="670" loading="lazy"><figcaption data-i18n="c.b204">one-way · loaded width per purlin</figcaption></figure>
+<p data-i18n="c.b205">The roof sheet spans from purlin to purlin. An intermediate purlin therefore carries a strip of 3.0 m, an edge purlin half of that.</p>
+<p data-i18n="c.b206">Under <strong>Beams in the panel</strong> each member shows what it does: (carries), (parallel, no load) or (skewed, no load). Wind bracing therefore gets nothing automatically. If a member carries nothing in reality, untick it; its share goes to the other beams.</p>
+<h3 id="rekenvoorbeeld" data-i18n="c.b207">Worked example</h3>
+<p data-i18n="c.b208">Purlins at 3000 mm, snow 0.56 kN/m², one-way across the purlins:</p>
+<ul><li data-i18n="c.b209">an intermediate purlin carries 3.0 m: 0.56 × 3.0 = <strong>1.68 kN/m</strong>;</li><li data-i18n="c.b210">an edge purlin carries 1.5 m: 0.56 × 1.5 = <strong>0.84 kN/m</strong>.</li></ul>
+<h3 id="controle" data-i18n="c.b211">Check</h3>
+<p data-i18n="c.b212">Under <strong>Derived line loads</strong> you see what each member receives. Below it is <strong>Total transferred … kN · q × A = … kN</strong>: those two numbers should be equal. If they differ, or the program reports an edge without a beam, check whether the panel lies on the right beams.</p>
+<h2 id="combinaties-veiligheidsfactoren-en-scheefstand" data-i18n="c.b213">Combinations, safety factors and imperfection</h2>
+<p data-i18n="c.b214">The program creates the combinations itself. You make sure every load case has the right kind and that nothing is missing.</p>
+<p data-i18n="c.b215">A <strong>combination</strong> is a sum of load cases, each with a factor. There are two kinds:</p>
+<ul><li data-i18n="c.b216"><strong>ULS</strong>, the ultimate limit state — is the structure strong and stable enough? With safety factors.</li><li data-i18n="c.b217"><strong>SLS</strong>, the serviceability limit state — does it not deflect too much? Without safety factors.</li></ul>
+<p data-i18n="c.b218">For new buildings in consequence class CC2, these factors apply in the Netherlands in the ULS:</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th data-i18n="c.b219">Load</th><th data-i18n="c.b220">Factor</th></tr></thead><tbody><tr><td data-i18n="c.b221">Permanent, unfavourable (expression 6.10a)</td><td data-i18n="c.b222">1.35</td></tr><tr><td data-i18n="c.b223">Permanent, unfavourable (expression 6.10b)</td><td data-i18n="c.b224">1.2</td></tr><tr><td data-i18n="c.b225">Permanent, favourable, for example with uplift wind</td><td data-i18n="c.b226">0.9</td></tr><tr><td data-i18n="c.b227">Variable, the leading load</td><td data-i18n="c.b228">1.5</td></tr><tr><td data-i18n="c.b229">Variable, accompanying</td><td data-i18n="c.b230">1.5 × ψ₀, with ψ₀ per kind of load</td></tr></tbody></table></div>
+<p data-i18n="c.b231">Each variable load is the leading one in one of the combinations. That is why you see several ULS combinations, plus one for uplift wind in which the self-weight acts favourably (0.9).</p>
+<p data-i18n="c.b232">The program fills in the ψ₀ factors and the list of combinations itself. You check:</p>
+<ul><li data-i18n="c.b233">does every load case have the right kind: permanent or variable, and which type?</li><li data-i18n="c.b234">does every variable case appear in the list?</li><li data-i18n="c.b235">is there a combination with favourable self-weight for the wind?</li></ul>
+<h3 id="scheefstand" data-i18n="c.b236">Imperfection</h3>
+<p data-i18n="c.b237">No column stands exactly plumb. That is why the program always checks in <strong>second order</strong> (P-Δ) and with an <strong>initial sway imperfection</strong> φ: 1/200 by default, adjustable in the project settings. In the report this appears as <em>2nd order + sway</em>.</p>
+<p data-i18n="c.b238">Second order means: the program calculates with the deformed shape. A column that leans slightly gets an extra moment from its own load, and the program takes that into account. You do <strong>not</strong> put any extra horizontal load on the model for this yourself.</p>
+<h2 id="oefening-deel-2-belastingen-op-de-hal" data-i18n="c.b239">Exercise part 2: loads on the hall</h2>
+<p data-i18n="c.b240">You put four load cases on the hall from part 1, run the analysis, and check whether the result is right. The wind value is an exercise value: in reality wind depends on the location and differs per zone.</p>
+<ol><li data-i18n="c.b241"><strong>Load cases.</strong> Your new project already has five. Use <em>Permanent (G)</em> for the finishes, <em>Snow (S)</em> for the snow and <em>Wind (W)</em> for the wind on the side wall. Add one: <em>Wind gable</em>, kind wind. Leave <em>Variable (Q)</em> empty; we do not do the roof imposed load in this exercise. The program calculates the self-weight itself.</li><li data-i18n="c.b242"><strong>Finishes.</strong> Draw a load panel over the whole roof, with its corners on the four roof corners. Choose load case Permanent (G), q = 0.3 kN/m², <strong>Gravity</strong>, <strong>One-way</strong> and as span direction <strong>Global X</strong>, across the purlins.</li><li data-i18n="c.b243"><strong>Snow.</strong> On the roof panel choose <strong>Copy to load case…</strong>, choose Snow (S) and set q to 0.56 kN/m².</li><li data-i18n="c.b244"><strong>Wind on the side wall.</strong> Draw a load panel on the wall X = 0, from (0; 0; 0) via (0; 12000; 0) and (0; 12000; 5000) to (0; 0; 5000), in load case Wind (W). Choose <strong>Normal to the panel</strong>, q = 0.6 kN/m², one-way along <strong>Global Y</strong>. The arrow must point into the hall; if not, choose <strong>Reverse direction</strong>.</li><li data-i18n="c.b245"><strong>Wind on the gable.</strong> The same in load case Wind gable, on the wall Y = 0, from (0; 0; 0) via (12000; 0; 0) and (12000; 0; 5000) to (0; 0; 5000), one-way along <strong>Global X</strong>.</li><li data-i18n="c.b246"><strong>Combinations.</strong> Let the program create the standard combinations and go through the three questions from the previous chapter.</li><li data-i18n="c.b247"><strong>Run the analysis.</strong></li></ol>
+<h3 id="controleer-de-uitkomst" data-i18n="c.b248">Check the result</h3>
+<p data-i18n="c.b249">First calculate yourself what load each case gives, and compare that with <strong>Total transferred</strong> on the load panel and with the sum of the reactions:</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th data-i18n="c.b250">Load case</th><th data-i18n="c.b251">Calculated yourself</th><th data-i18n="c.b252">Sum of the reactions</th></tr></thead><tbody><tr><td data-i18n="c.b253">Permanent (G), finishes</td><td data-i18n="c.b254">0.3 × 12 × 12 = 43.2 kN</td><td data-i18n="c.b255">vertical, 43.2 kN</td></tr><tr><td data-i18n="c.b256">Snow (S)</td><td data-i18n="c.b257">0.56 × 12 × 12 = 80.6 kN</td><td data-i18n="c.b258">vertical, 80.6 kN</td></tr><tr><td data-i18n="c.b259">Wind (W), side wall</td><td data-i18n="c.b260">0.6 × 12 × 5 = 36.0 kN</td><td data-i18n="c.b261">in X, 36.0 kN</td></tr><tr><td data-i18n="c.b262">Wind gable</td><td data-i18n="c.b263">0.6 × 12 × 5 = 36.0 kN</td><td data-i18n="c.b264">in Y, 36.0 kN</td></tr></tbody></table></div>
+<p data-i18n="c.b265">The program calculates the self-weight from the sections. For this hall it is about 42.9 kN vertical: some 4.4 tonnes of steel. If you see a very different number under Self-weight, a section is wrong.</p>
+<p data-i18n="c.b266">If a sum does not match, a load is wrong: the wrong case, the wrong direction, or a panel that does not lie on the beams.</p>
+<p data-i18n="c.b267">Then look at the behaviour:</p>
+<ul><li data-i18n="c.b268">With <strong>wind on the side wall</strong> the portal frames sway sideways: at the top of the middle portal about 28 mm, without factors. That is the rigid rafter corner at work.</li><li data-i18n="c.b269">With <strong>wind on the gable</strong> the wall bracing holds the hall. In each cross one diagonal is active and the other shows as inactive (tension only): it would be in compression. The top of the hall moves only about 3 mm.</li><li data-i18n="c.b270">There should be no warning about a mechanism.</li><li data-i18n="c.b271">You note the unity checks; judging them is up to the structural engineer.</li></ul>
+<p data-i18n="c.b272">In a real project you do not place snow and wind by hand. You draw the wall and roof panels of the building envelope and use <strong>Generate 3D envelope loads</strong>; your supervisor will show you how.</p>
+<h2 id="checklist-voordat-je-het-model-inlevert" data-i18n="c.b273">Checklist before you hand in the model</h2>
+<p data-i18n="c.b274">Go through this list and tick off. What you cannot tick off, write down as a question for the structural engineer.</p>
+<p data-i18n="c.b275"><strong>Geometry</strong></p>
+<ul class="fc-checklist"><li class="fc-check"><input type="checkbox" id="chk-1"><label for="chk-1" data-i18n="c.b276">Every member lies on its centre line, without unintended kinks.</label></li><li class="fc-check"><input type="checkbox" id="chk-2"><label for="chk-2" data-i18n="c.b277">Where members are really connected, they share one node. I have rotated the model and checked every crossing.</label></li><li class="fc-check"><input type="checkbox" id="chk-3"><label for="chk-3" data-i18n="c.b278">There are no nodes where nothing connects, unless there is a reason for it.</label></li><li class="fc-check"><input type="checkbox" id="chk-4"><label for="chk-4" data-i18n="c.b279">Section, material and orientation of the cross-section are right for every member.</label></li><li class="fc-check"><input type="checkbox" id="chk-5"><label for="chk-5" data-i18n="c.b280">The model check reports nothing any more.</label></li></ul>
+<p data-i18n="c.b281"><strong>Connections and stability</strong></p>
+<ul class="fc-checklist"><li class="fc-check"><input type="checkbox" id="chk-6"><label for="chk-6" data-i18n="c.b282">Every member end is moment-fixed or pinned according to the sketch.</label></li><li class="fc-check"><input type="checkbox" id="chk-7"><label for="chk-7" data-i18n="c.b283">Nowhere is torsion released at both ends of a member.</label></li><li class="fc-check"><input type="checkbox" id="chk-8"><label for="chk-8" data-i18n="c.b284">The supports match the sketch: pin or fixed.</label></li><li class="fc-check"><input type="checkbox" id="chk-9"><label for="chk-9" data-i18n="c.b285">In both directions there is a path to the foundation: portal frames or bracing.</label></li><li class="fc-check"><input type="checkbox" id="chk-10"><label for="chk-10" data-i18n="c.b286">Braces that only take tension are set to Tension only, and with crosses the Cross rule is on.</label></li><li class="fc-check"><input type="checkbox" id="chk-11"><label for="chk-11" data-i18n="c.b287">The program does not warn about a mechanism.</label></li></ul>
+<p data-i18n="c.b288"><strong>Loads</strong></p>
+<ul class="fc-checklist"><li class="fc-check"><input type="checkbox" id="chk-12"><label for="chk-12" data-i18n="c.b289">Every load is in the right load case, with the right kind.</label></li><li class="fc-check"><input type="checkbox" id="chk-13"><label for="chk-13" data-i18n="c.b290">Every load panel has the right load direction and load transfer, and Total transferred equals q × A.</label></li><li class="fc-check"><input type="checkbox" id="chk-14"><label for="chk-14" data-i18n="c.b291">Every variable case appears in the combinations, and there is a combination for uplift wind.</label></li><li class="fc-check"><input type="checkbox" id="chk-15"><label for="chk-15" data-i18n="c.b292">The imperfection is set the way the structural engineer wants it.</label></li><li class="fc-check"><input type="checkbox" id="chk-16"><label for="chk-16" data-i18n="c.b293">For every load case the sum of the reactions equals the sum of the loads.</label></li></ul>
+<p data-i18n="c.b294"><strong>Handing in</strong></p>
+<ul class="fc-checklist"><li class="fc-check"><input type="checkbox" id="chk-17"><label for="chk-17" data-i18n="c.b295">The model is saved, with a clear name.</label></li><li class="fc-check"><input type="checkbox" id="chk-18"><label for="chk-18" data-i18n="c.b296">My questions and doubts are written down for the structural engineer.</label></li></ul>
+        <p class="fc-note" data-i18n="note">This course is part of the <a href="/academy/">OpenAEC Academy</a>. Spotted a mistake, or missing something? Let us know with the Feedback button at the top right.</p>
+      </div>
+    </div>
+  </div></section>
+
+  </main>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/fr/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Pages</h4>
+        <a href="/fr/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">À propos</a>
+        <a href="/fr/ifcx/">IFCX</a>
+        <a href="/fr/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Demander un devis</a>
+        <a href="/fr/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">FAQ</a>
+        <a href="/wiki/" data-i18n-en="Wiki" data-i18n-fr="Wiki" data-i18n-tr="Wiki" data-i18n-es="Wiki">Wiki</a>
+        <a href="/academy/" data-i18n-en="Academy" data-i18n-fr="Academy" data-i18n-tr="Academy" data-i18n-es="Academy">Academy</a>
+        <a href="/fr/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Avertissement</a>
+        <a href="/fr/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Projet de statuts</a>
+        <a href="/fr/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Crédits</a>
+        <a href="/fr/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Politique &amp; positions</a>
+        <a href="/fr/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Réseaux sociaux</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Fondation en cours de constitution</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">Pays-Bas</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+          <a href="https://x.com/openaec" target="_blank" rel="noopener" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.youtube.com/@openaecfoundation" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://mastodon.social/@openaec" target="_blank" rel="me noopener" aria-label="Mastodon" title="Mastodon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg></a>
+          <a href="https://www.threads.com/@openaec" target="_blank" rel="noopener" aria-label="Threads" title="Threads"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
+  <script src="/shared/i18n.js?v=20261105"></script>
+</body>
+</html>
