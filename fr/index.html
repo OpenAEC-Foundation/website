@@ -387,6 +387,33 @@
       margin-bottom: var(--sp-3);
       background: var(--concrete);
     }
+    /* Visuelere tegels: de screenshot loopt tot de rand en zoomt bij hover in,
+       een tegel zonder screenshot krijgt een vlak in de huisstijl, en de tekst
+       blijft kort zodat het beeld domineert. */
+    .tool-card { overflow: hidden; }
+    .tool-card img.tool-thumb,
+    .tool-card:not(:has(> img.tool-thumb))::before {
+      width: calc(100% + 2 * var(--sp-6));
+      max-width: none;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      margin: calc(-1 * var(--sp-6)) calc(-1 * var(--sp-6)) var(--sp-1);
+      border-radius: 0;
+      border-bottom: 1px solid rgba(42,42,50,0.08);
+    }
+    .tool-card img.tool-thumb { object-position: top center; transition: transform 0.35s ease; }
+    .tool-card:hover img.tool-thumb { transform: scale(1.04); }
+    .tool-card:not(:has(> img.tool-thumb))::before {
+      background:
+        linear-gradient(135deg, rgba(217,119,6,0.22), rgba(42,42,50,0) 60%),
+        repeating-linear-gradient(0deg, rgba(250,250,249,0.06) 0 1px, transparent 1px 24px),
+        repeating-linear-gradient(90deg, rgba(250,250,249,0.06) 0 1px, transparent 1px 24px),
+        var(--night-build);
+    }
+    .tool-card p[data-i18n$=".desc"] {
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .tool-card-cta { top: 12px; right: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
     /* Bilingual inline spans — toggled by <html lang="..."> */
     .lang-nl { display: inline; }
     .lang-en { display: none; }
@@ -823,7 +850,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "fr",
-        "dateModified": "2026-11-09",
+        "dateModified": "2026-11-10",
         "breadcrumb": {
           "@id": "https://open-aec.com/fr/#breadcrumb"
         }
@@ -1905,19 +1932,6 @@
             <a href="/fr/credits/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.credits">Crédits</a><br>
             <a href="/fr/beleid/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.policy">Politique & positions</a><br>
             <a href="/fr/socials/" style="color: var(--text-on-dark); text-decoration: none;" data-i18n="footer.pages.socials">Réseaux sociaux</a>
-          </p>
-        </div>
-        <div class="footer-section">
-          <h4 data-i18n="footer.moreToolsTitle">Plus d'outils</h4>
-          <p style="line-height: 2.2;">
-            <a href="/fr/open-energy-studio/" style="color: var(--text-on-dark); text-decoration: none;">Open Energy Studio</a><br>
-            <a href="/fr/open-safety-studio/" style="color: var(--text-on-dark); text-decoration: none;">Open Safety Studio</a><br>
-            <a href="/fr/open-3d-viewer/" style="color: var(--text-on-dark); text-decoration: none;">Open 3D Viewer</a><br>
-            <a href="/fr/open-books/" style="color: var(--text-on-dark); text-decoration: none;">OpenBooks</a><br>
-            <a href="/fr/openaec-cloud/" style="color: var(--text-on-dark); text-decoration: none;">SuperCloud</a><br>
-            <a href="/fr/openaec-docs/" style="color: var(--text-on-dark); text-decoration: none;">OpenAEC Docs</a><br>
-            <a href="/fr/ext-drawing-statistics/" style="color: var(--text-on-dark); text-decoration: none;">Drawing Statistics</a><br>
-            <a href="/fr/y-app/" style="color: var(--text-on-dark); text-decoration: none;">Y-app</a>
           </p>
         </div>
         <div class="footer-section">
