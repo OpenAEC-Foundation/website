@@ -44,6 +44,15 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/shared/style.css?v=20261015">
 
+  <style>
+    .arch-routes { gap: var(--sp-6); margin-top: var(--sp-6); }
+    .arch-route h3 { font-size: 1.3rem; color: var(--deep-forge); margin: var(--sp-3) 0 var(--sp-2); }
+    .arch-route p, .arch-route li { color: var(--text-on-light); line-height: 1.6; }
+    .arch-route ul { padding-left: 1.2rem; margin: var(--sp-3) 0 0; }
+    .arch-route li { margin: 0.3rem 0; }
+    .arch-route li::marker { color: var(--amber); }
+    .arch-route .tech-badge { display: inline-block; font-family: var(--font-code); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #B45309; background: rgba(217,119,6,0.1); border-radius: var(--radius-full); padding: 2px 8px; }
+  </style>
   <!-- schema:start -->
   <script type="application/ld+json">
   {
@@ -123,7 +132,6 @@
         <li><a href="/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Statistieken</a></li>
         <li><a href="/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Nieuws</a></li>
         <li><a href="/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Supporters</a></li>
-        <li><a href="/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">Wij steunen</a></li>
         <li><a href="/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structuur</a></li>
       </ul>
       <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Feedback</span></a>
@@ -158,7 +166,36 @@
       </div>
       <div class="panel-split-body">
         <p data-i18n="intro.p1">Elke tool in het OpenAEC-ecosysteem wordt ontwikkeld als een enkele applicatie die op alle platformen draait. Geen aparte versies voor web en desktop, geen dubbel onderhoud. Dezelfde code, dezelfde features, overal.</p>
-        <p data-i18n="intro.p2">Dit bereiken we door te bouwen op Tauri en Rust als fundament, met een moderne web-frontend die zowel in de browser als in een native shell draait.</p>
+        <p data-i18n="intro.p2">Ons uitgangspunt is Rust. Het liefst bouwen we volledige Rust-applicaties, waarin ook de interface in Rust is geschreven. Soms kiezen we voor Tauri met een TypeScript-frontend op een Rust-kern, bijvoorbeeld als een tool ook in de browser moet draaien.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section section-alt" id="routes"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="routes.title">Rust eerst, <span class="accent">Tauri waar het past</span></h2>
+      <p data-i18n="routes.lead">We bouwen het liefst volledige Rust-applicaties. Voor sommige tools kiezen we bewust voor Tauri met een TypeScript-interface op een Rust-kern.</p>
+    </div>
+    <div class="grid grid-2 arch-routes">
+      <div class="card-lift arch-route">
+        <span class="tech-badge" data-i18n="routes.rust.badge">Voorkeur</span>
+        <h3 data-i18n="routes.rust.title">Volledig Rust</h3>
+        <p data-i18n="routes.rust.desc">Rekenkern én gebruikersinterface in Rust, als één native programma. Geen webview en geen JavaScript: snel opstarten, weinig geheugen en één taal voor de hele codebase.</p>
+        <ul>
+          <li data-i18n="routes.rust.li1">Voor zware, grafische tools: CAD, BIM en grote modellen</li>
+          <li data-i18n="routes.rust.li2">Dezelfde Rust-kern kan via WebAssembly ook in de browser draaien</li>
+          <li data-i18n="routes.rust.li3">Voorbeeld: Open CAD Studio</li>
+        </ul>
+      </div>
+      <div class="card-lift arch-route">
+        <span class="tech-badge" data-i18n="routes.tauri.badge">Waar het past</span>
+        <h3 data-i18n="routes.tauri.title">Tauri + TypeScript</h3>
+        <p data-i18n="routes.tauri.desc">Een Rust-kern met een interface in TypeScript, in de webview van het besturingssysteem. Zo draait dezelfde interface ook als web-app in de browser.</p>
+        <ul>
+          <li data-i18n="routes.tauri.li1">Voor tools die ook in de browser moeten werken, of vooral formulieren en documenten tonen</li>
+          <li data-i18n="routes.tauri.li2">De rekenlogica blijft in Rust; TypeScript doet alleen de interface</li>
+          <li data-i18n="routes.tauri.li3">Voorbeeld: Open PDF Studio</li>
+        </ul>
       </div>
     </div>
   </div></section>
@@ -171,9 +208,9 @@
       </div>
       <ol class="split-cards arch-stack">
         <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div><div><strong data-i18n="diagram.platforms">Platformen</strong><div class="chip-row arch-chips"><span class="chip">Windows</span><span class="chip">macOS</span><span class="chip">Linux</span><span class="chip">Web browser</span><span class="chip">Android</span></div></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-bolt"/></svg></div><div><strong data-i18n="diagram.runtime">Runtime</strong><div class="chip-row arch-chips"><span class="chip">Tauri 2.0</span><span class="chip">WebView (native)</span><span class="chip">Browser (web)</span></div></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-bolt"/></svg></div><div><strong data-i18n="diagram.runtime">Runtime</strong><div class="chip-row arch-chips"><span class="chip">Native Rust</span><span class="chip">Tauri 2.0</span><span class="chip">WebView (native)</span><span class="chip">Browser (web)</span></div></div></li>
         <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><strong>Core (Rust)</strong><div class="chip-row arch-chips"><span class="chip">IFC Parser</span><span class="chip">IFCX Engine</span><span class="chip" data-i18n="diagram.validation">Validatie</span><span class="chip" data-i18n="diagram.calculations">Berekeningen</span><span class="chip">File I/O</span><span class="chip">API Client</span></div></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><strong>Frontend</strong><div class="chip-row arch-chips"><span class="chip">TypeScript</span><span class="chip">React · Svelte</span><span class="chip">Three.js (3D)</span><span class="chip">Vite</span></div></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><strong>Frontend</strong><div class="chip-row arch-chips"><span class="chip">Rust-UI (native)</span><span class="chip">TypeScript (Tauri)</span><span class="chip">React · Svelte · SolidJS</span><span class="chip">Three.js (3D)</span><span class="chip">Vite</span></div></div></li>
         <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><strong>Data</strong><div class="chip-row arch-chips"><span class="chip">IFCX</span><span class="chip">SQLite (lokaal)</span><span class="chip">PostgreSQL (server)</span><span class="chip">REST API</span><span class="chip">NextCloud</span></div></div></li>
       </ol>
     </div>
@@ -200,7 +237,7 @@
       <div class="feature">
         <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div>
         <h4>TypeScript <span class="tech-badge">UI</span></h4>
-        <p data-i18n="tech.ui_desc">De gebruikersinterface is gebouwd met webtechnologie: TypeScript met React of Svelte, gebundeld met Vite. Dezelfde UI draait in Tauri en in de browser.</p>
+        <p data-i18n="tech.ui_desc">In een volledige Rust-app is ook de interface Rust. Waar we Tauri gebruiken, bouwen we de interface met TypeScript (React, Svelte of SolidJS) en Vite; die draait dan in Tauri én in de browser.</p>
       </div>
       <div class="feature">
         <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div>
@@ -313,7 +350,7 @@
       <div class="feature">
         <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div>
         <h4 data-i18n="why.small_title">Klein &amp; snel</h4>
-        <p data-i18n="why.small_desc">Geen Electron, geen Chromium. Tauri gebruikt de native webview — installatiebestanden zijn kleiner dan 10MB en het geheugengebruik is minimaal.</p>
+        <p data-i18n="why.small_desc">Geen Electron, geen Chromium. Een volledige Rust-app heeft geen webview nodig, en Tauri gebruikt de webview die al in het besturingssysteem zit. Installaties blijven klein en het geheugengebruik laag.</p>
       </div>
       <div class="feature">
         <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div>

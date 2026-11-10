@@ -40,6 +40,15 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/shared/style.css?v=20261015">
 
+  <style>
+    .arch-routes { gap: var(--sp-6); margin-top: var(--sp-6); }
+    .arch-route h3 { font-size: 1.3rem; color: var(--deep-forge); margin: var(--sp-3) 0 var(--sp-2); }
+    .arch-route p, .arch-route li { color: var(--text-on-light); line-height: 1.6; }
+    .arch-route ul { padding-left: 1.2rem; margin: var(--sp-3) 0 0; }
+    .arch-route li { margin: 0.3rem 0; }
+    .arch-route li::marker { color: var(--amber); }
+    .arch-route .tech-badge { display: inline-block; font-family: var(--font-code); font-size: 0.68rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #B45309; background: rgba(217,119,6,0.1); border-radius: var(--radius-full); padding: 2px 8px; }
+  </style>
   <meta name="i18n-static" content="tr">
   <!-- schema:start -->
   <script type="application/ld+json">
@@ -120,7 +129,6 @@
         <li><a href="/tr/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">İstatistikler</a></li>
         <li><a href="/tr/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Haberler</a></li>
         <li><a href="/tr/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Destekçiler</a></li>
-        <li><a href="/tr/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">Desteklerimiz</a></li>
         <li><a href="/tr/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Yapı</a></li>
       </ul>
       <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Geri bildirim</span></a>
@@ -155,7 +163,36 @@
       </div>
       <div class="panel-split-body">
         <p data-i18n="intro.p1">OpenAEC ekosistemindeki her araç, tüm platformlarda çalışan tek bir uygulama olarak geliştirilir. Web ve masaüstü için ayrı sürümler yok, çift bakım yok. Aynı kod, aynı özellikler, her yerde.</p>
-        <p data-i18n="intro.p2">Bunu temel olarak Tauri ve Rust üzerine inşa ederek başarıyoruz; modern bir web frontend hem tarayıcıda hem de yerel bir kabukta çalışır.</p>
+        <p data-i18n="intro.p2">Çıkış noktamız Rust. Arayüzü de Rust ile yazılmış, tamamen Rust uygulamaları geliştirmeyi tercih ediyoruz. Bazen bir Rust çekirdeği üzerinde TypeScript arayüzlü Tauri’yi seçiyoruz; örneğin bir aracın tarayıcıda da çalışması gerektiğinde.</p>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section section-alt" id="routes"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="routes.title">Önce Rust, <span class="accent">uygun olduğunda Tauri</span></h2>
+      <p data-i18n="routes.lead">Tamamen Rust uygulamaları geliştirmeyi tercih ediyoruz. Bazı araçlar için bilinçli olarak Rust çekirdeği üzerinde TypeScript arayüzlü Tauri’yi seçiyoruz.</p>
+    </div>
+    <div class="grid grid-2 arch-routes">
+      <div class="card-lift arch-route">
+        <span class="tech-badge" data-i18n="routes.rust.badge">Tercih</span>
+        <h3 data-i18n="routes.rust.title">Tamamen Rust</h3>
+        <p data-i18n="routes.rust.desc">Hesap çekirdeği ve kullanıcı arayüzü Rust ile, tek bir yerel programda. Webview ve JavaScript yok: hızlı açılış, az bellek ve tüm kod için tek dil.</p>
+        <ul>
+          <li data-i18n="routes.rust.li1">Ağır, grafik araçlar için: CAD, BIM ve büyük modeller</li>
+          <li data-i18n="routes.rust.li2">Aynı Rust çekirdeği WebAssembly ile tarayıcıda da çalışabilir</li>
+          <li data-i18n="routes.rust.li3">Örnek: Open CAD Studio</li>
+        </ul>
+      </div>
+      <div class="card-lift arch-route">
+        <span class="tech-badge" data-i18n="routes.tauri.badge">Uygun olduğunda</span>
+        <h3 data-i18n="routes.tauri.title">Tauri + TypeScript</h3>
+        <p data-i18n="routes.tauri.desc">İşletim sisteminin webview’inde, TypeScript arayüzlü bir Rust çekirdeği. Aynı arayüz tarayıcıda web uygulaması olarak da çalışır.</p>
+        <ul>
+          <li data-i18n="routes.tauri.li1">Tarayıcıda da çalışması gereken ya da çoğunlukla form ve belge gösteren araçlar için</li>
+          <li data-i18n="routes.tauri.li2">Hesaplar Rust’ta kalır; TypeScript yalnızca arayüzü yapar</li>
+          <li data-i18n="routes.tauri.li3">Örnek: Open PDF Studio</li>
+        </ul>
       </div>
     </div>
   </div></section>
@@ -168,9 +205,9 @@
       </div>
       <ol class="split-cards arch-stack">
         <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div><div><strong data-i18n="diagram.platforms">Platformlar</strong><div class="chip-row arch-chips"><span class="chip">Windows</span><span class="chip">macOS</span><span class="chip">Linux</span><span class="chip">Web browser</span><span class="chip">Android</span></div></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-bolt"/></svg></div><div><strong data-i18n="diagram.runtime">Runtime</strong><div class="chip-row arch-chips"><span class="chip">Tauri 2.0</span><span class="chip">WebView (native)</span><span class="chip">Browser (web)</span></div></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-bolt"/></svg></div><div><strong data-i18n="diagram.runtime">Runtime</strong><div class="chip-row arch-chips"><span class="chip">Native Rust</span><span class="chip">Tauri 2.0</span><span class="chip">WebView (native)</span><span class="chip">Browser (web)</span></div></div></li>
         <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><strong>Core (Rust)</strong><div class="chip-row arch-chips"><span class="chip">IFC Parser</span><span class="chip">IFCX Engine</span><span class="chip" data-i18n="diagram.validation">Doğrulama</span><span class="chip" data-i18n="diagram.calculations">Hesaplamalar</span><span class="chip">File I/O</span><span class="chip">API Client</span></div></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><strong>Frontend</strong><div class="chip-row arch-chips"><span class="chip">TypeScript</span><span class="chip">React · Svelte</span><span class="chip">Three.js (3D)</span><span class="chip">Vite</span></div></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><strong>Frontend</strong><div class="chip-row arch-chips"><span class="chip">Rust-UI (native)</span><span class="chip">TypeScript (Tauri)</span><span class="chip">React · Svelte · SolidJS</span><span class="chip">Three.js (3D)</span><span class="chip">Vite</span></div></div></li>
         <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><strong>Data</strong><div class="chip-row arch-chips"><span class="chip">IFCX</span><span class="chip">SQLite (lokaal)</span><span class="chip">PostgreSQL (server)</span><span class="chip">REST API</span><span class="chip">NextCloud</span></div></div></li>
       </ol>
     </div>
@@ -197,7 +234,7 @@
       <div class="feature">
         <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div>
         <h4>TypeScript <span class="tech-badge">UI</span></h4>
-        <p data-i18n="tech.ui_desc">Kullanıcı arayüzü web teknolojisiyle geliştirilir: React veya Svelte ile TypeScript, Vite ile paketlenir. Aynı arayüz Tauri'de ve tarayıcıda çalışır.</p>
+        <p data-i18n="tech.ui_desc">Tamamen Rust olan bir uygulamada arayüz de Rust’tır. Tauri kullandığımız yerlerde arayüzü TypeScript (React, Svelte veya SolidJS) ve Vite ile oluşturuyoruz; böylece hem Tauri’de hem tarayıcıda çalışır.</p>
       </div>
       <div class="feature">
         <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div>
@@ -310,7 +347,7 @@
       <div class="feature">
         <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div>
         <h4 data-i18n="why.small_title">Küçük ve hızlı</h4>
-        <p data-i18n="why.small_desc">Electron yok, Chromium yok. Tauri yerel webview'u kullanır — kurulum dosyaları 10MB'den küçüktür ve bellek kullanımı minimumdur.</p>
+        <p data-i18n="why.small_desc">Electron yok, Chromium yok. Tamamen Rust olan bir uygulamanın webview’e ihtiyacı yoktur; Tauri ise işletim sisteminde zaten bulunan webview’i kullanır. Kurulumlar küçük, bellek kullanımı düşük kalır.</p>
       </div>
       <div class="feature">
         <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div>

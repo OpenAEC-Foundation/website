@@ -7,7 +7,7 @@
   "intro": {
     "title": "Una base de código, <span class=\"accent\">en todas partes</span>",
     "p1": "Cada herramienta del ecosistema OpenAEC se desarrolla como una única aplicación que funciona en todas las plataformas. Sin versiones separadas para web y escritorio, sin mantenimiento duplicado. El mismo código, las mismas funciones, en todas partes.",
-    "p2": "Lo conseguimos construyendo sobre Tauri y Rust como base, con un frontend web moderno que se ejecuta tanto en el navegador como en un shell nativo."
+    "p2": "Nuestro punto de partida es Rust. Preferimos crear aplicaciones totalmente en Rust, con la interfaz también escrita en Rust. A veces elegimos Tauri con una interfaz en TypeScript sobre un núcleo Rust, por ejemplo cuando una herramienta también debe funcionar en el navegador."
   },
   "diagram": {
     "title": "<span class=\"accent\">Visión general</span> de la arquitectura",
@@ -21,7 +21,7 @@
     "tauri_desc": "Framework para crear apps de escritorio y móviles con tecnología web. Usa el webview nativo del sistema operativo en lugar de Chromium, lo que da lugar a archivos de instalación pequeños (&lt;10MB) y un bajo consumo de memoria.",
     "rust_desc": "La lógica central de cada herramienta está escrita en Rust: parsing de IFC, validación, cálculos y procesamiento de archivos. Rust ofrece seguridad de memoria, alto rendimiento y compila para todas las plataformas.",
     "wasm_desc": "El mismo código Rust compila a WebAssembly (WASM) para la versión web. Esto permite que toda la lógica de cálculo también se ejecute en el navegador, con un rendimiento casi nativo.",
-    "ui_desc": "La interfaz de usuario está hecha con tecnología web: TypeScript con React o Svelte, empaquetado con Vite. La misma interfaz se ejecuta en Tauri y en el navegador.",
+    "ui_desc": "En una aplicación totalmente en Rust, la interfaz también es Rust. Donde usamos Tauri, construimos la interfaz con TypeScript (React, Svelte o SolidJS) y Vite; así funciona en Tauri y en el navegador.",
     "threejs_desc": "Visualización 3D de modelos IFC mediante Three.js y That Open Engine. Basada en WebGL, funciona allá donde funcione un navegador.",
     "fastapi_desc": "APIs del lado del servidor construidas con Python FastAPI para validación asíncrona, gestión documental e integraciones. Desplegadas mediante Docker."
   },
@@ -66,7 +66,7 @@
   "why": {
     "title": "¿Por qué este <span class=\"accent\">enfoque</span>?",
     "small_title": "Pequeño &amp; rápido",
-    "small_desc": "Sin Electron, sin Chromium. Tauri usa el webview nativo: los archivos de instalación pesan menos de 10MB y el consumo de memoria es mínimo.",
+    "small_desc": "Sin Electron ni Chromium. Una aplicación totalmente en Rust no necesita webview, y Tauri usa la webview que ya incluye el sistema operativo. Las instalaciones son pequeñas y el consumo de memoria, bajo.",
     "safe_title": "Seguro",
     "safe_desc": "Rust evita errores de memoria, desbordamientos de búfer y condiciones de carrera. La aplicación es segura por diseño.",
     "opensource_title": "Open source",
@@ -85,6 +85,26 @@
       "api_desc": "Cada herramienta ofrece una API REST para la integración con sistemas externos. Automatiza flujos de trabajo, conecta con sistemas ERP o construye tus propios paneles sobre el ecosistema.",
       "mcp_desc": "Servidores Model Context Protocol (MCP) para cada herramienta. Esto permite que los agentes de IA (como Claude) se comuniquen directamente con las herramientas: validar modelos, generar documentos o realizar cálculos mediante lenguaje natural.",
       "extensions_desc": "Cada herramienta admite extensiones para funcionalidad personalizada. Crea tus propios plugins en TypeScript o Rust y compártelos con la comunidad a través del registro de extensiones."
+    }
+  },
+  "routes": {
+    "title": "Primero Rust, <span class=\"accent\">Tauri donde encaja</span>",
+    "lead": "Preferimos crear aplicaciones totalmente en Rust. Para algunas herramientas elegimos a propósito Tauri con una interfaz TypeScript sobre un núcleo Rust.",
+    "rust": {
+      "badge": "Preferido",
+      "title": "Totalmente en Rust",
+      "desc": "Núcleo de cálculo e interfaz en Rust, en un único programa nativo. Sin webview ni JavaScript: arranque rápido, poca memoria y un solo lenguaje para todo el código.",
+      "li1": "Para herramientas pesadas y gráficas: CAD, BIM y modelos grandes",
+      "li2": "El mismo núcleo Rust puede funcionar también en el navegador mediante WebAssembly",
+      "li3": "Ejemplo: Open CAD Studio"
+    },
+    "tauri": {
+      "badge": "Donde encaja",
+      "title": "Tauri + TypeScript",
+      "desc": "Un núcleo Rust con una interfaz en TypeScript, en la webview del sistema operativo. Así la misma interfaz funciona también como aplicación web en el navegador.",
+      "li1": "Para herramientas que también deben funcionar en el navegador, o que muestran sobre todo formularios y documentos",
+      "li2": "Los cálculos siguen en Rust; TypeScript solo se encarga de la interfaz",
+      "li3": "Ejemplo: Open PDF Studio"
     }
   }
 }
