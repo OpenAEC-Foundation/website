@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux, Web
 **Category:** Project Planning
-**Current version:** v2026.44.0 (2026-10-31)
+**Current version:** v2026.45.0 (2026-11-09)
 **Tool ID:** `open-planner-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-planner-studio`
 
 ## Live stats
 
 - Stars: **54**
-- Commits: **6637**
-- Forks: **20**
-- Open issues: **47**
-- Releases: **24**
-- Total downloads: **4,629**
-- Downloads by platform: Windows (2907), Linux (AppImage) (553), Linux (deb) (383), macOS (351), Linux (rpm) (170), Archive (134), Linux (snap) (108), Other (23)
+- Commits: **6867**
+- Forks: **22**
+- Open issues: **42**
+- Releases: **25**
+- Total downloads: **4,774**
+- Downloads by platform: Windows (2990), Linux (AppImage) (574), Linux (deb) (393), macOS (360), Linux (rpm) (178), Archive (140), Linux (snap) (110), Other (29)
 
 ## Key features
 
@@ -76,7 +76,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-planner-studio/
 - Live demo: https://open-planner-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-planner-studio
-- Latest release: https://github.com/OpenAEC-Foundation/open-planner-studio/releases/tag/v2026.44.0
+- Latest release: https://github.com/OpenAEC-Foundation/open-planner-studio/releases/tag/v2026.45.0
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-planner-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)

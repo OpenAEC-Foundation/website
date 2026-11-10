@@ -12,13 +12,13 @@
 
 ## Live stats
 
-- Stars: **17**
+- Stars: **18**
 - Commits: **950**
 - Forks: **4**
 - Open issues: **51**
 - Releases: **2**
-- Total downloads: **268**
-- Downloads by platform: Archive (188), Other (80)
+- Total downloads: **270**
+- Downloads by platform: Archive (188), Other (82)
 
 ## Key features
 
@@ -65,7 +65,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Archive · Open-BIM-Studio-0.1.1-source.tar.gz](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/Open-BIM-Studio-0.1.1-source.tar.gz) (v0.1.1 — 4.4 MB)
 - [Other · VERIFICATION.txt](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/VERIFICATION.txt) (v0.1.1)
 - [Other · Demo-Pavilion.ifcxb](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1/Demo-Pavilion.ifcxb) (v0.1 — 10.5 MB)
-- [Other · RELEASE-NOTES.txt](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1/RELEASE-NOTES.txt) (v0.1)
+- [Other · Open-BIM-Studio-0.1-linux-x86_64.run](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1/Open-BIM-Studio-0.1-linux-x86_64.run) (v0.1 — 5.6 MB)
 
 ---
 

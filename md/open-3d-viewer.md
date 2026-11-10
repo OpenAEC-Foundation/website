@@ -13,12 +13,12 @@
 ## Live stats
 
 - Stars: **2**
-- Commits: **329**
+- Commits: **474**
 - Forks: **0**
-- Open issues: **12**
+- Open issues: **10**
 - Releases: **16**
-- Total downloads: **376**
-- Downloads by platform: Windows (175), Linux (AppImage) (52), Linux (deb) (35), Other (35), macOS (34), Archive (25), Linux (rpm) (20)
+- Total downloads: **386**
+- Downloads by platform: Windows (184), Linux (AppImage) (52), Linux (deb) (35), macOS (35), Other (35), Archive (25), Linux (rpm) (20)
 
 ## Key features
 
@@ -60,8 +60,8 @@ Opening a model you were sent (SketchUp, Tekla, Revit, IFC) without the program 
 
 ## Direct downloads (most popular)
 
-- [Windows · open-3d-viewer_2026.45.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.8/open-3d-viewer_2026.45.8_x64-setup.exe) (v2026.45.8 — 12 MB)
 - [Windows · open-3d-viewer_2026.45.12_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.12/open-3d-viewer_2026.45.12_x64-setup.exe) (v2026.45.12 — 15.3 MB)
+- [Windows · open-3d-viewer_2026.45.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.8/open-3d-viewer_2026.45.8_x64-setup.exe) (v2026.45.8 — 12 MB)
 - [Windows · open-3d-viewer_2026.44.19_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.44.19/open-3d-viewer_2026.44.19_x64-setup.exe) (v2026.44.19 — 11.7 MB)
 - [Windows · open-3d-viewer_2026.44.18_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.44.18/open-3d-viewer_2026.44.18_x64-setup.exe) (v2026.44.18 — 11.7 MB)
 - [Linux (AppImage) · open-3d-viewer_2026.45.12_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.12/open-3d-viewer_2026.45.12_amd64.AppImage) (v2026.45.12 — 21.9 MB)
