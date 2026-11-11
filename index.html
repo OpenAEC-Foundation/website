@@ -1610,7 +1610,8 @@
           update();
           if (!open) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
-        document.querySelectorAll('.cat-filter-btn').forEach(b => b.addEventListener('click', () => { open = false; update(); }));
+        // Een gekozen categorie (zoals Nederlandse normen) meteen helemaal tonen; alleen 'Alle' klapt in.
+        document.querySelectorAll('.cat-filter-btn').forEach(b => b.addEventListener('click', () => { open = b.dataset.cat !== 'all'; update(); }));
         let t;
         window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(update, 120); });
         update();
