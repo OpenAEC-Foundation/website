@@ -199,6 +199,22 @@
     var os = detectOS(navigator);
     // Android: een eigen app als die er is, anders net als een iPhone de browser.
     if (os === 'android') os = document.querySelector('.pp-files [data-pp-dl="android"]') ? 'android' : 'mobile';
+    // Heeft de pagina geen bestand van de voorkeurssoort (bv. alleen een .run of .deb voor Linux),
+    // neem dan het eerste andere pakket voor hetzelfde systeem, zodat de hoofdknop live meegaat.
+    var ALTERNATIVES = {
+      'linux-appimage': ['linux-deb', 'linux-run', 'linux-rpm', 'linux-snap', 'linux-tar'],
+      macos: ['macos-intel', 'macos-tar'],
+      windows: ['windows-msi', 'windows-portable', 'windows-zip', 'windows-user']
+    };
+    function onPage(key) { return !!document.querySelector('.pp-files [data-pp-dl="' + key + '"]'); }
+    if (os && ALTERNATIVES[os] && !onPage(os)) {
+      var alt = ALTERNATIVES[os].filter(onPage)[0];
+      if (alt) {
+        // De uitleg onder de knop hoort bij het systeem, niet bij de bestandssoort.
+        document.querySelectorAll('[data-os="' + os + '"]').forEach(function (el) { el.setAttribute('data-os', alt); });
+        os = alt;
+      }
+    }
     if (os === 'mobile') {
       // Op een telefoon is de browser de beste keuze; de installers blijven
       // onder "Andere platforms".
