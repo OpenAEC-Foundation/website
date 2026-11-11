@@ -17,8 +17,8 @@
 - Forks: **0**
 - Open issues: **20**
 - Releases: **16**
-- Total downloads: **423**
-- Downloads by platform: Windows (213), Linux (AppImage) (52), macOS (39), Other (39), Linux (deb) (35), Archive (25), Linux (rpm) (20)
+- Total downloads: **433**
+- Downloads by platform: Windows (221), Linux (AppImage) (52), macOS (41), Other (39), Linux (deb) (35), Archive (25), Linux (rpm) (20)
 
 ## Key features
 
@@ -67,7 +67,7 @@ Opening a model you were sent (SketchUp, Tekla, Revit, IFC) without the program 
 - [Windows · open-3d-viewer_2026.44.19_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.44.19/open-3d-viewer_2026.44.19_x64-setup.exe) (v2026.44.19 — 11.7 MB)
 - [Linux (AppImage) · open-3d-viewer_2026.45.12_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.12/open-3d-viewer_2026.45.12_amd64.AppImage) (v2026.45.12 — 21.9 MB)
 - [Windows · open-3d-viewer_2026.45.11_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.11/open-3d-viewer_2026.45.11_x64-setup.exe) (v2026.45.11 — 15.2 MB)
-- [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.12/SHA256SUMS) (v2026.45.12)
+- [macOS · open-3d-viewer_2026.45.12_macos-universal.dmg](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.12/open-3d-viewer_2026.45.12_macos-universal.dmg) (v2026.45.12 — 45.5 MB)
 
 ---
 
