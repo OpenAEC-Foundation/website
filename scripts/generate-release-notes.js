@@ -40,6 +40,7 @@ const TOOL_REPOS = [
   'openaec-docs',
   'openaec-cloud',
   'openaec-cloud-desktop',
+  'ext-drawing-statistics',
   'Y-app',
   // Externe community-repo's staan als 'eigenaar/repo'; het databestand heet naar de repo.
   'HakanSeven12/OpenCADStudio',
