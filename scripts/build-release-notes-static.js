@@ -99,7 +99,7 @@ function staticBlock(data) {
     '<div class="rn-groups"><div class="rn-group latest expanded"><div class="rn-group-body">',
     body,
     '</div></div></div>',
-    `<p class="rn-viewall"><a href="https://github.com/OpenAEC-Foundation/${escapeHtml(data.repo)}/releases" target="_blank" rel="noopener">Bekijk alle releases op GitHub &rarr;</a></p>`,
+    `<p class="rn-viewall"><a href="https://github.com/${escapeHtml(data.owner || 'OpenAEC-Foundation')}/${escapeHtml(data.repo)}/releases" target="_blank" rel="noopener">Bekijk alle releases op GitHub &rarr;</a></p>`,
     '</div></section>',
     '<!-- rn:end -->',
   ].join('\n');
@@ -312,7 +312,7 @@ function timelineBlock(data, highlights, lang) {
     `<p class="rn-desc"><strong>${escapeHtml(latest.tag)}</strong> &middot; ${escapeHtml(latest.date || '')} &middot; ${escapeHtml(tr.desc)}</p>`,
     '</div>',
     `<ol class="rn-timeline">${items}</ol>`,
-    `<p class="rn-viewall"><a href="https://github.com/OpenAEC-Foundation/${escapeHtml(data.repo)}/releases" target="_blank" rel="noopener">${escapeHtml(tr.viewAll)}</a></p>`,
+    `<p class="rn-viewall"><a href="https://github.com/${escapeHtml(data.owner || 'OpenAEC-Foundation')}/${escapeHtml(data.repo)}/releases" target="_blank" rel="noopener">${escapeHtml(tr.viewAll)}</a></p>`,
     '</div></section>',
     '<!-- rn:end -->',
   ].join('\n');

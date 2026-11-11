@@ -140,15 +140,22 @@
     var state = { tag: null };
     // Bestandsnamen van Tauri-builds (Naam_1.2.3_universal.dmg, Naam-1.2.3-1.x86_64.rpm) en van
     // apps met een eigen release (naam_1.2.3_macos-universal.dmg, naam_1.2.3_x86_64.rpm).
+    // Daarnaast de namen van Open CAD Studio (Naam-v1.2-windows-x86_64-installer.msi, -macos-arm64.dmg).
     var match = {
-      windows: /_x64-setup\.exe$/i,
+      windows: /_x64-setup\.exe$|-windows-x86_64-installer\.msi$/i,
       'windows-user': /_x64_user-setup\.exe$/i,
+      'windows-portable': /-windows-x86_64-portable\.exe$/i,
+      'windows-arm64': /-windows-arm64-installer\.msi$/i,
+      'windows-arm64-portable': /-windows-arm64-portable\.exe$/i,
       'windows-zip': /_windows-x64\.zip$/i,
-      macos: /[_-](?:universal|aarch64)\.dmg$/i,
+      macos: /[_-](?:universal|aarch64|macos-arm64)\.dmg$/i,
+      'macos-intel': /-macos-x86_64\.dmg$/i,
       'linux-deb': /_amd64\.deb$/i,
       'linux-rpm': /[._]x86_64\.rpm$/i,
-      'linux-appimage': /_amd64\.AppImage$/i,
-      'linux-snap': /_amd64\.snap$/i,
+      'linux-appimage': /_amd64\.AppImage$|-linux-x86_64\.AppImage$/i,
+      'linux-appimage-arm64': /-linux-aarch64\.AppImage$/i,
+      'linux-snap': /_amd64\.snap$|-linux-x86_64\.snap$/i,
+      'web-zip': /-web\.zip$/i,
       'linux-tar': /_linux-x64\.tar\.gz$/i,
       android: /\.apk$/i,
       sha256sums: /^SHA256SUMS$/,
@@ -211,7 +218,8 @@
       document.querySelectorAll('[data-pp-ver]').forEach(function (el) {
         // De hele tag vervangen, ook een achtervoegsel als -alpha. Anders wordt
         // "v0.1.0-alpha" bij elke ronde langer en blijft de observer lopen.
-        var want = el.innerHTML.replace(/v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?/g, state.tag);
+        // Ook tags van twee delen (v2026.45), zoals Open CAD Studio die gebruikt.
+        var want = el.innerHTML.replace(/v\d+\.\d+(?:\.\d+)?(?:-[0-9A-Za-z.-]+)?/g, state.tag);
         if (el.innerHTML !== want) el.innerHTML = want;
       });
     }

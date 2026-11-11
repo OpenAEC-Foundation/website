@@ -40,18 +40,26 @@ const TOOL_REPOS = [
   'openaec-docs',
   'openaec-cloud',
   'Y-app',
+  // Externe community-repo's staan als 'eigenaar/repo'; het databestand heet naar de repo.
+  'HakanSeven12/OpenCADStudio',
 ];
+
+// 'repo' of 'eigenaar/repo' -> { owner, name }
+function splitRepo(entry) {
+  const i = entry.indexOf('/');
+  return i < 0 ? { owner: ORG, name: entry } : { owner: entry.slice(0, i), name: entry.slice(i + 1) };
+}
 
 // Sommige repo's onderhouden een uitgebreide changelog met een sectie per
 // uitgebrachte versie. Die tekst is de inhoudelijke tegenhanger van de korte
 // release-body en is wat we op de productpagina willen tonen.
 const CHANGELOG_PATHS = ['docs/CHANGELOG.md', 'CHANGELOG.md', 'RELEASE_NOTES.md'];
 
-async function fetchChangelog(repo, fetchImpl = fetch) {
+async function fetchChangelog(repo, fetchImpl = fetch, owner = ORG) {
   for (const p of CHANGELOG_PATHS) {
     try {
       const res = await fetchImpl(
-        `https://api.github.com/repos/${ORG}/${repo}/contents/${p}`,
+        `https://api.github.com/repos/${owner}/${repo}/contents/${p}`,
         { headers: { ...headers, Accept: 'application/vnd.github.v3.raw' } }
       );
       if (res.ok) return await res.text();
@@ -84,11 +92,11 @@ async function ghFetch(url) {
   return res.json();
 }
 
-async function fetchAllReleases(repo) {
+async function fetchAllReleases(repo, owner = ORG) {
   const all = [];
   let page = 1;
   while (true) {
-    const data = await ghFetch(`https://api.github.com/repos/${ORG}/${repo}/releases?per_page=100&page=${page}`);
+    const data = await ghFetch(`https://api.github.com/repos/${owner}/${repo}/releases?per_page=100&page=${page}`);
     if (!Array.isArray(data) || data.length === 0) break;
     all.push(...data);
     page++;
@@ -150,9 +158,10 @@ function getPatchNumber(tag) {
   return m ? parseInt(m[1], 10) : 0;
 }
 
-async function processRepo(repo) {
-  console.log(`\nProcessing ${repo}...`);
-  const releases = await fetchAllReleases(repo);
+async function processRepo(entry) {
+  const { owner, name: repo } = splitRepo(entry);
+  console.log(`\nProcessing ${owner}/${repo}...`);
+  const releases = await fetchAllReleases(repo, owner);
   console.log(`  ${releases.length} releases found`);
 
   // Filter out nightly/draft
@@ -226,13 +235,15 @@ async function processRepo(repo) {
   const latestStable = stable[0];
   const nightly = releases.find(r => r.tag_name === 'nightly');
 
-  const changelogMd = await fetchChangelog(repo);
+  const changelogMd = await fetchChangelog(repo, fetch, owner);
   const latestChangelog = latestStable
     ? extractChangelogSection(changelogMd, latestStable.tag_name)
     : null;
 
   return {
     repo: repo,
+    // Alleen bij een repo buiten de organisatie; de pagina's linken dan naar die eigenaar.
+    ...(owner !== ORG ? { owner } : {}),
     generated: new Date().toISOString(),
     totalReleases: totalReleases,
     totalChanges: totalChanges,
@@ -262,7 +273,7 @@ async function main() {
     try {
       const data = await processRepo(repo);
       fs.writeFileSync(
-        path.join(outDir, `${repo}.json`),
+        path.join(outDir, `${data.repo}.json`),
         JSON.stringify(data, null, 2)
       );
       console.log(`  ✓ ${data.totalReleases} releases, ${data.totalChanges} changes`);
@@ -281,4 +292,4 @@ if (require.main === module) {
   });
 }
 
-module.exports = { fetchChangelog, parseChanges };
+module.exports = { fetchChangelog, parseChanges, processRepo, splitRepo };
