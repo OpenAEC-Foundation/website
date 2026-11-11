@@ -150,7 +150,7 @@
       'windows-zip': /_windows-x64\.zip$|_x64_portable\.zip$/i,
       'windows-msi': /_x64_en-US\.msi$/i,
       macos: /[_-](?:universal|aarch64|macos-arm64)\.dmg$/i,
-      'macos-intel': /-macos-x86_64\.dmg$/i,
+      'macos-intel': /-macos-x86_64\.dmg$|_x64\.dmg$/i,
       'macos-tar': /_macos-universal\.tar\.gz$/i,
       'linux-deb': /_amd64\.deb$/i,
       'linux-deb-arm64': /_arm64\.deb$/i,
