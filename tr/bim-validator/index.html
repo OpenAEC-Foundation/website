@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BIM Validator — OpenAEC Foundation</title>
-  <meta name="description" content="Açık kaynak IFC doğrulama aracı. Modelleri IDS spesifikasyonlarına, Hollanda standartlarına ve proje gereksinimlerine karşı doğrulayın — tarayıcıda, CLI…">
+  <meta name="description" content="BIM Validator: IFC modellerini NL BIM Basis ILS ve RVB BIM Norm gibi IDS gereksinimlerine göre denetleyen açık kaynak araç. Bulguları 3B olarak…">
   <link rel="canonical" href="https://open-aec.com/tr/bim-validator/">
   <!-- hreflang:start -->
   <link rel="alternate" hreflang="nl" href="https://open-aec.com/bim-validator/">
@@ -17,11 +18,12 @@
 
 
 
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenAEC Foundation">
-  <meta property="og:title" content="BIM Validator">
-  <meta property="og:description" content="Açık kaynak IFC doğrulama aracı. Modelleri IDS spesifikasyonlarına, Hollanda standartlarına ve proje gereksinimlerine karşı doğrulayın — tarayıcıda, CLI…">
+  <meta property="og:title" content="BIM Validator — OpenAEC Foundation">
+  <meta property="og:description" content="BIM Validator: IFC modellerini NL BIM Basis ILS ve RVB BIM Norm gibi IDS gereksinimlerine göre denetleyen açık kaynak araç. Bulguları 3B olarak…">
   <meta property="og:url" content="https://open-aec.com/tr/bim-validator/">
   <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/bim-validator.png">
   <meta property="og:locale" content="tr_TR">
@@ -30,7 +32,7 @@
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="BIM Validator">
-  <meta name="twitter:description" content="Açık kaynak IFC doğrulama aracı. Modelleri IDS spesifikasyonlarına, Hollanda standartlarına ve proje gereksinimlerine karşı doğrulayın — tarayıcıda, CLI…">
+  <meta name="twitter:description" content="BIM Validator: IFC modellerini NL BIM Basis ILS ve RVB BIM Norm gibi IDS gereksinimlerine göre denetleyen açık kaynak araç. Bulguları 3B olarak…">
   <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/bim-validator.png">
 
   <!-- AI / LLM discoverability -->
@@ -41,37 +43,124 @@
   <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/shared/style.css?v=20261015">
+  <link rel="stylesheet" href="/shared/productpagina.css?v=20261105">
+
+  <!-- Schema.org -->
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "BIM Validator",
-    "applicationCategory": "EngineeringApplication",
-    "applicationSubCategory": "BIM / Validation",
-    "operatingSystem": "Web",
-    "url": "https://open-aec.com/bim-validator/",
-    "downloadUrl": "https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases",
-    "license": "https://www.gnu.org/licenses/lgpl-3.0.html",
-    "description": "Browser-based IFC validation tool. Upload an IFC model, validate against IDS specifications (NL-BIM Basis ILS, RVB BIM Norm), view results in 3D, export BCF issues.",
-    "screenshot": "https://open-aec.com/shared/assets/screenshots/bim-validator.png",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "EUR",
-      "availability": "https://schema.org/InStock"
-    },
-    "isAccessibleForFree": true,
-    "keywords": "IFC validation, IDS, NL-BIM Basis ILS, RVB BIM Norm, BIM compliance, Solibri alternative",
-    "sameAs": "https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator",
-    "publisher": {
-      "@type": "Organization",
-      "name": "OpenAEC Foundation",
-      "url": "https://open-aec.com"
-    }
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "BIM Validator",
+  "applicationCategory": "EngineeringApplication",
+  "applicationSubCategory": "BIM / Validation",
+  "operatingSystem": "Windows, Python 3.11+",
+  "softwareVersion": "2026.45.5",
+  "license": "https://opensource.org/licenses/MIT",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "isAccessibleForFree": true,
+  "url": "https://open-aec.com/bim-validator/",
+  "downloadUrl": "https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases",
+  "screenshot": "https://open-aec.com/shared/assets/screenshots/bim-validator.png",
+  "description": "Open source tool that checks IFC models against IDS requirements such as NL-BIM Basis ILS and RVB BIM Norm, shows the findings in 3D and exports them as BCF issues. Windows app, Python package (CLI and library) and HTTP API. In development.",
+  "featureList": [
+    "IDS validation of IFC2X3 and IFC4 models",
+    "Bundled NL-BIM Basis ILS v2 and RVB BIM Norm v1.1 requirement sets",
+    "Custom IDS files",
+    "3D viewer with model tree, properties and section planes",
+    "BCF 2.1 export and import",
+    "JSON and HTML reports from the command line",
+    "HTTP API with asynchronous validation jobs",
+    "Local MCP server",
+    "Signed Windows installer with an embedded validation server"
+  ],
+  "keywords": "IFC validation, IDS, NL-BIM Basis ILS, RVB BIM Norm, BCF, BIM quality control, open source",
+  "sameAs": "https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator",
+  "publisher": {
+    "@type": "Organization",
+    "name": "OpenAEC Foundation",
+    "url": "https://open-aec.com"
   }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Kan ik de BIM Validator al gebruiken?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Je kunt hem uitproberen: er zijn pre-releases voor Windows en een Python-pakket. De tool is nog in ontwikkeling, dus gebruik de uitkomsten nog niet als enige toets bij echt projectwerk."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wat kost het?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Niets. De broncode is vrij te gebruiken onder de MIT-licentie. De onderdelen van IfcOpenShell die de validatie uitvoeren, vallen onder LGPL-3.0 of later."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wat is IDS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De Information Delivery Specification is een open standaard van buildingSMART om informatie-eisen vast te leggen in een XML-bestand dat software kan lezen. Zo'n bestand zegt bijvoorbeeld dat elke wand een NL-SfB-code en een brandwerendheid moet hebben. De validator controleert per element of het model daaraan voldoet."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Voldoet mijn model aan de standaard als alles slaagt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Niet per se. De meegeleverde IDS-bestanden voor NL BIM Basis ILS en de RVB BIM Norm zijn een eigen uitwerking van die standaarden. Slagen betekent dat het model aan die uitwerking voldoet, niet aan elke eis van de bron. Eisen die niet in IDS te vangen zijn, beoordeel je apart."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Waar blijft mijn model?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De 3D-viewer toont het model op je eigen computer. Voor de validatie gaat het model naar de validatieserver: in de Windows-app is dat een server die op je eigen computer meedraait, bij een eigen installatie je eigen server."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Werkt het op macOS of Linux?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Er is nog geen installer voor macOS of Linux. Wel werkt het Python-pakket (Python 3.11 of 3.12) met de opdrachtregel en de bibliotheek, en je kunt de server zelf als container bouwen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hoe groot mag een model zijn?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Reken op ongeveer tien keer de bestandsgrootte aan werkgeheugen. Een model van 200 MB vraagt dus zo'n 2 GB RAM."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hoe werkt het samen met BCF Manager Studio?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Exporteer de bevindingen als BCF-bestand en importeer dat in BCF Manager Studio of een ander pakket dat BCF 2.1 leest. Een rechtstreekse koppeling staat op de planning."
+      }
+    }
+  ]
+}
   </script>
   <style>
     .page-panels .slider-slide video { width: 100%; display: block; background: var(--night-build); }
+    /* Datums en links op het donkere paneel: warm goud haalt daar ruim AA. */
     .dev-card time { display: block; font-family: var(--font-code); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--warm-gold); margin-bottom: 4px; }
     .dev-card a { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 0.85rem; font-weight: 600; color: var(--warm-gold); text-decoration: none; }
     .dev-card a:hover { color: white; }
@@ -114,7 +203,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "tr",
-        "dateModified": "2026-11-10",
+        "dateModified": "2026-11-11",
         "breadcrumb": {
           "@id": "https://open-aec.com/tr/bim-validator/#breadcrumb"
         }
@@ -177,252 +266,242 @@
 
   <main id="main">
 
-  <header class="product-head surface-spot">
+  <header class="product-head surface-spot" id="top">
     <div class="product-head-inner">
-      <p class="pill-label" data-i18n="header.label">OpenAEC ekosistemi</p>
-      <h1>BIM <span class="accent">Validator</span></h1>
-      <p class="lead" data-i18n="header.desc">Açık kaynak IFC doğrulama aracı. Modelleri IDS spesifikasyonlarına, Hollanda standartlarına ve proje gereksinimlerine karşı doğrulayın — tarayıcıda, CLI veya API aracılığıyla.</p>
+      <p class="pill-label" data-i18n="header.label">Geliştirme aşamasında · IFC doğrulama</p>
+      <h1 data-i18n="header.title">BIM <span class="accent">Validator</span></h1>
+      <p class="pp-tagline" data-i18n="header.tagline">IFC modellerini IDS gereksinimlerine göre denetleyin</p>
+      <p class="lead" data-i18n="header.desc">Bir IFC modeli yükleyin, NL BIM Basis ILS, RVB BIM Norm ya da kendi IDS dosyanızı seçin ve eleman bazında neyin eksik olduğunu görün. Hataları 3B olarak inceleyin ve BCF kayıtları olarak ekibinize iletin. Windows uygulaması, Python paketi veya kendi sunucunuzda.</p>
       <div class="btn-group">
-        <a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="header.github">GitHub'da kaynağı görüntüle</span></a>
+        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="header.downloadBtn">İndir</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="header.sourceBtn">GitHub'da kaynak kod</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/issues" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n="header.issuesBtn">Fikir veya sorun bildir</span></a>
       </div>
-      <div class="chip-row">
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clipboard"/></svg>IDS · <span data-i18n="stats.ids">Doğrulama standardı</span></span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pin"/></svg>12+ <span data-i18n="stats.nlbim">NL BIM Basis ILS spesifikasyonları</span></span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg>27+ <span data-i18n="stats.rvb">RVB BIM Norm spesifikasyonları</span></span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg><span data-i18n="stats.maxsize">Maksimum dosya boyutu</span> 1 GB+</span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-euro"/></svg>€ 0</span>
-      </div>
+      <ul class="chip-row pp-proof">
+        <li class="chip"><span>IDS · IFC2X3 · IFC4</span></li>
+        <li class="chip"><span>NL BIM Basis ILS · RVB BIM Norm</span></li>
+        <li class="chip"><span data-i18n="header.proofBcf">BCF 2.1 içe ve dışa</span></li>
+        <li class="chip"><span data-i18n="header.proofFree">Ücretsiz · MIT</span></li>
+        <li class="chip"><span data-i18n="header.proofPre">Ön sürüm</span></li>
+      </ul>
     </div>
-    <div class="media-slider shot-overlap">
+    <div class="media-slider shot-overlap" data-pp-slider>
       <div class="slider-container">
-        <div class="slider-track" id="sliderTrack">
-          <div class="slider-slide">
-            <video controls muted playsinline preload="metadata" poster="/shared/assets/screenshots/bim-validator.png">
-              <source src="/shared/assets/screenshots/bim-validator-demo.mp4" type="video/mp4">
-            </video>
-          </div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/bim-validator.png" alt="BIM Validator - Overzicht"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/bim-validator-2.png" alt="BIM Validator - Validatie"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/bim-validator-3.png" alt="BIM Validator - Resultaten"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/bim-validator-4.png" alt="BIM Validator - 3D Viewer"></div>
+        <div class="slider-track">
+          <div class="slider-slide"><img src="/shared/assets/screenshots/bim-validator.png" width="2345" height="1274" alt="3B bir IFC modeli ve NL BIM Basis ILS denetiminin sonuçlarıyla BIM Validator" data-i18n="alt.overview" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/bim-validator-2.png" width="2345" height="1276" alt="RVB BIM Norm denetimi: solda model ağacı, sağda başarısız spesifikasyonlar" data-i18n="alt.rvb" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/bim-validator-3.png" width="1949" height="1272" alt="Bir denetimden çıkan BCF kayıtları, BCF dosyası olarak dışa aktarılmaya hazır" data-i18n="alt.bcf" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/bim-validator-4.png" width="1955" height="1277" alt="Bir projeyi kendi bilgisayarınızdan veya bağlı proje deposundan açma" data-i18n="alt.project" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><video controls muted playsinline preload="none" poster="/shared/assets/screenshots/bim-validator.png" aria-label="BIM Validator tanıtım videosu" data-i18n="alt.video" data-i18n-attr="aria-label"><source src="/shared/assets/screenshots/bim-validator-demo.mp4" type="video/mp4"></video></div>
         </div>
-        <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Vorige">&lsaquo;</button>
-        <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Volgende">&rsaquo;</button>
+        <button type="button" class="slider-btn slider-prev" aria-label="Önceki görsel" data-i18n="slider.prev" data-i18n-attr="aria-label">&lsaquo;</button>
+        <button type="button" class="slider-btn slider-next" aria-label="Sonraki görsel" data-i18n="slider.next" data-i18n-attr="aria-label">&rsaquo;</button>
       </div>
-      <div class="slider-dots" id="sliderDots"></div>
+      <div class="slider-dots"></div>
     </div>
   </header>
 
-  <section class="section after-overlap" id="functies"><div class="container">
-    <div class="section-head">
-      <h2 data-i18n="features.title">Özellikler</h2>
+  <div class="after-overlap pp-notice-wrap">
+    <p class="pp-notice"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg><span data-i18n="notice.text"><strong>Henüz üretime hazır değil:</strong> bu araç geliştirme aşamasında. Deneyebilirsiniz, ancak henüz gerçek proje işlerinde kullanmayın. Karşılaştığınız sorunları <a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/issues" target="_blank" rel="noopener">GitHub</a> üzerinden bildirin.</span></p>
+  </div>
+
+  <nav class="pp-subnav" aria-label="Bu sayfada" data-i18n="subnav.label" data-i18n-attr="aria-label">
+    <div class="pp-subnav-inner">
+      <a href="#features" data-i18n="subnav.features">Özellikler</a>
+      <a href="#download" data-i18n="subnav.download">İndirme</a>
+      <a href="#whats-new" data-i18n="subnav.whatsnew">Yenilikler</a>
+      <a href="#faq" data-i18n="subnav.faq">Sorular</a>
+      <a href="#technology" data-i18n="subnav.tech">Teknoloji</a>
+      <a href="#releases" data-i18n="subnav.releases">Sürümler</a>
     </div>
-    <div class="mod-tabs" role="tablist" hidden>
-      <button type="button" class="mod-tab" role="tab" id="tab-validation" aria-controls="grp-validation" aria-selected="true"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="validation.title">Doğrulama</span> <span class="mod-count">6</span></button>
-      <button type="button" class="mod-tab" role="tab" id="tab-viewer" aria-controls="grp-viewer" aria-selected="false"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg><span data-i18n="viewer.title">3D Görüntüleyici</span> <span class="mod-count">4</span></button>
-      <button type="button" class="mod-tab" role="tab" id="tab-bcf" aria-controls="grp-bcf" aria-selected="false"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n="bcf.title">BCF Dışa Aktarma</span> <span class="mod-count">3</span></button>
-      <button type="button" class="mod-tab" role="tab" id="tab-interfaces" aria-controls="grp-interfaces" aria-selected="false"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-keyboard"/></svg><span data-i18n="interfaces.title">Arayüzler</span> <span class="mod-count">3</span></button>
-      <button type="button" class="mod-tab" role="tab" id="tab-reporting" aria-controls="grp-reporting" aria-selected="false"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="reporting.title">Raporlama &amp; çıktı</span> <span class="mod-count">4</span></button>
-      <button type="button" class="mod-tab" role="tab" id="tab-fileprocessing" aria-controls="grp-fileprocessing" aria-selected="false"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg><span data-i18n="fileprocessing.title">Dosya işleme</span> <span class="mod-count">3</span></button>
-      <button type="button" class="mod-tab" role="tab" id="tab-deployment" aria-controls="grp-deployment" aria-selected="false"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg><span data-i18n="deployment.title">Dağıtım &amp; entegrasyon</span> <span class="mod-count">4</span></button>
+  </nav>
+
+  <section class="section pp-anchor" id="features"><div class="container">
+    <div class="section-head"><p class="pill-label" data-i18n="features.label">Özellikler</p><h2 data-i18n="features.heading">IFC modelinden bulgulara</h2><p data-i18n="features.sub">Öne çıkanlarla başlayın veya bir konu seçin.</p></div>
+    <div class="pp-tabs" role="tablist" aria-label="Konuya göre özellikler" data-i18n="features.tabsLabel" data-i18n-attr="aria-label" hidden>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-highlights" data-tab="highlights" aria-controls="pp-feature-panel" aria-selected="true" tabindex="0"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg><span data-i18n="tabs.highlights">Öne çıkanlar</span> <span class="pp-tab-count" data-count="highlights"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-validation" data-tab="validation" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="tabs.validation">Denetim</span> <span class="pp-tab-count" data-count="validation"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-viewer" data-tab="viewer" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg><span data-i18n="tabs.viewer">3B görünüm</span> <span class="pp-tab-count" data-count="viewer"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-bcf" data-tab="bcf" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n="tabs.bcf">BCF</span> <span class="pp-tab-count" data-count="bcf"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-integration" data-tab="integration" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg><span data-i18n="tabs.integration">Entegrasyon</span> <span class="pp-tab-count" data-count="integration"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-all" data-tab="all" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg><span data-i18n="tabs.all">Tüm özellikler</span> <span class="pp-tab-count" data-count="all"></span></button>
     </div>
-    <div class="mod-group" id="grp-validation" role="tabpanel" aria-labelledby="tab-validation">
-      <h3><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="validation.title">Doğrulama</span></h3>
-      <div class="features">
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clipboard"/></svg></div>
-          <h4 data-i18n="validation.ids.feature">IDS doğrulama</h4>
-          <p data-i18n="validation.ids.desc">IFC modellerini Information Delivery Specification (IDS) dosyalarına karşı doğrulayın. Her spesifikasyon, eleman bazında geçti/kaldı olarak ayrıntılı hata mesajlarıyla kontrol edilir.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pin"/></svg></div>
-          <h4 data-i18n="validation.nlbim.feature">NL BIM Basis ILS v2</h4>
-          <p data-i18n="validation.nlbim.desc">12 spesifikasyona sahip yerleşik Hollanda BIM temel standardı: kat isimlendirmesi, NL/SfB sınıflandırması, mekan özellikleri, taşıyıcı yapı, dış yüzeyler, yangın dayanımı, U-değeri, malzemeler ve renovasyon durumu.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div>
-          <h4 data-i18n="validation.rvb.feature">RVB BIM Norm v1.1</h4>
-          <p data-i18n="validation.rvb.desc">Devlet inşaat projeleri için 27 spesifikasyona sahip yerleşik Rijksvastgoedbedrijf (Hollanda hükümet gayrimenkul kurumu) standardı: proje bilgileri, saha koordinatları, eleman tipine göre NL-SfB, taşıyıcı yapı &amp; yangın güvenliği özellikleri ve bölge bilgileri.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div>
-          <h4 data-i18n="validation.customids.feature">Özel IDS yükleme</h4>
-          <p data-i18n="validation.customids.desc">Projeye veya kuruma özel gereksinimlere karşı doğrulamak için kendi IDS spesifikasyon dosyanızı (maksimum 10MB) yükleyin.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div>
-          <h4 data-i18n="validation.multischema.feature">Çoklu şema</h4>
-          <p data-i18n="validation.multischema.desc">Hem IFC2X3 hem de IFC4 şemalarını destekler — Revit, ArchiCAD, Tekla ve diğer BIM yazılımlarından yapılan dışa aktarımlarla uyumludur.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div>
-          <h4 data-i18n="validation.elementreport.feature">Eleman düzeyinde raporlama</h4>
-          <p data-i18n="validation.elementreport.desc">Başarısız olan her eleman için GlobalId, IFC sınıfı, eleman adı ve ayrıntılı bir hata mesajı gösterilir.</p>
-        </div>
+    <div id="pp-feature-panel" role="tabpanel" aria-labelledby="pp-tab-highlights">
+      <div class="pp-hl" data-panel="highlights">
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/bim-validator.png" width="2345" height="1274" loading="lazy" decoding="async" alt="3B bir IFC modeli ve NL BIM Basis ILS denetiminin sonuçlarıyla BIM Validator" data-i18n="alt.overview" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">01</span> <span data-i18n="hl.ids.kicker">IDS</span></p>
+            <h3 data-i18n="hl.ids.title">Modelinizi gereksinimlere göre denetleyin</h3>
+            <p data-i18n="hl.ids.desc">NL BIM Basis ILS (12 spesifikasyon), RVB BIM Norm (26 spesifikasyon) veya kendi IDS dosyanızı seçin. Her spesifikasyon için kaç elemanın geçtiğini ve hangilerinin kaldığını GlobalId, IFC sınıfı ve nedeniyle birlikte görürsünüz.</p>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/bim-validator-2.png" width="2345" height="1276" loading="lazy" decoding="async" alt="RVB BIM Norm denetimi: solda model ağacı, sağda başarısız spesifikasyonlar" data-i18n="alt.rvb" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">02</span> <span data-i18n="hl.viewer.kicker">3B</span></p>
+            <h3 data-i18n="hl.viewer.title">Sorunun nerede olduğunu 3B olarak görün</h3>
+            <p data-i18n="hl.viewer.desc">Model sonuçların yanında durur. Bir bulguya tıklayın, görüntüleyici elemana yakınlaşır ve özelliklerini yanında gösterir. Kesit düzlemleriyle binanın içine bakabilir, aynı anda birden fazla model yükleyebilirsiniz.</p>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/bim-validator-3.png" width="1949" height="1272" loading="lazy" decoding="async" alt="Bir denetimden çıkan BCF kayıtları, BCF dosyası olarak dışa aktarılmaya hazır" data-i18n="alt.bcf" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">03</span> <span data-i18n="hl.bcf.kicker">BCF</span></p>
+            <h3 data-i18n="hl.bcf.title">Bulgular BCF kayıtları olarak</h3>
+            <p data-i18n="hl.bcf.desc">Başarısız bir spesifikasyonu bakış noktasıyla bir BCF kaydına dönüştürün ve listeyi BCF 2.1 dosyası olarak dışa aktarın. Bir BCF dosyasını açabilir, bakış noktalarını inceleyebilir, durumu değiştirip yeniden dışa aktarabilirsiniz. Yorumlar ve yazarlar korunur.</p>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/bim-validator-4.png" width="1955" height="1277" loading="lazy" decoding="async" alt="Bir projeyi kendi bilgisayarınızdan veya bağlı proje deposundan açma" data-i18n="alt.project" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">04</span> <span data-i18n="hl.local.kicker">Kendi bilgisayarınızda</span></p>
+            <h3 data-i18n="hl.local.title">Bir uygulama, bir paket veya bir sunucu</h3>
+            <p data-i18n="hl.local.desc">Windows uygulamasında doğrulama sunucusu yerleşiktir; modeliniz kendi bilgisayarınızda kalır. Projeleri yerel olarak veya bağlı proje deposunda saklayın. Modelleri bir betik veya iş hattında denetlemek için Python paketini ya da HTTP API'yi kullanın.</p>
+          </div>
+        </article>
       </div>
-    </div>
-    <div class="mod-group" id="grp-viewer" role="tabpanel" aria-labelledby="tab-viewer">
-      <h3><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg><span data-i18n="viewer.title">3D Görüntüleyici</span></h3>
-      <div class="features">
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div>
-          <h4 data-i18n="viewer.webgl.feature">WebGL 3D görüntüleyici</h4>
-          <p data-i18n="viewer.webgl.desc">That Open Engine (Three.js) aracılığıyla tarayıcıda IFC modelinin etkileşimli 3D görünümü. Kurulum veya eklenti gerekmez.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pin"/></svg></div>
-          <h4 data-i18n="viewer.selection.feature">Eleman seçimi</h4>
-          <p data-i18n="viewer.selection.desc">Özelliklerini görüntülemek için 3D görüntüleyicide bir elemana tıklayın, ya da elemanı 3D'de vurgulamak için sonuç listesindeki bir hataya tıklayın.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-move"/></svg></div>
-          <h4 data-i18n="viewer.navigation.feature">Kamera navigasyonu</h4>
-          <p data-i18n="viewer.navigation.desc">Model içinde döndürme, kaydırma ve yakınlaştırma. Tüm modeli görünüme getirmek için tümünü sığdır düğmesi.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg></div>
-          <h4 data-i18n="viewer.panels.feature">Yeniden boyutlandırılabilir paneller</h4>
-          <p data-i18n="viewer.panels.desc">Sürüklenebilir üçlü bölünme: navigasyon paneli (sol), 3D görüntüleyici (orta) ve detay paneli (sağ). Her panel daraltılabilir.</p>
-        </div>
-      </div>
-    </div>
-    <div class="mod-group" id="grp-bcf" role="tabpanel" aria-labelledby="tab-bcf">
-      <h3><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n="bcf.title">BCF Dışa Aktarma</span></h3>
-      <div class="features">
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div>
-          <h4 data-i18n="bcf.zip.feature">BCF 2.1 ZIP dışa aktarma</h4>
-          <p data-i18n="bcf.zip.desc">Tüm doğrulama hatalarını bir BCF 2.1 ZIP dosyası olarak dışa aktarın. Başarısız olan her eleman, Revit, Solibri, BIMcollab veya Navisworks'e doğrudan aktarılabilen bir görünüm noktasına sahip bir BCF konusu haline gelir.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div>
-          <h4 data-i18n="bcf.platform.feature">BCF Platform entegrasyonu</h4>
-          <p data-i18n="bcf.platform.desc">Sorunları doğrudan merkezi bir proje panosuna göndermek için OpenAEC BCF Platform'a bağlanın. OIDC kimlik doğrulama ve proje seçimini içerir.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clipboard"/></svg></div>
-          <h4 data-i18n="bcf.queue.feature">Sorun kuyruğu</h4>
-          <p data-i18n="bcf.queue.desc">Platforma dışa aktarmadan veya göndermeden önce, oluşturulan BCF sorunlarının küçük resimler ve genişletilebilir detaylarla yerel görünümü.</p>
-        </div>
-      </div>
-    </div>
-    <div class="mod-group" id="grp-interfaces" role="tabpanel" aria-labelledby="tab-interfaces">
-      <h3><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-keyboard"/></svg><span data-i18n="interfaces.title">Arayüzler</span></h3>
-      <div class="features">
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div>
-          <h4 data-i18n="interfaces.web.feature">Web uygulaması</h4>
-          <p data-i18n="interfaces.web.desc">Sürükle-bırak yükleme, standart seçimi, ilerleme çubuğu, sonuç görünümü ve 3D görüntüleyici ile tamamen tarayıcı tabanlı arayüz.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-keyboard"/></svg></div>
-          <h4 data-i18n="interfaces.cli.feature">CLI</h4>
-          <p data-i18n="interfaces.cli.desc"><code>ifc-validate model.ifc --ids nl-bim</code> — toplu işleme, CI/CD hatları ve betikleme için uygun. Konsol, JSON veya HTML olarak çıktı.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div>
-          <h4 data-i18n="interfaces.restapi.feature">REST API</h4>
-          <p data-i18n="interfaces.restapi.desc">Asenkron doğrulama uç noktalarına sahip FastAPI arka ucu. Kendi iş akışlarınıza, panolarınıza veya üçüncü taraf araçlarınıza entegre edilebilir.</p>
-        </div>
-      </div>
-    </div>
-    <div class="mod-group" id="grp-reporting" role="tabpanel" aria-labelledby="tab-reporting">
-      <h3><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="reporting.title">Raporlama &amp; çıktı</span></h3>
-      <div class="features">
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div>
-          <h4 data-i18n="reporting.dashboard.feature">Sonuç panosu</h4>
-          <p data-i18n="reporting.dashboard.desc">Toplam geçti/kaldı, yüzde, doğrulanan eleman sayısı ve zaman damgasını içeren genel bakış kartı.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div>
-          <h4 data-i18n="reporting.breakdown.feature">Spesifikasyon dökümü</h4>
-          <p data-i18n="reporting.breakdown.desc">Spesifikasyon başına, geçti/kaldı durumu, yüzde ve başarısız elemanların sayfalanmış listesiyle genişletilebilir liste.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div>
-          <h4 data-i18n="reporting.jsonexport.feature">JSON dışa aktarma</h4>
-          <p data-i18n="reporting.jsonexport.desc">Daha fazla analiz veya arşivleme için eksiksiz doğrulama sonuçlarını yapılandırılmış bir JSON dosyası olarak indirin.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-printer"/></svg></div>
-          <h4 data-i18n="reporting.htmlreport.feature">HTML raporu</h4>
-          <p data-i18n="reporting.htmlreport.desc">Proje ekibiyle veya müşteriyle paylaşmak için bağımsız bir HTML raporu oluşturun.</p>
-        </div>
-      </div>
-    </div>
-    <div class="mod-group" id="grp-fileprocessing" role="tabpanel" aria-labelledby="tab-fileprocessing">
-      <h3><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg><span data-i18n="fileprocessing.title">Dosya işleme</span></h3>
-      <div class="features">
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div>
-          <h4 data-i18n="fileprocessing.dragdrop.feature">Sürükle &amp; bırak ile yükleme</h4>
-          <p data-i18n="fileprocessing.dragdrop.desc">IFC, IFCXML veya IFCZIP dosyalarını tarayıcıya sürükleyin. Dosya başına maksimum 500MB.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div>
-          <h4 data-i18n="fileprocessing.memory.feature">Bellek yönetimi</h4>
-          <p data-i18n="fileprocessing.memory.desc">Yeterli RAM olup olmadığının otomatik kontrolü (IFC dosyaları bellekte dosya boyutlarının ~10 katını kullanır). Geçici dosyalar hemen temizlenir.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div>
-          <h4 data-i18n="fileprocessing.largefiles.feature">Büyük dosyalar</h4>
-          <p data-i18n="fileprocessing.largefiles.desc">1GB ve üzeri IFC modelleri için optimize edilmiştir. İşleme sırasında ilerleme göstergesi.</p>
-        </div>
-      </div>
-    </div>
-    <div class="mod-group" id="grp-deployment" role="tabpanel" aria-labelledby="tab-deployment">
-      <h3><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg><span data-i18n="deployment.title">Dağıtım &amp; entegrasyon</span></h3>
-      <div class="features">
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-crane"/></svg></div>
-          <h4 data-i18n="deployment.docker.feature">Docker ile dağıtım</h4>
-          <p data-i18n="deployment.docker.desc">Arka uç, ön uç, nginx, PostgreSQL ve Redis ile eksiksiz Docker Compose kurulumu. Her şeyi başlatmak için tek komut.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-lock"/></svg></div>
-          <h4 data-i18n="deployment.onpremises.feature">Yerinde (on-premises) kurulum</h4>
-          <p data-i18n="deployment.onpremises.desc">Veri ve gizlilik üzerinde maksimum kontrol için doğrulayıcıyı kendi sunucunuzda çalıştırın. Buluta bağımlılık yoktur.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-users"/></svg></div>
-          <h4 data-i18n="deployment.multitenant.feature">Çok kiracılı (multi-tenant)</h4>
-          <p data-i18n="deployment.multitenant.desc">Kuruluş başına dosya yönetimi için isteğe bağlı NextCloud entegrasyonuna sahip proje depolama.</p>
-        </div>
-        <div class="feature">
-          <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div>
-          <h4 data-i18n="deployment.sso.feature">SSO kimlik doğrulama</h4>
-          <p data-i18n="deployment.sso.desc">Kurumsal ortamlar için OIDC tabanlı tek oturum açma.</p>
-        </div>
-      </div>
+      <ul class="pp-tiles">
+        <li class="pp-tile" data-cats="validation"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clipboard"/></svg></div><div><h3 data-i18n="f.ids.title">IDS doğrulama</h3><p data-i18n="f.ids.desc">Bir IFC modelini herhangi bir IDS dosyasına göre denetleyin; her eleman için geçti veya kaldı.</p></div></div></li>
+        <li class="pp-tile" data-cats="validation"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pin"/></svg></div><div><h3 data-i18n="f.nlbim.title">NL BIM Basis ILS v2</h3><p data-i18n="f.nlbim.desc">Kat adları, NL-SfB, mahaller, taşıyıcı sistem, yangın dayanımı ve malzemeler gibi konularda 12 spesifikasyon.</p></div></div></li>
+        <li class="pp-tile" data-cats="validation"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div><div><h3 data-i18n="f.rvb.title">RVB BIM Norm v1.1</h3><p data-i18n="f.rvb.desc">Hollanda Devlet Gayrimenkul Ajansı'nın 26 spesifikasyonu: proje bilgileri, arsa konumu, katlar, mahaller ve eleman türüne göre NL-SfB gibi.</p></div></div></li>
+        <li class="pp-tile" data-cats="validation"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div><div><h3 data-i18n="f.custom.title">Kendi IDS dosyanız</h3><p data-i18n="f.custom.desc">Kendi projenizin veya kuruluşunuzun gereksinimlerini yükleyin.</p></div></div></li>
+        <li class="pp-tile" data-cats="validation"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><h3 data-i18n="f.schema.title">IFC2X3 ve IFC4</h3><p data-i18n="f.schema.desc">IFC dışa aktaran her BIM yazılımından her iki şema.</p></div></div></li>
+        <li class="pp-tile" data-cats="validation integration"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><div><h3 data-i18n="f.reports.title">JSON ve HTML raporları</h3><p data-i18n="f.reports.desc">Sonuçları paylaşmak veya işlemek için kaydedin.</p></div></div></li>
+        <li class="pp-tile" data-cats="viewer"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div><div><h3 data-i18n="f.viewer.title">3B görüntüleyici</h3><p data-i18n="f.viewer.desc">Modelde döndürün, kaydırın ve yakınlaşın; bakış yönünü seçmek için bir küp de var.</p></div></div></li>
+        <li class="pp-tile" data-cats="viewer"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div><div><h3 data-i18n="f.tree.title">Model ağacı ve özellikler</h3><p data-i18n="f.tree.desc">Projeden elemana kadar gezinin; bilgi, özellik setleri, miktarlar ve türü görüntüleyin.</p></div></div></li>
+        <li class="pp-tile" data-cats="viewer"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-scissors"/></svg></div><div><h3 data-i18n="f.section.title">Kesit düzlemleri</h3><p data-i18n="f.section.desc">3B görünümde seçip sürükleyebildiğiniz X, Y ve Z kesit düzlemleri.</p></div></div></li>
+        <li class="pp-tile" data-cats="viewer"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><h3 data-i18n="f.themes.title">Beş tema</h3><p data-i18n="f.themes.desc">Açık, koyu, Blueprint ve iki yüksek kontrastlı tema.</p></div></div></li>
+        <li class="pp-tile" data-cats="bcf"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div><h3 data-i18n="f.bcfexport.title">BCF 2.1 dışa aktarma</h3><p data-i18n="f.bcfexport.desc">Bakış noktası ve ekran görüntüsüyle bulgular tek bir BCF dosyasında.</p></div></div></li>
+        <li class="pp-tile" data-cats="bcf"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div><div><h3 data-i18n="f.bcfimport.title">BCF dosyalarını açma</h3><p data-i18n="f.bcfimport.desc">.bcf veya .bcfzip dosyası açın, bakış noktasına gidin ve durumu değiştirin.</p></div></div></li>
+        <li class="pp-tile" data-cats="bcf"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div><div><h3 data-i18n="f.bcfkeep.title">Hiçbir şey kaybolmaz</h3><p data-i18n="f.bcfkeep.desc">Dışa aktarırken kayıt kimlikleri, yazarlar, yorumlar ve görseller korunur. Yeniden içe aktarmak yerel kayıtlarınızın üzerine yazmaz.</p></div></div></li>
+        <li class="pp-tile" data-cats="integration"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-keyboard"/></svg></div><div><h3 data-i18n="f.cli.title">Komut satırı</h3><p data-i18n="f.cli.desc">Toplu işler, betikler ve CI iş hatları için <code>ifc-validate model.ifc --ids nl-bim</code>.</p></div></div></li>
+        <li class="pp-tile" data-cats="integration"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><h3 data-i18n="f.python.title">Python kütüphanesi</h3><p data-i18n="f.python.desc">Doğrulama çekirdeğini uygulama olmadan kendi kodunuzda kullanın.</p></div></div></li>
+        <li class="pp-tile" data-cats="integration"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div><div><h3 data-i18n="f.api.title">HTTP API</h3><p data-i18n="f.api.desc">Bir model yükleyin, doğrulamayı bir görev olarak izleyin ve bittiğinde BCF'yi alın.</p></div></div></li>
+        <li class="pp-tile" data-cats="integration"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div><div><h3 data-i18n="f.mcp.title">MCP sunucusu</h3><p data-i18n="f.mcp.desc">Bir yapay zekâ asistanının modelleri yerel olarak denetlemesine, standartları listelemesine ve rapor oluşturmasına izin verin.</p></div></div></li>
+        <li class="pp-tile" data-cats="integration"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-lock"/></svg></div><div><h3 data-i18n="f.container.title">Kendi sunucunuzda</h3><p data-i18n="f.container.desc">Web arayüzü ve API'yi içeren, normal kullanıcı olarak çalışan bir konteyner.</p></div></div></li>
+      </ul>
     </div>
   </div></section>
 
-  <section class="section surface-dark panel" id="recent-developments">
+  <section class="section surface-dark panel pp-anchor" id="download" data-pp-repo="OpenAEC-Foundation/OpenAEC-BIM-validator" data-pp-prereleases>
+    <div class="pp-dl">
+      <p class="pill-label" data-i18n="download.label">İndirme</p>
+      <h2 data-i18n="download.title" data-pp-ver>v2026.45.5 sürümünü indir</h2>
+      <p class="pp-dl-lead" data-i18n="download.lead">Ücretsiz ve hesap gerektirmez. Doğrulama sunucusu yerleşik, imzalı bir Windows yükleyicisi.</p>
+      <div class="pp-dl-main" data-pp-main>
+        <a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/download/v2026.45.5/BIM.Validator_2026.45.5_x64-setup.exe" class="btn btn-glow btn-lg" data-pp-dl="windows" data-pp-primary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.primary">Windows için indir</span></a>
+      </div>
+      <p class="pp-dl-meta"><span data-os="windows" data-i18n="download.metaWindows">Windows (x64) için .exe yükleyici</span><span data-os="macos" data-i18n="download.metaMac" hidden>Yalnızca Windows. Mac'te aşağıdaki Python paketini kullanın.</span><span data-os="linux-appimage" data-i18n="download.metaLinux" hidden>Yalnızca Windows. Linux'ta aşağıdaki Python paketini kullanın.</span><span class="pp-dl-size"> · <span data-pp-primary-size>81.5 MB</span></span></p>
+      <p class="pp-dl-mobile" data-pp-mobile hidden data-i18n="download.mobileNote">BIM Validator bir masaüstü uygulamasıdır. Bilgisayarınıza indirin.</p>
+      <details class="pp-dl-other" data-pp-other>
+        <summary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg><span data-i18n="download.other">Diğer dosyalar</span></summary>
+        <div class="pp-files pp-files-4">
+          <div class="pp-files-col"><h3>Windows</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/download/v2026.45.5/BIM.Validator_2026.45.5_x64-setup.exe" data-pp-dl="windows" data-pp-item="windows"><span class="pp-file"><span data-i18n="download.fileExe">Yükleyici (.exe)</span><span class="pp-file-size"> · <span data-pp-size="windows">81.5 MB</span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          </ul></div>
+          <div class="pp-files-col"><h3>Python</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/download/v2026.45.5/ifc_validator-2026.45.5-py3-none-any.whl"><span class="pp-file"><span data-i18n="download.fileWhl">Paket (.whl)</span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/download/v2026.45.5/ifc_validator-2026.45.5.tar.gz"><span class="pp-file"><span data-i18n="download.fileSdist">Kaynak (.tar.gz)</span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          </ul></div>
+          <div class="pp-files-col"><h3 data-i18n="verify.heading">Doğrula</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/download/v2026.45.5/SHA256SUMS" data-pp-dl="sha256sums"><span class="pp-file">SHA256SUMS</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases" target="_blank" rel="noopener"><span class="pp-file" data-i18n="releases.github">GitHub'daki tüm sürümler</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></li>
+          </ul></div>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <section class="section surface-dark panel pp-anchor" id="whats-new">
     <div class="panel-split">
       <div class="panel-split-text">
-        <p class="pill-label" data-i18n="developments.label">Proje geliştirme</p>
-        <h2 data-i18n="developments.title">Son gelişmeler</h2>
-        <p data-i18n="developments.intro">Doğrulayıcı aktif olarak geliştirilmeye devam ediyor. Bunlar, herkese açık depodaki en dikkat çekici son iyileştirmelerdir.</p>
+        <p class="pill-label" data-i18n="whatsnew.label">v2026.45 ile gelenler</p>
+        <h2 data-i18n="whatsnew.title">BCF dosyalarını açma ve <span>yenilenen arayüz</span></h2>
+        <p data-i18n="whatsnew.desc">45. hafta ön sürümleri ilk Windows yükleyicisini, BCF dosyalarını açmayı ve OpenAEC Blueprint arayüzünü getiriyor. Bunlar hâlâ ön sürümdür.</p>
+        <div class="btn-group">
+          <a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/tag/v2026.45.5" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="whatsnew.ctaChangelog">Tam değişiklik günlüğü</span></a>
+          <a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator#current-limitations" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg><span data-i18n="whatsnew.ctaLimits">Bilinen sınırlamalar</span></a>
+        </div>
       </div>
-      <ul class="split-cards">
-        <li class="split-card dev-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div><div><time datetime="2026-04-21">21 april 2026</time><strong data-i18n="developments.item1.title">Kuruluş başına kapsamlandırılmış projeler</strong><p data-i18n="developments.item1.desc">Proje, dosya ve bulut rotaları artık veriler açılmadan veya değiştirilmeden önce kuruluş bağlamını kontrol ediyor.</p><a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/commit/562f071" target="_blank" rel="noopener"><span data-i18n="developments.link">Değişikliği görüntüle</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></div></li>
-        <li class="split-card dev-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div><div><time datetime="2026-04-20">20 april 2026</time><strong data-i18n="developments.item2.title">Bağımlılıklar güvenli hale getirildi</strong><p data-i18n="developments.item2.desc">Ön uç araçları ve veri ayrıştırıcısı güncellendi; bağımlılık kontrolünde bildirilen güvenlik sorunları giderildi.</p><a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/commit/f80e92c" target="_blank" rel="noopener"><span data-i18n="developments.link">Değişikliği görüntüle</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></div></li>
-        <li class="split-card dev-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div><div><time datetime="2026-04-16">16 april 2026</time><strong data-i18n="developments.item3.title">Projeleri yerel olarak ve bulutta açma ve kaydetme</strong><p data-i18n="developments.item3.desc">Proje iş akışı artık yerel proje dosyalarını, yeni bir proje olarak kaydetmeyi ve bağlantılı proje deposundan açmayı veya güncellemeyi destekliyor.</p><a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/commit/f73da0e" target="_blank" rel="noopener"><span data-i18n="developments.link">Değişikliği görüntüle</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></div></li>
-        <li class="split-card dev-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div><div><time datetime="2026-04-02">2 april 2026</time><strong data-i18n="developments.item4.title">Etkileşimli kesit düzlemleri</strong><p data-i18n="developments.item4.desc">Kesit düzlemleri, hedefli model incelemesi için doğrudan 3D görünümde seçilebilir ve sürüklenebilir.</p><a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/commit/ecf9f10" target="_blank" rel="noopener"><span data-i18n="developments.link">Değişikliği görüntüle</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></div></li>
+      <ul class="split-cards split-cards-2" id="recent-developments">
+        <li class="split-card dev-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg></div><div><time datetime="2026-11-05">v2026.45.5</time><h4 data-i18n="whatsnew.items.bcf.title">BCF dosyalarını açma</h4><p data-i18n="whatsnew.items.bcf.desc">BCF 2.1'i kayıt listesine aktarın, bakış noktalarını açın, durumu değiştirin ve yorum ya da görsel kaybetmeden yeniden dışa aktarın.</p><a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/tag/v2026.45.5" target="_blank" rel="noopener"><span data-i18n="whatsnew.link">Sürümü görüntüle</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></div></li>
+        <li class="split-card dev-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><time datetime="2026-11-05">v2026.45.5</time><h4 data-i18n="whatsnew.items.ui.title">Yenilenen arayüz</h4><p data-i18n="whatsnew.items.ui.desc">Beş temalı OpenAEC Blueprint UI 0.4, yerel iletişim kutuları, yeni simgeler ve çevrimdışı çalışan yazı tipleri.</p><a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/tag/v2026.45.5" target="_blank" rel="noopener"><span data-i18n="whatsnew.link">Sürümü görüntüle</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></div></li>
+        <li class="split-card dev-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div><time datetime="2026-11-05">v2026.45.4</time><h4 data-i18n="whatsnew.items.windows.title">Kendi sunucusuyla Windows uygulaması</h4><p data-i18n="whatsnew.items.windows.desc">Doğrulama sunucusunu içeren tek bir yükleyici. Projeler ve veritabanı kendi kullanıcı klasörünüzde durur.</p><a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/tag/v2026.45.4" target="_blank" rel="noopener"><span data-i18n="whatsnew.link">Sürümü görüntüle</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></div></li>
+        <li class="split-card dev-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div><div><time datetime="2026-11-05">v2026.45.4</time><h4 data-i18n="whatsnew.items.signed.title">İmzalı ve doğrulanabilir</h4><p data-i18n="whatsnew.items.signed.desc">Uygulama, sunucu ve yükleyici dijital olarak imzalıdır. Bir indirmenin sağlam olduğunu SHA256SUMS ile kontrol edin.</p><a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases/tag/v2026.45.4" target="_blank" rel="noopener"><span data-i18n="whatsnew.link">Sürümü görüntüle</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></div></li>
       </ul>
     </div>
   </section>
 
+  <section class="section pp-anchor" id="faq"><div class="container">
+    <h2 data-i18n="faq.heading">Sıkça sorulan sorular</h2>
+    <div class="pp-faq-list">
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.status.q">BIM Validator'ı şimdiden kullanabilir miyim?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.status.a">Deneyebilirsiniz: Windows için ön sürümler ve bir Python paketi var. Araç hâlâ geliştirme aşamasında; bu yüzden sonuçlarını gerçek proje işlerinde tek denetim olarak henüz kullanmayın.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.cost.q">Ücreti nedir?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.cost.a">Ücretsizdir. Kaynak kod MIT lisansıyla özgürce kullanılabilir. Doğrulamayı yapan IfcOpenShell bileşenleri LGPL-3.0 veya sonrası lisanslıdır.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.ids.q">IDS nedir?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.ids.a">Information Delivery Specification, bilgi gereksinimlerini yazılımın okuyabildiği bir XML dosyasında tanımlamak için buildingSMART'ın açık standardıdır. Böyle bir dosya örneğin her duvarın bir NL-SfB kodu ve yangın dayanımı olması gerektiğini söyler. Doğrulayıcı, modelin buna uyup uymadığını eleman bazında denetler.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.compliance.q">Her şey geçerse modelim standarda uygun mudur?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.compliance.a">Her zaman değil. NL BIM Basis ILS ve RVB BIM Norm için birlikte gelen IDS dosyaları, bu standartların projeye özgü bir yorumudur. Geçmek, modelin bu yoruma uyduğu anlamına gelir; kaynaktaki her gereksinime değil. IDS ile ifade edilemeyen gereksinimler ayrıca değerlendirilmelidir.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.data.q">Modelim nereye gidiyor?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.data.a">3B görüntüleyici modeli kendi bilgisayarınızda gösterir. Doğrulama için model doğrulama sunucusuna gider: Windows uygulamasında bu, kendi bilgisayarınızda çalışan bir sunucudur; kendi kurulumunuzda ise kendi sunucunuzdur.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.platforms.q">macOS veya Linux'ta çalışır mı?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.platforms.a">macOS veya Linux için henüz bir yükleyici yok. Ancak Python paketi (Python 3.11 veya 3.12) komut satırı ve kütüphaneyle çalışır; sunucuyu da kendiniz konteyner olarak derleyebilirsiniz.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.size.q">Bir model ne kadar büyük olabilir?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.size.a">Dosya boyutunun yaklaşık on katı kadar bellek hesaplayın. 200 MB'lık bir model bu nedenle yaklaşık 2 GB RAM gerektirir.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.bcfms.q">BCF Manager Studio ile nasıl birlikte çalışır?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.bcfms.a">Bulguları BCF dosyası olarak dışa aktarın ve <a href="/tr/bcf-manager-studio/">BCF Manager Studio</a>'ya ya da BCF 2.1 okuyan başka bir yazılıma aktarın. Doğrudan bir bağlantı planlanıyor.</p></div>
+      </details>
+    </div>
+  </div></section>
+
+  <section class="section pp-anchor" id="technology"><div class="container">
+    <div class="section-head"><h2 data-i18n="tech.heading">Teknoloji</h2><p data-i18n="tech.sub">Python'da bağımsız bir doğrulama çekirdeği; etrafında bir görüntüleyici, bir sunucu ve bir Windows uygulaması.</p></div>
+    <div class="features features-compact">
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg></div><div><h4 data-i18n="tech.engine.title">IfcOpenShell ve ifctester</h4><p data-i18n="tech.engine.desc">IFC modelini okuyan ve IDS gereksinimlerine göre denetleyen açık kaynak kütüphaneler.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><h4 data-i18n="tech.python.title">Python ve FastAPI</h4><p data-i18n="tech.python.desc">Doğrulama çekirdeği, komut satırı ve doğrulamaları arka planda çalıştıran bir sunucu.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div><div><h4 data-i18n="tech.viewer.title">React ve That Open Engine</h4><p data-i18n="tech.viewer.desc">Three.js ve web-ifc tabanlı 3B görüntüleyici, OpenAEC Blueprint arayüzüyle.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg></div><div><h4 data-i18n="tech.tauri.title">Tauri</h4><p data-i18n="tech.tauri.desc">Doğrulama sunucusu yerleşik ve imzalı yükleyicili Windows uygulaması.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><div><h4 data-i18n="tech.standards.title">IFC, IDS ve BCF</h4><p data-i18n="tech.standards.desc">Model, gereksinimler ve bulgular için buildingSMART'ın açık standartları.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-lock"/></svg></div><div><h4 data-i18n="tech.docker.title">Docker</h4><p data-i18n="tech.docker.desc">Web arayüzü ve API'yi içeren, normal kullanıcı olarak çalışan ve sağlık denetimi olan bir konteyner.</p></div></div>
+    </div>
+  </div></section>
+
+  <!-- Release Notes (shared component) -->
+  <section id="releases" class="pp-releases">
   <div data-release-notes="OpenAEC-BIM-validator"></div>
+  <p class="pp-rel-more">
+    <button type="button" class="btn btn-secondary" data-rel-toggle aria-expanded="false" hidden><span data-rel-show data-i18n="releases.showAll">Tüm sürümleri göster</span><span data-rel-hide hidden data-i18n="releases.showLess">Yalnızca son üçünü göster</span></button>
+    <a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/releases" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="releases.github">GitHub'daki tüm sürümler</span></a>
+  </p>
+  </section>
   <script src="/shared/release-notes.js?v=20261105"></script>
+  <script src="/shared/productpagina.js?v=20261105"></script>
 
   <section class="section surface-spot panel">
     <div class="panel-center">
-      <h2>BIM <span class="accent">Validator</span></h2>
+      <h2 data-i18n="header.title">BIM <span class="accent">Validator</span></h2>
       <div class="btn-group">
-        <a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg><span data-i18n="header.github">GitHub'da kaynağı görüntüle</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="header.sourceBtn">GitHub'da kaynak kod</span></a>
+        <a href="#download" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="header.downloadBtn">İndir</span></a>
       </div>
+      <p><a href="/tr/bcf-manager-studio/" class="pp-more"><span data-i18n="cta.related">Ekibinizin BCF kayıtlarını tartıştığı ve takip ettiği BCF Manager Studio'ya da göz atın</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></p>
     </div>
   </section>
 
@@ -472,48 +551,6 @@
   </div>
 </footer>
 <!-- footer:end --></div>
-  <script>
-  (function(){
-    const track = document.getElementById('sliderTrack');
-    const dots = document.getElementById('sliderDots');
-    if (!track || !dots) return;
-    const slides = track.children.length;
-    let current = 0;
-    for(let i=0;i<slides;i++){
-      const d = document.createElement('button');
-      d.className = 'slider-dot' + (i===0?' active':'');
-      d.onclick = ()=>slideTo(i);
-      dots.appendChild(d);
-    }
-    window.slideMove = function(dir){slideTo(current+dir);};
-    window.slideTo = function(i){
-      current = (i+slides)%slides;
-      track.style.transform = 'translateX(-'+current*100+'%)';
-      dots.querySelectorAll('.slider-dot').forEach((d,idx)=>d.classList.toggle('active',idx===current));
-      track.querySelectorAll('video').forEach(v=>v.pause());
-    };
-  })();
-  // Functionaliteiten: één groep tegelijk via tabbladen. Zonder JavaScript staan alle groepen onder elkaar.
-  (function () {
-    var wrap = document.getElementById('functies');
-    if (!wrap) return;
-    var tabs = Array.prototype.slice.call(wrap.querySelectorAll('.mod-tab'));
-    var groups = Array.prototype.slice.call(wrap.querySelectorAll('.mod-group'));
-    wrap.querySelector('.mod-tabs').hidden = false;
-    wrap.classList.add('js-tabs');
-    function kies(i) {
-      tabs.forEach(function (t, n) { t.setAttribute('aria-selected', n === i ? 'true' : 'false'); t.tabIndex = n === i ? 0 : -1; });
-      groups.forEach(function (gr, n) { gr.hidden = n !== i; });
-    }
-    tabs.forEach(function (t, i) {
-      t.addEventListener('click', function () { kies(i); });
-      t.addEventListener('keydown', function (e) {
-        if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') { var n = (i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length; kies(n); tabs[n].focus(); }
-      });
-    });
-    kies(0);
-  })();
-  </script>
   <script src="/shared/i18n.js?v=20261105"></script>
 </body>
 </html>

@@ -1,167 +1,265 @@
 {
+  "meta": {
+    "title": "BIM Validator — OpenAEC Foundation",
+    "description": "BIM Validator: open source tool that checks IFC models against IDS requirements such as NL BIM Basis ILS and the RVB BIM Norm. View the findings in 3D and export them as BCF. As a Windows app, a Python package or on your own server."
+  },
   "header": {
-    "label": "OpenAEC Ecosystem",
-    "desc": "Open source IFC validation tool. Validate models against IDS specifications, Dutch standards and project requirements — in the browser, via CLI or API.",
-    "github": "View source on GitHub"
+    "label": "In development · IFC validation",
+    "title": "BIM <span class=\"accent\">Validator</span>",
+    "tagline": "Check IFC models against IDS requirements",
+    "desc": "Load an IFC model, choose NL BIM Basis ILS, the RVB BIM Norm or your own IDS file and see per element what is missing. View the errors in 3D and pass them on to your team as BCF issues. As a Windows app, as a Python package or on your own server.",
+    "downloadBtn": "Download",
+    "sourceBtn": "Source code on GitHub",
+    "issuesBtn": "Report an idea or problem",
+    "proofBcf": "BCF 2.1 in and out",
+    "proofFree": "Free · MIT",
+    "proofPre": "Pre-release"
   },
-  "stats": {
-    "ids": "Validation standard",
-    "nlbim": "NL BIM Basis ILS specs",
-    "rvb": "RVB BIM Norm specs",
-    "maxsize": "Max file size"
+  "alt": {
+    "overview": "The BIM Validator with an IFC model in 3D and the results of a check against NL BIM Basis ILS",
+    "rvb": "A check against the RVB BIM Norm, with the model tree on the left and the failed specifications on the right",
+    "bcf": "The BCF issues from a check, ready to export as a BCF file",
+    "project": "Opening a project from your own computer or from connected project storage",
+    "video": "Demo video of the BIM Validator"
   },
-  "validation": {
-    "title": "Validation",
-    "ids": {
-      "feature": "IDS validation",
-      "desc": "Validate IFC models against Information Delivery Specification (IDS) files. Every specification is checked per element for pass/fail with detailed error messages."
-    },
-    "nlbim": {
-      "feature": "NL BIM Basis ILS v2",
-      "desc": "Built-in Dutch BIM baseline standard with 12 specifications: storey naming, NL/SfB classification, space attributes, load-bearing structure, exterior surfaces, fire resistance, U-value, materials and renovation status."
-    },
-    "rvb": {
-      "feature": "RVB BIM Norm v1.1",
-      "desc": "Built-in Rijksvastgoedbedrijf (Dutch government real estate agency) standard with 27 specifications for government construction projects: project info, site coordinates, NL-SfB per element type, structural &amp; fire-safety properties and zone information."
-    },
-    "customids": {
-      "feature": "Custom IDS upload",
-      "desc": "Upload your own IDS specification file (max 10MB) to validate against project-specific or organisation-specific requirements."
-    },
-    "multischema": {
-      "feature": "Multi-schema",
-      "desc": "Supports both IFC2X3 and IFC4 schemas — compatible with exports from Revit, ArchiCAD, Tekla and other BIM software."
-    },
-    "elementreport": {
-      "feature": "Element-level reporting",
-      "desc": "For every failed element, the GlobalId, IFC class, element name and a detailed error message are shown."
-    }
+  "slider": {
+    "prev": "Previous image",
+    "next": "Next image"
   },
-  "viewer": {
-    "title": "3D Viewer",
-    "webgl": {
-      "feature": "WebGL 3D viewer",
-      "desc": "Interactive 3D view of the IFC model in the browser via That Open Engine (Three.js). No installation or plugin needed."
-    },
-    "selection": {
-      "feature": "Element selection",
-      "desc": "Click an element in the 3D viewer to view its properties, or click an error in the results list to highlight the element in 3D."
-    },
-    "navigation": {
-      "feature": "Camera navigation",
-      "desc": "Orbit, pan and zoom through the model. Fit-all button to bring the entire model into view."
-    },
-    "panels": {
-      "feature": "Resizable panels",
-      "desc": "Draggable three-way split: navigation panel (left), 3D viewer (centre) and detail panel (right). Every panel is collapsible."
-    }
+  "notice": {
+    "text": "<strong>Not production-ready yet:</strong> this tool is in development. You can try it out, but do not use it for real project work yet. Report what you run into on <a href=\"https://github.com/OpenAEC-Foundation/OpenAEC-BIM-validator/issues\" target=\"_blank\" rel=\"noopener\">GitHub</a>."
   },
-  "bcf": {
-    "title": "BCF Export",
-    "zip": {
-      "feature": "BCF 2.1 ZIP export",
-      "desc": "Export all validation errors as a BCF 2.1 ZIP file. Every failed element becomes a BCF topic with a viewpoint, directly importable into Revit, Solibri, BIMcollab or Navisworks."
-    },
-    "platform": {
-      "feature": "BCF Platform integration",
-      "desc": "Connect to the OpenAEC BCF Platform to push issues straight to a central project dashboard. Includes OIDC authentication and project selection."
-    },
-    "queue": {
-      "feature": "Issue queue",
-      "desc": "Local overview of generated BCF issues with thumbnails and expandable detail, before you export or push to the platform."
-    }
-  },
-  "interfaces": {
-    "title": "Interfaces",
-    "web": {
-      "feature": "Web application",
-      "desc": "Fully browser-based interface with drag-and-drop upload, standard selection, progress bar, results view and 3D viewer."
-    },
-    "cli": {
-      "feature": "CLI",
-      "desc": "<code>ifc-validate model.ifc --ids nl-bim</code> — suited for batch processing, CI/CD pipelines and scripting. Output as console, JSON or HTML."
-    },
-    "restapi": {
-      "feature": "REST API",
-      "desc": "FastAPI backend with async validation endpoints. Integrable into your own workflows, dashboards or third-party tools."
-    }
-  },
-  "reporting": {
-    "title": "Reporting &amp; output",
-    "dashboard": {
-      "feature": "Results dashboard",
-      "desc": "Overview card with total pass/fail, percentage, number of validated elements and timestamp."
-    },
-    "breakdown": {
-      "feature": "Specification breakdown",
-      "desc": "Expandable list per specification with pass/fail status, percentage and a paginated list of failed elements."
-    },
-    "jsonexport": {
-      "feature": "JSON export",
-      "desc": "Download complete validation results as a structured JSON file for further analysis or archiving."
-    },
-    "htmlreport": {
-      "feature": "HTML report",
-      "desc": "Generate a standalone HTML report for sharing with the project team or client."
-    }
-  },
-  "fileprocessing": {
-    "title": "File processing",
-    "dragdrop": {
-      "feature": "Drag &amp; drop upload",
-      "desc": "Drag IFC, IFCXML or IFCZIP files into the browser. Maximum 500MB per file."
-    },
-    "memory": {
-      "feature": "Memory management",
-      "desc": "Automatic check whether enough RAM is available (IFC files use ~10x their file size in memory). Temporary files are cleaned up immediately."
-    },
-    "largefiles": {
-      "feature": "Large files",
-      "desc": "Optimised for IFC models up to 1GB+. Progress indicator during processing."
-    }
-  },
-  "deployment": {
-    "title": "Deployment &amp; integration",
-    "docker": {
-      "feature": "Docker deployment",
-      "desc": "Full Docker Compose setup with backend, frontend, nginx, PostgreSQL and Redis. One command to start everything."
-    },
-    "onpremises": {
-      "feature": "On-premises",
-      "desc": "Run the validator on your own server for maximum control over data and privacy. No cloud dependency."
-    },
-    "multitenant": {
-      "feature": "Multi-tenant",
-      "desc": "Project storage with optional NextCloud integration for file management per organisation."
-    },
-    "sso": {
-      "feature": "SSO authentication",
-      "desc": "OIDC-based single sign-on for enterprise environments."
-    }
-  },
-  "developments": {
-    "label": "Project development",
-    "title": "Recent developments",
-    "intro": "The validator is under active development. These are the most notable recent improvements from the public repository.",
-    "item1": {
-      "title": "Projects scoped per organisation",
-      "desc": "Project, file and cloud routes now check the organisation context before data is opened or changed."
-    },
-    "item2": {
-      "title": "Dependencies secured",
-      "desc": "The frontend tooling and data parser have been updated and the reported security issues in the dependency check have been resolved."
-    },
-    "item3": {
-      "title": "Open and save projects locally and in the cloud",
-      "desc": "The project workflow now supports local project files, saving as a new project, and opening or updating from linked project storage."
-    },
-    "item4": {
-      "title": "Interactive section planes",
-      "desc": "Section planes can be selected and dragged directly in the 3D view for targeted model inspection."
-    },
-    "link": "View change"
+  "subnav": {
+    "label": "On this page",
+    "features": "Features",
+    "download": "Download",
+    "whatsnew": "New",
+    "faq": "Questions",
+    "tech": "Technology",
+    "releases": "Releases"
   },
   "features": {
-    "title": "Features"
+    "label": "Features",
+    "heading": "From IFC model to findings",
+    "sub": "Start with the highlights or pick a topic.",
+    "tabsLabel": "Features by topic"
+  },
+  "tabs": {
+    "highlights": "Highlights",
+    "validation": "Checking",
+    "viewer": "3D view",
+    "bcf": "BCF",
+    "integration": "Integration",
+    "all": "All features"
+  },
+  "hl": {
+    "ids": {
+      "kicker": "IDS",
+      "title": "Check your model against the requirements",
+      "desc": "Choose NL BIM Basis ILS (12 specifications), the RVB BIM Norm (26 specifications) or an IDS file of your own. For each specification you see how many elements pass and which ones fail, with the GlobalId, the IFC class and the reason."
+    },
+    "viewer": {
+      "kicker": "3D",
+      "title": "See in 3D where it goes wrong",
+      "desc": "The model sits next to the results. Click a finding and the viewer zooms in on the element, with its properties alongside. Section planes let you look inside the building, and you can load several models at once."
+    },
+    "bcf": {
+      "kicker": "BCF",
+      "title": "Findings as BCF issues",
+      "desc": "Turn a failed specification into a BCF issue with a viewpoint and export the list as a BCF 2.1 file. You can also open a BCF file, view the viewpoints, change the status and export it again. Comments and authors are kept."
+    },
+    "local": {
+      "kicker": "On your own computer",
+      "title": "An app, a package or a server",
+      "desc": "The Windows app has the validation server built in, so your model stays on your own computer. Keep projects locally or in connected project storage. To check models in a script or pipeline, use the Python package or the HTTP API."
+    }
+  },
+  "f": {
+    "ids": {
+      "title": "IDS validation",
+      "desc": "Check an IFC model against any IDS file, with pass or fail per element."
+    },
+    "nlbim": {
+      "title": "NL BIM Basis ILS v2",
+      "desc": "12 specifications, covering among other things storey names, NL-SfB, spaces, load-bearing structure, fire resistance and materials."
+    },
+    "rvb": {
+      "title": "RVB BIM Norm v1.1",
+      "desc": "26 specifications from the Dutch Government Real Estate Agency, such as project data, site location, storeys, spaces and NL-SfB per element type."
+    },
+    "custom": {
+      "title": "Your own IDS file",
+      "desc": "Load the requirements of your own project or organization."
+    },
+    "schema": {
+      "title": "IFC2X3 and IFC4",
+      "desc": "Both schemas, from any BIM package that exports IFC."
+    },
+    "reports": {
+      "title": "Reports in JSON and HTML",
+      "desc": "Save the results to share them or process them further."
+    },
+    "viewer": {
+      "title": "3D viewer",
+      "desc": "Orbit, pan and zoom through the model, with a cube to pick the viewing direction."
+    },
+    "tree": {
+      "title": "Model tree and properties",
+      "desc": "Browse from project to element and view info, property sets, quantities and type."
+    },
+    "section": {
+      "title": "Section planes",
+      "desc": "Section planes in X, Y and Z that you select and drag in the 3D view."
+    },
+    "themes": {
+      "title": "Five themes",
+      "desc": "Light, dark, Blueprint and two high-contrast themes."
+    },
+    "bcfexport": {
+      "title": "BCF 2.1 export",
+      "desc": "Findings with viewpoint and snapshot in a single BCF file."
+    },
+    "bcfimport": {
+      "title": "Open BCF files",
+      "desc": "Open a .bcf or .bcfzip file, jump to the viewpoint and change the status."
+    },
+    "bcfkeep": {
+      "title": "Nothing gets lost",
+      "desc": "On export, topic IDs, authors, comments and images are kept. Importing again does not overwrite your local issues."
+    },
+    "cli": {
+      "title": "Command line",
+      "desc": "<code>ifc-validate model.ifc --ids nl-bim</code> for batches, scripts and CI pipelines."
+    },
+    "python": {
+      "title": "Python library",
+      "desc": "Use the validation core on its own in your own code, without the app."
+    },
+    "api": {
+      "title": "HTTP API",
+      "desc": "Upload a model, follow the validation as a job and fetch the BCF when it is done."
+    },
+    "mcp": {
+      "title": "MCP server",
+      "desc": "Let an AI assistant check models, list standards and create reports locally."
+    },
+    "container": {
+      "title": "On your own server",
+      "desc": "A container with the web interface and the API that runs as a regular user."
+    }
+  },
+  "download": {
+    "label": "Download",
+    "title": "Download v2026.45.5",
+    "lead": "Free and without an account. A signed installer for Windows, with the validation server built in.",
+    "primary": "Download for Windows",
+    "metaWindows": ".exe installer for Windows (x64)",
+    "metaMac": "Windows only. On a Mac, use the Python package below.",
+    "metaLinux": "Windows only. On Linux, use the Python package below.",
+    "mobileNote": "The BIM Validator is a desktop app. Download it on your computer.",
+    "other": "Other files",
+    "fileExe": "Installer (.exe)",
+    "fileWhl": "Package (.whl)",
+    "fileSdist": "Source (.tar.gz)"
+  },
+  "verify": {
+    "heading": "Verify"
+  },
+  "releases": {
+    "github": "All releases on GitHub",
+    "showAll": "Show all releases",
+    "showLess": "Show only the latest three"
+  },
+  "whatsnew": {
+    "label": "New in v2026.45",
+    "title": "Open BCF files and <span>a refreshed interface</span>",
+    "desc": "The week 45 pre-releases bring the first Windows installer, opening BCF files and the OpenAEC Blueprint interface. They are still pre-releases.",
+    "ctaChangelog": "Full changelog",
+    "ctaLimits": "Known limitations",
+    "link": "View the release",
+    "items": {
+      "bcf": {
+        "title": "Open BCF files",
+        "desc": "Import BCF 2.1 into the issue list, open viewpoints, change the status and export again, without losing comments or images."
+      },
+      "ui": {
+        "title": "Refreshed interface",
+        "desc": "OpenAEC Blueprint UI 0.4 with five themes, native dialogs, new icons and fonts that work offline."
+      },
+      "windows": {
+        "title": "Windows app with its own server",
+        "desc": "One installer with the validation server inside. Projects and the database live in your own user folder."
+      },
+      "signed": {
+        "title": "Signed and verifiable",
+        "desc": "The app, server and installer are digitally signed. Use SHA256SUMS to check that a download is intact."
+      }
+    }
+  },
+  "faq": {
+    "heading": "Frequently asked questions",
+    "status": {
+      "q": "Can I use the BIM Validator yet?",
+      "a": "You can try it out: there are pre-releases for Windows and a Python package. The tool is still in development, so do not use its results as the only check in real project work yet."
+    },
+    "cost": {
+      "q": "What does it cost?",
+      "a": "Nothing. The source code is free to use under the MIT license. The IfcOpenShell components that run the validation are licensed under LGPL-3.0 or later."
+    },
+    "ids": {
+      "q": "What is IDS?",
+      "a": "The Information Delivery Specification is an open buildingSMART standard for writing down information requirements in an XML file that software can read. Such a file says, for example, that every wall must have an NL-SfB code and a fire resistance. The validator checks per element whether the model meets it."
+    },
+    "compliance": {
+      "q": "Does my model meet the standard if everything passes?",
+      "a": "Not necessarily. The bundled IDS files for NL BIM Basis ILS and the RVB BIM Norm are the project's own interpretation of those standards. Passing means the model meets that interpretation, not every requirement of the source. Requirements that cannot be expressed in IDS need a separate assessment."
+    },
+    "data": {
+      "q": "Where does my model go?",
+      "a": "The 3D viewer shows the model on your own computer. For validation the model goes to the validation server: in the Windows app that is a server running on your own computer, in an installation of your own it is your own server."
+    },
+    "platforms": {
+      "q": "Does it work on macOS or Linux?",
+      "a": "There is no installer for macOS or Linux yet. The Python package (Python 3.11 or 3.12) does work, with the command line and the library, and you can build the server as a container yourself."
+    },
+    "size": {
+      "q": "How large can a model be?",
+      "a": "Expect about ten times the file size in memory. A 200 MB model therefore needs around 2 GB of RAM."
+    },
+    "bcfms": {
+      "q": "How does it work with BCF Manager Studio?",
+      "a": "Export the findings as a BCF file and import it into <a href=\"/bcf-manager-studio/\">BCF Manager Studio</a> or any other package that reads BCF 2.1. A direct connection is planned."
+    }
+  },
+  "tech": {
+    "heading": "Technology",
+    "sub": "A standalone validation core in Python, with a viewer, a server and a Windows app around it.",
+    "engine": {
+      "title": "IfcOpenShell and ifctester",
+      "desc": "The open source libraries that read the IFC model and check it against the IDS requirements."
+    },
+    "python": {
+      "title": "Python and FastAPI",
+      "desc": "The validation core, the command line and a server that runs validation jobs in the background."
+    },
+    "viewer": {
+      "title": "React and That Open Engine",
+      "desc": "The 3D viewer, built on Three.js and web-ifc, with the OpenAEC Blueprint interface."
+    },
+    "tauri": {
+      "title": "Tauri",
+      "desc": "The Windows app, with the validation server built in and a signed installer."
+    },
+    "standards": {
+      "title": "IFC, IDS and BCF",
+      "desc": "The open buildingSMART standards for the model, the requirements and the findings."
+    },
+    "docker": {
+      "title": "Docker",
+      "desc": "A container with the web interface and the API that runs as a regular user and has a health check."
+    }
+  },
+  "cta": {
+    "related": "See also BCF Manager Studio, where your team discusses and tracks the BCF issues"
   }
 }
