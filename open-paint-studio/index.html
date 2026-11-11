@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
+
   <!-- lang-boot:start -->
   <style>html.lang-pending body{visibility:hidden}</style>
   <script>(function(){try{var l=localStorage.getItem("openaec-lang");l=l||"en";if(l!=="nl"){var d=document.documentElement;d.classList.add("lang-pending");setTimeout(function(){d.classList.remove("lang-pending")},3000)}}catch(e){}})()</script>
@@ -18,6 +19,7 @@
   <link rel="alternate" hreflang="es" href="https://open-aec.com/es/open-paint-studio/">
   <link rel="alternate" hreflang="x-default" href="https://open-aec.com/en/open-paint-studio/">
   <!-- hreflang:end -->
+
 
 
 
@@ -45,6 +47,7 @@
   <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/shared/style.css?v=20261015">
+  <link rel="stylesheet" href="/shared/productpagina.css?v=20261105">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,18 +57,19 @@
     "applicationSubCategory": "Image editor",
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://open-aec.com/open-paint-studio/",
-    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.43.2/OpenAEC-Paint-Studio_2026.43.2_x64-setup.exe",
-    "softwareVersion": "2026.43.2",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-paint-studio/releases/latest",
+    "softwareVersion": "2026.45.1",
     "description": "Open Paint Studio: een eenvoudige open source beeldbewerker met bewerkbare vectorobjecten, voor schetsen, markeringen en plattegronden. Voor Windows, macOS en Linux, met een API en MCP-server voor AI-assistenten.",
     "featureList": [
-      "Tekengereedschap",
-      "Tekst op het canvas",
-      "Bewerkbare vectorobjecten",
+      "Tekengereedschap: penseel, gum, vullen, pipet, lijnen, rechthoeken en ellipsen",
+      "Tekst direct op het canvas",
+      "Bewerkbare vectorobjecten en export als SVG",
       "Bijsnijden, formaat, draaien en spiegelen",
       "Kleurcorrecties",
-      "Ruim twintig beeldformaten openen",
-      "Export naar PNG, JPEG, WebP, SVG en IFCX",
-      "API en MCP-server"
+      "Openen van PNG, JPEG, WebP, TIFF, HEIC, PSD, SVG, JPEG XL, camera-RAW en IFCX",
+      "Export naar PNG, JPEG, WebP en SVG, opslaan als IFCX",
+      "Lokale API en MCP-server",
+      "Nederlands en Engels, vijf thema's"
     ],
     "screenshot": "https://open-aec.com/shared/assets/screenshots/open-paint-studio-overzicht.png",
     "offers": {
@@ -88,11 +92,62 @@
   }
   </script>
 
-    <style>
-    .tech-chips { margin-bottom: var(--sp-6); justify-content: flex-start; }
-    /* Vier downloads, gecentreerd */
-    #download .download-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
-    #download .download-item { flex: 0 1 300px; }
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wat kost het?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Niets. Open Paint Studio is open source onder de MIT-licentie; de OpenAEC-huisstijl en het logo vallen onder CC BY-SA 4.0. Geen licentiekosten, geen abonnement en geen account." }
+      },
+      {
+        "@type": "Question",
+        "name": "Op welke systemen draait het?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Windows (64-bit), macOS op Apple- en Intel-processors, en Linux op x86-64 als AppImage, .deb of Snap. De editor draait ook als browserapp, maar daar is nog geen openbare versie van; die start je zelf vanuit de broncode." }
+      },
+      {
+        "@type": "Question",
+        "name": "Welke bestanden kan ik openen en opslaan?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Openen: PNG, JPEG, WebP, GIF, BMP, TIFF, HEIC/HEIF, AVIF, PSD, SVG, ICO, TGA, JPEG 2000, JPEG XL, ondersteunde camera-RAW-varianten en IFCX/IFCXB. Exporteren: PNG, JPEG, WebP en SVG; opslaan (Ctrl+S) bewaart het beeld in IFCX. Een bestand met meerdere pagina's of een animatie opent als één beeld, en SVG en PSD worden bij het openen een rasterbeeld." }
+      },
+      {
+        "@type": "Question",
+        "name": "Blijven mijn vormen en tekst bewerkbaar?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja, zolang Vectorobjecten behouden aan staat (dat is standaard zo). Vormen, penseelstreken en tekst blijven losse objecten, ook na draaien, spiegelen of schalen. Kleurcorrecties maken het beeld plat; ongedaan maken haalt de objecten terug. Voor bewerkbare vectoren buiten de app exporteer je SVG." }
+      },
+      {
+        "@type": "Question",
+        "name": "Werkt het met een AI-assistent?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja. De MCP-server geeft een assistent tools om een beeld te maken, erop te tekenen, een stap ongedaan te maken en het resultaat als PNG terug te krijgen. De server gebruikt dezelfde lokale API als de editor. Beide zijn aparte Node-processen die je vanuit de broncode start; de installers starten ze niet." }
+      },
+      {
+        "@type": "Question",
+        "name": "Gaan mijn afbeeldingen naar de cloud?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nee. Ook de extra beeldformaten worden lokaal gelezen, door een ingebouwde ImageMagick in WebAssembly. Je concept wordt tussentijds op je eigen apparaat bewaard, en de API luistert alleen op je eigen computer." }
+      },
+      {
+        "@type": "Question",
+        "name": "Hoe groot mag een afbeelding zijn?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Een bestand tot 64 MB en 64 megapixel. Het werkcanvas wordt naar verhouding verkleind tot hoogstens 4096 pixels per zijde en 8 megapixel. De editor werkt met 8 bits per kanaal; HDR en lagen worden niet bewaard." }
+      },
+      {
+        "@type": "Question",
+        "name": "In welke talen is de interface?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nederlands en Engels, met vijf thema's: licht, Forge (donker), OpenAEC, Blueprint en hoog contrast." }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .pp-dl-notes { list-style: none; padding: 0; margin: var(--sp-6) auto 0; display: grid; gap: 10px; text-align: left; }
+    .pp-dl-notes li { color: var(--text-on-dark); font-size: 0.9rem; line-height: 1.6; }
+    .pp-dl-notes strong { color: white; }
+    .pp-dl-notes a { color: var(--warm-gold); font-weight: 600; }
+    .pp-dl-notes code { font-family: var(--font-code); font-size: 0.86em; }
+    .ops-sub { text-align: center; margin: var(--sp-16) 0 var(--sp-6); }
+    .page-panels .feature p a { color: #B45309; font-weight: 600; }
   </style>
   <!-- schema:start -->
   <script type="application/ld+json">
@@ -129,7 +184,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "nl",
-        "dateModified": "2026-11-10",
+        "dateModified": "2026-11-11",
         "breadcrumb": {
           "@id": "https://open-aec.com/open-paint-studio/#breadcrumb"
         }
@@ -192,153 +247,243 @@
 
   <main id="main">
 
-  <header class="product-head surface-spot">
+  <header class="product-head surface-spot" id="top">
     <div class="product-head-inner">
       <p class="pill-label" data-i18n="header.label">Open source beeldbewerker</p>
       <h1 data-i18n="header.title">Open <span class="accent">Paint</span> Studio</h1>
+      <p class="pp-tagline" data-i18n="header.tagline">Schetsen, markeren en bijwerken, zonder zwaar fotoprogramma</p>
       <p class="lead" data-i18n="header.desc">Een eenvoudige beeldbewerker in de geest van MS Paint, in de OpenAEC-huisstijl. Teken, markeer en bewerk afbeeldingen, houd vormen en tekst bewerkbaar als vectorobjecten en laat een AI-assistent meewerken via de API en MCP-server.</p>
       <div class="btn-group">
-        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.title">Download</span></a>
+        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="cta.download">Download</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-paint-studio/blob/main/docs/demo/OpenAEC-Paint-Studio-2026.43.1-demo-preview.mp4" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span data-i18n="cta.demo">Demovideo (55 s)</span></a>
         <a href="https://github.com/OpenAEC-Foundation/open-paint-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="cta.github">Bekijk op GitHub</span></a>
       </div>
-      <div class="chip-row">
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-rocket"/></svg><span data-i18n="header.badge">Nieuw</span> · v2026.43.2</span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg>Windows · macOS · Linux</span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg>NL · EN</span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-euro"/></svg>€ 0</span>
-      </div>
+      <ul class="chip-row pp-proof">
+        <li class="chip"><span>PNG · JPEG · WebP · SVG · PSD · RAW · IFCX</span></li>
+        <li class="chip"><span>Windows · macOS · Linux</span></li>
+        <li class="chip"><span data-i18n="header.proofVector">Bewerkbare vectorobjecten</span></li>
+        <li class="chip"><span data-i18n="header.proofAi">API en MCP-server</span></li>
+        <li class="chip"><span data-i18n="header.proofFree">Gratis · MIT-licentie</span></li>
+      </ul>
     </div>
-    <div class="media-slider shot-overlap">
+    <div class="media-slider shot-overlap" data-pp-slider>
       <div class="slider-container">
-        <div class="slider-track" id="sliderTrack">
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-paint-studio-overzicht.png" alt="Open Paint Studio - Editor met een geannoteerde plattegrond, tekengereedschap en kleuren in het lint" width="1600" height="1000"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-paint-studio-tekst.png" alt="Open Paint Studio - Tekst direct op het canvas bewerken met lettertype en grootte" width="1600" height="1000"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-paint-studio-donker.png" alt="Open Paint Studio - Donker Forge-thema met alle objecten geselecteerd" width="1600" height="1000"></div>
+        <div class="slider-track">
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-paint-studio-donker.png" width="1600" height="1000" alt="Open Paint Studio in het donkere Forge-thema met een voorbeeldplattegrond waarin met Ctrl+A alle objecten zijn geselecteerd" data-i18n="slides.dark" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-paint-studio-overzicht.png" width="1600" height="1000" alt="De editor met een geannoteerde voorbeeldplattegrond, het tekengereedschap en de kleuren in het lint Start" data-i18n="slides.overview" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-paint-studio-tekst.png" width="1600" height="1000" alt="Tekst direct op het canvas bewerken, met keuze van lettertype en grootte, terwijl de vormen bewerkbaar blijven" data-i18n="slides.text" data-i18n-attr="alt"></div>
         </div>
-        <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Vorige">&lsaquo;</button>
-        <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Volgende">&rsaquo;</button>
+        <button type="button" class="slider-btn slider-prev" aria-label="Vorige afbeelding">&lsaquo;</button>
+        <button type="button" class="slider-btn slider-next" aria-label="Volgende afbeelding">&rsaquo;</button>
       </div>
-      <div class="slider-dots" id="sliderDots"></div>
+      <div class="slider-dots"></div>
     </div>
   </header>
 
-  <section class="section after-overlap" id="download"><div class="container">
-    <div class="download-section">
-      <h3 data-i18n="download.title">Download</h3>
-      <div class="download-grid">
-        <div class="download-item"><div class="os">Windows</div><div class="size" data-i18n="download.windows">Installer (.exe)</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.43.2/OpenAEC-Paint-Studio_2026.43.2_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-paint-studio" data-platform="windows" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg>Download</a></div>
-        <div class="download-item"><div class="os">macOS</div><div class="size" data-i18n="download.macos">Apple- en Intel-processors (.dmg)</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.43.2/OpenAEC-Paint-Studio_2026.43.2_universal.dmg" data-gh-download="OpenAEC-Foundation/open-paint-studio" data-platform="macos" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg>Download</a></div>
-        <div class="download-item"><div class="os">Linux</div><div class="size" data-i18n="download.linuxDeb">Debian, Ubuntu (.deb)</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.43.2/OpenAEC-Paint-Studio_2026.43.2_amd64.deb" data-gh-download="OpenAEC-Foundation/open-paint-studio" data-platform="linux-deb" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg>Download</a></div>
-        <div class="download-item"><div class="os">Linux</div><div class="size" data-i18n="download.linuxAppimage">Elke distributie (AppImage)</div>
-          <a href="https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.43.2/OpenAEC-Paint-Studio_2026.43.2_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-paint-studio" data-platform="linux-appimage" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg>Download</a></div>
+  <nav class="pp-subnav" aria-label="Op deze pagina" data-i18n="subnav.label" data-i18n-attr="aria-label">
+    <div class="pp-subnav-inner">
+      <a href="#features" data-i18n="subnav.features">Functies</a>
+      <a href="#download" data-i18n="subnav.download">Download</a>
+      <a href="#whats-new" data-i18n="subnav.whatsnew">Nieuw</a>
+      <a href="#faq" data-i18n="subnav.faq">Vragen</a>
+      <a href="#technology" data-i18n="subnav.tech">Techniek</a>
+      <a href="#releases" data-i18n="subnav.releases">Releases</a>
+    </div>
+  </nav>
+
+  <section class="section pp-anchor" id="features"><div class="container">
+    <div class="section-head"><p class="pill-label" data-i18n="features.label">Functies</p><h2 data-i18n="features.heading">Licht, snel en bewerkbaar</h2><p data-i18n="features.sub">Begin bij de hoogtepunten of kies een onderwerp.</p></div>
+    <div class="pp-tabs" role="tablist" aria-label="Functies per onderwerp" data-i18n="features.tabsLabel" data-i18n-attr="aria-label" hidden>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-highlights" data-tab="highlights" aria-controls="pp-feature-panel" aria-selected="true" tabindex="0"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg><span data-i18n="tabs.highlights">Hoogtepunten</span> <span class="pp-tab-count" data-count="highlights"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-draw" data-tab="draw" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pen"/></svg><span data-i18n="tabs.draw">Tekenen en tekst</span> <span class="pp-tab-count" data-count="draw"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-image" data-tab="image" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg><span data-i18n="tabs.image">Afbeelding en formaten</span> <span class="pp-tab-count" data-count="image"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-auto" data-tab="auto" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg><span data-i18n="tabs.auto">Automatiseren</span> <span class="pp-tab-count" data-count="auto"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-all" data-tab="all" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg><span data-i18n="tabs.all">Alle functies</span> <span class="pp-tab-count" data-count="all"></span></button>
+    </div>
+    <div id="pp-feature-panel" role="tabpanel" aria-labelledby="pp-tab-highlights">
+      <div class="pp-hl" data-panel="highlights">
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-paint-studio-overzicht.png" width="1600" height="1000" loading="lazy" decoding="async" alt="De editor met een geannoteerde voorbeeldplattegrond, het tekengereedschap en de kleuren in het lint Start" data-i18n="slides.overview" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">01</span> <span data-i18n="hl.draw.kicker">Tekenen</span></p>
+            <h3 data-i18n="hl.draw.title">Markeren in een paar klikken</h3>
+            <p data-i18n="hl.draw.desc">Penseel, gum, vullen, pipet, lijnen, rechthoeken en ellipsen, met instelbare dikte, dekking en een kleurenpalet. Ideaal om een screenshot te markeren, een plattegrond te schetsen of een foto te annoteren.</p>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-paint-studio-tekst.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Tekst direct op het canvas bewerken, met keuze van lettertype en grootte, terwijl de vormen bewerkbaar blijven" data-i18n="slides.text" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">02</span> <span data-i18n="hl.text.kicker">Tekst</span></p>
+            <h3 data-i18n="hl.text.title">Tekst direct op het canvas</h3>
+            <p data-i18n="hl.text.desc">Typ tekst in de afbeelding en kies lettertype en grootte. Klik later op de tekst om hem aan te passen. De lettertypen zijn meegeleverd, dus het werkt ook zonder internet.</p>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-paint-studio-donker.png" width="1600" height="1000" loading="lazy" decoding="async" alt="Open Paint Studio in het donkere Forge-thema met een voorbeeldplattegrond waarin met Ctrl+A alle objecten zijn geselecteerd" data-i18n="slides.dark" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">03</span> <span data-i18n="hl.vector.kicker">Vectorobjecten</span></p>
+            <h3 data-i18n="hl.vector.title">Wat je tekent, blijft bewerkbaar</h3>
+            <p data-i18n="hl.vector.desc">Met <em>Vectorobjecten behouden</em> selecteer, verplaats, schaal en herstyle je vormen en tekst achteraf; Ctrl+A pakt alles tegelijk. Bijsnijden, draaien en spiegelen laten de objecten intact, en je exporteert ze als bewerkbare SVG.</p>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-paint-studio-overzicht.png" width="1600" height="1000" loading="lazy" decoding="async" alt="De editor met een geannoteerde voorbeeldplattegrond, het tekengereedschap en de kleuren in het lint Start" data-i18n="slides.overview" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">04</span> <span data-i18n="hl.formats.kicker">Formaten</span></p>
+            <h3 data-i18n="hl.formats.title">Opent bijna elk beeld, op je eigen computer</h3>
+            <p data-i18n="hl.formats.desc">Gewone afbeeldingen leest de editor zelf; voor TIFF, PSD, HEIC, JPEG XL, camera-RAW en meer zit ImageMagick ingebouwd als WebAssembly. Er gaat niets naar de cloud. Exporteer naar PNG, JPEG, WebP of SVG, of bewaar het beeld in IFCX.</p>
+          </div>
+        </article>
       </div>
+      <ul class="pp-tiles">
+        <li class="pp-tile" data-cats="draw"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pen"/></svg></div><div><h3 data-i18n="features.draw.title">Tekenen</h3><p data-i18n="features.draw.desc">Penseel, gum, vullen, pipet, lijnen, rechthoeken en ellipsen, met instelbare dikte, dekking en een kleurenpalet.</p></div></div></li>
+        <li class="pp-tile" data-cats="draw"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-text"/></svg></div><div><h3 data-i18n="features.text.title">Tekst op het canvas</h3><p data-i18n="features.text.desc">Typ tekst direct in de afbeelding en kies lettertype en grootte. De lettertypen zijn meegeleverd, dus het werkt ook offline.</p></div></div></li>
+        <li class="pp-tile" data-cats="draw"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><h3 data-i18n="features.vector.title">Bewerkbare vectorobjecten</h3><p data-i18n="features.vector.desc">Selecteer, verplaats, schaal en herstyle getekende vormen en tekst. Ctrl+A pakt alles tegelijk. Exporteer als bewerkbare SVG.</p></div></div></li>
+        <li class="pp-tile" data-cats="draw"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div><div><h3 data-i18n="features.undo.title">Ongedaan maken en herstel</h3><p data-i18n="features.undo.desc">De laatste 40 stappen ongedaan maken of opnieuw doen, en een concept dat bewaard blijft als je het venster sluit.</p></div></div></li>
+        <li class="pp-tile" data-cats="image"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-scissors"/></svg></div><div><h3 data-i18n="features.image.title">Afbeelding bewerken</h3><p data-i18n="features.image.desc">Bijsnijden, formaat wijzigen, draaien en spiegelen. Vectorobjecten blijven daarbij behouden.</p></div></div></li>
+        <li class="pp-tile" data-cats="image"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div><div><h3 data-i18n="features.colors.title">Kleurcorrecties</h3><p data-i18n="features.colors.desc">Helderheid, contrast, verzadiging, grijstinten, inverteren en sepia.</p></div></div></li>
+        <li class="pp-tile" data-cats="image"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div><div><h3 data-i18n="f.open.title">Openen</h3><p data-i18n="formats.open">PNG, JPEG, WebP, GIF, BMP, TIFF, HEIC/HEIF, AVIF, PSD, SVG, ICO, TGA, JPEG 2000, JPEG XL, camera-RAW en IFCX/IFCXB.</p></div></div></li>
+        <li class="pp-tile" data-cats="image"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div><h3 data-i18n="f.save.title">Exporteren en opslaan</h3><p data-i18n="formats.save">Exporteer naar PNG, JPEG, WebP of SVG, of bewaar het beeld in IFCX of IFCXB.</p></div></div></li>
+        <li class="pp-tile" data-cats="image"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-lock"/></svg></div><div><h3 data-i18n="f.local.title">Alles lokaal</h3><p data-i18n="formats.local">Geen upload naar de cloud. Je concept wordt tussentijds op je eigen apparaat bewaard.</p></div></div></li>
+        <li class="pp-tile" data-cats="image"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><h3 data-i18n="f.view.title">Zoomen en focusmodus</h3><p data-i18n="f.view.desc">Ctrl+scroll zoomt van 10% tot 400%, slepen met de middelste muisknop verschuift het canvas, en de focusmodus (F11) geeft het tekenvlak het hele venster.</p></div></div></li>
+        <li class="pp-tile" data-cats="draw"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div><div><h3 data-i18n="features.themes.title">Vijf thema’s, twee talen</h3><p data-i18n="features.themes.desc">Licht, Forge, OpenAEC, Blueprint en hoog contrast, in het Nederlands en het Engels.</p></div></div></li>
+        <li class="pp-tile" data-cats="auto"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div><div><h3 data-i18n="f.api.title">Lokale API</h3><p data-i18n="f.api.desc">Een API op 127.0.0.1 met een eigen token. Stuur het huidige beeld naar de API of laad er een document uit; een revisiecontrole voorkomt dat twee programma's elkaars werk overschrijven.</p></div></div></li>
+        <li class="pp-tile" data-cats="auto"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg></div><div><h3 data-i18n="features.ai.title">API en MCP</h3><p data-i18n="features.ai.desc">Een lokale API met eigen token en een MCP-server, zodat een AI-assistent zoals Claude afbeeldingen kan openen en bewerken.</p></div></div></li>
+        <li class="pp-tile" data-cats="auto"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><div><h3 data-i18n="f.assoc.title">Bestandskoppelingen</h3><p data-i18n="f.assoc.desc">Open een afbeelding of een IFCX/IFCXB-document met een dubbelklik in je verkenner.</p></div></div></li>
+      </ul>
     </div>
   </div></section>
 
-  <section class="section"><div class="container">
-    <div class="panel-split on-light">
-      <div class="panel-split-text">
-        <h2 data-i18n="why.title">Waarom <span class="accent">Open Paint</span> Studio?</h2>
+  <section class="section surface-dark panel pp-anchor" id="download" data-pp-repo="OpenAEC-Foundation/open-paint-studio">
+    <div class="pp-dl">
+      <p class="pill-label" data-i18n="download.label">Download</p>
+      <h2 data-i18n="download.title" data-pp-ver>Download v2026.45.1</h2>
+      <p class="pp-dl-lead" data-i18n="download.lead">Gratis en zonder account. Elke knop start de download meteen.</p>
+      <div class="pp-dl-main" data-pp-main>
+        <a href="https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.45.1/OpenAEC-Paint-Studio_2026.45.1_x64-setup.exe" class="btn btn-glow btn-lg" data-pp-dl="windows" data-pp-primary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.primary">Download voor je computer</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-paint-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="cta.github">Bekijk op GitHub</span></a>
       </div>
-      <div class="panel-split-body">
-        <p data-i18n="why.desc">Even een screenshot markeren, een plattegrond schetsen of een foto bijsnijden: daar is geen zwaar fotoprogramma voor nodig. Open Paint Studio is licht, start snel en werkt zonder internet.</p>
-        <p data-i18n="why.desc2">Wat je tekent blijft bewerkbaar. Vormen en tekst verplaats, schaal en herstyle je achteraf, en je exporteert ze als bewerkbare SVG.</p>
-      </div>
+      <p class="pp-dl-meta"><span data-os="windows" data-i18n="download.metaWindows">Installer voor Windows, 64-bit, zonder beheerdersrechten</span><span data-os="macos" data-i18n="download.metaMac" hidden>Universele schijfkopie voor macOS, Apple- en Intel-processors</span><span data-os="linux-appimage" data-i18n="download.metaLinux" hidden>AppImage voor Linux x86-64, draait op de meeste distributies</span><span class="pp-dl-size"> · <span data-pp-primary-size></span></span></p>
+      <p class="pp-dl-mobile" data-pp-mobile hidden data-i18n="download.mobileNote">Open Paint Studio is een desktopapplicatie voor Windows, macOS en Linux. Download hem op je computer; alle bestanden staan hieronder.</p>
+      <details class="pp-dl-other" data-pp-other>
+        <summary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg><span data-i18n="download.other">Andere platforms</span></summary>
+        <div class="pp-files">
+          <div class="pp-files-col"><h3>Windows</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.45.1/OpenAEC-Paint-Studio_2026.45.1_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-paint-studio" data-platform="windows" data-pp-dl="windows" data-pp-item="windows"><span class="pp-file"><span data-i18n="download.windows">Installer (.exe)</span><span class="pp-file-size"> · <span data-pp-size="windows"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          </ul></div>
+          <div class="pp-files-col"><h3>macOS</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.45.1/OpenAEC-Paint-Studio_2026.45.1_universal.dmg" data-gh-download="OpenAEC-Foundation/open-paint-studio" data-platform="macos" data-pp-dl="macos" data-pp-item="macos"><span class="pp-file"><span data-i18n="download.macos">Apple- en Intel-processors (.dmg)</span><span class="pp-file-size"> · <span data-pp-size="macos"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          </ul></div>
+          <div class="pp-files-col"><h3>Linux</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.45.1/OpenAEC-Paint-Studio_2026.45.1_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-paint-studio" data-platform="linux-appimage" data-pp-dl="linux-appimage" data-pp-item="linux-appimage"><span class="pp-file"><span data-i18n="download.linuxAppimage">Elke distributie (AppImage)</span><span class="pp-file-size"> · <span data-pp-size="linux-appimage"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.45.1/OpenAEC-Paint-Studio_2026.45.1_amd64.deb" data-gh-download="OpenAEC-Foundation/open-paint-studio" data-platform="linux-deb" data-pp-dl="linux-deb" data-pp-item="linux-deb"><span class="pp-file"><span data-i18n="download.linuxDeb">Debian, Ubuntu (.deb)</span><span class="pp-file-size"> · <span data-pp-size="linux-deb"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.45.1/open-paint-studio_2026.45.1_amd64.snap" data-pp-dl="linux-snap" data-pp-item="linux-snap"><span class="pp-file"><span data-i18n="download.snapFile">Snap-pakket (.snap)</span><span class="pp-file-size"> · <span data-pp-size="linux-snap"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://snapcraft.io/open-paint-studio" target="_blank" rel="noopener"><span class="pp-file" data-i18n="download.snapStore">Snap Store</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></li>
+          </ul></div>
+        </div>
+        <ul class="pp-dl-notes">
+          <li data-i18n="download.note.windows"><strong>Windows:</strong> de installer installeert voor de huidige gebruiker, zonder beheerdersrechten. Ontbreekt WebView2, dan installeert de installer die zelf.</li>
+          <li data-i18n="download.note.mac"><strong>macOS:</strong> één universele schijfkopie voor Mac met Apple- of Intel-processor.</li>
+          <li data-i18n="download.note.sha">Controleer een download met het bestand <code>SHA256SUMS</code> bij de release.</li>
+          <li data-i18n="download.note.services">De API en de MCP-server zijn aparte Node-processen en zitten niet in de installers. Je start ze vanuit de broncode; de <a href="https://github.com/OpenAEC-Foundation/open-paint-studio#api-and-mcp" target="_blank" rel="noopener">README</a> legt uit hoe (Engels).</li>
+        </ul>
+      </details>
+      <p class="pp-dl-note"><a href="https://github.com/OpenAEC-Foundation/open-paint-studio/releases" target="_blank" rel="noopener" data-i18n="releases.github">Alle releases op GitHub</a></p>
     </div>
-  </div></section>
+  </section>
 
-  <section class="section surface-dark panel">
+  <section class="section surface-dark panel pp-anchor" id="whats-new">
     <div class="panel-split">
       <div class="panel-split-text">
-        <p class="pill-label">PNG · JPEG · SVG · PSD · RAW · IFCX</p>
-        <h2 data-i18n="formats.title">Opent bijna elk beeld</h2>
-        <p data-i18n="formats.desc">Gewone afbeeldingen leest de browser zelf; voor de rest zit ImageMagick ingebouwd, als WebAssembly. Alles gebeurt op je eigen computer.</p>
+        <p class="pill-label" data-i18n="whatsnew.label">Nieuw in v2026.45.1</p>
+        <h2 data-i18n="whatsnew.title">Een eigen <span>logo</span> en een Snap-pakket</h2>
+        <p data-i18n="whatsnew.desc">Uitgebracht op 6 november 2026. Deze versie geeft de app zijn goedgekeurde logo en brengt een Snap-pakket voor Linux.</p>
+        <div class="btn-group">
+          <a href="https://github.com/OpenAEC-Foundation/open-paint-studio/releases/tag/v2026.45.1" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="whatsnew.ctaChangelog">Volledige release notes</span></a>
+        </div>
       </div>
       <ul class="split-cards">
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div><div><p data-i18n="formats.open"><strong>Openen</strong> PNG, JPEG, WebP, GIF, BMP, TIFF, HEIC/HEIF, AVIF, PSD, SVG, ICO, TGA, JPEG 2000, JPEG XL, camera-RAW en IFCX/IFCXB.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div><p data-i18n="formats.save"><strong>Opslaan</strong> Exporteer naar PNG, JPEG, WebP of SVG, of bewaar het beeld in IFCX of IFCXB.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-lock"/></svg></div><div><p data-i18n="formats.local"><strong>Lokaal</strong> Geen upload naar de cloud. Je concept wordt tussentijds op je eigen apparaat bewaard.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg></div><div><h4 data-i18n="whatsnew.items.logo.title">Goedgekeurd app-logo</h4><p data-i18n="whatsnew.items.logo.desc">Het logo uit de Snap Store staat nu in de app, de browserversie en de installers, op elk formaat met de juiste kleuren en afgeronde hoeken.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div><h4 data-i18n="whatsnew.items.snap.title">Snap-pakket</h4><p data-i18n="whatsnew.items.snap.desc">Naast de AppImage en het .deb-pakket staat er nu een .snap bij de release, gebouwd uit precies hetzelfde .deb-pakket.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg></div><div><h4 data-i18n="whatsnew.items.version.title">Eén versienummer</h4><p data-i18n="whatsnew.items.version.desc">De app en alle pakketten en installers dragen nu hetzelfde versienummer.</p></div></li>
       </ul>
     </div>
   </section>
 
-  <section class="section"><div class="container">
-    <h2 data-i18n="features.title">Functionaliteiten</h2>
-    <div class="features features-4">
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pen"/></svg></div>
-        <h4 data-i18n="features.draw.title">Tekenen</h4>
-        <p data-i18n="features.draw.desc">Penseel, gum, vullen, pipet, lijnen, rechthoeken en ellipsen, met instelbare dikte, dekking en een kleurenpalet.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-text"/></svg></div>
-        <h4 data-i18n="features.text.title">Tekst op het canvas</h4>
-        <p data-i18n="features.text.desc">Typ tekst direct in de afbeelding en kies lettertype en grootte. De lettertypen zijn meegeleverd, dus het werkt ook offline.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div>
-        <h4 data-i18n="features.vector.title">Bewerkbare vectorobjecten</h4>
-        <p data-i18n="features.vector.desc">Selecteer, verplaats, schaal en herstyle getekende vormen en tekst. Ctrl+A pakt alles tegelijk. Exporteer als bewerkbare SVG.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-scissors"/></svg></div>
-        <h4 data-i18n="features.image.title">Afbeelding bewerken</h4>
-        <p data-i18n="features.image.desc">Bijsnijden, formaat wijzigen, draaien en spiegelen. Vectorobjecten blijven daarbij behouden.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div>
-        <h4 data-i18n="features.colors.title">Kleurcorrecties</h4>
-        <p data-i18n="features.colors.desc">Helderheid, contrast, verzadiging, grijstinten, inverteren en sepia.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div>
-        <h4 data-i18n="features.undo.title">Ongedaan maken en herstel</h4>
-        <p data-i18n="features.undo.desc">De laatste 40 stappen ongedaan maken of opnieuw doen, en een concept dat bewaard blijft als je het venster sluit.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-bolt"/></svg></div>
-        <h4 data-i18n="features.ai.title">API en MCP</h4>
-        <p data-i18n="features.ai.desc">Een lokale API met eigen token en een MCP-server, zodat een AI-assistent zoals Claude afbeeldingen kan openen en bewerken.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg></div>
-        <h4 data-i18n="features.themes.title">Vijf thema’s, twee talen</h4>
-        <p data-i18n="features.themes.desc">Licht, Forge, OpenAEC, Blueprint en hoog contrast, in het Nederlands en het Engels.</p>
-      </div>
+  <section class="section pp-anchor" id="faq"><div class="container">
+    <h2 data-i18n="faq.heading">Veelgestelde vragen</h2>
+    <div class="pp-faq-list">
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.cost.q">Wat kost het?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.cost.a">Niets. Open Paint Studio is open source onder de MIT-licentie; de OpenAEC-huisstijl en het logo vallen onder CC BY-SA 4.0. Geen licentiekosten, geen abonnement en geen account.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.systems.q">Op welke systemen draait het?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.systems.a">Windows (64-bit), macOS op Apple- en Intel-processors, en Linux op x86-64 als AppImage, .deb of Snap. De editor draait ook als browserapp, maar daar is nog geen openbare versie van; die start je zelf vanuit de broncode.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.formats.q">Welke bestanden kan ik openen en opslaan?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.formats.a">Openen: PNG, JPEG, WebP, GIF, BMP, TIFF, HEIC/HEIF, AVIF, PSD, SVG, ICO, TGA, JPEG 2000, JPEG XL, ondersteunde camera-RAW-varianten en IFCX/IFCXB. Exporteren: PNG, JPEG, WebP en SVG; opslaan (Ctrl+S) bewaart het beeld in IFCX. Een bestand met meerdere pagina's of een animatie opent als één beeld, en SVG en PSD worden bij het openen een rasterbeeld.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.vector.q">Blijven mijn vormen en tekst bewerkbaar?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.vector.a">Ja, zolang <em>Vectorobjecten behouden</em> aan staat (dat is standaard zo). Vormen, penseelstreken en tekst blijven losse objecten, ook na draaien, spiegelen of schalen. Kleurcorrecties maken het beeld plat; ongedaan maken haalt de objecten terug. Voor bewerkbare vectoren buiten de app exporteer je SVG.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.ai.q">Werkt het met een AI-assistent?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.ai.a">Ja. De MCP-server geeft een assistent tools om een beeld te maken, erop te tekenen, een stap ongedaan te maken en het resultaat als PNG terug te krijgen. De server gebruikt dezelfde lokale API als de editor. Beide zijn aparte Node-processen die je vanuit de broncode start; de installers starten ze niet.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.privacy.q">Gaan mijn afbeeldingen naar de cloud?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.privacy.a">Nee. Ook de extra beeldformaten worden lokaal gelezen, door een ingebouwde ImageMagick in WebAssembly. Je concept wordt tussentijds op je eigen apparaat bewaard, en de API luistert alleen op je eigen computer.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.size.q">Hoe groot mag een afbeelding zijn?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.size.a">Een bestand tot 64 MB en 64 megapixel. Het werkcanvas wordt naar verhouding verkleind tot hoogstens 4096 pixels per zijde en 8 megapixel. De editor werkt met 8 bits per kanaal; HDR en lagen worden niet bewaard.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.lang.q">In welke talen is de interface?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.lang.a">Nederlands en Engels, met vijf thema's: licht, Forge (donker), OpenAEC, Blueprint en hoog contrast.</p></div>
+      </details>
     </div>
   </div></section>
 
-  <section class="section"><div class="container">
-    <div class="panel-split on-light">
-      <div class="panel-split-text">
-        <h2 data-i18n="tech.title">Technologie</h2>
-      </div>
-      <div class="panel-split-body">
-        <div class="chip-row chip-row-light tech-chips">
-          <span class="chip">Tauri 2</span>
-          <span class="chip">Rust</span>
-          <span class="chip">TypeScript</span>
-          <span class="chip">Vite</span>
-          <span class="chip">ImageMagick WebAssembly</span>
-          <span class="chip">MCP</span>
-        </div>
-        <p data-i18n="tech.desc">Draait als browserapp of als desktopapplicatie met Tauri 2. De API en de MCP-server zijn aparte Node-processen op je eigen computer. De editor is MIT-gelicentieerd; de OpenAEC-huisstijl valt onder CC BY-SA 4.0.</p>
-      </div>
+  <section class="section pp-anchor" id="technology"><div class="container">
+    <div class="section-head"><h2 data-i18n="tech.heading">Techniek en licentie</h2><p data-i18n="tech.sub">Voor wie wil weten hoe het gebouwd is.</p></div>
+    <div class="features features-compact">
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><h4 data-i18n="tech.tauri.title">Tauri 2 en Rust</h4><p data-i18n="tech.tauri.desc">Een kleine desktopapp met de webview van het systeem; dezelfde editor draait ook in de browser.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-keyboard"/></svg></div><div><h4 data-i18n="tech.ts.title">TypeScript en Vite</h4><p data-i18n="tech.ts.desc">De editor zelf, met de lint-onderdelen en thema's van het OpenAEC-stijlboek.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><h4 data-i18n="tech.magick.title">ImageMagick in WebAssembly</h4><p data-i18n="tech.magick.desc">Leest de minder gangbare beeldformaten lokaal, in een aparte worker.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div><div><h4 data-i18n="tech.api.title">API en MCP</h4><p data-i18n="tech.api.desc">Aparte Node-processen; de API luistert alleen op 127.0.0.1 en vraagt een token, de MCP-server praat via stdio.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><div><h4 data-i18n="tech.ifcx.title">IFCX</h4><p data-i18n="tech.ifcx.desc">Het beeld kan worden bewaard in een IFCX- of IFCXB-document, zodat het naast bouwinformatie past.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div><div><h4 data-i18n="tech.licenseTitle">Licenties</h4><p data-i18n="tech.desc">De editor en de services vallen onder de MIT-licentie; de OpenAEC-huisstijl, het logo en de onderdelen uit het stijlboek onder CC BY-SA 4.0.</p></div></div>
+    </div>
+
+    <h3 class="ops-sub" data-i18n="docs.title">Documentatie en broncode</h3>
+    <div class="features features-compact">
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clipboard"/></svg></div><p data-i18n="docs.readme"><a href="https://github.com/OpenAEC-Foundation/open-paint-studio#readme" target="_blank" rel="noopener">README</a>: functies, zelf bouwen en de API en MCP-server starten (Engels).</p></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><p data-i18n="docs.formats"><a href="https://github.com/OpenAEC-Foundation/open-paint-studio/blob/main/docs/IMAGE-FORMATS.md" target="_blank" rel="noopener">IMAGE-FORMATS.md</a>: welke formaten, vectorobjecten en de grenzen (Engels).</p></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div><p data-i18n="docs.api"><a href="https://github.com/OpenAEC-Foundation/open-paint-studio/blob/main/docs/API.md" target="_blank" rel="noopener">API.md</a> en <a href="https://github.com/OpenAEC-Foundation/open-paint-studio/blob/main/docs/MCP.md" target="_blank" rel="noopener">MCP.md</a>: alle eindpunten en tools, en de configuratie voor een MCP-host (Engels).</p></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></div><p data-i18n="docs.source"><a href="https://github.com/OpenAEC-Foundation/open-paint-studio" target="_blank" rel="noopener">Broncode op GitHub</a>, met de <a href="https://github.com/OpenAEC-Foundation/open-paint-studio/issues" target="_blank" rel="noopener">issues</a> voor een probleem of een wens.</p></div>
     </div>
   </div></section>
 
   <!-- Release Notes (shared component) -->
+  <section id="releases" class="pp-releases">
   <div data-release-notes="open-paint-studio"></div>
+  <p class="pp-rel-more">
+    <button type="button" class="btn btn-secondary" data-rel-toggle aria-expanded="false" hidden><span data-rel-show data-i18n="releases.showAll">Toon alle releases</span><span data-rel-hide hidden data-i18n="releases.showLess">Toon alleen de laatste drie</span></button>
+    <a href="https://github.com/OpenAEC-Foundation/open-paint-studio/releases" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="releases.github">Alle releases op GitHub</span></a>
+  </p>
+  </section>
   <script src="/shared/release-notes.js?v=20261105"></script>
+  <script src="/shared/productpagina.js?v=20261105"></script>
 
   <section class="section surface-spot panel">
     <div class="panel-center">
       <h2 data-i18n="header.title">Open <span class="accent">Paint</span> Studio</h2>
       <div class="btn-group">
-        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.title">Download</span></a>
+        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="cta.download">Download</span></a>
         <a href="https://github.com/OpenAEC-Foundation/open-paint-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg><span data-i18n="cta.github">Bekijk op GitHub</span></a>
       </div>
     </div>
@@ -391,27 +536,6 @@
 </footer>
 <!-- footer:end --></div>
 
-  <script>
-  (function(){
-    const track = document.getElementById('sliderTrack');
-    const dots = document.getElementById('sliderDots');
-    if (!track || !dots) return;
-    const slides = track.children.length;
-    let current = 0;
-    for(let i=0;i<slides;i++){
-      const d = document.createElement('button');
-      d.className = 'slider-dot' + (i===0?' active':'');
-      d.onclick = ()=>slideTo(i);
-      dots.appendChild(d);
-    }
-    window.slideMove = function(dir){slideTo(current+dir);};
-    window.slideTo = function(i){
-      current = (i+slides)%slides;
-      track.style.transform = 'translateX(-'+current*100+'%)';
-      dots.querySelectorAll('.slider-dot').forEach((d,idx)=>d.classList.toggle('active',idx===current));
-    };
-  })();
-  </script>
 <script src="/shared/downloads.js?v=20261015"></script>
 <script src="/shared/i18n.js?v=20261105"></script>
 </body>
