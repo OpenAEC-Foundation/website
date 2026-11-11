@@ -70,7 +70,7 @@ There is still no `hreflang` anywhere — language is a client-side toggle with 
 
 ### Homepage tool cards
 
-Cards tagged `NL` are normally shown only under Nederlandse normen. A general-purpose tool that also supports Dutch standards can use `data-catalog="general"` to remain listed under All and its A/E/C/I categories as well as NL. Pile Plan Studio uses this exception. Run `node --test scripts/check-ecosystem-filters.test.js` after changing category filtering or these card attributes.
+The grid opens on the `AECI` filter (cards with A, E, C or I). `All` adds the general tools (`data-categories="COMMON"`: Office, Paint, Speech, OpenAEC Browser) and the international standards (`STD`: IFCCAD, IFCX), which each have their own filter too. Cards that are not out yet carry `is-soon` and a corner ribbon (`.tool-ribbon`). Cards tagged `NL` are normally shown only under Nederlandse normen. A general-purpose tool that also supports Dutch standards can use `data-catalog="general"` to remain listed under All and its A/E/C/I categories as well as NL. Pile Plan Studio uses this exception. Run `node --test scripts/check-ecosystem-filters.test.js` after changing category filtering or these card attributes.
 
 `<article class="tool-card" data-repo="…" data-categories="A|E|C|I">` in `index.html`. The `<div class="tool-stats">` chips are **generated** — `build-homepage-stats.js` regex-matches each card and re-inserts the block immediately after the `<p data-i18n="tools.items.*.desc">`, so that `<p>` and its exact attribute must survive any edit. Never hand-edit `tool-stats`. `data-repo="OpenCADStudio"` is deliberately skipped (that card self-updates in the browser). Stat chips are bilingual via CSS (`.lang-nl` / `.lang-en`), not JS.
 
