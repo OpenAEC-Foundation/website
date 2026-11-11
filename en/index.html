@@ -442,6 +442,10 @@
     }
     /* Statuslabels: oranje tint = status, neutraal = soort, groen = beschikbaar */
     .tool-tag-beta { background: rgba(217,119,6,0.14); color: #B45309; }
+    .tool-cat-word { width: auto; padding: 0 7px; font-size: 0.68rem; letter-spacing: 0.04em; background: var(--concrete); color: var(--text-muted); }
+    .tool-card.is-soon { position: relative; }
+    .tool-ribbon { position: absolute; top: 22px; right: -44px; z-index: 2; width: 170px; padding: 5px 0; transform: rotate(45deg); text-align: center; background: var(--amber); color: #fff; font-family: var(--font-code); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; box-shadow: var(--shadow-md); pointer-events: none; }
+    .tool-card img.tool-thumb.tool-thumb-logo { object-fit: contain; object-position: center; padding: 28px; background: var(--deep-forge); }
     .tool-tag-notready { background: rgba(234,88,12,0.12); color: #C2410C; }
     .tool-tag-alpha { background: rgba(217,119,6,0.08); color: #B45309; }
     .tool-tag-dev, .tool-tag-civil, .tool-tag-gww, .tool-tag-community { background: var(--concrete); color: var(--text-muted); box-shadow: 0 0 0 1px rgba(42,42,50,0.08) inset; }
@@ -1008,12 +1012,15 @@
 
       <!-- Category filter -->
       <div class="cat-filter" role="tablist" aria-label="Filter tools per categorie">
-        <button class="cat-filter-btn is-active" data-cat="all" role="tab" aria-selected="true"><span data-i18n="tools.filter.all">All</span> <span class="cat-count" data-cat-count="all"></span></button>
+        <button class="cat-filter-btn is-active" data-cat="AECI" role="tab" aria-selected="true"><span data-i18n="tools.filter.aeci">AECI</span> <span class="cat-count" data-cat-count="AECI"></span></button>
+        <button class="cat-filter-btn" data-cat="all" role="tab" aria-selected="false"><span data-i18n="tools.filter.all">All</span> <span class="cat-count" data-cat-count="all"></span></button>
         <button class="cat-filter-btn" data-cat="A" role="tab" aria-selected="false"><span class="tool-cat tool-cat-a">A</span> <span data-i18n="tools.filter.architecture">Architecture</span> <span class="cat-count" data-cat-count="A"></span></button>
         <button class="cat-filter-btn" data-cat="E" role="tab" aria-selected="false"><span class="tool-cat tool-cat-e">E</span> <span data-i18n="tools.filter.engineering">Engineering</span> <span class="cat-count" data-cat-count="E"></span></button>
         <button class="cat-filter-btn" data-cat="C" role="tab" aria-selected="false"><span class="tool-cat tool-cat-c">C</span> <span data-i18n="tools.filter.construction">Construction</span> <span class="cat-count" data-cat-count="C"></span></button>
         <button class="cat-filter-btn" data-cat="I" role="tab" aria-selected="false"><span class="tool-cat tool-cat-i">I</span> <span data-i18n="tools.filter.infra">Infra &amp; GWW</span> <span class="cat-count" data-cat-count="I"></span></button>
         <button class="cat-filter-btn" data-cat="NL" role="tab" aria-selected="false"><span class="tool-cat tool-cat-nl">NL</span> <span data-i18n="tools.filter.dutch">Dutch standards</span> <span class="cat-count" data-cat-count="NL"></span></button>
+        <button class="cat-filter-btn" data-cat="COMMON" role="tab" aria-selected="false"><span data-i18n="tools.filter.common">Common</span> <span class="cat-count" data-cat-count="COMMON"></span></button>
+        <button class="cat-filter-btn" data-cat="STD" role="tab" aria-selected="false"><span data-i18n="tools.filter.standards">International standards</span> <span class="cat-count" data-cat-count="STD"></span></button>
       </div>
 
       <div class="tools-grid" id="tools-grid">
@@ -1187,10 +1194,10 @@
             <a href="https://open-3d-viewer.open-aec.com/" target="_blank" rel="noopener" class="tool-link-secondary" data-i18n="tools.liveDemo">Live demo &rarr;</a>
           </div>
         </article>
-        <article class="tool-card" data-repo="open-office-studio" data-categories="A,E,C,I">
+        <article class="tool-card" data-repo="open-office-studio" data-categories="COMMON">
           <img class="tool-thumb" src="/shared/assets/screenshots/openaec-office-studio.jpg" alt="Open Office Studio: werkruimte met Tekst, Rekenblad en Presentatie">
           <div>
-            <div class="tool-cats"><span class="tool-cat tool-cat-a">A</span><span class="tool-cat tool-cat-e">E</span><span class="tool-cat tool-cat-c">C</span><span class="tool-cat tool-cat-i">I</span></div>
+            <div class="tool-cats"><span class="tool-cat tool-cat-word" data-i18n="tools.filter.common">Common</span></div>
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 style="margin-bottom:0;" data-i18n="tools.items.openOffice.title">Open Office Studio</h3><span class="tool-tag tool-tag-beta" data-i18n="tools.tags.beta">Beta</span></div>
             <p data-i18n="tools.items.openOffice.desc">Documents, spreadsheets, presentations, notes, email and Access databases on your own computer.</p>
             <div class="tool-stats">
@@ -1263,10 +1270,10 @@
             <a href="https://open-energy-studio.open-aec.com/" target="_blank" rel="noopener" class="tool-link-secondary" data-i18n="tools.liveDemo">Live demo &rarr;</a>
           </div>
         </article>
-        <article class="tool-card" data-repo="ifccad" data-categories="A,E,C,I">
+        <article class="tool-card" data-repo="ifccad" data-categories="STD">
           <img class="tool-thumb" src="/shared/assets/screenshots/ifccad-format-explorer.png" alt="IFCCAD Format Explorer showing drawing structure and a house floor plan in Open CAD Studio" data-i18n="tools.items.ifccad.alt" data-i18n-attr="alt" loading="lazy" width="1920" height="948" style="object-fit: contain; background: #2d2d35;">
           <div>
-            <div class="tool-cats"><span class="tool-cat tool-cat-a">A</span><span class="tool-cat tool-cat-e">E</span><span class="tool-cat tool-cat-c">C</span><span class="tool-cat tool-cat-i">I</span></div>
+            <div class="tool-cats"><span class="tool-cat tool-cat-word" data-i18n="tools.filter.standardsShort">Standard</span></div>
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 style="margin-bottom:0;" data-i18n="tools.items.ifccad.title">IFCCAD</h3><span class="tool-tag tool-tag-beta" data-i18n="tools.tags.beta">Beta</span></div>
             <p data-i18n="tools.items.ifccad.desc">Open CAD format using IFCX, with a native alpha, dimensions and DWG/DXF exchange through the Format Explorer.</p>
             <div class="tool-stats">
@@ -1340,10 +1347,10 @@
             <a href="https://github.com/OpenAEC-Foundation/open-bim-studio" target="_blank" rel="noopener" class="tool-link-secondary" aria-label="GitHub" title="GitHub"><svg class="ico tool-gh" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
           </div>
         </article>
-        <article class="tool-card" data-repo="open-paint-studio" data-categories="A,E,C,I">
+        <article class="tool-card" data-repo="open-paint-studio" data-categories="COMMON">
           <img class="tool-thumb" src="/shared/assets/screenshots/open-paint-studio-overzicht.png" alt="Open Paint Studio: beeldbewerker met een geannoteerde plattegrond">
           <div>
-            <div class="tool-cats"><span class="tool-cat tool-cat-a">A</span><span class="tool-cat tool-cat-e">E</span><span class="tool-cat tool-cat-c">C</span><span class="tool-cat tool-cat-i">I</span></div>
+            <div class="tool-cats"><span class="tool-cat tool-cat-word" data-i18n="tools.filter.common">Common</span></div>
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 data-i18n="tools.items.openPaint.title" style="margin-bottom:0;">Open Paint Studio</h3><span class="tool-tag tool-tag-beta" data-i18n="tools.tags.beta">Beta</span></div>
             <p data-i18n="tools.items.openPaint.desc">Simple image editor: sketch and mark up, with editable vector objects and MCP for AI.</p>
             <div class="tool-stats">
@@ -1430,10 +1437,10 @@
             <a href="https://github.com/OpenAEC-Foundation/openaec-bcf-platform" target="_blank" rel="noopener" class="tool-link-secondary" aria-label="GitHub" title="GitHub"><svg class="ico tool-gh" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
           </div>
         </article>
-        <article class="tool-card" data-categories="A,E,C,I">
+        <article class="tool-card" data-categories="STD">
           <img class="tool-thumb" src="/shared/assets/screenshots/ifcx.png" alt="IFCX Schema">
           <div>
-            <div class="tool-cats"><span class="tool-cat tool-cat-a">A</span><span class="tool-cat tool-cat-e">E</span><span class="tool-cat tool-cat-c">C</span><span class="tool-cat tool-cat-i">I</span></div>
+            <div class="tool-cats"><span class="tool-cat tool-cat-word" data-i18n="tools.filter.standardsShort">Standard</span></div>
             <h3 data-i18n="tools.items.ifcx.title">IFCX</h3>
             <p data-i18n="tools.items.ifcx.desc">The open data format of the OpenAEC ecosystem: every tool exchanges its model in IFCX.</p>
           </div>
@@ -1441,30 +1448,44 @@
             <a href="/en/ifcx/" class="tool-link" data-i18n="tools.productPageLink">Product page &rarr;</a>
           </div>
         </article>
-        <article class="tool-card" data-repo="open-fem-studio" data-categories="E">
+        <article class="tool-card is-soon" data-repo="open-fem-studio" data-categories="E">
+          <span class="tool-ribbon" data-i18n="tools.tags.soon">Coming soon</span>
           <img class="tool-thumb" src="/shared/assets/screenshots/open-fem-studio-overzicht.png" alt="Open FEM Studio: a steel hall with the calculation results" loading="lazy">
           <div>
             <div class="tool-cats"><span class="tool-cat tool-cat-e">E</span></div>
-            <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 style="margin-bottom:0;" data-i18n="tools.items.openFem.title">Open FEM Studio</h3><span class="tool-tag tool-tag-dev" data-i18n="tools.tags.soon">Coming soon</span></div>
+            <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 style="margin-bottom:0;" data-i18n="tools.items.openFem.title">Open FEM Studio</h3></div>
             <p data-i18n="tools.items.openFem.desc">Finite elements for frames and plates in 2D and 3D, with Eurocode checks.</p>
           </div>
           <div class="tool-links"><span class="tool-soon" data-i18n="tools.tags.soon">Coming soon</span></div>
         </article>
-        <article class="tool-card" data-categories="A,E,C,I">
+        <article class="tool-card is-soon" data-categories="A,E,C,I">
+          <span class="tool-ribbon" data-i18n="tools.tags.soon">Coming soon</span>
           <img class="tool-thumb" src="/shared/assets/screenshots/openaec-supercloud.svg" alt="OpenAEC SuperCloud">
           <div>
             <div class="tool-cats"><span class="tool-cat tool-cat-a">A</span><span class="tool-cat tool-cat-e">E</span><span class="tool-cat tool-cat-c">C</span><span class="tool-cat tool-cat-i">I</span></div>
-            <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 data-i18n="tools.items.superCloud.title" style="margin-bottom:0;">OpenAEC SuperCloud</h3><span class="tool-tag tool-tag-beta" data-i18n="tools.tags.beta">Beta</span></div>
+            <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 data-i18n="tools.items.superCloud.title" style="margin-bottom:0;">OpenAEC SuperCloud</h3></div>
             <p data-i18n="tools.items.superCloud.desc">Own cloud, account and sign-in for the whole OpenAEC ecosystem. Self-hosted and open.</p>
           </div>
           <div class="tool-links">
             <a href="/en/openaec-cloud/" class="tool-link" data-i18n="tools.productPageLink">Product page &rarr;</a>
           </div>
         </article>
-        <article class="tool-card" data-repo="open-speech-studio" data-categories="A,E,C,I">
+        <article class="tool-card is-soon" data-categories="COMMON">
+          <span class="tool-ribbon" data-i18n="tools.tags.soon">Coming soon</span>
+          <img class="tool-thumb tool-thumb-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="OpenAEC Browser">
+          <div>
+            <div class="tool-cats"><span class="tool-cat tool-cat-word" data-i18n="tools.filter.common">Common</span></div>
+            <h3 data-i18n="tools.items.browser.title">OpenAEC Browser</h3>
+            <p data-i18n="tools.items.browser.desc">Chromium-based browser for Windows, Linux and the OpenAEC SuperCloud, with a calm start page and ad blocking.</p>
+          </div>
+          <div class="tool-links">
+            <a href="/openaec-browser/" class="tool-link" data-i18n="tools.productPageLink">Product page &rarr;</a>
+          </div>
+        </article>
+        <article class="tool-card" data-repo="open-speech-studio" data-categories="COMMON">
           <img class="tool-thumb" src="/shared/assets/screenshots/open-speech-studio-tts.png" alt="Open Speech Studio">
           <div>
-            <div class="tool-cats"><span class="tool-cat tool-cat-a">A</span><span class="tool-cat tool-cat-e">E</span><span class="tool-cat tool-cat-c">C</span><span class="tool-cat tool-cat-i">I</span></div>
+            <div class="tool-cats"><span class="tool-cat tool-cat-word" data-i18n="tools.filter.common">Common</span></div>
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 data-i18n="tools.items.openSpeech.title" style="margin-bottom:0;">Open Speech Studio</h3><span class="tool-tag tool-tag-beta" data-i18n="tools.tags.beta">Beta</span></div>
             <p data-i18n="tools.items.openSpeech.desc">Local speech-to-text and meeting notes for project meetings, without the cloud.</p>
             <div class="tool-stats">
@@ -1543,29 +1564,24 @@
         if (!grid) return;
         const cards = Array.from(grid.querySelectorAll('.tool-card'));
         const btns = document.querySelectorAll('.cat-filter-btn');
-
-        // Compute counts and render them
-        const isNlOnly = (c) => (c.dataset.categories || '').split(',').map(s => s.trim()).includes('NL') && c.dataset.catalog !== 'general';
+        const catsOf = (c) => (c.dataset.categories || '').split(',').map(s => s.trim()).filter(Boolean);
         // Een algemene tool kan ook Nederlandse normen ondersteunen zonder uit de andere categorieën te verdwijnen.
-        const counts = { all: cards.filter(c => !isNlOnly(c)).length, A: 0, E: 0, C: 0, I: 0, NL: 0 };
-        cards.forEach(c => {
-          const cats = (c.dataset.categories || '').split(',').map(s => s.trim()).filter(Boolean);
-          cats.forEach(k => { if (counts[k] != null && (k === 'NL' || !isNlOnly(c))) counts[k]++; });
-        });
+        const isNlOnly = (c) => catsOf(c).includes('NL') && c.dataset.catalog !== 'general';
+        // AECI (standaard): de vaktools. 'Alle' voegt de algemene tools (COMMON) en de standaarden (STD) toe.
+        // Tools met alleen Nederlandse normen staan alleen onder NL.
+        const shows = (c, cat) => {
+          if (cat === 'NL') return catsOf(c).includes('NL');
+          if (isNlOnly(c)) return false;
+          if (cat === 'all') return true;
+          if (cat === 'AECI') return catsOf(c).some(k => 'AECI'.includes(k) && k.length === 1);
+          return catsOf(c).includes(cat);
+        };
         document.querySelectorAll('[data-cat-count]').forEach(el => {
-          const k = el.getAttribute('data-cat-count');
-          el.textContent = counts[k] != null ? counts[k] : '';
+          el.textContent = cards.filter(c => shows(c, el.getAttribute('data-cat-count'))).length;
         });
 
         function apply(cat) {
-          cards.forEach(c => {
-            const cats = (c.dataset.categories || '').split(',').map(s => s.trim());
-            if (cat !== 'NL' && isNlOnly(c)) {
-              c.classList.add('is-hidden');
-              return;
-            }
-            c.classList.toggle('is-hidden', cat !== 'all' && !cats.includes(cat));
-          });
+          cards.forEach(c => c.classList.toggle('is-hidden', !shows(c, cat)));
           btns.forEach(b => {
             const active = b.dataset.cat === cat;
             b.classList.toggle('is-active', active);
@@ -1574,8 +1590,8 @@
         }
 
         btns.forEach(b => b.addEventListener('click', () => apply(b.dataset.cat)));
-        // Bij het laden: algemene tools, inclusief tools met aanvullende Nederlandse normen.
-        apply('all');
+        // Bij het laden: de AECI-tools, inclusief tools met aanvullende Nederlandse normen.
+        apply('AECI');
       })();
 
       // Inklappen: standaard alleen de eerste rij van de zichtbare tools.
@@ -1609,7 +1625,7 @@
           if (!open) grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
         // Een gekozen categorie (zoals Nederlandse normen) meteen helemaal tonen; alleen 'Alle' klapt in.
-        document.querySelectorAll('.cat-filter-btn').forEach(b => b.addEventListener('click', () => { open = b.dataset.cat !== 'all'; update(); }));
+        document.querySelectorAll('.cat-filter-btn').forEach(b => b.addEventListener('click', () => { open = b.dataset.cat !== 'all' && b.dataset.cat !== 'AECI'; update(); }));
         let t;
         window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(update, 120); });
         update();
@@ -2068,6 +2084,10 @@
           lastModified: "Laatst gewijzigd op GitHub",
           filter: {
             all: "Alle",
+            aeci: "AECI",
+            common: "Algemeen",
+            standards: "Internationale standaarden",
+            standardsShort: "Standaard",
             architecture: "Architecture",
             engineering: "Engineering",
             construction: "Construction",
@@ -2113,6 +2133,7 @@
             openPaint: { title: "Open Paint Studio", desc: "Eenvoudige beeldbewerker: schetsen en markeren, met bewerkbare vectorobjecten en MCP voor AI." },
             cloudPlatform: { title: "OpenAEC Cloud Platform", desc: "Centraal cloudplatform voor het OpenAEC-ecosysteem. Projectbeheer, gebruikersbeheer, SSO en synchronisatie tussen alle tools.", link: "Bekijk project \u2192" },
             superCloud: { title: "OpenAEC SuperCloud", desc: "Eigen cloud, account en inlog voor het hele OpenAEC-ecosysteem. Zelf gehost en open.", link: "Bekijk project \u2192" },
+            browser: { title: "OpenAEC Browser", desc: "Browser op basis van Chromium voor Windows, Linux en de OpenAEC SuperCloud, met een rustige startpagina en advertentieblokkering." },
             openHeatloss: { title: "Open Heatloss Studio", desc: "Warmteverliesberekening per ruimte volgens NEN 12831: transmissie en ventilatie.", link: "Probeer het nu \u2192" },
             openInstaller: { title: "OpenAEC Installer", desc: "Centrale hub om alle OpenAEC-tools te installeren, bij te werken en te starten \u2014 \u00e9\u00e9n plek voor het hele ecosysteem. Voor Windows, macOS en Linux.", link: "Download \u2192" },
             open3d: { title: "Open 3D Viewer", desc: "Open source 3D-viewer voor het bekijken en inspecteren van BIM-modellen in de browser.", link: "Probeer het nu \u2192" },
@@ -2296,6 +2317,10 @@
           lastModified: "Last updated on GitHub",
           filter: {
             all: "All",
+            aeci: "AECI",
+            common: "Common",
+            standards: "International standards",
+            standardsShort: "Standard",
             architecture: "Architecture",
             engineering: "Engineering",
             construction: "Construction",
@@ -2341,6 +2366,7 @@
             openPaint: { title: "Open Paint Studio", desc: "Simple image editor: sketch and mark up, with editable vector objects and MCP for AI." },
             cloudPlatform: { title: "OpenAEC Cloud Platform", desc: "Central cloud platform for the OpenAEC ecosystem. Project management, user management, SSO and synchronisation between all tools.", link: "View project \u2192" },
             superCloud: { title: "OpenAEC SuperCloud", desc: "Own cloud, account and sign-in for the whole OpenAEC ecosystem. Self-hosted and open.", link: "View project \u2192" },
+            browser: { title: "OpenAEC Browser", desc: "Chromium-based browser for Windows, Linux and the OpenAEC SuperCloud, with a calm start page and ad blocking." },
             openHeatloss: { title: "Open Heatloss Studio", desc: "Heat loss calculation per room to NEN 12831: transmission and ventilation.", link: "Try it now \u2192" },
             openInstaller: { title: "OpenAEC Installer", desc: "Central hub to install, update and launch every OpenAEC tool \u2014 one place for the whole ecosystem. For Windows, macOS and Linux.", link: "Download \u2192" },
             open3d: { title: "Open 3D Viewer", desc: "Open source 3D viewer for inspecting BIM models in the browser.", link: "Try it now \u2192" },
@@ -2551,6 +2577,10 @@
           archBtn: "Architecture logicielle",
           filter: {
             all: "Tous",
+            aeci: "AECI",
+            common: "Général",
+            standards: "Normes internationales",
+            standardsShort: "Norme",
             architecture: "Architecture",
             engineering: "Ing\u00e9nierie",
             construction: "Construction",
@@ -2596,6 +2626,7 @@
             openPaint: { title: "Open Paint Studio", desc: "Éditeur d'images simple : esquisser et annoter, avec objets vectoriels modifiables et MCP pour l'IA." },
             cloudPlatform: { title: "OpenAEC Cloud Platform", desc: "Plateforme cloud centrale pour l'\u00e9cosyst\u00e8me OpenAEC. Gestion de projets, gestion des utilisateurs, SSO et synchronisation entre tous les outils.", link: "Voir le projet \u2192" },
             superCloud: { title: "OpenAEC SuperCloud", desc: "Cloud, compte et connexion propres pour tout l'écosystème OpenAEC. Auto-hébergé et ouvert.", link: "Voir le projet \u2192" },
+            browser: { title: "OpenAEC Browser", desc: "Navigateur basé sur Chromium pour Windows, Linux et l’OpenAEC SuperCloud, avec une page d’accueil sobre et un bloqueur de publicités." },
             openHeatloss: { title: "Open Heatloss Studio", desc: "Calcul des déperditions thermiques par pièce selon la NEN 12831 : transmission et ventilation.", link: "Essayez maintenant \u2192" },
             openInstaller: { title: "OpenAEC Installer", desc: "Hub central pour installer, mettre \u00e0 jour et lancer tous les outils OpenAEC \u2014 un seul endroit pour tout l'\u00e9cosyst\u00e8me. Pour Windows, macOS et Linux.", link: "T\u00e9l\u00e9charger \u2192" },
             open3d: { title: "Open 3D Viewer", desc: "Visualiseur 3D open source pour inspecter les mod\u00e8les BIM dans le navigateur.", link: "Essayez maintenant \u2192" },
@@ -2798,6 +2829,10 @@
           archBtn: "Yaz\u0131l\u0131m mimarisi",
           filter: {
             all: "T\u00fcm\u00fc",
+            aeci: "AECI",
+            common: "Genel",
+            standards: "Uluslararası standartlar",
+            standardsShort: "Standart",
             architecture: "Mimari",
             engineering: "M\u00fchendislik",
             construction: "\u0130n\u015faat",
@@ -2843,6 +2878,7 @@
             openPaint: { title: "Open Paint Studio", desc: "Basit görüntü düzenleyici: çizin ve işaretleyin; düzenlenebilir vektör nesneleri ve yapay zekâ için MCP ile." },
             cloudPlatform: { title: "OpenAEC Cloud Platform", desc: "OpenAEC ekosistemi i\u00e7in merkezi bulut platformu. Proje y\u00f6netimi, kullan\u0131c\u0131 y\u00f6netimi, SSO ve t\u00fcm ara\u00e7lar aras\u0131nda senkronizasyon.", link: "Projeyi g\u00f6r\u00fcnt\u00fcle \u2192" },
             superCloud: { title: "OpenAEC SuperCloud", desc: "Tüm OpenAEC ekosistemi için kendi bulutu, hesabı ve oturum açması. Kendi sunucunda ve açık.", link: "Projeyi g\u00f6r\u00fcnt\u00fcle \u2192" },
+            browser: { title: "OpenAEC Browser", desc: "Windows, Linux ve OpenAEC SuperCloud için Chromium tabanlı tarayıcı; sade bir başlangıç sayfası ve reklam engelleme ile." },
             openHeatloss: { title: "Open Heatloss Studio", desc: "NEN 12831'e göre oda bazında ısı kaybı hesabı: iletim ve havalandırma.", link: "\u015eimdi deneyin \u2192" },
             openInstaller: { title: "OpenAEC Installer", desc: "T\u00fcm OpenAEC ara\u00e7lar\u0131n\u0131 kurmak, g\u00fcncellemek ve ba\u015flatmak i\u00e7in merkezi hub \u2014 t\u00fcm ekosistem i\u00e7in tek yer. Windows, macOS ve Linux i\u00e7in.", link: "\u0130ndir \u2192" },
             open3d: { title: "Open 3D Viewer", desc: "Taray\u0131c\u0131da BIM modellerini incelemek i\u00e7in a\u00e7\u0131k kaynak 3D g\u00f6r\u00fcnt\u00fcleyici.", link: "\u015eimdi deneyin \u2192" },
@@ -3022,6 +3058,10 @@
           lastModified: "Última actualización en GitHub",
           filter: {
             all: "Todo",
+            aeci: "AECI",
+            common: "General",
+            standards: "Estándares internacionales",
+            standardsShort: "Estándar",
             architecture: "Arquitectura",
             engineering: "Ingeniería",
             construction: "Construcción",
@@ -3067,6 +3107,7 @@
             openPaint: { title: "Open Paint Studio", desc: "Editor de imágenes sencillo: esbozar y marcar, con objetos vectoriales editables y MCP para IA." },
             cloudPlatform: { title: "OpenAEC Cloud Platform", desc: "Plataforma cloud central del ecosistema OpenAEC. Gestión de proyectos, gestión de usuarios, SSO y sincronización entre todas las herramientas.", link: "Ver proyecto →" },
             superCloud: { title: "OpenAEC SuperCloud", desc: "Nube, cuenta e inicio de sesión propios para todo el ecosistema OpenAEC. Autoalojado y abierto.", link: "Ver proyecto →" },
+            browser: { title: "OpenAEC Browser", desc: "Navegador basado en Chromium para Windows, Linux y el OpenAEC SuperCloud, con una página de inicio tranquila y bloqueo de anuncios." },
             openHeatloss: { title: "Open Heatloss Studio", desc: "Cálculo de pérdidas de calor por estancia según la NEN 12831: transmisión y ventilación.", link: "Pruébalo ahora →" },
             openInstaller: { title: "OpenAEC Installer", desc: "Centro neurálgico para instalar, actualizar y lanzar todas las herramientas OpenAEC — un único lugar para todo el ecosistema. Para Windows, macOS y Linux.", link: "Descargar →" },
             open3d: { title: "Open 3D Viewer", desc: "Visor 3D de código abierto para inspeccionar modelos BIM en el navegador.", link: "Pruébalo ahora →" },
