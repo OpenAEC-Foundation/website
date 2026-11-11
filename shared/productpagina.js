@@ -163,7 +163,7 @@
       'linux-tar': /_linux-x64\.tar\.gz$|_linux-amd64\.tar\.gz$/i,
       'linux-tar-arm64': /_linux-arm64\.tar\.gz$/i,
       android: /\.apk$/i,
-      sha256sums: /^SHA256SUMS$/,
+      sha256sums: /^SHA256SUMS(\.txt)?$/,
       'sha256sums-asc': /^SHA256SUMS\.asc$/
     };
 
