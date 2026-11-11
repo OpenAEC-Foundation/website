@@ -2,6 +2,7 @@
 // Fetches all releases from product repos, parses bodies into change items,
 // groups by minor version, and writes /data/release-notes/{repo}.json
 const fs = require('fs');
+const { neutralNames } = require('./lib/neutral-names');
 const path = require('path');
 
 const ORG = 'OpenAEC-Foundation';
@@ -276,7 +277,7 @@ async function main() {
       const data = await processRepo(repo);
       fs.writeFileSync(
         path.join(outDir, `${data.repo}.json`),
-        JSON.stringify(data, null, 2)
+        JSON.stringify(neutralNames(data), null, 2)
       );
       console.log(`  ✓ ${data.totalReleases} releases, ${data.totalChanges} changes`);
     } catch (e) {
