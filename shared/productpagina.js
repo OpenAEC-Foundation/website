@@ -115,7 +115,20 @@
     if (!wrap || !btn) return;
     var show = btn.querySelector('[data-rel-show]');
     var hide = btn.querySelector('[data-rel-hide]');
-    btn.hidden = false;
+    // De knop alleen tonen als er iets te openen valt: meer dan drie releases. Een app zonder
+    // release-data (het blok blijft leeg) krijgt dan ook geen losse knop. De release notes worden
+    // pas na het laden van de data opgebouwd, dus kijken we mee tot ze er zijn.
+    function update() {
+      var many = wrap.querySelectorAll('.rn-timeline > li').length > 3;
+      btn.hidden = !many;
+      return many;
+    }
+    if (!update()) {
+      try {
+        var obs = new MutationObserver(function () { if (update()) obs.disconnect(); });
+        obs.observe(wrap, { childList: true, subtree: true });
+      } catch (e) { btn.hidden = false; }
+    }
     btn.addEventListener('click', function () {
       var open = wrap.classList.toggle('pp-show-all');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
