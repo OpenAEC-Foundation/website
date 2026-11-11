@@ -17,8 +17,8 @@
 - Forks: **2**
 - Open issues: **13**
 - Releases: **6**
-- Total downloads: **114**
-- Downloads by platform: Windows (45), Linux (deb) (24), Linux (AppImage) (17), macOS (9), Windows (MSI) (7), Other (5), Linux (rpm) (4), Archive (3)
+- Total downloads: **121**
+- Downloads by platform: Windows (50), Linux (deb) (24), Linux (AppImage) (17), macOS (10), Windows (MSI) (8), Other (5), Linux (rpm) (4), Archive (3)
 
 ## Key features
 
@@ -64,9 +64,9 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows · Open.Energy.Studio_0.1.6-alpha_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.6-alpha_x64-setup.exe) (v0.1.7-alpha — 4.1 MB)
 - [Linux (AppImage) · Open.Energy.Studio_2026.44.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v2026.44.0/Open.Energy.Studio_2026.44.0_amd64.AppImage) (v2026.44.0 — 85.3 MB)
 - [Windows · Open.Energy.Studio_2026.44.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v2026.44.0/Open.Energy.Studio_2026.44.0_x64-setup.exe) (v2026.44.0 — 9.8 MB)
+- [Windows · Open.Energy.Studio_0.1.7-alpha_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.7-alpha_x64-setup.exe) (v0.1.7-alpha — 5.7 MB)
 - [Linux (deb) · Open.Energy.Studio_0.1.6-alpha_amd64.deb](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.6-alpha_amd64.deb) (v0.1.7-alpha — 5.5 MB)
 - [Linux (deb) · Open.Energy.Studio_0.1.7-alpha_amd64.deb](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.7-alpha_amd64.deb) (v0.1.7-alpha — 7.1 MB)
-- [Windows · Open.Energy.Studio_0.1.7-alpha_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-energy-studio/releases/download/v0.1.7-alpha/Open.Energy.Studio_0.1.7-alpha_x64-setup.exe) (v0.1.7-alpha — 5.7 MB)
 
 ---
 
