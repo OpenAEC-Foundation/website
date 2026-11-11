@@ -13,12 +13,12 @@
 ## Live stats
 
 - Stars: **18**
-- Commits: **950**
+- Commits: **966**
 - Forks: **4**
-- Open issues: **51**
+- Open issues: **52**
 - Releases: **2**
-- Total downloads: **270**
-- Downloads by platform: Archive (188), Other (82)
+- Total downloads: **278**
+- Downloads by platform: Archive (194), Other (84)
 
 ## Key features
 

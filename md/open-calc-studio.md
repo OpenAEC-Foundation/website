@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux, Web
 **Category:** Cost Estimation
-**Current version:** v2026.45.1 (2026-11-06)
+**Current version:** v2026.46.0 (2026-11-11)
 **Tool ID:** `open-calc-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-calc-studio`
 
 ## Live stats
 
-- Stars: **22**
-- Commits: **216**
-- Forks: **10**
-- Open issues: **25**
-- Releases: **25**
-- Total downloads: **1,851**
-- Downloads by platform: Windows (1220), Linux (AppImage) (200), Linux (deb) (115), Windows (MSI) (105), macOS (78), Linux (rpm) (52), Linux (snap) (41), Other (23), Archive (17)
+- Stars: **24**
+- Commits: **239**
+- Forks: **11**
+- Open issues: **13**
+- Releases: **26**
+- Total downloads: **1,958**
+- Downloads by platform: Windows (1265), Linux (AppImage) (206), Linux (deb) (121), Windows (MSI) (109), macOS (80), Linux (rpm) (54), Other (48), Linux (snap) (42), Archive (33)
 
 ## Key features
 
@@ -57,16 +57,16 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-calc-studio/
 - Live demo: https://open-calc-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-calc-studio
-- Latest release: https://github.com/OpenAEC-Foundation/open-calc-studio/releases/tag/v2026.45.1
+- Latest release: https://github.com/OpenAEC-Foundation/open-calc-studio/releases/tag/v2026.46.0
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-calc-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
 
 - [Windows · Open.Calc.Studio_0.13.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_x64-setup.exe) (v0.13.0 — 33.8 MB)
 - [Linux (AppImage) · Open.Calc.Studio_0.13.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_amd64.AppImage) (v0.13.0 — 122.7 MB)
+- [Windows · Open.Calc.Studio_2026.45.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v2026.45.1/Open.Calc.Studio_2026.45.1_x64-setup.exe) (v2026.45.1 — 51.8 MB)
 - [Windows · Open.Calc.Studio_0.10.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.10.0/Open.Calc.Studio_0.10.0_x64-setup.exe) (v0.10.0 — 22.7 MB)
 - [Windows · Open.Calc.Studio_2026.45.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v2026.45.0/Open.Calc.Studio_2026.45.0_x64-setup.exe) (v2026.45.0 — 50.9 MB)
-- [Windows · Open.Calc.Studio_2026.45.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v2026.45.1/Open.Calc.Studio_2026.45.1_x64-setup.exe) (v2026.45.1 — 51.8 MB)
 - [Windows · Open.Calc.Studio_0.7.3_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.7.3/Open.Calc.Studio_0.7.3_x64-setup.exe) (v0.7.3 — 32.6 MB)
 - [Windows (MSI) · Open.Calc.Studio_0.13.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_x64_en-US.msi) (v0.13.0 — 46.1 MB)
 - [Linux (deb) · Open.Calc.Studio_0.13.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_amd64.deb) (v0.13.0 — 51.5 MB)
