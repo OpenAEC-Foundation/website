@@ -60,6 +60,15 @@
     .status-planned { background: rgba(42,42,50,0.08); color: var(--deep-forge); }
     .rm-card h4 a { color: inherit; text-decoration: none; }
     .rm-card h4 a:hover { color: #B45309; }
+    .rm-ms-title { text-align: center; margin-bottom: var(--sp-8); }
+    .rm-milestones { list-style: none; margin: 0 auto; padding: 0; max-width: 1080px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-6); counter-reset: ms; }
+    .rm-ms { position: relative; padding: var(--sp-6); background: var(--blueprint-white); border: 1px solid var(--concrete); border-top: 3px solid var(--amber); border-radius: 0 0 var(--radius-md) var(--radius-md); box-shadow: var(--shadow-sm); }
+    .rm-ms-open { background: var(--deep-forge); border-color: var(--deep-forge); border-top-color: var(--warm-gold); }
+    .rm-ms.rm-ms-open h3, .rm-ms.rm-ms-open p { color: var(--blueprint-white); }
+    .rm-ms-date { font-family: var(--font-code); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--amber) !important; margin: 0 0 var(--sp-2); }
+    .rm-ms h3 { font-size: 1.2rem; margin: 0 0 var(--sp-2); }
+    .rm-ms p { margin: 0; color: var(--text-on-light); }
+    @media (max-width: 768px) { .rm-milestones { grid-template-columns: 1fr; } }
   </style>
 
   <!-- schema:start -->
@@ -164,32 +173,38 @@
     <div class="product-head-inner">
       <p class="pill-label" data-i18n="header.label">OpenAEC Ecosysteem</p>
       <h1>Roadmap <span class="accent">2026</span></h1>
-      <p class="lead" data-i18n="header.desc">Ons doel: alle tools in het ecosysteem productie-gereed voor het eind van 2026. Hieronder de huidige status per tool.</p>
+      <p class="lead" data-i18n="header.desc">Ons doel: op 31 december 2026 staan alle tools in het ecosysteem open source. Hieronder de mijlpalen en de status per tool.</p>
     </div>
   </header>
 
   <section class="section"><div class="container">
-    <div class="panel-split on-light">
-      <div class="panel-split-text">
-        <h2 data-i18n="goal.title">Doel: eind 2026 alles live</h2>
-      </div>
-      <div class="panel-split-body">
-        <p data-i18n="goal.desc">We werken er hard aan om het volledige ecosysteem voor het einde van dit jaar productie-gereed te hebben. Alle tools open source, alle data in IFCX.</p>
-      </div>
-    </div>
+    <h2 class="rm-ms-title" data-i18n="milestones.title">Mijlpalen</h2>
+    <ol class="rm-milestones">
+          <li class="rm-ms rm-ms-launch">
+            <p class="rm-ms-date" data-i18n="milestones.launch.date">15 december 2026</p>
+            <h3 data-i18n="milestones.launch.title">OpenAEC Launch Day</h3>
+            <p data-i18n="milestones.launch.desc">De officiële lancering van de OpenAEC Foundation in Dordrecht, van 16:00 tot 20:00, met live demo’s van de tools.</p>
+          </li>
+          <li class="rm-ms rm-ms-open">
+            <p class="rm-ms-date" data-i18n="milestones.open.date">31 december 2026</p>
+            <h3 data-i18n="milestones.open.title">Alle tools open source</h3>
+            <p data-i18n="milestones.open.desc">Elke tool in het ecosysteem staat met de broncode openbaar op GitHub, en alle data gaat in open formaten zoals IFCX.</p>
+          </li>
+          <li class="rm-ms rm-ms-next">
+            <p class="rm-ms-date" data-i18n="milestones.next.date">Komt eraan</p>
+            <h3 data-i18n="milestones.next.title">Open BIM Platform en Open FEM Studio</h3>
+            <p data-i18n="milestones.next.desc">3D-modellen bekijken, samenvoegen en bespreken in de SuperCloud, en eindige-elementenberekeningen met Eurocode-toetsing.</p>
+          </li>
+    </ol>
   </div></section>
 
   <section class="section"><div class="container">
     <div class="rm-group">
-      <h3><span class="status status-live">Live</span><span data-i18n="legend.live">Productie</span><span class="rm-count">3</span></h3>
+      <h3><span class="status status-live">Live</span><span data-i18n="legend.live">Productie</span><span class="rm-count">2</span></h3>
       <div class="features features-4 features-center">
         <div class="feature rm-card">
           <h4><a href="/monty-ifc-viewer/">Monty IFC Viewer</a></h4>
           <p data-i18n="tools.monty">Lichtgewicht IFC-viewer voor op de bouwplaats</p>
-        </div>
-        <div class="feature rm-card">
-          <h4><a href="/bim-validator/">BIM Validator</a></h4>
-          <p data-i18n="tools.validator">IFC-validatie tegen IDS, NL BIM Basis ILS, RVB BIM Norm</p>
         </div>
         <div class="feature rm-card">
           <h4><a href="/open-books/">OpenBooks</a></h4>
@@ -198,7 +213,7 @@
       </div>
     </div>
     <div class="rm-group">
-      <h3><span class="status status-beta">Beta</span><span data-i18n="legend.beta">Testversie</span><span class="rm-count">17</span></h3>
+      <h3><span class="status status-beta">Beta</span><span data-i18n="legend.beta">Testversie</span><span class="rm-count">18</span></h3>
       <div class="features features-4 features-center">
         <div class="feature rm-card">
           <h4><a href="/open-pdf-studio/">Open PDF Studio</a></h4>
@@ -268,6 +283,10 @@
           <h4><a href="/open-pile-plan-studio/">Open Pile Plan Studio</a></h4>
           <p data-i18n="tools.pileplan">Vergelijk en optimaliseer paalconfiguraties per belastinglocatie tot een praktisch paalplan.</p>
         </div>
+        <div class="feature rm-card">
+          <h4><a href="/bim-validator/">BIM Validator</a></h4>
+          <p data-i18n="tools.validator">IFC-validatie tegen IDS, NL BIM Basis ILS, RVB BIM Norm</p>
+        </div>
       </div>
     </div>
     <div class="rm-group">
@@ -288,7 +307,7 @@
       </div>
     </div>
     <div class="rm-group">
-      <h3><span class="status status-development" data-i18n="legend.dev_badge">In ontwikkeling</span><span data-i18n="legend.dev">Actief</span><span class="rm-count">5</span></h3>
+      <h3><span class="status status-development" data-i18n="legend.dev_badge">In ontwikkeling</span><span data-i18n="legend.dev">Actief</span><span class="rm-count">6</span></h3>
       <div class="features features-4 features-center">
         <div class="feature rm-card">
           <h4><a href="/ifcx/">IFCX</a></h4>
@@ -305,6 +324,10 @@
         <div class="feature rm-card">
           <h4>Open FEM Studio</h4>
           <p data-i18n="tools.fem">Eindige elementen voor raamwerken en platen in 2D en 3D, met Eurocode-toetsing.</p>
+        </div>
+        <div class="feature rm-card">
+          <h4>Open BIM Platform</h4>
+          <p data-i18n="tools.bimplatform">3D-modellen bekijken, samenvoegen en bespreken in de OpenAEC SuperCloud, met BCF-issues en botsingscontrole.</p>
         </div>
         <div class="feature rm-card">
           <h4><a href="/openaec-cloud/">OpenAEC SuperCloud</a></h4>
