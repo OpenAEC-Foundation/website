@@ -88,6 +88,10 @@ const PINNED = new Map([
 // de score komt dan uit versie, releases en activiteit.
 const SKIP_DOWNLOADS = new Set(['y-app']);
 
+// Kaarten die bewust onderaan staan, wat hun score ook is. Open Speech Studio:
+// minder belangrijk geworden voor het ecosysteem (besluit 11-11-2026).
+const BOTTOM = new Set(['openSpeech']);
+
 // ── data ───────────────────────────────────────────────────────────────────
 
 const stats = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/stats.json'), 'utf8'));
@@ -345,6 +349,11 @@ const free = scored
     return b.total - a.total;
   })
   .map((c) => c.key);
+// De kaarten uit BOTTOM achteraan, na de kaarten zonder meetbare data.
+for (const key of BOTTOM) {
+  if (!free.includes(key)) throw new Error(`onderaan-kaart "${key}" staat niet in het grid`);
+  free.push(...free.splice(free.indexOf(key), 1));
+}
 
 const pinnedByPos = new Map([...PINNED].map(([key, pos]) => [pos, key]));
 const order = [];
@@ -364,7 +373,7 @@ console.log('  #  score  tool                       repo');
 order.forEach((key, i) => {
   const c = byKey.get(key);
   const score = c.total == null ? '  —  ' : c.total.toFixed(3);
-  const pin = PINNED.has(key) ? ' (vast)' : '';
+  const pin = PINNED.has(key) ? ' (vast)' : BOTTOM.has(key) ? ' (onderaan)' : '';
   console.log(`${String(i + 1).padStart(3)}  ${score}  ${key.padEnd(18)} ${(c.repo || '—').padEnd(26)}${pin}`);
 });
 
