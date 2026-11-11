@@ -446,7 +446,10 @@
     .tool-card.is-soon { position: relative; }
     .tool-ribbon { position: absolute; top: 22px; right: -44px; z-index: 2; width: 170px; padding: 5px 0; transform: rotate(45deg); text-align: center; background: var(--amber); color: #fff; font-family: var(--font-code); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; box-shadow: var(--shadow-md); pointer-events: none; }
     .tool-card img.tool-thumb.tool-thumb-logo { object-fit: contain; object-position: center; padding: 28px; background: var(--deep-forge); }
-    .tool-card .tool-icon { display: block; width: 52px; height: 52px; margin: -42px 0 10px; position: relative; z-index: 1; padding: 6px; object-fit: contain; background: var(--blueprint-white); border-radius: 14px; box-shadow: 0 0 0 3px #fff, var(--shadow-md); }
+    .tool-card > div:has(> .tool-icon) { display: grid; grid-template-columns: 60px minmax(0, 1fr); column-gap: 14px; align-items: center; }
+    .tool-card > div:has(> .tool-icon) > * { grid-column: 1 / -1; }
+    .tool-card > div:has(> .tool-icon) > .tool-cats, .tool-card > div:has(> .tool-icon) > h3, .tool-card > div:has(> .tool-icon) > .tool-cats + * { grid-column: 2; }
+    .tool-card .tool-icon { grid-column: 1; grid-row: 1 / span 2; width: 60px; height: 60px; border-radius: 16px; object-fit: contain; align-self: center; box-shadow: var(--shadow-sm); }
     .tool-tag-notready { background: rgba(234,88,12,0.12); color: #C2410C; }
     .tool-tag-alpha { background: rgba(217,119,6,0.08); color: #B45309; }
     .tool-tag-dev, .tool-tag-civil, .tool-tag-gww, .tool-tag-community { background: var(--concrete); color: var(--text-muted); box-shadow: 0 0 0 1px rgba(42,42,50,0.08) inset; }
@@ -1152,7 +1155,7 @@
         <article class="tool-card" data-repo="open-calc-studio" data-categories="C,I">
           <img class="tool-thumb" src="/shared/assets/screenshots/open-calc-studio-begroting.png" alt="Open Calc Studio">
           <div>
-            <img class="tool-icon" src="/shared/assets/app-icons/openCalc.svg" alt="" width="52" height="52" loading="lazy">
+            <img class="tool-icon" src="/shared/assets/app-icons/openCalc.png" alt="" width="52" height="52" loading="lazy">
             <div class="tool-cats"><span class="tool-cat tool-cat-c">C</span><span class="tool-cat tool-cat-i">I</span></div>
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 data-i18n="tools.items.openCalc.title" style="margin-bottom:0;">Open Calc Studio</h3><span class="tool-tag tool-tag-beta" data-i18n="tools.tags.beta">Beta</span></div>
             <p data-i18n="tools.items.openCalc.desc">Cost estimates and budgets for buildings, infrastructure and civil works.</p>
@@ -1316,7 +1319,7 @@
           <span class="tool-ribbon" data-i18n="tools.tags.soon">Coming soon</span>
           <img class="tool-thumb" src="/shared/assets/screenshots/open-bim-studio-elevation.png" alt="Open BIM Studio with the foundation plan of a pavilion and the reinforcement in 3D" data-i18n="tools.items.openBim.alt" data-i18n-attr="alt">
           <div>
-            <img class="tool-icon" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="52" height="52" loading="lazy">
+            <img class="tool-icon" src="/shared/assets/app-icons/openBim.svg" alt="" width="52" height="52" loading="lazy">
             <div class="tool-cats"><span class="tool-cat tool-cat-a">A</span><span class="tool-cat tool-cat-e">E</span><span class="tool-cat tool-cat-c">C</span></div>
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 data-i18n="tools.items.openBim.title" style="margin-bottom:0;">Open BIM Studio</h3></div>
             <p data-i18n="tools.items.openBim.desc">BIM modeller in DynLex: direct modelling, building systems, reinforcement and drawings from the model.</p>
@@ -1334,7 +1337,7 @@
         <article class="tool-card" data-repo="open-paint-studio" data-categories="COMMON">
           <img class="tool-thumb" src="/shared/assets/screenshots/open-paint-studio-donker.png" alt="Open Paint Studio in the dark Forge theme with a sample floor plan in which Ctrl+A has selected all objects">
           <div>
-            <img class="tool-icon" src="/shared/assets/app-icons/openPaint.svg" alt="" width="52" height="52" loading="lazy">
+            <img class="tool-icon" src="/shared/assets/app-icons/openPaint.png" alt="" width="52" height="52" loading="lazy">
             <div class="tool-cats"><span class="tool-cat tool-cat-word" data-i18n="tools.filter.common">Common</span></div>
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 data-i18n="tools.items.openPaint.title" style="margin-bottom:0;">Open Paint Studio</h3><span class="tool-tag tool-tag-beta" data-i18n="tools.tags.beta">Beta</span></div>
             <p data-i18n="tools.items.openPaint.desc">Simple image editor: sketch and mark up, with editable vector objects and MCP for AI.</p>
@@ -1353,7 +1356,7 @@
           <span class="tool-ribbon" data-i18n="tools.tags.soon">Coming soon</span>
           <img class="tool-thumb" src="/shared/assets/screenshots/bim-validator.png" alt="BIM Validator">
           <div>
-            <img class="tool-icon" src="/shared/assets/app-icons/bimValidator.png" alt="" width="52" height="52" loading="lazy">
+            <img class="tool-icon" src="/shared/assets/app-icons/bimValidator.svg" alt="" width="52" height="52" loading="lazy">
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 data-i18n="tools.items.bimValidator.title" style="margin-bottom:0;">Open BIM Validator Studio</h3></div>
             <p data-i18n="tools.items.bimValidator.desc">Validate IFC models against IDS, the Dutch NL-BIM Basis ILS and the RVB BIM Norm.</p>
             <div class="tool-stats">
@@ -1405,7 +1408,7 @@
         <article class="tool-card" data-repo="openaec-bcf-platform" data-categories="E,C">
           <img class="tool-thumb" src="/shared/assets/screenshots/bcf-manager-studio-dashboard.jpg" alt="BCF Manager Studio - projectdashboard">
           <div>
-            <img class="tool-icon" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="52" height="52" loading="lazy">
+            <img class="tool-icon" src="/shared/assets/app-icons/bcfManager.svg" alt="" width="52" height="52" loading="lazy">
             <div class="tool-cats"><span class="tool-cat tool-cat-e">E</span><span class="tool-cat tool-cat-c">C</span></div>
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 style="margin-bottom:0;" data-i18n="tools.items.bcfManager.title">BCF Manager Studio</h3><span class="tool-tag tool-tag-beta" data-i18n="tools.tags.beta">Beta</span><span class="tool-tag tool-tag-notready" data-i18n="tools.tags.notReady">Not production-ready</span></div>
             <p data-i18n="tools.items.bcfManager.desc">BCF 2.1 issue management for BIM projects, linked to your IFC models.</p>
@@ -1417,6 +1420,19 @@
           <div class="tool-links">
             <a href="/en/bcf-manager-studio/" class="tool-link" data-i18n="tools.productPageLink">Product page &rarr;</a>
             <a href="https://github.com/OpenAEC-Foundation/openaec-bcf-platform" target="_blank" rel="noopener" class="tool-link-secondary" aria-label="GitHub" title="GitHub"><svg class="ico tool-gh" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg></a>
+          </div>
+        </article>
+        <article class="tool-card is-soon" data-categories="A,E,C,I">
+          <span class="tool-ribbon" data-i18n="tools.tags.soon">Coming soon</span>
+          <img class="tool-thumb tool-thumb-logo" src="/shared/assets/app-icons/bimPlatform.svg" alt="Open BIM Platform">
+          <div>
+            <img class="tool-icon" src="/shared/assets/app-icons/bimPlatform.svg" alt="" width="52" height="52" loading="lazy">
+            <div class="tool-cats"><span class="tool-cat tool-cat-a">A</span><span class="tool-cat tool-cat-e">E</span><span class="tool-cat tool-cat-c">C</span><span class="tool-cat tool-cat-i">I</span></div>
+            <h3 data-i18n="tools.items.bimPlatform.title">Open BIM Platform</h3>
+            <p data-i18n="tools.items.bimPlatform.desc">Model management in the SuperCloud: view, combine and discuss 3D models, with BCF issues, clash detection and versions.</p>
+          </div>
+          <div class="tool-links">
+            <a href="https://github.com/OpenAEC-Foundation/open-bim-platform" target="_blank" rel="noopener" class="tool-link" aria-label="GitHub">GitHub &rarr;</a>
           </div>
         </article>
         <article class="tool-card" data-categories="STD">
@@ -1471,7 +1487,7 @@
         <article class="tool-card" data-repo="open-speech-studio" data-categories="COMMON">
           <img class="tool-thumb" src="/shared/assets/screenshots/open-speech-studio-tts.png" alt="Open Speech Studio">
           <div>
-            <img class="tool-icon" src="/shared/assets/app-icons/openSpeech.svg" alt="" width="52" height="52" loading="lazy">
+            <img class="tool-icon" src="/shared/assets/app-icons/openSpeech.png" alt="" width="52" height="52" loading="lazy">
             <div class="tool-cats"><span class="tool-cat tool-cat-word" data-i18n="tools.filter.common">Common</span></div>
             <div style="display:flex;align-items:center;gap:var(--sp-2);margin-bottom:var(--sp-2);flex-wrap:wrap;"><h3 data-i18n="tools.items.openSpeech.title" style="margin-bottom:0;">Open Speech Studio</h3><span class="tool-tag tool-tag-beta" data-i18n="tools.tags.beta">Beta</span></div>
             <p data-i18n="tools.items.openSpeech.desc">Local speech-to-text and meeting notes for project meetings, without the cloud.</p>
@@ -2054,6 +2070,7 @@
             cloudPlatform: { title: "OpenAEC Cloud Platform", desc: "Centraal cloudplatform voor het OpenAEC-ecosysteem. Projectbeheer, gebruikersbeheer, SSO en synchronisatie tussen alle tools.", link: "Bekijk project \u2192" },
             superCloud: { title: "OpenAEC SuperCloud", desc: "Eigen cloud, account en inlog voor het hele OpenAEC-ecosysteem. Zelf gehost en open.", link: "Bekijk project \u2192" },
             browser: { title: "OpenAEC Browser", desc: "Browser op basis van Chromium voor Windows, Linux en de OpenAEC SuperCloud, met een rustige startpagina en advertentieblokkering." },
+            bimPlatform: { title: "Open BIM Platform", desc: "Modellen beheren in de SuperCloud: 3D-modellen bekijken, samenvoegen en bespreken, met BCF-issues, botsingscontrole en versies." },
             openHeatloss: { title: "Open Heatloss Studio", desc: "Warmteverliesberekening per ruimte volgens NEN 12831: transmissie en ventilatie.", link: "Probeer het nu \u2192" },
             openInstaller: { title: "OpenAEC Installer", desc: "Centrale hub om alle OpenAEC-tools te installeren, bij te werken en te starten \u2014 \u00e9\u00e9n plek voor het hele ecosysteem. Voor Windows, macOS en Linux.", link: "Download \u2192" },
             open3d: { title: "Open 3D Viewer", desc: "Open source 3D-viewer voor het bekijken en inspecteren van BIM-modellen in de browser.", link: "Probeer het nu \u2192" },
@@ -2287,6 +2304,7 @@
             cloudPlatform: { title: "OpenAEC Cloud Platform", desc: "Central cloud platform for the OpenAEC ecosystem. Project management, user management, SSO and synchronisation between all tools.", link: "View project \u2192" },
             superCloud: { title: "OpenAEC SuperCloud", desc: "Own cloud, account and sign-in for the whole OpenAEC ecosystem. Self-hosted and open.", link: "View project \u2192" },
             browser: { title: "OpenAEC Browser", desc: "Chromium-based browser for Windows, Linux and the OpenAEC SuperCloud, with a calm start page and ad blocking." },
+            bimPlatform: { title: "Open BIM Platform", desc: "Model management in the SuperCloud: view, combine and discuss 3D models, with BCF issues, clash detection and versions." },
             openHeatloss: { title: "Open Heatloss Studio", desc: "Heat loss calculation per room to NEN 12831: transmission and ventilation.", link: "Try it now \u2192" },
             openInstaller: { title: "OpenAEC Installer", desc: "Central hub to install, update and launch every OpenAEC tool \u2014 one place for the whole ecosystem. For Windows, macOS and Linux.", link: "Download \u2192" },
             open3d: { title: "Open 3D Viewer", desc: "Open source 3D viewer for inspecting BIM models in the browser.", link: "Try it now \u2192" },
@@ -2547,6 +2565,7 @@
             cloudPlatform: { title: "OpenAEC Cloud Platform", desc: "Plateforme cloud centrale pour l'\u00e9cosyst\u00e8me OpenAEC. Gestion de projets, gestion des utilisateurs, SSO et synchronisation entre tous les outils.", link: "Voir le projet \u2192" },
             superCloud: { title: "OpenAEC SuperCloud", desc: "Cloud, compte et connexion propres pour tout l'écosystème OpenAEC. Auto-hébergé et ouvert.", link: "Voir le projet \u2192" },
             browser: { title: "OpenAEC Browser", desc: "Navigateur basé sur Chromium pour Windows, Linux et l’OpenAEC SuperCloud, avec une page d’accueil sobre et un bloqueur de publicités." },
+            bimPlatform: { title: "Open BIM Platform", desc: "Gestion des maquettes dans le SuperCloud : visualiser, assembler et commenter des modèles 3D, avec issues BCF, détection de conflits et versions." },
             openHeatloss: { title: "Open Heatloss Studio", desc: "Calcul des déperditions thermiques par pièce selon la NEN 12831 : transmission et ventilation.", link: "Essayez maintenant \u2192" },
             openInstaller: { title: "OpenAEC Installer", desc: "Hub central pour installer, mettre \u00e0 jour et lancer tous les outils OpenAEC \u2014 un seul endroit pour tout l'\u00e9cosyst\u00e8me. Pour Windows, macOS et Linux.", link: "T\u00e9l\u00e9charger \u2192" },
             open3d: { title: "Open 3D Viewer", desc: "Visualiseur 3D open source pour inspecter les mod\u00e8les BIM dans le navigateur.", link: "Essayez maintenant \u2192" },
@@ -2799,6 +2818,7 @@
             cloudPlatform: { title: "OpenAEC Cloud Platform", desc: "OpenAEC ekosistemi i\u00e7in merkezi bulut platformu. Proje y\u00f6netimi, kullan\u0131c\u0131 y\u00f6netimi, SSO ve t\u00fcm ara\u00e7lar aras\u0131nda senkronizasyon.", link: "Projeyi g\u00f6r\u00fcnt\u00fcle \u2192" },
             superCloud: { title: "OpenAEC SuperCloud", desc: "Tüm OpenAEC ekosistemi için kendi bulutu, hesabı ve oturum açması. Kendi sunucunda ve açık.", link: "Projeyi g\u00f6r\u00fcnt\u00fcle \u2192" },
             browser: { title: "OpenAEC Browser", desc: "Windows, Linux ve OpenAEC SuperCloud için Chromium tabanlı tarayıcı; sade bir başlangıç sayfası ve reklam engelleme ile." },
+            bimPlatform: { title: "Open BIM Platform", desc: "SuperCloud’da model yönetimi: 3B modelleri görüntüleyin, birleştirin ve tartışın; BCF kayıtları, çakışma kontrolü ve sürümlerle." },
             openHeatloss: { title: "Open Heatloss Studio", desc: "NEN 12831'e göre oda bazında ısı kaybı hesabı: iletim ve havalandırma.", link: "\u015eimdi deneyin \u2192" },
             openInstaller: { title: "OpenAEC Installer", desc: "T\u00fcm OpenAEC ara\u00e7lar\u0131n\u0131 kurmak, g\u00fcncellemek ve ba\u015flatmak i\u00e7in merkezi hub \u2014 t\u00fcm ekosistem i\u00e7in tek yer. Windows, macOS ve Linux i\u00e7in.", link: "\u0130ndir \u2192" },
             open3d: { title: "Open 3D Viewer", desc: "Taray\u0131c\u0131da BIM modellerini incelemek i\u00e7in a\u00e7\u0131k kaynak 3D g\u00f6r\u00fcnt\u00fcleyici.", link: "\u015eimdi deneyin \u2192" },
@@ -3028,6 +3048,7 @@
             cloudPlatform: { title: "OpenAEC Cloud Platform", desc: "Plataforma cloud central del ecosistema OpenAEC. Gestión de proyectos, gestión de usuarios, SSO y sincronización entre todas las herramientas.", link: "Ver proyecto →" },
             superCloud: { title: "OpenAEC SuperCloud", desc: "Nube, cuenta e inicio de sesión propios para todo el ecosistema OpenAEC. Autoalojado y abierto.", link: "Ver proyecto →" },
             browser: { title: "OpenAEC Browser", desc: "Navegador basado en Chromium para Windows, Linux y el OpenAEC SuperCloud, con una página de inicio tranquila y bloqueo de anuncios." },
+            bimPlatform: { title: "Open BIM Platform", desc: "Gestión de modelos en el SuperCloud: ver, combinar y comentar modelos 3D, con incidencias BCF, detección de colisiones y versiones." },
             openHeatloss: { title: "Open Heatloss Studio", desc: "Cálculo de pérdidas de calor por estancia según la NEN 12831: transmisión y ventilación.", link: "Pruébalo ahora →" },
             openInstaller: { title: "OpenAEC Installer", desc: "Centro neurálgico para instalar, actualizar y lanzar todas las herramientas OpenAEC — un único lugar para todo el ecosistema. Para Windows, macOS y Linux.", link: "Descargar →" },
             open3d: { title: "Open 3D Viewer", desc: "Visor 3D de código abierto para inspeccionar modelos BIM en el navegador.", link: "Pruébalo ahora →" },
