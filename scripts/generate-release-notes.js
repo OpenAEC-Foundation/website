@@ -32,7 +32,7 @@ const TOOL_REPOS = [
   'open-3d-viewer',
   'open-geotechniek-studio',
   'pile-plan-studio',
-  'Open-Infra',
+  'Open-Infra-Studio',
   'open-bim-studio',
   'monty-ifc-viewer',
   'OpenAEC-BIM-validator',

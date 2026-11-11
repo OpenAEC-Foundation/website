@@ -346,7 +346,7 @@ const TOOLS = [
   {
     id: 'open-infra-studio',
     name: 'Open Infra Studio',
-    repo: 'Open-Infra',
+    repo: 'Open-Infra-Studio',
     category: 'GIS',
     status: 'beta',
     license: 'GPL-3.0-only',

@@ -8,17 +8,16 @@
 **Category:** GIS
 **Current version:** v2026.46.0 (2026-11-09)
 **Tool ID:** `open-infra-studio`
-**GitHub repo:** `OpenAEC-Foundation/Open-Infra`
+**GitHub repo:** `OpenAEC-Foundation/Open-Infra-Studio`
 
 ## Live stats
 
-- Stars: **0**
-- Commits: **0**
-- Forks: **0**
-- Open issues: **0**
+- Stars: **20**
+- Commits: **546**
+- Forks: **3**
+- Open issues: **40**
 - Releases: **15**
-- Total downloads: **25,506**
-- Downloads by platform: Other (24419), Windows (955), Archive (132)
+- Total downloads: **0**
 
 ## Key features
 
@@ -66,19 +65,8 @@ Starting an infrastructure or civil drawing from the existing situation: the pro
 ## Download & links
 
 - Product page: https://open-aec.com/open-infra-studio/
-- GitHub repo: https://github.com/OpenAEC-Foundation/Open-Infra
+- GitHub repo: https://github.com/OpenAEC-Foundation/Open-Infra-Studio
 - Latest release: https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/tag/v2026.46.0
-
-## Direct downloads (most popular)
-
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/plugin.toml) (v2026.44.5)
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.3/plugin.toml) (v2026.44.3)
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.4/plugin.toml) (v2026.44.4)
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.2/plugin.toml) (v2026.44.2)
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.45.1/plugin.toml) (v2026.45.1)
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.45.3/plugin.toml) (v2026.45.3)
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.45.2/plugin.toml) (v2026.45.2)
-- [Other · plugin.toml](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.1/plugin.toml) (v2026.44.1)
 
 ---
 

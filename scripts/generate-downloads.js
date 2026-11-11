@@ -26,7 +26,7 @@ const TOOL_REPOS = [
   'open-frame-studio',
   'open-geotechniek-studio',
   'pile-plan-studio',
-  'Open-Infra',
+  'Open-Infra-Studio',
   'open-bim-studio',
   'Open-CalcSheet-Studio',
   'monty-ifc-viewer',
@@ -70,6 +70,9 @@ function classify(name) {
   if (n.endsWith('.tar.gz') || n.endsWith('.tgz') || n.endsWith('.zip')) return 'Archive';
   if (n.endsWith('.sig') || n.endsWith('.pem') || n.endsWith('.asc')) return null; // skip sigs
   if (n === 'latest.json' || n.endsWith('.json')) return null; // skip updater manifests
+  // De Plugin Manager van Open CAD Studio haalt plugin.toml bij elke updatecontrole op;
+  // dat zijn geen downloads, en ze zouden het aantal van Open Infra Studio twintigvoudig opblazen.
+  if (n.endsWith('.toml')) return null;
   return 'Other';
 }
 
