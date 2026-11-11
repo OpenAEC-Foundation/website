@@ -6,7 +6,7 @@
 
   // Private repos: their GitHub release pages give visitors a 404, so release-notes links into
   // them are hidden (also in groups that are expanded later). Remove a repo once it goes public.
-  const PRIVATE_REPOS = ['Y-app', 'open-safety-studio', 'open-3d-viewer'];
+  const PRIVATE_REPOS = ['Y-app', 'open-safety-studio', 'open-3d-viewer', 'open-2d-studio'];
   (function hidePrivateRepoLinks() {
     const style = document.createElement('style');
     style.textContent = PRIVATE_REPOS
@@ -564,7 +564,7 @@
         </div>
       </div>
       <p class="rn-viewall">
-        <a href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll')}</a>
+        <a href="https://github.com/${data.owner || 'OpenAEC-Foundation'}/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll')}</a>
       </p>
     `;
   }
@@ -795,7 +795,7 @@
       <ol class="rn-timeline">${items}</ol>
       <p class="more-row">
         ${releases.length > RN_VISIBLE ? `<button type="button" class="btn btn-secondary btn-lg more-btn rn-groups-toggle" aria-expanded="false"><span class="more-label">${t('showAllVersions')}</span> <span class="more-count">(${releases.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></button>` : ''}
-        <a class="more-link" href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/s*→s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a>
+        <a class="more-link" href="https://github.com/${data.owner || 'OpenAEC-Foundation'}/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/s*→s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a>
       </p>
     `;
 
@@ -882,7 +882,7 @@
       </div>
       <p class="more-row">
         ${data.groups.length > RN_VISIBLE ? `<button type="button" class="btn btn-secondary btn-lg more-btn rn-groups-toggle" aria-expanded="false"><span class="more-label">${t('showAllVersions')}</span> <span class="more-count">(${data.groups.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></button>` : ''}
-        <a class="more-link" href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/\s*→\s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a>
+        <a class="more-link" href="https://github.com/${data.owner || 'OpenAEC-Foundation'}/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/\s*→\s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a>
       </p>
     `;
 

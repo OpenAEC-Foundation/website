@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Open Pointcloud Studio — OpenAEC Foundation</title>
@@ -18,13 +19,14 @@
 
 
 
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="OpenAEC Foundation">
   <meta property="og:title" content="Open Pointcloud Studio — OpenAEC Foundation">
   <meta property="og:description" content="Desktop application for laser scans and point clouds (LAS, LAZ, E57): view, measure, convert, DXF and DWG section drawings, meshes. Windows, macOS, Linux.">
   <meta property="og:url" content="https://open-aec.com/en/open-pointcloud-studio/">
-  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio-4.jpg">
   <meta property="og:locale" content="en_US">
   <meta property="og:locale:alternate" content="en_US">
 
@@ -32,7 +34,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Open Pointcloud Studio">
   <meta name="twitter:description" content="Desktop application for laser scans and point clouds (LAS, LAZ, E57): view, measure, convert, DXF and DWG section drawings, meshes. Windows, macOS, Linux.">
-  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio-4.jpg">
 
   <!-- AI / LLM discoverability -->
   <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
@@ -42,6 +44,7 @@
   <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/shared/style.css?v=20261015">
+  <link rel="stylesheet" href="/shared/productpagina.css?v=20261105">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -51,29 +54,31 @@
     "applicationSubCategory": "Point Cloud",
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://open-aec.com/open-pointcloud-studio/",
-    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe",
-    "softwareVersion": "0.8.0",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/latest",
+    "softwareVersion": "2026.45.1",
     "license": "https://www.gnu.org/licenses/gpl-3.0.html",
     "description": "Desktop application for viewing, measuring, editing and converting laser scans and other point clouds, and for turning them into section drawings, meshes and the flat faces of a building. Runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.",
     "featureList": [
-      "Opens LAS, LAZ, E57, PLY, PCD, PTX, PTS and text point clouds",
+      "Opens LAS, LAZ, E57, PLY, PCD, PTX, PTS and text point clouds, and meshes in OBJ, PLY, OFF and STL",
       "Opens a whole scan project from its folder or its scan project file (.rcp)",
       "Octree index on disk with level of detail for the current view",
-      "Section box with six draggable faces",
+      "Section box with six draggable faces that can be turned along the walls",
       "Distance and area measuring",
       "Saved views with notes, exported as BCF 2.1",
-      "Station photos and walking through the scan",
+      "Station photos and panoramas from E57, colouring points from photos and editing photos",
+      "Scan registration with point pairs and ICP refinement",
       "Box selection, delete with undo, thin, move and scale",
-      "Export as LAS, LAZ, E57, PLY, XYZ, PTS or CSV and merging of LAS and LAZ scans",
-      "Terrain mesh and 3D surface, saved as OBJ, PLY or STL",
-      "Section drawing: what the section box cuts as a 2D drawing in DXF or DWG, with a filled cut and a preview",
-      "Closed mesh of a room or region, with the measured distance between the points and the mesh",
-      "Detected faces: planes with their outlines, and cylinders, exported as JSON or OBJ",
+      "Export as LAS, LAZ, E57, PLY, XYZ, PTS or CSV and merging of scans in mixed formats",
+      "Section drawing in DXF or DWG with a filled cut and straight CAD lines",
+      "Sheets with a title block, exported as PDF",
+      "Terrain mesh, 3D surface and closed mesh, saved as OBJ, PLY, STL, DXF, DWG or IFC",
+      "Detected faces: planes with their outlines, and cylinders, exported as JSON, OBJ, DXF, DWG or IFC4",
       "3D BAG building models of the Netherlands",
-      "Local command API and MCP server",
+      "Local command API, MCP server and command line",
+      "C library and cloud API of the point-cloud core",
       "Interface in Dutch and English"
     ],
-    "screenshot": "https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg",
+    "screenshot": "https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio-4.jpg",
     "offers": {
       "@type": "Offer",
       "price": "0",
@@ -81,7 +86,7 @@
       "availability": "https://schema.org/InStock"
     },
     "isAccessibleForFree": true,
-    "keywords": "point cloud, laser scan, LAS, LAZ, E57, PLY, PCD, PTX, section box, section drawing, DXF, DWG, measuring, BCF, mesh, closed mesh, plane detection, MCP server",
+    "keywords": "point cloud, laser scan, LAS, LAZ, E57, PLY, PCD, PTX, section box, section drawing, DXF, DWG, IFC, measuring, BCF, registration, mesh, closed mesh, plane detection, MCP server",
     "sameAs": [
       "https://github.com/OpenAEC-Foundation/open-pointcloud-studio"
     ],
@@ -92,54 +97,86 @@
     }
   }
   </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wat kost het?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Niets. Open Pointcloud Studio is open source: de desktopapplicatie valt onder de GPL-3.0, de puntenwolkkern onder de LGPL-3.0. Geen licentiekosten, geen abonnement en geen account." }
+      },
+      {
+        "@type": "Question",
+        "name": "Welke scans kan ik openen?",
+        "acceptedAnswer": { "@type": "Answer", "text": "LAS, LAZ, E57, PLY, PCD, PTX, PTS en tekstbestanden met één punt per regel, en meshes in OBJ, PLY, OFF en STL. Een map met scans of een scanprojectbestand (.rcp) open je in één keer; van zo'n projectbestand wordt alleen de lijst met scans gelezen, de geïndexeerde scankopieën (.rcs) niet." }
+      },
+      {
+        "@type": "Question",
+        "name": "Hoe groot mag een scan zijn?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Voor wolken vanaf een miljoen punten bouwt de applicatie een index op schijf. Daarmee blijven ook scans van meer dan honderd miljoen punten vlot: je ziet het detail van het huidige standpunt, tot een instelbaar maximum van tien miljoen punten in beeld. Zo'n index kan voor een grote opname enkele gigabytes innemen." }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan ik de resultaten in mijn CAD- of BIM-programma gebruiken?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja. Snedetekeningen gaan naar DXF of DWG, meshes en herkende vlakken ook als 3D-geometrie in DXF, DWG of IFC4, en opgeslagen views als BCF 2.1. Open CAD Studio zit in elk pakket en toont een geëxporteerde tekening meteen. DWG-bestanden openen kan niet." }
+      },
+      {
+        "@type": "Question",
+        "name": "Op welke systemen draait het?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Windows 10 en 11 (x64), macOS 11 en nieuwer op Apple- en Intel-processors, en Linux op x86-64 (Ubuntu 22.04, Debian 12, Fedora 36 of nieuwer). De pakketten voor Linux op 64-bit ARM zijn experimenteel. Er is geen browserversie." }
+      },
+      {
+        "@type": "Question",
+        "name": "Werkt het met een AI-assistent?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja. open-pointcloud-studio --mcp start een MCP-server met een tool voor elk commando van de lokale commando-API: scans openen, de snedebox zetten, meten, exporteren, tekenen en meshen, en het 3D-beeld als afbeelding terugsturen." }
+      },
+      {
+        "@type": "Question",
+        "name": "Kan ik de kern in mijn eigen software gebruiken?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ja. De puntenwolkkern is er als C-bibliotheek voor Windows, macOS en Linux en als cloud-API in een container-image, beide onder de LGPL-3.0. Vanuit Rust gebruik je de crate rechtstreeks." }
+      },
+      {
+        "@type": "Question",
+        "name": "In welke talen is de interface?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nederlands en Engels. De applicatie volgt de taal van het systeem; in Instellingen wissel je van taal en kies je een van de vijf kleurthema's." }
+      },
+      {
+        "@type": "Question",
+        "name": "Hoe betrouwbaar zijn snedetekening, gesloten mesh en vlakherkenning?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Ze zijn gemeten op gegenereerde kamers, nog niet op een scan van een echt gebouw. Een gesloten mesh en herkende vlakken melden hoe ver de punten ervan afliggen, zodat je het resultaat zelf beoordeelt. De bekende grenzen staan op deze pagina onder Techniek." }
+      }
+    ]
+  }
+  </script>
   <style>
     /* De beelden van de gegenereerde testkamers hebben een andere verhouding: elk heel in een kader zo hoog als de hoogste */
-    .slider-slide.slide-framed img { aspect-ratio: 1920 / 1146; object-fit: contain; }
+    .slider-slide img.slide-framed { aspect-ratio: 1920 / 1146; object-fit: contain; }
     /* Directe downloads als tekstregel onder de knoppen (de downloadtest zoekt deze klasse) */
     .hero-downloads { margin: var(--sp-5) auto 0; max-width: none; font-size: 0.95rem; color: var(--text-on-dark); }
     .hero-downloads a { color: var(--warm-gold); font-weight: 600; text-decoration: none; }
     .hero-downloads a:hover { color: white; text-decoration: underline; }
-
-    /* Downloads: meerdere links per systeem */
-    .page-panels .download-section .download-intro { color: var(--text-on-light); font-size: 1.02rem; margin: calc(-1 * var(--sp-3)) auto var(--sp-6); max-width: 640px; }
-    /* Naam, eisen, knop en extra links staan in alle drie de kaarten op dezelfde hoogte */
-    #download .download-grid { row-gap: 0; }
-    #download .download-item { display: grid; grid-row: span 4; grid-template-rows: subgrid; row-gap: 0; align-items: start; margin-bottom: 16px; }
-    #download .download-item .btn { margin-top: 0; align-self: end; }
-    .download-item .download-alt { font-size: 0.85rem; color: var(--text-on-light); margin-top: var(--sp-3); line-height: 1.7; }
-    .download-item .download-alt a { color: #B45309; font-weight: 600; }
-    .download-arm { color: var(--text-on-light); font-size: 0.9rem; line-height: 1.6; margin: var(--sp-5) auto 0; max-width: none; text-align: center; }
-    .download-arm a { color: #B45309; font-weight: 600; }
-    .exp-tag { display: inline-block; font-family: var(--font-code); font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: var(--radius-full); background: rgba(217,119,6,0.15); color: #92400E; margin-right: 2px; vertical-align: middle; }
-    .install-notes { list-style: none; padding: 0; margin: var(--sp-8) 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; text-align: left; }
-    .install-notes li { display: flex; gap: 14px; align-items: flex-start; background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); padding: var(--sp-5); color: var(--text-on-light); font-size: 0.95rem; line-height: 1.6; }
-    .install-notes li:last-child:nth-child(odd) { grid-column: 1 / -1; }
-    .install-notes .icon-tile { width: 40px; height: 40px; }
-    .install-notes .icon-tile .ico { width: 22px; height: 22px; }
-    .install-notes strong { color: var(--deep-forge); }
-    .install-notes a { color: #B45309; font-weight: 600; }
-    .install-notes code, .page-panels .feature code, .split-card code, .formats-table code { overflow-wrap: anywhere; }
-    .install-notes code { font-family: var(--font-code); font-size: 0.86em; background: var(--concrete); padding: 1px 5px; border-radius: var(--radius-sm); }
-
+    .exp-tag { display: inline-block; font-family: var(--font-code); font-size: 0.66rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; padding: 2px 8px; border-radius: var(--radius-full); background: rgba(245,158,11,0.18); color: var(--warm-gold); margin-left: 4px; vertical-align: middle; }
+    .pp-dl-notes { list-style: none; padding: 0; margin: var(--sp-6) auto 0; display: grid; gap: 10px; text-align: left; }
+    .pp-dl-notes li { color: var(--text-on-dark); font-size: 0.9rem; line-height: 1.6; }
+    .pp-dl-notes strong { color: white; }
+    .pp-dl-notes a { color: var(--warm-gold); font-weight: 600; }
+    .pp-dl-notes code, .formats-table code, .opc-limits code { font-family: var(--font-code); font-size: 0.86em; overflow-wrap: anywhere; }
     /* Bestandsformaten */
+    .opc-sub { text-align: center; margin: var(--sp-16) 0 var(--sp-6); }
     .table-card { max-width: 1100px; margin: 0 auto; background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); overflow-x: auto; }
     .formats-table { width: 100%; border-collapse: collapse; }
     .formats-table th { text-align: left; font-family: var(--font-code); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--deep-forge); background: rgba(217,119,6,0.06); padding: 14px 18px; white-space: nowrap; }
     .formats-table td { padding: 14px 18px; border-top: 1px solid rgba(42,42,50,0.07); color: var(--text-on-light); font-size: 0.93rem; line-height: 1.55; vertical-align: top; }
     .formats-table td:first-child { font-weight: 700; color: var(--deep-forge); white-space: nowrap; }
     .formats-table td:nth-child(2), .formats-table td:nth-child(3) { white-space: nowrap; font-weight: 600; color: #B45309; }
-
-    /* Goed om te weten: lichte kaarten in de rechterkolom */
-    .note-cards .split-card { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border-color: rgba(42,42,50,0.07); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); color: var(--text-on-light); }
-    .note-cards .split-card p { color: var(--text-on-light); }
-    .note-cards .split-card a { color: #B45309; }
-    .note-cards .icon-tile { background: linear-gradient(145deg, rgba(217,119,6,0.18), rgba(217,119,6,0.05)); border-color: rgba(217,119,6,0.22); }
-
-    .tech-chips { margin-bottom: var(--sp-6); }
-    .tech-desc { color: var(--text-on-light); font-size: 1.02rem; line-height: 1.7; max-width: 760px; margin: 0 auto; text-align: center; }
-    .page-panels .feature p a { color: #B45309; font-weight: 600; }
-
-    @media (max-width: 760px) { .install-notes { grid-template-columns: 1fr; } .formats-table td:first-child { white-space: normal; } }
+    .formats-table a { color: #B45309; font-weight: 600; }
+    /* Goed om te weten: inklapbare lijst */
+    .opc-limits { max-width: 860px; margin: var(--sp-10) auto 0; }
+    .opc-limits ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
+    .opc-limits a, .page-panels .feature p a { color: #B45309; font-weight: 600; }
+    @media (max-width: 760px) { .formats-table td:first-child { white-space: normal; } }
   </style>
 
   <meta name="i18n-static" content="en">
@@ -178,7 +215,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "en",
-        "dateModified": "2026-11-10",
+        "dateModified": "2026-11-11",
         "breadcrumb": {
           "@id": "https://open-aec.com/en/open-pointcloud-studio/#breadcrumb"
         }
@@ -241,176 +278,265 @@
 
   <main id="main">
 
-  <header class="product-head surface-spot">
+  <header class="product-head surface-spot" id="top">
     <div class="product-head-inner">
       <p class="pill-label" data-i18n="header.label">View, measure and edit point clouds</p>
       <h1 data-i18n="header.title">Open <span class="accent">Pointcloud</span> Studio</h1>
+      <p class="pp-tagline" data-i18n="header.tagline">From laser scan to dimension, drawing and mesh</p>
       <p class="lead" data-i18n="header.desc">A desktop application for viewing, measuring, editing and converting laser scans and other point clouds. From a scan it makes a section drawing in DXF or DWG, a closed mesh, and the planes and cylinders of a room. It runs on Windows, macOS and Linux, is written in Rust and needs no browser or web view.</p>
       <div class="btn-group">
         <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="cta.download">Download</span></a>
         <a href="/en/open-pointcloud-studio/handleiding/" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="cta.guide">User guide</span></a>
         <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="cta.github">GitHub</span></a>
       </div>
-      <p class="hero-downloads"><span data-i18n="header.direct">Direct download:</span> <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" data-i18n="header.dlWindows">Windows installer</a> · <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos" data-i18n="header.dlMac">macOS (.dmg)</a> · <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-appimage" data-i18n="header.dlLinux">Linux (AppImage)</a></p>
-      <div class="chip-row">
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-rocket"/></svg><span data-i18n="header.badge">Beta</span></span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg>Windows · macOS · Linux</span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg>Rust · wgpu</span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg>GPL-3.0 · LGPL-3.0</span>
-      </div>
+      <p class="hero-downloads"><span data-i18n="header.direct">Direct download:</span> <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" data-i18n="header.dlWindows">Windows installer</a> · <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_macos-universal.dmg" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos" data-i18n="header.dlMac">macOS (.dmg)</a> · <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-appimage" data-i18n="header.dlLinux">Linux (AppImage)</a></p>
+      <ul class="chip-row pp-proof">
+        <li class="chip"><span>LAS · LAZ · E57 · PLY · PCD · PTX</span></li>
+        <li class="chip"><span>DXF · DWG · IFC · BCF</span></li>
+        <li class="chip"><span>Windows · macOS · Linux</span></li>
+        <li class="chip"><span data-i18n="header.proofLang">Dutch and English</span></li>
+        <li class="chip"><span data-i18n="header.proofFree">Free · GPL-3.0 and LGPL-3.0</span></li>
+      </ul>
     </div>
-    <div class="media-slider shot-overlap">
+    <div class="media-slider shot-overlap" data-pp-slider>
       <div class="slider-container">
-        <div class="slider-track" id="sliderTrack">
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio.jpeg" width="1920" height="1048" alt="Open Pointcloud Studio in an isometric overview: a scan of 455 million points of a building with its garden and blossoming trees, the project panel on the left and the Properties panel on the right" data-i18n="slides.one" data-i18n-attr="alt"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-2.jpg" width="1920" height="1046" loading="lazy" alt="The same scan with the section box set to 11% of the height, so the rooms are seen from above, and a distance measurement of 26.774 metres between two points" data-i18n="slides.two" data-i18n-attr="alt"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pointcloud-studio-3.jpg" width="1920" height="1146" loading="lazy" alt="The section box narrowed to a slab between 4% and 31% of the height, which frees the facade with its windows; on the right the saved view and the sliders of the section box" data-i18n="slides.three" data-i18n-attr="alt"></div>
-          <div class="slider-slide slide-framed"><img src="/shared/assets/screenshots/open-pointcloud-studio-4.jpg" width="1302" height="806" loading="lazy" alt="Section drawing of two generated test rooms: the plan seen from above, with the preview of the filled cut (the wall between the rooms with its door opening left open, and a round column, as filled regions) and on the right the Section drawing block (Snedetekening in the Dutch interface) in Properties" data-i18n="slides.four" data-i18n-attr="alt"></div>
-          <div class="slider-slide slide-framed"><img src="/shared/assets/screenshots/open-pointcloud-studio-5.jpg" width="1302" height="806" loading="lazy" alt="Closed mesh of the same generated test rooms: the surface of the two rooms with a door opening left open in an outer wall, and on the right the Closed mesh block (Gesloten mesh in the Dutch interface) with its result: 15,868 vertices, 30,563 triangles and a mean deviation of 1.6 mm" data-i18n="slides.five" data-i18n-attr="alt"></div>
-          <div class="slider-slide slide-framed"><img src="/shared/assets/screenshots/open-pointcloud-studio-6.jpg" width="1302" height="806" loading="lazy" alt="Detected faces of the same generated test rooms, each type in a colour of its own (ceilings blue, walls sand), and on the right the Detect faces block (Vlakken herkennen in the Dutch interface) with its counts: 2 floors, 2 ceilings, 10 walls and 1 column" data-i18n="slides.six" data-i18n-attr="alt"></div>
+        <div class="slider-track">
+          <div class="slider-slide"><img class="slide-framed" src="/shared/assets/screenshots/open-pointcloud-studio-4.jpg" width="1302" height="806" alt="Section drawing of two generated test rooms: the plan seen from above, with the preview of the filled cut (the wall between the rooms with its door opening left open, and a round column, as filled regions) and on the right the Section drawing block (Snedetekening in the Dutch interface) in Properties" data-i18n="slides.four" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img class="slide-framed" loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pointcloud-studio-5.jpg" width="1302" height="806" alt="Closed mesh of the same generated test rooms: the surface of the two rooms with a door opening left open in an outer wall, and on the right the Closed mesh block (Gesloten mesh in the Dutch interface) with its result: 15,868 vertices, 30,563 triangles and a mean deviation of 1.6 mm" data-i18n="slides.five" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img class="slide-framed" loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pointcloud-studio-6.jpg" width="1302" height="806" alt="Detected faces of the same generated test rooms, each type in a colour of its own (ceilings blue, walls sand), and on the right the Detect faces block (Vlakken herkennen in the Dutch interface) with its counts: 2 floors, 2 ceilings, 10 walls and 1 column" data-i18n="slides.six" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pointcloud-studio-2.jpg" width="1920" height="1046" alt="A scan of a building with the section box set to 11% of the height, so the rooms are seen from above, and a distance measurement of 26.774 metres between two points" data-i18n="slides.two" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pointcloud-studio-3.jpg" width="1920" height="1146" alt="The section box narrowed to a slab between 4% and 31% of the height, which frees the facade with its windows; on the right the saved view and the sliders of the section box" data-i18n="slides.three" data-i18n-attr="alt"></div>
         </div>
-        <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Previous picture" data-i18n="slides.prev" data-i18n-attr="aria-label">&lsaquo;</button>
-        <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Next picture" data-i18n="slides.next" data-i18n-attr="aria-label">&rsaquo;</button>
+        <button type="button" class="slider-btn slider-prev" aria-label="Vorige afbeelding">&lsaquo;</button>
+        <button type="button" class="slider-btn slider-next" aria-label="Volgende afbeelding">&rsaquo;</button>
       </div>
-      <div class="slider-dots" id="sliderDots"></div>
+      <div class="slider-dots"></div>
     </div>
   </header>
 
-  <section class="section after-overlap" id="download"><div class="container">
-    <div class="download-section">
-      <h3 data-i18n="download.title">Download v0.8.0</h3>
-      <p class="download-intro" data-i18n="download.intro">Each button starts the download right away. You need no account and there is no page in between.</p>
-      <div class="download-grid">
-      <div class="download-item">
-        <div class="os">Windows</div>
-        <div class="size" data-i18n="download.win.req">Windows 10 and 11, 64-bit</div>
-        <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.win.primary">Installer (.exe)</span></a>
-        <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_windows-x64.zip" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows-zip" data-i18n="download.win.zip">Zip without an installer</a></div>
+  <div class="after-overlap pp-notice-wrap">
+    <p class="pp-notice"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="notice.text"><strong>First time?</strong> The guide takes you in a few steps from installing to your first section drawing. <a href="/en/open-pointcloud-studio/handleiding/">Go to the guide</a></span></p>
+  </div>
+
+  <nav class="pp-subnav" aria-label="On this page" data-i18n="subnav.label" data-i18n-attr="aria-label">
+    <div class="pp-subnav-inner">
+      <a href="#features" data-i18n="subnav.features">Features</a>
+      <a href="#download" data-i18n="subnav.download">Download</a>
+      <a href="#whats-new" data-i18n="subnav.whatsnew">New</a>
+      <a href="#faq" data-i18n="subnav.faq">Questions</a>
+      <a href="#technology" data-i18n="subnav.tech">Formats and technology</a>
+      <a href="#releases" data-i18n="subnav.releases">Releases</a>
+    </div>
+  </nav>
+
+  <section class="section pp-anchor" id="features"><div class="container">
+    <div class="section-head"><p class="pill-label" data-i18n="features.label">Features</p><h2 data-i18n="features.heading">From scan to drawing</h2><p data-i18n="features.sub">Start with the highlights or pick a topic.</p></div>
+    <div class="pp-tabs" role="tablist" aria-label="Features by topic" data-i18n="features.tabsLabel" data-i18n-attr="aria-label" hidden>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-highlights" data-tab="highlights" aria-controls="pp-feature-panel" aria-selected="true" tabindex="0"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg><span data-i18n="tabs.highlights">Highlights</span> <span class="pp-tab-count" data-count="highlights"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-view" data-tab="view" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg><span data-i18n="tabs.view">Open and view</span> <span class="pp-tab-count" data-count="view"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-edit" data-tab="edit" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-ruler"/></svg><span data-i18n="tabs.edit">Measure and edit</span> <span class="pp-tab-count" data-count="edit"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-output" data-tab="output" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-set-square"/></svg><span data-i18n="tabs.output">Drawings and meshes</span> <span class="pp-tab-count" data-count="output"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-auto" data-tab="auto" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg><span data-i18n="tabs.auto">Automation</span> <span class="pp-tab-count" data-count="auto"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-all" data-tab="all" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg><span data-i18n="tabs.all">All features</span> <span class="pp-tab-count" data-count="all"></span></button>
+    </div>
+    <div id="pp-feature-panel" role="tabpanel" aria-labelledby="pp-tab-highlights">
+      <div class="pp-hl" data-panel="highlights">
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-pointcloud-studio-3.jpg" width="1920" height="1146" loading="lazy" decoding="async" alt="The section box narrowed to a slab between 4% and 31% of the height, which frees the facade with its windows; on the right the saved view and the sliders of the section box" data-i18n="slides.three" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">01</span> <span data-i18n="hl.large.kicker">Open and view</span></p>
+            <h3 data-i18n="hl.large.title">Large scans, on screen at once</h3>
+            <p data-i18n="hl.large.desc">LAS and LAZ open from their header, a large E57 file first shows a sample, and from one million points on the application builds an index on disk. It supplies the detail for the current viewpoint, up to ten million points in view, and is kept for next time.</p>
+            <a class="pp-more" href="/en/open-pointcloud-studio/handleiding/#openen"><span data-i18n="features.learnMore">Read more</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-pointcloud-studio-2.jpg" width="1920" height="1046" loading="lazy" decoding="async" alt="A scan of a building with the section box set to 11% of the height, so the rooms are seen from above, and a distance measurement of 26.774 metres between two points" data-i18n="slides.two" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">02</span> <span data-i18n="hl.section.kicker">Cut and measure</span></p>
+            <h3 data-i18n="hl.section.title">A section box that follows the walls</h3>
+            <p data-i18n="hl.section.desc">Six draggable faces limit what you see, select, export and draw. Type the limits, or turn the box with <em>Align to walls</em> along a building that stands at an angle in the scan. Measure distances and areas, also of a wall or a sloped roof.</p>
+            <a class="pp-more" href="/en/open-pointcloud-studio/handleiding/#snedebox"><span data-i18n="features.learnMore">Read more</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-pointcloud-studio-4.jpg" width="1302" height="806" loading="lazy" decoding="async" alt="Section drawing of two generated test rooms: the plan seen from above, with the preview of the filled cut (the wall between the rooms with its door opening left open, and a round column, as filled regions) and on the right the Section drawing block (Snedetekening in the Dutch interface) in Properties" data-i18n="slides.four" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">03</span> <span data-i18n="hl.drawing.kicker">Drawings</span></p>
+            <h3 data-i18n="hl.drawing.title">From scan to floor plan in DXF or DWG</h3>
+            <p data-i18n="hl.drawing.desc">A section drawing makes a plan or section at scale 1:1 of what the box cuts. The filled cut draws walls, columns and floors as regions and leaves door and window openings open; straight CAD lines add editable polylines. Open CAD Studio comes with it and shows the result at once, and on a sheet with a title block you place views at scale for a PDF.</p>
+            <a class="pp-more" href="/en/open-pointcloud-studio/handleiding/#snedetekening"><span data-i18n="features.learnMore">Read more</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-pointcloud-studio-5.jpg" width="1302" height="806" loading="lazy" decoding="async" alt="Closed mesh of the same generated test rooms: the surface of the two rooms with a door opening left open in an outer wall, and on the right the Closed mesh block (Gesloten mesh in the Dutch interface) with its result: 15,868 vertices, 30,563 triangles and a mean deviation of 1.6 mm" data-i18n="slides.five" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">04</span> <span data-i18n="hl.mesh.kicker">Meshes</span></p>
+            <h3 data-i18n="hl.mesh.title">A closed mesh that tells you how good it is</h3>
+            <p data-i18n="hl.mesh.desc">Put the box around a room and make a surface without overlaps, closed wherever the scan has points and with door and window openings left open. Afterwards you see the mean, the 95% and the largest distance between the points and the mesh. Export as OBJ, PLY, STL, DXF, DWG or IFC.</p>
+            <a class="pp-more" href="/en/open-pointcloud-studio/handleiding/#meshen"><span data-i18n="features.learnMore">Read more</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-pointcloud-studio-6.jpg" width="1302" height="806" loading="lazy" decoding="async" alt="Detected faces of the same generated test rooms, each type in a colour of its own (ceilings blue, walls sand), and on the right the Detect faces block (Vlakken herkennen in the Dutch interface) with its counts: 2 floors, 2 ceilings, 10 walls and 1 column" data-i18n="slides.six" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">05</span> <span data-i18n="hl.faces.kicker">Faces</span></p>
+            <h3 data-i18n="hl.faces.title">Floors, walls and columns detected</h3>
+            <p data-i18n="hl.faces.desc">Detect faces finds the flat faces of a room with their outlines, in which a window is a hole and a door a notch, and round columns and pipes as cylinders. For each face you see the type, the area and the residual of its points; export as JSON, OBJ, DXF, DWG or as IFC4 building elements.</p>
+            <a class="pp-more" href="/en/open-pointcloud-studio/handleiding/#vlakken"><span data-i18n="features.learnMore">Read more</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+          </div>
+        </article>
       </div>
-      <div class="download-item">
-        <div class="os">macOS</div>
-        <div class="size" data-i18n="download.mac.req">macOS 11 and later, Apple and Intel processors</div>
-        <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.dmg" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.mac.primary">Disk image (.dmg)</span></a>
-        <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_macos-universal.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos-tar" data-i18n="download.mac.tar">The program only (.tar.gz)</a></div>
-      </div>
-      <div class="download-item">
-        <div class="os">Linux</div>
-        <div class="size" data-i18n="download.linux.req">x86-64; Ubuntu 22.04, Debian 12, Fedora 36 or later</div>
-        <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-appimage" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.linux.primary">AppImage (any distribution)</span></a>
-        <div class="download-alt"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_amd64.deb" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-deb" data-i18n="download.linux.deb">.deb (Debian, Ubuntu)</a><br><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-amd64.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-tar" data-i18n="download.linux.tar">The program only (.tar.gz)</a></div>
-      </div>
-      </div>
-      <p class="download-arm"><span class="exp-tag" data-i18n="download.arm.tag">experimental</span> <span data-i18n="download.arm.label">Linux on 64-bit ARM:</span> <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-appimage">AppImage</a> &middot; <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_arm64.deb" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-deb">.deb</a> &middot; <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v0.8.0/open-pointcloud-studio_0.8.0_linux-arm64.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-tar">.tar.gz</a></p>
-      <ul class="install-notes">
-        <li><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div data-i18n="download.note.win"><strong>Windows:</strong> the installer installs for the current user, without administrator rights, or for all users. If the release carries no code signature, Windows may warn about an unknown publisher: choose <em>More info</em> and then <em>Run anyway</em>. If you would rather not install anything, unpack the zip and start the program from there.</div></li>
-        <li><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div data-i18n="download.note.mac"><strong>macOS:</strong> open the disk image and drag the application onto Applications. The application is not notarised, so macOS refuses the first start. Allow it once: on macOS 15 and later, start the application, close the message and choose <em>Open Anyway</em> under <em>Privacy &amp; Security</em> in System Settings; on macOS 11 to 14, Control-click the application and choose <em>Open</em>.</div></li>
-        <li><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div data-i18n="download.note.linux"><strong>Linux:</strong> make the AppImage executable once with <code>chmod +x</code> and then start it. The AppImage mounts itself through FUSE (<code>fusermount3</code> or <code>fusermount</code>); without FUSE, start it with <code>--appimage-extract-and-run</code> after the file name. Install the .deb package with <code>sudo apt install ./open-pointcloud-studio_*_amd64.deb</code>, run in the folder that holds the download. Linux needs a C library of version 2.35 or newer (Ubuntu 22.04, Debian 12, Fedora 36 or later), X11 or Wayland, and a Vulkan driver or OpenGL ES 3. File dialogs use the desktop portal, or <code>zenity</code> where there is none.</div></li>
-        <li><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div data-i18n="download.note.arm"><strong>Linux on 64-bit ARM:</strong> experimental. These packages are built and tested only on build machines with software rendering, not yet on real ARM boards or laptops.</div></li>
-        <li><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div><div data-i18n="download.note.sha">In the release every file has a <code>.sha256</code> file of the same name beside it, holding its checksum: put <code>.sha256</code> after the address of a download to fetch it. The README describes <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#checking-a-download" target="_blank" rel="noopener">how to check a download with it</a>.</div></li>
+      <ul class="pp-tiles">
+        <li class="pp-tile" data-cats="view"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div><div><h3 data-i18n="features.open.title">Opening scans</h3><p data-i18n="f.open.desc">LAS, LAZ, E57, PLY, PCD, PTX, PTS and text, and meshes in OBJ, PLY, OFF and STL. Each file is a layer you show, hide or close.</p></div></div></li>
+        <li class="pp-tile" data-cats="view"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><h3 data-i18n="features.project.title">A whole scan project at once</h3><p data-i18n="f.project.desc">A folder of scans, or the scans a scan project file (.rcp) lists, open together. Dropping them on the window works too.</p></div></div></li>
+        <li class="pp-tile" data-cats="view"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-strata"/></svg></div><div><h3 data-i18n="features.lod.title">Detail where you look</h3><p data-i18n="f.lod.desc">An index on disk (an octree) supplies the detail for the camera position; the points stay on screen while you move.</p></div></div></li>
+        <li class="pp-tile" data-cats="view"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div><div><h3 data-i18n="features.display.title">Display</h3><p data-i18n="f.display.desc">Colour, elevation, intensity or class, eye-dome lighting, a view cube and perspective or orthographic.</p></div></div></li>
+        <li class="pp-tile" data-cats="view"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pin"/></svg></div><div><h3 data-i18n="f.photos.title">Station photos and panoramas</h3><p data-i18n="f.photos.desc">Stand in a scanner station, lay the photo over the points and give points the colours the photos see.</p></div></div></li>
+        <li class="pp-tile" data-cats="view"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><h3 data-i18n="f.compare.title">Photo beside the 3D model</h3><p data-i18n="f.compare.desc">An E57 photo in a tab of its own, beside or above a 3D pane, with a draggable divider.</p></div></div></li>
+        <li class="pp-tile" data-cats="view"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-crane"/></svg></div><div><h3 data-i18n="features.bag.title">3D BAG buildings</h3><p data-i18n="f.bag.desc">Download building models of the Netherlands for an area in RD coordinates and show them with your scan.</p></div></div></li>
+        <li class="pp-tile" data-cats="view"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div><div><h3 data-i18n="features.language.title">Dutch and English</h3><p data-i18n="f.language.desc">The interface follows the language of the system and can be switched in Settings, with five colour themes.</p></div></div></li>
+        <li class="pp-tile" data-cats="edit"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-ruler"/></svg></div><div><h3 data-i18n="features.measure.title">Measuring</h3><p data-i18n="f.measure.desc">Distance, horizontal length and height difference, and areas in their own plane, picked from all points of the scan.</p></div></div></li>
+        <li class="pp-tile" data-cats="edit"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-scissors"/></svg></div><div><h3 data-i18n="f.section.title">Section box that turns</h3><p data-i18n="f.section.desc">Six draggable faces, typed limits and alignment to the walls; where it cuts a mesh, the cut looks solid.</p></div></div></li>
+        <li class="pp-tile" data-cats="edit"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pen"/></svg></div><div><h3 data-i18n="features.edit.title">Selecting and editing</h3><p data-i18n="f.edit.desc">Select with a rectangle, delete with undo, thin, move and scale. The source file never changes.</p></div></div></li>
+        <li class="pp-tile" data-cats="edit"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-move"/></svg></div><div><h3 data-i18n="f.register.title">Register scans</h3><p data-i18n="f.register.desc">Align scans with point pairs or a manual shift, refined with ICP, with residuals and a preview in deviation colours.</p></div></div></li>
+        <li class="pp-tile" data-cats="edit"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div><h3 data-i18n="features.export.title">Exporting and merging</h3><p data-i18n="f.export.desc">The whole cloud, the selection or the section box as LAS, LAZ, E57, PLY, XYZ, PTS or CSV, and merging scans of mixed formats.</p></div></div></li>
+        <li class="pp-tile" data-cats="edit"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><div><h3 data-i18n="features.views.title">Views, notes and BCF</h3><p data-i18n="f.views.desc">A view keeps the camera, the section box and the notes; all views of a scan go out as one BCF 2.1 file.</p></div></div></li>
+        <li class="pp-tile" data-cats="output"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-set-square"/></svg></div><div><h3 data-i18n="features.drawing.title">Section drawing</h3><p data-i18n="f.drawing.desc">Plan, elevation or section in DXF or DWG, with a filled cut and straight CAD lines on a layer of their own.</p></div></div></li>
+        <li class="pp-tile" data-cats="output"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-printer"/></svg></div><div><h3 data-i18n="f.sheets.title">Sheets to PDF</h3><p data-i18n="f.sheets.desc">A4 to A0 with a title block, views at scale, dimensions and text, exported as a PDF the size of the sheet.</p></div></div></li>
+        <li class="pp-tile" data-cats="output"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-mesh"/></svg></div><div><h3 data-i18n="f.terrain.title">Terrain and 3D surface</h3><p data-i18n="f.terrain.desc">Quick meshes of a scan, also as an OBJ with a texture (MTL and PNG) from the measured colours.</p></div></div></li>
+        <li class="pp-tile" data-cats="output"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div><div><h3 data-i18n="features.closedMesh.title">Closed mesh</h3><p data-i18n="f.closedMesh.desc">A surface without overlaps of a room, with the measured distance between the points and the mesh.</p></div></div></li>
+        <li class="pp-tile" data-cats="output"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg></div><div><h3 data-i18n="features.faces.title">Detected faces</h3><p data-i18n="f.faces.desc">Floors, ceilings, walls, sloped faces and round columns, as JSON, OBJ, DXF, DWG or IFC4.</p></div></div></li>
+        <li class="pp-tile" data-cats="auto"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div><div><h3 data-i18n="f.api.title">Command API</h3><p data-i18n="f.api.desc">Every window listens on 127.0.0.1 and runs commands from scripts and other programs, only with a token.</p></div></div></li>
+        <li class="pp-tile" data-cats="auto"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg></div><div><h3 data-i18n="f.mcp.title">Works with an AI assistant</h3><p data-i18n="f.mcp.desc">The MCP server gives an assistant a tool for every command and a screenshot of the 3D view.</p></div></div></li>
+        <li class="pp-tile" data-cats="auto"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-keyboard"/></svg></div><div><h3 data-i18n="f.cli.title">Command line</h3><p data-i18n="f.cli.desc">Convert, cut, merge, draw, mesh and detect faces without a window.</p></div></div></li>
+        <li class="pp-tile" data-cats="auto"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><h3 data-i18n="f.library.title">C library and cloud API</h3><p data-i18n="f.library.desc">The point-cloud core for software of your own, as a C library or as a service over HTTP and MCP in a container.</p></div></div></li>
+        <li class="pp-tile" data-cats="auto"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-rocket"/></svg></div><div><h3 data-i18n="f.ext.title">Extensions</h3><p data-i18n="f.ext.desc">Extra tasks by other authors, as a program in any language that drives the window through the command API.</p></div></div></li>
       </ul>
     </div>
   </div></section>
 
-  <section class="section"><div class="container">
-    <h2 data-i18n="features.title">What you can do with it</h2>
-    <div class="features" id="opc-features" data-fold="6">
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div>
-        <h4 data-i18n="features.open.title">Opening scans</h4>
-        <p data-i18n="features.open.desc">Point clouds in LAS, LAZ, E57, PLY, PCD, PTX, PTS and text formats, and meshes in OBJ, PLY, OFF and STL. Drop files on the window and open several at once: each file is a layer that you can hide, show or close.</p>
+  <section class="section surface-dark panel pp-anchor" id="download" data-pp-repo="OpenAEC-Foundation/open-pointcloud-studio">
+    <div class="pp-dl">
+      <p class="pill-label" data-i18n="download.label">Download</p>
+      <h2 data-i18n="download.title" data-pp-ver>Download v2026.45.1</h2>
+      <p class="pp-dl-lead" data-i18n="download.lead">Free and without an account. Every button starts the download right away.</p>
+      <div class="pp-dl-main" data-pp-main>
+        <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_x64-setup.exe" class="btn btn-glow btn-lg" data-pp-dl="windows" data-pp-primary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.primary">Download for your computer</span></a>
+        <a href="/en/open-pointcloud-studio/handleiding/#installeren" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="download.guideBtn">How to install it</span></a>
       </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div>
-        <h4 data-i18n="features.project.title">A whole scan project at once</h4>
-        <p data-i18n="features.project.desc">Open a folder of scans, or the scan project file (.rcp) of a project: the scans that the file lists and that lie beside it are opened together. Dropping a folder or a project file on the window works too.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-strata"/></svg></div>
-        <h4 data-i18n="features.large.title">Large files</h4>
-        <p data-i18n="features.large.desc">LAS and LAZ files open immediately from their header. An E57 file of 512 MiB or more first shows a sample spread through the file, when its layout allows that; other files of that size show the points read so far every few seconds. A strip above the scene shows the progress and the time left, with a button to cancel.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div>
-        <h4 data-i18n="features.lod.title">Detail where you look</h4>
-        <p data-i18n="features.lod.desc">For clouds of one million points or more the application automatically builds an index on disk, an octree. It supplies the detail for the current camera position, up to the point budget you set: at most ten million points. The points on screen stay while the camera moves; the detail of the new view takes their place once it has been read. The index is kept and used again when you open the file later.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div>
-        <h4 data-i18n="features.display.title">Display</h4>
-        <p data-i18n="features.display.desc">Four colour modes (stored colour, elevation, intensity and classification), eye-dome lighting and an adjustable point size. The classes that occur in the clouds can be shown or hidden one by one. A view cube and seven camera directions turn the view.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-scissors"/></svg></div>
-        <h4 data-i18n="features.section.title">Section box</h4>
-        <p data-i18n="features.section.desc">A box with six draggable faces limits what is shown, selected, meshed and searched for faces. This is how you cut a floor plan or a section out of a scan; the content of the box can be exported on its own or drawn as a 2D drawing. The box follows the X, Y and Z axes of the scan and cannot be rotated.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-ruler"/></svg></div>
-        <h4 data-i18n="features.measure.title">Measuring</h4>
-        <p data-i18n="features.measure.desc"><em>Distance</em> measures a line through two or more picked points: each segment, the total length, the horizontal length and the height difference. <em>Area</em> measures a closed polygon in its own plane, so a wall or a sloped roof gets its real area, and also gives the area seen from above and the perimeter. Points are picked from all points of the active scan, not only from those on screen.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div>
-        <h4 data-i18n="features.views.title">Views, notes and BCF</h4>
-        <p data-i18n="features.views.desc">A saved view keeps the camera, the section box, the colour mode and its annotations: a note on a picked point or an arrow between two points. All views of a scan export as one BCF 2.1 file, each with its notes, camera, clipping planes and a picture of the scene.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pin"/></svg></div>
-        <h4 data-i18n="features.stations.title">Station photos and walking</h4>
-        <p data-i18n="features.stations.desc">Scanner stations of E57, PCD and PTX scans are shown as markers in the scene. A station with photos is drawn as a ball: click it to stand in that station and look around. Walk through the scan with W, A, S and D, go down and up with Q and E, and faster with Shift.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pen"/></svg></div>
-        <h4 data-i18n="features.edit.title">Selecting and editing</h4>
-        <p data-i18n="features.edit.desc">Select every source point inside a rectangle, or pick one point and read its coordinates and attributes. Delete the selection, with undo for up to eight deletions, thin a cloud to an exact percentage of its points, or move and scale it. The source file is never changed: an export writes the edited result.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div>
-        <h4 data-i18n="features.export.title">Exporting and merging</h4>
-        <p data-i18n="features.export.desc">Export the whole cloud, the selection, everything but the selection, the content of the section box or every Nth point as LAS, LAZ, E57, PLY, XYZ, PTS or CSV. LAS and LAZ exports keep the original point records with their attributes. Visible LAS and LAZ scans can be merged into one file. Every export reads the full source, so points that are not on screen are written too.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-mesh"/></svg></div>
-        <h4 data-i18n="features.mesh.title">Meshes</h4>
-        <p data-i18n="features.mesh.desc"><em>Terrain mesh</em> builds a 2.5D surface from the lowest points of a grid. <em>3D surface</em> also follows walls and overhangs; it leaves holes and is not watertight. <em>Export mesh…</em> saves any mesh, whether made here, opened from a file or downloaded from the 3D BAG, as OBJ, binary PLY or binary STL. Properties shows the vertices, the triangles, the open edges and the number of connected parts.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-set-square"/></svg></div>
-        <h4 data-i18n="features.drawing.title">Section drawing</h4>
-        <p data-i18n="features.drawing.desc"><em>Section drawing</em> makes a 2D drawing at scale 1:1 of what the section box cuts and saves it as DXF or DWG: a plan from the slab under the top face of the box, or a vertical section from the slab behind one of its four sides. The drawing holds the points of that slab from every visible scan, thinned to one point per 5 mm. <em>Filled cut</em> draws the walls, columns and floors that the slab goes through as filled regions with outlines and leaves door and window openings open. <em>Preview</em> shows these regions over the points before a file is saved.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div>
-        <h4 data-i18n="features.closedMesh.title">Closed mesh</h4>
-        <p data-i18n="features.closedMesh.desc"><em>Closed mesh</em> builds a surface without overlaps from every point inside the section box, or of the whole scan: closed wherever the scan has points or a gap narrower than the hole limit (0.25 m at the start), with door and window openings left open. Put the box around a room and choose <em>Start</em>; the block in Properties says beforehand how large the region is and about how many triangles it gives, and warns when that is more than a mesh may hold. Afterwards it gives the mean, the 95% and the largest distance between the points and the mesh, the open edges and the connected parts. A mesh holds at most four million vertices and eight million triangles and can be saved as OBJ, PLY or STL.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg></div>
-        <h4 data-i18n="features.faces.title">Detected faces</h4>
-        <p data-i18n="features.faces.desc"><em>Detect faces</em> finds, inside the section box or in the whole scan, the flat faces (floors, ceilings, walls and sloped planes) and the round columns and pipes. A flat face is one plane with its outline, in which a window is a hole and a door a notch; a column or pipe is one cylinder with its axis, radius and scanned length, without an outline. It is not a mesh of the surface. The list gives the type, the area and the residual of the points (RMS) of every face; a click highlights the face in the scene. <em>Export faces…</em> saves them as JSON with the parameters of every plane and cylinder, or as OBJ with a group per face.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-crane"/></svg></div>
-        <h4 data-i18n="features.bag.title">3D BAG buildings</h4>
-        <p data-i18n="features.bag.desc"><em>3D BAG buildings…</em> in the File view downloads building models of the Netherlands from the public 3D BAG register for an area in RD New coordinates and shows them with a scan. One download covers at most 2 by 2 km and about 5,000 buildings and needs an internet connection. It is a built-in extension that can be switched off on the Extensions page.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div>
-        <h4 data-i18n="features.language.title">Dutch and English</h4>
-        <p data-i18n="features.language.desc">The interface follows the language of the system, Dutch or English, and can be changed in Settings. The messages in the status bar and most texts with a count in them are in English only. There are five colour themes.</p>
-      </div>
+      <p class="pp-dl-meta"><span data-os="windows" data-i18n="download.metaWindows">Installer for Windows 10 and 11, 64-bit</span><span data-os="macos" data-i18n="download.metaMac" hidden>Disk image for macOS 11 and later, Apple and Intel processors</span><span data-os="linux-appimage" data-i18n="download.metaLinux" hidden>AppImage for Linux x86-64, runs on most distributions</span><span class="pp-dl-size"> · <span data-pp-primary-size></span></span></p>
+      <p class="pp-dl-mobile" data-pp-mobile hidden data-i18n="download.mobileNote">Open Pointcloud Studio is a desktop application for Windows, macOS and Linux. Download it on your computer; all files are listed below.</p>
+      <details class="pp-dl-other" data-pp-other>
+        <summary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg><span data-i18n="download.other">Other platforms</span></summary>
+        <div class="pp-files pp-files-4">
+          <div class="pp-files-col"><h3>Windows</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_x64-setup.exe" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows" data-pp-dl="windows" data-pp-item="windows"><span class="pp-file"><span data-i18n="download.win.primary">Installer (.exe)</span><span class="pp-file-size"> · <span data-pp-size="windows"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_windows-x64.zip" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="windows-zip" data-pp-dl="windows-zip" data-pp-item="windows-zip"><span class="pp-file"><span data-i18n="download.win.zip">Zip without an installer</span><span class="pp-file-size"> · <span data-pp-size="windows-zip"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          </ul></div>
+          <div class="pp-files-col"><h3>macOS</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_macos-universal.dmg" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos" data-pp-dl="macos" data-pp-item="macos"><span class="pp-file"><span data-i18n="download.mac.primary">Disk image (.dmg)</span><span class="pp-file-size"> · <span data-pp-size="macos"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_macos-universal.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="macos-tar" data-pp-dl="macos-tar"><span class="pp-file"><span data-i18n="download.mac.tar">The program only (.tar.gz)</span><span class="pp-file-size"> · <span data-pp-size="macos-tar"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          </ul></div>
+          <div class="pp-files-col"><h3>Linux x86-64</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_amd64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-appimage" data-pp-dl="linux-appimage" data-pp-item="linux-appimage"><span class="pp-file"><span data-i18n="download.linux.primary">AppImage (any distribution)</span><span class="pp-file-size"> · <span data-pp-size="linux-appimage"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_amd64.deb" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-deb" data-pp-dl="linux-deb" data-pp-item="linux-deb"><span class="pp-file"><span data-i18n="download.linux.deb">.deb (Debian, Ubuntu)</span><span class="pp-file-size"> · <span data-pp-size="linux-deb"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_linux-amd64.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-tar" data-pp-dl="linux-tar"><span class="pp-file"><span data-i18n="download.linux.tar">The program only (.tar.gz)</span><span class="pp-file-size"> · <span data-pp-size="linux-tar"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          </ul></div>
+          <div class="pp-files-col"><h3>Linux ARM64 <span class="exp-tag" data-i18n="download.arm.tag">experimental</span></h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_arm64.AppImage" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-appimage" data-pp-dl="linux-appimage-arm64"><span class="pp-file"><span data-i18n="download.linux.primary">AppImage (any distribution)</span><span class="pp-file-size"> · <span data-pp-size="linux-appimage-arm64"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_arm64.deb" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-deb" data-pp-dl="linux-deb-arm64"><span class="pp-file"><span data-i18n="download.linux.deb">.deb (Debian, Ubuntu)</span><span class="pp-file-size"> · <span data-pp-size="linux-deb-arm64"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/download/v2026.45.1/open-pointcloud-studio_2026.45.1_linux-arm64.tar.gz" data-gh-download="OpenAEC-Foundation/open-pointcloud-studio" data-platform="linux-arm64-tar" data-pp-dl="linux-tar-arm64"><span class="pp-file"><span data-i18n="download.linux.tar">The program only (.tar.gz)</span><span class="pp-file-size"> · <span data-pp-size="linux-tar-arm64"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          </ul></div>
+        </div>
+        <ul class="pp-dl-notes">
+          <li data-i18n="download.note.signed"><strong>Windows and macOS:</strong> the installer installs for you alone, without administrator rights, or for all users. The release notes state for each version whether the files are signed; when the Mac app is notarised, macOS opens it without extra steps.</li>
+          <li data-i18n="download.note.linux"><strong>Linux:</strong> make the AppImage executable once with <code>chmod +x</code> and then start it; without FUSE, start it with <code>--appimage-extract-and-run</code> after the file name. Install the .deb package with <code>sudo apt install ./open-pointcloud-studio_*_amd64.deb</code>. It needs a C library of version 2.35 or newer and the C++ runtime of GCC 12 or newer (Ubuntu 22.04, Debian 12, Fedora 36 or later), X11 or Wayland, and a Vulkan driver or OpenGL ES 3.</li>
+          <li data-i18n="download.note.arm"><strong>Linux on 64-bit ARM:</strong> experimental. These packages are built and tested only on build machines with software rendering, not yet on real ARM boards or laptops.</li>
+          <li data-i18n="download.note.sha">In the release every file has a <code>.sha256</code> file of the same name beside it, holding its checksum: put <code>.sha256</code> after the address of a download to fetch it. The README describes <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#checking-a-download" target="_blank" rel="noopener">how to check a download with it</a>.</li>
+          <li data-i18n="download.note.dev"><strong>For software of your own</strong> the same release carries the point-cloud core as a C library and, as a container image, the cloud API. See <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/library.md" target="_blank" rel="noopener">library.md</a> and <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/cloud-api.md" target="_blank" rel="noopener">cloud-api.md</a>.</li>
+        </ul>
+      </details>
+      <p class="pp-dl-note"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases" target="_blank" rel="noopener" data-i18n="releases.github">All releases on GitHub</a></p>
     </div>
-    <p class="more-row" data-fold-for="opc-features" hidden>
-      <button type="button" class="btn btn-secondary btn-lg more-btn" aria-expanded="false" aria-controls="opc-features">
-        <span data-fold-show class="more-label"><span data-i18n="features.showAll">Show all features</span> <span class="more-count" data-fold-count></span></span>
-        <span data-fold-hide hidden data-i18n="features.showLess">Show less</span>
-        <svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg>
-      </button>
-    </p>
+  </section>
+
+  <section class="section surface-dark panel pp-anchor" id="whats-new">
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label" data-i18n="whatsnew.label">New in v2026.45.1</p>
+        <h2 data-i18n="whatsnew.title">Photos, <span>registration</span> and merging</h2>
+        <p data-i18n="whatsnew.desc">Released on 3 November 2026. E57 photos are kept through every edit, and you can now align scans to each other in the application.</p>
+        <div class="btn-group">
+          <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases/tag/v2026.45.1" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="whatsnew.ctaChangelog">Full release notes</span></a>
+          <a href="/en/open-pointcloud-studio/handleiding/" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="cta.guide">User guide</span></a>
+        </div>
+      </div>
+      <ul class="split-cards split-cards-2">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><h4 data-i18n="whatsnew.items.photos.title">Photos are kept</h4><p data-i18n="whatsnew.items.photos.desc">E57 exports keep station photos, panoramas, masks and camera poses, also after filtering, a section box export or colouring from photos.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pen"/></svg></div><div><h4 data-i18n="whatsnew.items.photoEdit.title">Edit photos</h4><p data-i18n="whatsnew.items.photoEdit.desc">Add a panorama at a chosen point and camera height, or move, turn, rename or delete a photo, with undo.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-move"/></svg></div><div><h4 data-i18n="whatsnew.items.register.title">Register scans</h4><p data-i18n="whatsnew.items.register.desc">Align with point pairs or a manual shift and rotation, refined with ICP, with residuals, a preview and a reusable transformation.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><h4 data-i18n="whatsnew.items.merge.title">Merge mixed formats</h4><p data-i18n="whatsnew.items.merge.desc">Merge visible scans of different formats into E57, LAS or LAZ; an E57 keeps the stations and photos.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><h4 data-i18n="whatsnew.items.api.title">API and MCP</h4><p data-i18n="whatsnew.items.api.desc">New commands for photos and registration, and the command line applies a saved registration to a full scan.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div><div><h4 data-i18n="whatsnew.items.signing.title">Checkable offline</h4><p data-i18n="whatsnew.items.signing.desc">The release carries the public key, so you check the signatures without a keyserver.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section pp-anchor" id="faq"><div class="container">
+    <h2 data-i18n="faq.heading">Frequently asked questions</h2>
+    <div class="pp-faq-list">
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.cost.q">What does it cost?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.cost.a">Nothing. Open Pointcloud Studio is open source: the desktop application is licensed under the GPL-3.0, the point-cloud core under the LGPL-3.0. No licence fees, no subscription and no account.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.formats.q">Which scans can I open?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.formats.a">LAS, LAZ, E57, PLY, PCD, PTX, PTS and text files with one point per line, and meshes in OBJ, PLY, OFF and STL. A folder of scans or a scan project file (.rcp) opens in one go; of such a project file only the list of scans is read, not the indexed scan copies (.rcs).</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.size.q">How large can a scan be?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.size.a">For clouds of one million points or more, the application builds an index on disk. With it, scans of more than a hundred million points stay smooth: you see the detail of the current viewpoint, up to an adjustable maximum of ten million points in view. Such an index can take several gigabytes for a large survey.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.cad.q">Can I use the results in my CAD or BIM program?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.cad.a">Yes. Section drawings go to DXF or DWG, meshes and detected faces also as 3D geometry in DXF, DWG or IFC4, and saved views as BCF 2.1. Open CAD Studio comes in every package and shows an exported drawing at once. Opening DWG files is not possible.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.systems.q">Which systems does it run on?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.systems.a">Windows 10 and 11 (x64), macOS 11 and later on Apple and Intel processors, and Linux on x86-64 (Ubuntu 22.04, Debian 12, Fedora 36 or later). The packages for Linux on 64-bit ARM are experimental. There is no browser version.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.ai.q">Does it work with an AI assistant?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.ai.a">Yes. <code>open-pointcloud-studio --mcp</code> starts an MCP server with a tool for every command of the local command API: open scans, set the section box, measure, export, draw and mesh, and send back the 3D view as an image.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.library.q">Can I use the core in my own software?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.library.a">Yes. The point-cloud core is available as a C library for Windows, macOS and Linux and as a cloud API in a container image, both under the LGPL-3.0. From Rust you use the crate directly.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.lang.q">Which languages does the interface come in?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.lang.a">Dutch and English. The application follows the language of the system; in Settings you switch the language and pick one of the five colour themes.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.trust.q">How reliable are the section drawing, the closed mesh and face detection?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.trust.a">They were measured on generated rooms, not yet on a scan of a real building. A closed mesh and detected faces report how far the points lie from them, so you can judge the result yourself. The known limits are listed on this page under Technology.</p></div>
+      </details>
+    </div>
   </div></section>
 
-  <section class="section"><div class="container">
-    <h2 data-i18n="formats.title">File formats</h2>
+  <section class="section pp-anchor" id="technology"><div class="container">
+    <div class="section-head"><h2 data-i18n="tech.heading">Formats, technology and licence</h2><p data-i18n="tech.sub">For those who want to know what goes in and out, and how it is built.</p></div>
+    <div class="features features-compact">
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><h4 data-i18n="tech.rust.title">Rust</h4><p data-i18n="tech.rust.desc">One code base for Windows, macOS and Linux, without a browser or web view.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-bolt"/></svg></div><div><h4 data-i18n="tech.gpu.title">wgpu and iced</h4><p data-i18n="tech.gpu.desc">3D rendering on the GPU and an interface in the style of the OpenAEC desktop apps.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-strata"/></svg></div><div><h4 data-i18n="tech.octree.title">Index on disk</h4><p data-i18n="tech.octree.desc">An octree supplies the detail for each camera position and is kept for next time.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><h4 data-i18n="tech.core.title">One core</h4><p data-i18n="tech.core.desc">The command line, the cloud API and the C library (ABI 1.0) share the same operations.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div><div><h4 data-i18n="tech.api.title">Command API and MCP</h4><p data-i18n="tech.api.desc">The server listens on the loopback address only and refuses a command without the token.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div><div><h4 data-i18n="tech.licenseTitle">Licences</h4><p data-i18n="tech.desc">The desktop application is licensed under GPL-3.0-only, the point-cloud library under LGPL-3.0-or-later. Every package carries the licence texts.</p></div></div>
+    </div>
+
+    <h3 class="opc-sub" data-i18n="formats.title">File formats</h3>
     <div class="table-card table-wrapper">
       <table class="formats-table">
       <thead>
@@ -423,101 +549,66 @@
       </thead>
       <tbody>
         <tr><td>LAS, LAZ</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.las">Opens from the header; exports keep the original point records</td></tr>
-        <tr><td>E57</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.e57">Scanner positions and station photos are read; spherical and cylindrical photos are not shown</td></tr>
+        <tr><td>E57</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.e57">Scanner positions, station photos, panoramas and photos taken along a path are read and can colour the points; exports keep them</td></tr>
         <tr><td>PLY</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.ply">Reads ASCII and little-endian binary; writes either</td></tr>
         <tr><td>PCD</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.no">no</td><td data-i18n="formats.pcd">ASCII, binary and compressed binary</td></tr>
         <tr><td>PTX</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.no">no</td><td data-i18n="formats.ptx">With the scanner position of each scan</td></tr>
         <tr><td>PTS</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.yes">yes</td><td></td></tr>
         <tr><td>XYZ, ASC, TXT, CSV</td><td data-i18n="formats.yes">yes</td><td>XYZ, CSV</td><td data-i18n="formats.text">Text with one point per line</td></tr>
-        <tr><td>OBJ</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.obj">Mesh with colours and normals; material colours are read, texture images are not. Detected faces are written as OBJ too, with one group per face</td></tr>
+        <tr><td>OBJ</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.obj">Mesh with colours and normals; material colours are read, texture images are not. Also written with a texture (UV coordinates, MTL and PNG), and for detected faces with one group per face</td></tr>
         <tr><td data-i18n="formats.plyMeshName">PLY as mesh</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.plyMesh">Shown as faces. Written as binary PLY with double-precision coordinates, and with colours and normals where the mesh has them</td></tr>
         <tr><td>STL</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.stl">Shown as faces. Written as binary STL: triangles only, without colours. A mesh more than 2,048 m from zero is written relative to a whole-metre origin that the file header names</td></tr>
-        <tr><td>OFF</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.no">no</td><td data-i18n="formats.off">Shown as faces; can be saved as OBJ, PLY or STL</td></tr>
-        <tr><td>DXF</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.asDrawing">yes, as a drawing</td><td data-i18n="formats.dxf">Read: ASCII DXF only. POINT entities open as points, 3DFACE entities as faces that can be saved as OBJ, PLY or STL; other entities are skipped. Written: the 2D drawing of a section box, with points, filled regions, outlines and a line of text; not a format of the point exports</td></tr>
-        <tr><td>DWG</td><td data-i18n="formats.no">no</td><td data-i18n="formats.asDrawing">yes, as a drawing</td><td data-i18n="formats.dwg">The 2D drawing of a section box, as for DXF, in file version R2004, R2010, R2013 or R2018. DWG files are not opened</td></tr>
+        <tr><td>OFF</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.no">no</td><td data-i18n="formats.off">Shown as faces; can be saved as OBJ, PLY, STL, DXF, DWG or IFC</td></tr>
+        <tr><td>DXF</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.asDrawing">yes, as a drawing and in 3D</td><td data-i18n="formats.dxf">Read: ASCII DXF only; POINT entities open as points, 3DFACE entities as faces. Written: the 2D drawing of a section box with points, filled regions and outlines, and in 3D detected faces and meshes. Not a format of the point exports</td></tr>
+        <tr><td>DWG</td><td data-i18n="formats.no">no</td><td data-i18n="formats.asDrawing">yes, as a drawing and in 3D</td><td data-i18n="formats.dwg">As for DXF, in the versions R2004 to R2018 (3D in R2013). DWG files are not opened</td></tr>
+        <tr><td>IFC4 (.ifc)</td><td data-i18n="formats.no">no</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.ifc">Detected faces and meshes as building elements with their measured values; faces with their openings, columns as extruded circles</td></tr>
         <tr><td data-i18n="formats.facesName">Faces as JSON (.json)</td><td data-i18n="formats.no">no</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.faces">The detected faces of a scan: every plane with its parameters, its outline and the residuals of its points, every cylinder with its axis, its radius and its residuals, and the edges between flat faces. The <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#the-json-file" target="_blank" rel="noopener">user guide</a> describes every field</td></tr>
         <tr><td data-i18n="formats.rcpName">Scan project file (.rcp)</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.no">no</td><td data-i18n="formats.rcp">Only the list of scans is read. The indexed scan copies (.rcs) of a project are a closed format and are not read</td></tr>
         <tr><td>BCF 2.1 (.bcf)</td><td data-i18n="formats.no">no</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.bcf">Saved views with notes and pictures</td></tr>
+        <tr><td>PDF</td><td data-i18n="formats.no">no</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.pdf">A sheet with its views, the size of the paper</td></tr>
         <tr><td>PNG</td><td data-i18n="formats.no">no</td><td data-i18n="formats.yes">yes</td><td data-i18n="formats.png">Picture of the 3D view, through the command API</td></tr>
       </tbody>
     </table>
     </div>
-  </div></section>
 
-  <section class="section surface-dark panel">
-    <div class="panel-split">
-      <div class="panel-split-text">
-        <p class="pill-label">API · MCP · CLI</p>
-        <h2 data-i18n="automation.title">Command API and MCP server</h2>
-        <p data-i18n="automation.api">Every window runs a command server on <code>127.0.0.1</code>. The commands open and close scans, set the camera, the section box and the display, select, delete, measure, save views, export, draw sections, mesh, detect faces, download 3D BAG buildings and take pictures of the 3D view. The server listens on the loopback address only and refuses a command without the token.</p>
-      </div>
-      <ul class="split-cards">
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><p data-i18n="automation.mcp"><code>open-pointcloud-studio --mcp</code> runs a Model Context Protocol server. It offers a tool for every command of the API, tools that wait for long tasks, a tool that returns the 3D view as an image, and tools to list, choose and start windows.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-keyboard"/></svg></div><div><p data-i18n="automation.cli">From the command line the application also works without a window: converting to another format, exporting the points inside a box, merging scans, building an index, drawing a section as DXF or DWG, making meshes and detecting faces.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><div><p data-i18n="automation.linkApi"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/API.md" target="_blank" rel="noopener">API.md</a>: every command</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><div><p data-i18n="automation.linkMcp"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/MCP.md" target="_blank" rel="noopener">MCP.md</a>: every tool and the configuration for a client program</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><div><p data-i18n="automation.linkCli"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#command-line" target="_blank" rel="noopener">README</a>: the command-line modes</p></div></li>
-      </ul>
-    </div>
-  </section>
+    <details class="pp-faq-item opc-limits">
+      <summary><span data-i18n="limits.title">Good to know</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+      <div class="pp-faq-a"><ul>
+        <li data-i18n="limits.units">Lengths and areas are in metres. The coordinates of a scan are taken as metres and are not converted.</li>
+        <li data-i18n="limits.measure">A measurement is not saved with the scan.</li>
+        <li data-i18n="limits.surface">A 3D surface leaves holes and is not watertight.</li>
+        <li data-i18n="limits.meshSize">A mesh holds at most four million vertices and eight million triangles, whether it comes from a file or from a mesh job.</li>
+        <li data-i18n="limits.session">Detected faces are not saved with the scan: export them to keep them. A scan holds one mesh; a new mesh replaces the previous one.</li>
+        <li data-i18n="limits.drawingPoints">The point limit of a section drawing is 150,000 points by default and at most 400,000; when thinning to 5 mm leaves more points, the point spacing doubles until they fit.</li>
+        <li data-i18n="limits.fill">The filled cut of a section drawing is traced from the points: a wall scanned from one side is drawn as a thin strip, gaps under about half a metre are closed, and furniture in the slab is drawn unless its points are deleted first.</li>
+        <li data-i18n="limits.closedMesh">A closed mesh rounds corners by about a quarter of a voxel, lets objects thinner than two or three voxels merge or get holes, and leaves some gaps beside another surface open. Without scanner stations, a surface that the centre of the region sees edge on can come out torn.</li>
+        <li data-i18n="limits.faces">Detect faces reports no strips narrower than 0.15 m, such as door reveals. A region too large for the working budget is searched with larger voxels, thin scans give fewer faces or none, round columns wider than about 0.7 m come out as strips of wall, and without scanner stations the side a face looks at is a guess.</li>
+        <li data-i18n="limits.generated">The filled cut, Closed mesh and Detect faces were measured on generated rooms, not yet on a scan of a real building. The user guide lists the limits of <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#the-filled-cut-and-its-limits" target="_blank" rel="noopener">the filled cut</a>, <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-a-closed-mesh" target="_blank" rel="noopener">Closed mesh</a> and <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-detected-faces" target="_blank" rel="noopener">Detect faces</a>.</li>
+        <li data-i18n="limits.index">An index can take several gigabytes on disk for a large survey.</li>
+      </ul></div>
+    </details>
 
-  <section class="section"><div class="container">
-    <div class="panel-split on-light">
-      <div class="panel-split-text">
-        <h2 data-i18n="limits.title">Good to know</h2>
-      </div>
-      <div>
-        <ul class="split-cards note-cards" id="opc-limits" data-fold="5">
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><p data-i18n="limits.box">The section box cannot be rotated. A building that stands at an angle to the axes of the scan is cut at that angle.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><p data-i18n="limits.units">Lengths and areas are in metres. The coordinates of a scan are taken as metres and are not converted.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><p data-i18n="limits.measure">A measurement is not saved with the scan.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><p data-i18n="limits.surface">A 3D surface leaves holes and is not watertight.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><p data-i18n="limits.meshSize">A mesh holds at most four million vertices and eight million triangles, whether it comes from a file or from a mesh job.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><p data-i18n="limits.session">A closed mesh and detected faces exist in the running session only: export them to keep them. A scan holds one mesh; a new mesh takes the place of the previous one.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><p data-i18n="limits.drawingPoints">The point limit of a section drawing is 150,000 points by default and at most 400,000; when thinning to 5 mm leaves more points, the point spacing doubles until they fit.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><p data-i18n="limits.fill">The filled cut of a section drawing is traced from the points: a wall scanned from one side is drawn as a thin strip, gaps under about half a metre are closed, and furniture in the slab is drawn unless its points are deleted first.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><p data-i18n="limits.closedMesh">A closed mesh rounds corners by about a quarter of a voxel, lets objects thinner than two or three voxels merge or get holes, and leaves some gaps beside another surface open. Without scanner stations, a surface that the centre of the region sees edge on can come out torn.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><p data-i18n="limits.faces">Detect faces reports no strips narrower than 0.15 m, such as door reveals. A region too large for the working budget is searched with larger voxels, thin scans give fewer faces or none, round columns wider than about 0.7 m come out as strips of wall, and without scanner stations the side a face looks at is a guess.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><p data-i18n="limits.drawingCheck">The DXF and DWG files have not yet been checked with a range of drawing programs. If a program refuses a DWG file, try DXF or another file version.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><p data-i18n="limits.generated">The filled cut, Closed mesh and Detect faces were measured on generated rooms, not yet on a scan of a real building. The user guide lists the limits of <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#the-filled-cut-and-its-limits" target="_blank" rel="noopener">the filled cut</a>, <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-a-closed-mesh" target="_blank" rel="noopener">Closed mesh</a> and <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-detected-faces" target="_blank" rel="noopener">Detect faces</a>.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg></div><div><p data-i18n="limits.index">An index can take several gigabytes on disk for a large survey.</p></div></li>
-        </ul>
-        <p class="more-row" data-fold-for="opc-limits" hidden>
-          <button type="button" class="btn btn-secondary btn-lg more-btn" aria-expanded="false" aria-controls="opc-limits">
-            <span data-fold-show class="more-label"><span data-i18n="limits.showAll">Show all points</span> <span class="more-count" data-fold-count></span></span>
-            <span data-fold-hide hidden data-i18n="limits.showLess">Show less</span>
-            <svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg>
-          </button>
-        </p>
-      </div>
-    </div>
-  </div></section>
-
-  <section class="section"><div class="container">
-    <h2 data-i18n="docs.title">Guide, changes and source</h2>
-    <div class="features features-4">
+    <h3 class="opc-sub" data-i18n="docs.title">Guide, changes and source</h3>
+    <div class="features features-compact">
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><p data-i18n="docs.manual"><a href="/en/open-pointcloud-studio/handleiding/">Guide</a> on this site: installing, the main tools and the keyboard shortcuts.</p></div>
       <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><p data-i18n="docs.guide"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md" target="_blank" rel="noopener">User guide</a>: every tool in detail.</p></div>
       <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clipboard"/></svg></div><p data-i18n="docs.readme"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio#readme" target="_blank" rel="noopener">README</a>: installing per system, the first five minutes, and measured speed and limits.</p></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div><p data-i18n="docs.api"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/API.md" target="_blank" rel="noopener">API.md</a> and <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/MCP.md" target="_blank" rel="noopener">MCP.md</a>: every command and tool, and the configuration for a client program.</p></div>
       <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div><p data-i18n="docs.changelog"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/CHANGELOG.md" target="_blank" rel="noopener">Changelog</a>: what changed in each release.</p></div>
       <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></div><p data-i18n="docs.source"><a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" target="_blank" rel="noopener">Source code on GitHub</a>, with the <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/issues" target="_blank" rel="noopener">issues</a> for a problem or a request.</p></div>
     </div>
   </div></section>
 
-  <section class="section"><div class="container">
-    <div class="section-head">
-      <h2 data-i18n="tech.title">Technology and licence</h2>
-    </div>
-    <div class="chip-row chip-row-light tech-chips">
-      <span class="chip">Rust</span>
-      <span class="chip">iced</span>
-      <span class="chip">wgpu</span>
-    </div>
-    <p class="tech-desc" data-i18n="tech.desc">The desktop application is licensed under GPL-3.0-only, the point-cloud library under LGPL-3.0-or-later. Every package carries the licence texts.</p>
-  </div></section>
-
   <!-- Release Notes (shared component) -->
+  <section id="releases" class="pp-releases">
   <div data-release-notes="open-pointcloud-studio"></div>
+  <p class="pp-rel-more">
+    <button type="button" class="btn btn-secondary" data-rel-toggle aria-expanded="false" hidden><span data-rel-show data-i18n="releases.showAll">Show all releases</span><span data-rel-hide hidden data-i18n="releases.showLess">Show only the latest three</span></button>
+    <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/releases" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="releases.github">All releases on GitHub</span></a>
+  </p>
+  </section>
   <script src="/shared/release-notes.js?v=20261105"></script>
+  <script src="/shared/productpagina.js?v=20261105"></script>
 
   <section class="section surface-spot panel">
     <div class="panel-center">
@@ -525,8 +616,9 @@
       <div class="btn-group">
         <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="cta.download">Download</span></a>
         <a href="/en/open-pointcloud-studio/handleiding/" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="cta.guide">User guide</span></a>
-        <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg><span data-i18n="cta.github">GitHub</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="cta.github">GitHub</span></a>
       </div>
+      <p><a href="/en/open-cad-studio/" class="pp-more"><span data-i18n="cta.related">See also Open CAD Studio, which comes in every package and shows the drawings</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></p>
     </div>
   </section>
 
@@ -576,53 +668,6 @@
   </div>
 </footer>
 <!-- footer:end --></div>
-  <script>
-    (function(){
-      const track = document.getElementById('sliderTrack');
-      const dots = document.getElementById('sliderDots');
-      if (!track || !dots) return;
-      const slides = track.children.length;
-      let current = 0;
-      for(let i=0;i<slides;i++){
-        const d = document.createElement('button');
-        d.className = 'slider-dot' + (i===0?' active':'');
-        d.setAttribute('aria-label', String(i+1));
-        d.onclick = ()=>slideTo(i);
-        dots.appendChild(d);
-      }
-      window.slideMove = function(dir){slideTo(current+dir);};
-      window.slideTo = function(i){
-        current = (i+slides)%slides;
-        track.style.transform = 'translateX(-'+current*100+'%)';
-        dots.querySelectorAll('.slider-dot').forEach((d,idx)=>d.classList.toggle('active',idx===current));
-      };
-    })();
-  </script>
-  <script>
-    // Lange lijsten: de eerste paar zichtbaar, de rest achter de vaste "Toon alles"-knop. Zonder JavaScript staat alles open.
-    document.querySelectorAll('[data-fold]').forEach(function (grid) {
-      var n = +grid.getAttribute('data-fold');
-      var items = Array.prototype.slice.call(grid.children);
-      var row = document.querySelector('[data-fold-for="' + grid.id + '"]');
-      if (!row || items.length <= n) return;
-      var btn = row.querySelector('.more-btn');
-      var show = btn.querySelector('[data-fold-show]');
-      var hide = btn.querySelector('[data-fold-hide]');
-      btn.querySelector('[data-fold-count]').textContent = '(' + items.length + ')';
-      function zet(open) {
-        items.forEach(function (c, i) { c.style.display = (!open && i >= n) ? 'none' : ''; });
-        show.hidden = open; hide.hidden = !open;
-        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-      }
-      zet(false);
-      row.hidden = false;
-      btn.addEventListener('click', function () {
-        var open = btn.getAttribute('aria-expanded') !== 'true';
-        zet(open);
-        if (!open) grid.scrollIntoView({ block: 'start' });
-      });
-    });
-  </script>
   <script src="/shared/downloads.js?v=20261015"></script>
   <script src="/shared/i18n.js?v=20261105"></script>
 </body>

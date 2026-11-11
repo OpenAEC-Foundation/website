@@ -115,7 +115,20 @@
     if (!wrap || !btn) return;
     var show = btn.querySelector('[data-rel-show]');
     var hide = btn.querySelector('[data-rel-hide]');
-    btn.hidden = false;
+    // De knop alleen tonen als er iets te openen valt: meer dan drie releases. Een app zonder
+    // release-data (het blok blijft leeg) krijgt dan ook geen losse knop. De release notes worden
+    // pas na het laden van de data opgebouwd, dus kijken we mee tot ze er zijn.
+    function update() {
+      var many = wrap.querySelectorAll('.rn-timeline > li').length > 3;
+      btn.hidden = !many;
+      return many;
+    }
+    if (!update()) {
+      try {
+        var obs = new MutationObserver(function () { if (update()) obs.disconnect(); });
+        obs.observe(wrap, { childList: true, subtree: true });
+      } catch (e) { btn.hidden = false; }
+    }
     btn.addEventListener('click', function () {
       var open = wrap.classList.toggle('pp-show-all');
       btn.setAttribute('aria-expanded', open ? 'true' : 'false');
@@ -140,18 +153,30 @@
     var state = { tag: null };
     // Bestandsnamen van Tauri-builds (Naam_1.2.3_universal.dmg, Naam-1.2.3-1.x86_64.rpm) en van
     // apps met een eigen release (naam_1.2.3_macos-universal.dmg, naam_1.2.3_x86_64.rpm).
+    // Daarnaast de namen van Open CAD Studio (Naam-v1.2-windows-x86_64-installer.msi, -macos-arm64.dmg).
     var match = {
-      windows: /_x64-setup\.exe$/i,
+      windows: /_x64-setup\.exe$|-windows-x86_64-installer\.msi$/i,
       'windows-user': /_x64_user-setup\.exe$/i,
-      'windows-zip': /_windows-x64\.zip$/i,
-      macos: /[_-](?:universal|aarch64)\.dmg$/i,
+      'windows-portable': /-windows-x86_64-portable\.exe$/i,
+      'windows-arm64': /-windows-arm64-installer\.msi$/i,
+      'windows-arm64-portable': /-windows-arm64-portable\.exe$/i,
+      'windows-zip': /_windows-x64\.zip$|_x64_portable\.zip$/i,
+      'windows-msi': /_x64_en-US\.msi$/i,
+      macos: /[_-](?:universal|aarch64|macos-arm64)\.dmg$/i,
+      'macos-intel': /-macos-x86_64\.dmg$|_x64\.dmg$/i,
+      'macos-tar': /_macos-universal\.tar\.gz$/i,
       'linux-deb': /_amd64\.deb$/i,
+      'linux-deb-arm64': /_arm64\.deb$/i,
       'linux-rpm': /[._]x86_64\.rpm$/i,
-      'linux-appimage': /_amd64\.AppImage$/i,
-      'linux-snap': /_amd64\.snap$/i,
-      'linux-tar': /_linux-x64\.tar\.gz$/i,
+      'linux-appimage': /_amd64\.AppImage$|-linux-x86_64\.AppImage$/i,
+      'linux-appimage-arm64': /-linux-aarch64\.AppImage$|_arm64\.AppImage$/i,
+      'linux-snap': /_amd64\.snap$|-linux-x86_64\.snap$/i,
+      'linux-run': /-linux-x86_64\.run$/i,
+      'web-zip': /-web\.zip$/i,
+      'linux-tar': /_linux-x64\.tar\.gz$|_linux-amd64\.tar\.gz$/i,
+      'linux-tar-arm64': /_linux-arm64\.tar\.gz$/i,
       android: /\.apk$/i,
-      sha256sums: /^SHA256SUMS$/,
+      sha256sums: /^SHA256SUMS(\.txt)?$/,
       'sha256sums-asc': /^SHA256SUMS\.asc$/
     };
 
@@ -187,6 +212,22 @@
     var os = detectOS(navigator);
     // Android: een eigen app als die er is, anders net als een iPhone de browser.
     if (os === 'android') os = document.querySelector('.pp-files [data-pp-dl="android"]') ? 'android' : 'mobile';
+    // Heeft de pagina geen bestand van de voorkeurssoort (bv. alleen een .run of .deb voor Linux),
+    // neem dan het eerste andere pakket voor hetzelfde systeem, zodat de hoofdknop live meegaat.
+    var ALTERNATIVES = {
+      'linux-appimage': ['linux-deb', 'linux-run', 'linux-rpm', 'linux-snap', 'linux-tar'],
+      macos: ['macos-intel', 'macos-tar'],
+      windows: ['windows-msi', 'windows-portable', 'windows-zip', 'windows-user']
+    };
+    function onPage(key) { return !!document.querySelector('.pp-files [data-pp-dl="' + key + '"]'); }
+    if (os && ALTERNATIVES[os] && !onPage(os)) {
+      var alt = ALTERNATIVES[os].filter(onPage)[0];
+      if (alt) {
+        // De uitleg onder de knop hoort bij het systeem, niet bij de bestandssoort.
+        document.querySelectorAll('[data-os="' + os + '"]').forEach(function (el) { el.setAttribute('data-os', alt); });
+        os = alt;
+      }
+    }
     if (os === 'mobile') {
       // Op een telefoon is de browser de beste keuze; de installers blijven
       // onder "Andere platforms".
@@ -211,7 +252,8 @@
       document.querySelectorAll('[data-pp-ver]').forEach(function (el) {
         // De hele tag vervangen, ook een achtervoegsel als -alpha. Anders wordt
         // "v0.1.0-alpha" bij elke ronde langer en blijft de observer lopen.
-        var want = el.innerHTML.replace(/v\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?/g, state.tag);
+        // Ook tags van twee delen (v2026.45), zoals Open CAD Studio die gebruikt.
+        var want = el.innerHTML.replace(/v\d+\.\d+(?:\.\d+)?(?:-[0-9A-Za-z.-]+)?/g, state.tag);
         if (el.innerHTML !== want) el.innerHTML = want;
       });
     }

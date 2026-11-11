@@ -1,131 +1,261 @@
 {
-  "header": {
-    "label": "Écosystème OpenAEC",
-    "title": "Open <span class=\"accent\">Heatloss</span> Studio",
-    "desc": "Calcul de déperditions thermiques open source pour bâtiments, conforme à la norme NEN 12831.",
-    "badge": "Beta"
+  "meta": {
+    "title": "Open Heatloss Studio — OpenAEC Foundation",
+    "description": "Open Heatloss Studio : calcul gratuit et open source des déperditions thermiques par pièce selon ISSO 51:2023, avec calculateur Rc, rapport PDF et format de fichier IFCX ouvert."
   },
-  "why": {
-    "title": "Pourquoi Open <span class=\"accent\">Heatloss</span> Studio ?",
-    "desc": "Les calculs de déperditions thermiques sont essentiels à la conception des systèmes de chauffage et à la performance énergétique des bâtiments. Open Heatloss Studio offre une alternative open source accessible aux logiciels commerciaux coûteux, entièrement conforme à la NEN 12831.",
-    "desc2": "Construit sur un cœur de calcul en Rust pour une vitesse et une précision maximales — des milliers de pièces sont calculées en quelques secondes. Tout tourne en local, sans dépendance au cloud ; vos données de projet restent les vôtres."
+  "header": {
+    "label": "Version alpha · Déperditions thermiques",
+    "title": "Open <span class=\"accent\">Heatloss</span> Studio",
+    "tagline": "Les déperditions thermiques par pièce selon ISSO 51:2023",
+    "desc": "Calculez les déperditions de base d'un logement pièce par pièce : transmission, ventilation, infiltration, surpuissance de relance et pertes du système. Composez vos parois avec le calculateur Rc et tirez-en un rapport PDF. Le moteur de calcul est écrit en Rust, et votre projet est enregistré dans un fichier IFCX ouvert.",
+    "downloadBtn": "Télécharger pour Windows",
+    "demoBtn": "Ouvrir dans le navigateur",
+    "sourceBtn": "Code source",
+    "proofPlatforms": "Windows et navigateur",
+    "proofLang": "Néerlandais et anglais",
+    "proofFree": "Gratuit · MIT",
+    "proofAlpha": "Test public"
+  },
+  "alt": {
+    "results": "Les résultats d'un calcul : chiffres clés, déperditions par pièce et total du bâtiment",
+    "rooms": "Le tableau des résultats par pièce",
+    "rc": "Composer une paroi couche par couche dans le calculateur Rc",
+    "constructions": "Les parois d'un projet avec leur valeur U et leur valeur Rc",
+    "modeller": "Le plan avec les pièces dans le modeleur",
+    "report": "Le rapport PDF avec une image de couverture personnalisée",
+    "video": "Vidéo de démonstration d'Open Heatloss Studio"
+  },
+  "slider": {
+    "prev": "Image précédente",
+    "next": "Image suivante"
+  },
+  "notice": {
+    "text": "<strong>Version alpha :</strong> le moteur de calcul concorde avec trois calculs de référence, mais l'application est encore en test public. Vérifiez vos résultats et signalez ce que vous rencontrez sur <a href=\"https://github.com/OpenAEC-Foundation/open-heatloss-studio/issues\" target=\"_blank\" rel=\"noopener\">GitHub</a>."
+  },
+  "subnav": {
+    "label": "Sur cette page",
+    "features": "Fonctionnalités",
+    "download": "Téléchargement",
+    "whatsnew": "Nouveautés",
+    "faq": "Questions",
+    "tech": "Technologie",
+    "releases": "Versions"
   },
   "features": {
-    "title": "Fonctionnalités",
-    "nen12831": {
-      "title": "Calculs NEN 12831",
-      "desc": "Calculs de déperditions thermiques complets conformes à la NEN 12831. Résultats précis pour la conception des systèmes de chauffage."
+    "label": "Fonctionnalités",
+    "heading": "De la paroi au rapport",
+    "sub": "Commencez par les points forts ou choisissez un thème.",
+    "tabsLabel": "Fonctionnalités par thème"
+  },
+  "tabs": {
+    "highlights": "Points forts",
+    "calc": "Calcul",
+    "build": "Parois",
+    "report": "Rapport",
+    "exchange": "Échange",
+    "all": "Toutes les fonctionnalités"
+  },
+  "hl": {
+    "calc": {
+      "kicker": "Moteur de calcul",
+      "title": "Chaque déperdition, pièce par pièce",
+      "desc": "Indiquez pour chaque pièce sa fonction, ses dimensions, sa ventilation et ses éléments de paroi. Le moteur calcule la transmission, la ventilation, l'infiltration, la surpuissance de relance et les pertes du système selon ISSO 51:2023, puis les additionne pour obtenir la puissance de chauffage du bâtiment."
     },
+    "build": {
+      "kicker": "Parois",
+      "title": "Valeur Rc et diffusion de vapeur sur un seul écran",
+      "desc": "Composez un mur, un plancher ou une toiture couche par couche à partir de la liste des matériaux. Le calculateur Rc suit ISO 6946, et une analyse de Glaser montre si de la condensation peut se former dans la paroi."
+    },
+    "report": {
+      "kicker": "Rapport",
+      "title": "Un rapport complet en un clic",
+      "desc": "Le rapport PDF contient les hypothèses, la composition de chaque paroi, les données et les résultats par pièce, des graphiques et les totaux du bâtiment. Choisissez les sections, le format du papier et votre propre image de couverture."
+    },
+    "results": {
+      "kicker": "Résultats",
+      "title": "Voir par où la chaleur s'échappe",
+      "desc": "L'écran des résultats montre les déperditions par pièce en barres empilées, la répartition entre transmission, ventilation et système, et les déperditions par type de paroi. Vous voyez tout de suite quelles pièces et quels éléments demandent le plus."
+    }
+  },
+  "f": {
     "transmission": {
-      "title": "Déperditions par transmission par pièce",
-      "desc": "Calcul détaillé des déperditions par transmission par pièce, y compris les facteurs de correction pour les constructions en contact avec le sol."
+      "title": "Transmission",
+      "desc": "Les déperditions par l'enveloppe et vers les pièces voisines, les bâtiments mitoyens, les locaux non chauffés, le sol et l'eau."
     },
     "ventilation": {
-      "title": "Déperditions par ventilation",
-      "desc": "Calcul des déperditions par ventilation basé sur le système de ventilation, le débit d'air et l'infiltration."
-    },
-    "ifcx": {
-      "title": "Intégration IFCX",
-      "desc": "Importez la géométrie du bâtiment et les propriétés des constructions directement depuis les modèles IFCX pour une saisie plus rapide."
-    },
-    "reports": {
-      "title": "Génération de rapports",
-      "desc": "Générez des rapports clairs avec les déperditions par pièce, des récapitulatifs et des représentations graphiques."
-    },
-    "library": {
-      "title": "Bibliothèque de physique du bâtiment",
-      "desc": "Bibliothèque étendue de propriétés matériaux, compositions de paroi et valeurs U standard."
-    },
-    "uvalue": {
-      "title": "Calculateur de valeur U",
-      "desc": "Calculez les valeurs U des constructions couche par couche. Bibliothèque de matériaux avec des valeurs λ conformes à NEN-EN 12524 et NTA 8800."
-    },
-    "constructions": {
-      "title": "Compositions de parois",
-      "desc": "Compositions prédéfinies (façades, toitures, planchers) avec valeur U automatique. Créez et réutilisez vos propres compositions."
-    },
-    "thermal": {
-      "title": "Ponts thermiques",
-      "desc": "Ponts thermiques linéiques (Ψ) selon NEN-EN ISO 14683. Valeurs par défaut ou calcul détaillé par nœud."
-    },
-    "ground": {
-      "title": "Constructions en contact avec le sol",
-      "desc": "Facteurs de correction pour les dallages, murs de cave, vides sanitaires et locaux non chauffés adjacents (facteurs b)."
-    },
-    "climate": {
-      "title": "Données climatiques KNMI",
-      "desc": "Températures intérieures et extérieures de calcul par site. Zones climatiques KNMI sélectionnées automatiquement à partir du code postal."
-    },
-    "zones": {
-      "title": "Zonage",
-      "desc": "Regroupez les pièces par zone de chauffage, régulateur ou local technique. Des consignes différentes par zone sont possibles."
+      "title": "Ventilation et infiltration",
+      "desc": "Les déperditions par ventilation avec le facteur f<sub>v</sub> de l'erratum de 2023, et l'infiltration à partir du qv10 du bâtiment."
     },
     "heatup": {
       "title": "Surpuissance de relance",
-      "desc": "Calcul de la puissance supplémentaire nécessaire à la relance après réduit de nuit — conformément aux tableaux de la NEN 12831 annexe F."
+      "desc": "La puissance supplémentaire pour revenir à température après un ralenti de nuit, selon le type de bâtiment."
     },
-    "radiator": {
-      "title": "Dimensionnement des radiateurs",
-      "desc": "Déterminez la puissance des radiateurs par pièce à partir des déperditions, de la température d'eau et de l'exposant. Sélection dans une bibliothèque fabricant."
+    "system": {
+      "title": "Pertes du système",
+      "desc": "Les pertes d'un chauffage intégré comme le plancher chauffant, y compris au contact de l'eau, comme sur une péniche."
     },
-    "floor": {
-      "title": "Plancher chauffant",
-      "desc": "Puissance du plancher chauffant par pièce, avec température de système, pas de pose et température de départ."
+    "totals": {
+      "title": "Pièce et bâtiment",
+      "desc": "Les totaux par pièce et pour tout le bâtiment, avec des graphiques par pièce et par type de paroi."
     },
-    "heatpump": {
-      "title": "Dimensionnement de la pompe à chaleur",
-      "desc": "Pré-dimensionnement de la pompe à chaleur à partir des déperditions totales à la température de base. Indication de SCOP par type."
+    "tabs": {
+      "title": "Plusieurs projets à la fois",
+      "desc": "Ouvrez des projets dans des onglets, chacun avec son propre historique d'annulation."
     },
-    "boiler": {
-      "title": "Puissance de chaudière",
-      "desc": "Puissance de chaudière incluant l'eau chaude sanitaire, les facteurs de simultanéité et les volumes tampons."
+    "library": {
+      "title": "Bibliothèque de parois",
+      "desc": "Des compositions de murs, planchers et toitures avec leur valeur U, utilisables dans chaque pièce."
     },
-    "dashboard": {
-      "title": "Tableau de bord",
-      "desc": "Vue d'ensemble en temps réel : déperditions totales, déperditions par zone, top 10 des pièces les plus déperditives, indicateurs énergétiques."
+    "rc": {
+      "title": "Calculateur Rc",
+      "desc": "La valeur Rc et la valeur U couche par couche selon ISO 6946, avec la correction pour les fixations."
     },
-    "compare": {
-      "title": "Étude de variantes",
-      "desc": "Comparez plusieurs variantes de conception côte à côte. Analyses what-if pour l'isolation, la ventilation et l'orientation solaire."
+    "glaser": {
+      "title": "Diffusion de vapeur",
+      "desc": "Une analyse de Glaser montre si de la condensation interne peut se produire dans une paroi."
     },
-    "export": {
-      "title": "Exports",
-      "desc": "Export vers Excel (XLSX) pour analyse complémentaire, IFCX pour l'intégration BIM et JSON pour l'automatisation et les liaisons API."
+    "modeller": {
+      "title": "Voir le plan",
+      "desc": "Une vue 2D et 3D des pièces. La modification dans le modeleur arrivera dans une version ultérieure."
     },
-    "cli": {
-      "title": "CLI et traitement par lots",
-      "desc": "Interface en ligne de commande pour les calculs par lots. Intégrez-la dans des pipelines CI ou automatisez sur des portefeuilles entiers."
+    "pdf": {
+      "title": "Rapport PDF",
+      "desc": "Hypothèses, parois, données et résultats par pièce, graphiques et totaux du bâtiment, avec une table des matières."
     },
-    "local": {
-      "title": "100 % local",
-      "desc": "Tous les calculs tournent localement sur votre machine. Pas de cloud, pas de traçage. Vos données de projet restent les vôtres."
+    "sections": {
+      "title": "À composer soi-même",
+      "desc": "Activez ou désactivez des sections et choisissez A4 ou A3, portrait ou paysage."
     },
-    "crossplatform": {
-      "title": "Multiplateforme",
-      "desc": "Disponible pour Windows, macOS, Linux et en application web. Tauri 2 + Rust pour des performances maximales."
+    "layout": {
+      "title": "Votre propre mise en page",
+      "desc": "Une image en couverture, votre en-tête et votre pied de page, les marges et une couleur d'accent."
     },
-    "isso51": {
-      "title": "ISSO 51:2023",
-      "desc": "Méthodologie spécifique de calcul des déperditions des logements et bâtiments résidentiels selon la publication ISSO 51 (2023)."
+    "tempcurve": {
+      "title": "Profil de température",
+      "desc": "Pour chaque paroi, un graphique de la température à travers les couches."
     },
-    "showAll": "Afficher toutes les fonctions",
-    "showLess": "Afficher moins"
+    "ifcenergy": {
+      "title": "Format de fichier ouvert",
+      "desc": "Un projet est un fichier .ifcenergy : de l'IFCX valide (IFC5 alpha) que d'autres logiciels peuvent lire."
+    },
+    "ifc": {
+      "title": "Export IFC",
+      "desc": "Exportez le projet en IFC4X3 et affichez côte à côte le fichier IFC et le fichier IFCX."
+    },
+    "mcp": {
+      "title": "Serveur MCP",
+      "desc": "Laissez un assistant IA lancer des calculs, lire des fichiers de projet et créer des rapports."
+    },
+    "api": {
+      "title": "API REST",
+      "desc": "Calculez depuis votre propre logiciel grâce à l'API de la version serveur."
+    }
   },
-  "cta": {
-    "demo": "Voir la démo en ligne",
-    "github": "Voir sur GitHub"
+  "download": {
+    "label": "Téléchargement",
+    "title": "Télécharger v0.1.1-pr13.alpha",
+    "lead": "Gratuit et sans compte. Une version de test pour Windows, qui s'installe sans droits d'administrateur.",
+    "primary": "Télécharger pour Windows",
+    "metaWindows": "Programme d'installation .exe pour Windows (x64)",
+    "metaMac": "Windows uniquement. Sur un Mac, utilisez la version navigateur.",
+    "metaLinux": "Windows uniquement. Sous Linux, utilisez la version navigateur.",
+    "mobileNote": "Open Heatloss Studio est conçu pour un grand écran. Téléchargez-le sur votre ordinateur ou ouvrez-le là dans le navigateur.",
+    "other": "Autres fichiers",
+    "fileExe": "Programme d'installation (.exe)"
   },
-  "norm": {
-    "title": "Quelles normes sont prises en charge ?",
-    "desc": "Open Heatloss Studio met en œuvre les normes néerlandaises et européennes officielles pour le calcul des déperditions. Pleinement conforme aux méthodologies en vigueur pour la conception du chauffage et la performance énergétique.",
-    "list1": "<strong>NEN-EN 12831-1:2017</strong> Performance énergétique des bâtiments, méthode de calcul de la charge thermique de conception",
-    "list2": "<strong>NEN 12831-1+NEN 1:2019/A1:2021</strong> Annexe nationale néerlandaise",
-    "list3": "<strong>ISSO 51:2023</strong> Calcul des déperditions pour les logements et bâtiments résidentiels",
-    "list4": "<strong>ISSO 53/57</strong> Méthodologies pour le tertiaire et les bâtiments complexes",
-    "list5": "<strong>NTA 8800</strong> Performance énergétique intégrale (BENG)"
+  "releases": {
+    "github": "Toutes les versions sur GitHub",
+    "showAll": "Afficher toutes les versions",
+    "showLess": "Afficher seulement les trois dernières"
+  },
+  "whatsnew": {
+    "label": "Nouveau dans la v0.1.1",
+    "title": "Un rapport remanié <span>et le travail en onglets</span>",
+    "desc": "La dernière version de test rend le rapport plus net et plus personnel, et permet d'ouvrir plusieurs projets à la fois. La liste complète figure dans les notes de version.",
+    "ctaNotes": "Toutes les notes de version",
+    "items": {
+      "layout": {
+        "title": "Un rapport à votre mise en page",
+        "desc": "Définissez un en-tête et un pied de page avec image, les marges et une couleur d'accent."
+      },
+      "toc": {
+        "title": "Une table des matières exacte",
+        "desc": "Les numéros de page sont désormais exacts, et chaque pièce forme une section à part."
+      },
+      "sections": {
+        "title": "Plus de contenu dans le rapport",
+        "desc": "Une vue d'ensemble de toutes les parois, des coupes aux couleurs des matériaux et une section sur le TOjuli (surchauffe en été)."
+      },
+      "tabs": {
+        "title": "Des projets en onglets",
+        "desc": "Travaillez sur plusieurs projets à la fois, chacun avec son propre historique d'annulation."
+      }
+    }
+  },
+  "faq": {
+    "heading": "Questions fréquentes",
+    "cost": {
+      "q": "Combien coûte Open Heatloss Studio ?",
+      "a": "Rien. L'application est open source sous licence MIT et vous n'avez pas besoin de compte."
+    },
+    "norm": {
+      "q": "Quelle méthode utilise-t-il ?",
+      "a": "ISSO 51:2023, la méthode néerlandaise pour les déperditions thermiques des logements et immeubles d'habitation, erratum de 2023 compris. Les bâtiments tertiaires selon ISSO 53 sont encore en développement."
+    },
+    "status": {
+      "q": "Puis-je déjà l'utiliser pour des projets ?",
+      "a": "C'est une version alpha en test public. Le moteur de calcul concorde avec trois calculs de référence, mais l'application évolue encore. Vérifiez vos résultats et signalez ce que vous rencontrez sur GitHub."
+    },
+    "platforms": {
+      "q": "Sur quels systèmes fonctionne-t-il ?",
+      "a": "Il existe un programme d'installation pour Windows. Sur un Mac ou sous Linux, utilisez la version navigateur, ou compilez vous-même l'application à partir du code source."
+    },
+    "smartscreen": {
+      "q": "Windows affiche un avertissement à l'installation. Est-ce normal ?",
+      "a": "Oui. Le programme d'installation n'est pas encore signé, donc Windows SmartScreen demande une confirmation : choisissez Informations complémentaires, puis Exécuter quand même. Aucun droit d'administrateur n'est nécessaire, car l'application s'installe uniquement pour votre compte."
+    },
+    "file": {
+      "q": "Comment un projet est-il enregistré ?",
+      "a": "Sous forme de fichier .ifcenergy. C'est un fichier IFCX valide (IFC5 alpha), que d'autres logiciels peuvent donc lire. Double-cliquez sur un tel fichier dans l'Explorateur et l'application l'ouvre."
+    },
+    "lang": {
+      "q": "Dans quelles langues est l'application ?",
+      "a": "En néerlandais et en anglais. L'application choisit elle-même, ou vous réglez la langue dans les Préférences."
+    },
+    "link": {
+      "q": "Puis-je le relier à d'autres logiciels ?",
+      "a": "Oui. Grâce au serveur MCP, un assistant IA peut calculer et créer des rapports, et la version serveur dispose d'une API REST."
+    }
   },
   "tech": {
-    "title": "Technologie",
-    "desc": "Un cœur de calcul en Rust pour les calculs normatifs, un front-end TypeScript/SolidJS pour l'interface et Tauri 2 pour la distribution multiplateforme. La même stack que le reste de l'écosystème OpenAEC, pour une intégration sans couture."
+    "heading": "Technologie",
+    "sub": "Un moteur de calcul en Rust entouré d'une interface moderne, sur la même base que les autres applications OpenAEC.",
+    "rust": {
+      "title": "Moteur de calcul en Rust",
+      "desc": "Le calcul ISSO 51 en Rust pur, testé sur des calculs de référence."
+    },
+    "tauri": {
+      "title": "Tauri 2",
+      "desc": "Une application de bureau légère avec le moteur de calcul intégré."
+    },
+    "react": {
+      "title": "React et TypeScript",
+      "desc": "L'interface avec ruban, onglets et un thème sombre et clair."
+    },
+    "pdf": {
+      "title": "Moteur PDF maison",
+      "desc": "Les rapports sont mis en page en Rust, avec les polices intégrées."
+    },
+    "ifcx": {
+      "title": "IFCX",
+      "desc": "Le format de fichier ouvert d'IFC5, pour des projets qui ne dépendent pas d'un seul logiciel."
+    },
+    "mcp": {
+      "title": "MCP et API REST",
+      "desc": "Des connexions pour les assistants IA et vos propres scripts."
+    }
+  },
+  "cta": {
+    "issues": "Proposer une idée ou signaler un problème"
   }
 }
