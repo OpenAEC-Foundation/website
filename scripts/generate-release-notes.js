@@ -39,6 +39,7 @@ const TOOL_REPOS = [
   'openaec-bcf-platform',
   'openaec-docs',
   'openaec-cloud',
+  'openaec-cloud-desktop',
   'Y-app',
   // Externe community-repo's staan als 'eigenaar/repo'; het databestand heet naar de repo.
   'HakanSeven12/OpenCADStudio',
