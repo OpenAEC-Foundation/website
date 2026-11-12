@@ -1,0 +1,110 @@
+{
+  "header": {
+    "label": "OpenAEC-Ökosystem",
+    "title": "Software<span class=\"accent\">architektur</span>",
+    "desc": "Eine Codebasis, alle Plattformen. Unsere Tools laufen als Web-App, als Desktop-Anwendung unter Windows, Linux und macOS und als mobile App – aus demselben Quellcode."
+  },
+  "intro": {
+    "title": "Eine Codebasis, <span class=\"accent\">überall</span>",
+    "p1": "Jedes Tool im OpenAEC-Ökosystem wird als eine einzige Anwendung entwickelt, die auf allen Plattformen läuft. Keine getrennten Versionen für Web und Desktop, keine doppelte Pflege. Derselbe Code, dieselben Funktionen, überall.",
+    "p2": "Unser Ausgangspunkt ist Rust. Am liebsten bauen wir vollständige Rust-Anwendungen, bei denen auch die Oberfläche in Rust geschrieben ist. Manchmal entscheiden wir uns für Tauri mit einem TypeScript-Frontend auf einem Rust-Kern, zum Beispiel wenn ein Tool auch im Browser laufen muss."
+  },
+  "diagram": {
+    "title": "Architektur<span class=\"accent\">übersicht</span>",
+    "platforms": "Plattformen",
+    "runtime": "Laufzeit",
+    "validation": "Validierung",
+    "calculations": "Berechnungen"
+  },
+  "tech": {
+    "title": "Technologie-<span class=\"accent\">Stack</span>",
+    "tauri_desc": "Framework für Desktop- und Mobil-Apps mit Webtechnologie. Nutzt das native Webview des Betriebssystems statt Chromium – das Ergebnis sind kleine Installationsdateien (&lt;10 MB) und ein geringer Speicherverbrauch.",
+    "rust_desc": "Die Kernlogik jedes Tools ist in Rust geschrieben: IFC-Parsing, Validierung, Berechnungen und Dateiverarbeitung. Rust bietet Speichersicherheit und hohe Performance und kompiliert für jede Plattform.",
+    "wasm_desc": "Derselbe Rust-Code wird für die Webversion zu WebAssembly (WASM) kompiliert. So läuft die vollständige Rechenlogik auch im Browser, mit nahezu nativer Performance.",
+    "ui_desc": "In einer vollständigen Rust-App ist auch die Oberfläche in Rust geschrieben. Wo wir Tauri einsetzen, bauen wir die Oberfläche mit TypeScript (React, Svelte oder SolidJS) und Vite; sie läuft dann in Tauri und im Browser.",
+    "threejs_desc": "3D-Visualisierung von IFC-Modellen mit Three.js und That Open Engine. WebGL-basiert, läuft überall, wo ein Browser läuft.",
+    "fastapi_desc": "Serverseitige APIs auf Basis von Python FastAPI für asynchrone Validierung, Dokumentenmanagement und Integrationen. Bereitgestellt über Docker."
+  },
+  "highlight": {
+    "title": "Lokal und in der Cloud – ein System",
+    "desc": "Jedes OpenAEC-Tool arbeitet eigenständig auf Ihrem eigenen Rechner, ohne Internetverbindung. Sobald Sie sich aber verbinden, synchronisiert sich alles nahtlos über die OpenAEC-Plattform mit der Cloud. Projekte, Dokumente und Modelldaten fließen automatisch zwischen lokalen Installationen und dem Server. Sie entscheiden: vollständig lokal, vollständig in der Cloud oder eine hybride Lösung."
+  },
+  "comparison": {
+    "title": "Plattform<span class=\"accent\">vergleich</span>",
+    "feature": "Merkmal",
+    "mobile": "Mobil (Tauri)",
+    "offline": "Offline arbeiten",
+    "limited_pwa": "Eingeschränkt (PWA)",
+    "file_access": "Dateizugriff",
+    "full": "&#10003; Vollständig",
+    "limited_upload": "Eingeschränkt (Upload)",
+    "ifc_processing": "IFC-Verarbeitung",
+    "install_size": "Installationsgröße",
+    "auto_update": "Automatische Updates",
+    "always_current": "Immer aktuell",
+    "camera": "Kamerazugriff",
+    "system_integration": "Systemintegration",
+    "full2": "&#10003; Vollständig",
+    "limited": "Eingeschränkt"
+  },
+  "extensibility": {
+    "title": "Erweiterbarkeit &amp; <span class=\"accent\">Integration</span>",
+    "desc": "Die Tools sind darauf ausgelegt, erweitert und verbunden zu werden. Vier Wege, die sich je nach Tool unterscheiden:",
+    "feedback_desc": "Eine Feedback-Schaltfläche in der App, wie in Open Safety Studio und Open 3D Viewer. Nutzer melden Fehler und Wünsche direkt aus der Anwendung.",
+    "api_desc": "Tools mit einem Server, etwa BIM Validator, BCF Manager Studio und OpenAEC Docs, bieten eine REST-API. Verbinden Sie sie mit Ihren eigenen Systemen oder Dashboards.",
+    "mcp_desc": "Model Context Protocol (MCP), unter anderem in Open Pointcloud Studio. Damit können KI-Agenten (wie Claude) das Tool direkt in natürlicher Sprache bedienen.",
+    "extensions_desc": "Tools wie Open 2D Studio unterstützen Erweiterungen für individuelle Anforderungen, zum Beispiel <a href=\"/ext-drawing-statistics/\">Drawing Statistics</a>. Bauen Sie eigene Plugins in TypeScript oder Rust."
+  },
+  "opensource": {
+    "title": "Wir bauen auf bestehenden Open-Source-Projekten auf",
+    "desc": "Wir erfinden das Rad nicht neu. Das OpenAEC-Ökosystem baut so weit wie möglich auf bewährten Open-Source-Projekten aus der BIM- und 3D-Welt auf:",
+    "thatopen_desc": "Das 3D-Rendering und das IFC-Parsing in unseren Viewern basieren auf That Open Engine (früher IFC.js). Eine leistungsfähige TypeScript/Three.js-Bibliothek für BIM im Browser.",
+    "blender_desc": "Für 3D-Modellierung und BIM-Authoring integrieren wir Blender und das Add-on Bonsai (früher BlenderBIM). Das leistungsfähigste Open-Source-3D-Werkzeug der Welt.",
+    "ifcopenshell_desc": "Die Python/C++-Bibliothek, die als Branchenstandard für das Lesen, Schreiben und Bearbeiten von IFC-Dateien gilt. Das Rückgrat unserer serverseitigen IFC-Verarbeitung.",
+    "pdfjs_desc": "PDF.js von Mozilla für das Rendering und pdf-lib für das programmgesteuerte Erstellen und Bearbeiten von PDF-Dokumenten. Bewährte Technik, Millionen von Nutzern."
+  },
+  "why": {
+    "title": "Warum dieser <span class=\"accent\">Ansatz</span>?",
+    "small_title": "Klein &amp; schnell",
+    "small_desc": "Kein Electron, kein Chromium. Eine vollständige Rust-App braucht gar kein Webview, und Tauri nutzt das Webview, das bereits Teil des Betriebssystems ist. Die Installer bleiben klein und der Speicherverbrauch gering.",
+    "safe_title": "Sicher",
+    "safe_desc": "Rust verhindert Speicherfehler, Pufferüberläufe und Race Conditions. Die Anwendung ist von Grund auf sicher.",
+    "opensource_title": "Open Source",
+    "opensource_desc": "Tauri, Rust und alle verwendeten Bibliotheken sind Open Source. Kein Vendor-Lock-in auf Framework-Ebene.",
+    "futureproof_title": "Zukunftssicher",
+    "futureproof_desc": "Webstandards und Rust sind langlebige Technologien. Kein ständiger Framework-Wechsel, keine Breaking Changes."
+  },
+  "meta": {
+    "title": "Softwarearchitektur — OpenAEC Foundation"
+  },
+  "_later": {
+    "note": "Oorspronkelijke teksten (okt 2026). Terugzetten als het voor elke tool geldt: kopieer extensibility terug en zet iOS weer in het diagram.",
+    "extensibility": {
+      "desc": "Jedes Tool im Ökosystem ist darauf ausgelegt, erweitert und integriert zu werden. Vier Ebenen der Erweiterbarkeit:",
+      "feedback_desc": "Eingebautes Feedback-System in jedem Tool. Nutzer können direkt aus der Anwendung Feedback geben, Fehler melden und Funktionswünsche einreichen. Angebunden an die zentrale Plattform.",
+      "api_desc": "Jedes Tool bietet eine REST-API zur Integration mit externen Systemen. Automatisieren Sie Abläufe, binden Sie ERP-Systeme an oder bauen Sie eigene Dashboards auf dem Ökosystem auf.",
+      "mcp_desc": "MCP-Server (Model Context Protocol) für jedes Tool. Damit können KI-Agenten (wie Claude) direkt mit den Tools kommunizieren – Modelle validieren, Dokumente erzeugen oder Berechnungen in natürlicher Sprache ausführen.",
+      "extensions_desc": "Jedes Tool unterstützt Erweiterungen für individuelle Funktionen. Bauen Sie eigene Plugins in TypeScript oder Rust und teilen Sie sie über die Extension Registry mit der Community."
+    }
+  },
+  "routes": {
+    "title": "Rust zuerst, <span class=\"accent\">Tauri, wo es passt</span>",
+    "lead": "Am liebsten bauen wir vollständige Rust-Anwendungen. Für manche Tools entscheiden wir uns bewusst für Tauri mit einer TypeScript-Oberfläche auf einem Rust-Kern.",
+    "rust": {
+      "badge": "Bevorzugt",
+      "title": "Vollständig Rust",
+      "desc": "Rechenkern und Benutzeroberfläche in Rust, als ein einziges natives Programm. Kein Webview und kein JavaScript: schneller Start, wenig Speicher und eine Sprache für die gesamte Codebasis.",
+      "li1": "Für schwere, grafische Tools: CAD, BIM und große Modelle",
+      "li2": "Derselbe Rust-Kern kann über WebAssembly auch im Browser laufen",
+      "li3": "Beispiel: Open CAD Studio"
+    },
+    "tauri": {
+      "badge": "Wo es passt",
+      "title": "Tauri + TypeScript",
+      "desc": "Ein Rust-Kern mit einer Oberfläche in TypeScript, im Webview des Betriebssystems. Dieselbe Oberfläche läuft dann auch als Web-App im Browser.",
+      "li1": "Für Tools, die auch im Browser funktionieren müssen oder vor allem Formulare und Dokumente zeigen",
+      "li2": "Die Berechnung bleibt in Rust; TypeScript übernimmt nur die Oberfläche",
+      "li3": "Beispiel: Open PDF Studio"
+    }
+  }
+}

@@ -47,7 +47,7 @@ const STEPS = [
   // ze bakken de uitkomst daarvan in de HTML en in llms.txt.
   { name: 'Refresh the generated key facts in llms.txt',                  cmd: 'node scripts/build-llms-txt.js' },
   { name: 'Write the shared nav statically into every page',              cmd: 'node scripts/build-nav-static.js' },
-  { name: 'Generate /en/, /fr/, /tr/ pages + hreflang + sitemap entries',  cmd: 'node scripts/build-i18n-pages.js' },
+  { name: 'Generate /en/, /fr/, /tr/, /es/, /de/ pages + hreflang + sitemap entries',  cmd: 'node scripts/build-i18n-pages.js' },
   // Nogmaals, nu de taalversies bestaan: build-i18n-pages kopieert de
   // Nederlandse pagina en vertaalt alleen data-i18n-elementen, dus het
   // gegenereerde release-blok zou anders in elke taal Nederlands blijven.

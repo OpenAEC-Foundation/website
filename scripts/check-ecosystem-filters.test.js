@@ -5,7 +5,7 @@ const test = require('node:test');
 const vm = require('node:vm');
 
 // Run the homepage filter against the actual cards in each language page.
-for (const language of ['', 'en', 'fr', 'tr', 'es']) {
+for (const language of ['', 'en', 'fr', 'tr', 'es', 'de']) {
   test(`${language || 'nl'}: Pile Plan appears in the general and Dutch catalogs`, () => {
     const html = fs.readFileSync(path.join(__dirname, '..', language, 'index.html'), 'utf8');
     const cards = [...html.matchAll(/<article\b([^>]*\bclass="[^"]*tool-card[^"]*"[^>]*)>/g)].map(([, attrs]) => {

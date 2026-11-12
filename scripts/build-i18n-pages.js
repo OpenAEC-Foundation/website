@@ -43,9 +43,9 @@ const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
 const ORIGIN = 'https://open-aec.com';
-const LANGS = ['en', 'fr', 'tr', 'es'];
+const LANGS = ['en', 'fr', 'tr', 'es', 'de'];
 const ALL = ['nl', ...LANGS];
-const OG_LOCALE = { nl: 'nl_NL', en: 'en_US', fr: 'fr_FR', tr: 'tr_TR', es: 'es_ES' };
+const OG_LOCALE = { nl: 'nl_NL', en: 'en_US', fr: 'fr_FR', tr: 'tr_TR', es: 'es_ES', de: 'de_DE' };
 const SKIP_DIRS = new Set(['old', 'presentation foundation', '.git', '.claude', 'node_modules', 'nijmegen', 'forum', ...LANGS]);
 
 // ── helpers ────────────────────────────────────────────────────────────────
@@ -128,7 +128,7 @@ function translateElements(html, translations) {
 /** Nav-links en knoppen gebruiken data-i18n-en/fr/tr in plaats van een sleutel. */
 function translateInlineAttrs(html, lang) {
   return html.replace(
-    /<([a-zA-Z][a-zA-Z0-9]*)\b([^>]*\bdata-i18n-(?:en|fr|tr|es)="[^"]*"[^>]*)>([^<]*)<\/\1>/g,
+    /<([a-zA-Z][a-zA-Z0-9]*)\b([^>]*\bdata-i18n-(?:en|fr|tr|es|de)="[^"]*"[^>]*)>([^<]*)<\/\1>/g,
     (whole, tag, attrs, body) => {
       const own = new RegExp(`\\bdata-i18n-${lang}="([^"]*)"`).exec(attrs);
       const en = /\bdata-i18n-en="([^"]*)"/.exec(attrs);
@@ -328,6 +328,22 @@ function linkifySwitcher(html, url, current) {
   );
 }
 
+// ── alt-teksten van de homepage ────────────────────────────────────────────
+
+// De schermafbeeldingen op de homepage hebben een alt-tekst zonder data-i18n.
+// De vertalingen staan per afbeelding in data/homepage-alts.json; zonder deze
+// stap zet elke run de alt-teksten van de taalversies terug naar Nederlands.
+const HOME_ALTS = readJson(path.join(ROOT, 'data', 'homepage-alts.json')) || {};
+
+function translateAlts(html, lang) {
+  return html.replace(/<img\b[^>]*>/g, (tag) => {
+    const src = (/\bsrc="([^"]*)"/.exec(tag) || [])[1];
+    const alt = src && HOME_ALTS[src] && HOME_ALTS[src][lang];
+    return alt ? tag.replace(/\balt="[^"]*"/, `alt="${alt}"`) : tag;
+  });
+}
+
+
 // ── uitvoeren ──────────────────────────────────────────────────────────────
 
 let written = 0;
@@ -341,6 +357,7 @@ for (const page of pages) {
     html = absolutise(html, page.url);
     html = translateElements(html, tr);
     html = translateInlineAttrs(html, lang);
+    if (page.source.kind === 'inline') html = translateAlts(html, lang);
     html = setHead(html, {
       lang,
       url: page.url,

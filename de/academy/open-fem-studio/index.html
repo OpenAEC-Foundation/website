@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kurs Open FEM Studio: 3D-Berechnungsmodell einer Stahlkonstruktion — OpenAEC Academy</title>
+  <meta name="description" content="Kostenloser Kurs von etwa zwei Stunden: eine Stahlkonstruktion als 3D-Berechnungsmodell in Open FEM Studio zeichnen. Knoten, Gelenke, Aussteifung, Lasten…">
+  <link rel="canonical" href="https://open-aec.com/de/academy/open-fem-studio/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/academy/open-fem-studio/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/academy/open-fem-studio/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/academy/open-fem-studio/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/academy/open-fem-studio/">
+  <link rel="alternate" hreflang="es" href="https://open-aec.com/es/academy/open-fem-studio/">
+  <link rel="alternate" hreflang="de" href="https://open-aec.com/de/academy/open-fem-studio/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/en/academy/open-fem-studio/">
+  <!-- hreflang:end -->
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Kurs Open FEM Studio: 3D-Berechnungsmodell einer Stahlkonstruktion — OpenAEC Academy">
+  <meta property="og:description" content="Kostenloser Kurs von etwa zwei Stunden: eine Stahlkonstruktion als 3D-Berechnungsmodell in Open FEM Studio zeichnen. Knoten, Gelenke, Aussteifung, Lasten…">
+  <meta property="og:url" content="https://open-aec.com/de/academy/open-fem-studio/">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/academy/open-fem-studio-stabiliteit.png">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cursus Open FEM Studio: rekenmodel staalconstructie in 3D">
+  <meta name="twitter:description" content="Kostenloser Kurs von etwa zwei Stunden: eine Stahlkonstruktion als 3D-Berechnungsmodell in Open FEM Studio zeichnen. Knoten, Gelenke, Aussteifung, Lasten…">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/academy/open-fem-studio-stabiliteit.png">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="academy-open-fem-studio">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/shared/style.css?v=20261111">
+  <style>
+    .fc-layout { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: var(--sp-10); align-items: start; }
+    .fc-toc { position: sticky; top: 96px; font-size: 0.9rem; }
+    .fc-toc strong { display: block; font-family: var(--font-code); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: #B45309; margin-bottom: var(--sp-3); }
+    .fc-toc a { display: block; color: var(--text-on-light); text-decoration: none; padding: 5px 0 5px 12px; border-left: 2px solid rgba(42,42,50,0.1); }
+    .fc-toc a:hover { color: #B45309; border-left-color: var(--amber); }
+    .fc-body { min-width: 0; max-width: 780px; }
+    .fc-body p, .fc-body li { color: var(--text-on-light); line-height: 1.7; }
+    .fc-body p + p { margin-top: var(--sp-3); }
+    .fc-body h2 { font-size: 1.55rem; color: var(--deep-forge); margin: var(--sp-12) 0 var(--sp-3); scroll-margin-top: 96px; }
+    .fc-body h3 { font-size: 1.15rem; color: var(--deep-forge); margin: var(--sp-8) 0 var(--sp-2); scroll-margin-top: 96px; }
+    .fc-body ul, .fc-body ol { padding-left: 1.3rem; margin: var(--sp-3) 0; }
+    .fc-body li { margin: 0.35rem 0; }
+    .fc-body li::marker { color: var(--amber); }
+    .fc-body strong { color: var(--deep-forge); }
+    .fc-body a { color: #B45309; font-weight: 600; }
+    .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; margin: var(--sp-4) 0; }
+    .fc-table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+    .fc-table th { text-align: left; font-family: var(--font-code); font-weight: 500; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: #B45309; padding: 8px 10px; border-bottom: 2px solid rgba(217,119,6,0.35); }
+    .fc-table td { padding: 9px 10px; border-bottom: 1px solid rgba(42,42,50,0.1); vertical-align: top; color: var(--text-on-light); line-height: 1.5; }
+    .fc-figure { margin: var(--sp-6) 0; }
+    .fc-figure img { width: 100%; height: auto; display: block; border: 1px solid rgba(42,42,50,0.08); border-radius: var(--radius-md); background: #FFFFFF; }
+    .fc-figure figcaption { font-family: var(--font-code); font-size: 0.78rem; color: var(--text-on-light); margin-top: var(--sp-2); }
+    .fc-checklist { list-style: none; padding-left: 0; }
+    .fc-check { display: flex; gap: 10px; align-items: flex-start; }
+    .fc-check input { width: 18px; height: 18px; margin-top: 4px; flex: none; accent-color: var(--amber); }
+    .fc-check label { cursor: pointer; }
+    .fc-note { margin-top: var(--sp-12); padding-top: var(--sp-5); border-top: 1px solid rgba(42,42,50,0.1); font-size: 0.92rem; }
+    @media (max-width: 768px) { .fc-layout { grid-template-columns: minmax(0, 1fr); gap: var(--sp-6); } .fc-toc { position: static; } }
+  </style>
+  <meta name="i18n-static" content="de">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "de",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/openaec-foundation-io",
+          "https://mastodon.social/@openaec",
+          "https://www.threads.com/@openaec"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/de/academy/open-fem-studio/#webpage",
+        "url": "https://open-aec.com/de/academy/open-fem-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "de",
+        "dateModified": "2026-11-12",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/de/academy/open-fem-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/de/academy/open-fem-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Academy",
+            "item": "https://open-aec.com/de/academy"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Open Fem Studio",
+            "item": "https://open-aec.com/de/academy/open-fem-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body>
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/de/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
+      <ul class="nav-links">
+        <li><a href="/de/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema" data-i18n-de="Ökosystem">Ökosystem</a></li>
+        <li><a href="/de/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta" data-i18n-de="Roadmap">Roadmap</a></li>
+        <li><a href="/de/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura" data-i18n-de="Architektur">Architektur</a></li>
+        <li><a href="/de/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas" data-i18n-de="Statistiken">Statistiken</a></li>
+        <li><a href="/de/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias" data-i18n-de="Neuigkeiten">Neuigkeiten</a></li>
+        <li><a href="/de/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores" data-i18n-de="Unterstützer">Unterstützer</a></li>
+        <li><a href="/de/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura" data-i18n-de="Struktur">Struktur</a></li>
+      </ul>
+      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios" data-i18n-de="Feedback">Feedback</span></a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/academy/open-fem-studio/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/academy/open-fem-studio/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/academy/open-fem-studio/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/academy/open-fem-studio/" hreflang="tr">TR</a>
+        <a class="lang-btn" data-lang="es" href="/es/academy/open-fem-studio/" hreflang="es">ES</a>
+        <a class="lang-btn active" data-lang="de" href="/de/academy/open-fem-studio/" hreflang="de">DE</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20261015"></script>
+<script src="/shared/feedback.js?v=20261112" defer></script>
+
+  <main id="main">
+
+  <header class="product-head surface-spot">
+    <div class="product-head-inner">
+      <p class="pill-label" data-i18n="header.label"><a href="/academy/" style="color: inherit; text-decoration: none;">Academy</a> · Kurs Open FEM Studio</p>
+      <h1 data-i18n="header.title">3D-Berechnungsmodell einer <span class="accent">Stahlkonstruktion</span></h1>
+      <p class="lead" data-i18n="header.desc">In etwa zwei Stunden lernen Sie, eine Stahlkonstruktion als 3D-Berechnungsmodell in Open FEM Studio zu zeichnen: wo Knoten hingehören, welche Anschlüsse gelenkig sind und wie Sie die Lasten aufbringen.</p>
+    </div>
+  </header>
+
+  <section class="section"><div class="container">
+    <div class="fc-layout">
+      <nav class="fc-toc" aria-label="Inhoud">
+        <strong data-i18n="toc">Inhalt</strong>
+        <a href="#zo-werk-je-met-deze-cursus" data-i18n="c.b2">So arbeiten Sie mit diesem Kurs</a>
+        <a href="#deel-1-wat-een-rekenmodel-is" data-i18n="c.b39">Teil 1 — Was ein Berechnungsmodell ist</a>
+        <a href="#staven-opsplitsen-wanneer-wel-en-wanneer-niet" data-i18n="c.b50">Stäbe teilen: wann ja und wann nicht</a>
+        <a href="#aansluitingen-scharnierend-of-momentvast" data-i18n="c.b71">Anschlüsse: gelenkig oder biegesteif</a>
+        <a href="#stabiliteit-hoe-een-hal-blijft-staan" data-i18n="c.b108">Aussteifung: wie eine Halle stehen bleibt</a>
+        <a href="#oefening-deel-1-een-kleine-hal-tekenen" data-i18n="c.b122">Übung Teil 1: eine kleine Halle zeichnen</a>
+        <a href="#deel-2-belastinggevallen" data-i18n="c.b161">Teil 2 — Lastfälle</a>
+        <a href="#van-vlakbelasting-naar-staaf" data-i18n="c.b194">Von der Flächenlast zum Stab</a>
+        <a href="#combinaties-veiligheidsfactoren-en-scheefstand" data-i18n="c.b213">Kombinationen, Teilsicherheitsbeiwerte und Imperfektion</a>
+        <a href="#oefening-deel-2-belastingen-op-de-hal" data-i18n="c.b239">Übung Teil 2: Lasten auf die Halle</a>
+        <a href="#checklist-voordat-je-het-model-inlevert" data-i18n="c.b273">Checkliste vor der Abgabe des Modells</a>
+      </nav>
+      <div class="fc-body">
+
+
+<p data-i18n="c.b1">Nach diesem Kurs von etwa zwei Stunden können Sie eine Stahlkonstruktion als 3D-Berechnungsmodell in Open FEM Studio zeichnen: Sie wissen, wo Knoten hingehören, welche Anschlüsse gelenkig sind und wie Sie die Lasten aufbringen.</p>
+<h2 id="zo-werk-je-met-deze-cursus" data-i18n="c.b2">So arbeiten Sie mit diesem Kurs</h2>
+<p data-i18n="c.b3">Der Kurs besteht aus zwei Teilen von jeweils etwa einer Stunde. Zu jedem Abschnitt lesen Sie zuerst die Erklärung; am Ende jedes Teils machen Sie eine Übung in Open FEM Studio.</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th data-i18n="c.b4">Teil</th><th data-i18n="c.b5">Abschnitt</th><th data-i18n="c.b6">Zeit (min)</th></tr></thead><tbody><tr><td data-i18n="c.b7">1</td><td data-i18n="c.b8">Was ein Berechnungsmodell ist</td><td data-i18n="c.b9">10</td></tr><tr><td data-i18n="c.b10">1</td><td data-i18n="c.b11">Stäbe teilen</td><td data-i18n="c.b12">15</td></tr><tr><td data-i18n="c.b13">1</td><td data-i18n="c.b14">Anschlüsse: gelenkig oder biegesteif</td><td data-i18n="c.b15">15</td></tr><tr><td data-i18n="c.b16">1</td><td data-i18n="c.b17">Aussteifung einer Halle</td><td data-i18n="c.b18">10</td></tr><tr><td data-i18n="c.b19">1</td><td data-i18n="c.b20">Übung: eine Halle zeichnen</td><td data-i18n="c.b21">20</td></tr><tr><td data-i18n="c.b22">2</td><td data-i18n="c.b23">Lastfälle</td><td data-i18n="c.b24">10</td></tr><tr><td data-i18n="c.b25">2</td><td data-i18n="c.b26">Von der Flächenlast zum Stab</td><td data-i18n="c.b27">10</td></tr><tr><td data-i18n="c.b28">2</td><td data-i18n="c.b29">Kombinationen und Imperfektion</td><td data-i18n="c.b30">10</td></tr><tr><td data-i18n="c.b31">2</td><td data-i18n="c.b32">Übung: Lasten, Berechnung, Kontrolle</td><td data-i18n="c.b33">20</td></tr><tr><td data-i18n="c.b34">2</td><td data-i18n="c.b35">Checkliste</td><td data-i18n="c.b36">5</td></tr></tbody></table></div>
+<p data-i18n="c.b37">Sie brauchen: Open FEM Studio 2026.45 oder neuer, eine Maus mit Scrollrad und diesen Kurs neben Ihrem Bildschirm. Alle Längen geben Sie in <strong>Millimetern</strong> ein: 5000, nicht 5.</p>
+<p data-i18n="c.b38">Sie zeichnen das Modell; über den Entwurf entscheidet der Tragwerksplaner. Unsicher bei einem Anschluss, einem Auflager oder einer Last? Notieren Sie Ihre Frage und fragen Sie nach. Ein Modell wird immer von einem Tragwerksplaner geprüft, bevor es verwendet wird.</p>
+<h2 id="deel-1-wat-een-rekenmodel-is" data-i18n="c.b39">Teil 1 — Was ein Berechnungsmodell ist</h2>
+<p data-i18n="c.b40">Ein Berechnungsmodell ist eine vereinfachte Fassung des Tragwerks: nur die Teile, die Kräfte abtragen, als Linien und Punkte. Drei Bausteine:</p>
+<ul><li data-i18n="c.b41"><strong>Stab</strong> — eine Linie mit einem Profil und einem Material, zum Beispiel eine Stütze HEA 200 in S235.</li><li data-i18n="c.b42"><strong>Knoten</strong> — ein Punkt, an dem Stäbe miteinander verbunden sind oder an dem ein Auflager sitzt.</li><li data-i18n="c.b43"><strong>Auflager</strong> — die Stelle, an der das Tragwerk auf dem Fundament steht.</li></ul>
+<p data-i18n="c.b44">Einen Stab zeichnen Sie auf seiner <strong>Stabachse</strong>, der Systemlinie, nicht auf der Außenkante des Profils. Ein Träger, der in Wirklichkeit am Flansch einer Stütze anliegt, trifft die Stütze im Modell dort, wo sich ihre Achsen schneiden. Bei einer Halle ist dieser Unterschied vernachlässigbar; wo er doch eine Rolle spielt, sagt es Ihnen der Tragwerksplaner.</p>
+<p data-i18n="c.b45">Was keine Kraft abträgt, lassen Sie weg. Wandverkleidung, Fensterrahmen und Dämmung sind keine Stäbe, sondern eine <strong>Last</strong> auf den Stäben. Auch Schrauben, Stirnplatten und Schweißnähte werden nicht gezeichnet: Sie stecken in der Wahl zwischen gelenkig und biegesteif.</p>
+<h3 id="van-2d-naar-3d" data-i18n="c.b46">Von 2D zu 3D</h3>
+<p data-i18n="c.b47">In 2D hat ein Knoten drei Freiheitsgrade: Verschiebung in zwei Richtungen und Verdrehung. In 3D sind es <strong>sechs</strong>: drei Verschiebungen (X, Y, Z) und drei Verdrehungen. In Open FEM Studio zeigt Z nach oben; X und Y liegen in der horizontalen Ebene.</p>
+<p data-i18n="c.b48">In 3D denken Sie also in jede Richtung. Ein Rahmen, der in seiner eigenen Ebene steif ist, kann seitlich einfach umkippen. Das kommt unter Aussteifung wieder.</p>
+<p data-i18n="c.b49">Jeder Stab hat außerdem eigene <strong>lokale Achsen</strong>: x in Stablängsrichtung, y und z quer dazu. Bei einem I-Profil fällt die eine Querachse mit der starken und die andere mit der schwachen Achse zusammen. Schalten Sie die Ansicht <strong>Lokale Achsen und Stabendgelenke</strong> ein, um sie zu sehen; ist ein Profil falsch herum gedreht, passen Sie seine Ausrichtung im Eigenschaftenfenster an.</p>
+<h2 id="staven-opsplitsen-wanneer-wel-en-wanneer-niet" data-i18n="c.b50">Stäbe teilen: wann ja und wann nicht</h2>
+<p data-i18n="c.b51">Ein Knoten gehört dorthin, wo Stäbe wirklich miteinander verbunden sind oder wo ein Auflager sitzt. Sonst nirgends.</p>
+<p data-i18n="c.b52">Zwei Stäbe, die sich ohne gemeinsamen Knoten kreuzen, sind im Modell <strong>nicht</strong> verbunden. Sie laufen durcheinander hindurch, und es geht keine Kraft vom einen auf den anderen über. Das ist der häufigste Fehler in einem 3D-Modell.</p>
+<figure class="fc-figure"><img src="/shared/assets/academy/open-fem-studio-knopen.png" alt="Kruisende staven: zonder knoop niet verbonden, met een gedeelde knoop wel, en een knoop naast de hartlijn geeft een knik" width="1344" height="578" loading="lazy"><figcaption data-i18n="c.b53">kreuzende Stäbe · ohne Knoten, mit Knoten, Knoten neben der Stabachse</figcaption></figure>
+<p data-i18n="c.b54">Erst mit einem gemeinsamen Knoten wird Kraft zwischen ihnen übertragen. Liegt dieser Knoten knapp neben der Stabachse, bekommt der Stab einen Knick.</p>
+<h3 id="wel-een-knoop" data-i18n="c.b55">Ein Knoten ist nötig</h3>
+<ol><li data-i18n="c.b56">Wo ein anderer Stab anschließt: eine Pfette auf einem Riegel, ein Träger an einer Stütze, ein Verbandsstab an einem Stützenkopf.</li><li data-i18n="c.b57">An einem Auflager.</li><li data-i18n="c.b58">Wo das Profil wechselt: Dann sind es zwei Stäbe.</li><li data-i18n="c.b59">Wo im Stabzug ein Gelenk sitzt, wie bei einem Gerberträger.</li></ol>
+<h3 id="geen-knoop-nodig" data-i18n="c.b60">Kein Knoten nötig</h3>
+<ul><li data-i18n="c.b61"><strong>Für eine Last.</strong> Eine Einzellast oder Linienlast können Sie an jeder Stelle eines Stabs aufbringen, ohne ihn zu teilen.</li><li data-i18n="c.b62"><strong>Der Ordnung halber.</strong> Ein zusätzlicher Knoten bringt nichts.</li></ul>
+<h3 id="wat-het-programma-voor-je-doet" data-i18n="c.b63">Was das Programm für Sie erledigt</h3>
+<ul><li data-i18n="c.b64">Mit der Einstellung <strong>Knoten automatisch zusammenführen und verbinden</strong> teilt das Programm einen Stab selbst, sobald Sie einen Knoten darauf setzen oder ein neuer Stab durch einen vorhandenen Knoten läuft. Ein Punkt, der innerhalb der Verbindungstoleranz eines Knotens liegt (standardmäßig 5 mm), wird zu diesem Knoten.</li><li data-i18n="c.b65">Die <strong>Modellprüfung</strong> meldet einen Knoten, der auf einem Stab liegt, ohne mit ihm verbunden zu sein. <strong>Verbinden</strong> teilt den Stab an diesem Knoten; die Schaltfläche <strong>Knoten verbinden</strong> im Menüband erledigt das für das ganze Modell auf einmal.</li><li data-i18n="c.b66">Liegt ein Knoten knapp neben der Stabachse, bekommt der Stab dort einen <strong>Knick</strong>, und das Programm meldet es. Fangen Sie deshalb Knoten und Raster und prüfen Sie die Koordinaten.</li></ul>
+<p data-i18n="c.b67"><strong>Achtung — das sieht das Programm nicht.</strong> Kreuzen sich zwei Stäbe, ohne dass an dieser Stelle ein Knoten liegt, meldet die Modellprüfung nichts. Das Programm kann nicht wissen, ob sie wirklich verbunden sind. Das müssen Sie selbst sehen: Drehen Sie das Modell und prüfen Sie an jeder Kreuzung, ob dort ein Knoten hingehört.</p>
+<h3 id="splitsen-en-de-kniklengte" data-i18n="c.b68">Teilen und die Knicklänge</h3>
+<p data-i18n="c.b69">Teilen Sie einen Stab an einer Stelle, an der nichts anderes anschließt — gleiches Profil, in einer Flucht, kein Auflager, kein Gelenk —, weist das Programm die Teile wieder als <strong>einen</strong> Stab nach. Die Knicklänge bleibt dann die volle Länge.</p>
+<p data-i18n="c.b70">Schließt an diesem Knoten doch etwas an, etwa eine Pfette oder ein Verbandsstab, ist es ein echter Knoten, und jeder Teil wird für sich nachgewiesen. Verbinden Sie deshalb nur, was wirklich verbunden ist: eine Pfette, die am Riegel befestigt ist, ja; ein Rohr, das nur daran entlangläuft, nein.</p>
+<h2 id="aansluitingen-scharnierend-of-momentvast" data-i18n="c.b71">Anschlüsse: gelenkig oder biegesteif</h2>
+<p data-i18n="c.b72">Jedes Stabende ist biegesteif oder gelenkig. Ein Gelenk überträgt Kräfte, aber kein Biegemoment.</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th data-i18n="c.b73">Was über das Stabende übertragen wird</th><th data-i18n="c.b74">Biegesteif</th><th data-i18n="c.b75">Gelenkig</th></tr></thead><tbody><tr><td data-i18n="c.b76">Normalkraft N</td><td data-i18n="c.b77">ja</td><td data-i18n="c.b78">ja</td></tr><tr><td data-i18n="c.b79">Querkräfte Vy und Vz</td><td data-i18n="c.b80">ja</td><td data-i18n="c.b81">ja</td></tr><tr><td data-i18n="c.b82">Torsion Mx</td><td data-i18n="c.b83">ja</td><td data-i18n="c.b84">ja</td></tr><tr><td data-i18n="c.b85">Biegemoment My</td><td data-i18n="c.b86">ja</td><td data-i18n="c.b87">nein</td></tr><tr><td data-i18n="c.b88">Biegemoment Mz</td><td data-i18n="c.b89">ja</td><td data-i18n="c.b90">nein</td></tr></tbody></table></div>
+<p data-i18n="c.b91">In 3D gibt ein Gelenk also die Biegung um <strong>beide</strong> Querachsen frei. <strong>Gelenkig</strong> hält die Torsion bewusst fest: Geben Sie die Torsion an beiden Enden frei, kann sich der Stab frei um seine eigene Achse drehen. Das ist ein Mechanismus, und dann lässt sich das Modell nicht berechnen.</p>
+<h3 id="in-staal" data-i18n="c.b92">Im Stahlbau</h3>
+<p data-i18n="c.b93">Welcher Anschluss es ist, entscheidet der Tragwerksplaner; Sie zeichnen, was auf der Skizze steht. Als Faustregel:</p>
+<ul><li data-i18n="c.b94">Ein Fahnenblech oder eine Stirnplatte ohne Steifen, bei einem Träger an einer Stütze: <strong>gelenkig</strong>.</li><li data-i18n="c.b95">Eine geschweißte oder kräftig verschraubte Rahmenecke mit Steifen oder einer Voute: <strong>biegesteif</strong>.</li><li data-i18n="c.b96">Ein Verbandsstab: an beiden Enden <strong>gelenkig</strong>. Ein schlanker Rundstab oder Flachstahl, der nur Zug aufnehmen kann, erhält <strong>Nur Zug</strong>: Unter Druck wirkt er nicht mit, und das Programm zeigt ihn als inaktiv an.</li></ul>
+<h3 id="in-het-programma" data-i18n="c.b97">Im Programm</h3>
+<ul><li data-i18n="c.b98">Eigenschaftenfenster, <strong>Stabendgelenke</strong>: <strong>Biegesteif</strong> oder <strong>Gelenkig</strong>, für beide Enden zugleich.</li><li data-i18n="c.b99">Werkzeug <strong>Stabendgelenk</strong>: macht ein Ende gelenkig; ein weiterer Klick macht es wieder biegesteif.</li><li data-i18n="c.b100">Schaltfläche <strong>Träger gelenkig anschließen</strong> im Menüband: macht jedes Trägerende an einem Stützenkopf in einem Zug gelenkig. Stützen laufen durch. Würde dadurch ein Teil des Tragwerks wegklappen, etwa ein Vordach, das an einem einzelnen Stützenkopf hängt, lässt das Programm dieses Ende biegesteif und meldet es.</li><li data-i18n="c.b101">Die Ansicht <strong>Lokale Achsen und Stabendgelenke</strong> zeigt, wo jedes Gelenk sitzt.</li></ul>
+<h3 id="opleggingen" data-i18n="c.b102">Auflager</h3>
+<p data-i18n="c.b103">Auch bei einem Auflager wählen Sie, was festgehalten ist und was sich verdrehen darf.</p>
+<ul><li data-i18n="c.b104"><strong>Räumliches Gelenk</strong> — keine Verschiebung, die Verdrehung ist frei. Ein Stützenfuß mit kleiner Fußplatte und vier Ankern wird meist so gerechnet.</li><li data-i18n="c.b105"><strong>Einspannung</strong> — nichts kann sich verschieben oder verdrehen. Nur wenn Stützenfuß und Fundament dafür ausgelegt sind.</li><li data-i18n="c.b106"><strong>Gelenk um X, Y oder Z</strong> oder ein <strong>Rollenlager</strong> — nur wenn es auf der Skizze steht.</li></ul>
+<p data-i18n="c.b107">Wählen Sie eine Einspannung, die es in Wirklichkeit nicht gibt, wirkt das Tragwerk steifer und tragfähiger, als es ist. Im Zweifel wählen Sie das Gelenk und fragen nach.</p>
+<h2 id="stabiliteit-hoe-een-hal-blijft-staan" data-i18n="c.b108">Aussteifung: wie eine Halle stehen bleibt</h2>
+<p data-i18n="c.b109">Eine Halle bleibt nur stehen, wenn sie in <strong>beiden</strong> Richtungen einen Weg hat, um horizontale Kräfte wie Wind bis ins Fundament abzutragen.</p>
+<p data-i18n="c.b110">Wind drückt gegen die Wände. Diese Kraft muss über Stäbe und Anschlüsse zu den Auflagern gelangen. Fehlt dieser Weg in einer Richtung, kippt die Halle in diese Richtung um; im Modell heißt das <strong>Mechanismus</strong>.</p>
+<figure class="fc-figure"><img src="/shared/assets/academy/open-fem-studio-stabiliteit.png" alt="Stabiliteit van een hal: portaal met stijve hoeken staat, overal scharnieren is een mechanisme, een windverband houdt de langsgevel recht" width="1344" height="654" loading="lazy"><figcaption data-i18n="c.b111">Aussteifung · Rahmen mit biegesteifen Ecken, Mechanismus, Windverband</figcaption></figure>
+<p data-i18n="c.b112">In Querrichtung halten die biegesteifen Rahmenecken den Rahmen aufrecht, in Längsrichtung der Windverband. Mit lauter Gelenken klappt das Tragwerk zusammen.</p>
+<h3 id="dwars-de-portalen" data-i18n="c.b113">In Querrichtung: die Rahmen</h3>
+<p data-i18n="c.b114">In Querrichtung der Halle tragen die <strong>Rahmen</strong> den Wind ab: zwei Stützen mit einem Riegel darauf. Ein Rahmen steht nur, wenn er steif ist, mit biegesteifen Rahmenecken oder eingespannten Stützenfüßen. Ein Rahmen mit Gelenken an allen Ecken ist ein Parallelogramm, das einfach umklappt.</p>
+<h3 id="in-de-lengte-de-windverbanden" data-i18n="c.b115">In Längsrichtung: der Windverband</h3>
+<p data-i18n="c.b116">In Längsrichtung sind die Rahmen nur über Pfetten und Gelenke verbunden, und dort tragen sie nichts ab. Dafür gibt es den <strong>Windverband</strong>: Kreuze aus Rundstäben oder Flachstählen im Dach und in den Längswänden, meist in einem Endfeld.</p>
+<p data-i18n="c.b117">Der Weg der Kraft: Der Wind auf die Giebelwand geht über die Pfetten in den Dachverband, der Dachverband leitet ihn in den Wandverband, und der Wandverband leitet ihn ins Fundament. Ein Verbandsstab läuft immer von Knoten zu Knoten, nie zu einem Punkt mitten auf einem Stab ohne Knoten.</p>
+<p data-i18n="c.b118">Auch eine Betondecke oder eine steife Dachschale kann die Aussteifung übernehmen; im Programm ist das eine <strong>Scheibe</strong>. Verwenden Sie sie nur, wenn der Tragwerksplaner es sagt.</p>
+<h3 id="zo-merk-je-het" data-i18n="c.b119">Woran Sie es merken</h3>
+<p data-i18n="c.b120">Fehlt ein Weg, warnt das Programm vor einem Mechanismus. Prüfen Sie dann, in welcher Richtung das Modell nicht gehalten ist. Fast immer ist es ein vergessener Verbandsstab, ein Gelenk zu viel oder eine Kreuzung ohne Knoten.</p>
+<p data-i18n="c.b121">Bei Kreuzen aus reinen Zugstäben gibt es noch eine weitere Ursache. Allein unter vertikaler Last werden die Stützen eine Spur kürzer, und dann stehen beide Diagonalen eines Kreuzes leicht unter Druck. Das Programm schaltet dann beide ab, und das Feld verliert seinen Verband. Der Nachweis läuft immer nach Theorie II. Ordnung und meldet dann einen Mechanismus, obwohl Ihr Modell in Ordnung ist. Schalten Sie deshalb die <strong>Kreuzregel</strong> ein: Von jedem Kreuz bleibt dann die Diagonale mit der größten Normalkraft aktiv.</p>
+<h2 id="oefening-deel-1-een-kleine-hal-tekenen" data-i18n="c.b122">Übung Teil 1: eine kleine Halle zeichnen</h2>
+<p data-i18n="c.b123">Sie zeichnen eine Halle mit 12 m Breite, 12 m Länge und 5 m Höhe, mit Flachdach: drei Rahmen im Abstand von 6 m. Die Profile dienen nur der Übung und sind nicht bemessen.</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th data-i18n="c.b124">Bauteil</th><th data-i18n="c.b125">Profil</th><th data-i18n="c.b126">Material</th><th data-i18n="c.b127">Anschluss</th></tr></thead><tbody><tr><td data-i18n="c.b128">Stützen</td><td data-i18n="c.b129">HEA 200</td><td data-i18n="c.b130">S235</td><td data-i18n="c.b131">biegesteif am Riegel</td></tr><tr><td data-i18n="c.b132">Riegel</td><td data-i18n="c.b133">IPE 360</td><td data-i18n="c.b134">S235</td><td data-i18n="c.b135">biegesteif an den Stützen</td></tr><tr><td data-i18n="c.b136">Pfetten, Achsabstand 3000 mm</td><td data-i18n="c.b137">IPE 160</td><td data-i18n="c.b138">S235</td><td data-i18n="c.b139">gelenkig</td></tr><tr><td data-i18n="c.b140">Windverband</td><td data-i18n="c.b141">RD 16</td><td data-i18n="c.b142">S235</td><td data-i18n="c.b143">gelenkig, nur Zug</td></tr></tbody></table></div>
+<p data-i18n="c.b144">X ist die Breite, Y die Länge, Z die Höhe. Die Rahmen stehen bei Y = 0, Y = 6000 und Y = 12000.</p>
+<ol><li data-i18n="c.b145">Legen Sie ein neues 3D-Projekt an. Schalten Sie in den Einstellungen <strong>Knoten automatisch zusammenführen und verbinden</strong> ein und lassen Sie die Verbindungstoleranz bei 5 mm.</li><li data-i18n="c.b146"><strong>Stützen.</strong> Setzen Sie mit <strong>Knoten hinzufügen</strong> die sechs Fußpunkte bei Z = 0 und die sechs Kopfpunkte bei Z = 5000, in den Ecken jedes Rahmens: X = 0 und X = 12000. Zeichnen Sie mit <strong>Stab hinzufügen</strong> von jedem Fußpunkt zu seinem Kopfpunkt.</li><li data-i18n="c.b147"><strong>Riegel.</strong> Zeichnen Sie bei jedem Y einen Stab von Kopfpunkt zu Kopfpunkt, von X = 0 bis X = 12000.</li><li data-i18n="c.b148"><strong>Pfetten.</strong> Zeichnen Sie sie bei X = 0, 3000, 6000, 9000 und 12000, und zwar <strong>je Feld</strong>: von Y = 0 bis 6000 und von 6000 bis 12000. An jedem Endknoten, der auf einen Riegel fällt, teilt das Programm diesen Riegel; Sie sehen die Meldung <em>… Stäbe an den darauf liegenden Knoten geteilt</em>.</li><li data-i18n="c.b149"><strong>Gelenke.</strong> Wählen Sie alle Pfetten aus und wählen Sie im Eigenschaftenfenster <strong>Gelenkig</strong>. Riegel und Stützen bleiben <strong>Biegesteif</strong>.</li><li data-i18n="c.b150"><strong>Auflager.</strong> Geben Sie den sechs Fußpunkten ein <strong>Räumliches Gelenk</strong>.</li><li data-i18n="c.b151"><strong>Windverband</strong> im ersten Feld, von Y = 0 bis 6000. Im Dach: ein Kreuz von X = 0 bis 6000 und eines von X = 6000 bis 12000, von Riegel zu Riegel. In beiden Längswänden (X = 0 und X = 12000): ein Kreuz von Fußpunkt zu Kopfpunkt. Stellen Sie sie auf <strong>Gelenkig</strong> und <strong>Nur Zug</strong>. Schalten Sie danach in der Lastfallleiste die <strong>Kreuzregel</strong> ein; sie erscheint, sobald das Modell reine Zugstäbe enthält.</li><li data-i18n="c.b152">Öffnen Sie die <strong>Modellprüfung</strong>. Sie sollte nichts anzeigen. Liegt ein Knoten auf einem Stab, lesen Sie nach, warum, und wählen Sie <strong>Verbinden</strong>, wenn die beiden wirklich verbunden sind.</li><li data-i18n="c.b153">Schalten Sie <strong>Lokale Achsen und Stabendgelenke</strong> ein und prüfen Sie jedes Stabende anhand der Tabelle oben.</li></ol>
+<p data-i18n="c.b154">Warum je Feld in Schritt 4? Eine lange Pfette von Y = 0 bis 12000 kreuzt den mittleren Riegel ohne Knoten. Die beiden sind dann nicht verbunden, und die Modellprüfung meldet es nicht.</p>
+<p data-i18n="c.b155">Warum nicht die Schaltfläche <strong>Träger gelenkig anschließen</strong> im Menüband? Sie würde auch die Riegel gelenkig an die Stützen anschließen. Mit gelenkigen Fußpunkten ist der Rahmen dann kein Rahmen mehr, und die Halle kippt seitlich um.</p>
+<p data-i18n="c.b156"><strong>Kontrollfragen</strong></p>
+<ul><li data-i18n="c.b157">Warum müssen die Rahmenecken hier biegesteif sein?</li><li data-i18n="c.b158">Was passiert, wenn Sie den Wandverband weglassen?</li><li data-i18n="c.b159">Der Dachverband kreuzt die Pfette bei X = 3000 ohne Knoten. Ist das falsch?</li></ul>
+<p data-i18n="c.b160">Antworten: (1) Die Fußpunkte sind gelenkig, in Querrichtung sorgt also nur die biegesteife Ecke für die Aussteifung; (2) in Längsrichtung gibt es dann keinen Weg ins Fundament: ein Mechanismus; (3) nein, in Wirklichkeit sind sie dort auch nicht verbunden.</p>
+<h2 id="deel-2-belastinggevallen" data-i18n="c.b161">Teil 2 — Lastfälle</h2>
+<p data-i18n="c.b162">Jede Lastart legen Sie in einen eigenen <strong>Lastfall</strong>. Das Programm kombiniert diese Lastfälle anschließend mit Teilsicherheitsbeiwerten. Ein neues Projekt hat bereits fünf: Eigengewicht, Ständig (G), Veränderlich (Q), Schnee (S) und Wind (W). Sie ergänzen nur, was fehlt.</p>
+<p data-i18n="c.b163">Warum getrennt? Schnee und Wind treten nicht immer gleichzeitig auf, und jede Lastart erhält ihren eigenen Beiwert. Einen Lastfall, in dem alles zusammengeworfen ist, kann das Programm nicht richtig kombinieren.</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th data-i18n="c.b164">Lastfall</th><th data-i18n="c.b165">Art</th><th data-i18n="c.b166">Was er enthält</th><th data-i18n="c.b167">Wie im Programm</th></tr></thead><tbody><tr><td data-i18n="c.b168">Eigengewicht</td><td data-i18n="c.b169">ständig</td><td data-i18n="c.b170">die Stäbe selbst</td><td data-i18n="c.b171">berechnet das Programm aus dem Profil; Sie tun nichts</td></tr><tr><td data-i18n="c.b172">Ständig (G)</td><td data-i18n="c.b173">ständig</td><td data-i18n="c.b174">der Ausbau: Dachaufbau, Wandverkleidung, Installationen</td><td data-i18n="c.b175">Lastfläche; die Verkleidung über die Hüllflächen</td></tr><tr><td data-i18n="c.b176">Veränderlich (Q)</td><td data-i18n="c.b177">veränderlich</td><td data-i18n="c.b178">die Nutzlast auf dem Dach: Personen bei der Wartung des Dachs</td><td data-i18n="c.b179"><strong>Nutzlast Dach Kategorie H</strong> im Generator oder eine Lastfläche</td></tr><tr><td data-i18n="c.b180">Schnee (S)</td><td data-i18n="c.b181">veränderlich</td><td data-i18n="c.b182">Schnee auf dem Dach</td><td data-i18n="c.b183"><strong>Schneelast auf dem Boden sₖ</strong> im Generator</td></tr><tr><td data-i18n="c.b184">Wind (W)</td><td data-i18n="c.b185">veränderlich</td><td data-i18n="c.b186">Druck und Sog auf Wände und Dach</td><td data-i18n="c.b187"><strong>Wind auf Wände und Dach</strong> im Generator</td></tr></tbody></table></div>
+<p data-i18n="c.b188">Der Generator heißt <strong>3D-Hüllenlasten erzeugen</strong>. Er legt die Lastfälle und Lastflächen selbst an und lässt Lasten stehen, die Sie bereits von Hand aufgebracht haben.</p>
+<h3 id="sneeuw" data-i18n="c.b189">Schnee</h3>
+<p data-i18n="c.b190">In den gesamten Niederlanden beträgt die Schneelast auf dem Boden sₖ = 0,7 kN/m². Auf einem flachen oder flach geneigten Dach zählen davon 80 %: 0,8 × 0,7 = 0,56 kN/m² auf dem Dach. Sie geben sₖ im Generator ein; den Formbeiwert berechnet er selbst.</p>
+<h3 id="wind" data-i18n="c.b191">Wind</h3>
+<p data-i18n="c.b192">Wie viel Wind anzusetzen ist, hängt vom Standort ab: von der <strong>Windzone</strong> (I, II oder III), der <strong>Geländekategorie</strong> (Küste, offenes Gelände oder bebaut) und der Höhe der Halle. Jeder Bereich von Wand und Dach erhält seinen eigenen Druck oder Sog. Wind kann aus verschiedenen Richtungen kommen, deshalb legt der Generator mehrere Windlastfälle an.</p>
+<p data-i18n="c.b193">Lassen Sie Strukturbeiwert und Grundundichtheit auf den Standardwerten, sofern der Tragwerksplaner nichts anderes sagt.</p>
+<h2 id="van-vlakbelasting-naar-staaf" data-i18n="c.b194">Von der Flächenlast zum Stab</h2>
+<p data-i18n="c.b195">Eine Last in kN/m² bringen Sie mit einer <strong>Lastfläche</strong> auf das Modell auf. Das Programm verteilt diese Last auf die Träger in der Fläche und macht daraus gewöhnliche Linienlasten.</p>
+<p data-i18n="c.b196">Eine Lastfläche zeichnen Sie mit ihren Ecken auf Knoten und geben ihr einen Lastfall und ein q in kN/m².</p>
+<h3 id="lastrichting" data-i18n="c.b197">Lastrichtung</h3>
+<ul><li data-i18n="c.b198"><strong>Schwerkraft (−Z), je m² Grundrissprojektion</strong> — für Schnee und Dachnutzlast. Bei einem geneigten Dach zählt die Fläche, wie sie von oben gesehen wird.</li><li data-i18n="c.b199"><strong>Vertikal (−Z), je m² tatsächlicher Fläche</strong> — für das Gewicht der Dachbleche auf einem geneigten Dach.</li><li data-i18n="c.b200"><strong>Senkrecht zur Fläche, je m² Fläche</strong> — für Wind. Ob ein positives q die Wand nach innen drückt oder nach außen zieht, hängt davon ab, wie die Fläche liegt. Achten Sie deshalb auf den Pfeil in der Zeichenfläche; zeigt er in die falsche Richtung, wählen Sie <strong>Richtung umkehren</strong>.</li></ul>
+<h3 id="afdracht" data-i18n="c.b201">Lastabtragung</h3>
+<ul><li data-i18n="c.b202"><strong>Einachsig (Spannrichtung)</strong> — ein Dachblech spannt von Pfette zu Pfette. Wählen Sie als <strong>Spannrichtung</strong> die Richtung quer zu den Pfetten. Jede Pfette erhält dann einen Streifen mit dem halben Abstand zu ihren Nachbarn: die <strong>Lasteinzugsbreite</strong>.</li><li data-i18n="c.b203"><strong>Zweiachsig (45°-Linien)</strong> — eine vierseitig gelagerte Platte, etwa eine Decke. Jeder Punkt geht zum nächstgelegenen Träger, und von den Ecken laufen 45°-Linien aus.</li></ul>
+<figure class="fc-figure"><img src="/shared/assets/academy/open-fem-studio-belastingbreedte.png" alt="Dak in bovenaanzicht: elke gording draagt de strook tot halverwege zijn buren; middengording 1,68 kN/m, randgording 0,84 kN/m" width="1344" height="670" loading="lazy"><figcaption data-i18n="c.b204">einachsig · Lasteinzugsbreite je Pfette</figcaption></figure>
+<p data-i18n="c.b205">Das Dachblech spannt von Pfette zu Pfette. Eine Mittelpfette trägt deshalb einen Streifen von 3,0 m, eine Randpfette die Hälfte davon.</p>
+<p data-i18n="c.b206">Unter <strong>Träger in der Fläche</strong> steht zu jedem Stab, was er tut: (trägt), (parallel, keine Last) oder (schräg, keine Last). Windverbände erhalten also von selbst nichts. Trägt ein Stab in Wirklichkeit nichts, entfernen Sie das Häkchen; sein Anteil geht auf die anderen Träger über.</p>
+<h3 id="rekenvoorbeeld" data-i18n="c.b207">Rechenbeispiel</h3>
+<p data-i18n="c.b208">Pfetten im Abstand von 3000 mm, Schnee 0,56 kN/m², einachsig quer zu den Pfetten:</p>
+<ul><li data-i18n="c.b209">eine Mittelpfette trägt 3,0 m: 0,56 × 3,0 = <strong>1,68 kN/m</strong>;</li><li data-i18n="c.b210">eine Randpfette trägt 1,5 m: 0,56 × 1,5 = <strong>0,84 kN/m</strong>.</li></ul>
+<h3 id="controle" data-i18n="c.b211">Kontrolle</h3>
+<p data-i18n="c.b212">Unter <strong>Abgeleitete Linienlasten</strong> sehen Sie, was jeder Stab erhält. Darunter steht <strong>Insgesamt übertragen … kN · q × A = … kN</strong>: Diese beiden Zahlen müssen gleich sein. Weichen sie voneinander ab oder meldet das Programm einen Rand ohne Träger, prüfen Sie, ob die Fläche auf den richtigen Trägern liegt.</p>
+<h2 id="combinaties-veiligheidsfactoren-en-scheefstand" data-i18n="c.b213">Kombinationen, Teilsicherheitsbeiwerte und Imperfektion</h2>
+<p data-i18n="c.b214">Die Kombinationen legt das Programm selbst an. Sie sorgen dafür, dass jeder Lastfall die richtige Art hat und nichts fehlt.</p>
+<p data-i18n="c.b215">Eine <strong>Kombination</strong> ist eine Summe von Lastfällen, jeder mit einem Beiwert. Es gibt zwei Arten:</p>
+<ul><li data-i18n="c.b216"><strong>GZT</strong>, der Grenzzustand der Tragfähigkeit — ist das Tragwerk tragfähig und stabil genug? Mit Teilsicherheitsbeiwerten.</li><li data-i18n="c.b217"><strong>GZG</strong>, der Grenzzustand der Gebrauchstauglichkeit — biegt es sich nicht zu stark durch? Ohne Teilsicherheitsbeiwerte.</li></ul>
+<p data-i18n="c.b218">Für Neubauten der Schadensfolgeklasse CC2 gelten in den Niederlanden im GZT diese Beiwerte:</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th data-i18n="c.b219">Last</th><th data-i18n="c.b220">Beiwert</th></tr></thead><tbody><tr><td data-i18n="c.b221">Ständig, ungünstig (Gleichung 6.10a)</td><td data-i18n="c.b222">1,35</td></tr><tr><td data-i18n="c.b223">Ständig, ungünstig (Gleichung 6.10b)</td><td data-i18n="c.b224">1,2</td></tr><tr><td data-i18n="c.b225">Ständig, günstig, zum Beispiel bei abhebendem Wind</td><td data-i18n="c.b226">0,9</td></tr><tr><td data-i18n="c.b227">Veränderlich, die Leiteinwirkung</td><td data-i18n="c.b228">1,5</td></tr><tr><td data-i18n="c.b229">Veränderlich, Begleiteinwirkung</td><td data-i18n="c.b230">1,5 × ψ₀, mit ψ₀ je Lastart</td></tr></tbody></table></div>
+<p data-i18n="c.b231">Jede veränderliche Last ist in einer der Kombinationen die Leiteinwirkung. Deshalb sehen Sie mehrere GZT-Kombinationen, dazu eine für abhebenden Wind, in der das Eigengewicht günstig wirkt (0,9).</p>
+<p data-i18n="c.b232">Die ψ₀-Beiwerte und die Liste der Kombinationen füllt das Programm selbst aus. Sie prüfen:</p>
+<ul><li data-i18n="c.b233">Hat jeder Lastfall die richtige Art: ständig oder veränderlich, und welcher Typ?</li><li data-i18n="c.b234">Kommt jeder veränderliche Lastfall in der Liste vor?</li><li data-i18n="c.b235">Gibt es für den Wind eine Kombination mit günstig wirkendem Eigengewicht?</li></ul>
+<h3 id="scheefstand" data-i18n="c.b236">Imperfektion</h3>
+<p data-i18n="c.b237">Keine Stütze steht exakt lotrecht. Deshalb rechnet das Programm immer nach <strong>Theorie II. Ordnung</strong> (P-Δ) und mit einer <strong>Anfangsschiefstellung</strong> φ: standardmäßig 1/200, einstellbar in den Projekteinstellungen. Im Bericht steht das als <em>II. Ordnung + Schiefstellung</em>.</p>
+<p data-i18n="c.b238">Theorie II. Ordnung bedeutet: Das Programm rechnet am verformten System. Eine Stütze, die leicht schief steht, erhält aus ihrer eigenen Last ein zusätzliches Moment, und das Programm berücksichtigt das. Sie bringen dafür selbst <strong>keine</strong> zusätzliche Horizontallast auf das Modell auf.</p>
+<h2 id="oefening-deel-2-belastingen-op-de-hal" data-i18n="c.b239">Übung Teil 2: Lasten auf die Halle</h2>
+<p data-i18n="c.b240">Sie bringen vier Lastfälle auf die Halle aus Teil 1 auf, starten die Berechnung und prüfen, ob das Ergebnis stimmt. Der Windwert ist ein Übungswert: In Wirklichkeit hängt der Wind vom Standort ab und ist je Bereich verschieden.</p>
+<ol><li data-i18n="c.b241"><strong>Lastfälle.</strong> Ihr neues Projekt hat bereits fünf. Verwenden Sie <em>Ständig (G)</em> für den Ausbau, <em>Schnee (S)</em> für den Schnee und <em>Wind (W)</em> für den Wind auf die Längswand. Legen Sie einen weiteren an: <em>Wind Giebel</em>, Art Wind. <em>Veränderlich (Q)</em> lassen Sie leer; die Dachnutzlast behandeln wir in dieser Übung nicht. Das Eigengewicht berechnet das Programm selbst.</li><li data-i18n="c.b242"><strong>Ausbau.</strong> Zeichnen Sie eine Lastfläche über das ganze Dach, mit ihren Ecken auf den vier Dachecken. Wählen Sie den Lastfall Ständig (G), q = 0,3 kN/m², <strong>Schwerkraft</strong>, <strong>Einachsig</strong> und als Spannrichtung <strong>Global X</strong>, quer zu den Pfetten.</li><li data-i18n="c.b243"><strong>Schnee.</strong> Wählen Sie bei der Dachfläche <strong>In Lastfall kopieren…</strong>, wählen Sie Schnee (S) und setzen Sie q auf 0,56 kN/m².</li><li data-i18n="c.b244"><strong>Wind auf die Längswand.</strong> Zeichnen Sie eine Lastfläche auf der Wand X = 0, von (0; 0; 0) über (0; 12000; 0) und (0; 12000; 5000) nach (0; 0; 5000), im Lastfall Wind (W). Wählen Sie <strong>Senkrecht zur Fläche</strong>, q = 0,6 kN/m², einachsig entlang <strong>Global Y</strong>. Der Pfeil muss in die Halle zeigen; wenn nicht, wählen Sie <strong>Richtung umkehren</strong>.</li><li data-i18n="c.b245"><strong>Wind auf den Giebel.</strong> Dasselbe im Lastfall Wind Giebel, auf der Wand Y = 0, von (0; 0; 0) über (12000; 0; 0) und (12000; 0; 5000) nach (0; 0; 5000), einachsig entlang <strong>Global X</strong>.</li><li data-i18n="c.b246"><strong>Kombinationen.</strong> Lassen Sie das Programm die Standardkombinationen anlegen und gehen Sie die drei Fragen aus dem vorigen Kapitel durch.</li><li data-i18n="c.b247"><strong>Starten Sie die Berechnung.</strong></li></ol>
+<h3 id="controleer-de-uitkomst" data-i18n="c.b248">Das Ergebnis prüfen</h3>
+<p data-i18n="c.b249">Rechnen Sie zuerst selbst aus, welche Last jeder Lastfall ergibt, und vergleichen Sie das mit <strong>Insgesamt übertragen</strong> an der Lastfläche und mit der Summe der Auflagerkräfte:</p>
+<div class="table-scroll"><table class="fc-table"><thead><tr><th data-i18n="c.b250">Lastfall</th><th data-i18n="c.b251">Selbst berechnet</th><th data-i18n="c.b252">Summe der Auflagerkräfte</th></tr></thead><tbody><tr><td data-i18n="c.b253">Ständig (G), Ausbau</td><td data-i18n="c.b254">0,3 × 12 × 12 = 43,2 kN</td><td data-i18n="c.b255">vertikal, 43,2 kN</td></tr><tr><td data-i18n="c.b256">Schnee (S)</td><td data-i18n="c.b257">0,56 × 12 × 12 = 80,6 kN</td><td data-i18n="c.b258">vertikal, 80,6 kN</td></tr><tr><td data-i18n="c.b259">Wind (W), Längswand</td><td data-i18n="c.b260">0,6 × 12 × 5 = 36,0 kN</td><td data-i18n="c.b261">in X, 36,0 kN</td></tr><tr><td data-i18n="c.b262">Wind Giebel</td><td data-i18n="c.b263">0,6 × 12 × 5 = 36,0 kN</td><td data-i18n="c.b264">in Y, 36,0 kN</td></tr></tbody></table></div>
+<p data-i18n="c.b265">Das Eigengewicht berechnet das Programm aus den Profilen. Für diese Halle sind es rund 42,9 kN vertikal: etwa 4,4 Tonnen Stahl. Sehen Sie unter Eigengewicht eine ganz andere Zahl, stimmt ein Profil nicht.</p>
+<p data-i18n="c.b266">Stimmt eine Summe nicht, ist eine Last falsch: der falsche Lastfall, die falsche Richtung oder eine Fläche, die nicht auf den Trägern liegt.</p>
+<p data-i18n="c.b267">Sehen Sie sich dann das Verhalten an:</p>
+<ul><li data-i18n="c.b268">Bei <strong>Wind auf die Längswand</strong> weichen die Rahmen seitlich aus: am Kopf des mittleren Rahmens um etwa 28 mm, ohne Beiwerte. Hier arbeitet die biegesteife Rahmenecke.</li><li data-i18n="c.b269">Bei <strong>Wind auf den Giebel</strong> hält der Wandverband die Halle. In jedem Kreuz ist eine Diagonale aktiv, die andere wird als inaktiv angezeigt (nur Zug): Sie stünde unter Druck. Der Kopf der Halle verschiebt sich nur um etwa 3 mm.</li><li data-i18n="c.b270">Es darf keine Warnung vor einem Mechanismus erscheinen.</li><li data-i18n="c.b271">Die Ausnutzungsgrade notieren Sie; sie zu beurteilen ist Sache des Tragwerksplaners.</li></ul>
+<p data-i18n="c.b272">In einem echten Projekt bringen Sie Schnee und Wind nicht von Hand auf. Sie zeichnen die Wand- und Dachflächen der Gebäudehülle und verwenden <strong>3D-Hüllenlasten erzeugen</strong>; Ihr Betreuer zeigt Ihnen, wie das geht.</p>
+<h2 id="checklist-voordat-je-het-model-inlevert" data-i18n="c.b273">Checkliste vor der Abgabe des Modells</h2>
+<p data-i18n="c.b274">Gehen Sie diese Liste durch und haken Sie ab. Was Sie nicht abhaken können, notieren Sie als Frage an den Tragwerksplaner.</p>
+<p data-i18n="c.b275"><strong>Geometrie</strong></p>
+<ul class="fc-checklist"><li class="fc-check"><input type="checkbox" id="chk-1"><label for="chk-1" data-i18n="c.b276">Jeder Stab liegt auf seiner Stabachse, ohne ungewollte Knicke.</label></li><li class="fc-check"><input type="checkbox" id="chk-2"><label for="chk-2" data-i18n="c.b277">Wo Stäbe wirklich verbunden sind, teilen sie sich einen Knoten. Ich habe das Modell gedreht und jede Kreuzung geprüft.</label></li><li class="fc-check"><input type="checkbox" id="chk-3"><label for="chk-3" data-i18n="c.b278">Es gibt keine Knoten, an denen nichts anschließt, es sei denn, es gibt einen Grund dafür.</label></li><li class="fc-check"><input type="checkbox" id="chk-4"><label for="chk-4" data-i18n="c.b279">Profil, Material und Ausrichtung des Querschnitts stimmen bei jedem Stab.</label></li><li class="fc-check"><input type="checkbox" id="chk-5"><label for="chk-5" data-i18n="c.b280">Die Modellprüfung meldet nichts mehr.</label></li></ul>
+<p data-i18n="c.b281"><strong>Anschlüsse und Aussteifung</strong></p>
+<ul class="fc-checklist"><li class="fc-check"><input type="checkbox" id="chk-6"><label for="chk-6" data-i18n="c.b282">Jedes Stabende ist entsprechend der Skizze biegesteif oder gelenkig.</label></li><li class="fc-check"><input type="checkbox" id="chk-7"><label for="chk-7" data-i18n="c.b283">Nirgends ist die Torsion an beiden Enden eines Stabs freigegeben.</label></li><li class="fc-check"><input type="checkbox" id="chk-8"><label for="chk-8" data-i18n="c.b284">Die Auflager entsprechen der Skizze: Gelenk oder Einspannung.</label></li><li class="fc-check"><input type="checkbox" id="chk-9"><label for="chk-9" data-i18n="c.b285">In beiden Richtungen gibt es einen Weg ins Fundament: Rahmen oder Verbände.</label></li><li class="fc-check"><input type="checkbox" id="chk-10"><label for="chk-10" data-i18n="c.b286">Verbandsstäbe, die nur Zug aufnehmen, stehen auf Nur Zug, und bei Kreuzen ist die Kreuzregel eingeschaltet.</label></li><li class="fc-check"><input type="checkbox" id="chk-11"><label for="chk-11" data-i18n="c.b287">Das Programm warnt nicht vor einem Mechanismus.</label></li></ul>
+<p data-i18n="c.b288"><strong>Lasten</strong></p>
+<ul class="fc-checklist"><li class="fc-check"><input type="checkbox" id="chk-12"><label for="chk-12" data-i18n="c.b289">Jede Last liegt im richtigen Lastfall, mit der richtigen Art.</label></li><li class="fc-check"><input type="checkbox" id="chk-13"><label for="chk-13" data-i18n="c.b290">Jede Lastfläche hat die richtige Lastrichtung und Lastabtragung, und Insgesamt übertragen ist gleich q × A.</label></li><li class="fc-check"><input type="checkbox" id="chk-14"><label for="chk-14" data-i18n="c.b291">Jeder veränderliche Lastfall kommt in den Kombinationen vor, und es gibt eine Kombination für abhebenden Wind.</label></li><li class="fc-check"><input type="checkbox" id="chk-15"><label for="chk-15" data-i18n="c.b292">Die Imperfektion ist so eingestellt, wie der Tragwerksplaner es möchte.</label></li><li class="fc-check"><input type="checkbox" id="chk-16"><label for="chk-16" data-i18n="c.b293">Für jeden Lastfall ist die Summe der Auflagerkräfte gleich der Summe der Lasten.</label></li></ul>
+<p data-i18n="c.b294"><strong>Abgabe</strong></p>
+<ul class="fc-checklist"><li class="fc-check"><input type="checkbox" id="chk-17"><label for="chk-17" data-i18n="c.b295">Das Modell ist gespeichert, mit einem eindeutigen Namen.</label></li><li class="fc-check"><input type="checkbox" id="chk-18"><label for="chk-18" data-i18n="c.b296">Meine Fragen und Zweifel sind für den Tragwerksplaner notiert.</label></li></ul>
+        <p class="fc-note" data-i18n="note">Dieser Kurs ist Teil der <a href="/academy/">OpenAEC Academy</a>. Einen Fehler entdeckt oder fehlt etwas? Melden Sie es uns über die Schaltfläche Feedback oben rechts.</p>
+      </div>
+    </div>
+  </div></section>
+
+  </main>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/de/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión." data-i18n-de="Open-Source-Software für die gesamte AEC-Kette (Hochbau, Infrastruktur, Ingenieurbau) — vom Entwurf bis zu Übergabe und Betrieb.">Open-Source-Software für die gesamte AEC-Kette (Hochbau, Infrastruktur, Ingenieurbau) — vom Entwurf bis zu Übergabe und Betrieb.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas" data-i18n-de="Seiten">Seiten</h4>
+        <a href="/de/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros" data-i18n-de="Über uns">Über uns</a>
+        <a href="/de/ifcx/">IFCX</a>
+        <a href="/de/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto" data-i18n-de="Angebot anfordern">Angebot anfordern</a>
+        <a href="/de/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes" data-i18n-de="FAQ">FAQ</a>
+        <a href="/wiki/" data-i18n-en="Wiki" data-i18n-fr="Wiki" data-i18n-tr="Wiki" data-i18n-es="Wiki" data-i18n-de="Wiki">Wiki</a>
+        <a href="/academy/" data-i18n-en="Academy" data-i18n-fr="Academy" data-i18n-tr="Academy" data-i18n-es="Academy" data-i18n-de="Academy">Academy</a>
+        <a href="/de/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal" data-i18n-de="Haftungsausschluss">Haftungsausschluss</a>
+        <a href="/de/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos" data-i18n-de="Satzungsentwurf">Satzungsentwurf</a>
+        <a href="/de/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos" data-i18n-de="Credits">Credits</a>
+        <a href="/de/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones" data-i18n-de="Grundsätze &amp; Positionen">Grundsätze &amp; Positionen</a>
+        <a href="/de/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales" data-i18n-de="Social Media">Social Media</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución" data-i18n-de="Stiftung i. G.">Stiftung i. G.</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos" data-i18n-de="Niederlande">Niederlande</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras" data-i18n-de="© 2026 Open AEC Foundation i. G. — Open Source für eine offene Bau- und Infrastrukturbranche">© 2026 Open AEC Foundation i. G. — Open Source für eine offene Bau- und Infrastrukturbranche</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+          <a href="https://x.com/openaec" target="_blank" rel="noopener" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.youtube.com/@openaecfoundation" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://mastodon.social/@openaec" target="_blank" rel="me noopener" aria-label="Mastodon" title="Mastodon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg></a>
+          <a href="https://www.threads.com/@openaec" target="_blank" rel="noopener" aria-label="Threads" title="Threads"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
+  <script src="/shared/i18n.js?v=20261105"></script>
+</body>
+</html>

@@ -327,7 +327,8 @@
     en: { prev: 'Previous image', next: 'Next image', dot: 'Image ', label: 'Screenshots' },
     fr: { prev: 'Image précédente', next: 'Image suivante', dot: 'Image ', label: "Captures d'écran" },
     tr: { prev: 'Önceki görsel', next: 'Sonraki görsel', dot: 'Görsel ', label: 'Ekran görüntüleri' },
-    es: { prev: 'Imagen anterior', next: 'Imagen siguiente', dot: 'Imagen ', label: 'Capturas de pantalla' }
+    es: { prev: 'Imagen anterior', next: 'Imagen siguiente', dot: 'Imagen ', label: 'Capturas de pantalla' },
+    de: { prev: 'Vorheriges Bild', next: 'Nächstes Bild', dot: 'Bild ', label: 'Screenshots' }
   };
   var current = 0;
   var buttons = slides.map(function (_, i) {

@@ -1,0 +1,402 @@
+{
+  "meta": {
+    "title": "Open Pointcloud Studio — OpenAEC Foundation",
+    "description": "Desktop-Anwendung für Laserscans und Punktwolken (LAS, LAZ, E57): ansehen, messen, konvertieren, Schnittzeichnungen in DXF und DWG, Meshes. Windows, macOS, Linux."
+  },
+  "header": {
+    "label": "Punktwolken ansehen, messen und bearbeiten",
+    "title": "Open <span class=\"accent\">Pointcloud</span> Studio",
+    "tagline": "Vom Laserscan zu Maß, Zeichnung und Mesh",
+    "desc": "Eine Desktop-Anwendung zum Ansehen, Messen, Bearbeiten und Konvertieren von Laserscans und anderen Punktwolken. Aus einem Scan erstellt sie eine Schnittzeichnung in DXF oder DWG, ein geschlossenes Mesh sowie die Ebenen und Zylinder eines Raums. Sie läuft unter Windows, macOS und Linux, ist in Rust geschrieben und braucht weder Browser noch Webview.",
+    "direct": "Direkter Download:",
+    "dlWindows": "Windows-Installer",
+    "dlMac": "macOS (.dmg)",
+    "dlLinux": "Linux (AppImage)",
+    "proofLang": "Niederländisch und Englisch",
+    "proofFree": "Kostenlos · GPL-3.0 und LGPL-3.0"
+  },
+  "cta": {
+    "download": "Download",
+    "guide": "Benutzerhandbuch",
+    "github": "GitHub",
+    "related": "Siehe auch Open CAD Studio, das jedem Paket beiliegt und die Zeichnungen anzeigt"
+  },
+  "slides": {
+    "four": "Schnittzeichnung zweier generierter Testräume: der Grundriss von oben, mit der Vorschau des gefüllten Schnitts (die Wand zwischen den Räumen mit offen gelassener Türöffnung und eine runde Stütze als gefüllte Flächen) und rechts der Block Section drawing (Snedetekening in der niederländischen Oberfläche) unter Properties",
+    "five": "Geschlossenes Mesh derselben generierten Testräume: die Oberfläche der beiden Räume mit einer offen gelassenen Türöffnung in einer Außenwand und rechts der Block Closed mesh (Gesloten mesh in der niederländischen Oberfläche) mit seinem Ergebnis: 15.868 Eckpunkte, 30.563 Dreiecke und eine mittlere Abweichung von 1,6 mm",
+    "six": "Erkannte Flächen derselben generierten Testräume, jeder Typ in einer eigenen Farbe (Decken blau, Wände sandfarben), und rechts der Block Detect faces (Vlakken herkennen in der niederländischen Oberfläche) mit seinen Zählwerten: 2 Böden, 2 Decken, 10 Wände und 1 Stütze",
+    "two": "Ein Scan eines Gebäudes, bei dem die Schnittbox auf 11 % der Höhe eingestellt ist, sodass die Räume von oben zu sehen sind, und eine Streckenmessung von 26,774 Metern zwischen zwei Punkten",
+    "three": "Die Schnittbox, verengt auf eine Scheibe zwischen 4 % und 31 % der Höhe, wodurch die Fassade mit ihren Fenstern frei wird; rechts die gespeicherte Ansicht und die Schieberegler der Schnittbox"
+  },
+  "notice": {
+    "text": "<strong>Zum ersten Mal hier?</strong> Die Anleitung führt Sie in wenigen Schritten von der Installation zur ersten Schnittzeichnung. <a href=\"/open-pointcloud-studio/handleiding/\">Zur Anleitung</a>"
+  },
+  "subnav": {
+    "label": "Auf dieser Seite",
+    "features": "Funktionen",
+    "download": "Download",
+    "whatsnew": "Neu",
+    "faq": "Fragen",
+    "tech": "Formate und Technik",
+    "releases": "Releases"
+  },
+  "features": {
+    "label": "Funktionen",
+    "heading": "Vom Scan zur Zeichnung",
+    "sub": "Beginnen Sie mit den Highlights oder wählen Sie ein Thema.",
+    "tabsLabel": "Funktionen nach Thema",
+    "learnMore": "Mehr erfahren",
+    "open": {
+      "title": "Scans öffnen"
+    },
+    "project": {
+      "title": "Ein ganzes Scanprojekt auf einmal"
+    },
+    "lod": {
+      "title": "Detail dort, wo Sie hinsehen"
+    },
+    "display": {
+      "title": "Darstellung"
+    },
+    "bag": {
+      "title": "Gebäude aus 3D BAG"
+    },
+    "language": {
+      "title": "Niederländisch und Englisch"
+    },
+    "measure": {
+      "title": "Messen"
+    },
+    "edit": {
+      "title": "Auswählen und bearbeiten"
+    },
+    "export": {
+      "title": "Exportieren und zusammenführen"
+    },
+    "views": {
+      "title": "Ansichten, Notizen und BCF"
+    },
+    "drawing": {
+      "title": "Schnittzeichnung"
+    },
+    "closedMesh": {
+      "title": "Geschlossenes Mesh"
+    },
+    "faces": {
+      "title": "Erkannte Flächen"
+    }
+  },
+  "tabs": {
+    "highlights": "Highlights",
+    "view": "Öffnen und ansehen",
+    "edit": "Messen und bearbeiten",
+    "output": "Zeichnungen und Meshes",
+    "auto": "Automatisierung",
+    "all": "Alle Funktionen"
+  },
+  "hl": {
+    "large": {
+      "kicker": "Öffnen und ansehen",
+      "title": "Große Scans, sofort auf dem Bildschirm",
+      "desc": "LAS und LAZ werden anhand ihres Headers geöffnet, eine große E57-Datei zeigt zuerst eine Stichprobe, und ab einer Million Punkten legt die Anwendung einen Index auf der Festplatte an. Er liefert das Detail für den aktuellen Blickpunkt, bis zu zehn Millionen Punkte im Bild, und bleibt für das nächste Mal erhalten."
+    },
+    "section": {
+      "kicker": "Schneiden und messen",
+      "title": "Eine Schnittbox, die den Wänden folgt",
+      "desc": "Sechs verschiebbare Flächen begrenzen, was Sie sehen, auswählen, exportieren und zeichnen. Geben Sie die Grenzen ein oder drehen Sie die Box mit <em>Align to walls</em> entlang eines Gebäudes, das schräg im Scan steht. Messen Sie Strecken und Flächen, auch die einer Wand oder eines geneigten Dachs."
+    },
+    "drawing": {
+      "kicker": "Zeichnungen",
+      "title": "Vom Scan zum Grundriss in DXF oder DWG",
+      "desc": "Eine Schnittzeichnung erzeugt einen Grundriss oder Schnitt im Maßstab 1:1 von dem, was die Box schneidet. Der gefüllte Schnitt zeichnet Wände, Stützen und Böden als Flächen und lässt Tür- und Fensteröffnungen offen; gerade CAD-Linien ergänzen bearbeitbare Polylinien. Open CAD Studio liegt bei und zeigt das Ergebnis sofort an, und auf einem Blatt mit Schriftfeld platzieren Sie maßstäbliche Ansichten für ein PDF."
+    },
+    "mesh": {
+      "kicker": "Meshes",
+      "title": "Ein geschlossenes Mesh, das Ihnen sagt, wie gut es ist",
+      "desc": "Legen Sie die Box um einen Raum und erzeugen Sie eine Oberfläche ohne Überlappungen, geschlossen überall dort, wo der Scan Punkte hat, und mit offen gelassenen Tür- und Fensteröffnungen. Anschließend sehen Sie den mittleren, den 95-%- und den größten Abstand zwischen den Punkten und dem Mesh. Exportieren Sie als OBJ, PLY, STL, DXF, DWG oder IFC."
+    },
+    "faces": {
+      "kicker": "Flächen",
+      "title": "Böden, Wände und Stützen erkannt",
+      "desc": "„Detect faces“ findet die ebenen Flächen eines Raums mit ihren Umrissen, in denen ein Fenster ein Loch und eine Tür eine Aussparung ist, sowie runde Stützen und Rohre als Zylinder. Zu jeder Fläche sehen Sie den Typ, den Flächeninhalt und die Restabweichung ihrer Punkte; exportieren Sie als JSON, OBJ, DXF, DWG oder als IFC4-Bauteile."
+    }
+  },
+  "f": {
+    "open": {
+      "desc": "LAS, LAZ, E57, PLY, PCD, PTX, PTS und Text sowie Meshes in OBJ, PLY, OFF und STL. Jede Datei ist ein Layer, den Sie einblenden, ausblenden oder schließen."
+    },
+    "project": {
+      "desc": "Ein Ordner mit Scans oder die Scans, die eine Scanprojektdatei (.rcp) auflistet, werden gemeinsam geöffnet. Sie können sie auch auf das Fenster ziehen."
+    },
+    "lod": {
+      "desc": "Ein Index auf der Festplatte (ein Octree) liefert das Detail für die Kameraposition; die Punkte bleiben auf dem Bildschirm, während Sie sich bewegen."
+    },
+    "display": {
+      "desc": "Farbe, Höhe, Intensität oder Klasse, Eye-Dome-Lighting, ein Ansichtswürfel und perspektivische oder orthografische Darstellung."
+    },
+    "photos": {
+      "title": "Standpunktfotos und Panoramen",
+      "desc": "Stellen Sie sich in einen Scannerstandpunkt, legen Sie das Foto über die Punkte und geben Sie den Punkten die Farben, die die Fotos sehen."
+    },
+    "compare": {
+      "title": "Foto neben dem 3D-Modell",
+      "desc": "Ein E57-Foto in einem eigenen Tab, neben oder über einem 3D-Bereich, mit verschiebbarer Trennlinie."
+    },
+    "bag": {
+      "desc": "Laden Sie Gebäudemodelle der Niederlande für ein Gebiet in RD-Koordinaten herunter und zeigen Sie sie zusammen mit Ihrem Scan an."
+    },
+    "language": {
+      "desc": "Die Oberfläche folgt der Systemsprache und lässt sich in den Einstellungen umschalten, mit fünf Farbschemata."
+    },
+    "measure": {
+      "desc": "Strecke, horizontale Länge und Höhenunterschied sowie Flächen in ihrer eigenen Ebene, abgegriffen aus allen Punkten des Scans."
+    },
+    "section": {
+      "title": "Drehbare Schnittbox",
+      "desc": "Sechs verschiebbare Flächen, eingegebene Grenzen und Ausrichtung an den Wänden; wo sie ein Mesh schneidet, wirkt der Schnitt massiv."
+    },
+    "edit": {
+      "desc": "Mit einem Rechteck auswählen, löschen mit Rückgängig, ausdünnen, verschieben und skalieren. Die Quelldatei ändert sich nie."
+    },
+    "register": {
+      "title": "Scans registrieren",
+      "desc": "Scans über Punktpaare oder eine manuelle Verschiebung ausrichten, verfeinert mit ICP, mit Restabweichungen und einer Vorschau in Abweichungsfarben."
+    },
+    "export": {
+      "desc": "Die ganze Wolke, die Auswahl oder die Schnittbox als LAS, LAZ, E57, PLY, XYZ, PTS oder CSV, dazu das Zusammenführen von Scans unterschiedlicher Formate."
+    },
+    "views": {
+      "desc": "Eine Ansicht speichert die Kamera, die Schnittbox und die Notizen; alle Ansichten eines Scans gehen als eine einzige Datei im Format BCF 2.1 hinaus."
+    },
+    "drawing": {
+      "desc": "Grundriss, Ansicht oder Schnitt in DXF oder DWG, mit gefülltem Schnitt und geraden CAD-Linien auf einem eigenen Layer."
+    },
+    "sheets": {
+      "title": "Blätter als PDF",
+      "desc": "A4 bis A0 mit Schriftfeld, maßstäblichen Ansichten, Bemaßung und Text, exportiert als PDF in Blattgröße."
+    },
+    "terrain": {
+      "title": "Gelände und 3D-Oberfläche",
+      "desc": "Schnelle Meshes eines Scans, auch als OBJ mit Textur (MTL und PNG) aus den gemessenen Farben."
+    },
+    "closedMesh": {
+      "desc": "Eine überlappungsfreie Oberfläche eines Raums, mit dem gemessenen Abstand zwischen den Punkten und dem Mesh."
+    },
+    "faces": {
+      "desc": "Böden, Decken, Wände, geneigte Flächen und runde Stützen, als JSON, OBJ, DXF, DWG oder IFC4."
+    },
+    "api": {
+      "title": "Befehls-API",
+      "desc": "Jedes Fenster lauscht auf 127.0.0.1 und führt Befehle von Skripten und anderen Programmen aus, nur mit einem Token."
+    },
+    "mcp": {
+      "title": "Arbeitet mit einem KI-Assistenten",
+      "desc": "Der MCP-Server gibt einem Assistenten ein Werkzeug für jeden Befehl und einen Screenshot der 3D-Ansicht."
+    },
+    "cli": {
+      "title": "Befehlszeile",
+      "desc": "Konvertieren, schneiden, zusammenführen, zeichnen, vermaschen und Flächen erkennen, ganz ohne Fenster."
+    },
+    "library": {
+      "title": "C-Bibliothek und Cloud-API",
+      "desc": "Der Punktwolken-Kern für Ihre eigene Software, als C-Bibliothek oder als Dienst über HTTP und MCP in einem Container."
+    },
+    "ext": {
+      "title": "Erweiterungen",
+      "desc": "Zusätzliche Aufgaben von anderen Autoren, als Programm in beliebiger Sprache, das das Fenster über die Befehls-API steuert."
+    }
+  },
+  "download": {
+    "label": "Download",
+    "title": "Download v2026.45.1",
+    "lead": "Kostenlos und ohne Konto. Jede Schaltfläche startet den Download sofort.",
+    "primary": "Download für Ihren Computer",
+    "guideBtn": "So installieren Sie es",
+    "metaWindows": "Installer für Windows 10 und 11, 64 Bit",
+    "metaMac": "Disk-Image für macOS 11 und neuer, Apple- und Intel-Prozessoren",
+    "metaLinux": "AppImage für Linux x86-64, läuft auf den meisten Distributionen",
+    "mobileNote": "Open Pointcloud Studio ist eine Desktop-Anwendung für Windows, macOS und Linux. Laden Sie sie auf Ihrem Computer herunter; alle Dateien sind unten aufgeführt.",
+    "other": "Andere Plattformen",
+    "win": {
+      "primary": "Installer (.exe)",
+      "zip": "ZIP ohne Installer"
+    },
+    "mac": {
+      "primary": "Disk-Image (.dmg)",
+      "tar": "Nur das Programm (.tar.gz)"
+    },
+    "linux": {
+      "primary": "AppImage (jede Distribution)",
+      "deb": ".deb (Debian, Ubuntu)",
+      "tar": "Nur das Programm (.tar.gz)"
+    },
+    "arm": {
+      "tag": "experimentell"
+    },
+    "note": {
+      "signed": "<strong>Windows und macOS:</strong> Der Installer installiert nur für Sie, ohne Administratorrechte, oder für alle Benutzer. Die Versionshinweise geben für jede Version an, ob die Dateien signiert sind; ist die Mac-App notarisiert, öffnet macOS sie ohne zusätzliche Schritte.",
+      "linux": "<strong>Linux:</strong> Machen Sie das AppImage einmalig mit <code>chmod +x</code> ausführbar und starten Sie es dann; ohne FUSE starten Sie es mit <code>--appimage-extract-and-run</code> hinter dem Dateinamen. Das .deb-Paket installieren Sie mit <code>sudo apt install ./open-pointcloud-studio_*_amd64.deb</code>. Benötigt werden eine C-Bibliothek ab Version 2.35 und die C++-Laufzeit von GCC 12 oder neuer (Ubuntu 22.04, Debian 12, Fedora 36 oder neuer), X11 oder Wayland sowie ein Vulkan-Treiber oder OpenGL ES 3.",
+      "arm": "<strong>Linux auf 64-Bit-ARM:</strong> experimentell. Diese Pakete werden nur auf Build-Rechnern mit Software-Rendering gebaut und getestet, noch nicht auf echten ARM-Boards oder ARM-Laptops.",
+      "sha": "Im Release liegt neben jeder Datei eine gleichnamige <code>.sha256</code>-Datei mit ihrer Prüfsumme: Hängen Sie <code>.sha256</code> an die Adresse eines Downloads an, um sie abzurufen. Die README beschreibt, <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio#checking-a-download\" target=\"_blank\" rel=\"noopener\">wie Sie einen Download damit prüfen</a>.",
+      "dev": "<strong>Für Ihre eigene Software</strong> enthält dasselbe Release den Punktwolken-Kern als C-Bibliothek und, als Container-Image, die Cloud-API. Siehe <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/library.md\" target=\"_blank\" rel=\"noopener\">library.md</a> und <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/cloud-api.md\" target=\"_blank\" rel=\"noopener\">cloud-api.md</a>."
+    }
+  },
+  "releases": {
+    "github": "Alle Releases auf GitHub",
+    "showAll": "Alle Releases anzeigen",
+    "showLess": "Nur die letzten drei anzeigen"
+  },
+  "whatsnew": {
+    "label": "Neu in v2026.45.1",
+    "title": "Fotos, <span>Registrierung</span> und Zusammenführen",
+    "desc": "Veröffentlicht am 3. November 2026. E57-Fotos bleiben bei jeder Bearbeitung erhalten, und Sie können Scans jetzt in der Anwendung aufeinander ausrichten.",
+    "ctaChangelog": "Vollständige Versionshinweise",
+    "items": {
+      "photos": {
+        "title": "Fotos bleiben erhalten",
+        "desc": "E57-Exporte behalten Standpunktfotos, Panoramen, Masken und Kameraposen, auch nach dem Filtern, einem Export der Schnittbox oder dem Einfärben aus Fotos."
+      },
+      "photoEdit": {
+        "title": "Fotos bearbeiten",
+        "desc": "Ein Panorama an einem gewählten Punkt und in gewählter Kamerahöhe hinzufügen oder ein Foto verschieben, drehen, umbenennen oder löschen, jeweils mit Rückgängig."
+      },
+      "register": {
+        "title": "Scans registrieren",
+        "desc": "Ausrichten über Punktpaare oder eine manuelle Verschiebung und Drehung, verfeinert mit ICP, mit Restabweichungen, einer Vorschau und einer wiederverwendbaren Transformation."
+      },
+      "merge": {
+        "title": "Gemischte Formate zusammenführen",
+        "desc": "Sichtbare Scans unterschiedlicher Formate zu E57, LAS oder LAZ zusammenführen; eine E57-Datei behält die Standpunkte und Fotos."
+      },
+      "api": {
+        "title": "API und MCP",
+        "desc": "Neue Befehle für Fotos und Registrierung, und die Befehlszeile wendet eine gespeicherte Registrierung auf einen vollständigen Scan an."
+      },
+      "signing": {
+        "title": "Offline prüfbar",
+        "desc": "Das Release enthält den öffentlichen Schlüssel, sodass Sie die Signaturen ohne Keyserver prüfen können."
+      }
+    }
+  },
+  "faq": {
+    "heading": "Häufig gestellte Fragen",
+    "cost": {
+      "q": "Was kostet es?",
+      "a": "Nichts. Open Pointcloud Studio ist Open Source: Die Desktop-Anwendung steht unter der GPL-3.0, der Punktwolken-Kern unter der LGPL-3.0. Keine Lizenzgebühren, kein Abonnement und kein Konto."
+    },
+    "formats": {
+      "q": "Welche Scans kann ich öffnen?",
+      "a": "LAS, LAZ, E57, PLY, PCD, PTX, PTS und Textdateien mit einem Punkt pro Zeile sowie Meshes in OBJ, PLY, OFF und STL. Ein Ordner mit Scans oder eine Scanprojektdatei (.rcp) wird in einem Zug geöffnet; aus einer solchen Projektdatei wird nur die Liste der Scans gelesen, nicht die indizierten Scankopien (.rcs)."
+    },
+    "size": {
+      "q": "Wie groß darf ein Scan sein?",
+      "a": "Für Wolken ab einer Million Punkten legt die Anwendung einen Index auf der Festplatte an. Damit bleiben auch Scans mit mehr als hundert Millionen Punkten flüssig: Sie sehen das Detail des aktuellen Blickpunkts, bis zu einem einstellbaren Höchstwert von zehn Millionen Punkten im Bild. Ein solcher Index kann bei einer großen Vermessung mehrere Gigabyte belegen."
+    },
+    "cad": {
+      "q": "Kann ich die Ergebnisse in meinem CAD- oder BIM-Programm verwenden?",
+      "a": "Ja. Schnittzeichnungen gehen nach DXF oder DWG, Meshes und erkannte Flächen auch als 3D-Geometrie nach DXF, DWG oder IFC4 und gespeicherte Ansichten als BCF 2.1. Open CAD Studio liegt jedem Paket bei und zeigt eine exportierte Zeichnung sofort an. DWG-Dateien lassen sich nicht öffnen."
+    },
+    "systems": {
+      "q": "Auf welchen Systemen läuft es?",
+      "a": "Windows 10 und 11 (x64), macOS 11 und neuer auf Apple- und Intel-Prozessoren sowie Linux auf x86-64 (Ubuntu 22.04, Debian 12, Fedora 36 oder neuer). Die Pakete für Linux auf 64-Bit-ARM sind experimentell. Eine Browserversion gibt es nicht."
+    },
+    "ai": {
+      "q": "Funktioniert es mit einem KI-Assistenten?",
+      "a": "Ja. <code>open-pointcloud-studio --mcp</code> startet einen MCP-Server mit einem Werkzeug für jeden Befehl der lokalen Befehls-API: Scans öffnen, die Schnittbox einstellen, messen, exportieren, zeichnen und vermaschen sowie die 3D-Ansicht als Bild zurückgeben."
+    },
+    "library": {
+      "q": "Kann ich den Kern in meiner eigenen Software verwenden?",
+      "a": "Ja. Der Punktwolken-Kern ist als C-Bibliothek für Windows, macOS und Linux und als Cloud-API in einem Container-Image verfügbar, beides unter der LGPL-3.0. Aus Rust nutzen Sie das Crate direkt."
+    },
+    "lang": {
+      "q": "In welchen Sprachen gibt es die Oberfläche?",
+      "a": "Niederländisch und Englisch. Die Anwendung folgt der Systemsprache; in den Einstellungen schalten Sie die Sprache um und wählen eines der fünf Farbschemata."
+    },
+    "trust": {
+      "q": "Wie zuverlässig sind die Schnittzeichnung, das geschlossene Mesh und die Flächenerkennung?",
+      "a": "Sie wurden an generierten Räumen gemessen, noch nicht an einem Scan eines echten Gebäudes. Ein geschlossenes Mesh und erkannte Flächen geben an, wie weit die Punkte von ihnen entfernt liegen, sodass Sie das Ergebnis selbst beurteilen können. Die bekannten Grenzen sind auf dieser Seite unter Technik aufgeführt."
+    }
+  },
+  "tech": {
+    "heading": "Formate, Technik und Lizenz",
+    "sub": "Für alle, die wissen möchten, was hinein- und hinausgeht und wie es gebaut ist.",
+    "rust": {
+      "title": "Rust",
+      "desc": "Eine Codebasis für Windows, macOS und Linux, ohne Browser oder Webview."
+    },
+    "gpu": {
+      "title": "wgpu und iced",
+      "desc": "3D-Rendering auf der GPU und eine Oberfläche im Stil der OpenAEC-Desktop-Apps."
+    },
+    "octree": {
+      "title": "Index auf der Festplatte",
+      "desc": "Ein Octree liefert das Detail für jede Kameraposition und bleibt für das nächste Mal erhalten."
+    },
+    "core": {
+      "title": "Ein Kern",
+      "desc": "Die Befehlszeile, die Cloud-API und die C-Bibliothek (ABI 1.0) nutzen dieselben Operationen."
+    },
+    "api": {
+      "title": "Befehls-API und MCP",
+      "desc": "Der Server lauscht nur auf der Loopback-Adresse und lehnt einen Befehl ohne Token ab."
+    },
+    "licenseTitle": "Lizenzen",
+    "desc": "Die Desktop-Anwendung steht unter GPL-3.0-only, die Punktwolken-Bibliothek unter LGPL-3.0-or-later. Jedes Paket enthält die Lizenztexte."
+  },
+  "formats": {
+    "title": "Dateiformate",
+    "th": {
+      "format": "Format",
+      "read": "Lesen",
+      "write": "Schreiben",
+      "notes": "Hinweise"
+    },
+    "yes": "ja",
+    "las": "Wird anhand des Headers geöffnet; Exporte behalten die ursprünglichen Punktdatensätze",
+    "e57": "Scannerpositionen, Standpunktfotos, Panoramen und entlang eines Pfads aufgenommene Fotos werden gelesen und können die Punkte einfärben; Exporte behalten sie",
+    "ply": "Liest ASCII und Little-Endian-Binär; schreibt beides",
+    "no": "nein",
+    "pcd": "ASCII, binär und komprimiert binär",
+    "ptx": "Mit der Scannerposition jedes Scans",
+    "text": "Text mit einem Punkt pro Zeile",
+    "obj": "Mesh mit Farben und Normalen; Materialfarben werden gelesen, Texturbilder nicht. Wird auch mit Textur geschrieben (UV-Koordinaten, MTL und PNG) und bei erkannten Flächen mit einer Gruppe pro Fläche",
+    "plyMeshName": "PLY als Mesh",
+    "plyMesh": "Wird als Flächen dargestellt. Geschrieben als binäres PLY mit Koordinaten in doppelter Genauigkeit sowie mit Farben und Normalen, wo das Mesh sie hat",
+    "stl": "Wird als Flächen dargestellt. Geschrieben als binäres STL: nur Dreiecke, ohne Farben. Ein Mesh, das mehr als 2.048 m vom Nullpunkt entfernt liegt, wird relativ zu einem Ursprung auf ganzen Metern geschrieben, den der Dateikopf nennt",
+    "off": "Wird als Flächen dargestellt; kann als OBJ, PLY, STL, DXF, DWG oder IFC gespeichert werden",
+    "asDrawing": "ja, als Zeichnung und in 3D",
+    "dxf": "Lesen: nur ASCII-DXF; POINT-Elemente werden als Punkte geöffnet, 3DFACE-Elemente als Flächen. Schreiben: die 2D-Zeichnung einer Schnittbox mit Punkten, gefüllten Flächen und Umrissen sowie in 3D erkannte Flächen und Meshes. Kein Format der Punktexporte",
+    "dwg": "Wie bei DXF, in den Versionen R2004 bis R2018 (3D in R2013). DWG-Dateien werden nicht geöffnet",
+    "ifc": "Erkannte Flächen und Meshes als Bauteile mit ihren Messwerten; Flächen mit ihren Öffnungen, Stützen als extrudierte Kreise",
+    "facesName": "Flächen als JSON (.json)",
+    "faces": "Die erkannten Flächen eines Scans: jede Ebene mit ihren Parametern, ihrem Umriss und den Restabweichungen ihrer Punkte, jeder Zylinder mit seiner Achse, seinem Radius und seinen Restabweichungen sowie die Kanten zwischen ebenen Flächen. Das <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#the-json-file\" target=\"_blank\" rel=\"noopener\">Benutzerhandbuch</a> beschreibt jedes Feld",
+    "rcpName": "Scanprojektdatei (.rcp)",
+    "rcp": "Nur die Liste der Scans wird gelesen. Die indizierten Scankopien (.rcs) eines Projekts sind ein geschlossenes Format und werden nicht gelesen",
+    "bcf": "Gespeicherte Ansichten mit Notizen und Bildern",
+    "pdf": "Ein Blatt mit seinen Ansichten, in Papiergröße",
+    "png": "Bild der 3D-Ansicht, über die Befehls-API"
+  },
+  "limits": {
+    "title": "Gut zu wissen",
+    "units": "Längen und Flächen sind in Metern angegeben. Die Koordinaten eines Scans werden als Meter übernommen und nicht umgerechnet.",
+    "measure": "Eine Messung wird nicht mit dem Scan gespeichert.",
+    "surface": "Eine 3D-Oberfläche lässt Löcher offen und ist nicht wasserdicht.",
+    "meshSize": "Ein Mesh enthält höchstens vier Millionen Eckpunkte und acht Millionen Dreiecke, egal ob es aus einer Datei oder aus einem Mesh-Auftrag stammt.",
+    "session": "Erkannte Flächen werden nicht mit dem Scan gespeichert: Exportieren Sie sie, um sie zu behalten. Ein Scan enthält ein Mesh; ein neues Mesh ersetzt das vorherige.",
+    "drawingPoints": "Die Punktgrenze einer Schnittzeichnung liegt standardmäßig bei 150.000 Punkten und höchstens bei 400.000; bleiben nach dem Ausdünnen auf 5 mm mehr Punkte übrig, verdoppelt sich der Punktabstand, bis sie passen.",
+    "fill": "Der gefüllte Schnitt einer Schnittzeichnung wird aus den Punkten nachgezeichnet: Eine nur von einer Seite gescannte Wand wird als dünner Streifen gezeichnet, Lücken unter etwa einem halben Meter werden geschlossen, und Möbel in der Scheibe werden mitgezeichnet, sofern ihre Punkte nicht vorher gelöscht werden.",
+    "closedMesh": "Ein geschlossenes Mesh rundet Ecken um etwa ein Viertel eines Voxels ab, lässt Objekte, die dünner als zwei oder drei Voxel sind, verschmelzen oder Löcher bekommen, und lässt manche Lücken neben einer anderen Oberfläche offen. Ohne Scannerstandpunkte kann eine Oberfläche, die das Zentrum des Bereichs nur streifend sieht, zerrissen herauskommen.",
+    "faces": "„Detect faces“ meldet keine Streifen, die schmaler als 0,15 m sind, etwa Türlaibungen. Ein Bereich, der für das Arbeitsbudget zu groß ist, wird mit größeren Voxeln durchsucht, dünne Scans ergeben weniger oder gar keine Flächen, runde Stützen, die breiter als etwa 0,7 m sind, erscheinen als Wandstreifen, und ohne Scannerstandpunkte ist die Seite, zu der eine Fläche zeigt, eine Schätzung.",
+    "generated": "Der gefüllte Schnitt, „Closed mesh“ und „Detect faces“ wurden an generierten Räumen gemessen, noch nicht an einem Scan eines echten Gebäudes. Das Benutzerhandbuch führt die Grenzen von <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#the-filled-cut-and-its-limits\" target=\"_blank\" rel=\"noopener\">gefülltem Schnitt</a>, <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-a-closed-mesh\" target=\"_blank\" rel=\"noopener\">Closed mesh</a> und <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md#limits-of-detected-faces\" target=\"_blank\" rel=\"noopener\">Detect faces</a> auf.",
+    "index": "Ein Index kann bei einer großen Vermessung mehrere Gigabyte auf der Festplatte belegen."
+  },
+  "docs": {
+    "title": "Anleitung, Änderungen und Quellcode",
+    "manual": "<a href=\"/open-pointcloud-studio/handleiding/\">Anleitung</a> auf dieser Website: Installation, die wichtigsten Werkzeuge und die Tastenkürzel.",
+    "guide": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md\" target=\"_blank\" rel=\"noopener\">Benutzerhandbuch</a>: jedes Werkzeug im Detail.",
+    "readme": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio#readme\" target=\"_blank\" rel=\"noopener\">README</a>: Installation je System, die ersten fünf Minuten sowie gemessene Geschwindigkeit und Grenzen.",
+    "api": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/API.md\" target=\"_blank\" rel=\"noopener\">API.md</a> und <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/native/MCP.md\" target=\"_blank\" rel=\"noopener\">MCP.md</a>: jeder Befehl und jedes Werkzeug sowie die Konfiguration für ein Client-Programm.",
+    "changelog": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/CHANGELOG.md\" target=\"_blank\" rel=\"noopener\">Changelog</a>: was sich in jedem Release geändert hat.",
+    "source": "<a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio\" target=\"_blank\" rel=\"noopener\">Quellcode auf GitHub</a>, mit den <a href=\"https://github.com/OpenAEC-Foundation/open-pointcloud-studio/issues\" target=\"_blank\" rel=\"noopener\">Issues</a> für ein Problem oder einen Wunsch."
+  }
+}

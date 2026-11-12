@@ -9,9 +9,9 @@ const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
 const DATA = path.join(ROOT, 'data', 'infra-compat.json');
-const PAGES = { nl: 'open-infra-studio/index.html', en: 'en/open-infra-studio/index.html', fr: 'fr/open-infra-studio/index.html', tr: 'tr/open-infra-studio/index.html', es: 'es/open-infra-studio/index.html' };
-const JSONS = { en: 'open-infra-studio.json', fr: 'open-infra-studio.fr.json', tr: 'open-infra-studio.tr.json', es: 'open-infra-studio.es.json' };
-const LATEST = { nl: 'nieuwste', en: 'latest', fr: 'dernière', tr: 'en yeni', es: 'la más reciente' };
+const PAGES = { nl: 'open-infra-studio/index.html', en: 'en/open-infra-studio/index.html', fr: 'fr/open-infra-studio/index.html', tr: 'tr/open-infra-studio/index.html', es: 'es/open-infra-studio/index.html', de: 'de/open-infra-studio/index.html' };
+const JSONS = { en: 'open-infra-studio.json', fr: 'open-infra-studio.fr.json', tr: 'open-infra-studio.tr.json', es: 'open-infra-studio.es.json', de: 'open-infra-studio.de.json' };
+const LATEST = { nl: 'nieuwste', en: 'latest', fr: 'dernière', tr: 'en yeni', es: 'la más reciente', de: 'neueste' };
 const START = '<!-- infra-versies:start -->';
 const END = '<!-- infra-versies:end -->';
 const HOST_KEYS = ['header.plugin', 'install.intro', 'install.step1', 'download.compat', 'limits.version'];

@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Open Pile Plan Studio — OpenAEC Foundation</title>
+  <meta name="description" content="Open Pile Plan Studio: kostenloses Open-Source-Ingenieurwerkzeug für Pfahlpläne. Pfahloptionen je Lastpunkt prüfen, Drucksondierungen (CPT) auswählen…">
+  <link rel="canonical" href="https://open-aec.com/de/open-pile-plan-studio/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-pile-plan-studio/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/open-pile-plan-studio/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/open-pile-plan-studio/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/open-pile-plan-studio/">
+  <link rel="alternate" hreflang="es" href="https://open-aec.com/es/open-pile-plan-studio/">
+  <link rel="alternate" hreflang="de" href="https://open-aec.com/de/open-pile-plan-studio/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/en/open-pile-plan-studio/">
+  <!-- hreflang:end -->
+
+
+
+
+
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Open Pile Plan Studio — OpenAEC Foundation">
+  <meta property="og:description" content="Open Pile Plan Studio: kostenloses Open-Source-Ingenieurwerkzeug für Pfahlpläne. Pfahloptionen je Lastpunkt prüfen, Drucksondierungen (CPT) auswählen…">
+  <meta property="og:url" content="https://open-aec.com/de/open-pile-plan-studio/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-pile-plan-studio.png">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Open Pile Plan Studio">
+  <meta name="twitter:description" content="Open Pile Plan Studio: kostenloses Open-Source-Ingenieurwerkzeug für Pfahlpläne. Pfahloptionen je Lastpunkt prüfen, Drucksondierungen (CPT) auswählen…">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-pile-plan-studio.png">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <link rel="alternate" type="application/json" href="/api/tools.json" title="Machine-readable tools catalog">
+  <meta name="i18n-page" content="open-pile-plan-studio">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/shared/style.css?v=20261111">
+  <link rel="stylesheet" href="/shared/productpagina.css?v=20261111">
+
+  <!-- Schema.org -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Open Pile Plan Studio",
+  "applicationCategory": "EngineeringApplication",
+  "operatingSystem": "Web, Windows, macOS, Linux",
+  "softwareVersion": "2026.46.0",
+  "license": "https://www.gnu.org/licenses/lgpl-3.0.html",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "EUR"
+  },
+  "url": "https://open-aec.com/open-pile-plan-studio/",
+  "downloadUrl": "https://github.com/OpenAEC-Foundation/pile-plan-studio/releases",
+  "screenshot": "https://open-aec.com/shared/assets/screenshots/open-pile-plan-studio.png",
+  "description": "Open-source engineering tool for pile plans: review pile options per structural load point, select CPTs, compare utilization and estimated cost, optimize the plan and save it as an IFCPP project. In the browser and for Windows, macOS and Linux.",
+  "featureList": [
+    "Import load points, CPTs and foundation advice from CSV or XLSX",
+    "CPT selection by quadrant or maximum angle, with manual override",
+    "Valid, insufficient and missing pile options per load point, for compression and tension",
+    "Cost optimization with HiGHS and optional reduction of differences between neighbours",
+    "Pile-plan variants, groups, locks and pile cap proposals",
+    "IFCPP project files and export to Excel or CSV",
+    "MCP access for AI assistants in the Windows app"
+  ],
+  "publisher": {
+    "@type": "Organization",
+    "name": "OpenAEC Foundation",
+    "url": "https://open-aec.com"
+  },
+  "sameAs": [
+    "https://github.com/OpenAEC-Foundation/pile-plan-studio",
+    "https://pile-plan-studio.open-aec.com/"
+  ]
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wat kost het?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Niets. Open Pile Plan Studio is open source onder de LGPL-3.0: geen licentiekosten, geen abonnement en geen account."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kan ik de uitkomsten direct gebruiken?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nee. De app is een publieke alpha en ondersteunt engineeringbeslissingen, maar neemt de verantwoordelijkheid voor het funderingsontwerp niet over. De sonderingsselectie is een praktische benadering. Laat invoer, aannames en resultaten altijd controleren door een gekwalificeerde professional."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welke gegevens heb ik nodig?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Drie tabellen in CSV of XLSX: belastinglocaties (ID, X, Y en de ontwerpbelasting), sonderingen (ID, X en Y) en funderingsadvies (sondering, paalpuntniveau, paalafmeting en draagvermogen). Niveaus in meters, afmetingen in millimeters en krachten in kN. De browserdemo bevat een voorbeeldproject om mee te beginnen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wat is het verschil tussen de browser en de desktop-app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Beide rekenen met dezelfde Rust-kern. De desktop-apps koppelen zich aan IFCPP-bestanden en heropenen recente projecten; de Windows-app heeft ook de koppeling met een AI-assistent. In de browser bewaar je projecten als download en houdt de app tot tien lokale kopieën bij."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Op welke systemen draait het?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Windows x64, macOS 15 of nieuwer op Apple silicon en Intel, Linux x64 als .deb of AppImage (getest op Ubuntu 22.04 en 24.04), en elke moderne browser."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hoe werkt de optimalisatie?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eerst zoekt de solver HiGHS de laagste kosten binnen jouw grenzen voor puntniveaus, afmetingen en het aantal configuraties. Daarna kan hij de verschillen tussen naburige locaties verkleinen binnen een extra kostenbudget, standaard 5%. Het resultaat vermeldt of het optimum bewezen is. Snel verbeteren is een snellere, lokale methode."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wat kan een AI-assistent ermee?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "De Windows-app heeft MCP-toegang. Zet de koppeling aan in de instellingen, dan kan een lokale assistent het open project lezen, plannen vergelijken en de optimalisatie starten. Wijzigen kan pas als je bewerken apart toestaat; elke wijziging gaat door dezelfde controles als in de app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Zijn de downloads ondertekend?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. De Windows-installer is digitaal ondertekend, de Mac-versie is ondertekend en door Apple gecontroleerd, en de Linux-pakketten hebben een losse OpenPGP-handtekening. Met het bestand SHA256SUMS controleer je alle vier de installers."
+      }
+    }
+  ]
+}
+  </script>
+  <style>
+    /* De downloadlijst houdt de vaste opmaak van check-pile-plan-downloads.test.js
+       (div.download-item per platform); in de bestandslijst tekent die div geen eigen kaart. */
+    .pp-files .download-item { display: contents; }
+  </style>
+
+  <meta name="i18n-static" content="de">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "de",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/openaec-foundation-io",
+          "https://mastodon.social/@openaec",
+          "https://www.threads.com/@openaec"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/de/open-pile-plan-studio/#webpage",
+        "url": "https://open-aec.com/de/open-pile-plan-studio/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "de",
+        "dateModified": "2026-11-12",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/de/open-pile-plan-studio/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/de/open-pile-plan-studio/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Open Pile Plan Studio",
+            "item": "https://open-aec.com/de/open-pile-plan-studio/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body class="page-panels">
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/de/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
+      <ul class="nav-links">
+        <li><a href="/de/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema" data-i18n-de="Ökosystem">Ökosystem</a></li>
+        <li><a href="/de/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta" data-i18n-de="Roadmap">Roadmap</a></li>
+        <li><a href="/de/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura" data-i18n-de="Architektur">Architektur</a></li>
+        <li><a href="/de/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas" data-i18n-de="Statistiken">Statistiken</a></li>
+        <li><a href="/de/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias" data-i18n-de="Neuigkeiten">Neuigkeiten</a></li>
+        <li><a href="/de/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores" data-i18n-de="Unterstützer">Unterstützer</a></li>
+        <li><a href="/de/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura" data-i18n-de="Struktur">Struktur</a></li>
+      </ul>
+      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios" data-i18n-de="Feedback">Feedback</span></a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/open-pile-plan-studio/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/open-pile-plan-studio/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/open-pile-plan-studio/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/open-pile-plan-studio/" hreflang="tr">TR</a>
+        <a class="lang-btn" data-lang="es" href="/es/open-pile-plan-studio/" hreflang="es">ES</a>
+        <a class="lang-btn active" data-lang="de" href="/de/open-pile-plan-studio/" hreflang="de">DE</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js?v=20261015"></script>
+  <script src="/shared/feedback.js?v=20261112" defer></script>
+
+  <main id="main">
+
+  <header class="product-head surface-spot" id="top">
+    <div class="product-head-inner">
+      <p class="pill-label" data-i18n="header.label">Öffentliche Alpha · Tiefbau und Geotechnik</p>
+      <h1 data-i18n="header.title">Open <span class="accent">Pile Plan</span> Studio</h1>
+      <p class="pp-tagline" data-i18n="header.tagline">Von Lasten und Drucksondierungen zum nachvollziehbaren Pfahlplan</p>
+      <p class="lead" data-i18n="header.desc">Open-Source-Ingenieurwerkzeug für Pfahlpläne. Führen Sie Lastpunkte, Drucksondierungen, Gründungsempfehlung, Pfahloptionen, Ausnutzung und geschätzte Kosten in einem interaktiven Pfahlplan zusammen.</p>
+      <div class="btn-group">
+        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="header.downloadBtn">Download</span></a>
+        <a href="https://pile-plan-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span data-i18n="header.demoBtn">Browser-Demo öffnen</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="header.sourceBtn">Quellcode</span></a>
+      </div>
+      <ul class="chip-row pp-proof">
+        <li class="chip"><span data-i18n="header.proofPlatforms">Browser · Windows · macOS · Linux</span></li>
+        <li class="chip"><span>CSV · XLSX · IFCPP</span></li>
+        <li class="chip"><span data-i18n="header.proofCore">Rechenkern in Rust</span></li>
+        <li class="chip"><span data-i18n="header.proofFree">Kostenlos · LGPL-3.0</span></li>
+        <li class="chip"><span data-i18n="header.proofSample">Beispielprojekt im Browser</span></li>
+      </ul>
+    </div>
+    <div class="shot-overlap"><div class="media-slider" data-pp-slider>
+      <div class="slider-container">
+        <div class="slider-track">
+          <div class="slider-slide"><img src="/shared/assets/screenshots/open-pile-plan-studio-import.png" width="1920" height="952" alt="Import der Projektdaten mit getrennten Quellen für Lastpunkte, Drucksondierungen und Gründungsempfehlung, daneben die CPT-Einstellungen" data-i18n="alt.import" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pile-plan-studio.png" width="1920" height="956" alt="Der Pfahlplan des Beispielprojekts mit Gruppen von Lastpunkten und rechts den Pfahloptionen für die Auswahl" data-i18n="alt.plan" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img loading="lazy" decoding="async" src="/shared/assets/screenshots/open-pile-plan-studio-optimization.png" width="1920" height="954" alt="Das Ergebnis einer Optimierung mit weniger Unterschieden zwischen Nachbarn und den Kosten der Variante" data-i18n="alt.optimize" data-i18n-attr="alt"></div>
+        </div>
+        <button type="button" class="slider-btn slider-prev" aria-label="Vorige afbeelding">&lsaquo;</button>
+        <button type="button" class="slider-btn slider-next" aria-label="Volgende afbeelding">&rsaquo;</button>
+      </div>
+      <div class="slider-dots"></div>
+    </div></div>
+  </header>
+
+  <div class="after-overlap pp-notice-wrap">
+    <p class="pp-notice"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-warning"/></svg><span data-i18n="notice.text"><strong>Öffentliche Alpha:</strong> Die Ergebnisse dienen als Entscheidungshilfe. Lassen Sie Eingaben, Annahmen und Ergebnisse immer von einer qualifizierten Fachperson prüfen.</span></p>
+  </div>
+
+  <section class="section surface-dark panel pp-anchor" id="intro">
+    <div class="explainer"><div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label" data-i18n="what.label">Arbeitsablauf</p>
+        <h2 data-i18n="what.title">Was ist Open Pile Plan Studio?</h2>
+        <p data-i18n="what.desc">Ein Open-Source-Ingenieurwerkzeug, mit dem Sie Pfahloptionen prüfen und praxistaugliche Pfahlplan-Varianten zusammenstellen. Lasten aus dem Tragwerk, Drucksondierungen und verfügbare Konfigurationen kommen im Browser und in den Desktop-Apps für Windows, macOS und Linux zusammen, mit demselben Rechenkern in Rust.</p>
+      </div>
+      <ul class="split-cards">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div><h4 data-i18n="workflow.step1.title">1. Quellen zusammenführen</h4><p data-i18n="workflow.step1.desc">Importieren Sie Lastpunkte, Drucksondierungen und Gründungsempfehlung und prüfen Sie deren Rolle.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><h4 data-i18n="workflow.step2.title">2. Optionen beurteilen</h4><p data-i18n="workflow.step2.desc">Sehen Sie sich Grundriss, CPT-Auswahl, Tragfähigkeit, Ausnutzung und Kosten an.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg></div><div><h4 data-i18n="workflow.step3.title">3. Entscheidungen festhalten</h4><p data-i18n="workflow.step3.desc">Weisen Sie Konfigurationen zu, prüfen Sie den gesamten Plan und speichern Sie alles als IFCPP-Projekt.</p></div></li>
+      </ul>
+    </div></div>
+  </section>
+
+  <nav class="pp-subnav" aria-label="Auf dieser Seite" data-i18n="subnav.label" data-i18n-attr="aria-label">
+    <div class="pp-subnav-inner">
+      <a href="#features" data-i18n="subnav.features">Funktionen</a>
+      <a href="#download" data-i18n="subnav.download">Download</a>
+      <a href="#whats-new" data-i18n="subnav.whatsnew">Neuigkeiten</a>
+      <a href="#faq" data-i18n="subnav.faq">FAQ</a>
+      <a href="#releases" data-i18n="subnav.releases">Releases</a>
+    </div>
+  </nav>
+
+  <section class="section pp-anchor" id="features"><div class="container">
+    <div class="section-head"><p class="pill-label" data-i18n="features.label">Funktionen</p><h2 data-i18n="features.heading">Von der Drucksondierung zur Pfahlwahl</h2><p data-i18n="features.sub">Beginnen Sie mit den Highlights oder wählen Sie ein Thema.</p></div>
+    <div class="pp-tabs" role="tablist" aria-label="Funktionen nach Thema" data-i18n="features.tabsLabel" data-i18n-attr="aria-label" hidden>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-highlights" data-tab="highlights" aria-controls="pp-feature-panel" aria-selected="true" tabindex="0"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg><span data-i18n="tabs.highlights">Highlights</span> <span class="pp-tab-count" data-count="highlights"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-import" data-tab="import" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="tabs.import">Eingabe</span> <span class="pp-tab-count" data-count="import"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-assess" data-tab="assess" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-strata"/></svg><span data-i18n="tabs.assess">Beurteilen</span> <span class="pp-tab-count" data-count="assess"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-optimize" data-tab="optimize" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-bolt"/></svg><span data-i18n="tabs.optimize">Optimieren</span> <span class="pp-tab-count" data-count="optimize"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-project" data-tab="project" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg><span data-i18n="tabs.project">Projekt und Anbindungen</span> <span class="pp-tab-count" data-count="project"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-all" data-tab="all" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg><span data-i18n="tabs.all">Alle Funktionen</span> <span class="pp-tab-count" data-count="all"></span></button>
+    </div>
+    <div id="pp-feature-panel" role="tabpanel" aria-labelledby="pp-tab-highlights">
+      <div class="pp-hl" data-panel="highlights">
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-pile-plan-studio.png" width="1920" height="956" loading="lazy" decoding="async" alt="Der Pfahlplan des Beispielprojekts mit Gruppen von Lastpunkten und rechts den Pfahloptionen für die Auswahl" data-i18n="alt.plan" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">01</span> <span data-i18n="hl.options.kicker">Beurteilen</span></p>
+            <h3 data-i18n="hl.options.title">Sehen Sie, welche Pfähle an jedem Lastpunkt funktionieren</h3>
+            <p data-i18n="hl.options.desc">Wählen Sie einen oder mehrere Standorte aus und prüfen Sie jede Pfahloption mit Abmessung, Pfahlfußkote, Status, Ausnutzung, Kosten und dem maßgebenden Lastpunkt. Druck und optional Zug werden getrennt nachgewiesen. Weisen Sie eine Konfiguration einem Standort oder einer ganzen Auswahl auf einmal zu.</p>
+            <a class="pp-more" href="https://pile-plan-studio.open-aec.com/" target="_blank" rel="noopener"><span data-i18n="features.tryIt">Im Browser ausprobieren</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-pile-plan-studio-import.png" width="1920" height="952" loading="lazy" decoding="async" alt="Import der Projektdaten mit getrennten Quellen für Lastpunkte, Drucksondierungen und Gründungsempfehlung, daneben die CPT-Einstellungen" data-i18n="alt.import" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">02</span> <span data-i18n="hl.import.kicker">Eingabe</span></p>
+            <h3 data-i18n="hl.import.title">Drei Quellen, ein Projekt</h3>
+            <p data-i18n="hl.import.desc">Importieren Sie Lastpunkte, Drucksondierungen und Gründungsempfehlung aus CSV oder Excel und geben Sie jeder Datei vor dem Import ihre Rolle. Eine Vorschau zeigt, wie die Spalten gelesen werden. Die Drucksondierungen werden je Quadrant oder innerhalb eines maximalen Winkels ausgewählt, und Sie können diese Auswahl für jeden Standort von Hand anpassen.</p>
+            <a class="pp-more" href="https://github.com/OpenAEC-Foundation/pile-plan-studio#supported-project-data" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Mehr erfahren</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-pile-plan-studio-optimization.png" width="1920" height="954" loading="lazy" decoding="async" alt="Das Ergebnis einer Optimierung mit weniger Unterschieden zwischen Nachbarn und den Kosten der Variante" data-i18n="alt.optimize" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">03</span> <span data-i18n="hl.optimize.kicker">Optimieren</span></p>
+            <h3 data-i18n="hl.optimize.title">Die günstigste Variante innerhalb Ihrer Grenzen</h3>
+            <p data-i18n="hl.optimize.desc">Die HiGHS-Optimierung sucht die niedrigsten Kosten innerhalb der Grenzen, die Sie für Pfahlfußkoten, Abmessungen und die Anzahl der Konfigurationen festlegen. Anschließend kann sie Unterschiede zwischen Nachbarn innerhalb eines zusätzlichen Kostenbudgets verringern. Das Ergebnis gibt an, ob das Optimum nachgewiesen wurde.</p>
+            <a class="pp-more" href="https://github.com/OpenAEC-Foundation/pile-plan-studio#optimize-the-pile-plan" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Mehr erfahren</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/open-pile-plan-studio.png" width="1920" height="956" loading="lazy" decoding="async" alt="Der Pfahlplan des Beispielprojekts mit Gruppen von Lastpunkten und rechts den Pfahloptionen für die Auswahl" data-i18n="alt.plan" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">04</span> <span data-i18n="hl.project.kicker">Projekt</span></p>
+            <h3 data-i18n="hl.project.title">Varianten nebeneinander, alles in einer Datei</h3>
+            <p data-i18n="hl.project.desc">Arbeiten Sie mit mehreren Pfahlplan-Varianten in einem Projekt, teilen Sie Konfigurationen innerhalb von Gruppen und sperren Sie Entscheidungen. Untersuchen Sie eine andere Pfahlanzahl je Pfahlkopfplatte mit Vorschlägen von 1 bis 20 Pfählen. Speichern Sie alles als IFCPP-Datei, mit Rückgängig und Wiederholen.</p>
+            <a class="pp-more" href="https://github.com/OpenAEC-Foundation/pile-plan-studio#highlights" target="_blank" rel="noopener"><span data-i18n="features.learnMore">Mehr erfahren</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a>
+          </div>
+        </article>
+      </div>
+      <ul class="pp-tiles">
+        <li class="pp-tile" data-cats="import"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div><h3 data-i18n="f.import.title">Gezielter Projektimport</h3><p data-i18n="f.import.desc">Lastpunkte, Drucksondierungen und Gründungsempfehlung aus CSV oder XLSX, wobei Sie die Rolle jeder Datei vorab festlegen. Exporte aus einem externen Statikprogramm werden erkannt.</p></div></div></li>
+        <li class="pp-tile" data-cats="import"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg></div><div><h3 data-i18n="f.advice.title">Gründungsempfehlung in jeder Form</h3><p data-i18n="f.advice.desc">Eine Tabellenzeile je Wert oder eine Excel-Matrix mit einer Spalte je Pfahlabmessung, mit einer Vorschau, die zeigt, wie die Datei gelesen wird.</p></div></div></li>
+        <li class="pp-tile" data-cats="import"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div><div><h3 data-i18n="f.refresh.title">Quellen aktualisieren</h3><p data-i18n="f.refresh.desc">Lesen Sie neue Lasten, Drucksondierungen oder Empfehlungswerte ein und behalten Sie bestehende Zuweisungen und CPT-Auswahlen, soweit sie noch passen.</p></div></div></li>
+        <li class="pp-tile" data-cats="import"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clipboard"/></svg></div><div><h3 data-i18n="f.pileImport.title">Bestehenden Pfahlplan importieren</h3><p data-i18n="f.pileImport.desc">Aktualisieren Sie ein Projekt aus einer Excel- oder CSV-Tabelle, mit Prüfung von IDs und Koordinaten und einer Vorschau vor dem Import.</p></div></div></li>
+        <li class="pp-tile" data-cats="import assess"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pin"/></svg></div><div><h3 data-i18n="f.selection.title">Drucksondierungen auswählen</h3><p data-i18n="f.selection.desc">Automatisch je Quadrant oder innerhalb eines maximalen Winkels, für einzelne Standorte von Hand überschreibbar.</p></div></div></li>
+        <li class="pp-tile" data-cats="assess"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><h3 data-i18n="f.options.title">Pfahloptionen vergleichen</h3><p data-i18n="f.options.desc">Gültige, unzureichende und fehlende Optionen je Standort, mit Abmessung, Pfahlfußkote und maßgebender Drucksondierung.</p></div></div></li>
+        <li class="pp-tile" data-cats="assess"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-strata"/></svg></div><div><h3 data-i18n="f.tension.title">Druck und Zug</h3><p data-i18n="f.tension.desc">Bemessungslasten auf Druck und optional auf Zug werden getrennt nachgewiesen und zählen beide beim Zuweisen und Optimieren.</p></div></div></li>
+        <li class="pp-tile" data-cats="assess"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-euro"/></svg></div><div><h3 data-i18n="f.compare.title">Ausnutzung und Kosten</h3><p data-i18n="f.compare.desc">Vergleichen Sie Ausnutzung, maßgebende Drucksondierung und geschätzte Kosten, bevor Sie eine Konfiguration festhalten.</p></div></div></li>
+        <li class="pp-tile" data-cats="assess"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg></div><div><h3 data-i18n="f.assign.title">Einzeln oder mehrfach zuweisen</h3><p data-i18n="f.assign.desc">Eine Konfiguration für einen Standort oder für eine ganze Auswahl mit gemeinsamen Optionen.</p></div></div></li>
+        <li class="pp-tile" data-cats="assess"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-pen"/></svg></div><div><h3 data-i18n="f.interact.title">Interaktive Auswahl</h3><p data-i18n="f.interact.desc">Wählen Sie per Klick, Mehrfachauswahl oder Lasso aus und filtern Sie in der Legende nach Pfahlabmessung und Pfahlfußkote.</p></div></div></li>
+        <li class="pp-tile" data-cats="optimize"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-bolt"/></svg></div><div><h3 data-i18n="f.optimize.title">Kosten minimieren</h3><p data-i18n="f.optimize.desc">HiGHS findet die niedrigsten Kosten innerhalb der Grenzen für Pfahlfußkoten, Abmessungen und die Anzahl der Konfigurationen.</p></div></div></li>
+        <li class="pp-tile" data-cats="optimize"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-route"/></svg></div><div><h3 data-i18n="f.coherence.title">Weniger Unterschiede zwischen Nachbarn</h3><p data-i18n="f.coherence.desc">Verringern Sie Unterschiede bei Pfahlfußkote und Abmessung zwischen benachbarten Standorten innerhalb eines zusätzlichen Kostenbudgets, standardmäßig 5 %.</p></div></div></li>
+        <li class="pp-tile" data-cats="optimize"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-rocket"/></svg></div><div><h3 data-i18n="f.quick.title">Schnell verbessern</h3><p data-i18n="f.quick.desc">Ein schnelles lokales Verbesserungsverfahren als Alternative zur vollständigen Optimierung.</p></div></div></li>
+        <li class="pp-tile" data-cats="optimize project"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div><div><h3 data-i18n="f.caps.title">Vorschläge für Pfahlkopfplatten</h3><p data-i18n="f.caps.desc">Untersuchen Sie eine andere Pfahlanzahl je Pfahlkopfplatte, von 1 bis 20, mit indikativen Optionen und Kosten. Die Vorschläge bleiben im Projekt erhalten.</p></div></div></li>
+        <li class="pp-tile" data-cats="project"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-lock"/></svg></div><div><h3 data-i18n="f.groups.title">Gruppen und Sperren</h3><p data-i18n="f.groups.desc">Lassen Sie Standorte einer Gruppe dieselbe Konfiguration teilen und sperren Sie Zuweisungen je Plan.</p></div></div></li>
+        <li class="pp-tile" data-cats="project"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div><div><h3 data-i18n="f.variants.title">Pfahlplan-Varianten</h3><p data-i18n="f.variants.desc">Mehrere benannte Varianten in einem Projekt, um Pläne nebeneinander zu vergleichen.</p></div></div></li>
+        <li class="pp-tile" data-cats="project"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div><div><h3 data-i18n="f.project.title">IFCPP-Projektdatei</h3><p data-i18n="f.project.desc">Importierte Daten, Einstellungen, Pfahlwahl und manuelle CPT-Auswahlen zusammen in einer Datei, mit Rückgängig, Wiederholen und Wiederherstellung im Browser.</p></div></div></li>
+        <li class="pp-tile" data-cats="project"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg></div><div><h3 data-i18n="f.export.title">Export nach Excel und CSV</h3><p data-i18n="f.export.desc">Pfahlzuweisungen, vorgeschlagene Pfahlpositionen und Drucksondierungen nach Excel oder CSV, für Berichte und Abstimmung.</p></div></div></li>
+        <li class="pp-tile" data-cats="project"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div><div><h3 data-i18n="f.webdesktop.title">Browser und Desktop</h3><p data-i18n="f.webdesktop.desc">Derselbe Rechenkern in Rust läuft über WebAssembly im Browser und nativ in den Desktop-Apps für Windows, macOS und Linux.</p></div></div></li>
+        <li class="pp-tile" data-cats="project"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><h3 data-i18n="f.mcp.title">MCP-Zugang für KI-Assistenten</h3><p data-i18n="f.mcp.desc">Die Windows-App gibt einem lokalen KI-Assistenten Zugriff auf das geöffnete Projekt. Lesen und Bearbeiten werden getrennt freigeschaltet.</p></div></div></li>
+        <li class="pp-tile" data-cats="project"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg></div><div><h3 data-i18n="f.sample.title">Sofort erkunden</h3><p data-i18n="f.sample.desc">Die Browser-Demo öffnet sich mit einem vollständigen Beispielprojekt, sodass Sie den Arbeitsablauf ohne Vorbereitung ansehen können.</p></div></div></li>
+      </ul>
+    </div>
+  </div></section>
+
+  <section class="section surface-dark panel pp-anchor" id="download" data-pp-repo="OpenAEC-Foundation/pile-plan-studio" data-pp-prereleases>
+    <div class="pp-dl">
+      <p class="pill-label" data-i18n="download.label">Download</p>
+      <h2 data-i18n="download.title" data-pp-ver>v2026.46.0 herunterladen</h2>
+      <p class="pp-dl-lead" data-i18n="download.lead">Kostenlos und ohne Konto. Signierte Installer für Windows, macOS und Linux.</p>
+      <div class="pp-dl-main" data-pp-main>
+        <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.46.0/Open.Pile.Plan.Studio_2026.46.0_x64-setup.exe" class="btn btn-glow btn-lg" data-pp-dl="windows" data-pp-primary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.primary">Für Ihren Computer herunterladen</span></a>
+        <a href="https://pile-plan-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span data-i18n="download.browserBtn">Im Browser öffnen</span></a>
+      </div>
+      <p class="pp-dl-meta"><span data-os="windows" data-i18n="download.metaWindows">Installer für Windows (x64)</span><span data-os="macos" data-i18n="download.metaMac" hidden>.dmg für Apple Silicon und Intel, macOS 15 oder neuer</span><span data-os="linux-appimage" data-i18n="download.metaLinux" hidden>AppImage, getestet unter Ubuntu 22.04 und 24.04</span><span class="pp-dl-size"> · <span data-pp-primary-size></span></span></p>
+      <p class="pp-dl-mobile" data-pp-mobile hidden data-i18n="download.mobileNote">Open Pile Plan Studio ist für einen großen Bildschirm gemacht. Öffnen Sie es auf Ihrem Computer oder sehen Sie sich die Browser-Demo an.</p>
+      <details class="pp-dl-other" data-pp-other>
+        <summary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg><span data-i18n="download.other">Weitere Plattformen</span></summary>
+        <div class="pp-files pp-files-4">
+          <div class="pp-files-col"><h3>Windows</h3><ul>
+      <li><div class="download-item" data-pile-download="windows">
+        <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.46.0/Open.Pile.Plan.Studio_2026.46.0_x64-setup.exe" data-pp-dl="windows" data-pp-item="windows"><span class="pp-file"><span data-i18n="download.fileExe">Installer x64 (.exe)</span><span class="pp-file-size"> · <span data-pp-size="windows"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a>
+      </div></li>
+          </ul></div>
+          <div class="pp-files-col"><h3>macOS</h3><ul>
+      <li><div class="download-item" data-pile-download="macos">
+        <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.46.0/Open.Pile.Plan.Studio_2026.46.0_universal.dmg" data-pp-dl="macos" data-pp-item="macos"><span class="pp-file"><span data-i18n="download.fileDmg">Apple Silicon und Intel (.dmg)</span><span class="pp-file-size"> · <span data-pp-size="macos"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a>
+      </div></li>
+          </ul></div>
+          <div class="pp-files-col"><h3>Linux</h3><ul>
+      <li><div class="download-item" data-pile-download="linux-deb">
+        <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.46.0/Open.Pile.Plan.Studio_2026.46.0_amd64.deb" data-pp-dl="linux-deb" data-pp-item="linux-deb"><span class="pp-file"><span data-i18n="download.fileDeb">Debian und Ubuntu x64 (.deb)</span><span class="pp-file-size"> · <span data-pp-size="linux-deb"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a>
+      </div></li>
+      <li><div class="download-item" data-pile-download="linux-appimage">
+        <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.46.0/Open.Pile.Plan.Studio_2026.46.0_amd64.AppImage" data-pp-dl="linux-appimage" data-pp-item="linux-appimage"><span class="pp-file"><span data-i18n="download.fileAppImage">AppImage x64</span><span class="pp-file-size"> · <span data-pp-size="linux-appimage"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a>
+      </div></li>
+          </ul></div>
+          <div class="pp-files-col"><h3 data-i18n="download.checkHeading">Überprüfen</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.46.0/SHA256SUMS" data-pp-dl="sha256sums" data-pp-item="sha256sums"><span class="pp-file"><span data-i18n="download.fileSums">Prüfsummen (SHA256SUMS)</span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/pile-plan-studio/releases" target="_blank" rel="noopener"><span class="pp-file" data-i18n="releases.github">Alle Releases auf GitHub</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a></li>
+          </ul></div>
+        </div>
+      </details>
+      <p class="pp-dl-note" data-i18n="download.browserNote">Lieber nichts installieren? Open Pile Plan Studio läuft auch <a href="https://pile-plan-studio.open-aec.com/" target="_blank" rel="noopener">im Browser</a>, mit demselben Rechenmodell. Die Anbindung an einen KI-Assistenten funktioniert nur in der Windows-App.</p>
+    </div>
+  </section>
+
+  <section class="section surface-dark panel pp-anchor" id="whats-new">
+    <div class="panel-split">
+      <div class="panel-split-text">
+        <p class="pill-label" data-i18n="whatsnew.label">Neu in v2026.46.0</p>
+        <h2 data-i18n="whatsnew.title">Eine überarbeitete Oberfläche und <span>ein eigenes Logo</span></h2>
+        <p data-i18n="whatsnew.desc">Veröffentlicht am 9. November 2026. Die Oberfläche nutzt jetzt die gemeinsamen Komponenten des OpenAEC Blueprint, mit denselben Bedienelementen und Themes im Browser und auf dem Desktop. Die Berechnungen und das IFCPP-Format sind unverändert.</p>
+        <div class="btn-group">
+          <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/tag/v2026.46.0" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="whatsnew.ctaChangelog">Vollständiges Änderungsprotokoll</span></a>
+          <a href="https://pile-plan-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span data-i18n="whatsnew.ctaDemo">Im Browser ausprobieren</span></a>
+        </div>
+      </div>
+      <ul class="split-cards split-cards-2">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div><div><h4 data-i18n="whatsnew.items.ui.title">Gemeinsame Bedienelemente</h4><p data-i18n="whatsnew.items.ui.desc">Einstellungen, Inspektion, Optimierung, Import und Export, das Menüband und das Menü „Datei“ nutzen jetzt dieselben Schaltflächen und Felder wie die anderen OpenAEC-Apps.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg></div><div><h4 data-i18n="whatsnew.items.logo.title">Ein eigenes App-Logo</h4><p data-i18n="whatsnew.items.logo.desc">Eine weiße Pfahlkopfplatte mit drei bernsteinfarbenen Pfählen, in der Titelleiste, den Installern und den App-Symbolen.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><h4 data-i18n="whatsnew.items.theme.title">Heller oder dunkler Grundriss</h4><p data-i18n="whatsnew.items.theme.desc">Der Arbeitsbereich folgt dem Theme oder erhält einen eigenen Hintergrund, mit besser lesbaren CPT-Beschriftungen.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div><div><h4 data-i18n="whatsnew.items.recent.title">Zuletzt verwendete Projekte</h4><p data-i18n="whatsnew.items.recent.desc">Die Desktop-App öffnet zuletzt verwendete IFCPP-Dateien erneut; der Browser bewahrt bis zu zehn lokale Kopien auf.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg></div><div><h4 data-i18n="whatsnew.items.feedback.title">Feedback ohne Konto</h4><p data-i18n="whatsnew.items.feedback.desc">Senden Sie Feedback über Open Feedback Studio, ohne GitHub-Konto und auf Wunsch mit Bildern.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-bolt"/></svg></div><div><h4 data-i18n="whatsnew.items.speed.title">Flüssiger auf dem Desktop</h4><p data-i18n="whatsnew.items.speed.desc">Berechnungen laufen außerhalb der Oberfläche, und das Anhalten oder Abbrechen einer Optimierung funktioniert immer.</p></div></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section pp-anchor" id="faq"><div class="container">
+    <h2 data-i18n="faq.heading">Häufig gestellte Fragen</h2>
+    <div class="pp-faq-list">
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.cost.q">Was kostet es?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.cost.a">Nichts. Open Pile Plan Studio ist Open Source unter der LGPL-3.0: keine Lizenzgebühren, kein Abonnement und kein Konto.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.alpha.q">Kann ich die Ergebnisse direkt verwenden?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.alpha.a">Nein. Die App ist eine öffentliche Alpha und unterstützt Ingenieurentscheidungen, übernimmt aber nicht die Verantwortung für die Gründungsplanung. Die CPT-Auswahl ist eine praktische Näherung. Lassen Sie Eingaben, Annahmen und Ergebnisse immer von einer qualifizierten Fachperson prüfen.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.data.q">Welche Daten brauche ich?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.data.a">Drei Tabellen in CSV oder XLSX: Lastpunkte (ID, X, Y und die Bemessungslast), Drucksondierungen (ID, X und Y) und Gründungsempfehlung (Drucksondierung, Pfahlfußkote, Pfahlabmessung und Tragfähigkeit). Höhen in Metern, Abmessungen in Millimetern und Kräfte in kN. Die Browser-Demo enthält ein Beispielprojekt für den Einstieg.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.web.q">Was ist der Unterschied zwischen Browser und Desktop-App?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.web.a">Beide rechnen mit demselben Rust-Kern. Die Desktop-Apps sind mit IFCPP-Dateien verknüpft und öffnen zuletzt verwendete Projekte erneut; die Windows-App hat außerdem die Anbindung an einen KI-Assistenten. Im Browser speichern Sie Projekte als Download, und die App bewahrt bis zu zehn lokale Kopien auf.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.systems.q">Auf welchen Systemen läuft es?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.systems.a">Windows x64, macOS 15 oder neuer auf Apple Silicon und Intel, Linux x64 als .deb oder AppImage (getestet unter Ubuntu 22.04 und 24.04) sowie jeder moderne Browser.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.optimize.q">Wie funktioniert die Optimierung?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.optimize.a">Zuerst sucht der HiGHS-Solver die niedrigsten Kosten innerhalb Ihrer Grenzen für Pfahlfußkoten, Abmessungen und die Anzahl der Konfigurationen. Anschließend kann er die Unterschiede zwischen benachbarten Standorten innerhalb eines zusätzlichen Kostenbudgets verringern, standardmäßig 5 %. Das Ergebnis gibt an, ob das Optimum nachgewiesen wurde. „Schnell verbessern“ ist ein schnelleres, lokales Verfahren.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.ai.q">Was kann ein KI-Assistent damit tun?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.ai.a">Die Windows-App hat einen MCP-Zugang. Schalten Sie die Verbindung in den Einstellungen ein, und ein lokaler Assistent kann das geöffnete Projekt lesen, Pläne vergleichen und die Optimierung starten. Änderungen sind erst möglich, wenn Sie das Bearbeiten gesondert erlauben; jede Änderung durchläuft dieselben Prüfungen wie in der App.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.signed.q">Sind die Downloads signiert?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.signed.a">Ja. Der Windows-Installer ist digital signiert, die Mac-Version ist signiert und von Apple notarisiert, und die Linux-Pakete haben eine abgetrennte OpenPGP-Signatur. Mit der Datei SHA256SUMS können Sie alle vier Installer überprüfen.</p></div>
+      </details>
+    </div>
+  </div></section>
+
+  <section class="section" id="technology"><div class="container">
+    <div class="section-head"><h2 data-i18n="tech.heading">Technik</h2><p data-i18n="tech.sub">Ein Rechenmodell für Browser und Desktop.</p></div>
+    <div class="features features-compact">
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><h4 data-i18n="tech.rust.title">Rechenkern in Rust</h4><p data-i18n="tech.rust.desc">Import, Pfahloptionen, Kosten, CPT-Auswahl und Optimierung liegen in einem Kern.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div><div><h4 data-i18n="tech.wasm.title">WebAssembly</h4><p data-i18n="tech.wasm.desc">Derselbe Kern läuft im Browser, ohne Installation.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><h4 data-i18n="tech.ui.title">React und TypeScript</h4><p data-i18n="tech.ui.desc">Die Oberfläche, mit den gemeinsamen Komponenten des OpenAEC Blueprint.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><h4 data-i18n="tech.tauri.title">Tauri 2</h4><p data-i18n="tech.tauri.desc">Schlanke Desktop-Apps für Windows, macOS und Linux.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-bolt"/></svg></div><div><h4 data-i18n="tech.highs.title">HiGHS</h4><p data-i18n="tech.highs.desc">Open-Source-Solver für die Optimierung des Pfahlplans.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div><div><h4 data-i18n="tech.ifcpp.title">IFCPP</h4><p data-i18n="tech.ifcpp.desc">Das Projektformat mit allen Eingaben, Entscheidungen und Varianten; ältere Projekte bleiben lesbar.</p></div></div>
+    </div>
+  </div></section>
+
+  <!-- Release Notes (shared component) -->
+  <section id="releases" class="pp-releases">
+  <div data-release-notes="pile-plan-studio"></div>
+  <p class="pp-rel-more">
+    <button type="button" class="btn btn-secondary" data-rel-toggle aria-expanded="false" hidden><span data-rel-show data-i18n="releases.showAll">Alle Releases anzeigen</span><span data-rel-hide hidden data-i18n="releases.showLess">Nur die letzten drei anzeigen</span></button>
+    <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio/releases" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="releases.github">Alle Releases auf GitHub</span></a>
+  </p>
+  </section>
+  <script src="/shared/release-notes.js?v=20261112"></script>
+  <script src="/shared/productpagina.js?v=20261112"></script>
+
+  <section class="section surface-spot panel">
+    <div class="panel-center">
+      <h2 data-i18n="why.title">Warum <span class="accent">Open Pile Plan</span> Studio?</h2>
+      <p data-i18n="why.desc">Ein Pfahlplan ist oft Handarbeit, verteilt über Tabellen, Gründungsempfehlungen und Zeichnungen. Open Pile Plan Studio führt diese Informationen in einem Arbeitsbereich zusammen, sodass Sie sofort sehen, welche Konfigurationen funktionieren, und Ihre Entscheidungen nachvollziehbar festhalten. Kostenlos und Open Source, für Tragwerksplaner, Geotechniker und Spezialtiefbauer.</p>
+      <div class="btn-group">
+        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="header.downloadBtn">Download</span></a>
+        <a href="https://pile-plan-studio.open-aec.com/" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg><span data-i18n="header.demoBtn">Browser-Demo öffnen</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/pile-plan-studio" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="header.sourceBtn">Quellcode</span></a>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/de/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión." data-i18n-de="Open-Source-Software für die gesamte AEC-Kette (Hochbau, Infrastruktur, Ingenieurbau) — vom Entwurf bis zu Übergabe und Betrieb.">Open-Source-Software für die gesamte AEC-Kette (Hochbau, Infrastruktur, Ingenieurbau) — vom Entwurf bis zu Übergabe und Betrieb.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas" data-i18n-de="Seiten">Seiten</h4>
+        <a href="/de/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros" data-i18n-de="Über uns">Über uns</a>
+        <a href="/de/ifcx/">IFCX</a>
+        <a href="/de/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto" data-i18n-de="Angebot anfordern">Angebot anfordern</a>
+        <a href="/de/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes" data-i18n-de="FAQ">FAQ</a>
+        <a href="/wiki/" data-i18n-en="Wiki" data-i18n-fr="Wiki" data-i18n-tr="Wiki" data-i18n-es="Wiki" data-i18n-de="Wiki">Wiki</a>
+        <a href="/academy/" data-i18n-en="Academy" data-i18n-fr="Academy" data-i18n-tr="Academy" data-i18n-es="Academy" data-i18n-de="Academy">Academy</a>
+        <a href="/de/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal" data-i18n-de="Haftungsausschluss">Haftungsausschluss</a>
+        <a href="/de/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos" data-i18n-de="Satzungsentwurf">Satzungsentwurf</a>
+        <a href="/de/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos" data-i18n-de="Credits">Credits</a>
+        <a href="/de/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones" data-i18n-de="Grundsätze &amp; Positionen">Grundsätze &amp; Positionen</a>
+        <a href="/de/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales" data-i18n-de="Social Media">Social Media</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución" data-i18n-de="Stiftung i. G.">Stiftung i. G.</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos" data-i18n-de="Niederlande">Niederlande</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras" data-i18n-de="© 2026 Open AEC Foundation i. G. — Open Source für eine offene Bau- und Infrastrukturbranche">© 2026 Open AEC Foundation i. G. — Open Source für eine offene Bau- und Infrastrukturbranche</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+          <a href="https://x.com/openaec" target="_blank" rel="noopener" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.youtube.com/@openaecfoundation" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://mastodon.social/@openaec" target="_blank" rel="me noopener" aria-label="Mastodon" title="Mastodon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg></a>
+          <a href="https://www.threads.com/@openaec" target="_blank" rel="noopener" aria-label="Threads" title="Threads"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
+  <script src="/shared/i18n.js?v=20261105"></script>
+</body>
+</html>

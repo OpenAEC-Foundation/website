@@ -181,6 +181,39 @@
       showFewerVersions: 'Mostrar menos',
       noNotes: 'No hay notas disponibles para esta versión.',
     },
+    de: {
+      title: 'Versionshinweise',
+      desc: (n) => `${n} Änderungen, gruppiert nach Minor-Version. Live von GitHub abgerufen.`,
+      loading: 'Versionen werden geladen...',
+      latest: 'Aktuell',
+      nightly: 'Nightly',
+      version: 'Version',
+      versions: 'Versionen',
+      releases: 'Versionen',
+      changes: 'Änderungen',
+      change: 'Änderung',
+      release: 'Version',
+      from: 'von',
+      until: 'bis',
+      viewGitHub: 'Auf GitHub ansehen →',
+      viewAll: 'Alle Versionen auf GitHub ansehen →',
+      error: 'Die Versionshinweise konnten nicht geladen werden.',
+      noReleases: 'Noch keine Versionen verfügbar.',
+      published: 'Veröffentlicht',
+      totalReleases: 'Versionen insgesamt',
+      totalChanges: 'Änderungen insgesamt',
+      showMore: 'Mehr anzeigen',
+      showLess: 'Weniger anzeigen',
+      tlDesc: 'Das Wichtigste je Version. Klicken Sie auf Mehr für die vollständigen Hinweise.',
+      tlDays: (n) => `${n} ${n === '1' ? 'Tag' : 'Tage'}`,
+      tlCommits: (n) => `${n} Commits`,
+      tlLines: (n) => `+${n} Zeilen Code`,
+      more: 'Mehr',
+      less: 'Weniger',
+      showAllVersions: 'Alle Versionen anzeigen',
+      showFewerVersions: 'Weniger anzeigen',
+      noNotes: 'Für diese Version liegen keine Hinweise vor.',
+    },
   };
 
   function getLang() {
@@ -448,7 +481,7 @@
     return `
       ${changes.length > 0
         ? `<ol class="rn-changes-list">${changesList}</ol>`
-        : `<p class="rn-loading">${({en: 'No changelog parsed — see release on GitHub below.', fr: 'Aucun changelog disponible — voir la version sur GitHub ci-dessous.', tr: "Değişiklik günlüğü mevcut değil — sürümü aşağıdaki GitHub bağlantısından inceleyin.", nl: 'Geen changelog beschikbaar — bekijk de release op GitHub hieronder.'})[getLang()] || 'Geen changelog beschikbaar — bekijk de release op GitHub hieronder.'}</p>`}
+        : `<p class="rn-loading">${({en: 'No changelog parsed — see release on GitHub below.', fr: 'Aucun changelog disponible — voir la version sur GitHub ci-dessous.', tr: "Değişiklik günlüğü mevcut değil — sürümü aşağıdaki GitHub bağlantısından inceleyin.", de: 'Kein Änderungsprotokoll verfügbar — siehe die Version auf GitHub unten.', nl: 'Geen changelog beschikbaar — bekijk de release op GitHub hieronder.'})[getLang()] || 'Geen changelog beschikbaar — bekijk de release op GitHub hieronder.'}</p>`}
       <div class="rn-releases-detail">
         ${releaseRows}
       </div>

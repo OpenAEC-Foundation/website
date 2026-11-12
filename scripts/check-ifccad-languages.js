@@ -5,7 +5,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const root = path.resolve(process.argv[2] || path.join(__dirname, '..'));
 const read = file => fs.readFileSync(path.join(root, file), 'utf8');
-const langs = ['nl', 'en', 'fr', 'tr', 'es'];
+const langs = ['nl', 'en', 'fr', 'tr', 'es', 'de'];
 const url = lang => `https://open-aec.com/${lang === 'nl' ? '' : lang + '/'}ifccad/`;
 const source = read('ifccad/index.html');
 assert.match(source, /<meta name="i18n-page" content="ifccad"/);
@@ -55,4 +55,4 @@ for (const lang of langs) {
   }
   assert.ok(read('sitemap.xml').includes(`<loc>${url(lang)}</loc>`), `${lang}: sitemap`);
 }
-console.log('IFCCAD: all five languages, rendered translations and language links verified.');
+console.log('IFCCAD: all six languages, rendered translations and language links verified.');

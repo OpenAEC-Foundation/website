@@ -1,0 +1,1323 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zeitleiste & Statistiken — OpenAEC Foundation</title>
+  <meta name="description" content="Die Geschichte und die Zahlen hinter dem OpenAEC-Ökosystem. Von der ersten Idee bis zu einer vollständigen Open-Source-Plattform.">
+  <link rel="canonical" href="https://open-aec.com/de/statistieken/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/statistieken/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/statistieken/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/statistieken/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/statistieken/">
+  <link rel="alternate" hreflang="es" href="https://open-aec.com/es/statistieken/">
+  <link rel="alternate" hreflang="de" href="https://open-aec.com/de/statistieken/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/en/statistieken/">
+  <!-- hreflang:end -->
+
+
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Zeitleiste & Statistiken — OpenAEC Foundation">
+  <meta property="og:description" content="Die Geschichte und die Zahlen hinter dem OpenAEC-Ökosystem. Von der ersten Idee bis zu einer vollständigen Open-Source-Plattform.">
+  <meta property="og:url" content="https://open-aec.com/de/statistieken/">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tijdlijn & Statistieken">
+  <meta name="twitter:description" content="Die Geschichte und die Zahlen hinter dem OpenAEC-Ökosystem. Von der ersten Idee bis zu einer vollständigen Open-Source-Plattform.">
+  <meta name="i18n-page" content="statistieken">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/shared/style.css?v=20261111">
+  <style>
+    .chart-tip {
+      position: fixed;
+      pointer-events: none;
+      background: var(--deep-forge);
+      color: white;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      line-height: 1.4;
+      box-shadow: 0 12px 28px -6px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.15);
+      border: 1px solid rgba(217, 119, 6, 0.5);
+      opacity: 0;
+      transform: translate(-50%, -120%);
+      transition: opacity 0.12s ease, transform 0.12s ease;
+      z-index: 9999;
+      white-space: nowrap;
+    }
+    .chart-tip.visible { opacity: 1; transform: translate(-50%, -135%); }
+    .chart-tip .tip-key { color: var(--amber); font-weight: 700; }
+    .chart-tip .tip-val { color: white; font-weight: 700; }
+    .chart-tip .tip-row { display: flex; gap: 10px; align-items: center; }
+    .chart-tip .tip-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+    /* Chart bar interactivity */
+    .chart-bar { transition: filter 0.18s ease, opacity 0.18s ease; cursor: pointer; }
+    .chart-bar:hover { filter: brightness(1.15) drop-shadow(0 4px 10px rgba(0,0,0,0.18)); }
+    .chart-grid { pointer-events: none; }
+    .chart-tick { fill: #A1A1AA; font-family: var(--font-code); font-size: 10px; }
+    .chart-tick-light { fill: rgba(255,255,255,0.6); }
+
+    /* Horizontal bar chart row */
+    .hbar-row {
+      display: grid;
+      grid-template-columns: 130px 1fr 70px;
+      align-items: center;
+      gap: var(--sp-3);
+      padding: 8px 0;
+      border-bottom: 1px solid #E7E5E4;
+      transition: background-color 0.18s ease, padding-left 0.18s ease;
+    }
+    .hbar-row:hover { background: rgba(217, 119, 6, 0.06); padding-left: 6px; }
+    .hbar-row:last-child { border-bottom: none; }
+    .hbar-label {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--font-heading); font-weight: 600;
+      font-size: 0.875rem; color: var(--deep-forge);
+    }
+    .hbar-label .lang-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+    .hbar-track {
+      position: relative;
+      height: 22px;
+      background: #F5F5F4;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .hbar-fill {
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 0;
+      border-radius: 999px;
+      transition: width 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .hbar-fill::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent 40%, rgba(255,255,255,0.35) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: transform 1.2s ease 0.4s;
+    }
+    .hbar-row:hover .hbar-fill::after { transform: translateX(100%); }
+    .hbar-value {
+      text-align: right;
+      font-family: var(--font-code);
+      font-weight: 700;
+      font-size: 0.875rem;
+      color: var(--deep-forge);
+    }
+    .hbar-value .hbar-pct {
+      font-weight: 400;
+      color: var(--scaffold-gray);
+      font-size: 0.75rem;
+      margin-left: 4px;
+    }
+
+    /* Timeline */
+    .stats-section { max-width: 1000px; margin: 0 auto; }
+    .stats-section h2 {
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--deep-forge);
+      margin-bottom: var(--sp-6);
+      padding-bottom: var(--sp-3);
+      border-bottom: 2px solid var(--amber);
+      display: inline-block;
+    }
+
+    .stats-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: var(--sp-8);
+    }
+    .stats-table thead th {
+      background: var(--concrete);
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--deep-forge);
+      padding: var(--sp-3) var(--sp-4);
+      text-align: left;
+      border-bottom: 2px solid #E7E5E4;
+    }
+    .stats-table thead th:not(:first-child) { text-align: right; }
+    .stats-table tbody td {
+      padding: var(--sp-3) var(--sp-4);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      border-bottom: 1px solid #E7E5E4;
+      vertical-align: middle;
+    }
+    .stats-table tbody td:not(:first-child) {
+      text-align: right;
+      font-family: var(--font-code);
+      font-size: 0.8125rem;
+      color: #57534E;
+    }
+    .stats-table tbody td:first-child {
+      font-weight: 600;
+      color: var(--deep-forge);
+    }
+    .stats-table tbody td:first-child a {
+      color: var(--deep-forge);
+      text-decoration: none;
+    }
+    .stats-table tbody td:first-child a:hover {
+      color: var(--amber);
+    }
+    .stats-table tbody tr:hover { background: var(--concrete); }
+
+    .lang-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-right: 6px;
+      vertical-align: middle;
+    }
+    .lang-rust { background: #DEA584; }
+    .lang-ts { background: #3178C6; }
+    .lang-js { background: #F1E05A; }
+    .lang-python { background: #3572A5; }
+    .lang-html { background: #E34C26; }
+    .lang-css { background: #563D7C; }
+    .lang-markdown { background: #083FA1; }
+    .lang-shell { background: #89E051; }
+
+    /* Top repos */
+    .top-repos {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-6);
+      margin-top: var(--sp-8);
+    }
+    .top-repo-card {
+      background: var(--night-build);
+      border-radius: var(--radius-lg);
+      padding: var(--sp-6);
+    }
+    .top-repo-card h4 {
+      color: var(--amber);
+      font-size: 0.875rem;
+      font-family: var(--font-code);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: var(--sp-3);
+    }
+    .top-repo-card ol {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      counter-reset: rank;
+    }
+    .top-repo-card ol li {
+      counter-increment: rank;
+      padding: var(--sp-2) 0;
+      color: var(--scaffold-gray);
+      font-size: 0.875rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .top-repo-card ol li::before {
+      content: counter(rank) ".";
+      font-family: var(--font-code);
+      font-weight: 700;
+      color: var(--amber);
+      margin-right: var(--sp-2);
+      font-size: 0.75rem;
+    }
+    .top-repo-card ol li:last-child { border-bottom: none; }
+    .top-repo-card ol li span.repo-name { flex: 1; color: white; font-weight: 500; }
+    .top-repo-card ol li span.repo-val {
+      font-family: var(--font-code);
+      font-size: 0.75rem;
+      color: var(--scaffold-gray);
+    }
+
+    @media (max-width: 768px) {
+
+
+      .stats-table { font-size: 0.75rem; }
+      .stats-table thead th,
+      .stats-table tbody td { padding: var(--sp-2); }
+      .top-repos { grid-template-columns: 1fr; }
+    }
+
+    /* A+ (okt 2026) */
+    .stats-section { max-width: none; }
+    .product-head p.stats-updated { text-align: center; font-family: var(--font-code); font-size: 0.75rem; color: var(--text-on-dark); opacity: 0.8; max-width: none; margin: var(--sp-5) auto 0; }
+    .product-head .stat-grid { position: relative; margin-top: 0; }
+    .stats-updated:has(#stats-updated:empty) { display: none; }
+    .chart-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 1100px; margin: var(--sp-8) auto 0; }
+    .chart-cards.single { grid-template-columns: 1fr; max-width: 1000px; }
+    .chart-card { padding: var(--sp-6); border-radius: var(--radius-lg); background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)); border: 1px solid rgba(255,255,255,0.1); min-width: 0; }
+    .chart-title { font-family: var(--font-code); font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--warm-gold); margin: 0 0 var(--sp-4); }
+    .chart-card.on-light { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); }
+    .chart-card.on-light .chart-title { color: #B45309; }
+    .chart-card h3 { font-size: 1.2rem; color: var(--deep-forge); margin: 0 0 var(--sp-2); }
+    .chart-card h3 + p { color: var(--text-on-light); font-size: 0.9rem; margin-bottom: var(--sp-4); }
+    .chart-box { height: 250px; }
+    .chart-box.short { height: 225px; }
+    .chart-legend { display: flex; gap: var(--sp-4); margin-bottom: var(--sp-2); font-family: var(--font-code); font-size: 0.72rem; color: var(--text-on-dark); }
+    .chart-legend .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; vertical-align: middle; }
+    .dot-open { background: #22D3EE; } .dot-closed { background: #34D399; } .dot-total { background: #F59E0B; }
+    .panel .btn-group { justify-content: center; margin-top: var(--sp-8); }
+    .table-card { margin-top: var(--sp-8); padding: var(--sp-2) var(--sp-4); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .stats-table td.loading { text-align: center; color: var(--text-on-light); padding: var(--sp-8); }
+    .geo-list { list-style: none; margin: 0; padding: 0; }
+    .geo-list li { position: relative; padding: 7px 0 7px 30px; color: var(--text-on-dark); font-size: 0.92rem; line-height: 1.55; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .geo-list li:last-child { border-bottom: 0; }
+    .geo-list li .ico { position: absolute; left: 0; top: 9px; width: 18px; height: 18px; color: var(--amber); }
+    .geo-list.next li .ico { color: var(--warm-gold); opacity: 0.75; }
+    .geo-list a { color: var(--warm-gold); font-weight: 600; }
+    .journey { max-width: 820px; margin: var(--sp-8) auto 0; }
+    .journey .rn-tl-card h3 { font-size: 1.1rem; color: var(--deep-forge); margin: var(--sp-1) 0 0; }
+    .journey .rn-tl-plain-list { font-size: 0.92rem; }
+    .journey .rn-tl-item.planned .rn-tl-card { border-style: dashed; background: var(--blueprint-white); }
+    .journey .status-planned { font-family: var(--font-code); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; padding: 2px 9px; border-radius: var(--radius-full); background: rgba(42,42,50,0.08); color: var(--deep-forge); }
+    .top-repos { max-width: 1100px; margin-left: auto; margin-right: auto; gap: 16px; }
+    .top-repo-card { background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); }
+    .top-repo-card h4 { color: #B45309; font-size: 0.78rem; }
+    .top-repo-card ol li { color: var(--text-on-light); border-bottom-color: rgba(42,42,50,0.07); }
+    .top-repo-card ol li span.repo-name { color: var(--deep-forge); }
+    .top-repo-card ol li span.repo-val { color: var(--text-on-light); }
+    .chart-card, .top-repo-card, .journey .rn-tl-card { transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease; }
+    .chart-card:hover { transform: translateY(-3px); border-color: rgba(217,119,6,0.5); }
+    .chart-card.on-light:hover, .top-repo-card:hover, .journey .rn-tl-card:hover { transform: translateY(-4px); border-color: rgba(217,119,6,0.35); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float-hover); }
+    .journey .rn-tl-card { box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); }
+    @media (max-width: 860px) { .chart-cards { grid-template-columns: 1fr; } }
+  </style>
+
+  <meta name="i18n-static" content="de">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "de",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/openaec-foundation-io",
+          "https://mastodon.social/@openaec",
+          "https://www.threads.com/@openaec"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/de/statistieken/#webpage",
+        "url": "https://open-aec.com/de/statistieken/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "de",
+        "dateModified": "2026-11-12",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/de/statistieken/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/de/statistieken/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Statistieken",
+            "item": "https://open-aec.com/de/statistieken/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body class="page-panels">
+    <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/de/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
+      <ul class="nav-links">
+        <li><a href="/de/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema" data-i18n-de="Ökosystem">Ökosystem</a></li>
+        <li><a href="/de/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta" data-i18n-de="Roadmap">Roadmap</a></li>
+        <li><a href="/de/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura" data-i18n-de="Architektur">Architektur</a></li>
+        <li><a href="/de/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas" data-i18n-de="Statistiken">Statistiken</a></li>
+        <li><a href="/de/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias" data-i18n-de="Neuigkeiten">Neuigkeiten</a></li>
+        <li><a href="/de/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores" data-i18n-de="Unterstützer">Unterstützer</a></li>
+        <li><a href="/de/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura" data-i18n-de="Struktur">Struktur</a></li>
+      </ul>
+      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios" data-i18n-de="Feedback">Feedback</span></a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/statistieken/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/statistieken/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/statistieken/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/statistieken/" hreflang="tr">TR</a>
+        <a class="lang-btn" data-lang="es" href="/es/statistieken/" hreflang="es">ES</a>
+        <a class="lang-btn active" data-lang="de" href="/de/statistieken/" hreflang="de">DE</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+<script src="/shared/nav.js?v=20261015"></script>
+<script src="/shared/feedback.js?v=20261112" defer></script>
+
+  <main id="main">
+
+  <header class="product-head surface-spot">
+    <div class="product-head-inner">
+      <p class="pill-label" data-i18n="header.label">OpenAEC Foundation</p>
+      <h1 data-i18n="header.title">Zeitleiste & <span class="accent">Statistiken</span></h1>
+      <p class="lead" data-i18n="header.desc">Die Geschichte und die Zahlen hinter dem OpenAEC-Ökosystem. Von der ersten Idee bis zu einer vollständigen Open-Source-Plattform.</p>
+    </div>
+    <div class="stat-grid stat-grid-4">
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.repos">Repositories</span></div><div class="stat-number" id="s-repos">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.commits">Commits</span></div><div class="stat-number" id="s-commits">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.stars">Sterne</span></div><div class="stat-number" id="s-stars">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.releases">Releases</span></div><div class="stat-number" id="s-releases">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.contributors">Mitwirkende</span></div><div class="stat-number" id="s-contributors">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.loc">Codezeilen (geschätzt)</span></div><div class="stat-number" id="s-loc">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.languages">Programmiersprachen</span></div><div class="stat-number" id="s-languages">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.open_issues">Offene Issues</span></div><div class="stat-number" id="s-issues">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.closed_issues">Geschlossene Issues</span></div><div class="stat-number" id="s-closed-issues">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.merged_prs">Gemergte PRs</span></div><div class="stat-number" id="s-merged-prs">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.closed_prs">Geschlossene PRs</span></div><div class="stat-number" id="s-closed-prs">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="stats.downloads">Downloads</span></div><div class="stat-number" id="s-downloads">—</div></div>
+    </div>
+    <p class="stats-updated"><span data-i18n="stats.updated">Letzte Aktualisierung:</span> <span id="stats-updated"></span></p>
+  </header>
+
+  <section class="section surface-dark panel">
+    <div class="panel-center">
+      <h2 data-i18n="growth.title">Wachstum im <span class="accent">Zeitverlauf</span></h2>
+    </div>
+    <div class="chart-cards">
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="charts.cum_repos">Repositories kumuliert</h4>
+        <div class="chart-box" id="chart-cum-repos"></div>
+      </div>
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="charts.cum_commits">Commits kumuliert</h4>
+        <div class="chart-box" id="chart-cum-commits"></div>
+      </div>
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="charts.issues_combined">Issues — offen, geschlossen, gesamt</h4>
+        <div class="chart-legend"><span><span class="dot dot-open"></span><span data-i18n="charts.legend_open">Offen</span></span><span><span class="dot dot-closed"></span><span data-i18n="charts.legend_closed">Geschlossen</span></span><span><span class="dot dot-total"></span><span data-i18n="charts.legend_total">Gesamt</span></span></div>
+        <div class="chart-box short" id="chart-cum-issues"></div>
+      </div>
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="charts.loc">Codezeilen (geschätzt)</h4>
+        <div class="chart-box" id="chart-cum-loc"></div>
+      </div>
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="charts.cum_contributors">Mitwirkende kumuliert</h4>
+        <div class="chart-box" id="chart-cum-contributors"></div>
+      </div>
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="charts.cum_stars">Sterne kumuliert</h4>
+        <div class="chart-box" id="chart-cum-stars"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section"><div class="container">
+    <div class="chart-cards single">
+      <div class="chart-card on-light">
+        <h3 data-i18n="charts.repos_month">Repos pro <span class="accent">Monat</span></h3>
+        <div class="chart-box" id="chart-monthly"></div>
+      </div>
+      <div class="chart-card on-light">
+        <h3 data-i18n="charts.lang_dist">Verteilung nach <span class="accent">Programmiersprache</span></h3>
+        <p data-i18n="charts.lang_desc">Anzahl der Repositories je primärer Programmiersprache im OpenAEC-Ökosystem.</p>
+        <div id="chart-langs"></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section surface-dark panel">
+    <div class="panel-center">
+      <h2 data-i18n="news.title">News-<span class="accent">Aktivität</span></h2>
+      <p data-i18n="news.subtitle">Alle Releases und neuen Repositories seit dem 1. Januar 2026.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="news.items">Meldungen</span></div><div class="stat-number" id="s-news-total">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="news.releases">Releases</span></div><div class="stat-number" id="s-news-releases">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="news.new_repos">Neue Repos</span></div><div class="stat-number" id="s-news-repos">—</div></div>
+    </div>
+    <div class="chart-cards single">
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="news.chart_title">Releases & neue Repos pro Woche</h4>
+        <div class="chart-box" id="chart-news-activity"></div>
+      </div>
+    </div>
+    <div class="btn-group">
+      <a href="/de/nieuws/" class="btn btn-glow"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg><span data-i18n="news.view_all">Alle News ansehen</span></a>
+    </div>
+  </section>
+
+  <section class="section"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="dl.title">Installer-<span class="accent">Downloads</span></h2>
+      <p data-i18n="dl.desc">Downloads je Plattform und je Tool, live von GitHub Releases abgerufen.</p>
+    </div>
+    <div class="stat-grid on-light">
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="dl.total">Downloads gesamt</span></div><div class="stat-number" id="s-dl-total">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="dl.tools">Tools mit Downloads</span></div><div class="stat-number" id="s-dl-tools">—</div></div>
+      <div class="stat-tile"><div class="stat-name"><span data-i18n="dl.top_platform">Beliebteste Plattform</span></div><div class="stat-number" id="s-dl-top-platform">—</div></div>
+    </div>
+    <div class="chart-cards single">
+      <div class="chart-card on-light">
+        <h4 class="chart-title" data-i18n="dl.per_platform">Downloads je Plattform</h4>
+        <div class="chart-box" id="chart-dl-platform"></div>
+      </div>
+      <div class="chart-card on-light">
+        <h4 class="chart-title" data-i18n="dl.top_tools">Top-Tools: meiste Downloads</h4>
+        <div id="dl-ranking"></div>
+      </div>
+    </div>
+  </div></section>
+
+  <section class="section"><div class="container">
+    <div class="section-head">
+      <h2 data-i18n="timeline.title">Die <span class="accent">Reise</span></h2>
+    </div>
+    <ol class="rn-timeline journey">
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.jan.date">Januar 2026</span></div>
+          <h3 data-i18n="timeline.jan.title">Die OpenAEC Foundation startet</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.jan.i1">Erste Repositories angelegt</li>
+            <li data-i18n="timeline.jan.i2">Open PDF Studio und Open 2D Studio gestartet</li>
+            <li data-i18n="timeline.jan.i3">Frappe Claude Skill Package veröffentlicht (55 Sterne)</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.feb.date">Februar 2026</span></div>
+          <h3 data-i18n="timeline.feb.title">Das Ökosystem wächst</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.feb.i1">Open Pointcloud Studio, Open Energy Studio und Open Heatloss Studio gestartet</li>
+            <li data-i18n="timeline.feb.i2">Dynlex (196 Commits), OpenAEC Reports (255 Commits)</li>
+            <li data-i18n="timeline.feb.i3">IFC Factory für die IFCX-Entwicklung</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.mar.date">März 2026</span></div>
+          <h3 data-i18n="timeline.mar.title">Validierung & Dokumentation</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.mar.i1">OpenAEC BIM Validator (207 Commits)</li>
+            <li data-i18n="timeline.mar.i2">Open Field Studio veröffentlicht (v0.1.3)</li>
+            <li data-i18n="timeline.mar.i3">Open Speech Studio (v0.5.0)</li>
+            <li data-i18n="timeline.mar.i4">19 Claude Skill Packages veröffentlicht</li>
+            <li data-i18n="timeline.mar.i5">BCF Platform und OpenAEC Docs gestartet</li>
+            <li data-i18n="timeline.mar.i6">Website live unter open-aec.com</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.apr.date">April 2026</span></div>
+          <h3 data-i18n="timeline.apr.title">Stiftung in Gründung</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.apr.i1">Stichting OpenAEC Foundation i.o.: Gründung in Vorbereitung</li>
+            <li data-i18n="timeline.apr.i2">50 Repositories, 2.428+ Commits</li>
+            <li data-i18n="timeline.apr.i3">10+ Live-Demos verfügbar</li>
+            <li data-i18n="timeline.apr.i4">Angebotssystem und Unterstützerprogramm gestartet</li>
+          </ul>
+        </div>
+      </li>
+      <!-- later: oorspronkelijk gepland item, vervangen door wat er echt gebeurde (Open 3D Studio, juli); ook _later in de vertalingen:
+      <li class="rn-tl-item planned">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.jun.date">Juni 2026</span><span class="status-planned" data-i18n="timeline.planned">geplant</span></div>
+          <h3 data-i18n="timeline.jun.title">Website in vier Sprachen</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.jun.i1">Website auf Niederländisch, Englisch, Französisch und Türkisch</li>
+          </ul>
+        </div>
+      </li>
+      -->
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.may.date">Mai 2026</span></div>
+          <h3 data-i18n="timeline.may.title">Kalkulation & Release Notes</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.may.i1">Open Calc Studio gestartet: Open-Source-Kalkulationsprogramm für das Bauwesen</li>
+            <li data-i18n="timeline.may.i2">Live-Release-Notes auf jeder Produktseite</li>
+            <li data-i18n="timeline.may.i3">Tiefbau und Infrastruktur in den Umfang aufgenommen</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.jun.date">Juni 2026</span></div>
+          <h3 data-i18n="timeline.jun.title">Website in vier Sprachen</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.jun.i1">Website auf Niederländisch, Englisch, Französisch und Türkisch</li>
+            <li data-i18n="timeline.jun.i2">Automatische Sprachwahl beim ersten Besuch</li>
+            <li data-i18n="timeline.jun.i3">Open PDF Studio v3 gestartet</li>
+            <li data-i18n="timeline.jun.i4">Erweiterungskatalog für Open Planner Studio</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.jul.date">Juli 2026</span></div>
+          <h3 data-i18n="timeline.jul.title">Stärkster Wachstumsmonat</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.jul.i1">11 neue Repositories</li>
+            <li data-i18n="timeline.jul.i2">OpenAEC Installer: alle Tools an einem Ort installieren und aktualisieren</li>
+            <li data-i18n="timeline.jul.i3">Open 3D Studio gestartet: 3D-Modellierung mit IFC als nativem Format</li>
+            <li data-i18n="timeline.jul.i4">Pile Plan Studio und der SuperCloud-Desktop-Client gestartet</li>
+            <li data-i18n="timeline.jul.i5">News in vier Sprachen</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.aug.date">August 2026</span></div>
+          <h3 data-i18n="timeline.aug.title">Bauwissen & Auffindbarkeit</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.aug.i1">IFCCAD: offene CAD-Zeichnungsmodelle in Rust</li>
+            <li data-i18n="timeline.aug.i2">Master-Builder-Bibliothek mit Bauwissen, Normen und Zeichnungen</li>
+            <li data-i18n="timeline.aug.i3">Website für Suchmaschinen und KI-Assistenten auffindbar gemacht</li>
+            <li data-i18n="timeline.aug.i4">Open CAD Studio auf der Startseite hervorgehoben</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.sep.date">September 2026</span></div>
+          <h3 data-i18n="timeline.sep.title">Fünf Sprachen</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.sep.i1">Website auch auf Spanisch</li>
+            <li data-i18n="timeline.sep.i2">Open PDF Studio: vollständige Funktionsübersicht</li>
+            <li data-i18n="timeline.sep.i3">Über 3.400 Sterne über alle Repositories hinweg</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item latest">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.oct.date">Oktober 2026</span></div>
+          <h3 data-i18n="timeline.oct.title">Downloads mit einem Klick</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.oct.i1">Download-Schaltflächen starten den Download sofort</li>
+            <li data-i18n="timeline.oct.i2">Open Pointcloud Studio 0.8.0, jetzt nativ</li>
+            <li data-i18n="timeline.oct.i3">Socials-Seite mit QR-Code</li>
+            <li data-i18n="timeline.oct.i4">62 Repositories, 18.000+ Commits, 4.200+ Sterne und 130.000+ Downloads</li>
+          </ul>
+        </div>
+      </li>
+      <li class="rn-tl-item planned">
+        <div class="rn-tl-card">
+          <div class="rn-tl-head"><span class="rn-tl-version" data-i18n="timeline.dec.date">Dezember 2026</span><span class="status-planned" data-i18n="timeline.planned">geplant</span></div>
+          <h3 data-i18n="timeline.dec.title">Ökosystem vollständig</h3>
+          <ul class="rn-tl-plain-list">
+            <li data-i18n="timeline.dec.i1">Alle Tools im Produktiveinsatz</li>
+            <li data-i18n="timeline.dec.i2">IFCX-Namensräume fertiggestellt</li>
+            <li data-i18n="timeline.dec.i3">Durchgängige Open-Source-Kette für AEC</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </div></section>
+
+  <section class="section"><div class="container stats-section">
+    <div class="section-head">
+      <h2 data-i18n="repos.title">Repository-Übersicht</h2>
+    </div>
+    <div class="feature table-card">
+        <table class="stats-table">
+        <thead>
+          <tr>
+            <th>Repository</th>
+            <th data-i18n="repos.language">Sprache</th>
+            <th>Commits</th>
+            <th>Releases</th>
+            <th>Stars</th>
+            <th data-i18n="repos.created">Erstellt</th>
+          </tr>
+        </thead>
+        <tbody id="repo-tbody">
+          <tr><td colspan="6" class="loading" data-i18n="stats.loading">Wird geladen…</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="top-repos">
+        <div class="top-repo-card"><h4 data-i18n="top.stars">Meiste Sterne</h4><ol id="top-stars"></ol></div>
+        <div class="top-repo-card"><h4 data-i18n="top.commits">Meiste Commits</h4><ol id="top-commits"></ol></div>
+        <div class="top-repo-card"><h4 data-i18n="top.size">Größte Repos</h4><ol id="top-size"></ol></div>
+      </div>
+  </div></section>
+
+  <section class="section surface-dark panel">
+    <div class="panel-center">
+      <h2 data-i18n="geo.title">Auffindbarkeit für <span class="accent">KI</span></h2>
+      <p data-i18n="geo.desc">Unsere Strategie, damit KI-Assistenten wie Claude, ChatGPT, Grok, Perplexity und Gemini ihren Nutzern die OpenAEC-Tools empfehlen. Das nennt sich <em>Generative Engine Optimization (GEO)</em>.</p>
+    </div>
+    <div class="chart-cards">
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="geo.done_title">Umgesetzt</h4>
+        <ul class="geo-list">
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="geo.done.llms"><a href="/llms.txt">/llms.txt</a>: LLM-freundliche Zusammenfassung der Website (entstehender Standard)</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="geo.done.robots"><a href="/robots.txt">/robots.txt</a>: lässt 24 Crawler ausdrücklich zu, darunter ClaudeBot, GPTBot und PerplexityBot</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="geo.done.sitemap"><a href="/sitemap.xml">/sitemap.xml</a>: vollständiger URL-Index für Crawler, in fünf Sprachen</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="geo.done.api"><a href="/api/tools.json">/api/tools.json</a>: maschinenlesbarer Tool-Katalog (19 Tools)</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="geo.done.schema">Schema.org JSON-LD auf der Startseite (Organization + 13 SoftwareApplication)</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="geo.done.faq"><a href="/de/faq/">FAQPage JSON-LD</a>: direkt nutzbar für Google AI Overviews</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="geo.done.howto"><a href="/de/aan-de-slag/">HowTo JSON-LD</a>: Einstiegsschritte für AI Overviews</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="geo.done.og">Open-Graph-Karten: aussagekräftige Vorschauen beim Teilen auf LinkedIn, Slack und WhatsApp</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="geo.done.vs"><a href="/de/vs/">Vergleichsseiten</a>: im Vergleich mit AutoCAD, BIMcollab, Bluebeam, Bouwprijs, Dragon und Solibri</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg><span data-i18n="geo.done.md"><a href="/md/index.md">Markdown-Spiegel</a>: Claude, Cursor und Continue lesen .md sauberer als HTML</span></li>
+        </ul>
+      </div>
+      <div class="chart-card">
+        <h4 class="chart-title" data-i18n="geo.next_title">Nächste Schritte</h4>
+        <ul class="geo-list next">
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clock"/></svg><span data-i18n="geo.next.console">Sitemap bei der Google Search Console und den Bing Webmaster Tools einreichen</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clock"/></svg><span data-i18n="geo.next.backlinks">Links von maßgeblichen Quellen (buildingSMART, OSArch, awesome-bim, awesome-rust)</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clock"/></svg><span data-i18n="geo.next.docs">Eigene Markdown-Dokumentation je Tool (ausführlicheres SDK und Beispiele)</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clock"/></svg><span data-i18n="geo.next.mcp">MCP-Server für weitere Tools: direkte Integration mit KI-Assistenten</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clock"/></svg><span data-i18n="geo.next.blog">Blog und Fallstudien, auch auf Englisch: internationale Sichtbarkeit</span></li>
+          <li><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-clock"/></svg><span data-i18n="geo.next.community">Präsenz auf Stack Overflow, Reddit und Hacker News</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  </main>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/de/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión." data-i18n-de="Open-Source-Software für die gesamte AEC-Kette (Hochbau, Infrastruktur, Ingenieurbau) — vom Entwurf bis zu Übergabe und Betrieb.">Open-Source-Software für die gesamte AEC-Kette (Hochbau, Infrastruktur, Ingenieurbau) — vom Entwurf bis zu Übergabe und Betrieb.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas" data-i18n-de="Seiten">Seiten</h4>
+        <a href="/de/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros" data-i18n-de="Über uns">Über uns</a>
+        <a href="/de/ifcx/">IFCX</a>
+        <a href="/de/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto" data-i18n-de="Angebot anfordern">Angebot anfordern</a>
+        <a href="/de/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes" data-i18n-de="FAQ">FAQ</a>
+        <a href="/wiki/" data-i18n-en="Wiki" data-i18n-fr="Wiki" data-i18n-tr="Wiki" data-i18n-es="Wiki" data-i18n-de="Wiki">Wiki</a>
+        <a href="/academy/" data-i18n-en="Academy" data-i18n-fr="Academy" data-i18n-tr="Academy" data-i18n-es="Academy" data-i18n-de="Academy">Academy</a>
+        <a href="/de/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal" data-i18n-de="Haftungsausschluss">Haftungsausschluss</a>
+        <a href="/de/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos" data-i18n-de="Satzungsentwurf">Satzungsentwurf</a>
+        <a href="/de/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos" data-i18n-de="Credits">Credits</a>
+        <a href="/de/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones" data-i18n-de="Grundsätze &amp; Positionen">Grundsätze &amp; Positionen</a>
+        <a href="/de/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales" data-i18n-de="Social Media">Social Media</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución" data-i18n-de="Stiftung i. G.">Stiftung i. G.</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos" data-i18n-de="Niederlande">Niederlande</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras" data-i18n-de="© 2026 Open AEC Foundation i. G. — Open Source für eine offene Bau- und Infrastrukturbranche">© 2026 Open AEC Foundation i. G. — Open Source für eine offene Bau- und Infrastrukturbranche</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+          <a href="https://x.com/openaec" target="_blank" rel="noopener" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.youtube.com/@openaecfoundation" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://mastodon.social/@openaec" target="_blank" rel="me noopener" aria-label="Mastodon" title="Mastodon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg></a>
+          <a href="https://www.threads.com/@openaec" target="_blank" rel="noopener" aria-label="Threads" title="Threads"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
+
+<script>
+const LANG_COLORS = {
+  TypeScript:'#3178C6', JavaScript:'#F1E05A', Python:'#3572A5',
+  Rust:'#DEA584', HTML:'#E34C26', CSS:'#563D7C', 'C++':'#F34B7D'
+};
+
+fetch('/data/stats.json')
+  .then(r => r.json())
+  .then(renderStats)
+  .catch(() => {
+    document.getElementById('s-repos').textContent = '50+';
+    document.getElementById('s-stars').textContent = '139+';
+    document.getElementById('s-commits').textContent = '2.400+';
+    document.getElementById('s-contributors').textContent = '10+';
+    document.getElementById('s-loc').textContent = '—';
+    document.getElementById('s-languages').textContent = '7+';
+    document.getElementById('s-releases').textContent = '100+';
+    document.getElementById('s-issues').textContent = '—';
+    document.getElementById('s-closed-issues').textContent = '—';
+    document.getElementById('s-merged-prs').textContent = '—';
+    document.getElementById('s-closed-prs').textContent = '—';
+  });
+
+// Count-up animation: ticks the number from 0 to the final value over `dur` ms.
+// Respects prefers-reduced-motion; only triggers when the element is visible.
+function countUp(id, value, opts) {
+  const el = document.getElementById(id);
+  if (!el || value == null) return;
+  const target = typeof value === 'number' ? value : Number(String(value).replace(/[^\d.-]/g, ''));
+  if (!isFinite(target)) { el.textContent = value; return; }
+  const dur = (opts && opts.dur) || 1200;
+  const fmt = (opts && opts.fmt) || ((n) => Math.round(n).toLocaleString('nl-NL'));
+  // Write the final value immediately so the number is correct even when
+  // requestAnimationFrame is throttled (e.g. hidden tab) or never fires.
+  // The animation below will smoothly count up to this value when raf runs.
+  el.textContent = fmt(target);
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  const start = performance.now();
+  function tick(now) {
+    const t = Math.min(1, (now - start) / dur);
+    const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic
+    el.textContent = fmt(target * eased);
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function renderStats(data) {
+  const s = data.summary;
+  countUp('s-repos', s.publicRepos);
+  countUp('s-commits', s.totalCommits);
+  countUp('s-stars', s.totalStars);
+  countUp('s-contributors', s.uniqueContributors);
+  countUp('s-loc', s.estimatedLinesOfCode);
+  countUp('s-languages', s.languages, { dur: 700 });
+  countUp('s-releases', data.repos.reduce((acc, r) => acc + r.releases, 0));
+  // Prefer split-by-search-API fields, fall back to the legacy GitHub field
+  // (which inflates because it also counts open PRs)
+  countUp('s-issues', s.openIssues != null ? s.openIssues : s.totalOpenIssues);
+  countUp('s-closed-issues', s.closedIssues != null ? s.closedIssues : 0);
+  countUp('s-merged-prs',    s.mergedPRs    != null ? s.mergedPRs    : 0);
+  countUp('s-closed-prs',    s.closedPRs    != null ? s.closedPRs    : 0);
+  document.getElementById('stats-updated').textContent = data.generated.substring(0, 10);
+
+  // Table
+  const tbody = document.getElementById('repo-tbody');
+  tbody.innerHTML = data.repos.map(r => `<tr>
+    <td><a href="${r.url}" target="_blank">${r.name}</a></td>
+    <td><span class="lang-dot" style="background:${LANG_COLORS[r.language]||'#999'}"></span>${r.language||'—'}</td>
+    <td>${r.commits}</td>
+    <td>${r.releases}${r.latestRelease ? ' ('+r.latestRelease+')' : ''}</td>
+    <td>${r.stars}</td>
+    <td>${r.createdAt}</td>
+  </tr>`).join('');
+
+  // Top repos
+  function topList(id, items) {
+    document.getElementById(id).innerHTML = items.map(i =>
+      `<li><span class="repo-name">${i.name}</span><span class="repo-val">${i.value}</span></li>`
+    ).join('');
+  }
+  topList('top-stars', data.topByStars);
+  topList('top-commits', data.topByCommits);
+  topList('top-size', data.topBySize);
+
+  // Load news data for activity chart
+  fetch('/data/news.json')
+    .then(r => r.json())
+    .then(news => {
+      countUp('s-news-total', news.length);
+      countUp('s-news-releases', news.filter(n => n.type === 'release').length);
+      countUp('s-news-repos', news.filter(n => n.type === 'new_repo').length);
+
+      // Group by week for bar chart
+      const byWeek = {};
+      news.forEach(item => {
+        const d = new Date(item.date);
+        const weekStart = new Date(d);
+        weekStart.setDate(d.getDate() - d.getDay() + 1); // Monday
+        // Volledige datum als sleutel. Met alleen MM-DD sorteerde barChart
+        // alfabetisch, en belandde de week van 29 december 2025 achter die van
+        // 24 augustus 2026. Het label blijft MM-DD via labelFmt.
+        const weekKey = weekStart.toISOString().substring(0, 10); // YYYY-MM-DD
+        byWeek[weekKey] = (byWeek[weekKey] || 0) + 1;
+      });
+      barChart('chart-news-activity', byWeek, 'var(--amber)', {
+        labelFmt: (k) => k.substring(5),
+      });
+    })
+    .catch(() => {});
+
+  // Load downloads data
+  fetch('/data/downloads.json')
+    .then(r => r.json())
+    .then(dl => {
+      if (document.getElementById('s-downloads')) countUp('s-downloads', dl.grandTotal);
+      if (document.getElementById('s-dl-total'))  countUp('s-dl-total', dl.grandTotal);
+      if (document.getElementById('s-dl-tools'))  countUp('s-dl-tools', dl.rankedByDownloads.filter(t => t.downloads > 0).length);
+      const topPlatform = Object.entries(dl.platformTotals).sort((a, b) => b[1] - a[1])[0];
+      const dlTopP = document.getElementById('s-dl-top-platform');
+      if (dlTopP && topPlatform) dlTopP.textContent = topPlatform[0];
+
+      // Platform bar chart
+      barChart('chart-dl-platform', dl.platformTotals, 'var(--amber)');
+
+      // Top tools ranking
+      const ranking = document.getElementById('dl-ranking');
+      if (ranking) {
+        const ranked = dl.rankedByDownloads.filter(t => t.downloads > 0);
+        const max = ranked[0]?.downloads || 1;
+        ranking.innerHTML = ranked.map(t => {
+          const pct = (t.downloads / max * 100).toFixed(0);
+          return `<div style="display:flex;align-items:center;gap:var(--sp-3);padding:var(--sp-2) 0;border-bottom:1px solid #F5F5F4;">
+            <span style="flex:0 0 200px;font-weight:600;color:var(--deep-forge);font-size:0.875rem;">${t.repo}</span>
+            <div style="flex:1;background:#F5F5F4;border-radius:4px;height:8px;position:relative;overflow:hidden;">
+              <div style="position:absolute;left:0;top:0;bottom:0;width:${pct}%;background:var(--amber);"></div>
+            </div>
+            <span style="flex:0 0 80px;text-align:right;font-family:var(--font-code);font-size:0.875rem;color:var(--deep-forge);">${t.downloads.toLocaleString('nl-NL')}</span>
+          </div>`;
+        }).join('');
+      }
+    })
+    .catch(() => {});
+
+  // Bar charts
+  // Monthly repos: nicer NL month labels (2026-01 -> jan '26)
+  const MONTHS_NL_SHORT = ['jan','feb','mrt','apr','mei','jun','jul','aug','sep','okt','nov','dec'];
+  barChart('chart-monthly', data.monthlyRepoCreation, 'var(--amber)', {
+    labelFmt: (k) => {
+      const m = k.match(/^(\d{4})-(\d{2})/);
+      return m ? MONTHS_NL_SHORT[+m[2] - 1] + " '" + m[1].slice(2) : k;
+    },
+  });
+  // Languages: switch to clean horizontal bars
+  barChartH('chart-langs', data.languageDistribution, LANG_COLORS);
+
+  // Line charts (time series)
+  if (data.timeSeries) {
+    const ts = data.timeSeries;
+    dailyLineChart('chart-cum-repos', ts, 'repos', '#D97706');
+    dailyLineChart('chart-cum-commits', ts, 'commits', '#16A34A');
+    // Combined issues chart: open + closed + total on one axis
+    multiDailyLineChart('chart-cum-issues', ts, [
+      { field: 'openIssues',   color: '#22D3EE', label: (document.querySelector('[data-i18n="charts.legend_open"]') || {}).textContent || 'Open' },
+      { field: 'closedIssues', color: '#34D399', label: (document.querySelector('[data-i18n="charts.legend_closed"]') || {}).textContent || 'Closed' },
+      { field: 'totalIssues',  color: '#F59E0B', label: (document.querySelector('[data-i18n="charts.legend_total"]') || {}).textContent || 'Totaal' },
+    ]);
+    dailyLineChart('chart-cum-contributors', ts, 'contributors', '#16A34A');
+    dailyLineChart('chart-cum-stars', ts, 'stars', '#F59E0B');
+    dailyLineChart('chart-cum-loc', ts, 'loc', '#3178C6', true);
+  }
+}
+
+function dailyLineChart(id, ts, field, color, formatLarge) {
+  const el = document.getElementById(id);
+  if (!el || !ts.days) return;
+
+  const days = ts.days;
+  const values = days.map(d => ts.data[d] ? ts.data[d][field] : 0);
+  const max = Math.max(...values) || 1;
+
+  function fmt(v) {
+    if (!formatLarge) return v.toLocaleString('nl-NL');
+    if (v >= 1000000) return (v / 1000000).toFixed(1) + 'M';
+    if (v >= 1000) return (v / 1000).toFixed(0) + 'K';
+    return v;
+  }
+
+  const svgW = 600, svgH = 220;
+  const padL = 65, padR = 15, padT = 25, padB = 35;
+  const chartW = svgW - padL - padR;
+  const chartH = svgH - padT - padB;
+
+  // Build SVG path from daily points
+  const points = values.map((v, i) => ({
+    x: padL + (i / Math.max(1, days.length - 1)) * chartW,
+    y: padT + chartH - ((v / max) * chartH),
+    v
+  }));
+
+  const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+  const areaPath = linePath + ` L${points[points.length-1].x.toFixed(1)},${padT + chartH} L${points[0].x.toFixed(1)},${padT + chartH} Z`;
+
+  // Y-axis grid
+  const yGrid = [0, 0.25, 0.5, 0.75, 1].map(f => {
+    const y = padT + chartH - f * chartH;
+    return `<line x1="${padL}" y1="${y}" x2="${svgW - padR}" y2="${y}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <text x="${padL - 8}" y="${y + 4}" fill="#A1A1AA" font-size="10" font-family="JetBrains Mono, monospace" text-anchor="end">${fmt(Math.round(max * f))}</text>`;
+  }).join('');
+
+  // X-axis: only show month labels (first day of each month)
+  const monthEntries = Object.entries(ts.monthLabels);
+  const xLabels = monthEntries.map(([month, firstDay]) => {
+    const idx = days.indexOf(firstDay);
+    if (idx < 0) return '';
+    const x = padL + (idx / Math.max(1, days.length - 1)) * chartW;
+    return `<line x1="${x}" y1="${padT}" x2="${x}" y2="${padT + chartH}" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <text x="${x}" y="${svgH - 8}" fill="#A1A1AA" font-size="10" font-family="JetBrains Mono, monospace" text-anchor="middle">${month.replace('20',"'")}</text>`;
+  }).join('');
+
+  // Show value at last point
+  const last = points[points.length - 1];
+  const first = points[0];
+  const endLabel = `<text x="${last.x - 4}" y="${last.y - 8}" fill="${color}" font-size="12" font-weight="700" font-family="JetBrains Mono, monospace" text-anchor="end">${fmt(last.v)}</text>
+    <circle cx="${last.x}" cy="${last.y}" r="4" fill="${color}" stroke="var(--deep-forge)" stroke-width="2"/>`;
+
+  el.innerHTML = `
+    <svg viewBox="0 0 ${svgW} ${svgH}" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="overflow:visible;">
+      ${yGrid}
+      ${xLabels}
+      <path d="${areaPath}" fill="${color}" fill-opacity="0.1"/>
+      <path d="${linePath}" fill="none" stroke="${color}" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+      ${endLabel}
+      <g class="hover-layer">
+        <line class="hover-crosshair" x1="0" y1="${padT}" x2="0" y2="${padT + chartH}" stroke="${color}" stroke-width="1" stroke-dasharray="3 3" style="display:none;"/>
+        <circle class="hover-dot" r="5" fill="${color}" stroke="var(--deep-forge)" stroke-width="2" style="display:none;"/>
+        <rect class="hover-track" x="${padL}" y="${padT}" width="${chartW}" height="${chartH}" fill="transparent" style="cursor:crosshair;"/>
+      </g>
+    </svg>
+  `;
+  // Hover interactivity — show date + value at nearest point
+  const svg = el.querySelector('svg');
+  const track = el.querySelector('.hover-track');
+  const cross = el.querySelector('.hover-crosshair');
+  const dot   = el.querySelector('.hover-dot');
+  if (!track) return;
+  track.addEventListener('mousemove', (e) => {
+    const r = svg.getBoundingClientRect();
+    const sx = (e.clientX - r.left) / r.width * svgW;
+    const ratio = Math.min(1, Math.max(0, (sx - padL) / chartW));
+    const idx = Math.round(ratio * (days.length - 1));
+    const p = points[idx];
+    cross.setAttribute('x1', p.x);
+    cross.setAttribute('x2', p.x);
+    cross.style.display = '';
+    dot.setAttribute('cx', p.x);
+    dot.setAttribute('cy', p.y);
+    dot.style.display = '';
+    const html = `
+      <div class="tip-row"><span class="tip-dot" style="background:${color}"></span><span class="tip-key">${days[idx]}</span></div>
+      <div class="tip-val">${fmt(p.v)}</div>`;
+    // anchor tooltip at the SVG point's screen position
+    const sxScreen = r.left + (p.x / svgW) * r.width;
+    const syScreen = r.top  + (p.y / svgH) * r.height;
+    showTip(html, sxScreen, syScreen);
+  });
+  track.addEventListener('mouseleave', () => {
+    cross.style.display = 'none';
+    dot.style.display = 'none';
+    hideTip();
+  });
+}
+
+// Multi-series version of dailyLineChart — same axes/grid, N lines overlaid.
+// `series` = [{ field, color, label }, ...]
+function multiDailyLineChart(id, ts, series) {
+  const el = document.getElementById(id);
+  if (!el || !ts.days) return;
+  const days = ts.days;
+  const seriesValues = series.map(s => days.map(d => (ts.data[d] && ts.data[d][s.field] != null) ? ts.data[d][s.field] : 0));
+  const max = Math.max(1, ...seriesValues.flat());
+
+  const svgW = 600, svgH = 220;
+  const padL = 65, padR = 60, padT = 25, padB = 35;
+  const chartW = svgW - padL - padR;
+  const chartH = svgH - padT - padB;
+
+  function pointsFor(values) {
+    return values.map((v, i) => ({
+      x: padL + (i / Math.max(1, days.length - 1)) * chartW,
+      y: padT + chartH - ((v / max) * chartH),
+      v,
+    }));
+  }
+
+  // Y-axis grid + labels (5 ticks)
+  const yGrid = [0, 0.25, 0.5, 0.75, 1].map(f => {
+    const y = padT + chartH - f * chartH;
+    return `<line x1="${padL}" y1="${y}" x2="${svgW - padR}" y2="${y}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+      <text x="${padL - 8}" y="${y + 4}" fill="#A1A1AA" font-size="10" font-family="JetBrains Mono, monospace" text-anchor="end">${Math.round(max * f).toLocaleString('nl-NL')}</text>`;
+  }).join('');
+
+  // X-axis: month labels
+  const monthEntries = Object.entries(ts.monthLabels);
+  const xLabels = monthEntries.map(([month, firstDay]) => {
+    const idx = days.indexOf(firstDay);
+    if (idx < 0) return '';
+    const x = padL + (idx / Math.max(1, days.length - 1)) * chartW;
+    return `<line x1="${x}" y1="${padT}" x2="${x}" y2="${padT + chartH}" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
+      <text x="${x}" y="${svgH - 8}" fill="#A1A1AA" font-size="10" font-family="JetBrains Mono, monospace" text-anchor="middle">${month.replace('20',"'")}</text>`;
+  }).join('');
+
+  // Render each series — area + line + end-label
+  const seriesSvg = series.map((s, si) => {
+    const pts = pointsFor(seriesValues[si]);
+    const linePath = pts.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' ');
+    const last = pts[pts.length - 1];
+    return `
+      <path d="${linePath}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="${last.x}" cy="${last.y}" r="3.5" fill="${s.color}" stroke="var(--deep-forge)" stroke-width="2"/>
+      <text x="${last.x + 6}" y="${last.y + 4}" fill="${s.color}" font-size="11" font-weight="700" font-family="JetBrains Mono, monospace">${last.v.toLocaleString('nl-NL')}</text>
+    `;
+  }).join('');
+
+  el.innerHTML = `
+    <svg viewBox="0 0 ${svgW} ${svgH}" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="overflow:visible;">
+      ${yGrid}
+      ${xLabels}
+      ${seriesSvg}
+      <g class="hover-layer">
+        <line class="hover-crosshair" x1="0" y1="${padT}" x2="0" y2="${padT + chartH}" stroke="rgba(255,255,255,0.4)" stroke-width="1" stroke-dasharray="3 3" style="display:none;"/>
+        <rect class="hover-track" x="${padL}" y="${padT}" width="${chartW}" height="${chartH}" fill="transparent" style="cursor:crosshair;"/>
+      </g>
+    </svg>
+  `;
+  const svg = el.querySelector('svg');
+  const track = el.querySelector('.hover-track');
+  const cross = el.querySelector('.hover-crosshair');
+  if (!track) return;
+  track.addEventListener('mousemove', (e) => {
+    const r = svg.getBoundingClientRect();
+    const sx = (e.clientX - r.left) / r.width * svgW;
+    const ratio = Math.min(1, Math.max(0, (sx - padL) / chartW));
+    const idx = Math.round(ratio * (days.length - 1));
+    const x = padL + (idx / Math.max(1, days.length - 1)) * chartW;
+    cross.setAttribute('x1', x);
+    cross.setAttribute('x2', x);
+    cross.style.display = '';
+    const rows = series.map((s, si) => `
+      <div class="tip-row"><span class="tip-dot" style="background:${s.color}"></span><span class="tip-key">${s.label}</span> <span class="tip-val">${(seriesValues[si][idx] || 0).toLocaleString('nl-NL')}</span></div>
+    `).join('');
+    const html = `<div style="color:var(--scaffold-gray);margin-bottom:4px;">${days[idx]}</div>${rows}`;
+    const sxScreen = r.left + (x / svgW) * r.width;
+    const syScreen = r.top  + (padT / svgH) * r.height;
+    showTip(html, sxScreen, syScreen);
+  });
+  track.addEventListener('mouseleave', () => {
+    cross.style.display = 'none';
+    hideTip();
+  });
+}
+
+function lineChart(id, months, dataObj, color, formatLarge) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const values = months.map(m => dataObj[m] || 0);
+  const max = Math.max(...values) || 1;
+  const min = Math.min(...values);
+
+  function fmt(v) {
+    if (!formatLarge) return v.toLocaleString('nl-NL');
+    if (v >= 1000000) return (v / 1000000).toFixed(1) + 'M';
+    if (v >= 1000) return (v / 1000).toFixed(0) + 'K';
+    return v;
+  }
+
+  // SVG line chart
+  const svgW = 500;
+  const svgH = 220;
+  const padL = 60, padR = 20, padT = 30, padB = 40;
+  const chartW = svgW - padL - padR;
+  const chartH = svgH - padT - padB;
+
+  const points = values.map((v, i) => ({
+    x: padL + (i / Math.max(1, values.length - 1)) * chartW,
+    y: padT + chartH - ((v - 0) / (max || 1)) * chartH,
+    v, label: months[i]
+  }));
+
+  const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'}${p.x},${p.y}`).join(' ');
+  const areaPath = linePath + ` L${points[points.length-1].x},${padT + chartH} L${points[0].x},${padT + chartH} Z`;
+
+  // Y-axis grid lines
+  const yTicks = [0, 0.25, 0.5, 0.75, 1];
+  const yGrid = yTicks.map(f => {
+    const y = padT + chartH - f * chartH;
+    const val = Math.round(max * f);
+    return `<line x1="${padL}" y1="${y}" x2="${svgW - padR}" y2="${y}" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <text x="${padL - 8}" y="${y + 4}" fill="#A1A1AA" font-size="11" font-family="JetBrains Mono, monospace" text-anchor="end">${fmt(val)}</text>`;
+  }).join('');
+
+  // X-axis labels
+  const xLabels = points.map(p =>
+    `<text x="${p.x}" y="${padT + chartH + 20}" fill="#A1A1AA" font-size="11" font-family="JetBrains Mono, monospace" text-anchor="middle">${p.label.replace('20','\'')}</text>`
+  ).join('');
+
+  // Data point dots + value labels
+  const dots = points.map(p =>
+    `<circle cx="${p.x}" cy="${p.y}" r="5" fill="${color}" stroke="var(--deep-forge)" stroke-width="2"/>
+     <text x="${p.x}" y="${p.y - 12}" fill="${color}" font-size="12" font-weight="700" font-family="JetBrains Mono, monospace" text-anchor="middle">${fmt(p.v)}</text>`
+  ).join('');
+
+  el.innerHTML = `
+    <svg viewBox="0 0 ${svgW} ${svgH}" width="100%" height="100%" style="overflow:visible;">
+      ${yGrid}
+      <path d="${areaPath}" fill="${color}" fill-opacity="0.1"/>
+      <path d="${linePath}" fill="none" stroke="${color}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+      ${dots}
+      ${xLabels}
+    </svg>
+  `;
+}
+
+// ───────────────────────────────────────────────────────────────────
+//  Chart tooltip — one shared instance, positioned with mouse events
+// ───────────────────────────────────────────────────────────────────
+function ensureChartTip() {
+  let tip = document.querySelector('.chart-tip');
+  if (!tip) {
+    tip = document.createElement('div');
+    tip.className = 'chart-tip';
+    document.body.appendChild(tip);
+  }
+  return tip;
+}
+function showTip(html, x, y) {
+  const tip = ensureChartTip();
+  tip.innerHTML = html;
+  tip.style.left = x + 'px';
+  tip.style.top  = y + 'px';
+  tip.classList.add('visible');
+}
+function hideTip() {
+  const tip = document.querySelector('.chart-tip');
+  if (tip) tip.classList.remove('visible');
+}
+
+// ───────────────────────────────────────────────────────────────────
+//  Bar chart — SVG, vertical, hover-tooltip, axis grid, value labels
+// ───────────────────────────────────────────────────────────────────
+function barChart(id, dataObj, colors, opts) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const labelFmt = (opts && opts.labelFmt) || ((k) => k);
+  const valFmt   = (opts && opts.valFmt)   || ((v) => v.toLocaleString('nl-NL'));
+  const entries  = Object.entries(dataObj).sort((a, b) => a[0].localeCompare(b[0]));
+  const max = Math.max(1, ...entries.map(e => e[1]));
+
+  const W = Math.max(600, entries.length * 60);
+  const H = 240;
+  const padL = 50, padR = 20, padT = 24, padB = 50;
+  const chartW = W - padL - padR;
+  const chartH = H - padT - padB;
+  const barW = (chartW / entries.length) * 0.62;
+  const step = chartW / entries.length;
+
+  // Y-axis grid (5 ticks)
+  const yGrid = [0, 0.25, 0.5, 0.75, 1].map(f => {
+    const y = padT + chartH - f * chartH;
+    return `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#E7E5E4" stroke-width="1"/>
+      <text x="${padL - 8}" y="${y + 4}" text-anchor="end" class="chart-tick">${Math.round(max * f).toLocaleString('nl-NL')}</text>`;
+  }).join('');
+
+  // Bars
+  const bars = entries.map(([k, v], i) => {
+    const cx = padL + step * (i + 0.5);
+    const h = (v / max) * chartH;
+    const y = padT + chartH - h;
+    const x = cx - barW / 2;
+    const c = (typeof colors === 'object' && colors[k]) ? colors[k] : colors;
+    const tipKey = labelFmt(k);
+    const tipVal = valFmt(v);
+    return `
+      <g class="chart-bar-group" data-key="${k}" data-val="${v}" data-tipkey="${tipKey}" data-tipval="${tipVal}" data-color="${c}">
+        <rect class="chart-bar" x="${x}" y="${y}" width="${barW}" height="${h}" fill="${c}" rx="4" ry="4"/>
+        <text x="${cx}" y="${y - 6}" text-anchor="middle" font-family="var(--font-code)" font-size="10" font-weight="700" fill="var(--deep-forge)">${tipVal}</text>
+        <text x="${cx}" y="${H - padB + 16}" text-anchor="middle" class="chart-tick" font-size="10">${labelFmt(k)}</text>
+      </g>
+    `;
+  }).join('');
+
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" width="100%" height="100%" preserveAspectRatio="xMidYMid meet" style="overflow:visible;">
+    <g class="chart-grid">${yGrid}</g>
+    <line x1="${padL}" y1="${padT + chartH}" x2="${W - padR}" y2="${padT + chartH}" stroke="#A8A29E" stroke-width="1"/>
+    ${bars}
+  </svg>`;
+
+  // Hover-tooltip wiring
+  el.querySelectorAll('.chart-bar-group').forEach(g => {
+    g.addEventListener('mouseenter', (e) => {
+      const rect = g.getBoundingClientRect();
+      const html = `
+        <div class="tip-row"><span class="tip-dot" style="background:${g.dataset.color}"></span><span class="tip-key">${g.dataset.tipkey}</span></div>
+        <div class="tip-val">${g.dataset.tipval}</div>`;
+      showTip(html, rect.left + rect.width / 2, rect.top);
+    });
+    g.addEventListener('mouseleave', hideTip);
+  });
+}
+
+// ───────────────────────────────────────────────────────────────────
+//  Horizontal bar chart — better for category lists like programming
+//  languages. Renders DOM rows with animated track-fills + percent.
+// ───────────────────────────────────────────────────────────────────
+function barChartH(id, dataObj, colors) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const entries = Object.entries(dataObj).sort((a, b) => b[1] - a[1]);
+  const total = entries.reduce((s, e) => s + e[1], 0) || 1;
+  const max = Math.max(...entries.map(e => e[1]));
+
+  el.innerHTML = entries.map(([k, v]) => {
+    const c = (typeof colors === 'object' && colors[k]) ? colors[k] : (colors || 'var(--amber)');
+    const widthPct = ((v / max) * 100).toFixed(1);
+    const sharePct = ((v / total) * 100).toFixed(1);
+    return `
+      <div class="hbar-row" data-key="${k}" data-val="${v}">
+        <div class="hbar-label"><span class="lang-dot" style="background:${c}"></span>${k}</div>
+        <div class="hbar-track"><div class="hbar-fill" style="background:${c};" data-target-width="${widthPct}%"></div></div>
+        <div class="hbar-value">${v.toLocaleString('nl-NL')}<span class="hbar-pct">${sharePct}%</span></div>
+      </div>
+    `;
+  }).join('');
+
+  // Animate fills in after a tick (gives CSS transition something to play with)
+  requestAnimationFrame(() => {
+    el.querySelectorAll('.hbar-fill').forEach(b => {
+      b.style.width = b.dataset.targetWidth;
+    });
+  });
+}
+</script>
+  <script src="/shared/i18n.js?v=20261105"></script>
+</body>
+</html>

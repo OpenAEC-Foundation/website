@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Benutzerhandbuch — Open Pointcloud Studio — OpenAEC Foundation</title>
+  <meta name="description" content="Vom Öffnen eines Scans bis zur Schnittzeichnung, zum geschlossenen Mesh und zu den Flächen eines Raums. Dieses Handbuch folgt der Anwendung: zuerst das…">
+  <link rel="canonical" href="https://open-aec.com/de/open-pointcloud-studio/handleiding/">
+  <!-- hreflang:start -->
+  <link rel="alternate" hreflang="nl" href="https://open-aec.com/open-pointcloud-studio/handleiding/">
+  <link rel="alternate" hreflang="en" href="https://open-aec.com/en/open-pointcloud-studio/handleiding/">
+  <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/open-pointcloud-studio/handleiding/">
+  <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/open-pointcloud-studio/handleiding/">
+  <link rel="alternate" hreflang="es" href="https://open-aec.com/es/open-pointcloud-studio/handleiding/">
+  <link rel="alternate" hreflang="de" href="https://open-aec.com/de/open-pointcloud-studio/handleiding/">
+  <link rel="alternate" hreflang="x-default" href="https://open-aec.com/en/open-pointcloud-studio/handleiding/">
+  <!-- hreflang:end -->
+
+
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="OpenAEC Foundation">
+  <meta property="og:title" content="Benutzerhandbuch — Open Pointcloud Studio — OpenAEC Foundation">
+  <meta property="og:description" content="Vom Öffnen eines Scans bis zur Schnittzeichnung, zum geschlossenen Mesh und zu den Flächen eines Raums. Dieses Handbuch folgt der Anwendung: zuerst das…">
+  <meta property="og:url" content="https://open-aec.com/de/open-pointcloud-studio/handleiding/">
+  <meta property="og:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
+  <meta property="og:locale" content="de_DE">
+  <meta property="og:locale:alternate" content="en_US">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Handleiding — Open Pointcloud Studio">
+  <meta name="twitter:description" content="Vom Öffnen eines Scans bis zur Schnittzeichnung, zum geschlossenen Mesh und zu den Flächen eines Raums. Dieses Handbuch folgt der Anwendung: zuerst das…">
+  <meta name="twitter:image" content="https://open-aec.com/shared/assets/screenshots/open-pointcloud-studio.jpeg">
+
+  <!-- AI / LLM discoverability -->
+  <link rel="alternate" type="text/plain" href="/llms.txt" title="LLM-friendly site overview">
+  <meta name="i18n-page" content="open-pointcloud-studio-handleiding">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/shared/style.css?v=20261111">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Handleiding Open Pointcloud Studio",
+    "inLanguage": "nl",
+    "url": "https://open-aec.com/open-pointcloud-studio/handleiding/",
+    "about": { "@type": "SoftwareApplication", "name": "Open Pointcloud Studio" },
+    "publisher": { "@type": "Organization", "name": "OpenAEC Foundation" }
+  }
+  </script>
+
+  <style>
+    /* Handleiding-specifiek: inhoudsopgave, stappen en toetsen. De rest
+       komt uit /shared/style.css zodat de pagina de site-stijl volgt. */
+    .doc-layout { display: grid; grid-template-columns: 260px 1fr; gap: var(--sp-8); align-items: start; }
+    @media (max-width: 900px) { .doc-layout { grid-template-columns: minmax(0, 1fr); } .doc-toc { position: static !important; } }
+
+    .doc-head { padding-bottom: var(--sp-16); border-bottom: 3px solid transparent; border-image: var(--gradient-accent) 1; }
+    .doc-back { text-decoration: none; margin-bottom: var(--sp-6); }
+    .doc-back .ico { transform: rotate(180deg); }
+    .doc-back:hover { border-color: rgba(217,119,6,0.6); color: white; }
+    .doc-section { padding-top: var(--sp-12); }
+
+    .doc-toc { position: sticky; top: 96px; padding: var(--sp-5); background: linear-gradient(180deg, #FFFFFF, var(--blueprint-white)); border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); box-shadow: 0 1px 0 #FFFFFF inset, var(--shadow-float); }
+    .doc-toc h3 { font-family: var(--font-code); font-weight: 500; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #B45309; margin: 0 0 var(--sp-3); }
+    .doc-toc ol { margin: 0; padding: 0; list-style: none; counter-reset: toc; }
+    .doc-toc li { counter-increment: toc; margin: 2px 0; font-size: 0.9rem; }
+    .doc-toc a { display: flex; gap: 10px; padding: 6px 10px; border-radius: var(--radius-md); color: var(--deep-forge); text-decoration: none; transition: background 0.15s ease, color 0.15s ease; }
+    .doc-toc a::before { content: counter(toc); font-family: var(--font-code); font-size: 0.75rem; color: var(--text-muted); min-width: 1.2em; padding-top: 2px; }
+    .doc-toc a:hover { background: rgba(217,119,6,0.08); }
+    .doc-toc a.is-active { background: rgba(217,119,6,0.14); color: #B45309; font-weight: 600; }
+    .doc-toc a.is-active::before { color: var(--amber); }
+
+    .doc-sheet { background: #FFFFFF; border: 1px solid rgba(42,42,50,0.07); border-radius: var(--radius-lg); box-shadow: var(--shadow-float); padding: var(--sp-10) var(--sp-12); min-width: 0; }
+    .doc-chapter { scroll-margin-top: 96px; padding-bottom: var(--sp-8); margin-bottom: var(--sp-8); border-bottom: 1px solid rgba(42,42,50,0.07); }
+    .doc-chapter:last-child { border-bottom: 0; margin-bottom: 0; }
+    .doc-chapter h2 { font-size: 1.6rem; margin-bottom: var(--sp-3); color: var(--deep-forge); }
+    .doc-chapter h3 { margin: var(--sp-6) 0 var(--sp-2); font-size: 1.05rem; color: var(--deep-forge); }
+    .doc-chapter p, .doc-chapter li { line-height: 1.7; color: var(--text-on-light); max-width: 72ch; }
+    .doc-chapter a { color: #B45309; font-weight: 600; }
+    .doc-chapter code { font-family: var(--font-code); font-size: 0.85em; background: var(--concrete); padding: 1px 5px; border-radius: var(--radius-sm); }
+    .doc-chapter ol.steps { padding-left: 1.2rem; }
+    .doc-chapter ol.steps li { margin: 0.4rem 0; }
+    .doc-chapter ol.steps li::marker { color: var(--amber); font-weight: 700; }
+
+    kbd { font-family: var(--font-code); font-size: 0.85em; background: var(--concrete); border: 1px solid rgba(42,42,50,0.15); border-bottom-width: 2px; border-radius: var(--radius-sm); padding: 1px 6px; white-space: nowrap; }
+    .doc-note { border-left: 3px solid var(--amber); background: rgba(217,119,6,0.07); border-radius: var(--radius-md); padding: var(--sp-4) var(--sp-5); margin: var(--sp-5) 0; }
+    .doc-note strong { display: block; margin-bottom: 0.25rem; color: #B45309; font-family: var(--font-heading); }
+
+    table.doc-keys { width: 100%; border-collapse: collapse; margin-top: var(--sp-3); }
+    table.doc-keys th, table.doc-keys td { text-align: left; padding: 0.5rem 0.7rem; border-bottom: 1px solid rgba(42,42,50,0.08); font-size: 0.92rem; }
+    table.doc-keys th { font-family: var(--font-code); font-weight: 500; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); }
+    table.doc-keys tr:hover td { background: rgba(217,119,6,0.04); }
+    table.doc-keys td:first-child { width: 34%; }
+
+    figure.doc-fig { margin: var(--sp-6) 0; }
+    figure.doc-fig img { width: 100%; display: block; border-radius: var(--radius-lg); border: 1px solid rgba(42,42,50,0.08); box-shadow: var(--shadow-float); }
+    figure.doc-fig figcaption { font-size: 0.85rem; color: var(--text-muted); margin-top: 0.6rem; }
+    @media (max-width: 900px) { .doc-sheet { padding: var(--sp-6) var(--sp-5); } .doc-toc { position: static !important; } }
+    .doc-chapter ul + p, .doc-chapter ol + p, .doc-chapter table + p, .doc-chapter figure + ul { margin-top: var(--sp-4); }
+    .doc-intro { margin-top: 0; }
+  </style>
+
+  <meta name="i18n-static" content="de">
+  <!-- schema:start -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": "https://open-aec.com/#website",
+        "url": "https://open-aec.com/",
+        "name": "OpenAEC Foundation",
+        "inLanguage": "de",
+        "publisher": {
+          "@id": "https://open-aec.com/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://open-aec.com/#organization",
+        "name": "OpenAEC Foundation",
+        "url": "https://open-aec.com/",
+        "sameAs": [
+          "https://github.com/OpenAEC-Foundation",
+          "https://www.linkedin.com/company/openaec-foundation-io",
+          "https://mastodon.social/@openaec",
+          "https://www.threads.com/@openaec"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://open-aec.com/de/open-pointcloud-studio/handleiding/#webpage",
+        "url": "https://open-aec.com/de/open-pointcloud-studio/handleiding/",
+        "isPartOf": {
+          "@id": "https://open-aec.com/#website"
+        },
+        "inLanguage": "de",
+        "dateModified": "2026-11-12",
+        "breadcrumb": {
+          "@id": "https://open-aec.com/de/open-pointcloud-studio/handleiding/#breadcrumb"
+        }
+      },
+      {
+        "@id": "https://open-aec.com/de/open-pointcloud-studio/handleiding/#breadcrumb",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://open-aec.com/de/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Open Pointcloud Studio",
+            "item": "https://open-aec.com/de/open-pointcloud-studio"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Handleiding",
+            "item": "https://open-aec.com/de/open-pointcloud-studio/handleiding/"
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <!-- schema:end -->
+</head>
+<body class="page-panels">
+  <div id="shared-nav"><!-- nav:start -->
+<nav class="navbar">
+  <div class="nav-container">
+    <a href="/de/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+    <button class="hamburger" onclick="var open=this.classList.toggle('active');this.parentElement.querySelector('.nav-menu').classList.toggle('active',open);this.setAttribute('aria-expanded',open);" aria-label="Menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
+      <ul class="nav-links">
+        <li><a href="/de/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema" data-i18n-de="Ökosystem">Ökosystem</a></li>
+        <li><a href="/de/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta" data-i18n-de="Roadmap">Roadmap</a></li>
+        <li><a href="/de/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura" data-i18n-de="Architektur">Architektur</a></li>
+        <li><a href="/de/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas" data-i18n-de="Statistiken">Statistiken</a></li>
+        <li><a href="/de/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias" data-i18n-de="Neuigkeiten">Neuigkeiten</a></li>
+        <li><a href="/de/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores" data-i18n-de="Unterstützer">Unterstützer</a></li>
+        <li><a href="/de/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura" data-i18n-de="Struktur">Struktur</a></li>
+      </ul>
+      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios" data-i18n-de="Feedback">Feedback</span></a>
+      <div class="lang-switcher">
+        <a class="lang-btn" data-lang="nl" href="/open-pointcloud-studio/handleiding/" hreflang="nl">NL</a>
+        <a class="lang-btn" data-lang="en" href="/en/open-pointcloud-studio/handleiding/" hreflang="en">EN</a>
+        <a class="lang-btn" data-lang="fr" href="/fr/open-pointcloud-studio/handleiding/" hreflang="fr">FR</a>
+        <a class="lang-btn" data-lang="tr" href="/tr/open-pointcloud-studio/handleiding/" hreflang="tr">TR</a>
+        <a class="lang-btn" data-lang="es" href="/es/open-pointcloud-studio/handleiding/" hreflang="es">ES</a>
+        <a class="lang-btn active" data-lang="de" href="/de/open-pointcloud-studio/handleiding/" hreflang="de">DE</a>
+      </div>
+    </div>
+  </div>
+</nav>
+<!-- nav:end --></div>
+  <script src="/shared/nav.js?v=20261015"></script>
+  <script src="/shared/feedback.js?v=20261112" defer></script>
+
+  <main id="main">
+
+  <header class="product-head surface-spot doc-head">
+    <div class="product-head-inner">
+      <a class="chip doc-back" href="/de/open-pointcloud-studio/"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg>Open Pointcloud Studio</a>
+      <p class="pill-label" data-i18n="header.label">Benutzerhandbuch</p>
+      <h1 data-i18n="header.title">Open <span class="accent">Pointcloud</span> Studio — Benutzerhandbuch</h1>
+      <p class="lead" data-i18n="header.desc">Vom Öffnen eines Scans bis zur Schnittzeichnung, zum geschlossenen Mesh und zu den Flächen eines Raums. Dieses Handbuch folgt der Anwendung: zuerst das Fenster, dann jedes Werkzeug.</p>
+      <div class="btn-group">
+        <a href="/de/open-pointcloud-studio/#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="header.downloadBtn">Zu den Downloads</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="header.guideBtn">Vollständiges Handbuch auf GitHub</span></a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section doc-section"><div class="container">
+    <div class="doc-layout">
+
+      <!-- Inhoudsopgave -->
+      <nav class="doc-toc" aria-label="Inhoudsopgave" data-doc-toc>
+        <h3 data-i18n="toc.title">Inhalt</h3>
+        <ol>
+          <li><a href="#installeren" data-i18n="toc.installeren">Installation</a></li>
+          <li><a href="#venster" data-i18n="toc.venster">Das Fenster</a></li>
+          <li><a href="#openen" data-i18n="toc.openen">Scans öffnen</a></li>
+          <li><a href="#rondkijken" data-i18n="toc.rondkijken">Umsehen und Darstellung</a></li>
+          <li><a href="#stations" data-i18n="toc.stations">Standpunkte, Fotos und Begehung</a></li>
+          <li><a href="#snedebox" data-i18n="toc.snedebox">Schnittbox</a></li>
+          <li><a href="#selecteren" data-i18n="toc.selecteren">Auswählen und Bearbeiten</a></li>
+          <li><a href="#meten" data-i18n="toc.meten">Messen</a></li>
+          <li><a href="#views" data-i18n="toc.views">Ansichten, Notizen und BCF</a></li>
+          <li><a href="#exporteren" data-i18n="toc.exporteren">Exportieren und Zusammenführen</a></li>
+          <li><a href="#snedetekening" data-i18n="toc.snedetekening">Schnittzeichnungen</a></li>
+          <li><a href="#bladen" data-i18n="toc.bladen">Blätter</a></li>
+          <li><a href="#meshen" data-i18n="toc.meshen">Vermaschen</a></li>
+          <li><a href="#vlakken" data-i18n="toc.vlakken">Erkannte Flächen</a></li>
+          <li><a href="#bag" data-i18n="toc.bag">3D-BAG-Gebäude</a></li>
+          <li><a href="#index" data-i18n="toc.index">Index und Detaillierungsgrad</a></li>
+          <li><a href="#instellingen" data-i18n="toc.instellingen">Einstellungen und Erweiterungen</a></li>
+          <li><a href="#sneltoetsen" data-i18n="toc.sneltoetsen">Tasten und Maus</a></li>
+        </ol>
+      </nav>
+
+      <div class="doc-sheet">
+        <div class="doc-note doc-intro"><strong data-i18n="note.title">Mehr Details</strong><span data-i18n="note.desc">Diese Seite gibt einen Überblick. Das <a href="https://github.com/OpenAEC-Foundation/open-pointcloud-studio/blob/main/docs/guide.md" target="_blank" rel="noopener">vollständige Benutzerhandbuch</a> auf GitHub beschreibt jedes Werkzeug im Detail, mit allen Grenzen und Maßen.</span></div>
+
+        <article class="doc-chapter" id="installeren">
+          <h2><span class="doc-num">1.</span> <span data-i18n="c.installeren.title">Installation</span></h2>
+          <div data-i18n="c.installeren.body"><p>Open Pointcloud Studio läuft unter Windows, macOS und Linux. Alle Pakete finden Sie im <a href="/de/open-pointcloud-studio/#download">Download-Bereich</a>; jede Schaltfläche startet den Download sofort, ohne Konto.</p>
+<h3>Windows</h3>
+<p>Das Installationsprogramm (<code>.exe</code>) installiert für den aktuellen Benutzer ohne Administratorrechte oder für alle Benutzer. Möchten Sie lieber nichts installieren? Dann nehmen Sie die ZIP-Datei. Warnt Windows vor einem unbekannten Herausgeber, wählen Sie <em>Weitere Informationen</em> und <em>Trotzdem ausführen</em>.</p>
+<h3>macOS</h3>
+<p>Öffnen Sie das Disk-Image (<code>.dmg</code>) und ziehen Sie die Anwendung in den Ordner „Programme“. Sie ist nicht notarisiert, daher verweigert macOS den ersten Start: Erlauben Sie ihn einmalig unter <em>Systemeinstellungen → Datenschutz &amp; Sicherheit → Dennoch öffnen</em>.</p>
+<h3>Linux</h3>
+<p>Machen Sie das AppImage einmalig mit <code>chmod +x</code> ausführbar und starten Sie es. Außerdem gibt es ein <code>.deb</code>-Paket und ein Archiv, das nur das Programm enthält.</p>
+<div class="doc-note"><strong>Open CAD Studio ist dabei</strong><span>Jedes Paket enthält Open CAD Studio, sodass Sie eine gezeichnete DXF- oder DWG-Datei sofort ansehen können. Sonst muss nichts installiert werden.</span></div></div>
+        </article>
+
+        <article class="doc-chapter" id="venster">
+          <h2><span class="doc-num">2.</span> <span data-i18n="c.venster.title">Das Fenster</span></h2>
+          <div data-i18n="c.venster.body"><p>Das Fenster besteht aus sechs Bereichen. Wenn Sie sie kennen, finden Sie alles.</p>
+<figure class="doc-fig"><img src="/shared/assets/screenshots/open-pointcloud-studio.jpeg" alt="The window with a scan of 455 million points: the Project Browser at the left, the scene in the middle, Properties at the right." loading="lazy"><figcaption>Das Fenster mit einem Scan aus 455 Millionen Punkten: links der Projektbrowser, in der Mitte die Szene, rechts die Eigenschaften.</figcaption></figure>
+<ul>
+<li><strong>Obere Leiste</strong>: die Schaltfläche <em>Datei</em>, die Registerkarten <em>Start</em> und <em>Ansicht</em>, Schnellzugriffe (Punktwolke importieren, Scanordner öffnen, exportieren, rückgängig, wiederholen) und <em>Einstellungen</em>.</li>
+<li><strong>Menüband Start</strong>: Datei, Navigation, Auswahl, Schnittbox, Vermaschung, 2D-Schnittzeichnungen, Blätter, Messen, Anmerkungen, Index und Export. In schmalen Fenstern klappen Gruppen zu Dropdown-Menüs zusammen.</li>
+<li><strong>Projektbrowser</strong> (links) mit fünf Gruppen: <em>SCANS</em> (die geöffneten Punktwolken, jede mit einem Sichtbarkeitsschalter), <em>KLASSEN</em>, <em>ANSICHTEN</em> (3D-Ansichten, Grundrisse, Aufrisse, Schnitte und geöffnete Dateien), <em>BLÄTTER</em> und <em>BCF</em>.</li>
+<li><strong>Szene</strong> (Mitte): die 3D-Ansicht mit dem Ansichtswürfel. Über die Registerkarten darüber lassen sich das 3D-Modell sowie die geöffneten Ansichten und Zeichnungen nebeneinander anordnen.</li>
+<li><strong>Eigenschaften</strong> (rechts): was der aktive Scan enthält und die Einstellungen dessen, was gerade verwendet wird, etwa der Schnittbox, einer Messung oder eines Meshs.</li>
+<li><strong>Statusleiste</strong> (unten): was gerade geschieht, wie viele Punkte geöffnet und ausgewählt sind und was der Hauptbereich zeigt.</li>
+</ul>
+<p>Klicken Sie im Projektbrowser auf einen Scan, um ihn zum <strong>aktiven Scan</strong> zu machen. Messen, Bearbeiten, Vermaschen, Exporte und Ansichten beziehen sich immer auf den aktiven Scan. Mit Umschalt und Strg markieren Sie mehrere Scans, um sie gemeinsam auszublenden oder zu schließen.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="openen">
+          <h2><span class="doc-num">3.</span> <span data-i18n="c.openen.title">Scans öffnen</span></h2>
+          <div data-i18n="c.openen.body"><p>Öffnen Sie einen Scan mit <em>Punktwolke importieren</em> unter Datei, über das Symbol in der oberen Leiste, mit <em>+ Punktwolke hinzufügen</em> im Projektbrowser oder indem Sie Dateien oder Ordner auf das Fenster ziehen. Es können mehrere Dateien gleichzeitig geöffnet sein.</p>
+<h3>Ein ganzes Scanprojekt</h3>
+<p><em>Scanordner öffnen…</em> öffnet alle unterstützten Dateien eines Ordners (nicht der Unterordner), nach Namen sortiert. Eine Scanprojektdatei (<code>.rcp</code>) öffnet die darin aufgeführten Scans, wenn sie als E57, LAS, LAZ, PLY, PCD, PTX, PTS oder Text daneben liegen. Die indizierten Kopien (<code>.rcs</code>) sind ein geschlossenes Format und werden nicht gelesen.</p>
+<h3>Was zuerst erscheint</h3>
+<ul>
+<li><strong>LAS und LAZ</strong> öffnen sich sofort anhand ihres Headers, mit einer Stichprobe von Punkten, die über die Datei verteilt sind.</li>
+<li><strong>Andere Formate</strong> werden beim ersten Mal vollständig eingelesen. Große Dateien zeigen ihre Punkte schon während des Einlesens, ein Scan baut sich also Schritt für Schritt auf.</li>
+<li>Eine Datei, die bereits einen Index hat, öffnet sich direkt daraus (siehe <a href="#index">Index und Detaillierungsgrad</a>).</li>
+</ul>
+<p>Eine Leiste über der Szene zeigt den Fortschritt jedes Imports und jeder Indizierung, die verbleibende Zeit und eine Schaltfläche <em>Abbrechen</em>.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="rondkijken">
+          <h2><span class="doc-num">4.</span> <span data-i18n="c.rondkijken.title">Umsehen und Darstellung</span></h2>
+          <div data-i18n="c.rondkijken.body"><ul>
+<li><strong>Orbit</strong>: mit der mittleren Maustaste bei gedrückter Umschalttaste ziehen oder mit der linken Maustaste und Alt.</li>
+<li><strong>Orbit um einen Punkt</strong>: Doppelklicken Sie auf einen Punkt; die Ansicht dreht sich dann um ihn. Ein Doppelklick ins Leere lässt sie wieder um den Mittelpunkt drehen.</li>
+<li><strong>Schwenken</strong>: mit der mittleren oder rechten Maustaste ziehen. <strong>Zoomen</strong>: das Mausrad drehen, gezoomt wird an der Zeigerposition.</li>
+<li><code>F</code> oder <em>Alles zoomen</em> zeigt die isometrische Übersicht des gesamten Modells. Klicken Sie auf eine Fläche oder Ecke des <strong>Ansichtswürfels</strong>, um eine feste Blickrichtung zu wählen.</li>
+</ul>
+<h3>Darstellung</h3>
+<p>Die Gruppe <em>DARSTELLUNG</em> legt fest, wie Punkte gezeichnet werden: Farben nach <strong>RGB</strong>, <strong>Höhe</strong>, <strong>Intensität</strong> oder <strong>Klassifizierung</strong>; <strong>Eye-Dome</strong> für eine Schattierung nach Tiefe, die Kanten und Relief hervorhebt; die <strong>Punktgröße</strong> (0,1 bis 20) und das <strong>Budget</strong>: die Höchstzahl gleichzeitig gezeichneter Punkte (100.000 bis 10 Millionen).</p>
+<p>Unter <em>KLASSEN</em> lassen sich Klassifizierungen wie Layer ein- und ausschalten. Eine ausgeblendete Klasse bleibt auch bei Auswahlen und Meshes unberücksichtigt.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="stations">
+          <h2><span class="doc-num">5.</span> <span data-i18n="c.stations.title">Standpunkte, Fotos und Begehung</span></h2>
+          <div data-i18n="c.stations.body"><p>Scannerpositionen aus E57-, PCD- und PTX-Dateien erscheinen als <strong>Standpunktmarkierungen</strong>. <em>Standpunkte einpassen</em> zeigt sie zusammen mit der Punktwolke im Bild; in den Eigenschaften führt <em>Liste anzeigen</em> jeden Standpunkt mit seinen Koordinaten auf.</p>
+<h3>Standpunktfotos</h3>
+<p>E57-Scans enthalten oft die Fotos jedes Standpunkts. Ein solcher Standpunkt wird zu einer Kugel, die ihre Umgebung zeigt. Klicken Sie auf eine Kugel, um sich in diesen Standpunkt zu stellen: Ziehen Sie, um sich umzusehen, scrollen Sie zum Zoomen und klicken Sie auf einen anderen Standpunkt, um dorthin zu wechseln. Panoramen und Fotos entlang eines abgegangenen Wegs öffnen sich mit einem Doppelklick auf ihre Markierung; der Schieberegler <em>Foto</em> legt fest, wie stark das Foto die Punkte überdeckt.</p>
+<h3>Begehung</h3>
+<p>Mit <code>W</code> <code>A</code> <code>S</code> <code>D</code> gehen Sie durch die Szene, <code>Q</code> und <code>E</code> bewegen nach unten und oben, und mit Umschalt gehen Sie schneller. Esc oder <em>Zurück zur 3D-Ansicht</em> führt zurück.</p>
+<h3>Farbe aus Fotos</h3>
+<p>Ein Scan mit Fotos kann seinen Punkten die Farben geben, die die Fotos zeigen, zum Beispiel bei einer Punktwolke ohne Farben. Der Block <em>Farbe aus Fotos</em> in den Eigenschaften färbt alles ein, was in der Schnittbox liegt; mit Rückgängig nehmen Sie das zurück. Die Quelldatei wird nicht verändert.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="snedebox">
+          <h2><span class="doc-num">6.</span> <span data-i18n="c.snedebox.title">Schnittbox</span></h2>
+          <div data-i18n="c.snedebox.body"><p><strong>Schnittbox</strong> schaltet eine Box ein, die alles außerhalb abschneidet. Nutzen Sie sie, um in ein Gebäude hineinzusehen, ein Geschoss auszuwählen und festzulegen, was eine Zeichnung, ein Mesh oder ein Export verwendet.</p>
+<figure class="doc-fig"><img src="/shared/assets/screenshots/open-pointcloud-studio-3.jpg" alt="The section box limited to a slice of the height, so the facade with its windows comes free." loading="lazy"><figcaption>Die Schnittbox, auf einen Ausschnitt der Höhe begrenzt, sodass die Fassade mit ihren Fenstern frei liegt.</figcaption></figure>
+<ul>
+<li>Ziehen Sie an einem der sechs <strong>Griffe</strong>, um die jeweilige Seite zu verschieben, oder geben Sie in den Eigenschaften <strong>Min</strong> und <strong>Max</strong> für X, Y und Z ein und wählen Sie <em>XYZ-Grenzen anwenden</em>.</li>
+<li><strong>An Auswahl anpassen</strong> legt die Box um die ausgewählten Punkte; <strong>Box zurücksetzen</strong> öffnet sie wieder auf das gesamte Modell.</li>
+<li><strong>Drehen</strong>: mit den gebogenen Pfeilen, mit <em>Drehung (°)</em> oder mit <strong>An Wänden ausrichten</strong>, das die Box entlang der Hauptrichtung der Wände dreht.</li>
+<li>Wo die Box ein Mesh schneidet, wird der Schnitt gefüllt dargestellt (<em>Schnitt füllen</em>), wie in einer Schnittzeichnung.</li>
+</ul>
+<p>Die Box schneidet nur ab, was gezeichnet wird. Innerhalb der Box liest die Anwendung mehr Details aus dem Index, bis zum Punktbudget.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="selecteren">
+          <h2><span class="doc-num">7.</span> <span data-i18n="c.selecteren.title">Auswählen und Bearbeiten</span></h2>
+          <div data-i18n="c.selecteren.body"><h3>Auswählen</h3>
+<ul>
+<li>Ohne Werkzeug wählt ein <strong>Klick</strong> den nächstgelegenen Punkt und ein <strong>Ziehen</strong> ein Rechteck aus. <strong>Rechteckauswahl</strong> erfasst alle Quellpunkte im Rechteck, auch jene, die nicht auf dem Bildschirm zu sehen sind.</li>
+<li><strong>Punkt wählen</strong> zeigt unter <em>Ausgewählter Punkt</em> die Koordinaten, die Farbe, die Intensität und die Klasse eines Punkts.</li>
+<li><strong>Aufheben</strong> verwirft die Auswahl; <strong>Auswahl zoomen</strong> holt sie ins Bild.</li>
+</ul>
+<h3>Bearbeiten</h3>
+<ul>
+<li>Die Taste <kbd>Entf</kbd> blendet die ausgewählten Punkte aus. Rückgängig und Wiederholen reichen bis zu acht Bearbeitungen zurück.</li>
+<li><strong>Ausdünnen</strong> behält einen festgelegten Prozentsatz der Punkte, gleichmäßig über den gesamten Scan verteilt.</li>
+<li><strong>Verschieben</strong> und <strong>Skalieren</strong> versetzen oder skalieren den aktiven Scan; <em>Transformation zurücksetzen</em> stellt ihn wieder her.</li>
+</ul>
+<p>Nichts davon verändert die Quelldatei. Um das Ergebnis zu behalten, exportieren Sie es in eine neue Datei.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="meten">
+          <h2><span class="doc-num">8.</span> <span data-i18n="c.meten.title">Messen</span></h2>
+          <div data-i18n="c.meten.body"><p><strong>Messen</strong> auf der Registerkarte Start beginnt eine Abstandsmessung; in den Eigenschaften wählen Sie <strong>Abstand</strong> oder <strong>Fläche</strong>. Ein Klick nimmt den Quellpunkt unter dem Zeiger. Ziehen dreht weiterhin die Ansicht, sodass Sie sie zwischen zwei Punkten drehen können.</p>
+<figure class="doc-fig"><img src="/shared/assets/screenshots/open-pointcloud-studio-2.jpg" alt="A distance of 26.774 metres between two points, with the section box low in the building." loading="lazy"><figcaption>Ein Abstand von 26,774 Metern zwischen zwei Punkten, mit der Schnittbox tief im Gebäude.</figcaption></figure>
+<ul>
+<li><strong>Abstand</strong>: zwei Punkte. Sie erhalten die 3D-Länge, die horizontale Länge und den Höhenunterschied.</li>
+<li><strong>Fläche</strong>: ein geschlossenes Polygon; schließen Sie mit Enter oder einem Klick auf den ersten Punkt ab. Sie erhalten die wahre Fläche (auch eines geneigten Dachs oder einer Wand), die Grundrissfläche und den Umfang.</li>
+</ul>
+<p>Die Rücktaste entfernt den letzten Punkt, Esc beendet die Messung. Die Werte sind in Metern mit drei Nachkommastellen angegeben; die Koordinaten eines Scans werden als Meter gelesen und nicht umgerechnet. Eine Messung wird nicht mit dem Scan gespeichert.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="views">
+          <h2><span class="doc-num">9.</span> <span data-i18n="c.views.title">Ansichten, Notizen und BCF</span></h2>
+          <div data-i18n="c.views.body"><h3>Ansichten</h3>
+<p><strong>Ansicht speichern</strong> unter ANSICHTEN hält fest, was die Szene zeigt: die Kamera, die Schnittbox und den Farbmodus. Ein Klick auf eine Ansicht stellt alles wieder her. Jede Ansicht hat Schaltflächen zum Umbenennen, Aktualisieren, Duplizieren und Löschen. Ein Scan fasst höchstens 64 Ansichten.</p>
+<h3>Notizen und Linien</h3>
+<p><strong>Notiz</strong> und <strong>Linie</strong> in den Eigenschaften setzen Anmerkungen auf Punkte des Scans: Eine Notiz ist ein Punkt mit Text, eine Linie ein Pfeil zwischen zwei Punkten. Sie gehören zur aktiven Ansicht und bleiben auf ihren Punkten, während sich die Kamera bewegt.</p>
+<h3>Snapshots und BCF</h3>
+<p>Jede Ansicht erhält einen PNG-Snapshot der Szene. <strong>Ansichten als BCF…</strong> (Datei → Export) oder <strong>BCF exportieren…</strong> im Projektbrowser schreibt alle Ansichten des aktiven Scans in eine BCF-2.1-Datei, mit Kamera, Schnittbox, Notizen als Kommentaren und den Snapshots. So gelangen Feststellungen in ein BIM-Programm.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="exporteren">
+          <h2><span class="doc-num">10.</span> <span data-i18n="c.exporteren.title">Exportieren und Zusammenführen</span></h2>
+          <div data-i18n="c.exporteren.body"><p>Die Exporte finden Sie unter Datei bei <em>EXPORT</em>. Das Format wählen Sie auf der Seite Arbeitsbereich: PLY (binär oder ASCII), LAS, LAZ, E57, XYZ, PTS oder CSV.</p>
+<table class="doc-keys">
+<tr><th>Export</th><th>Was geschrieben wird</th></tr>
+<tr><td>Volle Auflösung…</td><td>Der aktive Scan ohne gelöschte Punkte, verschoben und skaliert wie in der Szene</td></tr>
+<tr><td>Ausgewählte Punkte…</td><td>Nur die Auswahl</td></tr>
+<tr><td>Ohne ausgewählte Punkte…</td><td>Alles außer der Auswahl</td></tr>
+<tr><td>Schnittbox…</td><td>Die Punkte innerhalb der Schnittbox</td></tr>
+<tr><td>Schnittzeichnung…</td><td>Was die Box schneidet, als 2D-Zeichnung in DXF oder DWG</td></tr>
+<tr><td>Jeder n-te Punkt…</td><td>Jeder 2., 5., 10., 20., 50. oder 100. Punkt</td></tr>
+<tr><td>Oberflächen-Mesh…</td><td>Das Mesh als OBJ, PLY, STL, DXF, DWG oder IFC</td></tr>
+<tr><td>Erkannte Flächen…</td><td>Die Flächen als JSON, OBJ, DXF, DWG oder IFC</td></tr>
+<tr><td>Ansichten als BCF…</td><td>Die gespeicherten Ansichten</td></tr>
+</table>
+<p>Eine LAS- oder LAZ-Datei, die nach LAS oder LAZ exportiert wird, behält die ursprünglichen Punktdatensätze; ein unbearbeiteter Scan, der in sein eigenes Format exportiert wird, ist eine exakte Kopie. <strong>Sichtbare LAS/LAZ-Scans zusammenführen…</strong> fügt die sichtbaren LAS- und LAZ-Layer zu einer Datei zusammen.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="snedetekening">
+          <h2><span class="doc-num">11.</span> <span data-i18n="c.snedetekening.title">Schnittzeichnungen</span></h2>
+          <div data-i18n="c.snedetekening.body"><p><strong>Schnittzeichnung</strong> in der Gruppe SCHNITTBOX erstellt eine 2D-Zeichnung im Maßstab 1:1 von dem, was die Schnittbox schneidet, als DXF oder DWG für ein Zeichenprogramm. Sie zeigt eine Schicht hinter einer Seite der Box: die Punkte, den <strong>gefüllten Schnitt</strong> (Wände, Stützen und Decken als gefüllte Bereiche mit geschlossener Kontur), den Rahmen und eine Textzeile.</p>
+<figure class="doc-fig"><img src="/shared/assets/screenshots/open-pointcloud-studio-4.jpg" alt="Section drawing of two rooms: the plan with the filled cut, a door opening and a round column." loading="lazy"><figcaption>Schnittzeichnung zweier Räume: der Grundriss mit dem gefüllten Schnitt, einer Türöffnung und einer Rundstütze.</figcaption></figure>
+<h3>Ein Grundriss, Schritt für Schritt</h3>
+<ol class="steps">
+<li>Öffnen Sie die Scans des Geschosses und blenden Sie aus, was nicht in die Zeichnung soll.</li>
+<li>Schalten Sie die <strong>Schnittbox</strong> ein und legen Sie ihre Oberseite auf die Schnitthöhe, zum Beispiel 1,10 m über dem Boden. Mit einer Schicht von 0,10 m sehen Sie, was zwischen 1,00 und 1,10 m liegt: oberhalb der meisten Möbel, durch die Türen hindurch.</li>
+<li>Wählen Sie <strong>Schnittzeichnung</strong>, lassen Sie <em>Ansicht</em> auf <em>Grundriss</em> und <em>Schichtdicke (m)</em> auf 0,10.</li>
+<li>Wählen Sie <strong>Vorschau</strong>. Erscheint ein Schrank oder eine Person als Bereich, wählen Sie diese Punkte aus, löschen Sie sie und rufen Sie die Vorschau erneut auf.</li>
+<li>Wählen Sie <strong>Zeichnung exportieren…</strong> und geben Sie einen Dateinamen an, der auf <code>.dxf</code> oder <code>.dwg</code> endet.</li>
+</ol>
+<h3>Ein Schnitt</h3>
+<p>Legen Sie eine Seitenfläche der Box dorthin, wo der Schnitt liegen soll (drehen Sie die Box zuerst mit <em>An Wänden ausrichten</em>, wenn das Gebäude schräg steht), und wählen Sie die passende Ansicht: <em>Schnitt, vorne</em>, <em>hinten</em>, <em>links</em> oder <em>rechts</em>. Eine dickere Schicht, bis zu 5 m, zeigt auch, was hinter dem Schnitt liegt, wie in einem Aufriss.</p>
+<h3>Die Zeichnungsansicht</h3>
+<p><strong>2D-Grundriss / Aufriss / Schnitt erstellen…</strong> unter ANSICHTEN erstellt eine Zeichnung, die Sie in der Anwendung selbst betrachten, auf einem hellen Blatt mit Layern, die Sie ein- und ausschalten. Ihr blauer <strong>Zuschneidebereich</strong> lässt sich ziehen oder mit <code>R</code> <code>O</code> drehen; die Zeichnung wird dann neu erstellt. <em>Im CAD-Viewer öffnen</em> öffnet die zuletzt exportierte DXF- oder DWG-Datei im mitgelieferten Open CAD Studio.</p>
+<div class="doc-note"><strong>Grenzen des gefüllten Schnitts</strong><span>Der gefüllte Schnitt wird aus den Punkten abgeleitet. Eine nur von einer Seite gescannte Wand wird zu einem schmalen Streifen, Öffnungen, die schmaler als etwa einen halben Meter sind, werden geschlossen, und Möbel in der Schicht werden mitgezeichnet, sofern ihre Punkte nicht vorher gelöscht werden.</span></div></div>
+        </article>
+
+        <article class="doc-chapter" id="bladen">
+          <h2><span class="doc-num">12.</span> <span data-i18n="c.bladen.title">Blätter</span></h2>
+          <div data-i18n="c.bladen.body"><p>Ein <strong>Blatt</strong> ist Papier (A4 bis A0), auf dem gespeicherte 3D-Ansichten, Grundrisse, Aufrisse und Schnitte für den Druck angeordnet werden, mit Rahmen und Schriftfeld. Legen Sie eines mit <em>Neues Blatt…</em> unter BLÄTTER an.</p>
+<ul>
+<li><strong>Ansichten platzieren</strong>: Ziehen Sie eine Zeile aus ANSICHTEN auf das Papier. Eine Zeichnung wird im Maßstab 1:100 platziert (auch 1:20, 1:50, 1:200, 1:500 oder ein eigener Maßstab); eine 3D-Ansicht zeigt ihren Snapshot.</li>
+<li><strong>Beschriften</strong>: <em>Text</em>, <em>Bemaßung</em>, <em>Hinweislinie</em> und <em>Linie</em>, mit Bemaßungen, die an Enden und Ecken einrasten.</li>
+<li><strong>Sperren</strong>: Eine gesperrte Ansicht oder Zeichnung bleibt so, wie sie eingerichtet wurde.</li>
+<li><strong>PDF exportieren…</strong> schreibt das Blatt als einseitiges PDF, mit den Zeichnungen als Vektoren.</li>
+</ul></div>
+        </article>
+
+        <article class="doc-chapter" id="meshen">
+          <h2><span class="doc-num">13.</span> <span data-i18n="c.meshen.title">Vermaschen</span></h2>
+          <div data-i18n="c.meshen.body"><p><strong>Punktwolke vermaschen</strong> in der Gruppe OBERFLÄCHE öffnet eine Karte, die in drei Schritten von den Punkten zu einem Mesh oder zu den Flächen eines Gebäudes führt: <em>Methode</em>, <em>Optionen</em> und <em>Ausführen</em>. Die Methoden arbeiten mit dem, was innerhalb der Schnittbox liegt.</p>
+<table class="doc-keys">
+<tr><th>Methode</th><th>Geeignet für</th></tr>
+<tr><td>Geschlossenes Mesh</td><td>Einen Raum oder Gebäudeteil, dessen Oberfläche stimmen muss: ohne Überlappungen, geschlossen, wo Punkte vorhanden sind, mit dem gemessenen Abstand zwischen Punkten und Mesh</td></tr>
+<tr><td>Gelände-Mesh</td><td>Gelände und andere Oberflächen, von oben gesehen (2,5D)</td></tr>
+<tr><td>3D-Oberfläche</td><td>Einen schnellen Eindruck eines ganzen Scans, einschließlich Wänden; es bleiben Löcher, und das Ergebnis ist nicht wasserdicht</td></tr>
+<tr><td>Ebene Flächen</td><td>Die Ebenen von Wänden, Böden und Dächern sowie Rundstützen; erzeugt kein Mesh (siehe <a href="#vlakken">Erkannte Flächen</a>)</td></tr>
+</table>
+<figure class="doc-fig"><img src="/shared/assets/screenshots/open-pointcloud-studio-5.jpg" alt="Closed mesh of two rooms, with an open door opening in an outer wall." loading="lazy"><figcaption>Geschlossenes Mesh zweier Räume, mit einer offenen Türöffnung in einer Außenwand.</figcaption></figure>
+<h3>Ein geschlossenes Mesh eines Raums</h3>
+<ol class="steps">
+<li>Öffnen Sie die Scans des Raums und warten Sie, bis sie indiziert sind.</li>
+<li>Legen Sie die Schnittbox um den Raum: die Seiten bis zur Mitte der Wände, die Oberseite knapp über der Decke, die Unterseite knapp unter dem Boden.</li>
+<li>Wählen Sie <strong>Punktwolke vermaschen</strong> → <strong>Geschlossenes Mesh</strong> → <em>Weiter</em>. Liegen mehrere Standpunkte als getrennte Dateien vor, stellen Sie <em>Scans</em> auf <em>Alle sichtbaren Scans</em>.</li>
+<li>Wählen Sie <strong>Ausführen</strong>. Danach zeigt die Karte die Eckpunkte, die Dreiecke und die mittlere Abweichung.</li>
+<li>Sichern Sie das Mesh mit <strong>Mesh exportieren…</strong> als OBJ, PLY, STL, DXF, DWG oder IFC; es besteht nur in dieser Sitzung.</li>
+</ol>
+<p>Ein Scan fasst ein Mesh: Ein neues ersetzt das vorherige. Auch OBJ-, PLY-, OFF- und STL-Dateien lassen sich als Meshes öffnen. Ein Mesh hat höchstens vier Millionen Eckpunkte und acht Millionen Dreiecke.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="vlakken">
+          <h2><span class="doc-num">14.</span> <span data-i18n="c.vlakken.title">Erkannte Flächen</span></h2>
+          <div data-i18n="c.vlakken.body"><p>Die Methode <strong>Ebene Flächen</strong> von Punktwolke vermaschen findet die Flächen in einem Teil eines Scans: Böden, Decken, Wände und geneigte Ebenen, jeweils als eine Ebene mit Kontur (ein Fenster ist ein Loch, eine Tür eine Aussparung), dazu Rundstützen und Rohre als Zylinder. Jede Fläche gibt an, wie viele Punkte zu ihr gehören und wie weit sie von ihr entfernt liegen.</p>
+<figure class="doc-fig"><img src="/shared/assets/screenshots/open-pointcloud-studio-6.jpg" alt="Detected faces of two rooms, each type in a colour of its own: ceilings blue, walls sand." loading="lazy"><figcaption>Erkannte Flächen zweier Räume, jeder Typ in einer eigenen Farbe: Decken blau, Wände sandfarben.</figcaption></figure>
+<p>Eine Fläche ist kein Mesh. Ein Mesh folgt der gescannten Oberfläche mit vielen kleinen Dreiecken; eine Fläche ersetzt eine Wand durch die eine Ebene, die zu ihr passt. Flächen sind das, woran Sie messen und wonach Sie zeichnen: die Fläche eines Bodens, die Höhe zwischen Boden und Decke, ob eine Wand im Lot steht.</p>
+<ol class="steps">
+<li>Legen Sie die Schnittbox um den Raum, wie für ein geschlossenes Mesh.</li>
+<li>Wählen Sie <strong>Punktwolke vermaschen</strong> → <strong>Ebene Flächen</strong> → <em>Weiter</em> → <strong>Ausführen</strong>.</li>
+<li>Gehen Sie die Liste unter <em>Erkannte Flächen</em> in den Eigenschaften durch; ein Klick hebt eine Fläche in der Szene hervor.</li>
+<li>Sichern Sie sie mit <strong>Flächen exportieren…</strong> als JSON, OBJ, DXF, DWG oder IFC.</li>
+</ol></div>
+        </article>
+
+        <article class="doc-chapter" id="bag">
+          <h2><span class="doc-num">15.</span> <span data-i18n="c.bag.title">3D-BAG-Gebäude</span></h2>
+          <div data-i18n="c.bag.body"><p><strong>3D-BAG-Gebäude…</strong> unter Datei lädt Gebäudemodelle der Niederlande aus dem öffentlichen Register 3D BAG herunter und zeigt sie als Mesh-Layer neben Ihrem Scan.</p>
+<ul>
+<li>Geben Sie ein Gebiet in RD-New-Koordinaten ein, übernehmen Sie es vom aktiven Scan oder von der Schnittbox oder zeichnen Sie ein Rechteck auf der Karte.</li>
+<li>Wählen Sie den Detaillierungsgrad: LoD 1.2, 1.3 oder 2.2, und wählen Sie <strong>OBJ herunterladen</strong>.</li>
+<li>Ein Download umfasst höchstens 2 mal 2 km und etwa 5.000 Gebäude.</li>
+</ul>
+<p>Das Ergebnis ist eine OBJ-Datei in RD New und mit NAP-Höhen, mit dem Quellenhinweis von 3D BAG (CC BY 4.0). Dafür ist eine Internetverbindung erforderlich.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="index">
+          <h2><span class="doc-num">16.</span> <span data-i18n="c.index.title">Index und Detaillierungsgrad</span></h2>
+          <div data-i18n="c.index.body"><p>Eine große Punktwolke wird nicht im Arbeitsspeicher gehalten. Die Anwendung baut auf der Festplatte einen <strong>Index</strong> (einen Octree) auf und liest daraus die Punkte, die die Kamera braucht, bis zum Punktbudget.</p>
+<ul>
+<li>Eine Punktwolke mit einer Million Punkten oder mehr wird nach dem Öffnen automatisch indiziert. <strong>Auto-Index</strong> in der Gruppe INDEX schaltet das aus; <strong>Index erstellen</strong> startet die Indizierung von Hand.</li>
+<li>Der Index bleibt auf der Festplatte. Wird dieselbe unveränderte Datei später erneut geöffnet, öffnet sie sich direkt aus ihrem Index.</li>
+<li>Während der Bewegung bleiben die Punkte auf dem Bildschirm; kurz nachdem die Kamera stillsteht, werden die Details für die neue Ansicht gelesen.</li>
+</ul>
+<div class="doc-note"><strong>Speicherplatz</strong><span>Bei einer großen Vermessung kann ein Index mehrere Gigabyte auf der Festplatte belegen.</span></div></div>
+        </article>
+
+        <article class="doc-chapter" id="instellingen">
+          <h2><span class="doc-num">17.</span> <span data-i18n="c.instellingen.title">Einstellungen und Erweiterungen</span></h2>
+          <div data-i18n="c.instellingen.body"><p>Die Schaltfläche <strong>Einstellungen</strong> oben rechts oder <code>Strg</code>+<code>,</code> öffnet den Dialog:</p>
+<ul>
+<li><strong>Allgemein</strong>: die Sprache (automatisch erkennen, Englisch oder Niederländisch) und der CAD-Viewer, der exportierte DXF- und DWG-Dateien öffnet.</li>
+<li><strong>Erscheinungsbild</strong>: das Design, eines der fünf aus dem OpenAEC-Styleguide: Hell, Forge, OpenAEC, Blueprint oder Hoher Kontrast.</li>
+<li><strong>Info</strong>: Version, Lizenzen und ein Link zum Quellcode.</li>
+</ul>
+<h3>Erweiterungen</h3>
+<p>Unter <strong>Datei → Erweiterungen</strong> schalten Sie eingebaute Funktionen ein oder aus (etwa 3D BAG) und installieren Erweiterungen von anderen. Eine Erweiterung ist ein Programm, das mit Ihren Rechten läuft: Installieren Sie nur Erweiterungen, deren Autor Sie vertrauen.</p>
+<h3>Befehls-API und MCP</h3>
+<p>Jedes Fenster startet einen Befehlsserver auf <code>127.0.0.1</code>, und <code>open-pointcloud-studio --mcp</code> startet einen MCP-Server, sodass Skripte und KI-Assistenten die Anwendung steuern können. Die Links zur Dokumentation finden Sie auf der <a href="/de/open-pointcloud-studio/">Produktseite</a>.</p></div>
+        </article>
+
+        <article class="doc-chapter" id="sneltoetsen">
+          <h2><span class="doc-num">18.</span> <span data-i18n="c.sneltoetsen.title">Tasten und Maus</span></h2>
+          <div data-i18n="c.sneltoetsen.body"><table class="doc-keys">
+<tr><th>Eingabe</th><th>Was sie bewirkt</th></tr>
+<tr><td>Ziehen mit links</td><td>Rechteck, das Punkte auswählt</td></tr>
+<tr><td><kbd>Alt</kbd> + Ziehen mit links, <kbd>Umschalt</kbd> + Ziehen mit der mittleren Taste</td><td>Orbit</td></tr>
+<tr><td>Ziehen mit der mittleren oder rechten Taste</td><td>Schwenken</td></tr>
+<tr><td>Doppelklick</td><td>Orbit um den Punkt unter dem Zeiger</td></tr>
+<tr><td>Mausrad</td><td>Zoomen an der Zeigerposition</td></tr>
+<tr><td><kbd>F</kbd></td><td>Alles zoomen</td></tr>
+<tr><td><kbd>R</kbd>, dann <kbd>O</kbd></td><td>Zuschneidebereich oder Schnittbox drehen; Winkel eingeben, Enter übernimmt</td></tr>
+<tr><td><kbd>Entf</kbd></td><td>Ausgewählte Punkte ausblenden</td></tr>
+<tr><td><kbd>Strg</kbd>+<kbd>Z</kbd> / <kbd>Strg</kbd>+<kbd>Y</kbd></td><td>Rückgängig / Wiederholen</td></tr>
+<tr><td><kbd>Enter</kbd> / <kbd>Rücktaste</kbd></td><td>Messung abschließen / letzten Punkt entfernen</td></tr>
+<tr><td><kbd>Esc</kbd></td><td>Dialog oder Karte schließen, Begehung beenden, zurück zu Auswählen</td></tr>
+<tr><td><kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd>, <kbd>Q</kbd> <kbd>E</kbd></td><td>Gehen; nach unten und oben (Umschalt = schneller)</td></tr>
+<tr><td><kbd>Strg</kbd>+<kbd>Tab</kbd></td><td>Nächste Registerkarte über der Szene</td></tr>
+<tr><td><kbd>Strg</kbd>+<kbd>,</kbd></td><td>Einstellungen</td></tr>
+</table>
+<p>Unter macOS tritt <kbd>Cmd</kbd> an die Stelle von <kbd>Strg</kbd>, außer bei <kbd>Strg</kbd>+<kbd>Tab</kbd>.</p></div>
+        </article>
+
+      </div>
+    </div>
+  </div></section>
+
+  </main>
+
+  <div id="shared-footer"><!-- footer:start -->
+<footer class="site-footer">
+  <div class="site-footer-inner">
+    <div class="site-footer-grid">
+      <div class="site-footer-about">
+        <a href="/de/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión." data-i18n-de="Open-Source-Software für die gesamte AEC-Kette (Hochbau, Infrastruktur, Ingenieurbau) — vom Entwurf bis zu Übergabe und Betrieb.">Open-Source-Software für die gesamte AEC-Kette (Hochbau, Infrastruktur, Ingenieurbau) — vom Entwurf bis zu Übergabe und Betrieb.</p>
+      </div>
+      <nav class="site-footer-col" aria-label="Pagina's">
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas" data-i18n-de="Seiten">Seiten</h4>
+        <a href="/de/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros" data-i18n-de="Über uns">Über uns</a>
+        <a href="/de/ifcx/">IFCX</a>
+        <a href="/de/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto" data-i18n-de="Angebot anfordern">Angebot anfordern</a>
+        <a href="/de/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes" data-i18n-de="FAQ">FAQ</a>
+        <a href="/wiki/" data-i18n-en="Wiki" data-i18n-fr="Wiki" data-i18n-tr="Wiki" data-i18n-es="Wiki" data-i18n-de="Wiki">Wiki</a>
+        <a href="/academy/" data-i18n-en="Academy" data-i18n-fr="Academy" data-i18n-tr="Academy" data-i18n-es="Academy" data-i18n-de="Academy">Academy</a>
+        <a href="/de/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal" data-i18n-de="Haftungsausschluss">Haftungsausschluss</a>
+        <a href="/de/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos" data-i18n-de="Satzungsentwurf">Satzungsentwurf</a>
+        <a href="/de/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos" data-i18n-de="Credits">Credits</a>
+        <a href="/de/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones" data-i18n-de="Grundsätze &amp; Positionen">Grundsätze &amp; Positionen</a>
+        <a href="/de/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales" data-i18n-de="Social Media">Social Media</a>
+      </nav>
+      <div class="site-footer-col">
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución" data-i18n-de="Stiftung i. G.">Stiftung i. G.</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos" data-i18n-de="Niederlande">Niederlande</span></p>
+      </div>
+    </div>
+    <div class="site-footer-bottom">
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras" data-i18n-de="© 2026 Open AEC Foundation i. G. — Open Source für eine offene Bau- und Infrastrukturbranche">© 2026 Open AEC Foundation i. G. — Open Source für eine offene Bau- und Infrastrukturbranche</p>
+      <div class="footer-socials">
+        <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
+          <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+          <a href="https://whatsapp.com/channel/0029Vb8VveULI8YT7fsmsA42" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          <a href="https://www.instagram.com/openaec/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 01-1.38-.9 3.72 3.72 0 01-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2zm0 1.62c-3.14 0-3.51.01-4.75.07-.9.04-1.39.19-1.71.32-.43.17-.74.37-1.06.69-.32.32-.52.63-.69 1.06-.13.32-.28.81-.32 1.71-.06 1.24-.07 1.61-.07 4.75s.01 3.51.07 4.75c.04.9.19 1.39.32 1.71.17.43.37.74.69 1.06.32.32.63.52 1.06.69.32.13.81.28 1.71.32 1.24.06 1.61.07 4.75.07s3.51-.01 4.75-.07c.9-.04 1.39-.19 1.71-.32.43-.17.74-.37 1.06-.69.32-.32.52-.63.69-1.06.13-.32.28-.81.32-1.71.06-1.24.07-1.61.07-4.75s-.01-3.51-.07-4.75c-.04-.9-.19-1.39-.32-1.71a2.85 2.85 0 00-.69-1.06 2.85 2.85 0 00-1.06-.69c-.32-.13-.81-.28-1.71-.32-1.24-.06-1.61-.07-4.75-.07zm0 2.76a5.42 5.42 0 110 10.84 5.42 5.42 0 010-10.84zm0 1.62a3.8 3.8 0 100 7.6 3.8 3.8 0 000-7.6zm5.6-2.9a1.27 1.27 0 110 2.54 1.27 1.27 0 010-2.54z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61595411277065" target="_blank" rel="noopener" aria-label="Facebook" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 011.141.195v3.325a8.623 8.623 0 00-.653-.036 26.805 26.805 0 00-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 00-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647z"/></svg></a>
+          <a href="https://x.com/openaec" target="_blank" rel="noopener" aria-label="X" title="X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="https://www.youtube.com/@openaecfoundation" target="_blank" rel="noopener" aria-label="YouTube" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+          <a href="https://mastodon.social/@openaec" target="_blank" rel="me noopener" aria-label="Mastodon" title="Mastodon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg></a>
+          <a href="https://www.threads.com/@openaec" target="_blank" rel="noopener" aria-label="Threads" title="Threads"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.586-1.308-.883-2.359-.89h-.029c-.844 0-1.992.232-2.721 1.32L7.734 7.847c.98-1.454 2.568-2.256 4.478-2.256h.044c3.194.02 5.097 1.975 5.287 5.388.108.046.216.094.321.142 1.49.7 2.58 1.761 3.154 3.07.797 1.82.871 4.79-1.548 7.158-1.85 1.81-4.094 2.628-7.277 2.65Zm1.003-11.69c-.242 0-.487.007-.739.021-1.836.103-2.98.946-2.916 2.143.067 1.256 1.452 1.839 2.784 1.767 1.224-.065 2.818-.543 3.086-3.71a10.5 10.5 0 0 0-2.215-.221z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- footer:end --></div>
+
+  <script>
+    // Markeert in de inhoudsopgave het hoofdstuk dat in beeld is.
+    (function () {
+      const toc = document.querySelector('[data-doc-toc]');
+      if (!toc || !('IntersectionObserver' in window)) return;
+      const links = new Map([...toc.querySelectorAll('a[href^="#"]')].map((a) => [a.getAttribute('href').slice(1), a]));
+      const zet = (id) => links.forEach((a, k) => a.classList.toggle('is-active', k === id));
+      const io = new IntersectionObserver((entries) => {
+        const zichtbaar = entries.filter((e) => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (zichtbaar.length) zet(zichtbaar[0].target.id);
+      }, { rootMargin: '-100px 0px -60% 0px' });
+      links.forEach((_, id) => { const el = document.getElementById(id); if (el) io.observe(el); });
+    })();
+  </script>
+  <script src="/shared/i18n.js?v=20261105"></script>
+</body>
+</html>

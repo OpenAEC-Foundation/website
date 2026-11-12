@@ -93,7 +93,17 @@
       cancel: 'Cancelar', send: 'Enviar', sending: 'Enviando…', thanks: 'Gracias, tu aviso se ha enviado.',
       madeIssue: 'Se ha creado una incidencia en <strong>{repo}</strong>.', toTeam: 'El equipo de esta aplicación ha recibido tu aviso.', stored: 'Los desarrolladores verán tu aviso en su panel.',
       onGithub: 'Ver en GitHub', rate: 'Has enviado muchos avisos en poco tiempo. Vuelve a intentarlo dentro de una hora.', dup: 'Ya hemos recibido este aviso.',
-      rejected: 'El aviso no se ha aceptado. Revisa el texto y el correo electrónico.', failed: 'No se ha podido enviar. Comprueba tu conexión e inténtalo de nuevo.' }
+      rejected: 'El aviso no se ha aceptado. Revisa el texto y el correo electrónico.', failed: 'No se ha podido enviar. Comprueba tu conexión e inténtalo de nuevo.' },
+    de: { title: 'Feedback geben', close: 'Schließen', app: 'Um welche App geht es?', general: 'Website / allgemein', kind: 'Art der Meldung',
+      bug: 'Etwas funktioniert nicht', feature: 'Idee', other: 'Frage oder Anmerkung', subject: 'Titel', subjectPh: 'Z. B. Maßlinie verschiebt sich nach dem Speichern',
+      text: 'Beschreibung', textPh: 'Was haben Sie getan, was haben Sie erwartet und was ist passiert?', mail: 'E-Mail-Adresse', mailOpt: '(optional, nur wenn Sie eine Antwort wünschen)',
+      pub: 'Ihre Meldung wird ein <strong>öffentliches Issue auf GitHub</strong> in <code>{repo}</code>. Schreiben Sie nichts hinein, was Sie nicht teilen möchten. Ihre E-Mail-Adresse erscheint nicht im Issue.',
+      team: 'Ihre Meldung geht an <strong>das Team dieser App</strong> und ist <strong>nicht öffentlich</strong>.',
+      sent: 'Wird mitgesendet', needTitle: 'Geben Sie einen Titel ein.', needText: 'Schreiben Sie in Titel und Beschreibung zusammen mindestens 10 Zeichen.', badMail: 'Diese E-Mail-Adresse ist ungültig.',
+      cancel: 'Abbrechen', send: 'Senden', sending: 'Wird gesendet…', thanks: 'Vielen Dank, Ihre Meldung wurde gesendet.',
+      madeIssue: 'In <strong>{repo}</strong> wurde ein Issue angelegt.', toTeam: 'Das Team dieser App hat Ihre Meldung erhalten.', stored: 'Die Entwickler sehen Ihre Meldung in ihrer Übersicht.',
+      onGithub: 'Auf GitHub ansehen', rate: 'Sie haben in kurzer Zeit viele Meldungen gesendet. Versuchen Sie es in einer Stunde erneut.', dup: 'Diese Meldung liegt uns bereits vor.',
+      rejected: 'Die Meldung wurde nicht angenommen. Prüfen Sie den Text und die E-Mail-Adresse.', failed: 'Das Senden ist fehlgeschlagen. Prüfen Sie Ihre Verbindung und versuchen Sie es erneut.' }
   };
   var TYPES = [['bug', 'bug', 'warning'], ['feature', 'feature', 'bolt'], ['general', 'other', 'chat']];
 
@@ -139,7 +149,7 @@
   }
   function app(id) { for (var i = 0; i < APPS.length; i++) if (APPS[i][0] === id) return APPS[i]; return APPS[0]; }
   function fromPath() {
-    var seg = location.pathname.replace(/^\/(en|fr|tr|es)(\/|$)/, '/').split('/').filter(Boolean)[0] || '';
+    var seg = location.pathname.replace(/^\/(en|fr|tr|es|de)(\/|$)/, '/').split('/').filter(Boolean)[0] || '';
     seg = PAGE_APP[seg] || seg;
     for (var i = 0; i < APPS.length; i++) if (APPS[i][0] === seg) return seg;
     return 'website';

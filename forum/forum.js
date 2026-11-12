@@ -170,6 +170,36 @@
       upsell: 'La misma cuenta te da las herramientas OpenAEC en el navegador y el SuperCloud.',
       upsellKnop: 'Descubre el SuperCloud',
       verlopen: 'Se ha cerrado tu sesión. Vuelve a iniciarla.'
+    },
+    de: {
+      titel: 'Forum', label: 'Community',
+      lead: 'Stellen Sie eine Frage, teilen Sie eine Idee oder zeigen Sie, was Sie mit den OpenAEC-Tools machen.',
+      inloggen: 'Anmelden', uitloggen: 'Abmelden', aanmelden: 'Konto erstellen',
+      ingelogdAls: 'Angemeldet als', nieuw: 'Neues Thema', categorieen: 'Kategorien',
+      recent: 'Neueste Themen', alle: 'Alle Themen', geen: 'Noch keine Themen. Eröffnen Sie das erste!',
+      reacties: function (n) { return n === 1 ? '1 Antwort' : n + ' Antworten'; },
+      onderwerpen: function (n) { return n === 1 ? '1 Thema' : n + ' Themen'; },
+      meer: 'Mehr laden', terug: '← Zurück zum Forum', reageren: 'Antworten', plaatsen: 'Veröffentlichen',
+      jouwReactie: 'Ihre Antwort', titelVeld: 'Titel', berichtVeld: 'Nachricht', categorieVeld: 'Kategorie',
+      opmaak: 'Reiner Text. Eine Leerzeile beginnt einen neuen Absatz, Links werden anklickbar und ``` grenzt Code ab.',
+      logInOmTeReageren: 'Melden Sie sich mit Ihrem OpenAEC-Konto an, um zu antworten.',
+      logInOmTeSchrijven: 'Melden Sie sich mit Ihrem OpenAEC-Konto an, um ein Thema zu eröffnen.',
+      gesloten: 'Dieses Thema ist geschlossen.', vastgezet: 'Angeheftet', verborgen: 'Ausgeblendet', team: 'Team',
+      bewerken: 'Bearbeiten', opslaan: 'Speichern', annuleren: 'Abbrechen', bewerkt: 'bearbeitet',
+      verberg: 'Ausblenden', toon: 'Einblenden', sluit: 'Schließen', open: 'Wieder öffnen', zetVast: 'Anheften', maakLos: 'Lösen',
+      laden: 'Wird geladen…', fout: 'Etwas ist schiefgegangen. Versuchen Sie es erneut.', onbekend: 'Dieses Thema existiert nicht (mehr).',
+      alleenTeam: 'Hier eröffnet nur das Team Themen.',
+      aanmeldKop: 'Erstellen Sie Ihr kostenloses OpenAEC-Konto',
+      aanmeldUitleg: 'Mit einem einzigen Konto schreiben Sie im Forum und nutzen bald auch die OpenAEC-Tools und die SuperCloud. Sie erhalten eine E-Mail, um Ihre Adresse zu bestätigen und ein Passwort zu wählen; danach kehren Sie hierher zurück.',
+      naam: 'Name', email: 'E-Mail-Adresse',
+      akkoord: 'Ich akzeptiere die <a href="/supercloud/de/datenschutz/">Datenschutzerklärung</a> und die <a href="/forum/#/regels">Forenregeln</a>.',
+      versturen: 'Konto erstellen', alAccount: 'Sie haben bereits ein OpenAEC-Konto?',
+      regelsKop: 'Forenregeln',
+      regels: ['Bleiben Sie freundlich und helfen Sie anderen; jeder hat einmal angefangen.', 'Bleiben Sie beim Thema: Open Source im Bauwesen und die OpenAEC-Tools.', 'Keine Werbung, kein Spam und keine personenbezogenen Daten anderer.', 'Ein Fehler in einem Tool? Melden Sie ihn auch auf GitHub, mit der Version und dem, was Sie getan haben.', 'Moderatoren können Beiträge ausblenden und Themen schließen.'],
+      upsellKop: 'Mehr mit Ihrem Konto',
+      upsell: 'Mit demselben Konto nutzen Sie die OpenAEC-Tools im Browser und die SuperCloud.',
+      upsellKnop: 'SuperCloud entdecken',
+      verlopen: 'Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.'
     }
   };
 

@@ -16,7 +16,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const SKIP = new Set(['en', 'fr', 'tr', 'es', 'supercloud', '_voorbeeld', 'nijmegen', 'old', 'shared', 'scripts', 'node_modules', '.git']);
+const SKIP = new Set(['en', 'fr', 'tr', 'es', 'de', 'supercloud', '_voorbeeld', 'nijmegen', 'old', 'shared', 'scripts', 'node_modules', '.git']);
 // App-pagina's zonder SoftwareApplication-schema; IFCX en IFCCAD zijn formaten, geen apps.
 const EXTRA = ['open-books', 'open-safety-studio', 'open-3d-viewer', 'ext-drawing-statistics'];
 
