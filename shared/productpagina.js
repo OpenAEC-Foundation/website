@@ -301,7 +301,13 @@
       fetch('https://api.github.com/repos/' + REPO + (PRE ? '/releases?per_page=10' : '/releases/latest'))
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (rel) {
-          if (PRE && Array.isArray(rel)) rel = rel.filter(function (x) { return !x.draft; })[0];
+          if (PRE && Array.isArray(rel)) {
+            rel = rel.find(function (release) {
+              return !release.draft && (!PREFIX || (release.assets || []).some(function (asset) {
+                return asset.name.indexOf(PREFIX) === 0;
+              }));
+            });
+          }
           if (rel && rel.tag_name) apply(rel);
         })
         .catch(function () {});
