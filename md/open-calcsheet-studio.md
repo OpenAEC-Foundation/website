@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux, Web
 **Category:** Structural Calculations
-**Current version:** nightly (2026-11-11)
+**Current version:** v2026.46.0 (2026-11-12)
 **Tool ID:** `open-calcsheet-studio`
 **GitHub repo:** `OpenAEC-Foundation/Open-CalcSheet-Studio`
 
 ## Live stats
 
 - Stars: **6**
-- Commits: **205**
+- Commits: **231**
 - Forks: **2**
-- Open issues: **18**
-- Releases: **3**
-- Total downloads: **281**
-- Downloads by platform: Windows (217), Linux (AppImage) (26), macOS (14), Other (14), Linux (deb) (10)
+- Open issues: **22**
+- Releases: **4**
+- Total downloads: **321**
+- Downloads by platform: Windows (239), Linux (AppImage) (30), Other (20), macOS (19), Linux (deb) (13)
 
 ## Key features
 
@@ -57,7 +57,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-calcsheet-studio/
 - Live demo: https://open-calcsheet-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio
-- Latest release: https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/tag/v2026.45.2
+- Latest release: https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/tag/v2026.46.0
 - Nightly builds: https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
@@ -68,8 +68,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows · Open.CalcSheet.Studio_2026.45.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.45.0/Open.CalcSheet.Studio_2026.45.0_x64-setup.exe) (v2026.45.0 — 54 MB)
 - [Windows · Open.CalcSheet.Studio_2026.45.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.45.1/Open.CalcSheet.Studio_2026.45.1_x64-setup.exe) (v2026.45.1 — 64 MB)
 - [Windows · Open.CalcSheet.Studio_2026.45.1_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.45.1/Open.CalcSheet.Studio_2026.45.1_x64_user-setup.exe) (v2026.45.1 — 64 MB)
+- [Other · SHA256SUMS.txt](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.45.2/SHA256SUMS.txt) (v2026.45.2)
 - [Windows · Open.CalcSheet.Studio_2026.45.0_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.45.0/Open.CalcSheet.Studio_2026.45.0_x64_user-setup.exe) (v2026.45.0 — 54 MB)
-- [macOS · Open.CalcSheet.Studio_2026.45.2_universal.dmg](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.45.2/Open.CalcSheet.Studio_2026.45.2_universal.dmg) (v2026.45.2 — 79 MB)
 
 ---
 

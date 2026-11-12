@@ -162,7 +162,7 @@ Last updated: 2026-11-04
 Forks of external projects are excluded from these numbers: they are not our own software.
 
 Available in five languages, each on its own URL:
-Dutch at https://open-aec.com/, English at /en/, French at /fr/, Turkish at /tr/, Spanish at /es/.
+Dutch at https://open-aec.com/, English at /en/, French at /fr/, Turkish at /tr/, Spanish at /es/, German at /de/.
 <!-- stats:end -->
 
 ---
