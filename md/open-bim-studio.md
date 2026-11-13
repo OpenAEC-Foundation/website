@@ -13,12 +13,12 @@
 ## Live stats
 
 - Stars: **18**
-- Commits: **978**
+- Commits: **981**
 - Forks: **4**
 - Open issues: **52**
 - Releases: **2**
-- Total downloads: **299**
-- Downloads by platform: Archive (208), Other (91)
+- Total downloads: **304**
+- Downloads by platform: Archive (212), Other (92)
 
 ## Key features
 
@@ -63,9 +63,9 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/SHA256SUMS) (v0.1.1)
 - [Other · RELEASE-NOTES.txt](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/RELEASE-NOTES.txt) (v0.1.1)
 - [Archive · Open-BIM-Studio-0.1.1-source.tar.gz](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/Open-BIM-Studio-0.1.1-source.tar.gz) (v0.1.1 — 4.4 MB)
+- [Other · Open-BIM-Studio-0.1-linux-x86_64.run](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1/Open-BIM-Studio-0.1-linux-x86_64.run) (v0.1 — 5.6 MB)
 - [Other · VERIFICATION.txt](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/VERIFICATION.txt) (v0.1.1)
 - [Other · Demo-Pavilion.ifcxb](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1/Demo-Pavilion.ifcxb) (v0.1 — 10.5 MB)
-- [Other · Open-BIM-Studio-0.1-linux-x86_64.run](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1/Open-BIM-Studio-0.1-linux-x86_64.run) (v0.1 — 5.6 MB)
 
 ---
 

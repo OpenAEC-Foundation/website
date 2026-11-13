@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux, Android, iOS
 **Category:** Field / Inspection
-**Current version:** v0.3.9 (2026-11-10)
+**Current version:** v0.4.12 (2026-11-12)
 **Tool ID:** `open-field-studio`
 **GitHub repo:** `OpenAEC-Foundation/Open-Field-Studio`
 
 ## Live stats
 
 - Stars: **4**
-- Commits: **41**
+- Commits: **54**
 - Forks: **4**
 - Open issues: **18**
-- Releases: **15**
-- Total downloads: **544**
-- Downloads by platform: Windows (290), Android (86), Linux (AppImage) (85), Linux (deb) (33), Windows (MSI) (27), Linux (rpm) (21), Linux (snap) (1), Other (1)
+- Releases: **28**
+- Total downloads: **701**
+- Downloads by platform: Windows (346), Android (133), Linux (AppImage) (99), Linux (deb) (47), Windows (MSI) (40), Linux (rpm) (34), Linux (snap) (1), Other (1)
 
 ## Key features
 
@@ -54,7 +54,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-field-studio/
 - Live demo: https://open-field-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/Open-Field-Studio
-- Latest release: https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases/tag/v0.3.9
+- Latest release: https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases/tag/v0.4.12
 - Nightly builds: https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases/tag/nightly
 
 ## Direct downloads (most popular)

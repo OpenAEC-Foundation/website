@@ -17,8 +17,8 @@
 - Forks: **2**
 - Open issues: **12**
 - Releases: **22**
-- Total downloads: **2,481**
-- Downloads by platform: Windows (1323), Linux (AppImage) (756), Linux (deb) (205), macOS (112), Windows (MSI) (65), Linux (snap) (19), Other (1)
+- Total downloads: **2,572**
+- Downloads by platform: Windows (1386), Linux (AppImage) (775), Linux (deb) (207), macOS (118), Windows (MSI) (65), Linux (snap) (20), Other (1)
 
 ## Key features
 
@@ -55,11 +55,11 @@ Installing and keeping all OpenAEC tools up to date on one workstation without v
 - [Windows · OpenAEC.Installer_0.2.14_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.14/OpenAEC.Installer_0.2.14_x64-setup.exe) (v0.2.14 — 4.9 MB)
 - [Linux (AppImage) · OpenAEC.Installer_0.2.2_amd64.AppImage](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_amd64.AppImage) (v0.2.2 — 79.4 MB)
 - [Windows · OpenAEC.Installer_0.2.11_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.11/OpenAEC.Installer_0.2.11_x64-setup.exe) (v0.2.11 — 4.8 MB)
+- [Linux (AppImage) · OpenAEC.Installer_0.2.14_amd64.AppImage](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.14/OpenAEC.Installer_0.2.14_amd64.AppImage) (v0.2.14 — 80.4 MB)
 - [Windows · OpenAEC.Installer_0.2.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.0/OpenAEC.Installer_0.2.0_x64-setup.exe) (v0.2.0 — 4.2 MB)
 - [Linux (deb) · OpenAEC.Installer_0.2.2_amd64.deb](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_amd64.deb) (v0.2.2 — 5.5 MB)
 - [Windows · OpenAEC.Installer_0.2.12_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.12/OpenAEC.Installer_0.2.12_x64-setup.exe) (v0.2.12 — 4.8 MB)
-- [Linux (AppImage) · OpenAEC.Installer_0.2.14_amd64.AppImage](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.14/OpenAEC.Installer_0.2.14_amd64.AppImage) (v0.2.14 — 80.4 MB)
-- [Linux (AppImage) · OpenAEC.Installer_0.2.4_amd64.AppImage](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.4/OpenAEC.Installer_0.2.4_amd64.AppImage) (v0.2.4 — 80 MB)
+- [Windows · OpenAEC.Installer_0.2.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_x64-setup.exe) (v0.2.2 — 4.2 MB)
 
 ---
 

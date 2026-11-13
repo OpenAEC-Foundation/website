@@ -6,19 +6,19 @@
 **License:** Apache-2.0
 **Platforms:** Windows, macOS, Linux
 **Category:** Office Suite
-**Current version:** v2026.46.1 (2026-11-11)
+**Current version:** v2026.46.2 (2026-11-13)
 **Tool ID:** `open-office-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-office-studio`
 
 ## Live stats
 
 - Stars: **7**
-- Commits: **903**
+- Commits: **915**
 - Forks: **4**
-- Open issues: **80**
-- Releases: **5**
-- Total downloads: **1,487**
-- Downloads by platform: Windows (561), Linux (deb) (307), Linux (AppImage) (305), macOS (284), Other (23), Linux (snap) (7)
+- Open issues: **78**
+- Releases: **7**
+- Total downloads: **1,629**
+- Downloads by platform: Windows (617), Linux (deb) (334), Linux (AppImage) (331), macOS (312), Other (27), Linux (snap) (8)
 
 ## Key features
 
@@ -47,7 +47,7 @@ Local office work on your own computer, without an account or cloud service. Tes
 
 - Product page: https://open-aec.com/open-office-studio/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-office-studio
-- Latest release: https://github.com/OpenAEC-Foundation/open-office-studio/releases/tag/v2026.46.1
+- Latest release: https://github.com/OpenAEC-Foundation/open-office-studio/releases/tag/v2026.46.2
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-office-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
