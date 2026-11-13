@@ -65,15 +65,18 @@ const PAGES = ['index.html', 'en/index.html', 'fr/index.html', 'tr/index.html', 
 
 // Kaarten met een vaste plek (1 = bovenaan); de rest vult de overige plekken
 // op volgorde van score.
-// - openCad: Open CAD Studio is de uitgelichte tool en staat bovenaan.
+// - openBimSuite: Open BIM Suite (Viewer, Modeller en BIM Collaborator in
+//   één programma) staat bovenaan (besluit 13-11-2026).
+// - openCad: Open CAD Studio is de uitgelichte tool en staat direct erachter, op 2.
 // - openInfra: Open Infra Studio is een plugin voor Open CAD Studio (de tabs
-//   GIS en Civiel in zijn lint) en staat daarom direct erachter, op 2.
+//   GIS en Civiel in zijn lint) en staat daarom direct erachter, op 3.
 // - yapp: handmatig op 6 gezet. Y-app is een privé-repo, dus sterren,
 //   commits en downloads zijn er niet (publiek) te meten; de score leunt
 //   daardoor op te weinig gegevens om de plek zelf te bepalen.
 const PINNED = new Map([
-  ['openCad', 1],
-  ['openInfra', 2],
+  ['openBimSuite', 1],
+  ['openCad', 2],
+  ['openInfra', 3],
   ['openCalculations', 5],
   ['yapp', 6],
 ]);
