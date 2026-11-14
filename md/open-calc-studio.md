@@ -15,10 +15,10 @@
 - Stars: **25**
 - Commits: **261**
 - Forks: **11**
-- Open issues: **9**
+- Open issues: **10**
 - Releases: **27**
-- Total downloads: **2,125**
-- Downloads by platform: Windows (1365), Linux (AppImage) (220), Linux (deb) (126), Windows (MSI) (117), macOS (92), Other (63), Linux (rpm) (56), Linux (snap) (48), Archive (38)
+- Total downloads: **2,226**
+- Downloads by platform: Windows (1425), Linux (AppImage) (231), Linux (deb) (127), Windows (MSI) (120), macOS (98), Other (74), Linux (rpm) (57), Linux (snap) (49), Archive (45)
 
 ## Key features
 
@@ -67,8 +67,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows · Open.Calc.Studio_2026.45.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v2026.45.1/Open.Calc.Studio_2026.45.1_x64-setup.exe) (v2026.45.1 — 51.8 MB)
 - [Windows · Open.Calc.Studio_0.10.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.10.0/Open.Calc.Studio_0.10.0_x64-setup.exe) (v0.10.0 — 22.7 MB)
 - [Windows · Open.Calc.Studio_2026.45.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v2026.45.0/Open.Calc.Studio_2026.45.0_x64-setup.exe) (v2026.45.0 — 50.9 MB)
-- [Windows · Open.Calc.Studio_0.7.3_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.7.3/Open.Calc.Studio_0.7.3_x64-setup.exe) (v0.7.3 — 32.6 MB)
 - [Windows · Open.Calc.Studio_2026.46.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v2026.46.1/Open.Calc.Studio_2026.46.1_x64-setup.exe) (v2026.46.1 — 52.2 MB)
+- [Windows · Open.Calc.Studio_0.7.3_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.7.3/Open.Calc.Studio_0.7.3_x64-setup.exe) (v0.7.3 — 32.6 MB)
 - [Windows · Open.Calc.Studio_2026.46.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v2026.46.0/Open.Calc.Studio_2026.46.0_x64-setup.exe) (v2026.46.0 — 52.2 MB)
 
 ---

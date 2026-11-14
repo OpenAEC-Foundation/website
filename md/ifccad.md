@@ -6,19 +6,19 @@
 **License:** MPL-2.0
 **Platforms:** Web
 **Category:** CAD Format
-**Current version:** v2026.46.0 (2026-11-11)
+**Current version:** v2026.46.1 (2026-11-13)
 **Tool ID:** `ifccad`
 **GitHub repo:** `OpenAEC-Foundation/ifccad`
 
 ## Live stats
 
 - Stars: **21**
-- Commits: **295**
+- Commits: **301**
 - Forks: **1**
 - Open issues: **12**
-- Releases: **6**
-- Total downloads: **23**
-- Downloads by platform: Other (14), Archive (9)
+- Releases: **7**
+- Total downloads: **26**
+- Downloads by platform: Other (16), Archive (10)
 
 ## Key features
 
@@ -50,13 +50,13 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/ifccad/
 - Live demo: https://ifccad-explorer.open-aec.com
 - GitHub repo: https://github.com/OpenAEC-Foundation/ifccad
-- Latest release: https://github.com/OpenAEC-Foundation/ifccad/releases/tag/v2026.46.0
+- Latest release: https://github.com/OpenAEC-Foundation/ifccad/releases/tag/v2026.46.1
 
 ## Direct downloads (current release)
 
-- [Other · ifccad-2026.46.0-native.crate](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.46.0/ifccad-2026.46.0-native.crate) (v2026.46.0 — 0.8 MB)
-- [Archive · ifccad-2026.46.0-native.tar.gz](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.46.0/ifccad-2026.46.0-native.tar.gz) (v2026.46.0 — 0.8 MB)
-- [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.46.0/SHA256SUMS) (v2026.46.0)
+- [Other · ifccad-2026.46.1-native.crate](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.46.1/ifccad-2026.46.1-native.crate) (v2026.46.1 — 0.8 MB)
+- [Archive · ifccad-2026.46.1-native.tar.gz](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.46.1/ifccad-2026.46.1-native.tar.gz) (v2026.46.1 — 0.9 MB)
+- [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/ifccad/releases/download/v2026.46.1/SHA256SUMS) (v2026.46.1)
 
 ---
 

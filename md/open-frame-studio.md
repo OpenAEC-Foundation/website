@@ -6,19 +6,19 @@
 **License:** CC-BY-SA-4.0
 **Platforms:** Windows, macOS, Linux, Browser
 **Category:** Window & Door Frame Design
-**Current version:** v2026.46.1 (2026-11-09)
+**Current version:** v2026.46.2 (2026-11-13)
 **Tool ID:** `open-frame-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-frame-studio`
 
 ## Live stats
 
 - Stars: **16**
-- Commits: **127**
+- Commits: **131**
 - Forks: **7**
 - Open issues: **4**
-- Releases: **8**
-- Total downloads: **774**
-- Downloads by platform: Windows (465), Linux (AppImage) (109), Windows (MSI) (61), macOS (44), Linux (deb) (42), Linux (rpm) (36), Archive (17)
+- Releases: **9**
+- Total downloads: **808**
+- Downloads by platform: Windows (491), Linux (AppImage) (110), Windows (MSI) (61), macOS (46), Linux (deb) (44), Linux (rpm) (38), Archive (18)
 
 ## Key features
 
@@ -54,7 +54,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-frame-studio/
 - Live demo: https://open-frame-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-frame-studio
-- Latest release: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/v0.6.0
+- Latest release: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/v2026.46.2
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
@@ -66,7 +66,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [macOS · Open.Frame.Studio_0.6.0_universal.dmg](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_universal.dmg) (v0.6.0 — 12.7 MB)
 - [Linux (deb) · Open.Frame.Studio_0.6.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_amd64.deb) (v0.6.0 — 7.1 MB)
 - [Linux (rpm) · Open.Frame.Studio-0.6.0-1.x86_64.rpm](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio-0.6.0-1.x86_64.rpm) (v0.6.0 — 7.1 MB)
-- [Windows · Open.Frame.Studio_0.2.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.2.0/Open.Frame.Studio_0.2.0_x64-setup.exe) (v0.2.0 — 4.4 MB)
+- [Windows · Open.Frame.Studio_2026.46.2_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v2026.46.2/Open.Frame.Studio_2026.46.2_x64_user-setup.exe) (v2026.46.2 — 4.7 MB)
 
 ---
 
