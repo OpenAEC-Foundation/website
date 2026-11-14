@@ -66,22 +66,21 @@ const PAGES = ['index.html', 'en/index.html', 'fr/index.html', 'tr/index.html', 
 // Kaarten met een vaste plek (1 = bovenaan); de rest vult de overige plekken
 // op volgorde van score.
 // - openBimSuite: Open BIM Suite (Viewer, Modeller en BIM Collaborator in
-//   één programma) staat bovenaan (besluit 13-11-2026), met de losse builds
-//   Open BIM Modeller en Open BIM Collaborator direct eronder op 2 en 3.
-// - openCad: Open CAD Studio is de uitgelichte tool en staat direct erachter, op 4.
+//   één programma) staat bovenaan (besluit 13-11-2026). De losse builds Open
+//   BIM Modeller en Open BIM Collaborator hebben geen vaste plek en staan
+//   lager, bij de andere tools die nog niet uit zijn (besluit 14-11-2026).
+// - openCad: Open CAD Studio is de uitgelichte tool en staat direct erachter, op 2.
 // - openInfra: Open Infra Studio is een plugin voor Open CAD Studio (de tabs
-//   GIS en Civiel in zijn lint) en staat daarom direct erachter, op 5.
-// - yapp: handmatig op 8 gezet. Y-app is een privé-repo, dus sterren,
+//   GIS en Civiel in zijn lint) en staat daarom direct erachter, op 3.
+// - yapp: handmatig op 6 gezet. Y-app is een privé-repo, dus sterren,
 //   commits en downloads zijn er niet (publiek) te meten; de score leunt
 //   daardoor op te weinig gegevens om de plek zelf te bepalen.
 const PINNED = new Map([
   ['openBimSuite', 1],
-  ['openBimModeller', 2],
-  ['openBimCollaborator', 3],
-  ['openCad', 4],
-  ['openInfra', 5],
-  ['openCalculations', 7],
-  ['yapp', 8],
+  ['openCad', 2],
+  ['openInfra', 3],
+  ['openCalculations', 5],
+  ['yapp', 6],
 ]);
 
 // Repo's waarvan de downloads niet meetellen. Y-app is een privé-repo: de
