@@ -6,19 +6,19 @@
 **License:** LGPL-3.0-or-later
 **Platforms:** Windows, macOS, Linux, Web
 **Category:** BIM Viewer
-**Current version:** v2026.46.0 (2026-11-12)
+**Current version:** v2026.46.5 (2026-11-14)
 **Tool ID:** `open-3d-viewer`
 **GitHub repo:** `OpenAEC-Foundation/open-3d-viewer`
 
 ## Live stats
 
 - Stars: **4**
-- Commits: **567**
-- Forks: **0**
-- Open issues: **20**
-- Releases: **17**
-- Total downloads: **567**
-- Downloads by platform: Windows (311), Linux (AppImage) (59), macOS (55), Other (46), Linux (deb) (41), Archive (31), Linux (rpm) (23), Linux (snap) (1)
+- Commits: **610**
+- Forks: **1**
+- Open issues: **26**
+- Releases: **21**
+- Total downloads: **724**
+- Downloads by platform: Windows (367), Linux (AppImage) (95), macOS (70), Linux (deb) (55), Other (52), Archive (48), Linux (rpm) (36), Linux (snap) (1)
 
 ## Key features
 
@@ -56,7 +56,7 @@ Opening a model you were sent (SketchUp, Tekla, Revit, IFC) without the program 
 - Product page: https://open-aec.com/open-3d-viewer/
 - Live demo: https://open-3d-viewer.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-3d-viewer
-- Latest release: https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/tag/v2026.46.0
+- Latest release: https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/tag/v2026.46.5
 
 ## Direct downloads (most popular)
 
@@ -65,9 +65,9 @@ Opening a model you were sent (SketchUp, Tekla, Revit, IFC) without the program 
 - [Windows · open-3d-viewer_2026.45.12_windows-x64.zip](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.12/open-3d-viewer_2026.45.12_windows-x64.zip) (v2026.45.12 — 22.9 MB)
 - [Windows · open-3d-viewer_2026.45.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.8/open-3d-viewer_2026.45.8_x64-setup.exe) (v2026.45.8 — 12 MB)
 - [Linux (AppImage) · open-3d-viewer_2026.45.12_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.12/open-3d-viewer_2026.45.12_amd64.AppImage) (v2026.45.12 — 21.9 MB)
-- [Windows · open-3d-viewer_2026.44.18_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.44.18/open-3d-viewer_2026.44.18_x64-setup.exe) (v2026.44.18 — 11.7 MB)
-- [Windows · open-3d-viewer_2026.46.0_windows-x64.zip](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.46.0/open-3d-viewer_2026.46.0_windows-x64.zip) (v2026.46.0 — 35.2 MB)
 - [macOS · open-3d-viewer_2026.45.12_macos-universal.dmg](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.12/open-3d-viewer_2026.45.12_macos-universal.dmg) (v2026.45.12 — 45.5 MB)
+- [Windows · open-3d-viewer_2026.46.0_windows-x64.zip](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.46.0/open-3d-viewer_2026.46.0_windows-x64.zip) (v2026.46.0 — 35.2 MB)
+- [Windows · open-3d-viewer_2026.44.18_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.44.18/open-3d-viewer_2026.44.18_x64-setup.exe) (v2026.44.18 — 11.7 MB)
 
 ---
 

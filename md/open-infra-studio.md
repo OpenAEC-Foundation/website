@@ -15,10 +15,10 @@
 - Stars: **26**
 - Commits: **557**
 - Forks: **4**
-- Open issues: **40**
+- Open issues: **39**
 - Releases: **16**
-- Total downloads: **1,929**
-- Downloads by platform: Windows (1485), Other (268), Archive (176)
+- Total downloads: **2,023**
+- Downloads by platform: Windows (1556), Other (281), Archive (186)
 
 ## Key features
 
@@ -78,7 +78,7 @@ Starting an infrastructure or civil drawing from the existing situation: the pro
 - [Windows · openaec.open-infra-windows-x86_64.dll](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.44.5/openaec.open-infra-windows-x86_64.dll) (v2026.44.5 — 20.8 MB)
 - [Windows · open-infra-civiel-windows-x86_64.zip](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.45.3/open-infra-civiel-windows-x86_64.zip) (v2026.45.3 — 11.4 MB)
 - [Windows · openaec.open-infra-windows-x86_64.dll](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.45.3/openaec.open-infra-windows-x86_64.dll) (v2026.45.3 — 27 MB)
-- [Archive · open-infra-civiel-linux-x86_64.zip](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.45.4/open-infra-civiel-linux-x86_64.zip) (v2026.45.4 — 14.6 MB)
+- [Windows · open-infra-civiel-windows-x86_64.zip](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.46.1/open-infra-civiel-windows-x86_64.zip) (v2026.46.1 — 11.7 MB)
 
 ---
 

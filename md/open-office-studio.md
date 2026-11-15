@@ -17,8 +17,8 @@
 - Forks: **4**
 - Open issues: **78**
 - Releases: **7**
-- Total downloads: **1,755**
-- Downloads by platform: Windows (706), Linux (deb) (346), Linux (AppImage) (341), macOS (324), Other (30), Linux (snap) (8)
+- Total downloads: **1,803**
+- Downloads by platform: Windows (744), Linux (AppImage) (349), Linux (deb) (347), macOS (325), Other (30), Linux (snap) (8)
 
 ## Key features
 
@@ -58,8 +58,8 @@ Local office work on your own computer, without an account or cloud service. Tes
 - [Linux (deb) · Open.Office.Studio_2026.45.4_amd64.deb](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.4/Open.Office.Studio_2026.45.4_amd64.deb) (v2026.45.4 — 70.7 MB)
 - [Linux (AppImage) · Open.Database.Studio_2026.45.4_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.4/Open.Database.Studio_2026.45.4_amd64.AppImage) (v2026.45.4 — 114 MB)
 - [Linux (AppImage) · Open.Office.Studio_2026.45.4_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.4/Open.Office.Studio_2026.45.4_amd64.AppImage) (v2026.45.4 — 144.7 MB)
+- [Windows · Open.Spreadsheet.Studio_2026.46.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.46.2/Open.Spreadsheet.Studio_2026.46.2_x64-setup.exe) (v2026.46.2 — 70.2 MB)
 - [Windows · Open.Spreadsheet.Studio_2026.44.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Spreadsheet.Studio_2026.44.8_x64-setup.exe) (v2026.44.8 — 63.6 MB)
-- [Windows · Open.Writer.Studio_2026.44.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.44.8/Open.Writer.Studio_2026.44.8_x64-setup.exe) (v2026.44.8 — 63.6 MB)
 
 ---
 
