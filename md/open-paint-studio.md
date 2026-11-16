@@ -12,13 +12,13 @@
 
 ## Live stats
 
-- Stars: **1**
+- Stars: **2**
 - Commits: **22**
 - Forks: **0**
 - Open issues: **4**
 - Releases: **2**
-- Total downloads: **184**
-- Downloads by platform: Windows (101), Linux (AppImage) (26), macOS (21), Linux (deb) (20), Other (14), Linux (snap) (2)
+- Total downloads: **190**
+- Downloads by platform: Windows (104), Linux (AppImage) (29), macOS (21), Linux (deb) (20), Other (14), Linux (snap) (2)
 
 ## Key features
 
@@ -63,8 +63,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Linux (AppImage) · OpenAEC-Paint-Studio_2026.43.2_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.43.2/OpenAEC-Paint-Studio_2026.43.2_amd64.AppImage) (v2026.43.2 — 82.9 MB)
 - [Linux (deb) · OpenAEC-Paint-Studio_2026.43.2_amd64.deb](https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.43.2/OpenAEC-Paint-Studio_2026.43.2_amd64.deb) (v2026.43.2 — 8.2 MB)
 - [macOS · OpenAEC-Paint-Studio_2026.43.2_universal.dmg](https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.43.2/OpenAEC-Paint-Studio_2026.43.2_universal.dmg) (v2026.43.2 — 16.3 MB)
-- [macOS · OpenAEC-Paint-Studio_2026.45.1_universal.dmg](https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.45.1/OpenAEC-Paint-Studio_2026.45.1_universal.dmg) (v2026.45.1 — 18.6 MB)
 - [Linux (AppImage) · OpenAEC-Paint-Studio_2026.45.1_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.45.1/OpenAEC-Paint-Studio_2026.45.1_amd64.AppImage) (v2026.45.1 — 83.2 MB)
+- [macOS · OpenAEC-Paint-Studio_2026.45.1_universal.dmg](https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.45.1/OpenAEC-Paint-Studio_2026.45.1_universal.dmg) (v2026.45.1 — 18.6 MB)
 - [Linux (deb) · OpenAEC-Paint-Studio_2026.45.1_amd64.deb](https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.45.1/OpenAEC-Paint-Studio_2026.45.1_amd64.deb) (v2026.45.1 — 8.5 MB)
 
 ---

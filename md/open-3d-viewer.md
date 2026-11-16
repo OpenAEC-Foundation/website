@@ -13,12 +13,12 @@
 ## Live stats
 
 - Stars: **4**
-- Commits: **610**
+- Commits: **613**
 - Forks: **1**
-- Open issues: **26**
+- Open issues: **25**
 - Releases: **21**
-- Total downloads: **724**
-- Downloads by platform: Windows (367), Linux (AppImage) (95), macOS (70), Linux (deb) (55), Other (52), Archive (48), Linux (rpm) (36), Linux (snap) (1)
+- Total downloads: **772**
+- Downloads by platform: Windows (407), Linux (AppImage) (98), macOS (70), Linux (deb) (56), Other (53), Archive (48), Linux (rpm) (39), Linux (snap) (1)
 
 ## Key features
 
@@ -63,11 +63,11 @@ Opening a model you were sent (SketchUp, Tekla, Revit, IFC) without the program 
 - [Windows · open-3d-viewer_2026.45.12_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.12/open-3d-viewer_2026.45.12_x64-setup.exe) (v2026.45.12 — 15.3 MB)
 - [Windows · open-3d-viewer_2026.46.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.46.0/open-3d-viewer_2026.46.0_x64-setup.exe) (v2026.46.0 — 23 MB)
 - [Windows · open-3d-viewer_2026.45.12_windows-x64.zip](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.12/open-3d-viewer_2026.45.12_windows-x64.zip) (v2026.45.12 — 22.9 MB)
+- [Windows · open-3d-viewer_2026.46.5_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.46.5/open-3d-viewer_2026.46.5_x64-setup.exe) (v2026.46.5 — 23.9 MB)
 - [Windows · open-3d-viewer_2026.45.8_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.8/open-3d-viewer_2026.45.8_x64-setup.exe) (v2026.45.8 — 12 MB)
 - [Linux (AppImage) · open-3d-viewer_2026.45.12_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.12/open-3d-viewer_2026.45.12_amd64.AppImage) (v2026.45.12 — 21.9 MB)
 - [macOS · open-3d-viewer_2026.45.12_macos-universal.dmg](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.45.12/open-3d-viewer_2026.45.12_macos-universal.dmg) (v2026.45.12 — 45.5 MB)
 - [Windows · open-3d-viewer_2026.46.0_windows-x64.zip](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.46.0/open-3d-viewer_2026.46.0_windows-x64.zip) (v2026.46.0 — 35.2 MB)
-- [Windows · open-3d-viewer_2026.44.18_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-3d-viewer/releases/download/v2026.44.18/open-3d-viewer_2026.44.18_x64-setup.exe) (v2026.44.18 — 11.7 MB)
 
 ---
 
