@@ -13,12 +13,12 @@
 ## Live stats
 
 - Stars: **25**
-- Commits: **266**
+- Commits: **278**
 - Forks: **12**
 - Open issues: **13**
 - Releases: **27**
-- Total downloads: **2,316**
-- Downloads by platform: Windows (1474), Linux (AppImage) (257), Linux (deb) (129), Windows (MSI) (125), macOS (101), Other (76), Linux (rpm) (59), Linux (snap) (50), Archive (45)
+- Total downloads: **2,366**
+- Downloads by platform: Windows (1513), Linux (AppImage) (261), Linux (deb) (129), Windows (MSI) (126), macOS (106), Other (76), Linux (rpm) (59), Linux (snap) (50), Archive (46)
 
 ## Key features
 
@@ -63,8 +63,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 ## Direct downloads (most popular)
 
 - [Windows · Open.Calc.Studio_0.13.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_x64-setup.exe) (v0.13.0 — 33.8 MB)
-- [Linux (AppImage) · Open.Calc.Studio_0.13.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_amd64.AppImage) (v0.13.0 — 122.7 MB)
 - [Windows · Open.Calc.Studio_2026.46.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v2026.46.1/Open.Calc.Studio_2026.46.1_x64-setup.exe) (v2026.46.1 — 52.2 MB)
+- [Linux (AppImage) · Open.Calc.Studio_0.13.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.13.0/Open.Calc.Studio_0.13.0_amd64.AppImage) (v0.13.0 — 122.7 MB)
 - [Windows · Open.Calc.Studio_2026.45.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v2026.45.1/Open.Calc.Studio_2026.45.1_x64-setup.exe) (v2026.45.1 — 51.8 MB)
 - [Windows · Open.Calc.Studio_0.10.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v0.10.0/Open.Calc.Studio_0.10.0_x64-setup.exe) (v0.10.0 — 22.7 MB)
 - [Windows · Open.Calc.Studio_2026.45.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-calc-studio/releases/download/v2026.45.0/Open.Calc.Studio_2026.45.0_x64-setup.exe) (v2026.45.0 — 50.9 MB)
