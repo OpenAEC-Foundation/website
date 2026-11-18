@@ -6,19 +6,19 @@
 **License:** GPL-3.0-only
 **Platforms:** Windows, Linux, macOS
 **Category:** GIS
-**Current version:** v2026.47.0 (2026-11-16)
+**Current version:** web-v2026.44.5 (2026-11-17)
 **Tool ID:** `open-infra-studio`
 **GitHub repo:** `OpenAEC-Foundation/Open-Infra-Studio`
 
 ## Live stats
 
 - Stars: **27**
-- Commits: **590**
+- Commits: **600**
 - Forks: **6**
-- Open issues: **38**
+- Open issues: **39**
 - Releases: **17**
-- Total downloads: **2,373**
-- Downloads by platform: Windows (1842), Other (315), Archive (216)
+- Total downloads: **2,550**
+- Downloads by platform: Windows (1994), Other (330), Archive (226)
 
 ## Key features
 

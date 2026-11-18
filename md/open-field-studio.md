@@ -17,8 +17,8 @@
 - Forks: **4**
 - Open issues: **18**
 - Releases: **28**
-- Total downloads: **812**
-- Downloads by platform: Windows (390), Android (157), Linux (AppImage) (127), Windows (MSI) (51), Linux (deb) (50), Linux (rpm) (35), Linux (snap) (1), Other (1)
+- Total downloads: **826**
+- Downloads by platform: Windows (399), Android (158), Linux (AppImage) (131), Windows (MSI) (51), Linux (deb) (50), Linux (rpm) (35), Linux (snap) (1), Other (1)
 
 ## Key features
 
@@ -61,12 +61,12 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 
 - [Windows · Open.Field.Studio_0.3.6_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases/download/v0.3.6/Open.Field.Studio_0.3.6_x64_user-setup.exe) (v0.3.6 — 4.8 MB)
 - [Linux (AppImage) · Open.Field.Studio_0.3.6_amd64.AppImage](https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases/download/v0.3.6/Open.Field.Studio_0.3.6_amd64.AppImage) (v0.3.6 — 80.5 MB)
+- [Windows · Open.Field.Studio_0.4.12_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases/download/v0.4.12/Open.Field.Studio_0.4.12_x64_user-setup.exe) (v0.4.12 — 5.5 MB)
 - [Android · open-field-studio-release.apk](https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases/download/v0.3.6/open-field-studio-release.apk) (v0.3.6 — 21.8 MB)
 - [Windows · Open.Field.Studio_0.3.8_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases/download/v0.3.8/Open.Field.Studio_0.3.8_x64_user-setup.exe) (v0.3.8 — 5.4 MB)
-- [Windows · Open.Field.Studio_0.4.12_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases/download/v0.4.12/Open.Field.Studio_0.4.12_x64_user-setup.exe) (v0.4.12 — 5.5 MB)
 - [Android · open-field-studio-release.apk](https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases/download/v0.4.12/open-field-studio-release.apk) (v0.4.12 — 23 MB)
-- [Windows · Open.Field.Studio_0.3.9_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases/download/v0.3.9/Open.Field.Studio_0.3.9_x64_user-setup.exe) (v0.3.9 — 5.4 MB)
 - [Linux (AppImage) · Open.Field.Studio_0.4.12_amd64.AppImage](https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases/download/v0.4.12/Open.Field.Studio_0.4.12_amd64.AppImage) (v0.4.12 — 82.9 MB)
+- [Windows · Open.Field.Studio_0.3.9_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/Open-Field-Studio/releases/download/v0.3.9/Open.Field.Studio_0.3.9_x64_user-setup.exe) (v0.3.9 — 5.4 MB)
 
 ---
 
