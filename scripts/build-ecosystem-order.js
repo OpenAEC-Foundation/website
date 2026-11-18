@@ -65,9 +65,9 @@ const PAGES = ['index.html', 'en/index.html', 'fr/index.html', 'tr/index.html', 
 
 // Kaarten met een vaste plek (1 = bovenaan); de rest vult de overige plekken
 // op volgorde van score.
-// - openBimSuite: Open BIM Suite (Viewer, Modeller en BIM Collaborator in
+// - openBimSuite: Open BIM Suite (Viewer, Modeller en BIM Validator in
 //   één programma) staat bovenaan (besluit 13-11-2026). De losse builds Open
-//   BIM Modeller en Open BIM Collaborator hebben geen vaste plek en staan
+//   BIM Modeller en Open BIM Validator hebben geen vaste plek en staan
 //   lager, bij de andere tools die nog niet uit zijn (besluit 14-11-2026).
 // - openCad: Open CAD Studio is de uitgelichte tool en staat direct erachter, op 2.
 // - openInfra: Open Infra Studio is een plugin voor Open CAD Studio (de tabs
