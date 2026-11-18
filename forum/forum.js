@@ -4,6 +4,12 @@
 (function () {
   'use strict';
 
+  // De cloud kent alleen https://open-aec.com/forum/ als terugadres: op www zou inloggen een 400 geven.
+  if (location.hostname === 'www.open-aec.com') {
+    location.replace('https://open-aec.com' + location.pathname + location.search + location.hash);
+    return;
+  }
+
   var LOKAAL = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
   // Lokaal (npx serve) de ontwikkelbench; met `openaec-forum-cloud` in localStorage een andere (bijvoorbeeld een
   // tweede server met nieuwe code).
