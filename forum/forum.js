@@ -55,6 +55,23 @@
       upsellKop: 'Meer met je account',
       upsell: 'Met hetzelfde account gebruik je de OpenAEC-tools in de browser en de SuperCloud.',
       upsellKnop: 'Bekijk de SuperCloud',
+      categorie: 'Categorie',
+      onderwerpenKop: 'Onderwerpen',
+      onderwerpKop: 'Onderwerp',
+      reactiesKop: 'Reacties',
+      activiteit: 'Activiteit',
+      alleRecent: 'Alle recente onderwerpen',
+      alleenTeamKort: 'Alleen het team start hier',
+      foraKop: 'Andere fora',
+      foraUitleg: 'Open source in de bouw is groter dan wij. Hier praten we ook mee:',
+      foraOsarch: 'Open source in de bouw: Bonsai, IfcOpenShell en meer',
+      foraSpeckle: 'Modellen delen tussen ontwerpprogramma\'s',
+      foraFrappe: 'ERPNext en Frappe Framework',
+      foraBlender: 'De grote community van Blender-gebruikers',
+      badgesKop: 'Badges via de Academy',
+      badgesUitleg: 'Rond je een cursus van de OpenAEC Academy af met een examen, dan krijg je een badge op je profiel. Met een verzameling badges word je allround kennisgoeroe.',
+      binnenkort: 'Binnenkort',
+      naarAcademy: 'Naar de Academy',
       verlopen: 'Je bent uitgelogd. Log opnieuw in.'
     },
     en: {
@@ -85,6 +102,23 @@
       upsellKop: 'More with your account',
       upsell: 'The same account gives you the OpenAEC tools in the browser and the SuperCloud.',
       upsellKnop: 'Discover the SuperCloud',
+      categorie: 'Category',
+      onderwerpenKop: 'Topics',
+      onderwerpKop: 'Topic',
+      reactiesKop: 'Replies',
+      activiteit: 'Activity',
+      alleRecent: 'All recent topics',
+      alleenTeamKort: 'Only the team starts topics here',
+      foraKop: 'Other forums',
+      foraUitleg: 'Open source in construction is bigger than us. We also take part here:',
+      foraOsarch: 'Open source in construction: Bonsai, IfcOpenShell and more',
+      foraSpeckle: 'Sharing models between design tools',
+      foraFrappe: 'ERPNext and Frappe Framework',
+      foraBlender: 'The large community of Blender users',
+      badgesKop: 'Badges through the Academy',
+      badgesUitleg: 'Finish a course of the OpenAEC Academy with an exam and you get a badge on your profile. Collect enough badges and you become an all-round expert.',
+      binnenkort: 'Coming soon',
+      naarAcademy: 'Go to the Academy',
       verlopen: 'You have been logged out. Please log in again.'
     },
     fr: {
@@ -115,6 +149,23 @@
       upsellKop: 'Plus avec votre compte',
       upsell: 'Le même compte vous donne les outils OpenAEC dans le navigateur et le SuperCloud.',
       upsellKnop: 'Découvrir le SuperCloud',
+      categorie: 'Catégorie',
+      onderwerpenKop: 'Sujets',
+      onderwerpKop: 'Sujet',
+      reactiesKop: 'Réponses',
+      activiteit: 'Activité',
+      alleRecent: 'Tous les sujets récents',
+      alleenTeamKort: 'Seule l’équipe lance des sujets ici',
+      foraKop: 'Autres forums',
+      foraUitleg: 'L’open source dans la construction dépasse notre cadre. Nous participons aussi ici :',
+      foraOsarch: 'L’open source dans la construction : Bonsai, IfcOpenShell et plus',
+      foraSpeckle: 'Partager des modèles entre logiciels de conception',
+      foraFrappe: 'ERPNext et Frappe Framework',
+      foraBlender: 'La grande communauté des utilisateurs de Blender',
+      badgesKop: 'Des badges via l’Academy',
+      badgesUitleg: 'Terminez un cours de l’OpenAEC Academy par un examen et vous obtenez un badge sur votre profil. Avec assez de badges, vous devenez un expert polyvalent.',
+      binnenkort: 'Bientôt',
+      naarAcademy: 'Vers l’Academy',
       verlopen: 'Vous avez été déconnecté. Reconnectez-vous.'
     },
     tr: {
@@ -145,6 +196,23 @@
       upsellKop: 'Hesabınızla daha fazlası',
       upsell: 'Aynı hesapla tarayıcıda OpenAEC araçlarını ve SuperCloud’u kullanırsınız.',
       upsellKnop: 'SuperCloud’u keşfedin',
+      categorie: 'Kategori',
+      onderwerpenKop: 'Konular',
+      onderwerpKop: 'Konu',
+      reactiesKop: 'Yanıtlar',
+      activiteit: 'Etkinlik',
+      alleRecent: 'Tüm son konular',
+      alleenTeamKort: 'Burada yalnızca ekip konu başlatır',
+      foraKop: 'Diğer forumlar',
+      foraUitleg: 'İnşaatta açık kaynak bizden büyük. Buralarda da varız:',
+      foraOsarch: 'İnşaatta açık kaynak: Bonsai, IfcOpenShell ve daha fazlası',
+      foraSpeckle: 'Tasarım programları arasında model paylaşımı',
+      foraFrappe: 'ERPNext ve Frappe Framework',
+      foraBlender: 'Blender kullanıcılarının büyük topluluğu',
+      badgesKop: 'Academy ile rozetler',
+      badgesUitleg: 'OpenAEC Academy\'de bir kursu sınavla bitirin, profilinize bir rozet eklensin. Yeterince rozet toplayan çok yönlü bir uzman olur.',
+      binnenkort: 'Yakında',
+      naarAcademy: 'Academy\'ye git',
       verlopen: 'Oturumunuz kapandı. Lütfen tekrar giriş yapın.'
     },
     es: {
@@ -175,6 +243,23 @@
       upsellKop: 'Más con tu cuenta',
       upsell: 'La misma cuenta te da las herramientas OpenAEC en el navegador y el SuperCloud.',
       upsellKnop: 'Descubre el SuperCloud',
+      categorie: 'Categoría',
+      onderwerpenKop: 'Temas',
+      onderwerpKop: 'Tema',
+      reactiesKop: 'Respuestas',
+      activiteit: 'Actividad',
+      alleRecent: 'Todos los temas recientes',
+      alleenTeamKort: 'Aquí solo el equipo empieza temas',
+      foraKop: 'Otros foros',
+      foraUitleg: 'El código abierto en la construcción es más grande que nosotros. También participamos aquí:',
+      foraOsarch: 'Código abierto en la construcción: Bonsai, IfcOpenShell y más',
+      foraSpeckle: 'Compartir modelos entre programas de diseño',
+      foraFrappe: 'ERPNext y Frappe Framework',
+      foraBlender: 'La gran comunidad de usuarios de Blender',
+      badgesKop: 'Insignias a través de la Academy',
+      badgesUitleg: 'Termina un curso de la OpenAEC Academy con un examen y obtienes una insignia en tu perfil. Con suficientes insignias te conviertes en un experto integral.',
+      binnenkort: 'Próximamente',
+      naarAcademy: 'Ir a la Academy',
       verlopen: 'Se ha cerrado tu sesión. Vuelve a iniciarla.'
     },
     de: {
@@ -205,6 +290,23 @@
       upsellKop: 'Mehr mit Ihrem Konto',
       upsell: 'Mit demselben Konto nutzen Sie die OpenAEC-Tools im Browser und die SuperCloud.',
       upsellKnop: 'SuperCloud entdecken',
+      categorie: 'Kategorie',
+      onderwerpenKop: 'Themen',
+      onderwerpKop: 'Thema',
+      reactiesKop: 'Antworten',
+      activiteit: 'Aktivität',
+      alleRecent: 'Alle neuesten Themen',
+      alleenTeamKort: 'Hier eröffnet nur das Team Themen',
+      foraKop: 'Andere Foren',
+      foraUitleg: 'Open Source im Bauwesen ist größer als wir. Hier sind wir auch dabei:',
+      foraOsarch: 'Open Source im Bauwesen: Bonsai, IfcOpenShell und mehr',
+      foraSpeckle: 'Modelle zwischen Entwurfsprogrammen teilen',
+      foraFrappe: 'ERPNext und Frappe Framework',
+      foraBlender: 'Die große Community der Blender-Nutzer',
+      badgesKop: 'Badges über die Academy',
+      badgesUitleg: 'Schließen Sie einen Kurs der OpenAEC Academy mit einer Prüfung ab, erhalten Sie ein Badge in Ihrem Profil. Mit genügend Badges werden Sie zum Allround-Experten.',
+      binnenkort: 'Demnächst',
+      naarAcademy: 'Zur Academy',
       verlopen: 'Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.'
     }
   };
@@ -345,6 +447,7 @@
     var s = leesSessie();
     bewaarSessie(null);
     ik = null;
+    bewaarAccount(null);
     if (s && s.verversen) {
       fetch(OAUTH + 'revoke_token', {
         method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
@@ -395,6 +498,24 @@
 
   // ── Weergave ────────────────────────────────────────────────────────────
   var app, balk, ik = null, categorieen = [];
+  // Kleuren voor categorieën en avatars (vast per categorie en per naam).
+  var KLEUREN = ['#D97706', '#2563EB', '#16A34A', '#9333EA', '#DC2626', '#0891B2', '#CA8A04', '#DB2777'];
+  // Wie ingelogd is, onthoudt het forum hier (alleen de naam): de navigatie van de hele site toont dan rechtsboven het account.
+  var ACCOUNT = 'openaec-forum-account';
+  var FORA = [
+    { naam: 'OSArch Community', url: 'https://community.osarch.org/', sleutel: 'foraOsarch', kleur: '#16A34A' },
+    { naam: 'Speckle Community', url: 'https://speckle.community/', sleutel: 'foraSpeckle', kleur: '#2563EB' },
+    { naam: 'Frappe Forum', url: 'https://discuss.frappe.io/', sleutel: 'foraFrappe', kleur: '#0891B2' },
+    { naam: 'Blender Artists', url: 'https://blenderartists.org/', sleutel: 'foraBlender', kleur: '#EA580C' }
+  ];
+
+  function bewaarAccount(a) {
+    try {
+      if (a && a.naam) localStorage.setItem(ACCOUNT, JSON.stringify({ naam: a.naam }));
+      else localStorage.removeItem(ACCOUNT);
+    } catch (e) {}
+    try { document.dispatchEvent(new CustomEvent('openaec:account')); } catch (e) {}
+  }
 
   function melding(tekst) {
     var el = document.getElementById('fo-melding');
@@ -407,10 +528,32 @@
     return '<button type="button" class="btn ' + (soort || 'btn-secondary') + ' fo-knop" data-actie="' + actie + '"' + (extra || '') + '>' + esc(label) + '</button>';
   }
 
+  function kleurVan(tekst) {
+    var h = 0;
+    tekst = String(tekst || '');
+    for (var i = 0; i < tekst.length; i++) h = (h * 31 + tekst.charCodeAt(i)) >>> 0;
+    return KLEUREN[h % KLEUREN.length];
+  }
+  function catKleur(slug) {
+    var i = categorieen.findIndex(function (c) { return c.slug === slug; });
+    return KLEUREN[(i < 0 ? 0 : i) % KLEUREN.length];
+  }
+  function initialen(naam) {
+    var d = String(naam || '?').trim().split(/\s+/);
+    return ((d[0] || '?').charAt(0) + (d.length > 1 ? d[d.length - 1].charAt(0) : '')).toUpperCase();
+  }
+  function avatar(naam, groot) {
+    return '<span class="fo-av' + (groot ? ' fo-av-groot' : '') + '" style="background:' + kleurVan(naam) + '" aria-hidden="true">' + esc(initialen(naam)) + '</span>';
+  }
+  function zoekCat(slug) { return categorieen.find(function (c) { return c.slug === slug; }); }
+  function catChip(cat) {
+    return cat ? '<a class="fo-chip" href="#/c/' + encodeURIComponent(cat.slug) + '"><i style="background:' + catKleur(cat.slug) + '"></i>' + esc(catTitel(cat)) + '</a>' : '';
+  }
+
   function tekenBalk() {
     var html;
     if (ik) {
-      html = '<span class="fo-ik">' + esc(t('ingelogdAls')) + ' <strong>' + esc(ik.naam) + '</strong></span>' +
+      html = '<span class="fo-ik">' + avatar(ik.naam) + '<span>' + esc(t('ingelogdAls')) + ' <strong>' + esc(ik.naam) + '</strong></span></span>' +
         knop(t('uitloggen'), 'uitloggen', 'btn-ghost');
     } else {
       html = knop(t('inloggen'), 'inloggen', 'btn-secondary') +
@@ -419,40 +562,81 @@
     balk.innerHTML = html;
   }
 
-  function zijbalk(huidig) {
-    var lijst = categorieen.map(function (c) {
-      return '<li><a href="#/c/' + encodeURIComponent(c.slug) + '"' + (c.slug === huidig ? ' aria-current="page"' : '') + '>' +
-        '<span>' + esc(catTitel(c)) + '</span><span class="fo-tal">' + c.onderwerpen + '</span></a></li>';
-    }).join('');
-    var upsell = '<div class="fo-blok fo-upsell"><h3>' + esc(t('upsellKop')) + '</h3><p>' + esc(t('upsell')) + '</p>' +
-      '<a class="btn btn-dark fo-knop" href="/supercloud/">' + esc(t('upsellKnop')) + '</a></div>';
-    return '<aside class="fo-zij">' +
-      '<a class="btn btn-primary fo-knop fo-breed" href="#/nieuw' + (huidig ? '/' + encodeURIComponent(huidig) : '') + '">' + esc(t('nieuw')) + '</a>' +
-      '<div class="fo-blok"><h3>' + esc(t('categorieen')) + '</h3><ul class="fo-cats"><li><a href="#/"' + (!huidig ? ' aria-current="page"' : '') + '><span>' + esc(t('alle')) + '</span></a></li>' + lijst + '</ul></div>' +
-      upsell +
-      '<p class="fo-klein"><a href="#/regels">' + esc(t('regelsKop')) + '</a></p>' +
-      '</aside>';
+  // De rij met tabbladen boven elk scherm, met rechts de knop voor een nieuw onderwerp.
+  function tabs(actief, slug) {
+    function tab(id, href, label) {
+      return '<a class="fo-tab" href="' + href + '"' + (actief === id ? ' aria-current="page"' : '') + '>' + esc(label) + '</a>';
+    }
+    return '<div class="fo-tabs"><nav class="fo-tabrij" aria-label="' + esc(t('titel')) + '">' +
+      tab('cats', '#/', t('categorieen')) + tab('recent', '#/recent', t('recent')) + '</nav>' +
+      '<a class="btn btn-primary fo-knop fo-nieuw" href="#/nieuw' + (slug ? '/' + encodeURIComponent(slug) : '') + '">+ ' + esc(t('nieuw')) + '</a></div>';
   }
 
-  function onderwerpItem(o) {
-    var cat = categorieen.find(function (c) { return c.slug === o.categorie; });
-    var labels = (o.vastgezet ? '<span class="fo-label">' + esc(t('vastgezet')) + '</span>' : '') +
+  function labels(o) {
+    return (o.vastgezet ? '<span class="fo-label">' + esc(t('vastgezet')) + '</span>' : '') +
       (o.status === 'Gesloten' ? '<span class="fo-label fo-label-grijs">' + esc(t('gesloten').replace(/\.$/, '')) + '</span>' : '') +
       (o.verborgen ? '<span class="fo-label fo-label-rood">' + esc(t('verborgen')) + '</span>' : '');
-    return '<li class="fo-item"><div><a class="fo-item-titel" href="#/t/' + encodeURIComponent(o.naam) + '">' + esc(o.titel) + '</a> ' + labels +
-      '<span class="fo-meta">' + (cat ? '<span class="fo-cat">' + esc(catTitel(cat)) + '</span>' : '') +
-      auteur(o.auteur) + ' · ' + esc(tijd(o.laatste_activiteit)) + '</span></div>' +
-      '<span class="fo-tal">' + esc(t('reacties')(o.reacties)) + '</span></li>';
+  }
+
+  function onderwerpRij(o, zonderCat) {
+    var cat = zonderCat ? null : zoekCat(o.categorie);
+    return '<li class="fo-rij">' + avatar(o.auteur.naam) +
+      '<div class="fo-rij-hoofd"><a class="fo-item-titel" href="#/t/' + encodeURIComponent(o.naam) + '">' + esc(o.titel) + '</a>' + labels(o) +
+      '<span class="fo-meta">' + catChip(cat) + auteur(o.auteur) + '</span></div>' +
+      '<div class="fo-rij-tal"><strong title="' + esc(t('reacties')(o.reacties)) + '">' + o.reacties + '</strong><span>' + esc(tijd(o.laatste_activiteit)) + '</span></div></li>';
+  }
+
+  // Onder de startpagina: andere fora, de badges van de Academy en meer met je account.
+  function onderblokken() {
+    var fora = FORA.map(function (f) {
+      return '<li><a href="' + f.url + '" target="_blank" rel="noopener"><span class="fo-forum-merk" style="background:' + f.kleur + '" aria-hidden="true">' + esc(f.naam.charAt(0)) + '</span>' +
+        '<span class="fo-forum-tekst"><strong>' + esc(f.naam) + '</strong><span>' + esc(t(f.sleutel)) + '</span></span><span class="fo-uit" aria-hidden="true">↗</span></a></li>';
+    }).join('');
+    return '<div class="fo-onder">' +
+      '<section class="fo-kaart"><h3>' + esc(t('foraKop')) + '</h3><p>' + esc(t('foraUitleg')) + '</p><ul class="fo-fora">' + fora + '</ul></section>' +
+      '<section class="fo-kaart fo-badges"><h3>' + esc(t('badgesKop')) + ' <span class="fo-label">' + esc(t('binnenkort')) + '</span></h3><p>' + esc(t('badgesUitleg')) + '</p>' +
+      '<div class="fo-badgerij" aria-hidden="true"><span class="fo-badge">IFC</span><span class="fo-badge">PDF</span><span class="fo-badge">CAD</span><span class="fo-badge fo-badge-goud">★</span></div>' +
+      '<a class="fo-meer-link" href="/academy/">' + esc(t('naarAcademy')) + ' →</a></section>' +
+      '<section class="fo-kaart fo-upsell"><h3>' + esc(t('upsellKop')) + '</h3><p>' + esc(t('upsell')) + '</p>' +
+      '<a class="btn btn-dark fo-knop" href="/supercloud/">' + esc(t('upsellKnop')) + '</a>' +
+      '<p class="fo-klein"><a href="#/regels">' + esc(t('regelsKop')) + '</a></p></section>' +
+      '</div>';
+  }
+
+  function startScherm() {
+    var cats = categorieen.map(function (c) {
+      return '<a class="fo-catrij" href="#/c/' + encodeURIComponent(c.slug) + '" style="--kleur:' + catKleur(c.slug) + '">' +
+        '<span class="fo-catrij-tekst"><strong>' + esc(catTitel(c)) + '</strong>' + (catUitleg(c) ? '<span>' + esc(catUitleg(c)) + '</span>' : '') +
+        (c.alleen_team ? '<em>' + esc(t('alleenTeamKort')) + '</em>' : '') + '</span><span class="fo-catrij-tal">' + c.onderwerpen + '</span></a>';
+    }).join('');
+    app.innerHTML = tabs('cats') +
+      '<div class="fo-twee">' +
+      '<section class="fo-paneel"><div class="fo-paneel-kop"><span>' + esc(t('categorie')) + '</span><span>' + esc(t('onderwerpenKop')) + '</span></div>' +
+      (cats || '<p class="fo-leeg">' + esc(t('fout')) + '</p>') + '</section>' +
+      '<section class="fo-paneel"><div class="fo-paneel-kop"><span>' + esc(t('recent')) + '</span></div>' +
+      '<ul class="fo-rijen" id="fo-recent"><li class="fo-leeg">' + esc(t('laden')) + '</li></ul>' +
+      '<a class="fo-meer-link fo-paneel-voet" href="#/recent">' + esc(t('alleRecent')) + ' →</a></section>' +
+      '</div>' + onderblokken();
+    var lijst = document.getElementById('fo-recent');
+    api('onderwerpen', { start: 0 }).then(function (data) {
+      var rijen = data.onderwerpen.slice(0, 8).map(function (o) { return onderwerpRij(o); }).join('');
+      lijst.innerHTML = rijen || '<li class="fo-leeg">' + esc(t('geen')) + '</li>';
+    }).catch(function (e) {
+      lijst.innerHTML = '<li class="fo-leeg">' + esc(e.message || t('fout')) + '</li>';
+    });
   }
 
   function lijstScherm(cat) {
     var start = 0;
     var kop = cat
-      ? '<h2>' + esc(catTitel(cat)) + '</h2>' + (catUitleg(cat) ? '<p class="fo-uitleg">' + esc(catUitleg(cat)) + '</p>' : '') +
-        (cat.alleen_team ? '<p class="fo-klein">' + esc(t('alleenTeam')) + '</p>' : '')
-      : '<h2>' + esc(t('recent')) + '</h2>';
-    app.innerHTML = '<div class="fo-raster"><div class="fo-hoofd">' + kop + '<ul class="fo-lijst" id="fo-lijst"><li class="fo-leeg">' + esc(t('laden')) + '</li></ul>' +
-      '<p><button type="button" class="btn btn-secondary" id="fo-meer" hidden>' + esc(t('meer')) + '</button></p></div>' + zijbalk(cat && cat.slug) + '</div>';
+      ? '<div class="fo-catkop" style="--kleur:' + catKleur(cat.slug) + '"><h2>' + esc(catTitel(cat)) + '</h2>' +
+        (catUitleg(cat) ? '<p>' + esc(catUitleg(cat)) + '</p>' : '') +
+        (cat.alleen_team ? '<p class="fo-klein">' + esc(t('alleenTeam')) + '</p>' : '') + '</div>'
+      : '';
+    app.innerHTML = tabs(cat ? '' : 'recent', cat && cat.slug) + kop +
+      '<section class="fo-paneel"><div class="fo-paneel-kop"><span>' + esc(t('onderwerpKop')) + '</span><span>' + esc(t('reactiesKop')) + ' · ' + esc(t('activiteit')) + '</span></div>' +
+      '<ul class="fo-rijen" id="fo-lijst"><li class="fo-leeg">' + esc(t('laden')) + '</li></ul></section>' +
+      '<p class="fo-meer"><button type="button" class="btn btn-secondary" id="fo-meer" hidden>' + esc(t('meer')) + '</button></p>';
     var lijst = document.getElementById('fo-lijst');
     var meer = document.getElementById('fo-meer');
     async function laad() {
@@ -460,7 +644,7 @@
       try {
         var data = await api('onderwerpen', Object.assign({ start: start }, cat ? { categorie: cat.slug } : {}));
         if (start === 0) lijst.innerHTML = '';
-        lijst.insertAdjacentHTML('beforeend', data.onderwerpen.map(onderwerpItem).join(''));
+        lijst.insertAdjacentHTML('beforeend', data.onderwerpen.map(function (o) { return onderwerpRij(o, !!cat); }).join(''));
         if (!lijst.children.length) lijst.innerHTML = '<li class="fo-leeg">' + esc(t('geen')) + '</li>';
         start += data.onderwerpen.length;
         meer.hidden = !data.meer;
@@ -479,24 +663,24 @@
     var magBewerken = ik && (b.eigen || ik.moderator) && (onderwerp.status === 'Open' || ik.moderator);
     if (magBewerken) acties += knop(t('bewerken'), 'bewerk', 'btn-ghost', ' data-naam="' + esc(b.naam) + '"');
     if (ik && ik.moderator) acties += knop(t(b.verborgen ? 'toon' : 'verberg'), 'modereer', 'btn-ghost', ' data-soort="bericht" data-naam="' + esc(b.naam) + '" data-wat="' + (b.verborgen ? 'toon' : 'verberg') + '"');
-    return '<article class="fo-bericht' + (b.verborgen ? ' fo-verborgen' : '') + '" id="b-' + esc(b.naam) + '">' +
-      '<header>' + auteur(b.auteur) + ' <span class="fo-meta-inline">' + esc(tijd(b.aangemaakt)) +
+    return '<article class="fo-post' + (b.verborgen ? ' fo-verborgen' : '') + '" id="b-' + esc(b.naam) + '">' + avatar(b.auteur.naam, true) +
+      '<div class="fo-post-lijf"><header>' + auteur(b.auteur) + '<span class="fo-post-tijd">' + esc(tijd(b.aangemaakt)) +
       (b.bewerkt ? ' · ' + esc(t('bewerkt')) : '') + (b.verborgen ? ' · ' + esc(t('verborgen')) : '') + '</span></header>' +
       '<div class="fo-tekst">' + opmaak(b.tekst) + '</div>' +
-      (acties ? '<footer class="fo-acties">' + acties + '</footer>' : '') + '</article>';
+      (acties ? '<footer class="fo-acties">' + acties + '</footer>' : '') + '</div></article>';
   }
 
   async function onderwerpScherm(naam) {
-    app.innerHTML = '<p class="fo-leeg">' + esc(t('laden')) + '</p>';
+    app.innerHTML = tabs('') + '<p class="fo-leeg">' + esc(t('laden')) + '</p>';
     var data;
     try {
       data = await api('onderwerp', { naam: naam });
     } catch (e) {
-      app.innerHTML = '<p><a href="#/">' + esc(t('terug')) + '</a></p><p class="fo-leeg">' + esc(e.status === 404 ? t('onbekend') : (e.message || t('fout'))) + '</p>';
+      app.innerHTML = tabs('') + '<p><a href="#/">' + esc(t('terug')) + '</a></p><p class="fo-leeg">' + esc(e.status === 404 ? t('onbekend') : (e.message || t('fout'))) + '</p>';
       return;
     }
     var o = data.onderwerp;
-    var cat = categorieen.find(function (c) { return c.slug === o.categorie; });
+    var cat = zoekCat(o.categorie);
     document.title = o.titel + ' — ' + t('titel') + ' — OpenAEC';
     var modknoppen = '';
     if (ik && ik.moderator) {
@@ -508,21 +692,22 @@
     }
     var reageer;
     if (o.status !== 'Open' && !(ik && ik.moderator)) {
-      reageer = '<p class="fo-klein">' + esc(t('gesloten')) + '</p>';
+      reageer = '<p class="fo-klein fo-dicht">' + esc(t('gesloten')) + '</p>';
     } else if (ik) {
-      reageer = '<form class="fo-form" id="fo-reageer"><label><span>' + esc(t('jouwReactie')) + '</span>' +
-        '<textarea name="tekst" rows="6" required minlength="2" maxlength="20000"></textarea></label>' +
-        '<p class="fo-klein">' + esc(t('opmaak')) + '</p><p>' +
-        '<button class="btn btn-primary" type="submit">' + esc(t('reageren')) + '</button></p></form>';
+      reageer = '<form class="fo-post fo-reageer" id="fo-reageer">' + avatar(ik.naam, true) + '<div class="fo-post-lijf fo-form">' +
+        '<label><span>' + esc(t('jouwReactie')) + '</span><textarea name="tekst" rows="6" required minlength="2" maxlength="20000"></textarea></label>' +
+        '<p class="fo-klein">' + esc(t('opmaak')) + '</p><p><button class="btn btn-primary" type="submit">' + esc(t('reageren')) + '</button></p></div></form>';
     } else {
-      reageer = '<div class="fo-blok fo-cta"><p>' + esc(t('logInOmTeReageren')) + '</p><p>' + knop(t('inloggen'), 'inloggen', 'btn-primary') +
+      reageer = '<div class="fo-kaart fo-cta"><p>' + esc(t('logInOmTeReageren')) + '</p><p>' + knop(t('inloggen'), 'inloggen', 'btn-primary') +
         ' <a class="btn btn-secondary fo-knop" href="#/aanmelden">' + esc(t('aanmelden')) + '</a></p></div>';
     }
-    app.innerHTML = '<div class="fo-raster"><div class="fo-hoofd">' +
+    app.innerHTML = tabs('', o.categorie) +
+      '<div class="fo-onderwerp">' +
       '<p class="fo-kruimel"><a href="#/">' + esc(t('titel')) + '</a>' + (cat ? ' / <a href="#/c/' + encodeURIComponent(cat.slug) + '">' + esc(catTitel(cat)) + '</a>' : '') + '</p>' +
-      '<h2 class="fo-onderwerp-titel">' + esc(o.titel) + '</h2>' + modknoppen +
-      data.berichten.map(function (b) { return berichtHtml(b, o); }).join('') +
-      reageer + '</div>' + zijbalk(o.categorie) + '</div>';
+      '<h2 class="fo-onderwerp-titel">' + esc(o.titel) + labels(o) + '</h2>' +
+      '<p class="fo-meta">' + catChip(cat) + '<span>' + esc(t('reacties')(o.reacties)) + '</span></p>' + modknoppen +
+      '<div class="fo-posts">' + data.berichten.map(function (b) { return berichtHtml(b, o); }).join('') + '</div>' +
+      reageer + '</div>';
     var form = document.getElementById('fo-reageer');
     if (form) {
       form.addEventListener('submit', async function (ev) {
@@ -561,21 +746,26 @@
     });
   }
 
+  // Een scherm met één kolom: nieuw onderwerp, account maken, regels.
+  function enkel(slug, html) {
+    app.innerHTML = tabs('', slug) + '<div class="fo-enkel"><section class="fo-kaart">' + html + '</section></div>';
+  }
+
   function nieuwScherm(slug) {
     if (!ik) {
-      app.innerHTML = '<div class="fo-raster"><div class="fo-hoofd"><h2>' + esc(t('nieuw')) + '</h2><div class="fo-blok fo-cta"><p>' + esc(t('logInOmTeSchrijven')) + '</p><p>' +
-        knop(t('inloggen'), 'inloggen', 'btn-primary') + ' <a class="btn btn-secondary fo-knop" href="#/aanmelden">' + esc(t('aanmelden')) + '</a></p></div></div>' + zijbalk(slug) + '</div>';
+      enkel(slug, '<h2>' + esc(t('nieuw')) + '</h2><p>' + esc(t('logInOmTeSchrijven')) + '</p><p>' +
+        knop(t('inloggen'), 'inloggen', 'btn-primary') + ' <a class="btn btn-secondary fo-knop" href="#/aanmelden">' + esc(t('aanmelden')) + '</a></p>');
       return;
     }
     var keuzes = categorieen.filter(function (c) { return !c.alleen_team || ik.moderator; });
-    app.innerHTML = '<div class="fo-raster"><div class="fo-hoofd"><h2>' + esc(t('nieuw')) + '</h2><form class="fo-form" id="fo-nieuw">' +
+    enkel(slug, '<h2>' + esc(t('nieuw')) + '</h2><form class="fo-form" id="fo-nieuw">' +
       '<label><span>' + esc(t('categorieVeld')) + '</span><select name="categorie" required>' +
       keuzes.map(function (c) { return '<option value="' + esc(c.slug) + '"' + (c.slug === slug ? ' selected' : '') + '>' + esc(catTitel(c)) + '</option>'; }).join('') +
       '</select></label>' +
       '<label><span>' + esc(t('titelVeld')) + '</span><input name="titel" required minlength="5" maxlength="140"></label>' +
       '<label><span>' + esc(t('berichtVeld')) + '</span><textarea name="tekst" rows="10" required minlength="2" maxlength="20000"></textarea></label>' +
       '<p class="fo-klein">' + esc(t('opmaak')) + '</p>' +
-      '<p><button class="btn btn-primary" type="submit">' + esc(t('plaatsen')) + '</button></p></form></div>' + zijbalk(slug) + '</div>';
+      '<p><button class="btn btn-primary" type="submit">' + esc(t('plaatsen')) + '</button></p></form>');
     var form = document.getElementById('fo-nieuw');
     form.addEventListener('submit', async function (ev) {
       ev.preventDefault();
@@ -597,7 +787,7 @@
     var l = taal();
     // Gewone formulier-POST naar de cloud (zoals /supercloud/…/sign-up), met bron=forum: een account zonder omgeving,
     // en terug naar het forum na de verificatie.
-    app.innerHTML = '<div class="fo-raster"><div class="fo-hoofd"><h2>' + esc(t('aanmeldKop')) + '</h2><p class="fo-uitleg">' + esc(t('aanmeldUitleg')) + '</p>' +
+    enkel(null, '<h2>' + esc(t('aanmeldKop')) + '</h2><p class="fo-uitleg">' + esc(t('aanmeldUitleg')) + '</p>' +
       '<form class="fo-form" method="post" action="' + esc(CLOUD) + '/aanmelden/start">' +
       '<input type="hidden" name="taal" value="' + esc(l) + '"><input type="hidden" name="bron" value="forum">' +
       '<input type="hidden" name="terug" value="' + esc(TERUG + '#/') + '">' +
@@ -606,12 +796,12 @@
       '<label class="fo-honing" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>' +
       '<label class="fo-akkoord"><input type="checkbox" name="akkoord" value="1" required> <span>' + t('akkoord') + '</span></label>' +
       '<p><button class="btn btn-primary" type="submit">' + esc(t('versturen')) + '</button></p></form>' +
-      '<p class="fo-klein">' + esc(t('alAccount')) + ' ' + knop(t('inloggen'), 'inloggen', 'btn-ghost') + '</p></div>' + zijbalk(null) + '</div>';
+      '<p class="fo-klein">' + esc(t('alAccount')) + ' ' + knop(t('inloggen'), 'inloggen', 'btn-ghost') + '</p>');
   }
 
   function regelsScherm() {
-    app.innerHTML = '<div class="fo-raster"><div class="fo-hoofd"><h2>' + esc(t('regelsKop')) + '</h2><ul class="fo-regels">' +
-      t('regels').map(function (r) { return '<li>' + esc(r) + '</li>'; }).join('') + '</ul></div>' + zijbalk(null) + '</div>';
+    enkel(null, '<h2>' + esc(t('regelsKop')) + '</h2><ul class="fo-regels">' +
+      t('regels').map(function (r) { return '<li>' + esc(r) + '</li>'; }).join('') + '</ul>');
   }
 
   function toon() {
@@ -624,13 +814,14 @@
     window.scrollTo(0, 0);
     if (route[0] === 't' && route[1]) return onderwerpScherm(route[1]);
     if (route[0] === 'c' && route[1]) {
-      var cat = categorieen.find(function (c) { return c.slug === route[1]; });
+      var cat = zoekCat(route[1]);
       return cat ? lijstScherm(cat) : lijstScherm(null);
     }
+    if (route[0] === 'recent') return lijstScherm(null);
     if (route[0] === 'nieuw') return nieuwScherm(route[1] || null);
     if (route[0] === 'aanmelden') return aanmeldScherm();
     if (route[0] === 'regels') return regelsScherm();
-    return lijstScherm(null);
+    return startScherm();
   }
 
   async function laadCategorieen() {
@@ -638,8 +829,8 @@
   }
 
   async function laadIk() {
-    if (!leesSessie()) { ik = null; return; }
-    try { ik = await api('ik'); } catch (e) { ik = null; if (e.status === 401 || e.status === 403) bewaarSessie(null); }
+    if (!leesSessie()) { ik = null; bewaarAccount(null); return; }
+    try { ik = await api('ik'); bewaarAccount(ik); } catch (e) { ik = null; if (e.status === 401 || e.status === 403) { bewaarSessie(null); bewaarAccount(null); } }
   }
 
   async function start() {

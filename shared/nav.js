@@ -43,6 +43,49 @@
       });
   }
 
+  // Wie op het forum is ingelogd, ziet dat rechtsboven in de navigatie van elke pagina. Het forum (forum.js) zet
+  // alleen de naam in localStorage onder `openaec-forum-account`; de sessie zelf blijft bij het forum.
+  function accountKnop() {
+    var menu = document.querySelector('#shared-nav .nav-menu');
+    if (!menu) return;
+    var oud = menu.querySelector('.nav-account');
+    if (oud) oud.remove();
+    var account = null;
+    try { account = JSON.parse(localStorage.getItem('openaec-forum-account') || 'null'); } catch (e) { account = null; }
+    if (!account || !account.naam) return;
+    if (!document.getElementById('nav-account-stijl')) {
+      var stijl = document.createElement('style');
+      stijl.id = 'nav-account-stijl';
+      stijl.textContent = '.nav-account{display:inline-flex;align-items:center;gap:8px;padding:3px 12px 3px 3px;margin-left:8px;border-radius:999px;border:1px solid rgba(255,255,255,.28);color:inherit;text-decoration:none;font-weight:600;font-size:.88rem;line-height:1}' +
+        '.nav-account:hover{border-color:var(--amber,#D97706)}' +
+        '.nav-account-av{width:28px;height:28px;border-radius:50%;background:var(--amber,#D97706);color:#fff;display:grid;place-items:center;font-size:.72rem;font-weight:700}' +
+        '.nav-account-naam{max-width:11em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}';
+      document.head.appendChild(stijl);
+    }
+    var delen = String(account.naam).trim().split(/\s+/);
+    var ini = ((delen[0] || '?').charAt(0) + (delen.length > 1 ? delen[delen.length - 1].charAt(0) : '')).toUpperCase();
+    var knop = document.createElement('a');
+    knop.className = 'nav-account';
+    knop.href = '/forum/';
+    knop.title = account.naam;
+    var av = document.createElement('span');
+    av.className = 'nav-account-av';
+    av.setAttribute('aria-hidden', 'true');
+    av.textContent = ini;
+    var naam = document.createElement('span');
+    naam.className = 'nav-account-naam';
+    naam.textContent = account.naam;
+    knop.appendChild(av);
+    knop.appendChild(naam);
+    // Dezelfde tekstkleur als de andere links in de balk (licht op donker, ook in het uitklapmenu op mobiel).
+    var link = menu.querySelector('.nav-link');
+    if (link) knop.style.color = getComputedStyle(link).color;
+    menu.insertBefore(knop, menu.querySelector('.lang-switcher'));
+  }
+  document.addEventListener('nav:loaded', accountKnop);
+  document.addEventListener('openaec:account', accountKnop);
+  window.addEventListener('storage', function (ev) { if (ev.key === 'openaec-forum-account') accountKnop(); });
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadNav);
   } else {
