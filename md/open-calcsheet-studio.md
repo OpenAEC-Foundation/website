@@ -15,10 +15,10 @@
 - Stars: **7**
 - Commits: **253**
 - Forks: **2**
-- Open issues: **31**
+- Open issues: **43**
 - Releases: **8**
-- Total downloads: **1,512**
-- Downloads by platform: Other (744), Windows (636), Linux (AppImage) (59), Linux (deb) (29), macOS (28), Archive (16)
+- Total downloads: **1,612**
+- Downloads by platform: Other (795), Windows (679), Linux (AppImage) (61), Linux (deb) (30), macOS (30), Archive (17)
 
 ## Key features
 
@@ -67,8 +67,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Other · openaec-mcp-server_2026.46.1_linux-x64](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/fem-server-2026.46.1/openaec-mcp-server_2026.46.1_linux-x64) (fem-server-2026.46.1 — 31.9 MB)
 - [Other · openaec-mcp-server_2026.46.1_macos-universal](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/fem-server-2026.46.1/openaec-mcp-server_2026.46.1_macos-universal) (fem-server-2026.46.1 — 59 MB)
 - [Windows · Open.CalcSheet.Studio_2026.45.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.45.2/Open.CalcSheet.Studio_2026.45.2_x64-setup.exe) (v2026.45.2 — 64.1 MB)
-- [Windows · Open.CalcSheet.Studio_2026.46.1_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.46.1/Open.CalcSheet.Studio_2026.46.1_x64_user-setup.exe) (v2026.46.1 — 73.8 MB)
 - [Windows · Open.CalcSheet.Studio_2026.46.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.46.1/Open.CalcSheet.Studio_2026.46.1_x64-setup.exe) (v2026.46.1 — 73.8 MB)
+- [Windows · Open.CalcSheet.Studio_2026.46.1_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.46.1/Open.CalcSheet.Studio_2026.46.1_x64_user-setup.exe) (v2026.46.1 — 73.8 MB)
 - [Windows · Open.CalcSheet.Studio_2026.45.2_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.45.2/Open.CalcSheet.Studio_2026.45.2_x64_user-setup.exe) (v2026.45.2 — 64.1 MB)
 
 ---

@@ -6,19 +6,19 @@
 **License:** MPL-2.0
 **Platforms:** Linux
 **Category:** BIM Modelling
-**Current version:** v0.1.1 (2026-10-23)
+**Current version:** v2026.47.0 (2026-11-18)
 **Tool ID:** `open-bim-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-bim-studio`
 
 ## Live stats
 
 - Stars: **22**
-- Commits: **992**
+- Commits: **996**
 - Forks: **5**
 - Open issues: **53**
-- Releases: **2**
-- Total downloads: **358**
-- Downloads by platform: Archive (233), Other (125)
+- Releases: **3**
+- Total downloads: **394**
+- Downloads by platform: Archive (244), Other (150)
 
 ## Key features
 
@@ -54,7 +54,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 
 - Product page: https://open-aec.com/open-bim-studio/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-bim-studio
-- Latest release: https://github.com/OpenAEC-Foundation/open-bim-studio/releases/tag/v0.1.1
+- Latest release: https://github.com/OpenAEC-Foundation/open-bim-studio/releases/tag/v2026.47.0
 
 ## Direct downloads (most popular)
 

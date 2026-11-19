@@ -12,13 +12,13 @@
 
 ## Live stats
 
-- Stars: **17**
+- Stars: **18**
 - Commits: **131**
 - Forks: **7**
 - Open issues: **4**
 - Releases: **9**
-- Total downloads: **884**
-- Downloads by platform: Windows (547), Linux (AppImage) (122), Windows (MSI) (61), macOS (54), Linux (deb) (44), Linux (rpm) (38), Archive (18)
+- Total downloads: **898**
+- Downloads by platform: Windows (558), Linux (AppImage) (124), Windows (MSI) (61), macOS (55), Linux (deb) (44), Linux (rpm) (38), Archive (18)
 
 ## Key features
 
@@ -66,7 +66,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows (MSI) · Open.Frame.Studio_0.6.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_x64_en-US.msi) (v0.6.0 — 6.6 MB)
 - [macOS · Open.Frame.Studio_0.6.0_universal.dmg](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_universal.dmg) (v0.6.0 — 12.7 MB)
 - [Linux (deb) · Open.Frame.Studio_0.6.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_amd64.deb) (v0.6.0 — 7.1 MB)
-- [Linux (rpm) · Open.Frame.Studio-0.6.0-1.x86_64.rpm](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio-0.6.0-1.x86_64.rpm) (v0.6.0 — 7.1 MB)
+- [Windows · Open.Frame.Studio_2026.46.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v2026.46.2/Open.Frame.Studio_2026.46.2_x64-setup.exe) (v2026.46.2 — 4.7 MB)
 
 ---
 
