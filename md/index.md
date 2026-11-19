@@ -2,11 +2,11 @@
 
 > Machine-readable Markdown mirrors of the OpenAEC product pages. Use these when feeding the OpenAEC catalog to AI assistants (Claude, Continue, Cursor, etc).
 
-Generated: 2026-11-19T06:06:22.247Z
+Generated: 2026-11-19T10:22:14.630Z
 
-**Foundation totals:** 84 public repos · 5935 stars · 33168 commits · 119 contributors.
+**Foundation totals:** 84 public repos · 5952 stars · 33279 commits · 119 contributors.
 
-**Total downloads across tools:** 272,908 (26 repos).
+**Total downloads across tools:** 273,942 (26 repos).
 
 ## Live
 
@@ -24,11 +24,11 @@ Generated: 2026-11-19T06:06:22.247Z
 - [Open Infra Studio](./open-infra-studio.md) — Open-source GIS and civil design plugin for Open CAD Studio. Sets the project location and coordinate system, then brings aerial photos, WMS/TMS underlays, WFS vector data, OpenStreetMap and Dutch base data from PDOK into the DWG. BGT, the cadastral map (BRK) and KLIC deliveries (IMKL 2.0) land on NLCS 5.02 layers with their source attributes as object data, through the official NLCS-BGT 5.0 mapping, and a drawing sheet with title block, legend, north arrow, scale bar and RD crosses is generated around the import area. (`web-v2026.44.5`)
 - [Open Speech Studio](./open-speech-studio.md) — Local speech-to-text using Whisper AI. CTRL+Win shortcut for OS-wide dictation. Privacy-first, no cloud. (`v0.12.3`)
 - [Open Field Studio](./open-field-studio.md) — Site inspection and quality control. Defect pinning on floorplans, NEN 2767 checklists, offline-first. (`v0.4.12`)
-- [OpenAEC Installer](./openaec-installer.md) — Central hub to discover, install, update and launch every OpenAEC tool from one app. (`v0.2.14`)
+- [OpenAEC Installer](./openaec-installer.md) — Central hub to discover, install, update and launch every OpenAEC tool from one app. (`v2026.47.1`)
 - [Open CalcSheet Studio](./open-calcsheet-studio.md) — Structural calculations you can read back: every result shows its formula, numbers and units, and all your sheets end up in one report. (`v2026.46.1`)
 - [BCF Manager Studio](./bcf-manager-studio.md) — BCF 2.1 issue management platform. BCF API 2.1 server, IFC GlobalId linking, self-hosted with Docker. (`n/a`)
 - [Y-app](./y-app.md) — Communication and collaboration for construction projects. (`v0.34.0`)
-- [Open 3D Viewer Studio](./open-3d-viewer.md) — Viewer for the 3D models that architects, engineers and builders exchange: SketchUp, Tekla Structures, Revit, IFC, glTF, OBJ, STL, PLY, CityJSON, LandXML and DWG/DXF. Measure, section, explode and save as IFC 4, as a desktop app and in the browser. (`v2026.47.4`)
+- [Open 3D Viewer Studio](./open-3d-viewer.md) — Viewer for the 3D models that architects, engineers and builders exchange: SketchUp, Tekla Structures, Revit, IFC, glTF, OBJ, STL, PLY, CityJSON, LandXML and DWG/DXF. Measure, section, explode and save as IFC 4, as a desktop app and in the browser. (`v2026.47.5`)
 - [Open Safety Studio](./open-safety-studio.md) — Safety plans for construction: health and safety plan (V&G), BLVC plan, risk matrix and safe maintenance, with the Dutch legal basis alongside. Live demo in the browser. (`n/a`)
 
 ## Alpha

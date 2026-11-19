@@ -16,9 +16,9 @@
 - Commits: **109**
 - Forks: **2**
 - Open issues: **24**
-- Releases: **3**
-- Total downloads: **42**
-- Downloads by platform: Windows (23), Other (15), Archive (4)
+- Releases: **1**
+- Total downloads: **47**
+- Downloads by platform: Windows (28), Other (15), Archive (4)
 
 ## Key features
 

@@ -6,19 +6,19 @@
 **License:** CC-BY-SA-4.0
 **Platforms:** Windows, macOS, Linux
 **Category:** Installer & Launcher
-**Current version:** v0.2.14 (2026-11-03)
+**Current version:** v2026.47.1 (2026-11-19)
 **Tool ID:** `openaec-installer`
 **GitHub repo:** `OpenAEC-Foundation/openaec-installer`
 
 ## Live stats
 
 - Stars: **4**
-- Commits: **87**
+- Commits: **95**
 - Forks: **2**
 - Open issues: **13**
-- Releases: **22**
-- Total downloads: **3,297**
-- Downloads by platform: Windows (1953), Linux (AppImage) (865), Linux (deb) (210), macOS (182), Windows (MSI) (66), Linux (snap) (20), Other (1)
+- Releases: **24**
+- Total downloads: **3,344**
+- Downloads by platform: Windows (1985), Linux (AppImage) (871), Linux (deb) (213), macOS (185), Windows (MSI) (68), Linux (snap) (21), Other (1)
 
 ## Key features
 
@@ -47,7 +47,7 @@ Installing and keeping all OpenAEC tools up to date on one workstation without v
 - Product page: https://open-aec.com/openaec-installer/
 - Live demo: https://openaec-installer.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/openaec-installer
-- Latest release: https://github.com/OpenAEC-Foundation/openaec-installer/releases/tag/v0.2.14
+- Latest release: https://github.com/OpenAEC-Foundation/openaec-installer/releases/tag/v2026.47.1
 - Nightly builds: https://github.com/OpenAEC-Foundation/openaec-installer/releases/tag/nightly
 
 ## Direct downloads (most popular)

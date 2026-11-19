@@ -6,7 +6,7 @@
 **License:** LGPL-3.0-or-later
 **Platforms:** Windows, macOS, Linux, Web
 **Category:** BIM Viewer
-**Current version:** v2026.47.4 (2026-11-18)
+**Current version:** v2026.47.5 (2026-11-19)
 **Tool ID:** `open-3d-viewer`
 **GitHub repo:** `OpenAEC-Foundation/open-3d-viewer`
 
@@ -16,9 +16,9 @@
 - Commits: **0**
 - Forks: **0**
 - Open issues: **0**
-- Releases: **25**
-- Total downloads: **1,317**
-- Downloads by platform: Windows (657), Linux (AppImage) (172), macOS (114), Linux (deb) (108), Archive (93), Other (88), Linux (rpm) (83), Linux (snap) (2)
+- Releases: **26**
+- Total downloads: **1,343**
+- Downloads by platform: Windows (668), Linux (AppImage) (174), macOS (118), Linux (deb) (110), Archive (95), Other (91), Linux (rpm) (85), Linux (snap) (2)
 
 ## Key features
 
@@ -56,7 +56,7 @@ Opening a model you were sent (SketchUp, Tekla, Revit, IFC) without the program 
 - Product page: https://open-aec.com/open-3d-viewer/
 - Live demo: https://open-3d-viewer.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-3d-viewer
-- Latest release: https://github.com/OpenAEC-Foundation/open-bim-suite/releases/tag/v2026.47.4
+- Latest release: https://github.com/OpenAEC-Foundation/open-bim-suite/releases/tag/v2026.47.5
 
 ## Direct downloads (most popular)
 
