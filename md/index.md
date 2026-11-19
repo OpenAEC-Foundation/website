@@ -26,6 +26,7 @@ Generated: 2026-11-19T10:22:14.630Z
 - [Open Field Studio](./open-field-studio.md) — Site inspection and quality control. Defect pinning on floorplans, NEN 2767 checklists, offline-first. (`v0.4.12`)
 - [OpenAEC Installer](./openaec-installer.md) — Central hub to discover, install, update and launch every OpenAEC tool from one app. (`v2026.47.1`)
 - [Open CalcSheet Studio](./open-calcsheet-studio.md) — Structural calculations you can read back: every result shows its formula, numbers and units, and all your sheets end up in one report. (`v2026.46.1`)
+- [Open Frame Studio](./open-frame-studio.md) — Design window and door frames (kozijnen) in 2D and 3D, with frame schedules, workshop drawings, cutting lists and IFC export. (`v2026.47.0`)
 - [BCF Manager Studio](./bcf-manager-studio.md) — BCF 2.1 issue management platform. BCF API 2.1 server, IFC GlobalId linking, self-hosted with Docker. (`n/a`)
 - [Y-app](./y-app.md) — Communication and collaboration for construction projects. (`v0.34.0`)
 - [Open 3D Viewer Studio](./open-3d-viewer.md) — Viewer for the 3D models that architects, engineers and builders exchange: SketchUp, Tekla Structures, Revit, IFC, glTF, OBJ, STL, PLY, CityJSON, LandXML and DWG/DXF. Measure, section, explode and save as IFC 4, as a desktop app and in the browser. (`v2026.47.5`)
@@ -46,7 +47,6 @@ Generated: 2026-11-19T10:22:14.630Z
 ## Retired
 
 - [Open 2D Studio](./open-2d-studio.md) — 2D CAD application with drawing tools, DXF import/export, layers and dimensions. (`v0.35.0`)
-- [Open Frame Studio](./open-frame-studio.md) — Design window and door frames (kozijnen) in 2D and 3D, with frame schedules, workshop drawings, cutting lists and IFC export. (`v2026.46.2`)
 - [OpenAEC Docs](./openaec-docs.md) — BIM document management on top of Nextcloud: project files and folders, project manifests and links with the BIM Validator and BCF platform. (`n/a`)
 
 ## Schema

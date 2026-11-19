@@ -33,6 +33,14 @@ const retiredHomepageRepos = [
 // Open Energy Studio is back on the homepage since 2026.43.0 (installers and releases).
 assert.ok(homepage.includes('data-repo="open-energy-studio"'), 'homepage mist de kaart van Open Energy Studio');
 
+// The Dutch-standards homepage card and both machine-readable catalogs agree.
+const frameCards = [...homepage.matchAll(/<article[^>]*data-repo="open-frame-studio"[^>]*>[\s\S]*?<\/article>/g)];
+assert.equal(frameCards.length, 1, 'homepage moet precies één Open Frame Studio-kaart tonen');
+assert.ok(frameCards[0][0].includes('data-i18n="tools.tags.beta"'));
+for (const catalog of [tools, markdownIndexJson]) {
+  assert.equal(catalog.tools.find(t => t.id === 'open-frame-studio')?.status, 'beta', 'Open Frame Studio ontbreekt als bèta in de catalogus');
+}
+
 for (const repo of retiredHomepageRepos) {
   assert.ok(!homepage.includes(`data-repo="${repo}"`), `homepage bevat nog kaart: ${repo}`);
 }
