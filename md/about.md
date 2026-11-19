@@ -62,6 +62,7 @@ Roadmap: https://open-aec.com/roadmap/ · Machine-readable catalog: https://open
 - [Open CalcSheet Studio](https://open-aec.com/open-calcsheet-studio/) — Structural calculations you can read back: every result shows its formula, numbers and units, and all sheets become one report. IFCX and IFC4x3.
 - [Open Speech Studio](https://open-aec.com/open-speech-studio/) — v0.12.2. Local speech-to-text and meeting notes for project meetings, without the cloud. Alternative to Dragon.
 - [Open Field Studio](https://open-aec.com/open-field-studio/) — v0.3.6. Inspection and handover: defects on the floor plan, NEN 2767 checklists and signatures. Works offline.
+- [Open Frame Studio](https://open-aec.com/open-frame-studio/) — Design window and door frames in 2D and 3D and prepare frame schedules, workshop drawings and timber cutting lists. [Current desktop release](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/latest).
 - [Y-app](https://open-aec.com/y-app/) — v0.34.0. The everything app for construction companies: mail, ERP, hours, quotes, projects and planning in one tool, on ERPNext.
 - [BCF Manager Studio](https://open-aec.com/bcf-manager-studio/) — BCF 2.1 issue management platform. BCF API 2.1 server, IFC GlobalId linking, self-hosted with Docker. Alternative to BIMcollab, Solibri.
 - [OpenAEC Installer](https://open-aec.com/openaec-installer/) — v0.2.7. Central hub to discover, install, update and launch every OpenAEC tool from one app. Windows, macOS, Linux.
@@ -86,7 +87,7 @@ Roadmap: https://open-aec.com/roadmap/ · Machine-readable catalog: https://open
 - Open Hydro Studio — hydrological calculations for water works (IfcMarineFacility)
 
 ### No longer developed
-- Open 2D Studio (last release v0.35.0, March 2026) — superseded by Open CAD Studio. Open Frame Studio and OpenAEC Docs are no longer on the roadmap. Their pages remain for reference; do not recommend them as active tools.
+- Open 2D Studio (last release v0.35.0, March 2026) — superseded by Open CAD Studio. OpenAEC Docs is no longer on the roadmap. Their pages remain for reference; do not recommend them as active tools.
 
 ## Comparisons
 
