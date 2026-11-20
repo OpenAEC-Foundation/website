@@ -1,21 +1,97 @@
 {
   "repo": "Open-CalcSheet-Studio",
-  "generated": "2026-11-19T10:21:27.226Z",
-  "totalReleases": 8,
-  "totalChanges": 48,
+  "generated": "2026-11-20T06:05:24.018Z",
+  "totalReleases": 11,
+  "totalChanges": 67,
   "latestStable": {
-    "tag": "v2026.46.1",
-    "name": "Open CalcSheet Studio v2026.46.1",
-    "date": "2026-11-12",
-    "url": "https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/tag/v2026.46.1"
+    "tag": "v2026.47.2",
+    "name": "Open CalcSheet Studio v2026.47.2",
+    "date": "2026-11-20",
+    "url": "https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/tag/v2026.47.2"
   },
-  "latestChangelog": "- De server van Open FEM Studio in een installer heeft zijn licentie (GNU AGPL-3.0), de vermeldingen van derden en een verwijzing naar zijn broncode naast zich, en Instellingen › Over toont ze. De broncode van precies die versie staat bij de release, naast de installers\n- De installers kunnen de server van Open FEM Studio meeleveren, met de handtekening van FEM Studio, en de controles van de release zoeken hem erin. De release-tekst zegt per platform of hij is meegeleverd\n- Rekentaal: met `@kern naam = tool … @end` roept een blad een rekentool van Open FEM Studio aan waarvan de invoer genest is en de uitkomst uit getallen bestaat, zoals het drielagenmodel voor de wapening van een plaat en de scheurwijdte volgens NEN-EN 1992-1-1 7.3.4 (`solve_native_fem`). Een pad met punten bouwt de invoer op (`inputs.input.thicknessMm = h`), eenheden worden omgerekend naar wat de tool vraagt, en daarna rekent het blad verder met de getallen uit het antwoord (`drie.result.bottom.requiredAsXmm2PerM`). Met `per k = 1 : n` doet het blok een reeks aanroepen in één keer. Het antwoord gaat mee in het projectbestand; zonder antwoord staat het blok als niet gerekend en bestaat er geen uitkomst\n- Invoerscherm voor elk rekenblad: een blad of module zonder eigen beeld, ook uit de modulebibliotheek, heeft naast de uitwerking een formulier met al zijn invoervelden, onder de koppen van het blad en met toelichting en eenheid. Een veld dat het blad nu niet toont, staat er niet. Een module opent met dit scherm; een eigen rekenblad opent met de code en heeft het als tab erbij. Een wijziging rekent door als je het veld verlaat, op Enter drukt of even wacht, en de kop toont of er gerekend wordt. De bedrijfsvloer op palen krijgt daarboven een plattegrond van het paalraster en een doorsnede bij een paal: die bewegen meteen mee, zonder op Open FEM Studio te wachten, en een maat wijzig je in de tekening zelf",
+  "latestChangelog": "- Op Linux schrijft de rapport-API met WebKitGTK rechtstreeks een PDF. Op een server kan de headless app op een virtueel scherm draaien.",
   "nightly": {
     "tag": "nightly",
-    "date": "2026-11-19",
+    "date": "2026-11-20",
     "url": "https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/tag/nightly"
   },
   "groups": [
+    {
+      "minorVersion": "2026.47",
+      "releases": [
+        {
+          "tag": "v2026.47.2",
+          "name": "Open CalcSheet Studio v2026.47.2",
+          "date": "2026-11-20",
+          "url": "https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/tag/v2026.47.2",
+          "changes": [
+            "Op Linux schrijft de rapport-API met WebKitGTK rechtstreeks een PDF. Op een server kan de headless app op een virtueel scherm draaien."
+          ],
+          "patchNum": 2
+        },
+        {
+          "tag": "v2026.47.1",
+          "name": "Open CalcSheet Studio v2026.47.1",
+          "date": "2026-11-20",
+          "url": "https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/tag/v2026.47.1",
+          "changes": [
+            "De voorgespannen paal toont bij transport en hijsen gevulde momenten- en dwarskrachtenlijnen met tekens. Een normaalkrachtenlijn toont de trek in het voorspanstaal en de druk in de betonschacht."
+          ],
+          "patchNum": 1
+        },
+        {
+          "tag": "v2026.47.0",
+          "name": "Open CalcSheet Studio v2026.47.0",
+          "date": "2026-11-19",
+          "url": "https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/tag/v2026.47.0",
+          "changes": [
+            "De betonbibliotheek bevat een conceptmodule voor voorgespannen prefab palen met momentenlijnen, een trektoets en ruimtelijke wapeningsdetails.",
+            "De API hergebruikt de laatst ingelezen bladtekst bij het opvragen van invoervelden en rekenresultaten.",
+            "Met `--headless` draait de desktop-app zonder zichtbaar venster voor lokale berekeningen en rapportexport via de API.",
+            "Het welkomstpaneel onderin verschijnt alleen de eerste keer dat je de app opent. Via Help › Aan de slag haal je het terug",
+            "Rapport als PDF: in een inhoudsopgave is de hele regel een link naar zijn kop (het nummer, de titel en het paginanummer), en een verwijzing in de tekst van het rapport of van een rekenblad, zoals \"zie 5.2\", \"hoofdstuk 4\" of \"bijlage A.3\", springt naar die paragraaf of dat blad. De PDF heeft bladwijzers: de hoofdstukken, paragrafen, bladen en bijlagen uit de inhoudsopgave voorin, met de paragrafen ingeklapt onder hun hoofdstuk",
+            "Rapport, hoofdstuk Berekeningen: met het vinkje *Bladen in bijlage A ook als paragraaf in dit hoofdstuk* uit staan bladen met hun uitwerking in bijlage A alleen nog in die bijlage. Ze hebben dan geen paragraaf met een verwijzing in het hoofdstuk en tellen niet mee in de nummering; de bladen in het hoofdstuk nummeren door. Standaard staat het aan, zoals het was",
+            "Op papier is alle tekst in een rekenblad even groot: een toelichting achter een formule en een eigen `<p>` of lijst in een tekstregel hebben dezelfde maat als een gewone tekstregel",
+            "Rapport: onder de tekst van een paragraaf in hoofdstuk 1 t/m 3 kunnen afbeeldingen staan (PNG of JPEG), elk met een bijschrift en een breedte, bijvoorbeeld een overzichtstekening bij 2.1 Projectomschrijving. Ook aan het begin van hoofdstuk Berekeningen kan een afbeelding staan, zoals het 3D-model van de constructie (`beelden.berekeningen`). In het rapportpaneel voeg je ze toe met *+ Afbeelding*; ze gaan mee in het projectbestand",
+            "API (MCP en REST): `report_set` met pad `beelden.<paragraaf>` zet de afbeeldingen van een paragraaf, uit een bestand (`path`) of als data-URL (`data`); `report_get` geeft per afbeelding het bijschrift, de breedte en de grootte",
+            "Het lastblok (`@last`) staat als tabel met een raster en een gekleurde kop: het symbool, b, l, p_rep, G en Q per regel, en eronder de som van G en Q met de eenheid. Een regel zonder omschrijving heeft een witte cel, en de getallen in een kolom staan met hun decimaalteken onder elkaar. Het invulscherm van een lastblok heeft dezelfde tabel: je vult de cellen omschrijving, b, l en p_rep in en zet met een stip of de regel onder G of Q telt",
+            "Op papier in het Nederlands staan de getallen van een rekenblad met een komma als decimaalteken: in formules, tabellen en tekeningen. De rekentaal en het scherm houden de punt, en lopende tekst blijft zoals hij getypt is",
+            "Rapport, 5.5 Blijvende belastingen als canvas: elke opbouw (vloer, dak, wand of gevel) is een blok op een rastervlak, met zijn naam, zijn lagen en de som. Een klik opent het blok om het te bewerken, met het plusje komt er een laag bij, ook uit de gewichtenbibliotheek, en je sleept een blok naar de plek waar je het wilt hebben. Elk blok en elke belastingklasse uit 5.4 heeft een symbool (`g_v1`, `g_w1`, `q_k1`) dat je kunt wijzigen: onder dat symbool bestaat de belasting in elk rekenblad, en het staat achter de naam in het rapport. Het projectbestand bewaart de blokken met hun symbool en plek, en heeft per belasting een eigen object (`ocss::belasting`)",
+            "Canvasblad: met *+ Lastblok* maak je een blok dat een lijnlast (kN/m) of puntlast (kN) opbouwt uit de belastingen van hoofdstuk 5. Per regel kies je de belasting uit een lijst en geef je de belastingbreedte, het oppervlak of de lengte; een regel mag ook een eigen waarde zijn. Het blok staat als tabel op het blad en op papier, gescheiden in blijvend en veranderlijk, en het blad rekent verder met `q_L1`, `q_L1,G` en `q_L1,Q`. Wijzigt de opbouw in hoofdstuk 5, dan rekent het blok mee. In de rekentaal is het `@last symbool \"naam\" lijn … @end`, in elk blad te gebruiken",
+            "API (MCP en REST): `report_export_pdf` schrijft het hele rapport, met hoofdstukken, bladen en tekeningen, naar een opgegeven PDF-bestand, zonder dialoog. Alleen in de desktop-app op Windows",
+            "API (MCP en REST): `sheet_add` met `templateId` `canvas` maakt een canvas-blad, met `units` (tekst en plek in mm) om de eenheden meteen te plaatsen",
+            "Rapport, belastingklassen: categorie E (opslagruimtes) is erbij, en bij elke klasse zijn q_k en Q_k zelf in te vullen. Een leeg veld is de waarde uit de tabel; bij categorie E is er geen tabelwaarde en vul je beide zelf in",
+            "Een dev-build (`npm run build:dev-exe`) draait naast de geïnstalleerde app: hij heeft een eigen identifier, en daarmee eigen voorkeuren, een eigen token en standaard MCP-poort 3880"
+          ],
+          "patchNum": 0
+        }
+      ],
+      "allChanges": [
+        "Op Linux schrijft de rapport-API met WebKitGTK rechtstreeks een PDF. Op een server kan de headless app op een virtueel scherm draaien.",
+        "De voorgespannen paal toont bij transport en hijsen gevulde momenten- en dwarskrachtenlijnen met tekens. Een normaalkrachtenlijn toont de trek in het voorspanstaal en de druk in de betonschacht.",
+        "De betonbibliotheek bevat een conceptmodule voor voorgespannen prefab palen met momentenlijnen, een trektoets en ruimtelijke wapeningsdetails.",
+        "De API hergebruikt de laatst ingelezen bladtekst bij het opvragen van invoervelden en rekenresultaten.",
+        "Met `--headless` draait de desktop-app zonder zichtbaar venster voor lokale berekeningen en rapportexport via de API.",
+        "Het welkomstpaneel onderin verschijnt alleen de eerste keer dat je de app opent. Via Help › Aan de slag haal je het terug",
+        "Rapport als PDF: in een inhoudsopgave is de hele regel een link naar zijn kop (het nummer, de titel en het paginanummer), en een verwijzing in de tekst van het rapport of van een rekenblad, zoals \"zie 5.2\", \"hoofdstuk 4\" of \"bijlage A.3\", springt naar die paragraaf of dat blad. De PDF heeft bladwijzers: de hoofdstukken, paragrafen, bladen en bijlagen uit de inhoudsopgave voorin, met de paragrafen ingeklapt onder hun hoofdstuk",
+        "Rapport, hoofdstuk Berekeningen: met het vinkje *Bladen in bijlage A ook als paragraaf in dit hoofdstuk* uit staan bladen met hun uitwerking in bijlage A alleen nog in die bijlage. Ze hebben dan geen paragraaf met een verwijzing in het hoofdstuk en tellen niet mee in de nummering; de bladen in het hoofdstuk nummeren door. Standaard staat het aan, zoals het was",
+        "Op papier is alle tekst in een rekenblad even groot: een toelichting achter een formule en een eigen `<p>` of lijst in een tekstregel hebben dezelfde maat als een gewone tekstregel",
+        "Rapport: onder de tekst van een paragraaf in hoofdstuk 1 t/m 3 kunnen afbeeldingen staan (PNG of JPEG), elk met een bijschrift en een breedte, bijvoorbeeld een overzichtstekening bij 2.1 Projectomschrijving. Ook aan het begin van hoofdstuk Berekeningen kan een afbeelding staan, zoals het 3D-model van de constructie (`beelden.berekeningen`). In het rapportpaneel voeg je ze toe met *+ Afbeelding*; ze gaan mee in het projectbestand",
+        "API (MCP en REST): `report_set` met pad `beelden.<paragraaf>` zet de afbeeldingen van een paragraaf, uit een bestand (`path`) of als data-URL (`data`); `report_get` geeft per afbeelding het bijschrift, de breedte en de grootte",
+        "Het lastblok (`@last`) staat als tabel met een raster en een gekleurde kop: het symbool, b, l, p_rep, G en Q per regel, en eronder de som van G en Q met de eenheid. Een regel zonder omschrijving heeft een witte cel, en de getallen in een kolom staan met hun decimaalteken onder elkaar. Het invulscherm van een lastblok heeft dezelfde tabel: je vult de cellen omschrijving, b, l en p_rep in en zet met een stip of de regel onder G of Q telt",
+        "Op papier in het Nederlands staan de getallen van een rekenblad met een komma als decimaalteken: in formules, tabellen en tekeningen. De rekentaal en het scherm houden de punt, en lopende tekst blijft zoals hij getypt is",
+        "Rapport, 5.5 Blijvende belastingen als canvas: elke opbouw (vloer, dak, wand of gevel) is een blok op een rastervlak, met zijn naam, zijn lagen en de som. Een klik opent het blok om het te bewerken, met het plusje komt er een laag bij, ook uit de gewichtenbibliotheek, en je sleept een blok naar de plek waar je het wilt hebben. Elk blok en elke belastingklasse uit 5.4 heeft een symbool (`g_v1`, `g_w1`, `q_k1`) dat je kunt wijzigen: onder dat symbool bestaat de belasting in elk rekenblad, en het staat achter de naam in het rapport. Het projectbestand bewaart de blokken met hun symbool en plek, en heeft per belasting een eigen object (`ocss::belasting`)",
+        "Canvasblad: met *+ Lastblok* maak je een blok dat een lijnlast (kN/m) of puntlast (kN) opbouwt uit de belastingen van hoofdstuk 5. Per regel kies je de belasting uit een lijst en geef je de belastingbreedte, het oppervlak of de lengte; een regel mag ook een eigen waarde zijn. Het blok staat als tabel op het blad en op papier, gescheiden in blijvend en veranderlijk, en het blad rekent verder met `q_L1`, `q_L1,G` en `q_L1,Q`. Wijzigt de opbouw in hoofdstuk 5, dan rekent het blok mee. In de rekentaal is het `@last symbool \"naam\" lijn … @end`, in elk blad te gebruiken",
+        "API (MCP en REST): `report_export_pdf` schrijft het hele rapport, met hoofdstukken, bladen en tekeningen, naar een opgegeven PDF-bestand, zonder dialoog. Alleen in de desktop-app op Windows",
+        "API (MCP en REST): `sheet_add` met `templateId` `canvas` maakt een canvas-blad, met `units` (tekst en plek in mm) om de eenheden meteen te plaatsen",
+        "Rapport, belastingklassen: categorie E (opslagruimtes) is erbij, en bij elke klasse zijn q_k en Q_k zelf in te vullen. Een leeg veld is de waarde uit de tabel; bij categorie E is er geen tabelwaarde en vul je beide zelf in",
+        "Een dev-build (`npm run build:dev-exe`) draait naast de geïnstalleerde app: hij heeft een eigen identifier, en daarmee eigen voorkeuren, een eigen token en standaard MCP-poort 3880"
+      ],
+      "firstDate": "2026-11-19",
+      "lastDate": "2026-11-20",
+      "releaseCount": 3,
+      "changeCount": 19
+    },
     {
       "minorVersion": "2026.46",
       "releases": [

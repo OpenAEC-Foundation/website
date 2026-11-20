@@ -15,10 +15,10 @@
 - Stars: **7**
 - Commits: **918**
 - Forks: **4**
-- Open issues: **89**
+- Open issues: **88**
 - Releases: **7**
-- Total downloads: **1,908**
-- Downloads by platform: Windows (807), Linux (AppImage) (373), Linux (deb) (357), macOS (333), Other (30), Linux (snap) (8)
+- Total downloads: **2,007**
+- Downloads by platform: Windows (849), Linux (AppImage) (396), Linux (deb) (373), macOS (347), Other (34), Linux (snap) (8)
 
 ## Key features
 
@@ -57,9 +57,9 @@ Local office work on your own computer, without an account or cloud service. Tes
 - [Windows · Open.Office.Studio_2026.45.4_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.4/Open.Office.Studio_2026.45.4_x64-setup.exe) (v2026.45.4 — 68.2 MB)
 - [Windows · Open.Spreadsheet.Studio_2026.46.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.46.2/Open.Spreadsheet.Studio_2026.46.2_x64-setup.exe) (v2026.46.2 — 70.2 MB)
 - [Windows · Open.Writer.Studio_2026.46.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.46.2/Open.Writer.Studio_2026.46.2_x64-setup.exe) (v2026.46.2 — 70.2 MB)
-- [Linux (deb) · Open.Office.Studio_2026.45.4_amd64.deb](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.4/Open.Office.Studio_2026.45.4_amd64.deb) (v2026.45.4 — 70.7 MB)
 - [Windows · Open.Database.Studio_2026.46.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.46.2/Open.Database.Studio_2026.46.2_x64-setup.exe) (v2026.46.2 — 39.3 MB)
-- [Windows · Open.Email.Studio_2026.46.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.46.2/Open.Email.Studio_2026.46.2_x64-setup.exe) (v2026.46.2 — 70.2 MB)
+- [Windows · Open.Presentation.Studio_2026.46.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.46.2/Open.Presentation.Studio_2026.46.2_x64-setup.exe) (v2026.46.2 — 70.2 MB)
+- [Linux (deb) · Open.Office.Studio_2026.45.4_amd64.deb](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.4/Open.Office.Studio_2026.45.4_amd64.deb) (v2026.45.4 — 70.7 MB)
 
 ---
 
