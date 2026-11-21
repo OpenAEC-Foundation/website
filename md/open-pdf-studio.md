@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux, Android
 **Category:** PDF / Document
-**Current version:** nightly (2026-11-19)
+**Current version:** v2026.48.1 (2026-11-20)
 **Tool ID:** `open-pdf-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-pdf-studio`
 
 ## Live stats
 
-- Stars: **1348**
-- Commits: **2377**
-- Forks: **136**
-- Open issues: **47**
-- Releases: **90**
-- Total downloads: **50,411**
-- Downloads by platform: Windows (29054), Android (7239), macOS (3715), Linux (deb) (3629), Linux (AppImage) (3615), Archive (2004), Other (606), Linux (snap) (429), Linux (rpm) (74), Windows (MSI) (46)
+- Stars: **1353**
+- Commits: **2382**
+- Forks: **137**
+- Open issues: **50**
+- Releases: **91**
+- Total downloads: **51,203**
+- Downloads by platform: Windows (29539), Android (7289), macOS (3769), Linux (deb) (3660), Linux (AppImage) (3655), Archive (2088), Other (653), Linux (snap) (430), Linux (rpm) (74), Windows (MSI) (46)
 
 ## Key features
 
@@ -62,7 +62,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-pdf-studio/
 - Live demo: https://open-pdf-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-pdf-studio
-- Latest release: https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/tag/v2026.47.1
+- Latest release: https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/tag/v2026.48.1
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
@@ -74,7 +74,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows · Open.PDF.Studio_2026.45.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v2026.45.0/Open.PDF.Studio_2026.45.0_x64-setup.exe) (v2026.45.0 — 41.1 MB)
 - [Windows · Open.PDF.Studio_1.47.13_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v1.47.13/Open.PDF.Studio_1.47.13_x64-setup.exe) (v1.47.13 — 13.7 MB)
 - [Windows · Open.PDF.Studio_2026.43.4_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v2026.43.4/Open.PDF.Studio_2026.43.4_x64-setup.exe) (v2026.43.4 — 38.3 MB)
-- [Windows · Open.PDF.Studio_2026.47.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v2026.47.0/Open.PDF.Studio_2026.47.0_x64-setup.exe) (v2026.47.0 — 41.7 MB)
+- [Windows · Open.PDF.Studio_2026.47.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/download/v2026.47.1/Open.PDF.Studio_2026.47.1_x64-setup.exe) (v2026.47.1 — 41.9 MB)
 
 ---
 

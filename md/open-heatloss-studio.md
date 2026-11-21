@@ -17,8 +17,8 @@
 - Forks: **1**
 - Open issues: **18**
 - Releases: **2**
-- Total downloads: **47**
-- Downloads by platform: Windows (36), Other (11)
+- Total downloads: **49**
+- Downloads by platform: Windows (38), Other (11)
 
 ## Key features
 
@@ -62,8 +62,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 
 ## Direct downloads (most popular)
 
-- [Windows · Open.Heatloss.Studio_0.1.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-heatloss-studio/releases/download/v0.1.0-alpha.1/Open.Heatloss.Studio_0.1.1_x64-setup.exe) (v0.1.0-alpha.1 — 8.3 MB)
 - [Windows · Open.Heatloss.Studio_0.1.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-heatloss-studio/releases/download/v0.1.1-pr13.alpha/Open.Heatloss.Studio_0.1.1_x64-setup.exe) (v0.1.1-pr13.alpha — 10.1 MB)
+- [Windows · Open.Heatloss.Studio_0.1.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-heatloss-studio/releases/download/v0.1.0-alpha.1/Open.Heatloss.Studio_0.1.1_x64-setup.exe) (v0.1.0-alpha.1 — 8.3 MB)
 - [Other · portiekwoning-smoke.pdf](https://github.com/OpenAEC-Foundation/open-heatloss-studio/releases/download/v0.1.1-pr13.alpha/portiekwoning-smoke.pdf) (v0.1.1-pr13.alpha — 2.1 MB)
 - [Windows · gen_pdf.exe](https://github.com/OpenAEC-Foundation/open-heatloss-studio/releases/download/v0.1.1-pr13.alpha/gen_pdf.exe) (v0.1.1-pr13.alpha — 7.9 MB)
 

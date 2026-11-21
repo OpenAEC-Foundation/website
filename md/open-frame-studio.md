@@ -6,19 +6,19 @@
 **License:** CC-BY-SA-4.0
 **Platforms:** Windows, macOS, Linux, Browser
 **Category:** Window & Door Frame Design
-**Current version:** v2026.47.1 (2026-11-19)
+**Current version:** v2026.47.2 (2026-11-20)
 **Tool ID:** `open-frame-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-frame-studio`
 
 ## Live stats
 
 - Stars: **18**
-- Commits: **135**
+- Commits: **136**
 - Forks: **7**
-- Open issues: **4**
-- Releases: **11**
-- Total downloads: **968**
-- Downloads by platform: Windows (605), Linux (AppImage) (129), Windows (MSI) (61), macOS (60), Linux (deb) (51), Linux (rpm) (41), Archive (21)
+- Open issues: **5**
+- Releases: **12**
+- Total downloads: **999**
+- Downloads by platform: Windows (629), Linux (AppImage) (131), macOS (61), Windows (MSI) (61), Linux (deb) (53), Linux (rpm) (42), Archive (22)
 
 ## Key features
 
@@ -54,7 +54,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-frame-studio/
 - Live demo: https://open-frame-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-frame-studio
-- Latest release: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/v2026.47.1
+- Latest release: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/v2026.47.2
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
