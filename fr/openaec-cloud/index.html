@@ -3,6 +3,7 @@
 <head>
 
 
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OpenAEC SuperCloud — OpenAEC Foundation</title>
@@ -17,6 +18,7 @@
   <link rel="alternate" hreflang="de" href="https://open-aec.com/de/openaec-cloud/">
   <link rel="alternate" hreflang="x-default" href="https://open-aec.com/en/openaec-cloud/">
   <!-- hreflang:end -->
+
 
 
 
@@ -153,6 +155,27 @@
 }
   </script>
 
+  <style>
+    .sc-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-5); margin-top: var(--sp-8); }
+    .sc-card { overflow: hidden; border-radius: var(--radius-lg); background: #fff; border: 1px solid rgba(42,42,50,.1); box-shadow: var(--shadow-sm); }
+    .sc-card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: center top; border-bottom: 1px solid rgba(42,42,50,.08); }
+    .sc-card > div { padding: var(--sp-5); }
+    .sc-card h3 { margin: var(--sp-3) 0 var(--sp-2); font-size: 1.15rem; color: var(--deep-forge); }
+    .sc-card p { margin: 0; line-height: 1.55; font-size: .94rem; color: var(--text-on-light); }
+    .sc-sub { margin: var(--sp-12) 0 var(--sp-5); text-align: center; font-size: 1.4rem; color: var(--deep-forge); }
+    .sc-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-4); }
+    .sc-steps li { padding: var(--sp-5); border-radius: var(--radius-lg); background: var(--blueprint-white); border: 1px solid rgba(42,42,50,.1); }
+    .sc-num { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--amber); color: #fff; font-weight: 700; }
+    .sc-steps h4 { margin: var(--sp-3) 0 4px; color: var(--deep-forge); }
+    .sc-steps p { margin: 0; font-size: .9rem; line-height: 1.5; color: var(--text-on-light); }
+    .sc-status { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-6); margin-top: var(--sp-10); padding: var(--sp-8); border-radius: var(--radius-lg); background: var(--deep-forge); color: #fff; }
+    .sc-status > div { flex: 1 1 520px; min-width: 0; }
+    .sc-status h3 { margin: var(--sp-3) 0 var(--sp-2); color: #fff; font-size: 1.45rem; }
+    .sc-status p:not(.pill-label) { margin: 0 0 var(--sp-3); color: rgba(255,255,255,.86); }
+    .sc-status ul { margin: 0; padding-left: 1.15em; line-height: 1.65; color: rgba(255,255,255,.92); }
+    @media (max-width: 960px) { .sc-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sc-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 768px) { .sc-cards, .sc-steps { grid-template-columns: minmax(0, 1fr); } .sc-status { padding: var(--sp-5); } }
+  </style>
   <meta name="i18n-static" content="fr">
   <!-- schema:start -->
   <script type="application/ld+json">
@@ -257,8 +280,8 @@
     <div class="product-head-inner">
       <p class="pill-label" data-i18n="header.label">Bientôt disponible · fichiers de projet et applications</p>
       <h1 data-i18n="header.title">OpenAEC <span class="accent">SuperCloud</span></h1>
-      <p class="pp-tagline" data-i18n="header.tagline">Synchroniser, partager et envoyer des fichiers de projet</p>
-      <p class="lead" data-i18n="header.desc">Le SuperCloud est l'environnement cloud d'OpenAEC : des espaces avec membres et rôles, des fichiers versionnés, des liens de partage et des transferts. Avec l'OpenAEC Desktop App, vous liez des espaces à des dossiers de votre ordinateur, travaillez depuis l'Explorateur et installez et lancez aussi les outils OpenAEC.</p>
+      <p class="pp-tagline" data-i18n="header.tagline">Tous les logiciels de votre entreprise de construction au même endroit</p>
+      <p class="lead" data-i18n="header.desc">SuperCloud réunit ERP, fichiers de projet, BIM, dessin, calcul et IA dans un seul environnement européen, avec un seul compte. Tout est open source et vos données restent dans l’UE.</p>
       <div class="btn-group">
         <a href="mailto:info@open-aec.com?subject=OpenAEC%20SuperCloud" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-mail"/></svg><span data-i18n="header.notifyBtn">Me tenir informé</span></a>
         <a href="https://github.com/OpenAEC-Foundation/openaec-cloud-desktop" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="header.sourceBtn">Code source</span></a>
@@ -292,12 +315,31 @@
 
   <nav class="pp-subnav" aria-label="Sur cette page" data-i18n="subnav.label" data-i18n-attr="aria-label">
     <div class="pp-subnav-inner">
+      <a href="#overzicht" data-i18n="subnav.overview">Aperçu</a>
       <a href="#features" data-i18n="subnav.features">Fonctions</a>
       <a href="#whats-new" data-i18n="subnav.whatsnew">Nouveautés</a>
       <a href="#faq" data-i18n="subnav.faq">FAQ</a>
       <a href="#releases" data-i18n="subnav.releases">Versions</a>
     </div>
   </nav>
+
+  <section class="section pp-anchor" id="overzicht"><div class="container">
+    <div class="section-head"><p class="pill-label" data-i18n="overview.label">Qu’est-ce que SuperCloud ?</p><h2 data-i18n="overview.heading">Un seul environnement pour toute l’entreprise</h2><p data-i18n="overview.sub">Les entreprises de construction utilisent des programmes séparés qui ne se comprennent pas. SuperCloud les remplace par un environnement cohérent, où dessins, modèles, calculs, planning et administration partagent les mêmes données.</p></div>
+    <div class="sc-cards">
+      <article class="sc-card"><img loading="lazy" decoding="async" src="/presentatie/assets/supercloud-werkplek.webp" alt="" width="1280" height="800"><div><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-users"/></svg></div><h3 data-i18n="overview.work.title">Travailler</h3><p data-i18n="overview.work.desc">ERPNext sur le Frappe Framework : devis, factures, achats, stocks, projets, heures et comptabilité dans un seul système, avec un espace de travail clair.</p></div></article>
+      <article class="sc-card"><img loading="lazy" decoding="async" src="/presentatie/assets/supercloud-app-center.webp" alt="" width="1280" height="800"><div><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div><h3 data-i18n="overview.design.title">Concevoir et calculer</h3><p data-i18n="overview.design.desc">CAO, BIM, PDF, structures, géotechnique, énergie, chiffrage et planning. Activez ce dont vous avez besoin dans un catalogue d’outils OpenAEC et d’applications open source.</p></div></article>
+      <article class="sc-card"><img loading="lazy" decoding="async" src="/presentatie/assets/supercloud-docs.webp" alt="" width="1280" height="800"><div><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div><h3 data-i18n="overview.files.title">Fichiers et documents</h3><p data-i18n="overview.files.desc">Gestion documentaire et CDE : dossiers de projet avec rôles, versions et statuts, synchronisation avec votre ordinateur et envoi de gros fichiers par lien.</p></div></article>
+      <article class="sc-card"><img loading="lazy" decoding="async" src="/presentatie/assets/supercloud-bim-platform.webp" alt="" width="1280" height="800"><div><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><h3 data-i18n="overview.bim.title">Plateforme BIM</h3><p data-i18n="overview.bim.desc">Assemblez, visualisez et discutez les modèles de toutes les disciplines, avec issues BCF, détection de conflits et versions, sur la base de Speckle Server et d’IFCX.</p></div></article>
+      <article class="sc-card"><img loading="lazy" decoding="async" src="/presentatie/assets/supercloud-assistent.webp" alt="" width="1280" height="800"><div><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg></div><h3 data-i18n="overview.ai.title">Une IA pour tous vos outils</h3><p data-i18n="overview.ai.desc">Un assistant qui travaille avec vos projets et vos outils. Par défaut, il utilise des modèles européens, comme ceux de Mistral AI, et les données clients ne servent pas à entraîner des modèles.</p></div></article>
+      <article class="sc-card"><img loading="lazy" decoding="async" src="/presentatie/assets/supercloud-start.webp" alt="" width="1280" height="800"><div><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div><h3 data-i18n="overview.own.title">Votre propre environnement</h3><p data-i18n="overview.own.desc">Une base de données, un stockage et une clé par client, hébergés chez AWS à Francfort, avec des sauvegardes dans une deuxième région de l’UE. Connexion avec double authentification ou passkey.</p></div></article>
+    </div>
+    <h3 class="sc-sub" data-i18n="overview.stepsTitle">Comment ça marche</h3>
+    <ol class="sc-steps"><li><span class="sc-num">1</span><h4 data-i18n="overview.account.title">Un seul compte</h4><p data-i18n="overview.account.desc">Un seul compte pour toutes les applications.</p></li><li><span class="sc-num">2</span><h4 data-i18n="overview.env.title">Votre environnement</h4><p data-i18n="overview.env.desc">Isolé, dans un centre de données de l’UE et chiffré avec votre propre clé.</p></li><li><span class="sc-num">3</span><h4 data-i18n="overview.apps.title">Choisissez vos applications</h4><p data-i18n="overview.apps.desc">Commencez avec un outil et développez quand vous voulez. Rien n’est obligatoire.</p></li><li><span class="sc-num">4</span><h4 data-i18n="overview.ifcx.title">Une langue ouverte : IFCX</h4><p data-i18n="overview.ifcx.desc">Dessins, modèles et calculs s’enchaînent sans conversion.</p></li></ol>
+    <aside class="sc-status">
+      <div><p class="pill-label" data-i18n="overview.statusLabel">Bientôt</p><h3 data-i18n="overview.statusTitle">Déjà 6 grands clients, ouvert au monde entier dès le 1er janvier</h3><p data-i18n="overview.statusDesc">SuperCloud est encore en développement. Voici ce qui s’est passé la semaine dernière :</p><ul><li><span data-i18n="overview.now.layer">La couche applicative tourne sur AWS Fargate dans l’environnement de test, avec plusieurs instances du backend</span></li><li><span data-i18n="overview.now.same">Test et production utilisent les mêmes scripts de déploiement, avec un guide pour la mise en production</span></li><li><span data-i18n="overview.now.watch">Un tableau de bord avec des mesures toutes les 5 minutes et les sauvegardes par environnement client</span></li><li><span data-i18n="overview.now.nbim">La plateforme BIM affiche des aperçus sur les fiches de projet et de modèle et est plus stable</span></li><li><span data-i18n="overview.now.forum">Le forum OpenAEC tourne comme application à part, avec connexion par votre compte OpenAEC</span></li></ul></div>
+      <a href="mailto:info@open-aec.com?subject=OpenAEC%20SuperCloud" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-mail"/></svg><span data-i18n="header.notifyBtn">Me tenir informé</span></a>
+    </aside>
+  </div></section>
 
   <section class="section pp-anchor" id="features"><div class="container">
     <div class="section-head"><p class="pill-label" data-i18n="features.label">Fonctions</p><h2 data-i18n="features.heading">Vos dossiers de projet, identiques partout</h2><p data-i18n="features.sub">Commencez par les points forts ou choisissez un thème.</p></div>
@@ -391,7 +433,7 @@
     <div class="pp-faq-list">
       <details class="pp-faq-item">
         <summary><span data-i18n="faq.what.q">Qu'est-ce que l'OpenAEC SuperCloud ?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
-        <div class="pp-faq-a"><p data-i18n="faq.what.a">L'environnement cloud d'OpenAEC pour les fichiers de projet : espaces avec membres et rôles, dossiers, fichiers versionnés, corbeille, liens de partage et transferts. L'OpenAEC Desktop App est l'application qui vous permet d'y travailler depuis votre ordinateur.</p></div>
+        <div class="pp-faq-a"><p data-i18n="faq.what.a">Un environnement européen pour un bureau d’études ou une entreprise de construction : ERP, gestion documentaire, CDE, BIM, outils OpenAEC et assistant IA, avec un seul compte. L’application OpenAEC Desktop permet de travailler sur les fichiers depuis votre ordinateur. SuperCloud est encore en développement.</p></div>
       </details>
       <details class="pp-faq-item">
         <summary><span data-i18n="faq.start.q">De quoi ai-je besoin pour commencer ?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>

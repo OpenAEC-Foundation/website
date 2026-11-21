@@ -3,6 +3,7 @@
 <head>
 
 
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OpenAEC SuperCloud — OpenAEC Foundation</title>
@@ -17,6 +18,7 @@
   <link rel="alternate" hreflang="de" href="https://open-aec.com/de/openaec-cloud/">
   <link rel="alternate" hreflang="x-default" href="https://open-aec.com/en/openaec-cloud/">
   <!-- hreflang:end -->
+
 
 
 
@@ -153,6 +155,27 @@
 }
   </script>
 
+  <style>
+    .sc-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--sp-5); margin-top: var(--sp-8); }
+    .sc-card { overflow: hidden; border-radius: var(--radius-lg); background: #fff; border: 1px solid rgba(42,42,50,.1); box-shadow: var(--shadow-sm); }
+    .sc-card img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 10; object-fit: cover; object-position: center top; border-bottom: 1px solid rgba(42,42,50,.08); }
+    .sc-card > div { padding: var(--sp-5); }
+    .sc-card h3 { margin: var(--sp-3) 0 var(--sp-2); font-size: 1.15rem; color: var(--deep-forge); }
+    .sc-card p { margin: 0; line-height: 1.55; font-size: .94rem; color: var(--text-on-light); }
+    .sc-sub { margin: var(--sp-12) 0 var(--sp-5); text-align: center; font-size: 1.4rem; color: var(--deep-forge); }
+    .sc-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sp-4); }
+    .sc-steps li { padding: var(--sp-5); border-radius: var(--radius-lg); background: var(--blueprint-white); border: 1px solid rgba(42,42,50,.1); }
+    .sc-num { display: inline-grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--amber); color: #fff; font-weight: 700; }
+    .sc-steps h4 { margin: var(--sp-3) 0 4px; color: var(--deep-forge); }
+    .sc-steps p { margin: 0; font-size: .9rem; line-height: 1.5; color: var(--text-on-light); }
+    .sc-status { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-6); margin-top: var(--sp-10); padding: var(--sp-8); border-radius: var(--radius-lg); background: var(--deep-forge); color: #fff; }
+    .sc-status > div { flex: 1 1 520px; min-width: 0; }
+    .sc-status h3 { margin: var(--sp-3) 0 var(--sp-2); color: #fff; font-size: 1.45rem; }
+    .sc-status p:not(.pill-label) { margin: 0 0 var(--sp-3); color: rgba(255,255,255,.86); }
+    .sc-status ul { margin: 0; padding-left: 1.15em; line-height: 1.65; color: rgba(255,255,255,.92); }
+    @media (max-width: 960px) { .sc-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); } .sc-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 768px) { .sc-cards, .sc-steps { grid-template-columns: minmax(0, 1fr); } .sc-status { padding: var(--sp-5); } }
+  </style>
   <meta name="i18n-static" content="tr">
   <!-- schema:start -->
   <script type="application/ld+json">
@@ -257,8 +280,8 @@
     <div class="product-head-inner">
       <p class="pill-label" data-i18n="header.label">Yakında · proje dosyaları ve uygulamalar</p>
       <h1 data-i18n="header.title">OpenAEC <span class="accent">SuperCloud</span></h1>
-      <p class="pp-tagline" data-i18n="header.tagline">Proje dosyalarını eşitleyin, paylaşın ve gönderin</p>
-      <p class="lead" data-i18n="header.desc">SuperCloud, OpenAEC'in bulut ortamıdır: üyeleri ve rolleri olan alanlar, sürümlü dosyalar, paylaşım bağlantıları ve aktarımlar. OpenAEC Desktop App ile alanları bilgisayarınızdaki klasörlere bağlar, Dosya Gezgini'nden çalışır, OpenAEC araçlarını da kurup başlatırsınız.</p>
+      <p class="pp-tagline" data-i18n="header.tagline">İnşaat şirketinizin tüm yazılımları tek yerde</p>
+      <p class="lead" data-i18n="header.desc">SuperCloud; ERP, proje dosyaları, BIM, çizim, hesap ve yapay zekâyı tek hesapla tek bir Avrupa ortamında bir araya getirir. Her şey açık kaynaktır ve verileriniz AB içinde kalır.</p>
       <div class="btn-group">
         <a href="mailto:info@open-aec.com?subject=OpenAEC%20SuperCloud" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-mail"/></svg><span data-i18n="header.notifyBtn">Beni haberdar edin</span></a>
         <a href="https://github.com/OpenAEC-Foundation/openaec-cloud-desktop" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="header.sourceBtn">Kaynak kodu</span></a>
@@ -292,12 +315,31 @@
 
   <nav class="pp-subnav" aria-label="Bu sayfada" data-i18n="subnav.label" data-i18n-attr="aria-label">
     <div class="pp-subnav-inner">
+      <a href="#overzicht" data-i18n="subnav.overview">Genel bakış</a>
       <a href="#features" data-i18n="subnav.features">Özellikler</a>
       <a href="#whats-new" data-i18n="subnav.whatsnew">Yenilikler</a>
       <a href="#faq" data-i18n="subnav.faq">SSS</a>
       <a href="#releases" data-i18n="subnav.releases">Sürümler</a>
     </div>
   </nav>
+
+  <section class="section pp-anchor" id="overzicht"><div class="container">
+    <div class="section-head"><p class="pill-label" data-i18n="overview.label">SuperCloud nedir?</p><h2 data-i18n="overview.heading">Tüm inşaat şirketi için tek ortam</h2><p data-i18n="overview.sub">İnşaat şirketleri birbirini anlamayan ayrı programlarla çalışır. SuperCloud bunun yerine çizimlerin, modellerin, hesapların, planlamanın ve idari işlerin aynı veriyle çalıştığı bütünleşik bir ortam sunar.</p></div>
+    <div class="sc-cards">
+      <article class="sc-card"><img loading="lazy" decoding="async" src="/presentatie/assets/supercloud-werkplek.webp" alt="" width="1280" height="800"><div><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-users"/></svg></div><h3 data-i18n="overview.work.title">Çalışma</h3><p data-i18n="overview.work.desc">Frappe Framework üzerinde ERPNext: teklifler, faturalar, satın alma, stok, projeler, saatler ve muhasebe tek sistemde, sade bir çalışma alanıyla.</p></div></article>
+      <article class="sc-card"><img loading="lazy" decoding="async" src="/presentatie/assets/supercloud-app-center.webp" alt="" width="1280" height="800"><div><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div><h3 data-i18n="overview.design.title">Tasarım ve hesap</h3><p data-i18n="overview.design.desc">CAD, BIM, PDF, yapı, geoteknik, enerji, maliyet ve planlama. OpenAEC araçları ve açık kaynak uygulamalardan oluşan katalogdan ihtiyacınız olanı açın.</p></div></article>
+      <article class="sc-card"><img loading="lazy" decoding="async" src="/presentatie/assets/supercloud-docs.webp" alt="" width="1280" height="800"><div><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div><h3 data-i18n="overview.files.title">Dosyalar ve belgeler</h3><p data-i18n="overview.files.desc">Belge yönetimi ve CDE: roller, sürümler ve durumlarla proje klasörleri, bilgisayarınızla eşitleme ve büyük dosyaları bağlantıyla gönderme.</p></div></article>
+      <article class="sc-card"><img loading="lazy" decoding="async" src="/presentatie/assets/supercloud-bim-platform.webp" alt="" width="1280" height="800"><div><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><h3 data-i18n="overview.bim.title">BIM platformu</h3><p data-i18n="overview.bim.desc">Tüm disiplinlerin modellerini birleştirin, görüntüleyin ve tartışın; BCF sorunları, çakışma denetimi ve sürümlerle, Speckle Server ve IFCX tabanlı.</p></div></article>
+      <article class="sc-card"><img loading="lazy" decoding="async" src="/presentatie/assets/supercloud-assistent.webp" alt="" width="1280" height="800"><div><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg></div><h3 data-i18n="overview.ai.title">Tüm araçlarınız için tek yapay zekâ</h3><p data-i18n="overview.ai.desc">Projeleriniz ve araçlarınızla çalışabilen bir asistan. Varsayılan olarak Mistral AI gibi Avrupa modelleriyle çalışır ve müşteri verileri model eğitiminde kullanılmaz.</p></div></article>
+      <article class="sc-card"><img loading="lazy" decoding="async" src="/presentatie/assets/supercloud-start.webp" alt="" width="1280" height="800"><div><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div><h3 data-i18n="overview.own.title">Size özel ortam</h3><p data-i18n="overview.own.desc">Her müşteriye ayrı veritabanı, depolama ve anahtar; AWS Frankfurt'ta barındırılır, yedekler ikinci bir AB bölgesindedir. İki adımlı doğrulama veya passkey ile giriş.</p></div></article>
+    </div>
+    <h3 class="sc-sub" data-i18n="overview.stepsTitle">Nasıl çalışır</h3>
+    <ol class="sc-steps"><li><span class="sc-num">1</span><h4 data-i18n="overview.account.title">Tek hesap</h4><p data-i18n="overview.account.desc">Tek hesapla tüm uygulamalara girersiniz.</p></li><li><span class="sc-num">2</span><h4 data-i18n="overview.env.title">Size özel ortam</h4><p data-i18n="overview.env.desc">Yalıtılmış, AB veri merkezinde ve kendi anahtarınızla şifreli.</p></li><li><span class="sc-num">3</span><h4 data-i18n="overview.apps.title">Uygulamalarınızı seçin</h4><p data-i18n="overview.apps.desc">Tek araçla başlayın, istediğinizde genişletin. Hiçbir şey zorunlu değildir.</p></li><li><span class="sc-num">4</span><h4 data-i18n="overview.ifcx.title">Tek açık dil: IFCX</h4><p data-i18n="overview.ifcx.desc">Çizimler, modeller ve hesaplar dönüştürme olmadan birbirine bağlanır.</p></li></ol>
+    <aside class="sc-status">
+      <div><p class="pill-label" data-i18n="overview.statusLabel">Yakında</p><h3 data-i18n="overview.statusTitle">Şu anda 6 büyük müşteri, 1 Ocak'tan itibaren tüm dünyaya açık</h3><p data-i18n="overview.statusDesc">SuperCloud hâlâ geliştiriliyor. Geçen hafta yapılanlar:</p><ul><li><span data-i18n="overview.now.layer">Uygulama katmanı test ortamında AWS Fargate üzerinde, birden fazla backend örneğiyle çalışıyor</span></li><li><span data-i18n="overview.now.same">Test ve üretim aynı dağıtım betiklerini kullanıyor; üretime geçiş için bir kılavuz da var</span></li><li><span data-i18n="overview.now.watch">5 dakikada bir ölçüm yapan ve müşteri ortamı başına yedekleri gösteren bir durum panosu</span></li><li><span data-i18n="overview.now.nbim">BIM platformu proje ve model kartlarında önizleme gösteriyor ve daha kararlı</span></li><li><span data-i18n="overview.now.forum">OpenAEC forumu, OpenAEC hesabınızla girişli ayrı bir uygulama olarak çalışıyor</span></li></ul></div>
+      <a href="mailto:info@open-aec.com?subject=OpenAEC%20SuperCloud" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-mail"/></svg><span data-i18n="header.notifyBtn">Beni haberdar edin</span></a>
+    </aside>
+  </div></section>
 
   <section class="section pp-anchor" id="features"><div class="container">
     <div class="section-head"><p class="pill-label" data-i18n="features.label">Özellikler</p><h2 data-i18n="features.heading">Proje klasörleriniz, her yerde aynı</h2><p data-i18n="features.sub">Öne çıkanlarla başlayın ya da bir konu seçin.</p></div>
@@ -391,7 +433,7 @@
     <div class="pp-faq-list">
       <details class="pp-faq-item">
         <summary><span data-i18n="faq.what.q">OpenAEC SuperCloud nedir?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
-        <div class="pp-faq-a"><p data-i18n="faq.what.a">Proje dosyaları için OpenAEC bulut ortamı: üyeleri ve rolleri olan alanlar, klasörler, sürümlü dosyalar, geri dönüşüm kutusu, paylaşım bağlantıları ve aktarımlar. OpenAEC Desktop App, bilgisayarınızdan onunla çalıştığınız uygulamadır.</p></div>
+        <div class="pp-faq-a"><p data-i18n="faq.what.a">Bir mühendislik veya inşaat şirketi için tek Avrupa ortamı: ERP, belge yönetimi, CDE, BIM, OpenAEC araçları ve bir yapay zekâ asistanı, tek hesapla. OpenAEC Desktop App ile dosyalarla bilgisayarınızdan çalışırsınız. SuperCloud hâlâ geliştirme aşamasındadır.</p></div>
       </details>
       <details class="pp-faq-item">
         <summary><span data-i18n="faq.start.q">Başlamak için neye ihtiyacım var?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
