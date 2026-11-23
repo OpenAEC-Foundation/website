@@ -74,6 +74,18 @@ for (const language of ['en', 'fr', 'tr', 'es', 'de']) {
   includes(`${language}/open-pile-plan-studio/index.html`, 'Open Pile Plan Studio');
 }
 
+for (const language of ['', 'en/', 'fr/', 'tr/', 'es/', 'de/']) {
+  const page = language + 'open-pile-plan-studio/index.html';
+  const track = read(page).match(/<div class="slider-track">([\s\S]*?)<button\b/)?.[1] ?? '';
+  const screenshots = [...track.matchAll(/<div class="slider-slide"><img[^>]*\bsrc="[^"]*\/(open-pile-plan-studio(?:-import|-optimization)?\.png)(?:\?[^"]*)?"/g)]
+    .map(([, filename]) => filename);
+  assert.deepEqual(screenshots, [
+    'open-pile-plan-studio.png',
+    'open-pile-plan-studio-import.png',
+    'open-pile-plan-studio-optimization.png',
+  ], page + ' heeft een onjuiste volgorde in de screenshotcarrousel');
+}
+
 includes('sitemap.xml', 'https://open-aec.com/open-pile-plan-studio/');
 includes('scripts/generate-downloads.js', "'pile-plan-studio'");
 includes('scripts/generate-release-notes.js', "'pile-plan-studio'");
