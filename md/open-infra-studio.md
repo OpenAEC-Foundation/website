@@ -12,13 +12,13 @@
 
 ## Live stats
 
-- Stars: **30**
+- Stars: **31**
 - Commits: **683**
-- Forks: **7**
+- Forks: **8**
 - Open issues: **49**
 - Releases: **17**
-- Total downloads: **3,066**
-- Downloads by platform: Windows (2415), Other (384), Archive (267)
+- Total downloads: **3,174**
+- Downloads by platform: Windows (2511), Other (389), Archive (274)
 
 ## Key features
 
@@ -71,9 +71,9 @@ Starting an infrastructure or civil drawing from the existing situation: the pro
 
 ## Direct downloads (most popular)
 
-- [Windows · openaec.open-infra-windows-x86_64.dll](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.46.0/openaec.open-infra-windows-x86_64.dll) (v2026.46.0 — 34.1 MB)
-- [Windows · open-infra-civiel-windows-x86_64.zip](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.47.0/open-infra-civiel-windows-x86_64.zip) (v2026.47.0 — 11.8 MB)
 - [Windows · openaec.open-infra-windows-x86_64.dll](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.47.0/openaec.open-infra-windows-x86_64.dll) (v2026.47.0 — 34.8 MB)
+- [Windows · open-infra-civiel-windows-x86_64.zip](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.47.0/open-infra-civiel-windows-x86_64.zip) (v2026.47.0 — 11.8 MB)
+- [Windows · openaec.open-infra-windows-x86_64.dll](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.46.0/openaec.open-infra-windows-x86_64.dll) (v2026.46.0 — 34.1 MB)
 - [Windows · open-infra-civiel-windows-x86_64.zip](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.46.0/open-infra-civiel-windows-x86_64.zip) (v2026.46.0 — 11.7 MB)
 - [Windows · openaec.open-infra-windows-x86_64.dll](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.45.4/openaec.open-infra-windows-x86_64.dll) (v2026.45.4 — 33.6 MB)
 - [Windows · openaec.open-infra-windows-x86_64.dll](https://github.com/OpenAEC-Foundation/Open-Infra-Studio/releases/download/v2026.46.1/openaec.open-infra-windows-x86_64.dll) (v2026.46.1 — 34.8 MB)

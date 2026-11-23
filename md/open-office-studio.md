@@ -12,13 +12,13 @@
 
 ## Live stats
 
-- Stars: **9**
+- Stars: **11**
 - Commits: **918**
 - Forks: **4**
 - Open issues: **92**
 - Releases: **7**
-- Total downloads: **2,069**
-- Downloads by platform: Windows (888), Linux (AppImage) (407), Linux (deb) (384), macOS (348), Other (34), Linux (snap) (8)
+- Total downloads: **2,107**
+- Downloads by platform: Windows (900), Linux (AppImage) (425), Linux (deb) (389), macOS (348), Other (36), Linux (snap) (9)
 
 ## Key features
 
@@ -57,8 +57,8 @@ Local office work on your own computer, without an account or cloud service. Tes
 - [Windows · Open.Office.Studio_2026.45.4_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.45.4/Open.Office.Studio_2026.45.4_x64-setup.exe) (v2026.45.4 — 68.2 MB)
 - [Linux (AppImage) · Open.Office.Studio_2026.46.2_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.46.2/Open.Office.Studio_2026.46.2_amd64.AppImage) (v2026.46.2 — 146.7 MB)
 - [Linux (deb) · Open.Office.Studio_2026.46.2_amd64.deb](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.46.2/Open.Office.Studio_2026.46.2_amd64.deb) (v2026.46.2 — 72.7 MB)
-- [Windows · Open.Database.Studio_2026.46.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.46.2/Open.Database.Studio_2026.46.2_x64-setup.exe) (v2026.46.2 — 39.3 MB)
 - [Windows · Open.Spreadsheet.Studio_2026.46.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.46.2/Open.Spreadsheet.Studio_2026.46.2_x64-setup.exe) (v2026.46.2 — 70.2 MB)
+- [Windows · Open.Database.Studio_2026.46.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.46.2/Open.Database.Studio_2026.46.2_x64-setup.exe) (v2026.46.2 — 39.3 MB)
 - [Windows · Open.Writer.Studio_2026.46.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-office-studio/releases/download/v2026.46.2/Open.Writer.Studio_2026.46.2_x64-setup.exe) (v2026.46.2 — 70.2 MB)
 
 ---

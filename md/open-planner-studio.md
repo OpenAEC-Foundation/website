@@ -12,13 +12,13 @@
 
 ## Live stats
 
-- Stars: **72**
-- Commits: **8211**
-- Forks: **29**
-- Open issues: **133**
+- Stars: **77**
+- Commits: **8235**
+- Forks: **30**
+- Open issues: **136**
 - Releases: **26**
-- Total downloads: **6,522**
-- Downloads by platform: Windows (4210), Linux (AppImage) (766), macOS (503), Linux (deb) (441), Linux (rpm) (203), Archive (186), Linux (snap) (119), Other (94)
+- Total downloads: **6,608**
+- Downloads by platform: Windows (4260), Linux (AppImage) (776), macOS (510), Linux (deb) (448), Linux (rpm) (204), Archive (190), Linux (snap) (121), Other (99)
 
 ## Key features
 
@@ -83,8 +83,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 
 - [Windows · Open.Planner.Studio_2026.9.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_x64-setup.exe) (v2026.9.0 — 7.8 MB)
 - [Windows · Open.Planner.Studio_2026.45.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.45.0/Open.Planner.Studio_2026.45.0_x64-setup.exe) (v2026.45.0 — 16.8 MB)
-- [Windows · Open.Planner.Studio_2026.44.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.44.0/Open.Planner.Studio_2026.44.0_x64-setup.exe) (v2026.44.0 — 16.8 MB)
 - [Windows · Open.Planner.Studio_2026.47.0_x64-setup.nsis.zip](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.47.0/Open.Planner.Studio_2026.47.0_x64-setup.nsis.zip) (v2026.47.0 — 17.5 MB)
+- [Windows · Open.Planner.Studio_2026.44.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.44.0/Open.Planner.Studio_2026.44.0_x64-setup.exe) (v2026.44.0 — 16.8 MB)
 - [Linux (AppImage) · Open.Planner.Studio_2026.9.0_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.9.0/Open.Planner.Studio_2026.9.0_amd64.AppImage) (v2026.9.0 — 82.7 MB)
 - [Windows · Open.Planner.Studio_2026.45.0_x64-setup.nsis.zip](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.45.0/Open.Planner.Studio_2026.45.0_x64-setup.nsis.zip) (v2026.45.0 — 16.8 MB)
 - [Windows · Open.Planner.Studio_2026.43.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-planner-studio/releases/download/v2026.43.0/Open.Planner.Studio_2026.43.0_x64-setup.exe) (v2026.43.0 — 16.7 MB)
