@@ -24,6 +24,8 @@
   var TERUG = location.origin + '/forum/';
   var SESSIE = 'openaec-forum-sessie';
   var PKCE = 'openaec-forum-pkce';
+  // De SuperCloud is nog niet publiek: het forum noemt hem niet zolang dit uit staat.
+  var TOON_SUPERCLOUD = false;
 
   // ── Teksten ─────────────────────────────────────────────────────────────
   var T = {
@@ -46,7 +48,7 @@
       laden: 'Laden…', fout: 'Er ging iets mis. Probeer het opnieuw.', onbekend: 'Dit onderwerp bestaat niet (meer).',
       alleenTeam: 'Hier beginnen alleen teamleden een onderwerp.',
       aanmeldKop: 'Maak je gratis OpenAEC-account',
-      aanmeldUitleg: 'Met één account schrijf je op het forum en gebruik je straks ook de OpenAEC-tools en de SuperCloud. Je krijgt een mail om je adres te bevestigen en een wachtwoord te kiezen; daarna kom je hier terug.',
+      aanmeldUitleg: 'Met één account schrijf je op het forum en gebruik je straks ook de OpenAEC-tools. Je krijgt een mail om je adres te bevestigen en een wachtwoord te kiezen; daarna kom je hier terug.',
       naam: 'Naam', email: 'E-mailadres',
       akkoord: 'Ik ga akkoord met de <a href="/supercloud/privacy/">privacyverklaring</a> en de <a href="/forum/#/regels">forumregels</a>.',
       versturen: 'Account maken', alAccount: 'Heb je al een OpenAEC-account?',
@@ -96,7 +98,7 @@
       laden: 'Loading…', fout: 'Something went wrong. Please try again.', onbekend: 'This topic does not exist (any more).',
       alleenTeam: 'Only team members start topics here.',
       aanmeldKop: 'Create your free OpenAEC account',
-      aanmeldUitleg: 'One account lets you post on the forum and later use the OpenAEC tools and the SuperCloud too. You will get an email to confirm your address and choose a password; then you come back here.',
+      aanmeldUitleg: 'One account lets you post on the forum and later use the OpenAEC tools too. You will get an email to confirm your address and choose a password; then you come back here.',
       naam: 'Name', email: 'Email address',
       akkoord: 'I agree to the <a href="/supercloud/en/privacy/">privacy statement</a> and the <a href="/forum/#/regels">forum rules</a>.',
       versturen: 'Create account', alAccount: 'Already have an OpenAEC account?',
@@ -146,7 +148,7 @@
       laden: 'Chargement…', fout: 'Une erreur s’est produite. Réessayez.', onbekend: 'Ce sujet n’existe pas (ou plus).',
       alleenTeam: 'Seule l’équipe lance des sujets ici.',
       aanmeldKop: 'Créez votre compte OpenAEC gratuit',
-      aanmeldUitleg: 'Un seul compte pour écrire sur le forum et, bientôt, utiliser les outils OpenAEC et le SuperCloud. Vous recevrez un e-mail pour confirmer votre adresse et choisir un mot de passe, puis vous reviendrez ici.',
+      aanmeldUitleg: 'Un seul compte pour écrire sur le forum et, bientôt, utiliser les outils OpenAEC. Vous recevrez un e-mail pour confirmer votre adresse et choisir un mot de passe, puis vous reviendrez ici.',
       naam: 'Nom', email: 'Adresse e-mail',
       akkoord: 'J’accepte la <a href="/supercloud/fr/confidentialite/">déclaration de confidentialité</a> et les <a href="/forum/#/regels">règles du forum</a>.',
       versturen: 'Créer un compte', alAccount: 'Vous avez déjà un compte OpenAEC ?',
@@ -196,7 +198,7 @@
       laden: 'Yükleniyor…', fout: 'Bir şeyler ters gitti. Lütfen tekrar deneyin.', onbekend: 'Bu konu yok (artık).',
       alleenTeam: 'Burada yalnızca ekip üyeleri konu başlatır.',
       aanmeldKop: 'Ücretsiz OpenAEC hesabınızı oluşturun',
-      aanmeldUitleg: 'Tek bir hesapla forumda yazar, yakında OpenAEC araçlarını ve SuperCloud’u da kullanırsınız. Adresinizi onaylamanız ve bir parola seçmeniz için bir e-posta alacaksınız; ardından buraya dönersiniz.',
+      aanmeldUitleg: 'Tek bir hesapla forumda yazar, yakında OpenAEC araçlarını da kullanırsınız. Adresinizi onaylamanız ve bir parola seçmeniz için bir e-posta alacaksınız; ardından buraya dönersiniz.',
       naam: 'Ad', email: 'E-posta adresi',
       akkoord: '<a href="/supercloud/tr/gizlilik/">Gizlilik bildirimini</a> ve <a href="/forum/#/regels">forum kurallarını</a> kabul ediyorum.',
       versturen: 'Hesap oluştur', alAccount: 'Zaten bir OpenAEC hesabınız var mı?',
@@ -246,7 +248,7 @@
       laden: 'Cargando…', fout: 'Algo salió mal. Inténtalo de nuevo.', onbekend: 'Este tema no existe (o ya no existe).',
       alleenTeam: 'Aquí solo el equipo empieza temas.',
       aanmeldKop: 'Crea tu cuenta OpenAEC gratuita',
-      aanmeldUitleg: 'Con una sola cuenta escribes en el foro y pronto usas también las herramientas OpenAEC y el SuperCloud. Recibirás un correo para confirmar tu dirección y elegir una contraseña; después vuelves aquí.',
+      aanmeldUitleg: 'Con una sola cuenta escribes en el foro y pronto usas también las herramientas OpenAEC. Recibirás un correo para confirmar tu dirección y elegir una contraseña; después vuelves aquí.',
       naam: 'Nombre', email: 'Correo electrónico',
       akkoord: 'Acepto la <a href="/supercloud/es/privacidad/">declaración de privacidad</a> y las <a href="/forum/#/regels">normas del foro</a>.',
       versturen: 'Crear cuenta', alAccount: '¿Ya tienes una cuenta OpenAEC?',
@@ -296,7 +298,7 @@
       laden: 'Wird geladen…', fout: 'Etwas ist schiefgegangen. Versuchen Sie es erneut.', onbekend: 'Dieses Thema existiert nicht (mehr).',
       alleenTeam: 'Hier eröffnet nur das Team Themen.',
       aanmeldKop: 'Erstellen Sie Ihr kostenloses OpenAEC-Konto',
-      aanmeldUitleg: 'Mit einem einzigen Konto schreiben Sie im Forum und nutzen bald auch die OpenAEC-Tools und die SuperCloud. Sie erhalten eine E-Mail, um Ihre Adresse zu bestätigen und ein Passwort zu wählen; danach kehren Sie hierher zurück.',
+      aanmeldUitleg: 'Mit einem einzigen Konto schreiben Sie im Forum und nutzen bald auch die OpenAEC-Tools. Sie erhalten eine E-Mail, um Ihre Adresse zu bestätigen und ein Passwort zu wählen; danach kehren Sie hierher zurück.',
       naam: 'Name', email: 'E-Mail-Adresse',
       akkoord: 'Ich akzeptiere die <a href="/supercloud/de/datenschutz/">Datenschutzerklärung</a> und die <a href="/forum/#/regels">Forenregeln</a>.',
       versturen: 'Konto erstellen', alAccount: 'Sie haben bereits ein OpenAEC-Konto?',
@@ -663,15 +665,16 @@
       return '<li><a href="' + f.url + '" target="_blank" rel="noopener"><span class="fo-forum-merk" style="background:' + f.kleur + '" aria-hidden="true">' + esc(f.naam.charAt(0)) + '</span>' +
         '<span class="fo-forum-tekst"><strong>' + esc(f.naam) + '</strong><span>' + esc(t(f.sleutel)) + '</span></span><span class="fo-uit" aria-hidden="true">↗</span></a></li>';
     }).join('');
-    return '<div class="fo-onder">' +
+    return '<div class="fo-onder' + (TOON_SUPERCLOUD ? '' : ' fo-onder-twee') + '">' +
       '<section class="fo-kaart"><h3>' + esc(t('foraKop')) + '</h3><p>' + esc(t('foraUitleg')) + '</p><ul class="fo-fora">' + fora + '</ul></section>' +
       '<section class="fo-kaart fo-badges"><h3>' + esc(t('badgesKop')) + ' <span class="fo-label">' + esc(t('binnenkort')) + '</span></h3><p>' + esc(t('badgesUitleg')) + '</p>' +
       '<div class="fo-badgerij" aria-hidden="true"><span class="fo-badge">IFC</span><span class="fo-badge">PDF</span><span class="fo-badge">CAD</span><span class="fo-badge fo-badge-goud">★</span></div>' +
-      '<a class="fo-meer-link" href="/academy/">' + esc(t('naarAcademy')) + ' →</a></section>' +
-      '<section class="fo-kaart fo-upsell"><h3>' + esc(t('upsellKop')) + '</h3><p>' + esc(t('upsell')) + '</p>' +
+      '<a class="fo-meer-link" href="/academy/">' + esc(t('naarAcademy')) + ' →</a>' +
+      '<p class="fo-klein fo-regels-link"><a href="#/regels">' + esc(t('regelsKop')) + '</a></p></section>' +
+      (!TOON_SUPERCLOUD ? '' : '<section class="fo-kaart fo-upsell"><h3>' + esc(t('upsellKop')) + '</h3><p>' + esc(t('upsell')) + '</p>' +
       (ik ? '<a class="btn btn-dark fo-knop" href="' + esc(CLOUD) + '/start">' + esc(t('upsellKnopIn')) + '</a>'
         : '<a class="btn btn-dark fo-knop" href="/supercloud/">' + esc(t('upsellKnop')) + '</a>') +
-      '<p class="fo-klein"><a href="#/regels">' + esc(t('regelsKop')) + '</a></p></section>' +
+      '</section>') +
       '</div>';
   }
 
@@ -905,7 +908,7 @@
       '<dl class="fo-cijfers"><div><dt>' + esc(t('lidSinds')) + '</dt><dd>' + esc(isNaN(sinds) ? '' : sinds.toLocaleDateString(taal(), { year: 'numeric', month: 'long', day: 'numeric' })) + '</dd></div>' +
       '<div><dt>' + esc(t('onderwerpenKop')) + '</dt><dd>' + p.onderwerpen + '</dd></div>' +
       '<div><dt>' + esc(t('reactiesKop')) + '</dt><dd>' + p.reacties + '</dd></div></dl>' +
-      '<p class="fo-profiel-knoppen"><a class="btn btn-dark fo-knop" href="' + esc(CLOUD) + '/start">' + esc(t('upsellKnopIn')) + '</a> ' +
+      '<p class="fo-profiel-knoppen">' + (TOON_SUPERCLOUD ? '<a class="btn btn-dark fo-knop" href="' + esc(CLOUD) + '/start">' + esc(t('upsellKnopIn')) + '</a> ' : '') +
       knop(t('uitloggen'), 'uitloggen', 'btn-secondary') + '</p></section>' +
       '<section class="fo-paneel fo-profiel-lijst"><div class="fo-paneel-kop"><span>' + esc(t('mijnOnderwerpen')) + '</span></div>' +
       '<ul class="fo-rijen">' + (rijen || '<li class="fo-leeg">' + esc(t('geenEigen')) + '</li>') + '</ul></section></div>';
