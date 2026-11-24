@@ -24,6 +24,8 @@
   var TERUG = location.origin + '/forum/';
   var SESSIE = 'openaec-forum-sessie';
   var PKCE = 'openaec-forum-pkce';
+  // De SuperCloud is nog niet publiek: het forum noemt hem niet zolang dit uit staat.
+  var TOON_SUPERCLOUD = false;
 
   // ── Teksten ─────────────────────────────────────────────────────────────
   var T = {
@@ -37,7 +39,7 @@
       onderwerpen: function (n) { return n === 1 ? '1 onderwerp' : n + ' onderwerpen'; },
       meer: 'Meer laden', terug: '← Terug naar het forum', reageren: 'Reageren', plaatsen: 'Plaatsen',
       jouwReactie: 'Jouw reactie', titelVeld: 'Titel', berichtVeld: 'Bericht', categorieVeld: 'Categorie',
-      opmaak: 'Platte tekst. Een lege regel begint een nieuwe alinea, links worden klikbaar en ``` zet code apart.',
+      opmaak: 'Platte tekst. Een lege regel begint een nieuwe alinea, links worden klikbaar en ``` zet code apart. Een afbeelding voeg je toe met de knop of plak je met Ctrl+V.',
       logInOmTeReageren: 'Log in met je OpenAEC-account om te reageren.',
       logInOmTeSchrijven: 'Log in met je OpenAEC-account om een onderwerp te beginnen.',
       gesloten: 'Dit onderwerp is gesloten.', vastgezet: 'Vastgezet', verborgen: 'Verborgen', team: 'Team',
@@ -46,7 +48,7 @@
       laden: 'Laden…', fout: 'Er ging iets mis. Probeer het opnieuw.', onbekend: 'Dit onderwerp bestaat niet (meer).',
       alleenTeam: 'Hier beginnen alleen teamleden een onderwerp.',
       aanmeldKop: 'Maak je gratis OpenAEC-account',
-      aanmeldUitleg: 'Met één account schrijf je op het forum en gebruik je straks ook de OpenAEC-tools en de SuperCloud. Je krijgt een mail om je adres te bevestigen en een wachtwoord te kiezen; daarna kom je hier terug.',
+      aanmeldUitleg: 'Met één account schrijf je op het forum en gebruik je straks ook de OpenAEC-tools. Je krijgt een mail om je adres te bevestigen en een wachtwoord te kiezen; daarna kom je hier terug.',
       naam: 'Naam', email: 'E-mailadres',
       akkoord: 'Ik ga akkoord met de <a href="/supercloud/privacy/">privacyverklaring</a> en de <a href="/forum/#/regels">forumregels</a>.',
       versturen: 'Account maken', alAccount: 'Heb je al een OpenAEC-account?',
@@ -72,7 +74,10 @@
       badgesUitleg: 'Rond je een cursus van de OpenAEC Academy af met een examen, dan krijg je een badge op je profiel. Met een verzameling badges word je allround kennisgoeroe.',
       binnenkort: 'Binnenkort',
       naarAcademy: 'Naar de Academy',
-      verlopen: 'Je bent uitgelogd. Log opnieuw in.'
+      verlopen: 'Je bent uitgelogd. Log opnieuw in.',
+      verwijderen: 'Verwijderen', verwijderVraag: 'Dit bericht verwijderen? Dat kan niet ongedaan worden gemaakt.', verwijderOnderwerpVraag: 'Dit onderwerp met alle reacties verwijderen? Dat kan niet ongedaan worden gemaakt.',
+      afbeelding: 'Afbeelding toevoegen', afbeeldingBezig: 'Afbeelding uploaden…', afbeeldingAlt: 'Afbeelding bij het bericht',
+      profiel: 'Mijn profiel', lidSinds: 'Lid sinds', mijnOnderwerpen: 'Mijn onderwerpen', geenEigen: 'Je hebt nog geen onderwerp gestart.', logInVoorProfiel: 'Log in om je profiel te zien.', upsellKnopIn: 'Open je SuperCloud'
     },
     en: {
       titel: 'Forum', label: 'Community',
@@ -84,7 +89,7 @@
       onderwerpen: function (n) { return n === 1 ? '1 topic' : n + ' topics'; },
       meer: 'Load more', terug: '← Back to the forum', reageren: 'Reply', plaatsen: 'Post',
       jouwReactie: 'Your reply', titelVeld: 'Title', berichtVeld: 'Message', categorieVeld: 'Category',
-      opmaak: 'Plain text. A blank line starts a new paragraph, links become clickable and ``` sets code apart.',
+      opmaak: 'Plain text. A blank line starts a new paragraph, links become clickable and ``` sets code apart. Add an image with the button or paste it with Ctrl+V.',
       logInOmTeReageren: 'Log in with your OpenAEC account to reply.',
       logInOmTeSchrijven: 'Log in with your OpenAEC account to start a topic.',
       gesloten: 'This topic is closed.', vastgezet: 'Pinned', verborgen: 'Hidden', team: 'Team',
@@ -93,7 +98,7 @@
       laden: 'Loading…', fout: 'Something went wrong. Please try again.', onbekend: 'This topic does not exist (any more).',
       alleenTeam: 'Only team members start topics here.',
       aanmeldKop: 'Create your free OpenAEC account',
-      aanmeldUitleg: 'One account lets you post on the forum and later use the OpenAEC tools and the SuperCloud too. You will get an email to confirm your address and choose a password; then you come back here.',
+      aanmeldUitleg: 'One account lets you post on the forum and later use the OpenAEC tools too. You will get an email to confirm your address and choose a password; then you come back here.',
       naam: 'Name', email: 'Email address',
       akkoord: 'I agree to the <a href="/supercloud/en/privacy/">privacy statement</a> and the <a href="/forum/#/regels">forum rules</a>.',
       versturen: 'Create account', alAccount: 'Already have an OpenAEC account?',
@@ -119,7 +124,10 @@
       badgesUitleg: 'Finish a course of the OpenAEC Academy with an exam and you get a badge on your profile. Collect enough badges and you become an all-round expert.',
       binnenkort: 'Coming soon',
       naarAcademy: 'Go to the Academy',
-      verlopen: 'You have been logged out. Please log in again.'
+      verlopen: 'You have been logged out. Please log in again.',
+      verwijderen: 'Delete', verwijderVraag: 'Delete this post? This cannot be undone.', verwijderOnderwerpVraag: 'Delete this topic with all its replies? This cannot be undone.',
+      afbeelding: 'Add image', afbeeldingBezig: 'Uploading image…', afbeeldingAlt: 'Image in the post',
+      profiel: 'My profile', lidSinds: 'Member since', mijnOnderwerpen: 'My topics', geenEigen: 'You have not started a topic yet.', logInVoorProfiel: 'Log in to see your profile.', upsellKnopIn: 'Open your SuperCloud'
     },
     fr: {
       titel: 'Forum', label: 'Communauté',
@@ -131,7 +139,7 @@
       onderwerpen: function (n) { return n === 1 ? '1 sujet' : n + ' sujets'; },
       meer: 'Charger plus', terug: '← Retour au forum', reageren: 'Répondre', plaatsen: 'Publier',
       jouwReactie: 'Votre réponse', titelVeld: 'Titre', berichtVeld: 'Message', categorieVeld: 'Catégorie',
-      opmaak: 'Texte brut. Une ligne vide commence un nouveau paragraphe, les liens deviennent cliquables et ``` isole le code.',
+      opmaak: 'Texte brut. Une ligne vide commence un nouveau paragraphe, les liens deviennent cliquables et ``` isole le code. Ajoutez une image avec le bouton ou collez-la avec Ctrl+V.',
       logInOmTeReageren: 'Connectez-vous avec votre compte OpenAEC pour répondre.',
       logInOmTeSchrijven: 'Connectez-vous avec votre compte OpenAEC pour lancer un sujet.',
       gesloten: 'Ce sujet est fermé.', vastgezet: 'Épinglé', verborgen: 'Masqué', team: 'Équipe',
@@ -140,7 +148,7 @@
       laden: 'Chargement…', fout: 'Une erreur s’est produite. Réessayez.', onbekend: 'Ce sujet n’existe pas (ou plus).',
       alleenTeam: 'Seule l’équipe lance des sujets ici.',
       aanmeldKop: 'Créez votre compte OpenAEC gratuit',
-      aanmeldUitleg: 'Un seul compte pour écrire sur le forum et, bientôt, utiliser les outils OpenAEC et le SuperCloud. Vous recevrez un e-mail pour confirmer votre adresse et choisir un mot de passe, puis vous reviendrez ici.',
+      aanmeldUitleg: 'Un seul compte pour écrire sur le forum et, bientôt, utiliser les outils OpenAEC. Vous recevrez un e-mail pour confirmer votre adresse et choisir un mot de passe, puis vous reviendrez ici.',
       naam: 'Nom', email: 'Adresse e-mail',
       akkoord: 'J’accepte la <a href="/supercloud/fr/confidentialite/">déclaration de confidentialité</a> et les <a href="/forum/#/regels">règles du forum</a>.',
       versturen: 'Créer un compte', alAccount: 'Vous avez déjà un compte OpenAEC ?',
@@ -166,7 +174,10 @@
       badgesUitleg: 'Terminez un cours de l’OpenAEC Academy par un examen et vous obtenez un badge sur votre profil. Avec assez de badges, vous devenez un expert polyvalent.',
       binnenkort: 'Bientôt',
       naarAcademy: 'Vers l’Academy',
-      verlopen: 'Vous avez été déconnecté. Reconnectez-vous.'
+      verlopen: 'Vous avez été déconnecté. Reconnectez-vous.',
+      verwijderen: 'Supprimer', verwijderVraag: 'Supprimer ce message ? Cette action est irréversible.', verwijderOnderwerpVraag: 'Supprimer ce sujet et toutes ses réponses ? Cette action est irréversible.',
+      afbeelding: 'Ajouter une image', afbeeldingBezig: 'Envoi de l’image…', afbeeldingAlt: 'Image du message',
+      profiel: 'Mon profil', lidSinds: 'Membre depuis', mijnOnderwerpen: 'Mes sujets', geenEigen: 'Vous n’avez pas encore lancé de sujet.', logInVoorProfiel: 'Connectez-vous pour voir votre profil.', upsellKnopIn: 'Ouvrir votre SuperCloud'
     },
     tr: {
       titel: 'Forum', label: 'Topluluk',
@@ -178,7 +189,7 @@
       onderwerpen: function (n) { return n + ' konu'; },
       meer: 'Daha fazla yükle', terug: '← Foruma dön', reageren: 'Yanıtla', plaatsen: 'Gönder',
       jouwReactie: 'Yanıtınız', titelVeld: 'Başlık', berichtVeld: 'Mesaj', categorieVeld: 'Kategori',
-      opmaak: 'Düz metin. Boş satır yeni paragraf başlatır, bağlantılar tıklanabilir olur ve ``` kodu ayırır.',
+      opmaak: 'Düz metin. Boş satır yeni paragraf başlatır, bağlantılar tıklanabilir olur ve ``` kodu ayırır. Görseli düğmeyle ekleyin ya da Ctrl+V ile yapıştırın.',
       logInOmTeReageren: 'Yanıtlamak için OpenAEC hesabınızla giriş yapın.',
       logInOmTeSchrijven: 'Konu başlatmak için OpenAEC hesabınızla giriş yapın.',
       gesloten: 'Bu konu kapatıldı.', vastgezet: 'Sabitlendi', verborgen: 'Gizli', team: 'Ekip',
@@ -187,7 +198,7 @@
       laden: 'Yükleniyor…', fout: 'Bir şeyler ters gitti. Lütfen tekrar deneyin.', onbekend: 'Bu konu yok (artık).',
       alleenTeam: 'Burada yalnızca ekip üyeleri konu başlatır.',
       aanmeldKop: 'Ücretsiz OpenAEC hesabınızı oluşturun',
-      aanmeldUitleg: 'Tek bir hesapla forumda yazar, yakında OpenAEC araçlarını ve SuperCloud’u da kullanırsınız. Adresinizi onaylamanız ve bir parola seçmeniz için bir e-posta alacaksınız; ardından buraya dönersiniz.',
+      aanmeldUitleg: 'Tek bir hesapla forumda yazar, yakında OpenAEC araçlarını da kullanırsınız. Adresinizi onaylamanız ve bir parola seçmeniz için bir e-posta alacaksınız; ardından buraya dönersiniz.',
       naam: 'Ad', email: 'E-posta adresi',
       akkoord: '<a href="/supercloud/tr/gizlilik/">Gizlilik bildirimini</a> ve <a href="/forum/#/regels">forum kurallarını</a> kabul ediyorum.',
       versturen: 'Hesap oluştur', alAccount: 'Zaten bir OpenAEC hesabınız var mı?',
@@ -213,7 +224,10 @@
       badgesUitleg: 'OpenAEC Academy\'de bir kursu sınavla bitirin, profilinize bir rozet eklensin. Yeterince rozet toplayan çok yönlü bir uzman olur.',
       binnenkort: 'Yakında',
       naarAcademy: 'Academy\'ye git',
-      verlopen: 'Oturumunuz kapandı. Lütfen tekrar giriş yapın.'
+      verlopen: 'Oturumunuz kapandı. Lütfen tekrar giriş yapın.',
+      verwijderen: 'Sil', verwijderVraag: 'Bu mesaj silinsin mi? Bu işlem geri alınamaz.', verwijderOnderwerpVraag: 'Bu konu tüm yanıtlarıyla silinsin mi? Bu işlem geri alınamaz.',
+      afbeelding: 'Görsel ekle', afbeeldingBezig: 'Görsel yükleniyor…', afbeeldingAlt: 'Mesajdaki görsel',
+      profiel: 'Profilim', lidSinds: 'Üyelik başlangıcı', mijnOnderwerpen: 'Konularım', geenEigen: 'Henüz bir konu başlatmadınız.', logInVoorProfiel: 'Profilinizi görmek için giriş yapın.', upsellKnopIn: 'SuperCloud’unuzu açın'
     },
     es: {
       titel: 'Foro', label: 'Comunidad',
@@ -225,7 +239,7 @@
       onderwerpen: function (n) { return n === 1 ? '1 tema' : n + ' temas'; },
       meer: 'Cargar más', terug: '← Volver al foro', reageren: 'Responder', plaatsen: 'Publicar',
       jouwReactie: 'Tu respuesta', titelVeld: 'Título', berichtVeld: 'Mensaje', categorieVeld: 'Categoría',
-      opmaak: 'Texto sin formato. Una línea en blanco empieza un párrafo nuevo, los enlaces se vuelven clicables y ``` separa el código.',
+      opmaak: 'Texto sin formato. Una línea en blanco empieza un párrafo nuevo, los enlaces se vuelven clicables y ``` separa el código. Añade una imagen con el botón o pégala con Ctrl+V.',
       logInOmTeReageren: 'Inicia sesión con tu cuenta OpenAEC para responder.',
       logInOmTeSchrijven: 'Inicia sesión con tu cuenta OpenAEC para empezar un tema.',
       gesloten: 'Este tema está cerrado.', vastgezet: 'Fijado', verborgen: 'Oculto', team: 'Equipo',
@@ -234,7 +248,7 @@
       laden: 'Cargando…', fout: 'Algo salió mal. Inténtalo de nuevo.', onbekend: 'Este tema no existe (o ya no existe).',
       alleenTeam: 'Aquí solo el equipo empieza temas.',
       aanmeldKop: 'Crea tu cuenta OpenAEC gratuita',
-      aanmeldUitleg: 'Con una sola cuenta escribes en el foro y pronto usas también las herramientas OpenAEC y el SuperCloud. Recibirás un correo para confirmar tu dirección y elegir una contraseña; después vuelves aquí.',
+      aanmeldUitleg: 'Con una sola cuenta escribes en el foro y pronto usas también las herramientas OpenAEC. Recibirás un correo para confirmar tu dirección y elegir una contraseña; después vuelves aquí.',
       naam: 'Nombre', email: 'Correo electrónico',
       akkoord: 'Acepto la <a href="/supercloud/es/privacidad/">declaración de privacidad</a> y las <a href="/forum/#/regels">normas del foro</a>.',
       versturen: 'Crear cuenta', alAccount: '¿Ya tienes una cuenta OpenAEC?',
@@ -260,7 +274,10 @@
       badgesUitleg: 'Termina un curso de la OpenAEC Academy con un examen y obtienes una insignia en tu perfil. Con suficientes insignias te conviertes en un experto integral.',
       binnenkort: 'Próximamente',
       naarAcademy: 'Ir a la Academy',
-      verlopen: 'Se ha cerrado tu sesión. Vuelve a iniciarla.'
+      verlopen: 'Se ha cerrado tu sesión. Vuelve a iniciarla.',
+      verwijderen: 'Eliminar', verwijderVraag: '¿Eliminar este mensaje? No se puede deshacer.', verwijderOnderwerpVraag: '¿Eliminar este tema con todas sus respuestas? No se puede deshacer.',
+      afbeelding: 'Añadir imagen', afbeeldingBezig: 'Subiendo imagen…', afbeeldingAlt: 'Imagen del mensaje',
+      profiel: 'Mi perfil', lidSinds: 'Miembro desde', mijnOnderwerpen: 'Mis temas', geenEigen: 'Todavía no has empezado ningún tema.', logInVoorProfiel: 'Inicia sesión para ver tu perfil.', upsellKnopIn: 'Abrir tu SuperCloud'
     },
     de: {
       titel: 'Forum', label: 'Community',
@@ -272,7 +289,7 @@
       onderwerpen: function (n) { return n === 1 ? '1 Thema' : n + ' Themen'; },
       meer: 'Mehr laden', terug: '← Zurück zum Forum', reageren: 'Antworten', plaatsen: 'Veröffentlichen',
       jouwReactie: 'Ihre Antwort', titelVeld: 'Titel', berichtVeld: 'Nachricht', categorieVeld: 'Kategorie',
-      opmaak: 'Reiner Text. Eine Leerzeile beginnt einen neuen Absatz, Links werden anklickbar und ``` grenzt Code ab.',
+      opmaak: 'Reiner Text. Eine Leerzeile beginnt einen neuen Absatz, Links werden anklickbar und ``` grenzt Code ab. Ein Bild fügen Sie mit der Schaltfläche hinzu oder mit Strg+V ein.',
       logInOmTeReageren: 'Melden Sie sich mit Ihrem OpenAEC-Konto an, um zu antworten.',
       logInOmTeSchrijven: 'Melden Sie sich mit Ihrem OpenAEC-Konto an, um ein Thema zu eröffnen.',
       gesloten: 'Dieses Thema ist geschlossen.', vastgezet: 'Angeheftet', verborgen: 'Ausgeblendet', team: 'Team',
@@ -281,7 +298,7 @@
       laden: 'Wird geladen…', fout: 'Etwas ist schiefgegangen. Versuchen Sie es erneut.', onbekend: 'Dieses Thema existiert nicht (mehr).',
       alleenTeam: 'Hier eröffnet nur das Team Themen.',
       aanmeldKop: 'Erstellen Sie Ihr kostenloses OpenAEC-Konto',
-      aanmeldUitleg: 'Mit einem einzigen Konto schreiben Sie im Forum und nutzen bald auch die OpenAEC-Tools und die SuperCloud. Sie erhalten eine E-Mail, um Ihre Adresse zu bestätigen und ein Passwort zu wählen; danach kehren Sie hierher zurück.',
+      aanmeldUitleg: 'Mit einem einzigen Konto schreiben Sie im Forum und nutzen bald auch die OpenAEC-Tools. Sie erhalten eine E-Mail, um Ihre Adresse zu bestätigen und ein Passwort zu wählen; danach kehren Sie hierher zurück.',
       naam: 'Name', email: 'E-Mail-Adresse',
       akkoord: 'Ich akzeptiere die <a href="/supercloud/de/datenschutz/">Datenschutzerklärung</a> und die <a href="/forum/#/regels">Forenregeln</a>.',
       versturen: 'Konto erstellen', alAccount: 'Sie haben bereits ein OpenAEC-Konto?',
@@ -307,7 +324,10 @@
       badgesUitleg: 'Schließen Sie einen Kurs der OpenAEC Academy mit einer Prüfung ab, erhalten Sie ein Badge in Ihrem Profil. Mit genügend Badges werden Sie zum Allround-Experten.',
       binnenkort: 'Demnächst',
       naarAcademy: 'Zur Academy',
-      verlopen: 'Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.'
+      verlopen: 'Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.',
+      verwijderen: 'Löschen', verwijderVraag: 'Diesen Beitrag löschen? Das lässt sich nicht rückgängig machen.', verwijderOnderwerpVraag: 'Dieses Thema mit allen Antworten löschen? Das lässt sich nicht rückgängig machen.',
+      afbeelding: 'Bild hinzufügen', afbeeldingBezig: 'Bild wird hochgeladen…', afbeeldingAlt: 'Bild im Beitrag',
+      profiel: 'Mein Profil', lidSinds: 'Mitglied seit', mijnOnderwerpen: 'Meine Themen', geenEigen: 'Sie haben noch kein Thema eröffnet.', logInVoorProfiel: 'Melden Sie sich an, um Ihr Profil zu sehen.', upsellKnopIn: 'Ihre SuperCloud öffnen'
     }
   };
 
@@ -334,6 +354,10 @@
         if (!alinea) return '';
         var html = esc(alinea).replace(/https?:\/\/[^\s<]+[^\s<.,;:!?)\]'"]/g, function (url) {
           return '<a href="' + url + '" rel="nofollow ugc noopener" target="_blank">' + url + '</a>';
+        });
+        // Alleen afbeeldingen die het forum zelf bewaarde (openaec_cloud.forum.afbeelding).
+        html = html.replace(/!\[\]\((\/files\/forum-[a-z0-9]{16}\.webp)\)/g, function (_, pad) {
+          return '<a class="fo-beeld" href="' + CLOUD + pad + '" target="_blank" rel="noopener"><img src="' + CLOUD + pad + '" alt="' + esc(t('afbeeldingAlt')) + '" loading="lazy"></a>';
         });
         return '<p>' + html.replace(/\n/g, '<br>') + '</p>';
       }).join('');
@@ -496,6 +520,60 @@
     return data.message;
   }
 
+  async function uploadAfbeelding(bestand) {
+    var token = await toegangstoken();
+    var lijf = new FormData();
+    lijf.append('bestand', bestand, bestand.name || 'afbeelding.png');
+    var antwoord = await fetch(API + 'afbeelding', {
+      method: 'POST', headers: Object.assign({ Accept: 'application/json' }, token ? { Authorization: 'Bearer ' + token } : {}), body: lijf
+    });
+    var data = {};
+    try { data = await antwoord.json(); } catch (e) {}
+    if (!antwoord.ok) throw new Error(foutmelding(data));
+    return data.message.pad;
+  }
+
+  // Onder een tekstvak: de knop "Afbeelding toevoegen", en plakken (Ctrl+V) of slepen in het vak zelf.
+  function metAfbeeldingen(vak) {
+    if (!vak) return;
+    var rij = document.createElement('p');
+    rij.className = 'fo-beeldrij';
+    rij.innerHTML = '<button type="button" class="btn btn-secondary fo-knop">' + esc(t('afbeelding')) + '</button>' +
+      '<input type="file" accept="image/png,image/jpeg,image/gif,image/webp" hidden><span class="fo-klein" role="status"></span>';
+    vak.closest('label').insertAdjacentElement('afterend', rij);
+    var knopEl = rij.querySelector('button'), kies = rij.querySelector('input'), stand = rij.querySelector('span');
+    async function voegToe(bestanden) {
+      var lijst = Array.prototype.filter.call(bestanden || [], function (b) { return /^image\//.test(b.type); });
+      if (!lijst.length) return;
+      knopEl.disabled = true;
+      stand.textContent = t('afbeeldingBezig');
+      try {
+        for (var i = 0; i < lijst.length; i++) {
+          var pad = await uploadAfbeelding(lijst[i]);
+          var voor = vak.value.slice(0, vak.selectionStart), na = vak.value.slice(vak.selectionEnd);
+          var stuk = (voor && !/\n\n$/.test(voor) ? '\n\n' : '') + '![](' + pad + ')\n\n';
+          vak.value = voor + stuk + na.replace(/^\n+/, '');
+          vak.selectionStart = vak.selectionEnd = (voor + stuk).length;
+        }
+        melding('');
+      } catch (e) { melding(e.message || t('fout')); }
+      stand.textContent = '';
+      knopEl.disabled = false;
+      vak.focus();
+    }
+    knopEl.addEventListener('click', function () { kies.click(); });
+    kies.addEventListener('change', function () { voegToe(kies.files).then(function () { kies.value = ''; }); });
+    vak.addEventListener('paste', function (ev) {
+      var bestanden = ev.clipboardData && ev.clipboardData.files;
+      if (bestanden && bestanden.length) { ev.preventDefault(); voegToe(bestanden); }
+    });
+    vak.addEventListener('dragover', function (ev) { ev.preventDefault(); });
+    vak.addEventListener('drop', function (ev) {
+      var bestanden = ev.dataTransfer && ev.dataTransfer.files;
+      if (bestanden && bestanden.length) { ev.preventDefault(); voegToe(bestanden); }
+    });
+  }
+
   // ── Weergave ────────────────────────────────────────────────────────────
   var app, balk, ik = null, categorieen = [];
   // Kleuren voor categorieën en avatars (vast per categorie en per naam).
@@ -551,15 +629,10 @@
   }
 
   function tekenBalk() {
-    var html;
-    if (ik) {
-      html = '<span class="fo-ik">' + avatar(ik.naam) + '<span>' + esc(t('ingelogdAls')) + ' <strong>' + esc(ik.naam) + '</strong></span></span>' +
-        knop(t('uitloggen'), 'uitloggen', 'btn-ghost');
-    } else {
-      html = knop(t('inloggen'), 'inloggen', 'btn-secondary') +
-        '<a class="btn btn-primary fo-knop" href="#/aanmelden">' + esc(t('aanmelden')) + '</a>';
-    }
-    balk.innerHTML = html;
+    // Ingelogd staan het profiel en uitloggen rechtsboven in de navigatie (shared/nav.js), niet in de kop.
+    balk.hidden = !!ik;
+    balk.innerHTML = ik ? '' : knop(t('inloggen'), 'inloggen', 'btn-secondary') +
+      '<a class="btn btn-primary fo-knop" href="#/aanmelden">' + esc(t('aanmelden')) + '</a>';
   }
 
   // De rij met tabbladen boven elk scherm, met rechts de knop voor een nieuw onderwerp.
@@ -592,14 +665,16 @@
       return '<li><a href="' + f.url + '" target="_blank" rel="noopener"><span class="fo-forum-merk" style="background:' + f.kleur + '" aria-hidden="true">' + esc(f.naam.charAt(0)) + '</span>' +
         '<span class="fo-forum-tekst"><strong>' + esc(f.naam) + '</strong><span>' + esc(t(f.sleutel)) + '</span></span><span class="fo-uit" aria-hidden="true">↗</span></a></li>';
     }).join('');
-    return '<div class="fo-onder">' +
+    return '<div class="fo-onder' + (TOON_SUPERCLOUD ? '' : ' fo-onder-twee') + '">' +
       '<section class="fo-kaart"><h3>' + esc(t('foraKop')) + '</h3><p>' + esc(t('foraUitleg')) + '</p><ul class="fo-fora">' + fora + '</ul></section>' +
       '<section class="fo-kaart fo-badges"><h3>' + esc(t('badgesKop')) + ' <span class="fo-label">' + esc(t('binnenkort')) + '</span></h3><p>' + esc(t('badgesUitleg')) + '</p>' +
       '<div class="fo-badgerij" aria-hidden="true"><span class="fo-badge">IFC</span><span class="fo-badge">PDF</span><span class="fo-badge">CAD</span><span class="fo-badge fo-badge-goud">★</span></div>' +
-      '<a class="fo-meer-link" href="/academy/">' + esc(t('naarAcademy')) + ' →</a></section>' +
-      '<section class="fo-kaart fo-upsell"><h3>' + esc(t('upsellKop')) + '</h3><p>' + esc(t('upsell')) + '</p>' +
-      '<a class="btn btn-dark fo-knop" href="/supercloud/">' + esc(t('upsellKnop')) + '</a>' +
-      '<p class="fo-klein"><a href="#/regels">' + esc(t('regelsKop')) + '</a></p></section>' +
+      '<a class="fo-meer-link" href="/academy/">' + esc(t('naarAcademy')) + ' →</a>' +
+      '<p class="fo-klein fo-regels-link"><a href="#/regels">' + esc(t('regelsKop')) + '</a></p></section>' +
+      (!TOON_SUPERCLOUD ? '' : '<section class="fo-kaart fo-upsell"><h3>' + esc(t('upsellKop')) + '</h3><p>' + esc(t('upsell')) + '</p>' +
+      (ik ? '<a class="btn btn-dark fo-knop" href="' + esc(CLOUD) + '/start">' + esc(t('upsellKnopIn')) + '</a>'
+        : '<a class="btn btn-dark fo-knop" href="/supercloud/">' + esc(t('upsellKnop')) + '</a>') +
+      '</section>') +
       '</div>';
   }
 
@@ -662,6 +737,7 @@
     var acties = '';
     var magBewerken = ik && (b.eigen || ik.moderator) && (onderwerp.status === 'Open' || ik.moderator);
     if (magBewerken) acties += knop(t('bewerken'), 'bewerk', 'btn-ghost', ' data-naam="' + esc(b.naam) + '"');
+    if (magBewerken) acties += knop(t('verwijderen'), 'verwijder', 'btn-ghost', ' data-naam="' + esc(b.naam) + '"');
     if (ik && ik.moderator) acties += knop(t(b.verborgen ? 'toon' : 'verberg'), 'modereer', 'btn-ghost', ' data-soort="bericht" data-naam="' + esc(b.naam) + '" data-wat="' + (b.verborgen ? 'toon' : 'verberg') + '"');
     return '<article class="fo-post' + (b.verborgen ? ' fo-verborgen' : '') + '" id="b-' + esc(b.naam) + '">' + avatar(b.auteur.naam, true) +
       '<div class="fo-post-lijf"><header>' + auteur(b.auteur) + '<span class="fo-post-tijd">' + esc(tijd(b.aangemaakt)) +
@@ -724,6 +800,20 @@
         }
       });
     }
+    metAfbeeldingen(form && form.tekst);
+    app.querySelectorAll('[data-actie="verwijder"]').forEach(function (el) {
+      el.addEventListener('click', async function () {
+        var b = data.berichten.find(function (x) { return x.naam === el.dataset.naam; });
+        if (!b || !window.confirm(t(b.eerste ? 'verwijderOnderwerpVraag' : 'verwijderVraag'))) return;
+        el.disabled = true;
+        try {
+          var uit = await api('verwijder', { bericht: b.naam }, true);
+          melding('');
+          if (uit.onderwerp_weg) { await laadCategorieen(); location.hash = '#/'; }
+          else onderwerpScherm(naam);
+        } catch (e) { melding(e.message); el.disabled = false; }
+      });
+    });
     app.querySelectorAll('[data-actie="bewerk"]').forEach(function (el) {
       el.addEventListener('click', function () {
         var b = data.berichten.find(function (x) { return x.naam === el.dataset.naam; });
@@ -733,6 +823,7 @@
           '<label><span>' + esc(t('berichtVeld')) + '</span><textarea name="tekst" rows="8" required minlength="2" maxlength="20000">' + esc(b.tekst) + '</textarea></label>' +
           '<p><button class="btn btn-primary" type="submit">' + esc(t('opslaan')) + '</button> <button class="btn btn-ghost" type="button" data-annuleer>' + esc(t('annuleren')) + '</button></p></form>';
         var f = art.querySelector('form');
+        metAfbeeldingen(f.tekst);
         f.querySelector('[data-annuleer]').addEventListener('click', function () { onderwerpScherm(naam); });
         f.addEventListener('submit', async function (ev) {
           ev.preventDefault();
@@ -767,6 +858,7 @@
       '<p class="fo-klein">' + esc(t('opmaak')) + '</p>' +
       '<p><button class="btn btn-primary" type="submit">' + esc(t('plaatsen')) + '</button></p></form>');
     var form = document.getElementById('fo-nieuw');
+    metAfbeeldingen(form.tekst);
     form.addEventListener('submit', async function (ev) {
       ev.preventDefault();
       var knopEl = form.querySelector('button');
@@ -799,6 +891,29 @@
       '<p class="fo-klein">' + esc(t('alAccount')) + ' ' + knop(t('inloggen'), 'inloggen', 'btn-ghost') + '</p>');
   }
 
+  async function profielScherm() {
+    if (!ik) {
+      enkel(null, '<h2>' + esc(t('profiel')) + '</h2><p>' + esc(t('logInVoorProfiel')) + '</p><p>' + knop(t('inloggen'), 'inloggen', 'btn-primary') + '</p>');
+      return;
+    }
+    enkel(null, '<p class="fo-leeg">' + esc(t('laden')) + '</p>');
+    var p;
+    try { p = await api('profiel'); } catch (e) { enkel(null, '<p class="fo-leeg">' + esc(e.message || t('fout')) + '</p>'); return; }
+    var sinds = new Date(p.lid_sinds);
+    var rijen = p.recent.map(function (o) { return onderwerpRij(o); }).join('');
+    app.innerHTML = tabs('') + '<div class="fo-enkel">' +
+      '<section class="fo-kaart fo-profiel"><div class="fo-profiel-kop">' + avatar(p.naam, true) +
+      '<div><h2>' + esc(p.naam) + (p.moderator ? ' <span class="fo-team">' + esc(t('team')) + '</span>' : '') + '</h2>' +
+      '<p class="fo-klein">' + esc(p.email) + '</p></div></div>' +
+      '<dl class="fo-cijfers"><div><dt>' + esc(t('lidSinds')) + '</dt><dd>' + esc(isNaN(sinds) ? '' : sinds.toLocaleDateString(taal(), { year: 'numeric', month: 'long', day: 'numeric' })) + '</dd></div>' +
+      '<div><dt>' + esc(t('onderwerpenKop')) + '</dt><dd>' + p.onderwerpen + '</dd></div>' +
+      '<div><dt>' + esc(t('reactiesKop')) + '</dt><dd>' + p.reacties + '</dd></div></dl>' +
+      '<p class="fo-profiel-knoppen">' + (TOON_SUPERCLOUD ? '<a class="btn btn-dark fo-knop" href="' + esc(CLOUD) + '/start">' + esc(t('upsellKnopIn')) + '</a> ' : '') +
+      knop(t('uitloggen'), 'uitloggen', 'btn-secondary') + '</p></section>' +
+      '<section class="fo-paneel fo-profiel-lijst"><div class="fo-paneel-kop"><span>' + esc(t('mijnOnderwerpen')) + '</span></div>' +
+      '<ul class="fo-rijen">' + (rijen || '<li class="fo-leeg">' + esc(t('geenEigen')) + '</li>') + '</ul></section></div>';
+  }
+
   function regelsScherm() {
     enkel(null, '<h2>' + esc(t('regelsKop')) + '</h2><ul class="fo-regels">' +
       t('regels').map(function (r) { return '<li>' + esc(r) + '</li>'; }).join('') + '</ul>');
@@ -821,6 +936,9 @@
     if (route[0] === 'nieuw') return nieuwScherm(route[1] || null);
     if (route[0] === 'aanmelden') return aanmeldScherm();
     if (route[0] === 'regels') return regelsScherm();
+    if (route[0] === 'profiel') return profielScherm();
+    // De knop Uitloggen rechtsboven in de navigatie (ook vanaf andere pagina's van de site).
+    if (route[0] === 'uitloggen') { history.replaceState(null, '', '/forum/#/'); return logout(); }
     return startScherm();
   }
 

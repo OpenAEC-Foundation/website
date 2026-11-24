@@ -29,6 +29,11 @@
 .fo-rijen { list-style: none; margin: 0; padding: 0; }
 .fo-rij { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: var(--sp-4); align-items: center; padding: var(--sp-4) var(--sp-5); border-bottom: 1px solid rgba(42,42,50,0.08); }
 .fo-rij:last-child { border-bottom: 0; }
+/* De hele regel opent het onderwerp; de categorie blijft een eigen link. */
+.fo-rij { position: relative; transition: background 0.15s ease; }
+.fo-rij:hover { background: rgba(217,119,6,0.05); }
+.fo-item-titel::after { content: ''; position: absolute; inset: 0; }
+.fo-rij .fo-chip { position: relative; z-index: 1; }
 .fo-rij-hoofd { min-width: 0; }
 .fo-item-titel { color: var(--deep-forge); font-weight: 600; font-size: 1.02rem; text-decoration: none; line-height: 1.35; overflow-wrap: anywhere; }
 .fo-item-titel:hover { color: #B45309; }
@@ -74,11 +79,22 @@
 .fo-badgerij { display: flex; gap: var(--sp-2); margin: 0 0 var(--sp-4); }
 .fo-badge { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; background: #fff; border: 2px solid rgba(217,119,6,0.5); color: #B45309; font-family: var(--font-heading); font-weight: 700; font-size: 0.8rem; }
 .fo-badge-goud { background: linear-gradient(135deg, #F59E0B, #B45309); border-color: #B45309; color: #fff; font-size: 1.2rem; }
+.fo-onder-twee { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+.fo-regels-link { margin: var(--sp-4) 0 0 !important; }
 .fo-upsell { border-top: 3px solid var(--deep-forge); }
 .fo-upsell .fo-klein { margin: var(--sp-4) 0 0; }
 .fo-klein { font-size: 0.9rem; color: var(--text-on-light); }
 .fo-klein a { color: #B45309; }
 .fo-enkel { max-width: 760px; }
+.fo-profiel-kop { display: flex; align-items: center; gap: var(--sp-4); margin-bottom: var(--sp-5); }
+.fo-profiel-kop h2 { margin: 0 0 2px; }
+.fo-profiel-kop p { margin: 0; overflow-wrap: anywhere; }
+.fo-cijfers { display: flex; flex-wrap: wrap; gap: var(--sp-4) var(--sp-8); margin: 0 0 var(--sp-5); }
+.fo-cijfers dt { font-size: 0.8rem; color: var(--text-on-light); }
+.fo-cijfers dd { margin: 0; font-family: var(--font-heading); font-weight: 600; color: var(--deep-forge); }
+.fo-profiel-knoppen { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin: 0 !important; }
+.fo-profiel-lijst { margin-top: var(--sp-6); }
+.fo-balk[hidden] { display: none; }
 .fo-uitleg { color: var(--text-on-light); line-height: 1.65; margin: 0 0 var(--sp-6); }
 
 /* Een onderwerp */
@@ -98,6 +114,10 @@
 .fo-tekst p { margin: 0 0 var(--sp-3); }
 .fo-tekst a { color: #B45309; }
 .fo-tekst pre { background: var(--night-build); color: var(--text-on-dark); border-radius: var(--radius-md); padding: var(--sp-4); overflow-x: auto; font-family: var(--font-code); font-size: 0.85rem; }
+.fo-beeld { display: inline-block; max-width: 100%; }
+.fo-beeld img { display: block; max-width: 100%; max-height: 520px; height: auto; border-radius: var(--radius-md); border: 1px solid rgba(42,42,50,0.12); }
+.fo-beeldrij { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); }
+.fo-beeldrij .btn { padding: 4px 12px; font-size: 0.85rem; }
 .fo-acties { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-top: var(--sp-3); }
 .fo-acties .btn { padding: 4px 12px; font-size: 0.85rem; }
 .fo-mod { margin: 0 0 var(--sp-4); }
@@ -120,7 +140,7 @@
 .fo-regels li::marker { color: var(--amber); }
 
 @media (max-width: 960px) {
-  .fo-twee, .fo-onder { grid-template-columns: minmax(0, 1fr); }
+  .fo-twee, .fo-onder, .fo-onder-twee { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 768px) {
   .fo-rij { grid-template-columns: auto minmax(0, 1fr); }
