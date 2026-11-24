@@ -54,7 +54,21 @@
     if (oudeUit) oudeUit.remove();
     var account = null;
     try { account = JSON.parse(localStorage.getItem('openaec-forum-account') || 'null'); } catch (e) { account = null; }
-    if (!account || !account.naam) return;
+    if (!account || !account.naam) {
+      // Niet ingelogd: een link naar het inlogscherm (met Google, GitHub, Apple of e-mail).
+      var oudIn = menu.querySelector('.nav-inloggen');
+      if (oudIn) oudIn.remove();
+      var taalIn = 'en';
+      try { taalIn = localStorage.getItem('openaec-lang') || 'en'; } catch (e) {}
+      var inl = document.createElement('a');
+      inl.className = 'nav-link nav-inloggen';
+      inl.href = '/forum/#/inloggen';
+      inl.textContent = { nl: 'Inloggen', en: 'Log in', fr: 'Se connecter', tr: 'Giriş yap', es: 'Iniciar sesión', de: 'Anmelden' }[taalIn] || 'Log in';
+      menu.insertBefore(inl, menu.querySelector('.lang-switcher'));
+      return;
+    }
+    var wegIn = menu.querySelector('.nav-inloggen');
+    if (wegIn) wegIn.remove();
     if (!document.getElementById('nav-account-stijl')) {
       var stijl = document.createElement('style');
       stijl.id = 'nav-account-stijl';

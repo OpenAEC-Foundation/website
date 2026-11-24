@@ -93,7 +93,9 @@
       githubAccount: 'GitHub-account',
       githubKoppelen: 'Koppel je GitHub-account',
       githubUitleg: 'Wat je op GitHub schrijft, staat dan onder je naam en in je geschiedenis.',
-      opmaakMd: 'Markdown werkt: **vet**, *cursief*, lijsten met -, kopjes met # en ``` voor code. Een afbeelding voeg je toe met de knop of plak je met Ctrl+V.'
+      opmaakMd: 'Markdown werkt: **vet**, *cursief*, lijsten met -, kopjes met # en ``` voor code. Een afbeelding voeg je toe met de knop of plak je met Ctrl+V.',
+      inlogKop: 'Inloggen bij OpenAEC', verderMet: 'Verder met', ofMail: 'of', metWachtwoord: 'Met e-mail en wachtwoord', nogGeenAccount: 'Nog geen account?', ofMetMail: 'of maak een account met je e-mailadres', gekoppeldMet: 'Inloggen met',
+      inlogUitleg: 'Met Google, GitHub of Apple heb je geen apart wachtwoord nodig. Een nieuw adres wordt meteen een OpenAEC-account.'
     },
     en: {
       titel: 'Forum', label: 'Community',
@@ -159,7 +161,9 @@
       githubAccount: 'GitHub account',
       githubKoppelen: 'Link your GitHub account',
       githubUitleg: 'What you write on GitHub then appears under your name and in your history.',
-      opmaakMd: 'Markdown works: **bold**, *italic*, lists with -, headings with # and ``` for code. Add an image with the button or paste it with Ctrl+V.'
+      opmaakMd: 'Markdown works: **bold**, *italic*, lists with -, headings with # and ``` for code. Add an image with the button or paste it with Ctrl+V.',
+      inlogKop: 'Log in to OpenAEC', verderMet: 'Continue with', ofMail: 'or', metWachtwoord: 'With email and password', nogGeenAccount: 'No account yet?', ofMetMail: 'or create an account with your email address', gekoppeldMet: 'Sign-in with',
+      inlogUitleg: 'With Google, GitHub or Apple you need no separate password. A new address becomes an OpenAEC account right away.'
     },
     fr: {
       titel: 'Forum', label: 'Communauté',
@@ -225,7 +229,9 @@
       githubAccount: 'Compte GitHub',
       githubKoppelen: 'Lier votre compte GitHub',
       githubUitleg: 'Ce que vous écrivez sur GitHub apparaît alors sous votre nom et dans votre historique.',
-      opmaakMd: 'Markdown fonctionne : **gras**, *italique*, listes avec -, titres avec # et ``` pour le code. Ajoutez une image avec le bouton ou collez-la avec Ctrl+V.'
+      opmaakMd: 'Markdown fonctionne : **gras**, *italique*, listes avec -, titres avec # et ``` pour le code. Ajoutez une image avec le bouton ou collez-la avec Ctrl+V.',
+      inlogKop: 'Se connecter à OpenAEC', verderMet: 'Continuer avec', ofMail: 'ou', metWachtwoord: 'Avec e-mail et mot de passe', nogGeenAccount: 'Pas encore de compte ?', ofMetMail: 'ou créez un compte avec votre adresse e-mail', gekoppeldMet: 'Connexion avec',
+      inlogUitleg: 'Avec Google, GitHub ou Apple, pas besoin de mot de passe séparé. Une nouvelle adresse devient aussitôt un compte OpenAEC.'
     },
     tr: {
       titel: 'Forum', label: 'Topluluk',
@@ -291,7 +297,9 @@
       githubAccount: 'GitHub hesabı',
       githubKoppelen: 'GitHub hesabınızı bağlayın',
       githubUitleg: 'GitHub’da yazdıklarınız adınızla ve geçmişinizde görünür.',
-      opmaakMd: 'Markdown çalışır: **kalın**, *italik*, - ile listeler, # ile başlıklar ve kod için ```. Görseli düğmeyle ekleyin ya da Ctrl+V ile yapıştırın.'
+      opmaakMd: 'Markdown çalışır: **kalın**, *italik*, - ile listeler, # ile başlıklar ve kod için ```. Görseli düğmeyle ekleyin ya da Ctrl+V ile yapıştırın.',
+      inlogKop: 'OpenAEC’ye giriş yap', verderMet: 'Şununla devam et:', ofMail: 'veya', metWachtwoord: 'E-posta ve parola ile', nogGeenAccount: 'Henüz hesabınız yok mu?', ofMetMail: 'veya e-posta adresinizle hesap oluşturun', gekoppeldMet: 'Giriş yöntemi',
+      inlogUitleg: 'Google, GitHub veya Apple ile ayrı bir parolaya gerek yok. Yeni bir adres hemen bir OpenAEC hesabı olur.'
     },
     es: {
       titel: 'Foro', label: 'Comunidad',
@@ -357,7 +365,9 @@
       githubAccount: 'Cuenta de GitHub',
       githubKoppelen: 'Vincula tu cuenta de GitHub',
       githubUitleg: 'Lo que escribes en GitHub aparece entonces con tu nombre y en tu historial.',
-      opmaakMd: 'Markdown funciona: **negrita**, *cursiva*, listas con -, títulos con # y ``` para código. Añade una imagen con el botón o pégala con Ctrl+V.'
+      opmaakMd: 'Markdown funciona: **negrita**, *cursiva*, listas con -, títulos con # y ``` para código. Añade una imagen con el botón o pégala con Ctrl+V.',
+      inlogKop: 'Iniciar sesión en OpenAEC', verderMet: 'Continuar con', ofMail: 'o', metWachtwoord: 'Con correo y contraseña', nogGeenAccount: '¿Aún no tienes cuenta?', ofMetMail: 'o crea una cuenta con tu correo electrónico', gekoppeldMet: 'Inicio de sesión con',
+      inlogUitleg: 'Con Google, GitHub o Apple no necesitas una contraseña aparte. Una dirección nueva se convierte al instante en una cuenta OpenAEC.'
     },
     de: {
       titel: 'Forum', label: 'Community',
@@ -423,7 +433,9 @@
       githubAccount: 'GitHub-Konto',
       githubKoppelen: 'GitHub-Konto verknüpfen',
       githubUitleg: 'Was Sie auf GitHub schreiben, erscheint dann unter Ihrem Namen und in Ihrem Verlauf.',
-      opmaakMd: 'Markdown funktioniert: **fett**, *kursiv*, Listen mit -, Überschriften mit # und ``` für Code. Ein Bild fügen Sie mit der Schaltfläche hinzu oder mit Strg+V ein.'
+      opmaakMd: 'Markdown funktioniert: **fett**, *kursiv*, Listen mit -, Überschriften mit # und ``` für Code. Ein Bild fügen Sie mit der Schaltfläche hinzu oder mit Strg+V ein.',
+      inlogKop: 'Bei OpenAEC anmelden', verderMet: 'Weiter mit', ofMail: 'oder', metWachtwoord: 'Mit E-Mail und Passwort', nogGeenAccount: 'Noch kein Konto?', ofMetMail: 'oder erstellen Sie ein Konto mit Ihrer E-Mail-Adresse', gekoppeldMet: 'Anmeldung mit',
+      inlogUitleg: 'Mit Google, GitHub oder Apple brauchen Sie kein eigenes Passwort. Eine neue Adresse wird sofort ein OpenAEC-Konto.'
     }
   };
 
@@ -574,16 +586,31 @@
     return btoa(s).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
   }
 
-  async function login() {
+  // Waar de bezoeker was toen hij op Inloggen klikte: daar komt hij na het inloggen terug.
+  var TERUGNAAR = 'openaec-forum-terugnaar';
+  function onthoudPlek() {
+    if (/^#\/(inloggen|aanmelden)/.test(location.hash)) return;
+    try { sessionStorage.setItem(TERUGNAAR, location.hash || '#/'); } catch (e) {}
+  }
+  function onthoudenPlek() {
+    try { return sessionStorage.getItem(TERUGNAAR) || '#/'; } catch (e) { return '#/'; }
+  }
+
+  // Inloggen via de cloud (OAuth met PKCE). Met `aanbieder` (google, github, apple) meteen bij die aanbieder, zonder
+  // eerst de inlogpagina van de cloud; zonder: de inlogpagina met e-mail en wachtwoord.
+  async function login(aanbieder) {
     var verifier = willekeurig(48);
     var state = willekeurig(16);
     var hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier));
-    sessionStorage.setItem(PKCE, JSON.stringify({ verifier: verifier, state: state, terug: location.hash || '#/' }));
+    var plek = /^#\/(inloggen|aanmelden)/.test(location.hash) ? onthoudenPlek() : (location.hash || '#/');
+    sessionStorage.setItem(PKCE, JSON.stringify({ verifier: verifier, state: state, terug: plek }));
     var q = new URLSearchParams({
       client_id: CLIENT, response_type: 'code', redirect_uri: TERUG, scope: SCOPE, state: state,
       code_challenge: b64url(new Uint8Array(hash)), code_challenge_method: 'S256'
     });
-    location.assign(OAUTH + 'authorize?' + q.toString());
+    var pad = '/api/method/frappe.integrations.oauth2.authorize?' + q.toString();
+    if (aanbieder) location.assign(CLOUD + '/api/method/openaec_cloud.sociaal.start?' + new URLSearchParams({ aanbieder: aanbieder, verder: pad }).toString());
+    else location.assign(CLOUD + pad);
   }
 
   async function tokenAanvraag(velden) {
@@ -840,6 +867,20 @@
     var bestand = TOOLLOGO[slug];
     return '<img class="fo-toollogo" src="' + (bestand ? '/shared/assets/app-icons/' + bestand : '/shared/assets/logo/openaec-symbol-v2-transparent.svg') + '" alt="" width="28" height="28" loading="lazy">';
   }
+  // Inloggen met Google, GitHub of Apple: welke aan staan, zegt de cloud (forum.inlogaanbieders).
+  var aanbieders = [];
+  var AANBIEDER = {
+    google: { naam: 'Google', icoon: '<svg viewBox="0 0 48 48" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>' },
+    github: { naam: 'GitHub', icoon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>' },
+    apple: { naam: 'Apple', icoon: '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.935-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>' }
+  };
+  function aanbiederKnoppen() {
+    return aanbieders.filter(function (a) { return AANBIEDER[a]; }).map(function (a) {
+      return '<button type="button" class="fo-aanbieder" data-actie="inloggen-met" data-aanbieder="' + a + '">' + AANBIEDER[a].icoon +
+        '<span>' + esc(t('verderMet')) + ' ' + AANBIEDER[a].naam + '</span></button>';
+    }).join('');
+  }
+
   // Community of ontwikkeling: welke onderwerpen een lijst toont (onthouden per bezoeker).
   var SOORT = 'openaec-forum-soort';
   function soort() {
@@ -1139,7 +1180,9 @@
     var l = taal();
     // Gewone formulier-POST naar de cloud (zoals /supercloud/…/sign-up), met bron=forum: een account zonder omgeving,
     // en terug naar het forum na de verificatie.
-    enkel(null, '<h2>' + esc(t('aanmeldKop')) + '</h2><p class="fo-uitleg">' + esc(t('aanmeldUitleg')) + '</p>' +
+    enkel(null, '<h2>' + esc(t('aanmeldKop')) + '</h2>' +
+      (aanbieders.length ? '<div class="fo-aanbieders">' + aanbiederKnoppen() + '</div><p class="fo-of"><span>' + esc(t('ofMetMail')) + '</span></p>' : '') +
+      '<p class="fo-uitleg">' + esc(t('aanmeldUitleg')) + '</p>' +
       '<form class="fo-form" method="post" action="' + esc(CLOUD) + '/aanmelden/start">' +
       '<input type="hidden" name="taal" value="' + esc(l) + '"><input type="hidden" name="bron" value="forum">' +
       '<input type="hidden" name="terug" value="' + esc(TERUG + '#/') + '">' +
@@ -1177,6 +1220,9 @@
       '<section class="fo-kaart fo-profiel"><div class="fo-profiel-kop">' + avatar(p, true) +
       '<div><h2>' + esc(p.naam) + (p.moderator ? ' <span class="fo-team">' + esc(t('team')) + '</span>' : '') + '</h2>' +
       '<p class="fo-klein">' + esc(p.email) + '</p></div></div>' + github +
+      ((p.inlogmethodes || []).length ? '<p class="fo-klein fo-methodes">' + esc(t('gekoppeldMet')) + ': ' + p.inlogmethodes.filter(function (a) { return AANBIEDER[a]; }).map(function (a) {
+        return '<span class="fo-methode">' + AANBIEDER[a].icoon + AANBIEDER[a].naam + '</span>';
+      }).join(' ') + '</p>' : '') +
       '<dl class="fo-cijfers"><div><dt>' + esc(t('lidSinds')) + '</dt><dd>' + esc(isNaN(sinds) ? '' : sinds.toLocaleDateString(taal(), { year: 'numeric', month: 'long', day: 'numeric' })) + '</dd></div>' +
       '<div><dt>' + esc(t('onderwerpenKop')) + '</dt><dd>' + p.onderwerpen + '</dd></div>' +
       '<div><dt>' + esc(t('reactiesKop')) + '</dt><dd>' + p.reacties + '</dd></div></dl>' +
@@ -1197,6 +1243,18 @@
     kies.addEventListener('change', function () { if (kies.files[0]) klaar(uploadAfbeelding(kies.files[0], 'profielfoto')); });
     var weg = document.getElementById('fo-foto-weg');
     if (weg) weg.addEventListener('click', function () { klaar(api('profielfoto', { weg: 1 }, true)); });
+  }
+
+  // Inloggen: de aanbieders die aan staan, en e-mail met wachtwoord (de inlogpagina van de cloud).
+  function inlogScherm() {
+    if (ik) { location.hash = onthoudenPlek(); return; }
+    if (!aanbieders.length) { login(); return; }
+    enkel(null, '<h2>' + esc(t('inlogKop')) + '</h2><p class="fo-uitleg">' + esc(t('inlogUitleg')) + '</p>' +
+      '<div class="fo-aanbieders">' + aanbiederKnoppen() + '</div><p class="fo-of"><span>' + esc(t('ofMail')) + '</span></p>' +
+      '<div class="fo-aanbieders"><button type="button" class="fo-aanbieder" data-actie="inloggen-met" data-aanbieder="">' +
+      '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg>' +
+      '<span>' + esc(t('metWachtwoord')) + '</span></button></div>' +
+      '<p class="fo-klein fo-inlog-voet">' + esc(t('nogGeenAccount')) + ' <a href="#/aanmelden">' + esc(t('aanmelden')) + '</a></p>');
   }
 
   function regelsScherm() {
@@ -1226,6 +1284,7 @@
     if (route[0] === 'aanmelden') return aanmeldScherm();
     if (route[0] === 'regels') return regelsScherm();
     if (route[0] === 'profiel') return profielScherm();
+    if (route[0] === 'inloggen') return inlogScherm();
     // De knop Uitloggen rechtsboven in de navigatie (ook vanaf andere pagina's van de site).
     if (route[0] === 'uitloggen') { history.replaceState(null, '', '/forum/#/'); return logout(); }
     return startScherm();
@@ -1251,7 +1310,11 @@
         try { localStorage.setItem(SOORT, el.dataset.soort); } catch (e) {}
         toon();
       }
-      else if (actie === 'inloggen') login();
+      else if (actie === 'inloggen') {
+        // Met aanbieders eerst de keuze; anders meteen naar de inlogpagina van de cloud.
+        if (aanbieders.length) { onthoudPlek(); location.hash = '#/inloggen'; } else login();
+      }
+      else if (actie === 'inloggen-met') { el.disabled = true; login(el.dataset.aanbieder || ''); }
       else if (actie === 'uitloggen') logout();
       else if (actie === 'modereer') {
         el.disabled = true;
@@ -1265,6 +1328,9 @@
     document.addEventListener('click', function (ev) {
       if (ev.target.closest && ev.target.closest('.lang-btn')) setTimeout(toon, 0);
     });
+    document.addEventListener('click', function (ev) {
+      if (ev.target.closest && ev.target.closest('a[href="#/aanmelden"]')) onthoudPlek();
+    }, true);
     window.addEventListener('hashchange', function () { melding(''); toon(); });
     // Wijs of tik je een onderwerp of categorie aan, dan halen we het alvast op: bij de klik staat het er.
     function alvast(ev) {
@@ -1278,8 +1344,8 @@
     document.addEventListener('touchstart', alvast, { passive: true });
     await verwerkTerugkeer();
     // De lijst van de startpagina alvast, tegelijk met de categorieën.
-    if (!/^#\/(t|c|nieuw|profiel|aanmelden|regels)/.test(location.hash)) haal('onderwerpen', soortVelden({ start: 0 })).catch(function () {});
-    await Promise.all([laadCategorieen(), laadIk()]);
+    if (!/^#\/(t|c|nieuw|profiel|aanmelden|regels|inloggen)/.test(location.hash)) haal('onderwerpen', soortVelden({ start: 0 })).catch(function () {});
+    await Promise.all([laadCategorieen(), laadIk(), haal('inlogaanbieders').then(function (lijst) { aanbieders = lijst || []; }, function () { aanbieders = []; })]);
     toon();
   }
 
