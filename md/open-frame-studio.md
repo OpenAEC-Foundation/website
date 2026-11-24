@@ -6,19 +6,19 @@
 **License:** CC-BY-SA-4.0
 **Platforms:** Windows, macOS, Linux, Browser
 **Category:** Window & Door Frame Design
-**Current version:** v2026.47.2 (2026-11-20)
+**Current version:** v2026.48.0 (2026-11-23)
 **Tool ID:** `open-frame-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-frame-studio`
 
 ## Live stats
 
-- Stars: **18**
-- Commits: **136**
+- Stars: **19**
+- Commits: **137**
 - Forks: **7**
 - Open issues: **5**
-- Releases: **12**
-- Total downloads: **1,023**
-- Downloads by platform: Windows (646), Linux (AppImage) (134), macOS (64), Windows (MSI) (62), Linux (deb) (53), Linux (rpm) (42), Archive (22)
+- Releases: **13**
+- Total downloads: **1,063**
+- Downloads by platform: Windows (677), Linux (AppImage) (137), macOS (66), Windows (MSI) (62), Linux (deb) (55), Linux (rpm) (43), Archive (23)
 
 ## Key features
 
@@ -54,7 +54,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-frame-studio/
 - Live demo: https://open-frame-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-frame-studio
-- Latest release: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/v2026.47.2
+- Latest release: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/v2026.48.0
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-frame-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
@@ -66,7 +66,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows (MSI) · Open.Frame.Studio_0.6.0_x64_en-US.msi](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_x64_en-US.msi) (v0.6.0 — 6.6 MB)
 - [macOS · Open.Frame.Studio_0.6.0_universal.dmg](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_universal.dmg) (v0.6.0 — 12.7 MB)
 - [Windows · Open.Frame.Studio_2026.46.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v2026.46.2/Open.Frame.Studio_2026.46.2_x64-setup.exe) (v2026.46.2 — 4.7 MB)
-- [Linux (deb) · Open.Frame.Studio_0.6.0_amd64.deb](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v0.6.0/Open.Frame.Studio_0.6.0_amd64.deb) (v0.6.0 — 7.1 MB)
+- [Windows · Open.Frame.Studio_2026.47.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/open-frame-studio/releases/download/v2026.47.2/Open.Frame.Studio_2026.47.2_x64-setup.exe) (v2026.47.2 — 5 MB)
 
 ---
 
