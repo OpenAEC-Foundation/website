@@ -89,6 +89,7 @@
       fotoKiezen: 'Foto kiezen',
       fotoWeg: 'Foto verwijderen',
       mijnReacties: 'Mijn reacties',
+      overJou: 'Over jou', pBedrijf: 'Bedrijf', pFunctie: 'Functie', pPlaats: 'Plaats', pOver: 'Over mij', pWebsite: 'Website', pLinkedin: 'LinkedIn', pGithub: 'GitHub-account', toonAnderen: 'Zichtbaar voor anderen', zichtbaarUitleg: 'Anderen zien alleen wat je aanvinkt. Je naam en foto staan altijd bij je berichten; je e-mailadres tonen we nooit.', profielBewaard: 'Je profiel is bewaard.', openbaarProfiel: 'Bekijk je openbare profiel', profielVan: 'Profiel', geenOnderwerpenLid: 'Nog geen onderwerpen.', geenReactiesLid: 'Nog geen reacties.', linkedinHulp: 'De link naar je profiel, of alleen je LinkedIn-naam.',
       geenReacties: 'Je hebt nog niet gereageerd.',
       githubAccount: 'GitHub-account',
       githubKoppelen: 'Koppel je GitHub-account',
@@ -157,6 +158,7 @@
       fotoKiezen: 'Choose photo',
       fotoWeg: 'Remove photo',
       mijnReacties: 'My replies',
+      overJou: 'About you', pBedrijf: 'Company', pFunctie: 'Role', pPlaats: 'Location', pOver: 'About me', pWebsite: 'Website', pLinkedin: 'LinkedIn', pGithub: 'GitHub account', toonAnderen: 'Visible to others', zichtbaarUitleg: 'Others only see what you tick. Your name and photo always appear with your posts; we never show your email address.', profielBewaard: 'Your profile has been saved.', openbaarProfiel: 'View your public profile', profielVan: 'Profile', geenOnderwerpenLid: 'No topics yet.', geenReactiesLid: 'No replies yet.', linkedinHulp: 'The link to your profile, or just your LinkedIn name.',
       geenReacties: 'You have not replied yet.',
       githubAccount: 'GitHub account',
       githubKoppelen: 'Link your GitHub account',
@@ -225,6 +227,7 @@
       fotoKiezen: 'Choisir une photo',
       fotoWeg: 'Supprimer la photo',
       mijnReacties: 'Mes réponses',
+      overJou: 'À propos de vous', pBedrijf: 'Entreprise', pFunctie: 'Fonction', pPlaats: 'Lieu', pOver: 'À propos de moi', pWebsite: 'Site web', pLinkedin: 'LinkedIn', pGithub: 'Compte GitHub', toonAnderen: 'Visible par les autres', zichtbaarUitleg: 'Les autres ne voient que ce que vous cochez. Votre nom et votre photo accompagnent toujours vos messages ; nous n’affichons jamais votre adresse e-mail.', profielBewaard: 'Votre profil a été enregistré.', openbaarProfiel: 'Voir votre profil public', profielVan: 'Profil', geenOnderwerpenLid: 'Pas encore de sujets.', geenReactiesLid: 'Pas encore de réponses.', linkedinHulp: 'Le lien vers votre profil, ou seulement votre nom LinkedIn.',
       geenReacties: 'Vous n’avez pas encore répondu.',
       githubAccount: 'Compte GitHub',
       githubKoppelen: 'Lier votre compte GitHub',
@@ -293,6 +296,7 @@
       fotoKiezen: 'Fotoğraf seç',
       fotoWeg: 'Fotoğrafı kaldır',
       mijnReacties: 'Yanıtlarım',
+      overJou: 'Hakkınızda', pBedrijf: 'Şirket', pFunctie: 'Görev', pPlaats: 'Konum', pOver: 'Hakkımda', pWebsite: 'Web sitesi', pLinkedin: 'LinkedIn', pGithub: 'GitHub hesabı', toonAnderen: 'Başkalarına görünür', zichtbaarUitleg: 'Başkaları yalnızca işaretlediklerinizi görür. Adınız ve fotoğrafınız her zaman gönderilerinizde görünür; e-posta adresinizi asla göstermeyiz.', profielBewaard: 'Profiliniz kaydedildi.', openbaarProfiel: 'Herkese açık profilinizi görün', profielVan: 'Profil', geenOnderwerpenLid: 'Henüz konu yok.', geenReactiesLid: 'Henüz yanıt yok.', linkedinHulp: 'Profilinizin bağlantısı veya yalnızca LinkedIn adınız.',
       geenReacties: 'Henüz yanıt yazmadınız.',
       githubAccount: 'GitHub hesabı',
       githubKoppelen: 'GitHub hesabınızı bağlayın',
@@ -361,6 +365,7 @@
       fotoKiezen: 'Elegir foto',
       fotoWeg: 'Quitar foto',
       mijnReacties: 'Mis respuestas',
+      overJou: 'Sobre ti', pBedrijf: 'Empresa', pFunctie: 'Cargo', pPlaats: 'Lugar', pOver: 'Sobre mí', pWebsite: 'Sitio web', pLinkedin: 'LinkedIn', pGithub: 'Cuenta de GitHub', toonAnderen: 'Visible para los demás', zichtbaarUitleg: 'Los demás solo ven lo que marcas. Tu nombre y tu foto siempre aparecen junto a tus mensajes; nunca mostramos tu correo electrónico.', profielBewaard: 'Tu perfil se ha guardado.', openbaarProfiel: 'Ver tu perfil público', profielVan: 'Perfil', geenOnderwerpenLid: 'Todavía no hay temas.', geenReactiesLid: 'Todavía no hay respuestas.', linkedinHulp: 'El enlace a tu perfil, o solo tu nombre de LinkedIn.',
       geenReacties: 'Todavía no has respondido.',
       githubAccount: 'Cuenta de GitHub',
       githubKoppelen: 'Vincula tu cuenta de GitHub',
@@ -429,6 +434,7 @@
       fotoKiezen: 'Foto wählen',
       fotoWeg: 'Foto entfernen',
       mijnReacties: 'Meine Antworten',
+      overJou: 'Über Sie', pBedrijf: 'Unternehmen', pFunctie: 'Funktion', pPlaats: 'Ort', pOver: 'Über mich', pWebsite: 'Website', pLinkedin: 'LinkedIn', pGithub: 'GitHub-Konto', toonAnderen: 'Für andere sichtbar', zichtbaarUitleg: 'Andere sehen nur, was Sie ankreuzen. Ihr Name und Ihr Foto stehen immer bei Ihren Beiträgen; Ihre E-Mail-Adresse zeigen wir nie.', profielBewaard: 'Ihr Profil wurde gespeichert.', openbaarProfiel: 'Ihr öffentliches Profil ansehen', profielVan: 'Profil', geenOnderwerpenLid: 'Noch keine Themen.', geenReactiesLid: 'Noch keine Antworten.', linkedinHulp: 'Der Link zu Ihrem Profil oder nur Ihr LinkedIn-Name.',
       geenReacties: 'Sie haben noch nicht geantwortet.',
       githubAccount: 'GitHub-Konto',
       githubKoppelen: 'GitHub-Konto verknüpfen',
@@ -563,7 +569,8 @@
   function catUitleg(cat) { return taal() === 'nl' ? cat.beschrijving : cat.beschrijving_en; }
 
   function auteur(a) {
-    return '<span class="fo-auteur">' + esc(a.naam) + (a.team ? ' <span class="fo-team">' + esc(t('team')) + '</span>' : '') +
+    var naam = /^[a-z0-9]{6,20}$/.test(a.id || '') ? '<a class="fo-auteur-link" href="#/lid/' + a.id + '">' + esc(a.naam) + '</a>' : esc(a.naam);
+    return '<span class="fo-auteur">' + naam + (a.team ? ' <span class="fo-team">' + esc(t('team')) + '</span>' : '') +
       (a.github ? ' <span class="fo-gh">GitHub</span>' : '') + '</span>';
   }
 
@@ -1231,6 +1238,7 @@
       '<input type="file" id="fo-foto" accept="image/png,image/jpeg,image/gif,image/webp" hidden>' +
       (p.foto ? '<button type="button" class="btn btn-ghost fo-knop" id="fo-foto-weg">' + esc(t('fotoWeg')) + '</button>' : '') +
       knop(t('uitloggen'), 'uitloggen', 'btn-ghost') + '</p></section>' +
+      profielFormulier(p) +
       '<section class="fo-paneel fo-profiel-lijst"><div class="fo-paneel-kop"><span>' + esc(t('mijnOnderwerpen')) + '</span></div>' +
       '<ul class="fo-rijen">' + (rijen || '<li class="fo-leeg">' + esc(t('geenEigen')) + '</li>') + '</ul></section>' +
       '<section class="fo-paneel fo-profiel-lijst"><div class="fo-paneel-kop"><span>' + esc(t('mijnReacties')) + '</span></div>' +
@@ -1243,6 +1251,75 @@
     kies.addEventListener('change', function () { if (kies.files[0]) klaar(uploadAfbeelding(kies.files[0], 'profielfoto')); });
     var weg = document.getElementById('fo-foto-weg');
     if (weg) weg.addEventListener('click', function () { klaar(api('profielfoto', { weg: 1 }, true)); });
+    var formulier = document.getElementById('fo-profiel-form');
+    if (formulier) formulier.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var gegevens = {}, zichtbaar = {};
+      PROFIELVELDEN.forEach(function (v) {
+        if (formulier.elements[v]) gegevens[v] = formulier.elements[v].value;
+        if (formulier.elements['toon_' + v]) zichtbaar[v] = formulier.elements['toon_' + v].checked ? 1 : 0;
+      });
+      api('profiel_bewaar', { gegevens: JSON.stringify(gegevens), zichtbaar: JSON.stringify(zichtbaar) }, true).then(function () {
+        profielScherm().then(function () { melding(t('profielBewaard')); });
+      }, function (e2) { melding(e2.message || t('fout')); });
+    });
+  }
+
+  // Wat je over jezelf invult, met per veld of anderen het zien (forum.profiel_bewaar).
+  var PROFIELVELDEN = ['bedrijf', 'functie', 'plaats', 'over', 'website', 'linkedin', 'github'];
+  var PROFIELLABEL = { bedrijf: 'pBedrijf', functie: 'pFunctie', plaats: 'pPlaats', over: 'pOver', website: 'pWebsite', linkedin: 'pLinkedin', github: 'pGithub' };
+  function profielFormulier(p) {
+    if (!p.gegevens || !p.zichtbaar) return '';
+    var velden = PROFIELVELDEN.map(function (v) {
+      if (v === 'github' && !p.github) return '';
+      var id = 'fo-p-' + v, waarde = v === 'github' ? '@' + p.github : (p.gegevens[v] || '');
+      var invoer = v === 'github' ? '<input id="' + id + '" value="' + esc(waarde) + '" disabled>'
+        : v === 'over' ? '<textarea id="' + id + '" name="over" maxlength="500" rows="3">' + esc(waarde) + '</textarea>'
+        : '<input id="' + id + '" name="' + v + '" value="' + esc(waarde) + '" maxlength="' + (v === 'website' || v === 'linkedin' ? 200 : 140) + '"' +
+          (v === 'linkedin' ? ' placeholder="linkedin.com/in/…"' : v === 'website' ? ' placeholder="https://"' : '') + ' autocomplete="off">';
+      return '<div class="fo-pveld"><label for="' + id + '">' + esc(t(PROFIELLABEL[v])) + '</label>' + invoer +
+        '<label class="fo-toon"><input type="checkbox" name="toon_' + v + '"' + (p.zichtbaar[v] ? ' checked' : '') + '> ' + esc(t('toonAnderen')) + '</label></div>';
+    }).join('');
+    return '<section class="fo-kaart fo-profiel-over"><h3>' + esc(t('overJou')) + '</h3><p class="fo-klein">' + esc(t('zichtbaarUitleg')) + '</p>' +
+      '<form class="fo-form fo-pform" id="fo-profiel-form">' + velden +
+      '<p class="fo-profiel-knoppen"><button type="submit" class="btn btn-primary fo-knop">' + esc(t('opslaan')) + '</button>' +
+      (/^[a-z0-9]{6,20}$/.test(p.id || '') ? '<a class="btn btn-ghost fo-knop" href="#/lid/' + p.id + '">' + esc(t('openbaarProfiel')) + '</a>' : '') + '</p></form></section>';
+  }
+
+  // Het openbare profiel van een forumlid (forum.lid): alleen wat de persoon zelf zichtbaar maakte.
+  function lidScherm(id) {
+    if (!/^[a-z0-9]{6,20}$/.test(id || '')) return startScherm();
+    var velden = { naam: id };
+    if (!bekend('lid', velden)) enkel(null, '<p class="fo-leeg">' + esc(t('laden')) + '</p>');
+    toonMet('lid', velden, tekenLid, function (e) { enkel(null, '<p class="fo-leeg">' + esc(e.message || t('fout')) + '</p>'); });
+  }
+  function veiligeLink(adres, begin) { return typeof adres === 'string' && adres.indexOf(begin) === 0 && !/[\s"'<>]/.test(adres) ? adres : ''; }
+  function tekenLid(p) {
+    var sinds = new Date(p.lid_sinds);
+    var website = veiligeLink(p.website, 'https://'), linkedin = veiligeLink(p.linkedin, 'https://www.linkedin.com/');
+    var github = /^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/.test(p.github || '') ? p.github : '';
+    var werk = [p.functie, p.bedrijf].filter(Boolean).join(' · ');
+    var links = (website ? '<a href="' + esc(website) + '" target="_blank" rel="noopener nofollow ugc">' + esc(website.replace(/^https:\/\//, '').replace(/\/$/, '')) + '</a>' : '') +
+      (linkedin ? '<a href="' + esc(linkedin) + '" target="_blank" rel="noopener nofollow ugc">LinkedIn</a>' : '') +
+      (github ? '<a href="https://github.com/' + github + '" target="_blank" rel="noopener">GitHub @' + esc(github) + '</a>' : '');
+    var rijen = (p.recent || []).map(function (o) { return onderwerpRij(o); }).join('');
+    var reacties = (p.recente_reacties || []).map(function (r) {
+      return '<li class="fo-rij fo-reactierij"><div class="fo-rij-hoofd"><a class="fo-item-titel" href="#/t/' + encodeURIComponent(r.onderwerp) + '">' + esc(r.titel) + '</a>' +
+        '<span class="fo-fragment">' + esc(r.fragment) + '</span></div><div class="fo-rij-tal"><span>' + esc(tijd(r.aangemaakt)) + '</span></div></li>';
+    }).join('');
+    app.innerHTML = tabs('') + '<div class="fo-enkel">' +
+      '<section class="fo-kaart fo-profiel"><div class="fo-profiel-kop">' + avatar(p, true) +
+      '<div><h2>' + esc(p.naam) + (p.team ? ' <span class="fo-team">' + esc(t('team')) + '</span>' : '') + '</h2>' +
+      (werk ? '<p>' + esc(werk) + '</p>' : '') + (p.plaats ? '<p class="fo-klein">' + esc(p.plaats) + '</p>' : '') + '</div></div>' +
+      (p.over ? '<p class="fo-lid-over">' + esc(p.over) + '</p>' : '') +
+      (links ? '<p class="fo-lid-links">' + links + '</p>' : '') +
+      '<dl class="fo-cijfers"><div><dt>' + esc(t('lidSinds')) + '</dt><dd>' + esc(isNaN(sinds) ? '' : sinds.toLocaleDateString(taal(), { year: 'numeric', month: 'long', day: 'numeric' })) + '</dd></div>' +
+      '<div><dt>' + esc(t('onderwerpenKop')) + '</dt><dd>' + p.onderwerpen + '</dd></div>' +
+      '<div><dt>' + esc(t('reactiesKop')) + '</dt><dd>' + p.reacties + '</dd></div></dl></section>' +
+      '<section class="fo-paneel fo-profiel-lijst"><div class="fo-paneel-kop"><span>' + esc(t('onderwerpenKop')) + '</span></div>' +
+      '<ul class="fo-rijen">' + (rijen || '<li class="fo-leeg">' + esc(t('geenOnderwerpenLid')) + '</li>') + '</ul></section>' +
+      '<section class="fo-paneel fo-profiel-lijst"><div class="fo-paneel-kop"><span>' + esc(t('reactiesKop')) + '</span></div>' +
+      '<ul class="fo-rijen">' + (reacties || '<li class="fo-leeg">' + esc(t('geenReactiesLid')) + '</li>') + '</ul></section></div>';
   }
 
   // Inloggen: de aanbieders die aan staan, en e-mail met wachtwoord (de inlogpagina van de cloud).
@@ -1284,6 +1361,7 @@
     if (route[0] === 'aanmelden') return aanmeldScherm();
     if (route[0] === 'regels') return regelsScherm();
     if (route[0] === 'profiel') return profielScherm();
+    if (route[0] === 'lid' && route[1]) return lidScherm(route[1]);
     if (route[0] === 'inloggen') return inlogScherm();
     // De knop Uitloggen rechtsboven in de navigatie (ook vanaf andere pagina's van de site).
     if (route[0] === 'uitloggen') { history.replaceState(null, '', '/forum/#/'); return logout(); }
@@ -1344,7 +1422,7 @@
     document.addEventListener('touchstart', alvast, { passive: true });
     await verwerkTerugkeer();
     // De lijst van de startpagina alvast, tegelijk met de categorieën.
-    if (!/^#\/(t|c|nieuw|profiel|aanmelden|regels|inloggen)/.test(location.hash)) haal('onderwerpen', soortVelden({ start: 0 })).catch(function () {});
+    if (!/^#\/(t|c|nieuw|profiel|lid|aanmelden|regels|inloggen)/.test(location.hash)) haal('onderwerpen', soortVelden({ start: 0 })).catch(function () {});
     await Promise.all([laadCategorieen(), laadIk(), haal('inlogaanbieders').then(function (lijst) { aanbieders = lijst || []; }, function () { aanbieders = []; })]);
     toon();
   }
