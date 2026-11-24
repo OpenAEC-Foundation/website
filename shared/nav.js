@@ -50,6 +50,8 @@
     if (!menu) return;
     var oud = menu.querySelector('.nav-account');
     if (oud) oud.remove();
+    var oudeUit = menu.querySelector('.nav-uitloggen');
+    if (oudeUit) oudeUit.remove();
     var account = null;
     try { account = JSON.parse(localStorage.getItem('openaec-forum-account') || 'null'); } catch (e) { account = null; }
     if (!account || !account.naam) return;
@@ -59,6 +61,7 @@
       stijl.textContent = '.nav-account{display:inline-flex;align-items:center;gap:8px;padding:3px 12px 3px 3px;margin-left:8px;border-radius:999px;border:1px solid rgba(255,255,255,.28);color:inherit;text-decoration:none;font-weight:600;font-size:.88rem;line-height:1}' +
         '.nav-account:hover{border-color:var(--amber,#D97706)}' +
         '.nav-account-av{width:28px;height:28px;border-radius:50%;background:var(--amber,#D97706);color:#fff;display:grid;place-items:center;font-size:.72rem;font-weight:700}' +
+        '.nav-uitloggen{margin-left:10px;font-size:.85rem;font-weight:600;text-decoration:none;opacity:.8;white-space:nowrap}.nav-uitloggen:hover{opacity:1;text-decoration:underline}' +
         '.nav-account-naam{max-width:11em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}';
       document.head.appendChild(stijl);
     }
@@ -66,7 +69,7 @@
     var ini = ((delen[0] || '?').charAt(0) + (delen.length > 1 ? delen[delen.length - 1].charAt(0) : '')).toUpperCase();
     var knop = document.createElement('a');
     knop.className = 'nav-account';
-    knop.href = '/forum/';
+    knop.href = '/forum/#/profiel';
     knop.title = account.naam;
     var av = document.createElement('span');
     av.className = 'nav-account-av';
@@ -81,9 +84,21 @@
     var link = menu.querySelector('.nav-link');
     if (link) knop.style.color = getComputedStyle(link).color;
     menu.insertBefore(knop, menu.querySelector('.lang-switcher'));
+    // Uitloggen staat naast het account; het forum handelt het af (ook vanaf een andere pagina).
+    var oudUit = menu.querySelector('.nav-uitloggen');
+    if (oudUit) oudUit.remove();
+    var taal = 'en';
+    try { taal = localStorage.getItem('openaec-lang') || 'en'; } catch (e) {}
+    var uit = document.createElement('a');
+    uit.className = 'nav-uitloggen';
+    uit.href = '/forum/#/uitloggen';
+    uit.textContent = { nl: 'Uitloggen', en: 'Log out', fr: 'Se déconnecter', tr: 'Çıkış yap', es: 'Cerrar sesión', de: 'Abmelden' }[taal] || 'Log out';
+    if (link) uit.style.color = getComputedStyle(link).color;
+    menu.insertBefore(uit, menu.querySelector('.lang-switcher'));
   }
   document.addEventListener('nav:loaded', accountKnop);
   document.addEventListener('openaec:account', accountKnop);
+  document.addEventListener('click', function (ev) { if (ev.target.closest && ev.target.closest('.lang-btn')) setTimeout(accountKnop, 0); });
   window.addEventListener('storage', function (ev) { if (ev.key === 'openaec-forum-account') accountKnop(); });
 
   if (document.readyState === 'loading') {
