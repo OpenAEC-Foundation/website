@@ -800,7 +800,7 @@
     } else if (ik) {
       reageer = '<form class="fo-post fo-reageer" id="fo-reageer">' + avatar(ik.naam, true) + '<div class="fo-post-lijf fo-form">' +
         '<label><span>' + esc(t('jouwReactie')) + '</span><textarea name="tekst" rows="6" required minlength="2" maxlength="20000"></textarea></label>' +
-        '<p class="fo-klein">' + esc(t('opmaak')) + '</p>' + (cat && cat.github_repo ? '<p class="fo-klein fo-gh-uitleg">' + esc(t('ookOpGithub')) + '</p>' : '') +
+        '<p class="fo-klein">' + esc(t('opmaak')) + '</p>' + (cat && cat.github_schrijven && o.github ? '<p class="fo-klein fo-gh-uitleg">' + esc(t('ookOpGithub')) + '</p>' : '') +
         '<p><button class="btn btn-primary" type="submit">' + esc(t('reageren')) + '</button></p></div></form>';
     } else {
       reageer = '<div class="fo-kaart fo-cta"><p>' + esc(t('logInOmTeReageren')) + '</p><p>' + knop(t('inloggen'), 'inloggen', 'btn-primary') +
@@ -890,7 +890,7 @@
     var form = document.getElementById('fo-nieuw');
     function toonIssueUitleg() {
       var gekozen = zoekCat(form.categorie.value);
-      document.getElementById('fo-wordt-issue').hidden = !(gekozen && gekozen.github_repo);
+      document.getElementById('fo-wordt-issue').hidden = !(gekozen && gekozen.github_schrijven);
     }
     form.categorie.addEventListener('change', toonIssueUitleg);
     toonIssueUitleg();
