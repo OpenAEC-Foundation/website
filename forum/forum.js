@@ -80,7 +80,20 @@
       profiel: 'Mijn profiel', lidSinds: 'Lid sinds', mijnOnderwerpen: 'Mijn onderwerpen', geenEigen: 'Je hebt nog geen onderwerp gestart.', logInVoorProfiel: 'Log in om je profiel te zien.', upsellKnopIn: 'Open je SuperCloud',
       toolsKop: 'Tools', opGithub: 'Bekijk op GitHub', toolsUitleg: 'Met de issues van GitHub',
       ookOpGithub: 'Dit onderwerp hoort bij een issue op GitHub. Je bericht komt daar ook te staan, met je forumnaam; een GitHub-account heb je niet nodig.',
-      wordtIssue: 'In deze categorie wordt je onderwerp ook een issue op GitHub, met je forumnaam; een GitHub-account heb je niet nodig.'
+      wordtIssue: 'In deze categorie wordt je onderwerp ook een issue op GitHub, met je forumnaam; een GitHub-account heb je niet nodig.',
+      community: 'Community',
+      ontwikkeling: 'Ontwikkeling en AI',
+      alles: 'Alles',
+      soortUitleg: 'Community: gesprekken van mensen. Ontwikkeling en AI: werk van het team op GitHub, bots en teksten met AI.',
+      metAi: 'Ik heb dit met AI geschreven',
+      fotoKiezen: 'Foto kiezen',
+      fotoWeg: 'Foto verwijderen',
+      mijnReacties: 'Mijn reacties',
+      geenReacties: 'Je hebt nog niet gereageerd.',
+      githubAccount: 'GitHub-account',
+      githubKoppelen: 'Koppel je GitHub-account',
+      githubUitleg: 'Wat je op GitHub schrijft, staat dan onder je naam en in je geschiedenis.',
+      opmaakMd: 'Markdown werkt: **vet**, *cursief*, lijsten met -, kopjes met # en ``` voor code. Een afbeelding voeg je toe met de knop of plak je met Ctrl+V.'
     },
     en: {
       titel: 'Forum', label: 'Community',
@@ -133,7 +146,20 @@
       profiel: 'My profile', lidSinds: 'Member since', mijnOnderwerpen: 'My topics', geenEigen: 'You have not started a topic yet.', logInVoorProfiel: 'Log in to see your profile.', upsellKnopIn: 'Open your SuperCloud',
       toolsKop: 'Tools', opGithub: 'View on GitHub', toolsUitleg: 'With the issues from GitHub',
       ookOpGithub: 'This topic belongs to an issue on GitHub. Your post appears there too, with your forum name; you do not need a GitHub account.',
-      wordtIssue: 'In this category your topic also becomes an issue on GitHub, with your forum name; you do not need a GitHub account.'
+      wordtIssue: 'In this category your topic also becomes an issue on GitHub, with your forum name; you do not need a GitHub account.',
+      community: 'Community',
+      ontwikkeling: 'Development and AI',
+      alles: 'All',
+      soortUitleg: 'Community: conversations between people. Development and AI: work by the team on GitHub, bots and texts written with AI.',
+      metAi: 'I wrote this with AI',
+      fotoKiezen: 'Choose photo',
+      fotoWeg: 'Remove photo',
+      mijnReacties: 'My replies',
+      geenReacties: 'You have not replied yet.',
+      githubAccount: 'GitHub account',
+      githubKoppelen: 'Link your GitHub account',
+      githubUitleg: 'What you write on GitHub then appears under your name and in your history.',
+      opmaakMd: 'Markdown works: **bold**, *italic*, lists with -, headings with # and ``` for code. Add an image with the button or paste it with Ctrl+V.'
     },
     fr: {
       titel: 'Forum', label: 'Communauté',
@@ -186,7 +212,20 @@
       profiel: 'Mon profil', lidSinds: 'Membre depuis', mijnOnderwerpen: 'Mes sujets', geenEigen: 'Vous n’avez pas encore lancé de sujet.', logInVoorProfiel: 'Connectez-vous pour voir votre profil.', upsellKnopIn: 'Ouvrir votre SuperCloud',
       toolsKop: 'Outils', opGithub: 'Voir sur GitHub', toolsUitleg: 'Avec les issues de GitHub',
       ookOpGithub: 'Ce sujet est lié à une issue sur GitHub. Votre message y apparaît aussi, avec votre nom du forum ; aucun compte GitHub n’est nécessaire.',
-      wordtIssue: 'Dans cette catégorie, votre sujet devient aussi une issue sur GitHub, avec votre nom du forum ; aucun compte GitHub n’est nécessaire.'
+      wordtIssue: 'Dans cette catégorie, votre sujet devient aussi une issue sur GitHub, avec votre nom du forum ; aucun compte GitHub n’est nécessaire.',
+      community: 'Communauté',
+      ontwikkeling: 'Développement et IA',
+      alles: 'Tout',
+      soortUitleg: 'Communauté : conversations entre personnes. Développement et IA : travail de l’équipe sur GitHub, bots et textes écrits avec l’IA.',
+      metAi: 'J’ai écrit ceci avec l’IA',
+      fotoKiezen: 'Choisir une photo',
+      fotoWeg: 'Supprimer la photo',
+      mijnReacties: 'Mes réponses',
+      geenReacties: 'Vous n’avez pas encore répondu.',
+      githubAccount: 'Compte GitHub',
+      githubKoppelen: 'Lier votre compte GitHub',
+      githubUitleg: 'Ce que vous écrivez sur GitHub apparaît alors sous votre nom et dans votre historique.',
+      opmaakMd: 'Markdown fonctionne : **gras**, *italique*, listes avec -, titres avec # et ``` pour le code. Ajoutez une image avec le bouton ou collez-la avec Ctrl+V.'
     },
     tr: {
       titel: 'Forum', label: 'Topluluk',
@@ -239,7 +278,20 @@
       profiel: 'Profilim', lidSinds: 'Üyelik başlangıcı', mijnOnderwerpen: 'Konularım', geenEigen: 'Henüz bir konu başlatmadınız.', logInVoorProfiel: 'Profilinizi görmek için giriş yapın.', upsellKnopIn: 'SuperCloud’unuzu açın',
       toolsKop: 'Araçlar', opGithub: 'GitHub’da görüntüle', toolsUitleg: 'GitHub kayıtlarıyla birlikte',
       ookOpGithub: 'Bu konu GitHub’daki bir kayda bağlı. Mesajınız forum adınızla orada da görünür; GitHub hesabı gerekmez.',
-      wordtIssue: 'Bu kategoride konunuz forum adınızla GitHub’da da bir kayıt olur; GitHub hesabı gerekmez.'
+      wordtIssue: 'Bu kategoride konunuz forum adınızla GitHub’da da bir kayıt olur; GitHub hesabı gerekmez.',
+      community: 'Topluluk',
+      ontwikkeling: 'Geliştirme ve YZ',
+      alles: 'Tümü',
+      soortUitleg: 'Topluluk: insanlar arasındaki konuşmalar. Geliştirme ve YZ: ekibin GitHub’daki çalışmaları, botlar ve YZ ile yazılan metinler.',
+      metAi: 'Bunu YZ ile yazdım',
+      fotoKiezen: 'Fotoğraf seç',
+      fotoWeg: 'Fotoğrafı kaldır',
+      mijnReacties: 'Yanıtlarım',
+      geenReacties: 'Henüz yanıt yazmadınız.',
+      githubAccount: 'GitHub hesabı',
+      githubKoppelen: 'GitHub hesabınızı bağlayın',
+      githubUitleg: 'GitHub’da yazdıklarınız adınızla ve geçmişinizde görünür.',
+      opmaakMd: 'Markdown çalışır: **kalın**, *italik*, - ile listeler, # ile başlıklar ve kod için ```. Görseli düğmeyle ekleyin ya da Ctrl+V ile yapıştırın.'
     },
     es: {
       titel: 'Foro', label: 'Comunidad',
@@ -292,7 +344,20 @@
       profiel: 'Mi perfil', lidSinds: 'Miembro desde', mijnOnderwerpen: 'Mis temas', geenEigen: 'Todavía no has empezado ningún tema.', logInVoorProfiel: 'Inicia sesión para ver tu perfil.', upsellKnopIn: 'Abrir tu SuperCloud',
       toolsKop: 'Herramientas', opGithub: 'Ver en GitHub', toolsUitleg: 'Con las incidencias de GitHub',
       ookOpGithub: 'Este tema pertenece a una incidencia de GitHub. Tu mensaje aparece también allí, con tu nombre del foro; no necesitas cuenta de GitHub.',
-      wordtIssue: 'En esta categoría tu tema también se convierte en una incidencia de GitHub, con tu nombre del foro; no necesitas cuenta de GitHub.'
+      wordtIssue: 'En esta categoría tu tema también se convierte en una incidencia de GitHub, con tu nombre del foro; no necesitas cuenta de GitHub.',
+      community: 'Comunidad',
+      ontwikkeling: 'Desarrollo e IA',
+      alles: 'Todo',
+      soortUitleg: 'Comunidad: conversaciones entre personas. Desarrollo e IA: trabajo del equipo en GitHub, bots y textos escritos con IA.',
+      metAi: 'He escrito esto con IA',
+      fotoKiezen: 'Elegir foto',
+      fotoWeg: 'Quitar foto',
+      mijnReacties: 'Mis respuestas',
+      geenReacties: 'Todavía no has respondido.',
+      githubAccount: 'Cuenta de GitHub',
+      githubKoppelen: 'Vincula tu cuenta de GitHub',
+      githubUitleg: 'Lo que escribes en GitHub aparece entonces con tu nombre y en tu historial.',
+      opmaakMd: 'Markdown funciona: **negrita**, *cursiva*, listas con -, títulos con # y ``` para código. Añade una imagen con el botón o pégala con Ctrl+V.'
     },
     de: {
       titel: 'Forum', label: 'Community',
@@ -345,7 +410,20 @@
       profiel: 'Mein Profil', lidSinds: 'Mitglied seit', mijnOnderwerpen: 'Meine Themen', geenEigen: 'Sie haben noch kein Thema eröffnet.', logInVoorProfiel: 'Melden Sie sich an, um Ihr Profil zu sehen.', upsellKnopIn: 'Ihre SuperCloud öffnen',
       toolsKop: 'Tools', opGithub: 'Auf GitHub ansehen', toolsUitleg: 'Mit den Issues von GitHub',
       ookOpGithub: 'Dieses Thema gehört zu einem Issue auf GitHub. Ihr Beitrag erscheint auch dort, mit Ihrem Forennamen; ein GitHub-Konto brauchen Sie nicht.',
-      wordtIssue: 'In dieser Kategorie wird Ihr Thema auch ein Issue auf GitHub, mit Ihrem Forennamen; ein GitHub-Konto brauchen Sie nicht.'
+      wordtIssue: 'In dieser Kategorie wird Ihr Thema auch ein Issue auf GitHub, mit Ihrem Forennamen; ein GitHub-Konto brauchen Sie nicht.',
+      community: 'Community',
+      ontwikkeling: 'Entwicklung und KI',
+      alles: 'Alle',
+      soortUitleg: 'Community: Gespräche zwischen Menschen. Entwicklung und KI: Arbeit des Teams auf GitHub, Bots und mit KI geschriebene Texte.',
+      metAi: 'Ich habe dies mit KI geschrieben',
+      fotoKiezen: 'Foto wählen',
+      fotoWeg: 'Foto entfernen',
+      mijnReacties: 'Meine Antworten',
+      geenReacties: 'Sie haben noch nicht geantwortet.',
+      githubAccount: 'GitHub-Konto',
+      githubKoppelen: 'GitHub-Konto verknüpfen',
+      githubUitleg: 'Was Sie auf GitHub schreiben, erscheint dann unter Ihrem Namen und in Ihrem Verlauf.',
+      opmaakMd: 'Markdown funktioniert: **fett**, *kursiv*, Listen mit -, Überschriften mit # und ``` für Code. Ein Bild fügen Sie mit der Schaltfläche hinzu oder mit Strg+V ein.'
     }
   };
 
@@ -362,25 +440,95 @@
     });
   }
 
-  // Platte tekst veilig naar HTML: alinea's, regeleinden, klikbare links en codeblokken (```).
+  // Afbeeldingen komen alleen van het forum zelf, van GitHub of van Open Feedback Studio; al het andere blijft een link.
+  function beeldAdres(adres) {
+    if (/^\/files\/forum-[a-z0-9]{16}\.webp$/.test(adres)) return CLOUD + adres;
+    return /^https:\/\/(github\.com\/user-attachments\/|[a-z0-9-]+\.githubusercontent\.com\/|open-feedback-studio\.pages\.dev\/api\/images\/)/.test(adres) ? adres : '';
+  }
+
+  // Opmaak binnen een regel: code, afbeeldingen, links, vet, cursief en doorgehaald. Alles wordt eerst ontsnapt.
+  function regelOpmaak(tekst) {
+    var vast = [];
+    function bewaar(html) { vast.push(html); return '\u0000' + (vast.length - 1) + '\u0000'; }
+    var uit = String(tekst).replace(/`([^`\n]+)`/g, function (_, code) { return bewaar('<code>' + esc(code) + '</code>'); });
+    // Opmaaktags uit GitHub-teksten (<details>, <b>, …) laten we weg; de tekst ertussen blijft.
+    uit = esc(uit.replace(/<\/?(details|summary|p|div|sub|sup|kbd|b|i|u|strong|em|span|center)\b[^>]*>/gi, ''))
+      .replace(/!\[([^\]\n]*)\]\(([^)\s]+)\)/g, function (heel, alt, adres) {
+        var bron = beeldAdres(adres);
+        if (bron) return bewaar('<a class="fo-beeld" href="' + bron + '" target="_blank" rel="noopener"><img src="' + bron + '" alt="' + (alt || esc(t('afbeeldingAlt'))) + '" loading="lazy" referrerpolicy="no-referrer"></a>');
+        return /^https?:\/\//.test(adres) ? bewaar('<a href="' + adres + '" rel="nofollow ugc noopener" target="_blank">' + (alt || adres) + '</a>') : heel;
+      })
+      .replace(/\[([^\]\n]+)\]\((https?:\/\/[^)\s]+)\)/g, function (_, label, adres) {
+        return bewaar('<a href="' + adres + '" rel="nofollow ugc noopener" target="_blank">' + label + '</a>');
+      })
+      .replace(/https?:\/\/[^\s<]+[^\s<.,;:!?)\]'"]/g, function (adres) {
+        return bewaar('<a href="' + adres + '" rel="nofollow ugc noopener" target="_blank">' + adres + '</a>');
+      })
+      .replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>')
+      .replace(/(^|[^\w*])\*([^*\s][^*\n]*)\*(?!\w)/g, '$1<em>$2</em>')
+      .replace(/(^|[^\w])__([^_\n]+)__(?!\w)/g, '$1<strong>$2</strong>')
+      .replace(/(^|[^\w])_([^_\s][^_\n]*)_(?!\w)/g, '$1<em>$2</em>')
+      .replace(/~~([^~\n]+)~~/g, '<del>$1</del>');
+    return uit.replace(/\u0000(\d+)\u0000/g, function (_, n) { return vast[+n]; });
+  }
+
+  // Markdown (zoals op GitHub) veilig naar HTML: kopjes, lijsten, citaten, tabellen, codeblokken en alinea's.
   function opmaak(tekst) {
-    // Onzichtbare opmerkingen uit GitHub-teksten (<!-- … -->) horen niet in beeld.
-    var delen = String(tekst).replace(/<!--[\s\S]*?-->/g, '').split(/```/);
-    return delen.map(function (deel, i) {
-      if (i % 2 === 1) return '<pre><code>' + esc(deel.replace(/^\w*\n/, '').replace(/\n$/, '')) + '</code></pre>';
-      return deel.split(/\n{2,}/).map(function (alinea) {
-        alinea = alinea.trim();
-        if (!alinea) return '';
-        var html = esc(alinea).replace(/https?:\/\/[^\s<]+[^\s<.,;:!?)\]'"]/g, function (url) {
-          return '<a href="' + url + '" rel="nofollow ugc noopener" target="_blank">' + url + '</a>';
-        });
-        // Alleen afbeeldingen die het forum zelf bewaarde (openaec_cloud.forum.afbeelding).
-        html = html.replace(/!\[\]\((\/files\/forum-[a-z0-9]{16}\.webp)\)/g, function (_, pad) {
-          return '<a class="fo-beeld" href="' + CLOUD + pad + '" target="_blank" rel="noopener"><img src="' + CLOUD + pad + '" alt="' + esc(t('afbeeldingAlt')) + '" loading="lazy"></a>';
-        });
-        return '<p>' + html.replace(/\n/g, '<br>') + '</p>';
-      }).join('');
-    }).join('');
+    // HTML uit GitHub-teksten: opmerkingen weg, <img> en <br> als Markdown; binnen codeblokken blijft alles staan.
+    var regels = String(tekst == null ? '' : tekst).replace(/\r\n?/g, '\n').split(/(^[ \t]*```[\s\S]*?^[ \t]*```[ \t]*$)/m).map(function (deel, n) {
+      return n % 2 ? deel : deel.replace(/<!--[\s\S]*?-->/g, '')
+        .replace(/<img\b[^>]*?\bsrc=["']([^"'\s]+)["'][^>]*>/gi, '![]($1)')
+        .replace(/<br\s*\/?>/gi, '\n');
+    }).join('').split('\n');
+    var uit = [], i = 0, m;
+    var LIJST = /^\s*([-*+]|\d+[.)])\s+(.*)$/;
+    function blokStart(r) { return /^\s*```/.test(r) || /^#{1,6}\s/.test(r) || /^\s*>/.test(r) || LIJST.test(r); }
+    while (i < regels.length) {
+      var r = regels[i];
+      if (/^\s*```/.test(r)) {
+        var code = [];
+        for (i++; i < regels.length && !/^\s*```/.test(regels[i]); i++) code.push(regels[i]);
+        i++;
+        uit.push('<pre><code>' + esc(code.join('\n')) + '</code></pre>');
+      } else if (!r.trim()) {
+        i++;
+      } else if ((m = /^(#{1,6})\s+(.*)$/.exec(r))) {
+        var niveau = Math.min(6, m[1].length + 2);
+        uit.push('<h' + niveau + '>' + regelOpmaak(m[2].replace(/\s+#+\s*$/, '')) + '</h' + niveau + '>');
+        i++;
+      } else if (/^\s*([-*_])(\s*\1){2,}\s*$/.test(r)) {
+        uit.push('<hr>');
+        i++;
+      } else if (/^\s*>/.test(r)) {
+        var citaat = [];
+        for (; i < regels.length && /^\s*>/.test(regels[i]); i++) citaat.push(regels[i].replace(/^\s*>\s?/, ''));
+        uit.push('<blockquote>' + opmaak(citaat.join('\n')) + '</blockquote>');
+      } else if (LIJST.test(r)) {
+        var genummerd = /^\s*\d/.test(r), punten = [];
+        for (; i < regels.length; i++) {
+          if ((m = LIJST.exec(regels[i]))) punten.push(m[2]);
+          else if (/^\s{2,}\S/.test(regels[i]) && punten.length) punten[punten.length - 1] += '\n' + regels[i].trim();
+          else break;
+        }
+        uit.push('<' + (genummerd ? 'ol' : 'ul') + '>' + punten.map(function (punt) {
+          var taak = /^\[([ xX])\]\s+/.exec(punt);
+          return '<li' + (taak ? ' class="fo-taak"' : '') + '>' + (taak ? '<input type="checkbox" disabled' + (taak[1] === ' ' ? '' : ' checked') + '> ' : '') +
+            regelOpmaak(taak ? punt.slice(taak[0].length) : punt).replace(/\n/g, '<br>') + '</li>';
+        }).join('') + '</' + (genummerd ? 'ol' : 'ul') + '>');
+      } else if (r.indexOf('|') >= 0 && /^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?\s*$/.test(regels[i + 1] || '')) {
+        var cellen = function (regel) { return regel.trim().replace(/^\||\|$/g, '').split('|').map(function (c) { return regelOpmaak(c.trim()); }); };
+        var tabel = '<thead><tr>' + cellen(r).map(function (c) { return '<th>' + c + '</th>'; }).join('') + '</tr></thead><tbody>';
+        for (i += 2; i < regels.length && regels[i].indexOf('|') >= 0 && regels[i].trim(); i++) {
+          tabel += '<tr>' + cellen(regels[i]).map(function (c) { return '<td>' + c + '</td>'; }).join('') + '</tr>';
+        }
+        uit.push('<div class="fo-tabel"><table>' + tabel + '</tbody></table></div>');
+      } else {
+        var alinea = [r];
+        for (i++; i < regels.length && regels[i].trim() && !blokStart(regels[i]); i++) alinea.push(regels[i]);
+        uit.push('<p>' + regelOpmaak(alinea.join('\n').trim()).replace(/\n/g, '<br>') + '</p>');
+      }
+    }
+    return uit.join('');
   }
 
   function tijd(waarde) {
@@ -531,6 +679,7 @@
       if (s) { s.verloopt = 0; bewaarSessie(s); }
       return api(methode, velden, post, true);
     }
+    if (post) vergeetBuffer();
     if (!antwoord.ok) {
       var fout = new Error(foutmelding(data));
       fout.status = antwoord.status;
@@ -540,17 +689,45 @@
     return data.message;
   }
 
-  async function uploadAfbeelding(bestand) {
+  // Wat al eens is opgehaald, staat er bij een klik meteen; op de achtergrond halen we het verse antwoord.
+  var buffer = {}, VERS_MS = 20000;
+  function bufferSleutel(methode, velden) { return methode + '?' + new URLSearchParams(velden || {}).toString(); }
+  function bekend(methode, velden) { var b = buffer[bufferSleutel(methode, velden)]; return b && b.data; }
+  function haal(methode, velden, altijd) {
+    var k = bufferSleutel(methode, velden), b = buffer[k] || (buffer[k] = {});
+    if (b.belofte) return b.belofte;
+    if (!altijd && b.data && Date.now() - b.tijd < VERS_MS) return Promise.resolve(b.data);
+    b.belofte = api(methode, velden).then(function (data) {
+      buffer[k] = { data: data, tijd: Date.now() };
+      return data;
+    }, function (fout) { b.belofte = null; throw fout; });
+    return b.belofte;
+  }
+  function vergeetBuffer() { buffer = {}; }
+  // Toon `methode` op het scherm: meteen uit de buffer als het er is, daarna het verse antwoord (alleen als het
+  // scherm nog hetzelfde is en het antwoord anders is). `teken(data)` tekent, `mislukt(fout)` meldt een fout.
+  var beurt = 0;
+  function toonMet(methode, velden, teken, mislukt) {
+    var mijnBeurt = beurt, oud = bekend(methode, velden), b = buffer[bufferSleutel(methode, velden)];
+    if (oud) teken(oud);
+    if (oud && Date.now() - b.tijd < VERS_MS) return Promise.resolve(oud);
+    return haal(methode, velden, true).then(function (data) {
+      if (mijnBeurt === beurt && (!oud || JSON.stringify(oud) !== JSON.stringify(data))) teken(data);
+      return data;
+    }, function (fout) { if (mijnBeurt === beurt && !oud) mislukt(fout); });
+  }
+
+  async function uploadAfbeelding(bestand, methode) {
     var token = await toegangstoken();
     var lijf = new FormData();
     lijf.append('bestand', bestand, bestand.name || 'afbeelding.png');
-    var antwoord = await fetch(API + 'afbeelding', {
+    var antwoord = await fetch(API + (methode || 'afbeelding'), {
       method: 'POST', headers: Object.assign({ Accept: 'application/json' }, token ? { Authorization: 'Bearer ' + token } : {}), body: lijf
     });
     var data = {};
     try { data = await antwoord.json(); } catch (e) {}
     if (!antwoord.ok) throw new Error(foutmelding(data));
-    return data.message.pad;
+    return methode ? data.message : data.message.pad;
   }
 
   // Onder een tekstvak: de knop "Afbeelding toevoegen", en plakken (Ctrl+V) of slepen in het vak zelf.
@@ -640,8 +817,41 @@
     var d = String(naam || '?').trim().split(/\s+/);
     return ((d[0] || '?').charAt(0) + (d.length > 1 ? d[d.length - 1].charAt(0) : '')).toUpperCase();
   }
-  function avatar(naam, groot) {
-    return '<span class="fo-av' + (groot ? ' fo-av-groot' : '') + '" style="background:' + kleurVan(naam) + '" aria-hidden="true">' + esc(initialen(naam)) + '</span>';
+  // Een schrijver: zijn foto (van het forum, anders die van zijn GitHub-account), met de initialen eronder als
+  // de foto er niet is of niet laadt. `a` is een naam of {naam, foto, github}.
+  function avatar(a, groot) {
+    if (typeof a === 'string') a = { naam: a };
+    var bron = '';
+    if (/^\/files\/forum-[a-z0-9]{16}\.webp$/.test(a.foto || '')) bron = CLOUD + a.foto;
+    else if (/^[A-Za-z0-9](?:[A-Za-z0-9-]{0,38})$/.test(a.github || '')) bron = 'https://github.com/' + a.github + '.png?size=96';
+    return '<span class="fo-av' + (groot ? ' fo-av-groot' : '') + '" style="background:' + kleurVan(a.naam) + '" aria-hidden="true">' + esc(initialen(a.naam)) +
+      (bron ? '<img src="' + esc(bron) + '" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.remove()">' : '') + '</span>';
+  }
+  // Het logo van een tool bij zijn categorie.
+  var TOOLLOGO = {
+    'open-cad-studio': 'openCad.svg', 'open-pdf-studio': 'openPdf.png', 'open-planner-studio': 'openPlanner.png', 'open-infra-studio': 'openInfra.svg',
+    'open-calcsheet-studio': 'openCalculations.png', 'open-calc-studio': 'openCalc.png', 'open-bim-studio': 'openBim.svg', 'open-3d-viewer': 'open3dViewer.png',
+    'monty-ifc-viewer': 'montyIfc.png', 'ifccad': 'ifccad.svg', 'open-energy-studio': 'openEnergy.png', 'open-heatloss-studio': 'openHeatloss.png',
+    'open-field-studio': 'openField.png', 'open-geotechniek-studio': 'cptViewer.png', 'open-pile-plan-studio': 'openPilePlan.png',
+    'open-pointcloud-studio': 'openPointcloud.png', 'open-office-studio': 'openOffice.png', 'open-paint-studio': 'openPaint.png',
+    'open-speech-studio': 'openSpeech.png', 'bcf-manager-studio': 'bcfManager.svg', 'open-books': 'openBooks.svg'
+  };
+  function toolLogo(slug) {
+    var bestand = TOOLLOGO[slug];
+    return '<img class="fo-toollogo" src="' + (bestand ? '/shared/assets/app-icons/' + bestand : '/shared/assets/logo/openaec-symbol-v2-transparent.svg') + '" alt="" width="28" height="28" loading="lazy">';
+  }
+  // Community of ontwikkeling: welke onderwerpen een lijst toont (onthouden per bezoeker).
+  var SOORT = 'openaec-forum-soort';
+  function soort() {
+    var s = 'community';
+    try { s = localStorage.getItem(SOORT) || s; } catch (e) {}
+    return s === 'ontwikkeling' || s === 'alles' ? s : 'community';
+  }
+  function soortVelden(velden) { return soort() === 'alles' ? velden : Object.assign({ soort: soort() }, velden); }
+  function soortKnoppen() {
+    return '<span class="fo-soort" role="group" title="' + esc(t('soortUitleg')) + '">' + ['community', 'ontwikkeling', 'alles'].map(function (s) {
+      return '<button type="button" data-actie="soort" data-soort="' + s + '"' + (soort() === s ? ' aria-pressed="true"' : ' aria-pressed="false"') + '>' + esc(t(s)) + '</button>';
+    }).join('') + '</span>';
   }
   function zoekCat(slug) { return categorieen.find(function (c) { return c.slug === slug; }); }
   function catChip(cat) {
@@ -668,12 +878,13 @@
   function labels(o) {
     return (o.vastgezet ? '<span class="fo-label">' + esc(t('vastgezet')) + '</span>' : '') +
       (o.status === 'Gesloten' ? '<span class="fo-label fo-label-grijs">' + esc(t('gesloten').replace(/\.$/, '')) + '</span>' : '') +
-      (o.verborgen ? '<span class="fo-label fo-label-rood">' + esc(t('verborgen')) + '</span>' : '');
+      (o.verborgen ? '<span class="fo-label fo-label-rood">' + esc(t('verborgen')) + '</span>' : '') + aiLabel(o);
   }
+  function aiLabel(x) { return x.ai ? '<span class="fo-label fo-label-ai" title="' + esc(t('ontwikkeling')) + '">AI</span>' : ''; }
 
   function onderwerpRij(o, zonderCat) {
     var cat = zonderCat ? null : zoekCat(o.categorie);
-    return '<li class="fo-rij">' + avatar(o.auteur.naam) +
+    return '<li class="fo-rij">' + avatar(o.auteur) +
       '<div class="fo-rij-hoofd"><a class="fo-item-titel" href="#/t/' + encodeURIComponent(o.naam) + '">' + esc(o.titel) + '</a>' + labels(o) +
       '<span class="fo-meta">' + catChip(cat) + auteur(o.auteur) + (o.github ? '<span class="fo-nummer">#' + o.github.nummer + '</span>' : '') + '</span></div>' +
       '<div class="fo-rij-tal"><strong title="' + esc(t('reacties')(o.reacties)) + '">' + o.reacties + '</strong><span>' + esc(tijd(o.laatste_activiteit)) + '</span></div></li>';
@@ -701,6 +912,7 @@
   function startScherm() {
     function rij(c) {
       return '<a class="fo-catrij' + (c.github_repo ? ' fo-catrij-tool' : '') + '" href="#/c/' + encodeURIComponent(c.slug) + '" style="--kleur:' + catKleur(c.slug) + '">' +
+        (c.github_repo ? toolLogo(c.slug) : '') +
         '<span class="fo-catrij-tekst"><strong>' + esc(catTitel(c)) + '</strong>' + (catUitleg(c) && !c.github_repo ? '<span>' + esc(catUitleg(c)) + '</span>' : '') +
         (c.alleen_team ? '<em>' + esc(t('alleenTeamKort')) + '</em>' : '') + '</span><span class="fo-catrij-tal">' + c.onderwerpen + '</span></a>';
     }
@@ -712,15 +924,15 @@
       '<div class="fo-twee">' +
       '<section class="fo-paneel"><div class="fo-paneel-kop"><span>' + esc(t('categorie')) + '</span><span>' + esc(t('onderwerpenKop')) + '</span></div>' +
       (cats || '<p class="fo-leeg">' + esc(t('fout')) + '</p>') + '</section>' +
-      '<section class="fo-paneel"><div class="fo-paneel-kop"><span>' + esc(t('recent')) + '</span></div>' +
+      '<section class="fo-paneel"><div class="fo-paneel-kop"><span>' + esc(t('recent')) + '</span>' + soortKnoppen() + '</div>' +
       '<ul class="fo-rijen" id="fo-recent"><li class="fo-leeg">' + esc(t('laden')) + '</li></ul>' +
       '<a class="fo-meer-link fo-paneel-voet" href="#/recent">' + esc(t('alleRecent')) + ' →</a></section>' +
       '</div>' + onderblokken();
     var lijst = document.getElementById('fo-recent');
-    api('onderwerpen', { start: 0 }).then(function (data) {
+    toonMet('onderwerpen', soortVelden({ start: 0 }), function (data) {
       var rijen = data.onderwerpen.slice(0, 8).map(function (o) { return onderwerpRij(o); }).join('');
       lijst.innerHTML = rijen || '<li class="fo-leeg">' + esc(t('geen')) + '</li>';
-    }).catch(function (e) {
+    }, function (e) {
       lijst.innerHTML = '<li class="fo-leeg">' + esc(e.message || t('fout')) + '</li>';
     });
   }
@@ -728,33 +940,36 @@
   function lijstScherm(cat) {
     var start = 0;
     var kop = cat
-      ? '<div class="fo-catkop" style="--kleur:' + catKleur(cat.slug) + '"><h2>' + esc(catTitel(cat)) + '</h2>' +
+      ? '<div class="fo-catkop" style="--kleur:' + catKleur(cat.slug) + '"><h2>' + (cat.github_repo ? toolLogo(cat.slug) : '') + esc(catTitel(cat)) + '</h2>' +
         (catUitleg(cat) ? '<p>' + esc(catUitleg(cat)) + '</p>' : '') +
         (cat.alleen_team ? '<p class="fo-klein">' + esc(t('alleenTeam')) + '</p>' : '') + '</div>'
       : '';
     app.innerHTML = tabs(cat ? '' : 'recent', cat && cat.slug) + kop +
-      '<section class="fo-paneel"><div class="fo-paneel-kop"><span>' + esc(t('onderwerpKop')) + '</span><span>' + esc(t('reactiesKop')) + ' · ' + esc(t('activiteit')) + '</span></div>' +
+      '<section class="fo-paneel"><div class="fo-paneel-kop"><span>' + esc(t('onderwerpKop')) + '</span>' + soortKnoppen() + '</div>' +
       '<ul class="fo-rijen" id="fo-lijst"><li class="fo-leeg">' + esc(t('laden')) + '</li></ul></section>' +
       '<p class="fo-meer"><button type="button" class="btn btn-secondary" id="fo-meer" hidden>' + esc(t('meer')) + '</button></p>';
     var lijst = document.getElementById('fo-lijst');
     var meer = document.getElementById('fo-meer');
-    async function laad() {
+    function velden(vanaf) { return soortVelden(Object.assign({ start: vanaf }, cat ? { categorie: cat.slug } : {})); }
+    function teken(data) {
+      lijst.innerHTML = data.onderwerpen.map(function (o) { return onderwerpRij(o, !!cat); }).join('') || '<li class="fo-leeg">' + esc(t('geen')) + '</li>';
+      start = data.onderwerpen.length;
+      meer.hidden = !data.meer;
+    }
+    async function laadMeer() {
       meer.disabled = true;
       try {
-        var data = await api('onderwerpen', Object.assign({ start: start }, cat ? { categorie: cat.slug } : {}));
-        if (start === 0) lijst.innerHTML = '';
+        var data = await haal('onderwerpen', velden(start));
         lijst.insertAdjacentHTML('beforeend', data.onderwerpen.map(function (o) { return onderwerpRij(o, !!cat); }).join(''));
-        if (!lijst.children.length) lijst.innerHTML = '<li class="fo-leeg">' + esc(t('geen')) + '</li>';
         start += data.onderwerpen.length;
         meer.hidden = !data.meer;
-      } catch (e) {
-        lijst.innerHTML = '<li class="fo-leeg">' + esc(e.message || t('fout')) + '</li>';
-      } finally {
-        meer.disabled = false;
-      }
+      } catch (e) { melding(e.message || t('fout')); }
+      meer.disabled = false;
     }
-    meer.addEventListener('click', laad);
-    laad();
+    meer.addEventListener('click', laadMeer);
+    toonMet('onderwerpen', velden(0), teken, function (e) {
+      lijst.innerHTML = '<li class="fo-leeg">' + esc(e.message || t('fout')) + '</li>';
+    });
   }
 
   // Alleen echte GitHub-adressen worden een link.
@@ -766,23 +981,28 @@
     if (magBewerken) acties += knop(t('bewerken'), 'bewerk', 'btn-ghost', ' data-naam="' + esc(b.naam) + '"');
     if (magBewerken) acties += knop(t('verwijderen'), 'verwijder', 'btn-ghost', ' data-naam="' + esc(b.naam) + '"');
     if (ik && ik.moderator) acties += knop(t(b.verborgen ? 'toon' : 'verberg'), 'modereer', 'btn-ghost', ' data-soort="bericht" data-naam="' + esc(b.naam) + '" data-wat="' + (b.verborgen ? 'toon' : 'verberg') + '"');
-    return '<article class="fo-post' + (b.verborgen ? ' fo-verborgen' : '') + '" id="b-' + esc(b.naam) + '">' + avatar(b.auteur.naam, true) +
-      '<div class="fo-post-lijf"><header>' + auteur(b.auteur) + '<span class="fo-post-tijd">' + esc(tijd(b.aangemaakt)) +
+    return '<article class="fo-post' + (b.verborgen ? ' fo-verborgen' : '') + '" id="b-' + esc(b.naam) + '">' + avatar(b.auteur, true) +
+      '<div class="fo-post-lijf"><header><span>' + auteur(b.auteur) + aiLabel(b) + '</span>' + '<span class="fo-post-tijd">' + esc(tijd(b.aangemaakt)) +
       (b.bewerkt ? ' · ' + esc(t('bewerkt')) : '') + (b.verborgen ? ' · ' + esc(t('verborgen')) : '') +
       (githubAdres(b.github_url) ? ' · <a href="' + esc(b.github_url) + '" target="_blank" rel="noopener">GitHub ↗</a>' : '') + '</span></header>' +
       '<div class="fo-tekst">' + opmaak(b.tekst) + '</div>' +
       (acties ? '<footer class="fo-acties">' + acties + '</footer>' : '') + '</div></article>';
   }
 
-  async function onderwerpScherm(naam) {
-    app.innerHTML = tabs('') + '<p class="fo-leeg">' + esc(t('laden')) + '</p>';
-    var data;
-    try {
-      data = await api('onderwerp', { naam: naam });
-    } catch (e) {
+  function onderwerpScherm(naam, opnieuw) {
+    if (opnieuw) vergeetBuffer();
+    if (!bekend('onderwerp', { naam: naam })) app.innerHTML = tabs('') + '<p class="fo-leeg">' + esc(t('laden')) + '</p>';
+    return toonMet('onderwerp', { naam: naam }, function (data) {
+      // Wie al aan het typen of bewerken is, houdt zijn scherm: het verse antwoord komt bij de volgende keer.
+      var vak = app.querySelector('#fo-reageer textarea');
+      if ((vak && vak.value) || app.querySelector('.fo-tekst form')) return;
+      tekenOnderwerp(naam, data);
+    }, function (e) {
       app.innerHTML = tabs('') + '<p><a href="#/">' + esc(t('terug')) + '</a></p><p class="fo-leeg">' + esc(e.status === 404 ? t('onbekend') : (e.message || t('fout'))) + '</p>';
-      return;
-    }
+    });
+  }
+
+  function tekenOnderwerp(naam, data) {
     var o = data.onderwerp;
     var cat = zoekCat(o.categorie);
     document.title = o.titel + ' — ' + t('titel') + ' — OpenAEC';
@@ -798,9 +1018,10 @@
     if (o.status !== 'Open' && !(ik && ik.moderator)) {
       reageer = '<p class="fo-klein fo-dicht">' + esc(t('gesloten')) + '</p>';
     } else if (ik) {
-      reageer = '<form class="fo-post fo-reageer" id="fo-reageer">' + avatar(ik.naam, true) + '<div class="fo-post-lijf fo-form">' +
+      reageer = '<form class="fo-post fo-reageer" id="fo-reageer">' + avatar(ik, true) + '<div class="fo-post-lijf fo-form">' +
         '<label><span>' + esc(t('jouwReactie')) + '</span><textarea name="tekst" rows="6" required minlength="2" maxlength="20000"></textarea></label>' +
-        '<p class="fo-klein">' + esc(t('opmaak')) + '</p>' + (cat && cat.github_schrijven && o.github ? '<p class="fo-klein fo-gh-uitleg">' + esc(t('ookOpGithub')) + '</p>' : '') +
+        '<p class="fo-klein">' + esc(t('opmaakMd')) + '</p>' + (cat && cat.github_schrijven && o.github ? '<p class="fo-klein fo-gh-uitleg">' + esc(t('ookOpGithub')) + '</p>' : '') +
+        '<label class="fo-akkoord"><input type="checkbox" name="ai" value="1"> <span>' + esc(t('metAi')) + '</span></label>' +
         '<p><button class="btn btn-primary" type="submit">' + esc(t('reageren')) + '</button></p></div></form>';
     } else {
       reageer = '<div class="fo-kaart fo-cta"><p>' + esc(t('logInOmTeReageren')) + '</p><p>' + knop(t('inloggen'), 'inloggen', 'btn-primary') +
@@ -821,9 +1042,10 @@
         var knopEl = form.querySelector('button');
         knopEl.disabled = true;
         try {
-          await api('reageer', { onderwerp: o.naam, tekst: form.tekst.value }, true);
+          await api('reageer', { onderwerp: o.naam, tekst: form.tekst.value, ai: form.ai.checked ? 1 : 0 }, true);
           melding('');
-          onderwerpScherm(naam);
+          form.tekst.value = '';
+          onderwerpScherm(naam, true);
         } catch (e) {
           melding(e.message);
           knopEl.disabled = false;
@@ -840,7 +1062,7 @@
           var uit = await api('verwijder', { bericht: b.naam }, true);
           melding('');
           if (uit.onderwerp_weg) { await laadCategorieen(); location.hash = '#/'; }
-          else onderwerpScherm(naam);
+          else onderwerpScherm(naam, true);
         } catch (e) { melding(e.message); el.disabled = false; }
       });
     });
@@ -854,13 +1076,14 @@
           '<p><button class="btn btn-primary" type="submit">' + esc(t('opslaan')) + '</button> <button class="btn btn-ghost" type="button" data-annuleer>' + esc(t('annuleren')) + '</button></p></form>';
         var f = art.querySelector('form');
         metAfbeeldingen(f.tekst);
-        f.querySelector('[data-annuleer]').addEventListener('click', function () { onderwerpScherm(naam); });
+        f.querySelector('[data-annuleer]').addEventListener('click', function () { f.remove(); tekenOnderwerp(naam, data); });
         f.addEventListener('submit', async function (ev) {
           ev.preventDefault();
           try {
             await api('bewerk', Object.assign({ bericht: b.naam, tekst: f.tekst.value }, f.titel ? { titel: f.titel.value } : {}), true);
             melding('');
-            onderwerpScherm(naam);
+            f.remove();
+            onderwerpScherm(naam, true);
           } catch (e) { melding(e.message); }
         });
       });
@@ -885,7 +1108,8 @@
       '</select></label>' +
       '<label><span>' + esc(t('titelVeld')) + '</span><input name="titel" required minlength="5" maxlength="140"></label>' +
       '<label><span>' + esc(t('berichtVeld')) + '</span><textarea name="tekst" rows="10" required minlength="2" maxlength="20000"></textarea></label>' +
-      '<p class="fo-klein">' + esc(t('opmaak')) + '</p><p class="fo-klein fo-gh-uitleg" id="fo-wordt-issue" hidden>' + esc(t('wordtIssue')) + '</p>' +
+      '<p class="fo-klein">' + esc(t('opmaakMd')) + '</p><p class="fo-klein fo-gh-uitleg" id="fo-wordt-issue" hidden>' + esc(t('wordtIssue')) + '</p>' +
+      '<label class="fo-akkoord"><input type="checkbox" name="ai" value="1"> <span>' + esc(t('metAi')) + '</span></label>' +
       '<p><button class="btn btn-primary" type="submit">' + esc(t('plaatsen')) + '</button></p></form>');
     var form = document.getElementById('fo-nieuw');
     function toonIssueUitleg() {
@@ -900,7 +1124,7 @@
       var knopEl = form.querySelector('button');
       knopEl.disabled = true;
       try {
-        var data = await api('nieuw_onderwerp', { categorie: form.categorie.value, titel: form.titel.value, tekst: form.tekst.value }, true);
+        var data = await api('nieuw_onderwerp', { categorie: form.categorie.value, titel: form.titel.value, tekst: form.tekst.value, ai: form.ai.checked ? 1 : 0 }, true);
         melding('');
         await laadCategorieen();
         location.hash = '#/t/' + data.naam;
@@ -932,22 +1156,47 @@
       enkel(null, '<h2>' + esc(t('profiel')) + '</h2><p>' + esc(t('logInVoorProfiel')) + '</p><p>' + knop(t('inloggen'), 'inloggen', 'btn-primary') + '</p>');
       return;
     }
-    enkel(null, '<p class="fo-leeg">' + esc(t('laden')) + '</p>');
-    var p;
-    try { p = await api('profiel'); } catch (e) { enkel(null, '<p class="fo-leeg">' + esc(e.message || t('fout')) + '</p>'); return; }
+    if (!bekend('profiel')) enkel(null, '<p class="fo-leeg">' + esc(t('laden')) + '</p>');
+    toonMet('profiel', null, tekenProfiel, function (e) { enkel(null, '<p class="fo-leeg">' + esc(e.message || t('fout')) + '</p>'); });
+  }
+
+  function tekenProfiel(p) {
+    ik.foto = p.foto;
+    ik.github = p.github;
     var sinds = new Date(p.lid_sinds);
     var rijen = p.recent.map(function (o) { return onderwerpRij(o); }).join('');
+    var reacties = (p.recente_reacties || []).map(function (r) {
+      return '<li class="fo-rij fo-reactierij"><div class="fo-rij-hoofd"><a class="fo-item-titel" href="#/t/' + encodeURIComponent(r.onderwerp) + '">' + esc(r.titel) + '</a>' +
+        '<span class="fo-fragment">' + esc(r.fragment) + '</span></div><div class="fo-rij-tal"><span>' + esc(tijd(r.aangemaakt)) + '</span>' +
+        (githubAdres(r.github_url) ? '<span class="fo-gh">GitHub</span>' : '') + '</div></li>';
+    }).join('');
+    var github = p.github
+      ? '<p class="fo-profiel-gh"><span class="fo-gh">GitHub</span> <a href="https://github.com/' + encodeURIComponent(p.github) + '" target="_blank" rel="noopener">@' + esc(p.github) + '</a></p>'
+      : (githubAdres(p.github_koppelen) ? '<p class="fo-profiel-gh"><a class="btn btn-secondary fo-knop" href="' + esc(p.github_koppelen) + '">' + esc(t('githubKoppelen')) + '</a> <span class="fo-klein">' + esc(t('githubUitleg')) + '</span></p>' : '');
     app.innerHTML = tabs('') + '<div class="fo-enkel">' +
-      '<section class="fo-kaart fo-profiel"><div class="fo-profiel-kop">' + avatar(p.naam, true) +
+      '<section class="fo-kaart fo-profiel"><div class="fo-profiel-kop">' + avatar(p, true) +
       '<div><h2>' + esc(p.naam) + (p.moderator ? ' <span class="fo-team">' + esc(t('team')) + '</span>' : '') + '</h2>' +
-      '<p class="fo-klein">' + esc(p.email) + '</p></div></div>' +
+      '<p class="fo-klein">' + esc(p.email) + '</p></div></div>' + github +
       '<dl class="fo-cijfers"><div><dt>' + esc(t('lidSinds')) + '</dt><dd>' + esc(isNaN(sinds) ? '' : sinds.toLocaleDateString(taal(), { year: 'numeric', month: 'long', day: 'numeric' })) + '</dd></div>' +
       '<div><dt>' + esc(t('onderwerpenKop')) + '</dt><dd>' + p.onderwerpen + '</dd></div>' +
       '<div><dt>' + esc(t('reactiesKop')) + '</dt><dd>' + p.reacties + '</dd></div></dl>' +
       '<p class="fo-profiel-knoppen">' + (TOON_SUPERCLOUD ? '<a class="btn btn-dark fo-knop" href="' + esc(CLOUD) + '/start">' + esc(t('upsellKnopIn')) + '</a> ' : '') +
-      knop(t('uitloggen'), 'uitloggen', 'btn-secondary') + '</p></section>' +
+      '<button type="button" class="btn btn-secondary fo-knop" id="fo-foto-kies">' + esc(t('fotoKiezen')) + '</button>' +
+      '<input type="file" id="fo-foto" accept="image/png,image/jpeg,image/gif,image/webp" hidden>' +
+      (p.foto ? '<button type="button" class="btn btn-ghost fo-knop" id="fo-foto-weg">' + esc(t('fotoWeg')) + '</button>' : '') +
+      knop(t('uitloggen'), 'uitloggen', 'btn-ghost') + '</p></section>' +
       '<section class="fo-paneel fo-profiel-lijst"><div class="fo-paneel-kop"><span>' + esc(t('mijnOnderwerpen')) + '</span></div>' +
-      '<ul class="fo-rijen">' + (rijen || '<li class="fo-leeg">' + esc(t('geenEigen')) + '</li>') + '</ul></section></div>';
+      '<ul class="fo-rijen">' + (rijen || '<li class="fo-leeg">' + esc(t('geenEigen')) + '</li>') + '</ul></section>' +
+      '<section class="fo-paneel fo-profiel-lijst"><div class="fo-paneel-kop"><span>' + esc(t('mijnReacties')) + '</span></div>' +
+      '<ul class="fo-rijen">' + (reacties || '<li class="fo-leeg">' + esc(t('geenReacties')) + '</li>') + '</ul></section></div>';
+    var kies = document.getElementById('fo-foto');
+    function klaar(werk) {
+      werk.then(function () { melding(''); vergeetBuffer(); profielScherm(); }, function (e) { melding(e.message || t('fout')); });
+    }
+    document.getElementById('fo-foto-kies').addEventListener('click', function () { kies.click(); });
+    kies.addEventListener('change', function () { if (kies.files[0]) klaar(uploadAfbeelding(kies.files[0], 'profielfoto')); });
+    var weg = document.getElementById('fo-foto-weg');
+    if (weg) weg.addEventListener('click', function () { klaar(api('profielfoto', { weg: 1 }, true)); });
   }
 
   function regelsScherm() {
@@ -962,6 +1211,10 @@
     document.getElementById('fo-lead').textContent = t('lead');
     tekenBalk();
     var route = (location.hash || '#/').slice(1).split('/').filter(Boolean).map(decodeURIComponent);
+    beurt++;
+    // Buiten de startpagina een lage kop, zodat de inhoud meteen in beeld staat.
+    var kop = document.querySelector('.fo-head');
+    if (kop) kop.classList.toggle('fo-compact', route.length > 0);
     window.scrollTo(0, 0);
     if (route[0] === 't' && route[1]) return onderwerpScherm(route[1]);
     if (route[0] === 'c' && route[1]) {
@@ -994,7 +1247,11 @@
       var el = ev.target.closest && ev.target.closest('[data-actie]');
       if (!el) return;
       var actie = el.dataset.actie;
-      if (actie === 'inloggen') login();
+      if (actie === 'soort') {
+        try { localStorage.setItem(SOORT, el.dataset.soort); } catch (e) {}
+        toon();
+      }
+      else if (actie === 'inloggen') login();
       else if (actie === 'uitloggen') logout();
       else if (actie === 'modereer') {
         el.disabled = true;
@@ -1009,7 +1266,19 @@
       if (ev.target.closest && ev.target.closest('.lang-btn')) setTimeout(toon, 0);
     });
     window.addEventListener('hashchange', function () { melding(''); toon(); });
+    // Wijs of tik je een onderwerp of categorie aan, dan halen we het alvast op: bij de klik staat het er.
+    function alvast(ev) {
+      var a = ev.target.closest && ev.target.closest('a[href^="#/t/"], a[href^="#/c/"]');
+      if (!a) return;
+      var delen = a.getAttribute('href').slice(2).split('/').map(decodeURIComponent);
+      if (delen[0] === 't') haal('onderwerp', { naam: delen[1] }).catch(function () {});
+      else haal('onderwerpen', soortVelden({ start: 0, categorie: delen[1] })).catch(function () {});
+    }
+    document.addEventListener('pointerover', alvast);
+    document.addEventListener('touchstart', alvast, { passive: true });
     await verwerkTerugkeer();
+    // De lijst van de startpagina alvast, tegelijk met de categorieën.
+    if (!/^#\/(t|c|nieuw|profiel|aanmelden|regels)/.test(location.hash)) haal('onderwerpen', soortVelden({ start: 0 })).catch(function () {});
     await Promise.all([laadCategorieen(), laadIk()]);
     toon();
   }
