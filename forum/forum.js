@@ -77,7 +77,10 @@
       verlopen: 'Je bent uitgelogd. Log opnieuw in.',
       verwijderen: 'Verwijderen', verwijderVraag: 'Dit bericht verwijderen? Dat kan niet ongedaan worden gemaakt.', verwijderOnderwerpVraag: 'Dit onderwerp met alle reacties verwijderen? Dat kan niet ongedaan worden gemaakt.',
       afbeelding: 'Afbeelding toevoegen', afbeeldingBezig: 'Afbeelding uploaden…', afbeeldingAlt: 'Afbeelding bij het bericht',
-      profiel: 'Mijn profiel', lidSinds: 'Lid sinds', mijnOnderwerpen: 'Mijn onderwerpen', geenEigen: 'Je hebt nog geen onderwerp gestart.', logInVoorProfiel: 'Log in om je profiel te zien.', upsellKnopIn: 'Open je SuperCloud'
+      profiel: 'Mijn profiel', lidSinds: 'Lid sinds', mijnOnderwerpen: 'Mijn onderwerpen', geenEigen: 'Je hebt nog geen onderwerp gestart.', logInVoorProfiel: 'Log in om je profiel te zien.', upsellKnopIn: 'Open je SuperCloud',
+      toolsKop: 'Tools', opGithub: 'Bekijk op GitHub', toolsUitleg: 'Met de issues van GitHub',
+      ookOpGithub: 'Dit onderwerp hoort bij een issue op GitHub. Je bericht komt daar ook te staan, met je forumnaam; een GitHub-account heb je niet nodig.',
+      wordtIssue: 'In deze categorie wordt je onderwerp ook een issue op GitHub, met je forumnaam; een GitHub-account heb je niet nodig.'
     },
     en: {
       titel: 'Forum', label: 'Community',
@@ -127,7 +130,10 @@
       verlopen: 'You have been logged out. Please log in again.',
       verwijderen: 'Delete', verwijderVraag: 'Delete this post? This cannot be undone.', verwijderOnderwerpVraag: 'Delete this topic with all its replies? This cannot be undone.',
       afbeelding: 'Add image', afbeeldingBezig: 'Uploading image…', afbeeldingAlt: 'Image in the post',
-      profiel: 'My profile', lidSinds: 'Member since', mijnOnderwerpen: 'My topics', geenEigen: 'You have not started a topic yet.', logInVoorProfiel: 'Log in to see your profile.', upsellKnopIn: 'Open your SuperCloud'
+      profiel: 'My profile', lidSinds: 'Member since', mijnOnderwerpen: 'My topics', geenEigen: 'You have not started a topic yet.', logInVoorProfiel: 'Log in to see your profile.', upsellKnopIn: 'Open your SuperCloud',
+      toolsKop: 'Tools', opGithub: 'View on GitHub', toolsUitleg: 'With the issues from GitHub',
+      ookOpGithub: 'This topic belongs to an issue on GitHub. Your post appears there too, with your forum name; you do not need a GitHub account.',
+      wordtIssue: 'In this category your topic also becomes an issue on GitHub, with your forum name; you do not need a GitHub account.'
     },
     fr: {
       titel: 'Forum', label: 'Communauté',
@@ -177,7 +183,10 @@
       verlopen: 'Vous avez été déconnecté. Reconnectez-vous.',
       verwijderen: 'Supprimer', verwijderVraag: 'Supprimer ce message ? Cette action est irréversible.', verwijderOnderwerpVraag: 'Supprimer ce sujet et toutes ses réponses ? Cette action est irréversible.',
       afbeelding: 'Ajouter une image', afbeeldingBezig: 'Envoi de l’image…', afbeeldingAlt: 'Image du message',
-      profiel: 'Mon profil', lidSinds: 'Membre depuis', mijnOnderwerpen: 'Mes sujets', geenEigen: 'Vous n’avez pas encore lancé de sujet.', logInVoorProfiel: 'Connectez-vous pour voir votre profil.', upsellKnopIn: 'Ouvrir votre SuperCloud'
+      profiel: 'Mon profil', lidSinds: 'Membre depuis', mijnOnderwerpen: 'Mes sujets', geenEigen: 'Vous n’avez pas encore lancé de sujet.', logInVoorProfiel: 'Connectez-vous pour voir votre profil.', upsellKnopIn: 'Ouvrir votre SuperCloud',
+      toolsKop: 'Outils', opGithub: 'Voir sur GitHub', toolsUitleg: 'Avec les issues de GitHub',
+      ookOpGithub: 'Ce sujet est lié à une issue sur GitHub. Votre message y apparaît aussi, avec votre nom du forum ; aucun compte GitHub n’est nécessaire.',
+      wordtIssue: 'Dans cette catégorie, votre sujet devient aussi une issue sur GitHub, avec votre nom du forum ; aucun compte GitHub n’est nécessaire.'
     },
     tr: {
       titel: 'Forum', label: 'Topluluk',
@@ -227,7 +236,10 @@
       verlopen: 'Oturumunuz kapandı. Lütfen tekrar giriş yapın.',
       verwijderen: 'Sil', verwijderVraag: 'Bu mesaj silinsin mi? Bu işlem geri alınamaz.', verwijderOnderwerpVraag: 'Bu konu tüm yanıtlarıyla silinsin mi? Bu işlem geri alınamaz.',
       afbeelding: 'Görsel ekle', afbeeldingBezig: 'Görsel yükleniyor…', afbeeldingAlt: 'Mesajdaki görsel',
-      profiel: 'Profilim', lidSinds: 'Üyelik başlangıcı', mijnOnderwerpen: 'Konularım', geenEigen: 'Henüz bir konu başlatmadınız.', logInVoorProfiel: 'Profilinizi görmek için giriş yapın.', upsellKnopIn: 'SuperCloud’unuzu açın'
+      profiel: 'Profilim', lidSinds: 'Üyelik başlangıcı', mijnOnderwerpen: 'Konularım', geenEigen: 'Henüz bir konu başlatmadınız.', logInVoorProfiel: 'Profilinizi görmek için giriş yapın.', upsellKnopIn: 'SuperCloud’unuzu açın',
+      toolsKop: 'Araçlar', opGithub: 'GitHub’da görüntüle', toolsUitleg: 'GitHub kayıtlarıyla birlikte',
+      ookOpGithub: 'Bu konu GitHub’daki bir kayda bağlı. Mesajınız forum adınızla orada da görünür; GitHub hesabı gerekmez.',
+      wordtIssue: 'Bu kategoride konunuz forum adınızla GitHub’da da bir kayıt olur; GitHub hesabı gerekmez.'
     },
     es: {
       titel: 'Foro', label: 'Comunidad',
@@ -277,7 +289,10 @@
       verlopen: 'Se ha cerrado tu sesión. Vuelve a iniciarla.',
       verwijderen: 'Eliminar', verwijderVraag: '¿Eliminar este mensaje? No se puede deshacer.', verwijderOnderwerpVraag: '¿Eliminar este tema con todas sus respuestas? No se puede deshacer.',
       afbeelding: 'Añadir imagen', afbeeldingBezig: 'Subiendo imagen…', afbeeldingAlt: 'Imagen del mensaje',
-      profiel: 'Mi perfil', lidSinds: 'Miembro desde', mijnOnderwerpen: 'Mis temas', geenEigen: 'Todavía no has empezado ningún tema.', logInVoorProfiel: 'Inicia sesión para ver tu perfil.', upsellKnopIn: 'Abrir tu SuperCloud'
+      profiel: 'Mi perfil', lidSinds: 'Miembro desde', mijnOnderwerpen: 'Mis temas', geenEigen: 'Todavía no has empezado ningún tema.', logInVoorProfiel: 'Inicia sesión para ver tu perfil.', upsellKnopIn: 'Abrir tu SuperCloud',
+      toolsKop: 'Herramientas', opGithub: 'Ver en GitHub', toolsUitleg: 'Con las incidencias de GitHub',
+      ookOpGithub: 'Este tema pertenece a una incidencia de GitHub. Tu mensaje aparece también allí, con tu nombre del foro; no necesitas cuenta de GitHub.',
+      wordtIssue: 'En esta categoría tu tema también se convierte en una incidencia de GitHub, con tu nombre del foro; no necesitas cuenta de GitHub.'
     },
     de: {
       titel: 'Forum', label: 'Community',
@@ -327,7 +342,10 @@
       verlopen: 'Ihre Sitzung ist abgelaufen. Bitte melden Sie sich erneut an.',
       verwijderen: 'Löschen', verwijderVraag: 'Diesen Beitrag löschen? Das lässt sich nicht rückgängig machen.', verwijderOnderwerpVraag: 'Dieses Thema mit allen Antworten löschen? Das lässt sich nicht rückgängig machen.',
       afbeelding: 'Bild hinzufügen', afbeeldingBezig: 'Bild wird hochgeladen…', afbeeldingAlt: 'Bild im Beitrag',
-      profiel: 'Mein Profil', lidSinds: 'Mitglied seit', mijnOnderwerpen: 'Meine Themen', geenEigen: 'Sie haben noch kein Thema eröffnet.', logInVoorProfiel: 'Melden Sie sich an, um Ihr Profil zu sehen.', upsellKnopIn: 'Ihre SuperCloud öffnen'
+      profiel: 'Mein Profil', lidSinds: 'Mitglied seit', mijnOnderwerpen: 'Meine Themen', geenEigen: 'Sie haben noch kein Thema eröffnet.', logInVoorProfiel: 'Melden Sie sich an, um Ihr Profil zu sehen.', upsellKnopIn: 'Ihre SuperCloud öffnen',
+      toolsKop: 'Tools', opGithub: 'Auf GitHub ansehen', toolsUitleg: 'Mit den Issues von GitHub',
+      ookOpGithub: 'Dieses Thema gehört zu einem Issue auf GitHub. Ihr Beitrag erscheint auch dort, mit Ihrem Forennamen; ein GitHub-Konto brauchen Sie nicht.',
+      wordtIssue: 'In dieser Kategorie wird Ihr Thema auch ein Issue auf GitHub, mit Ihrem Forennamen; ein GitHub-Konto brauchen Sie nicht.'
     }
   };
 
@@ -346,7 +364,8 @@
 
   // Platte tekst veilig naar HTML: alinea's, regeleinden, klikbare links en codeblokken (```).
   function opmaak(tekst) {
-    var delen = String(tekst).split(/```/);
+    // Onzichtbare opmerkingen uit GitHub-teksten (<!-- … -->) horen niet in beeld.
+    var delen = String(tekst).replace(/<!--[\s\S]*?-->/g, '').split(/```/);
     return delen.map(function (deel, i) {
       if (i % 2 === 1) return '<pre><code>' + esc(deel.replace(/^\w*\n/, '').replace(/\n$/, '')) + '</code></pre>';
       return deel.split(/\n{2,}/).map(function (alinea) {
@@ -384,7 +403,8 @@
   function catUitleg(cat) { return taal() === 'nl' ? cat.beschrijving : cat.beschrijving_en; }
 
   function auteur(a) {
-    return '<span class="fo-auteur">' + esc(a.naam) + (a.team ? ' <span class="fo-team">' + esc(t('team')) + '</span>' : '') + '</span>';
+    return '<span class="fo-auteur">' + esc(a.naam) + (a.team ? ' <span class="fo-team">' + esc(t('team')) + '</span>' : '') +
+      (a.github ? ' <span class="fo-gh">GitHub</span>' : '') + '</span>';
   }
 
   // ── Sessie (OAuth met PKCE) ─────────────────────────────────────────────
@@ -655,7 +675,7 @@
     var cat = zonderCat ? null : zoekCat(o.categorie);
     return '<li class="fo-rij">' + avatar(o.auteur.naam) +
       '<div class="fo-rij-hoofd"><a class="fo-item-titel" href="#/t/' + encodeURIComponent(o.naam) + '">' + esc(o.titel) + '</a>' + labels(o) +
-      '<span class="fo-meta">' + catChip(cat) + auteur(o.auteur) + '</span></div>' +
+      '<span class="fo-meta">' + catChip(cat) + auteur(o.auteur) + (o.github ? '<span class="fo-nummer">#' + o.github.nummer + '</span>' : '') + '</span></div>' +
       '<div class="fo-rij-tal"><strong title="' + esc(t('reacties')(o.reacties)) + '">' + o.reacties + '</strong><span>' + esc(tijd(o.laatste_activiteit)) + '</span></div></li>';
   }
 
@@ -679,11 +699,15 @@
   }
 
   function startScherm() {
-    var cats = categorieen.map(function (c) {
-      return '<a class="fo-catrij" href="#/c/' + encodeURIComponent(c.slug) + '" style="--kleur:' + catKleur(c.slug) + '">' +
-        '<span class="fo-catrij-tekst"><strong>' + esc(catTitel(c)) + '</strong>' + (catUitleg(c) ? '<span>' + esc(catUitleg(c)) + '</span>' : '') +
+    function rij(c) {
+      return '<a class="fo-catrij' + (c.github_repo ? ' fo-catrij-tool' : '') + '" href="#/c/' + encodeURIComponent(c.slug) + '" style="--kleur:' + catKleur(c.slug) + '">' +
+        '<span class="fo-catrij-tekst"><strong>' + esc(catTitel(c)) + '</strong>' + (catUitleg(c) && !c.github_repo ? '<span>' + esc(catUitleg(c)) + '</span>' : '') +
         (c.alleen_team ? '<em>' + esc(t('alleenTeamKort')) + '</em>' : '') + '</span><span class="fo-catrij-tal">' + c.onderwerpen + '</span></a>';
-    }).join('');
+    }
+    var tools = categorieen.filter(function (c) { return c.github_repo; });
+    var cats = categorieen.filter(function (c) { return !c.github_repo; }).map(rij).join('') +
+      (tools.length ? '<div class="fo-paneel-kop fo-toolskop"><span>' + esc(t('toolsKop')) + '</span><span>' + esc(t('toolsUitleg')) + '</span></div>' +
+        '<div class="fo-tools">' + tools.map(rij).join('') + '</div>' : '');
     app.innerHTML = tabs('cats') +
       '<div class="fo-twee">' +
       '<section class="fo-paneel"><div class="fo-paneel-kop"><span>' + esc(t('categorie')) + '</span><span>' + esc(t('onderwerpenKop')) + '</span></div>' +
@@ -733,6 +757,9 @@
     laad();
   }
 
+  // Alleen echte GitHub-adressen worden een link.
+  function githubAdres(adres) { return /^https:\/\/github\.com\//.test(adres || '') ? adres : ''; }
+
   function berichtHtml(b, onderwerp) {
     var acties = '';
     var magBewerken = ik && (b.eigen || ik.moderator) && (onderwerp.status === 'Open' || ik.moderator);
@@ -741,7 +768,8 @@
     if (ik && ik.moderator) acties += knop(t(b.verborgen ? 'toon' : 'verberg'), 'modereer', 'btn-ghost', ' data-soort="bericht" data-naam="' + esc(b.naam) + '" data-wat="' + (b.verborgen ? 'toon' : 'verberg') + '"');
     return '<article class="fo-post' + (b.verborgen ? ' fo-verborgen' : '') + '" id="b-' + esc(b.naam) + '">' + avatar(b.auteur.naam, true) +
       '<div class="fo-post-lijf"><header>' + auteur(b.auteur) + '<span class="fo-post-tijd">' + esc(tijd(b.aangemaakt)) +
-      (b.bewerkt ? ' · ' + esc(t('bewerkt')) : '') + (b.verborgen ? ' · ' + esc(t('verborgen')) : '') + '</span></header>' +
+      (b.bewerkt ? ' · ' + esc(t('bewerkt')) : '') + (b.verborgen ? ' · ' + esc(t('verborgen')) : '') +
+      (githubAdres(b.github_url) ? ' · <a href="' + esc(b.github_url) + '" target="_blank" rel="noopener">GitHub ↗</a>' : '') + '</span></header>' +
       '<div class="fo-tekst">' + opmaak(b.tekst) + '</div>' +
       (acties ? '<footer class="fo-acties">' + acties + '</footer>' : '') + '</div></article>';
   }
@@ -772,7 +800,8 @@
     } else if (ik) {
       reageer = '<form class="fo-post fo-reageer" id="fo-reageer">' + avatar(ik.naam, true) + '<div class="fo-post-lijf fo-form">' +
         '<label><span>' + esc(t('jouwReactie')) + '</span><textarea name="tekst" rows="6" required minlength="2" maxlength="20000"></textarea></label>' +
-        '<p class="fo-klein">' + esc(t('opmaak')) + '</p><p><button class="btn btn-primary" type="submit">' + esc(t('reageren')) + '</button></p></div></form>';
+        '<p class="fo-klein">' + esc(t('opmaak')) + '</p>' + (cat && cat.github_repo ? '<p class="fo-klein fo-gh-uitleg">' + esc(t('ookOpGithub')) + '</p>' : '') +
+        '<p><button class="btn btn-primary" type="submit">' + esc(t('reageren')) + '</button></p></div></form>';
     } else {
       reageer = '<div class="fo-kaart fo-cta"><p>' + esc(t('logInOmTeReageren')) + '</p><p>' + knop(t('inloggen'), 'inloggen', 'btn-primary') +
         ' <a class="btn btn-secondary fo-knop" href="#/aanmelden">' + esc(t('aanmelden')) + '</a></p></div>';
@@ -781,7 +810,8 @@
       '<div class="fo-onderwerp">' +
       '<p class="fo-kruimel"><a href="#/">' + esc(t('titel')) + '</a>' + (cat ? ' / <a href="#/c/' + encodeURIComponent(cat.slug) + '">' + esc(catTitel(cat)) + '</a>' : '') + '</p>' +
       '<h2 class="fo-onderwerp-titel">' + esc(o.titel) + labels(o) + '</h2>' +
-      '<p class="fo-meta">' + catChip(cat) + '<span>' + esc(t('reacties')(o.reacties)) + '</span></p>' + modknoppen +
+      '<p class="fo-meta">' + catChip(cat) + '<span>' + esc(t('reacties')(o.reacties)) + '</span>' +
+      (o.github && githubAdres(o.github.url) ? '<a class="fo-meer-link" href="' + esc(o.github.url) + '" target="_blank" rel="noopener">' + esc(t('opGithub')) + ' #' + o.github.nummer + ' ↗</a>' : '') + '</p>' + modknoppen +
       '<div class="fo-posts">' + data.berichten.map(function (b) { return berichtHtml(b, o); }).join('') + '</div>' +
       reageer + '</div>';
     var form = document.getElementById('fo-reageer');
@@ -855,9 +885,15 @@
       '</select></label>' +
       '<label><span>' + esc(t('titelVeld')) + '</span><input name="titel" required minlength="5" maxlength="140"></label>' +
       '<label><span>' + esc(t('berichtVeld')) + '</span><textarea name="tekst" rows="10" required minlength="2" maxlength="20000"></textarea></label>' +
-      '<p class="fo-klein">' + esc(t('opmaak')) + '</p>' +
+      '<p class="fo-klein">' + esc(t('opmaak')) + '</p><p class="fo-klein fo-gh-uitleg" id="fo-wordt-issue" hidden>' + esc(t('wordtIssue')) + '</p>' +
       '<p><button class="btn btn-primary" type="submit">' + esc(t('plaatsen')) + '</button></p></form>');
     var form = document.getElementById('fo-nieuw');
+    function toonIssueUitleg() {
+      var gekozen = zoekCat(form.categorie.value);
+      document.getElementById('fo-wordt-issue').hidden = !(gekozen && gekozen.github_repo);
+    }
+    form.categorie.addEventListener('change', toonIssueUitleg);
+    toonIssueUitleg();
     metAfbeeldingen(form.tekst);
     form.addEventListener('submit', async function (ev) {
       ev.preventDefault();
