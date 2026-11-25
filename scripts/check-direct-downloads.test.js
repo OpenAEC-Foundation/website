@@ -41,6 +41,17 @@ test('only offers installer assets from the repository itself', () => {
   assert.equal(found.windows.name, 'App_1.0.0_x64-setup.exe');
 });
 
+test('a prefix picks one app out of a release that holds several', () => {
+  const release = { assets: [
+    asset('v2026.48.1', 'open-3d-viewer_2026.48.1_x64-setup.exe'),
+    asset('v2026.48.1', 'open-bim-validator_2026.48.1_x64-setup.exe'),
+    asset('v2026.48.1', 'open-3d-viewer_2026.48.1_macos-universal.dmg'),
+  ] };
+  assert.equal(downloads.downloadsForRelease(release, repo, 'open-bim-validator_').windows.name, 'open-bim-validator_2026.48.1_x64-setup.exe');
+  assert.equal(downloads.downloadsForRelease(release, repo, 'open-bim-validator_').macos, undefined);
+  assert.equal(downloads.downloadsForRelease(release, repo, 'open-3d-viewer_').windows.name, 'open-3d-viewer_2026.48.1_x64-setup.exe');
+});
+
 test('picks the file for the visitor OS, with Windows as fallback', () => {
   const available = { windows: { url: 'w' }, macos: { url: 'm' }, 'linux-deb': { url: 'd' } };
   assert.equal(downloads.detectOS({ userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)', platform: 'MacIntel' }), 'macos');

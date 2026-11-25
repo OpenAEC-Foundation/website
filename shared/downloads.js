@@ -3,6 +3,8 @@
 //
 //   <a href="<direct installer URL>" data-gh-download="owner/repo">            -> installer for the visitor's OS
 //   <a href="<direct installer URL>" data-gh-download="owner/repo" data-platform="windows">  -> always that format
+//   <a ... data-gh-download="owner/repo" data-gh-prefix="app_">  -> only the files whose name starts so,
+//                                                                    for a release that holds several apps
 //
 // The href in the HTML is a working direct link (the Windows installer of a
 // known release), so the button works without JavaScript or when the GitHub
@@ -66,11 +68,12 @@
     return matching(armFormats) || matching(pluginFormats) || matching(formats) || null;
   }
 
-  function downloadsForRelease(release, repo) {
+  function downloadsForRelease(release, repo, prefix = '') {
     const assetPath = '/' + repo + '/releases/download/';
     const result = {};
     for (const asset of release?.assets || []) {
       if (typeof asset.name !== 'string' || typeof asset.browser_download_url !== 'string') continue;
+      if (prefix && !asset.name.startsWith(prefix)) continue;
       let url;
       try { url = new URL(asset.browser_download_url); } catch (_) { continue; }
       if (url.protocol !== 'https:' || url.hostname !== 'github.com' ||
@@ -117,6 +120,7 @@
 
   async function start() {
     const links = document.querySelectorAll('a[data-gh-download]');
+    // one request per repository; each prefix picks its own files from it
     const repos = new Set();
     links.forEach(a => repos.add(a.getAttribute('data-gh-download')));
     const os = detectOS(navigator);
@@ -128,9 +132,9 @@
         if (!response.ok) continue;
         const release = selectLatestRelease(await response.json(), repo);
         if (!release) continue;
-        const available = downloadsForRelease(release, repo);
         links.forEach(a => {
           if (a.getAttribute('data-gh-download') !== repo) return;
+          const available = downloadsForRelease(release, repo, a.getAttribute('data-gh-prefix') || '');
           const asset = pickAsset(available, a.getAttribute('data-platform'), os);
           if (!asset) return;
           a.href = asset.url;
