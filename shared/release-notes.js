@@ -6,7 +6,7 @@
 
   // Private repos: their GitHub release pages give visitors a 404, so release-notes links into
   // them are hidden (also in groups that are expanded later). Remove a repo once it goes public.
-  const PRIVATE_REPOS = ['Y-app', 'open-safety-studio', 'open-3d-viewer'];
+  const PRIVATE_REPOS = ['Y-app', 'open-safety-studio', 'open-3d-viewer', 'open-2d-studio'];
   (function hidePrivateRepoLinks() {
     const style = document.createElement('style');
     style.textContent = PRIVATE_REPOS
@@ -180,6 +180,39 @@
       showAllVersions: 'Mostrar todas las versiones',
       showFewerVersions: 'Mostrar menos',
       noNotes: 'No hay notas disponibles para esta versión.',
+    },
+    de: {
+      title: 'Versionshinweise',
+      desc: (n) => `${n} Änderungen, gruppiert nach Minor-Version. Live von GitHub abgerufen.`,
+      loading: 'Versionen werden geladen...',
+      latest: 'Aktuell',
+      nightly: 'Nightly',
+      version: 'Version',
+      versions: 'Versionen',
+      releases: 'Versionen',
+      changes: 'Änderungen',
+      change: 'Änderung',
+      release: 'Version',
+      from: 'von',
+      until: 'bis',
+      viewGitHub: 'Auf GitHub ansehen →',
+      viewAll: 'Alle Versionen auf GitHub ansehen →',
+      error: 'Die Versionshinweise konnten nicht geladen werden.',
+      noReleases: 'Noch keine Versionen verfügbar.',
+      published: 'Veröffentlicht',
+      totalReleases: 'Versionen insgesamt',
+      totalChanges: 'Änderungen insgesamt',
+      showMore: 'Mehr anzeigen',
+      showLess: 'Weniger anzeigen',
+      tlDesc: 'Das Wichtigste je Version. Klicken Sie auf Mehr für die vollständigen Hinweise.',
+      tlDays: (n) => `${n} ${n === '1' ? 'Tag' : 'Tage'}`,
+      tlCommits: (n) => `${n} Commits`,
+      tlLines: (n) => `+${n} Zeilen Code`,
+      more: 'Mehr',
+      less: 'Weniger',
+      showAllVersions: 'Alle Versionen anzeigen',
+      showFewerVersions: 'Weniger anzeigen',
+      noNotes: 'Für diese Version liegen keine Hinweise vor.',
     },
   };
 
@@ -448,7 +481,7 @@
     return `
       ${changes.length > 0
         ? `<ol class="rn-changes-list">${changesList}</ol>`
-        : `<p class="rn-loading">${({en: 'No changelog parsed — see release on GitHub below.', fr: 'Aucun changelog disponible — voir la version sur GitHub ci-dessous.', tr: "Değişiklik günlüğü mevcut değil — sürümü aşağıdaki GitHub bağlantısından inceleyin.", nl: 'Geen changelog beschikbaar — bekijk de release op GitHub hieronder.'})[getLang()] || 'Geen changelog beschikbaar — bekijk de release op GitHub hieronder.'}</p>`}
+        : `<p class="rn-loading">${({en: 'No changelog parsed — see release on GitHub below.', fr: 'Aucun changelog disponible — voir la version sur GitHub ci-dessous.', tr: "Değişiklik günlüğü mevcut değil — sürümü aşağıdaki GitHub bağlantısından inceleyin.", de: 'Kein Änderungsprotokoll verfügbar — siehe die Version auf GitHub unten.', nl: 'Geen changelog beschikbaar — bekijk de release op GitHub hieronder.'})[getLang()] || 'Geen changelog beschikbaar — bekijk de release op GitHub hieronder.'}</p>`}
       <div class="rn-releases-detail">
         ${releaseRows}
       </div>
@@ -564,7 +597,7 @@
         </div>
       </div>
       <p class="rn-viewall">
-        <a href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll')}</a>
+        <a href="https://github.com/${data.owner || 'OpenAEC-Foundation'}/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll')}</a>
       </p>
     `;
   }
@@ -795,7 +828,7 @@
       <ol class="rn-timeline">${items}</ol>
       <p class="more-row">
         ${releases.length > RN_VISIBLE ? `<button type="button" class="btn btn-secondary btn-lg more-btn rn-groups-toggle" aria-expanded="false"><span class="more-label">${t('showAllVersions')}</span> <span class="more-count">(${releases.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></button>` : ''}
-        <a class="more-link" href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/s*→s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a>
+        <a class="more-link" href="https://github.com/${data.owner || 'OpenAEC-Foundation'}/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/s*→s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a>
       </p>
     `;
 
@@ -882,7 +915,7 @@
       </div>
       <p class="more-row">
         ${data.groups.length > RN_VISIBLE ? `<button type="button" class="btn btn-secondary btn-lg more-btn rn-groups-toggle" aria-expanded="false"><span class="more-label">${t('showAllVersions')}</span> <span class="more-count">(${data.groups.length})</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></button>` : ''}
-        <a class="more-link" href="https://github.com/OpenAEC-Foundation/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/\s*→\s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a>
+        <a class="more-link" href="https://github.com/${data.owner || 'OpenAEC-Foundation'}/${data.repo}/releases" target="_blank" rel="noopener">${t('viewAll').replace(/\s*→\s*$/, '')}<svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg></a>
       </p>
     `;
 

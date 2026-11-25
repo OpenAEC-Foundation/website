@@ -39,6 +39,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const { neutralNames } = require('./lib/neutral-names');
 
 const ROOT = path.resolve(__dirname, '..');
 const OUT_DIR = path.join(ROOT, 'data', 'release-highlights');
@@ -132,7 +133,7 @@ async function processSource(source) {
   }
 
   fs.mkdirSync(OUT_DIR, { recursive: true });
-  fs.writeFileSync(outFile, JSON.stringify(data, null, 2) + '\n');
+  fs.writeFileSync(outFile, JSON.stringify(neutralNames(data), null, 2) + '\n');
   const tags = data.releases.map((r) => r.tag).join(', ');
   console.log(`  ✓ ${data.releases.length} releases weggeschreven (${tags})`);
 }

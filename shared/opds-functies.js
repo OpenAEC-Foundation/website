@@ -51,6 +51,18 @@
       mcpIntro: (d) => `Yerleşik MCP sunucusu (Model Context Protocol, açık bir standart) sayesinde Claude gibi bir yapay zekâ modeli uygulamayı kullanabilir: ${d.aantallen.mcpTools} araç ve bunlar üzerinden yukarıdaki her özellik. Sunucu yerel olarak çalışır; dosyanın kendisi harici bir hizmete gönderilmez. Açıklamalar İngilizcedir.`,
       treffers: (n) => `${n} özellik`,
     },
+    de: {
+      meer: 'Alle Werkzeuge anzeigen',
+      minder: 'Weniger anzeigen',
+      titel: 'Alle Funktionen',
+      intro: (d) => `Das vollständige Menüband der Version ${d.versie}: ${d.aantallen.functies} Funktionen in ${d.aantallen.tabbladen} Registerkarten. Diese Liste wird aus dem Quellcode erzeugt und stimmt daher immer mit der App überein.`,
+      zoek: 'Funktion suchen, z. B. „messen“',
+      geen: 'Keine Funktion gefunden.',
+      contextueel: 'erscheint, wenn etwas ausgewählt ist',
+      mcpTitel: 'Durch KI bedienbar',
+      mcpIntro: (d) => `Über den integrierten MCP-Server (Model Context Protocol, ein offener Standard) kann ein KI-Modell wie Claude die App bedienen: ${d.aantallen.mcpTools} Werkzeuge und darüber jede der oben genannten Funktionen. Der Server läuft lokal; die Datei selbst wird nicht an einen externen Dienst gesendet. Die Beschreibungen sind auf Englisch.`,
+      treffers: (n) => `${n} ${n === 1 ? 'Funktion' : 'Funktionen'}`,
+    },
   };
 
   const STIJL = `

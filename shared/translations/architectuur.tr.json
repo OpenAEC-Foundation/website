@@ -7,7 +7,7 @@
   "intro": {
     "title": "Tek kod tabanı, <span class=\"accent\">her yerde</span>",
     "p1": "OpenAEC ekosistemindeki her araç, tüm platformlarda çalışan tek bir uygulama olarak geliştirilir. Web ve masaüstü için ayrı sürümler yok, çift bakım yok. Aynı kod, aynı özellikler, her yerde.",
-    "p2": "Bunu temel olarak Tauri ve Rust üzerine inşa ederek başarıyoruz; modern bir web frontend hem tarayıcıda hem de yerel bir kabukta çalışır."
+    "p2": "Çıkış noktamız Rust. Arayüzü de Rust ile yazılmış, tamamen Rust uygulamaları geliştirmeyi tercih ediyoruz. Bazen bir Rust çekirdeği üzerinde TypeScript arayüzlü Tauri’yi seçiyoruz; örneğin bir aracın tarayıcıda da çalışması gerektiğinde."
   },
   "diagram": {
     "title": "<span class=\"accent\">Mimari</span> özeti",
@@ -21,7 +21,7 @@
     "tauri_desc": "Web teknolojisiyle masaüstü ve mobil uygulamalar oluşturmak için framework. Chromium yerine işletim sisteminin yerel webview'unu kullanır — küçük kurulum dosyaları (&lt;10MB) ve düşük bellek kullanımı sağlar.",
     "rust_desc": "Her aracın temel mantığı Rust ile yazılmıştır: IFC ayrıştırma, doğrulama, hesaplamalar ve dosya işleme. Rust bellek güvenliği, yüksek performans sunar ve her platforma derlenir.",
     "wasm_desc": "Aynı Rust kodu web sürümü için WebAssembly'ye (WASM) derlenir. Bu, tam hesaplama mantığının da tarayıcıda yerel performansa yakın çalışmasını sağlar.",
-    "ui_desc": "Kullanıcı arayüzü web teknolojisiyle geliştirilir: React veya Svelte ile TypeScript, Vite ile paketlenir. Aynı arayüz Tauri'de ve tarayıcıda çalışır.",
+    "ui_desc": "Tamamen Rust olan bir uygulamada arayüz de Rust’tır. Tauri kullandığımız yerlerde arayüzü TypeScript (React, Svelte veya SolidJS) ve Vite ile oluşturuyoruz; böylece hem Tauri’de hem tarayıcıda çalışır.",
     "threejs_desc": "Three.js ve That Open Engine aracılığıyla IFC modellerinin 3D görselleştirmesi. WebGL tabanlı, tarayıcının çalıştığı her yerde çalışır.",
     "fastapi_desc": "Asenkron doğrulama, belge yönetimi ve entegrasyonlar için Python FastAPI ile sunucu tarafı API'ler. Docker üzerinden dağıtılır."
   },
@@ -66,7 +66,7 @@
   "why": {
     "title": "Neden bu <span class=\"accent\">yaklaşım</span>?",
     "small_title": "Küçük ve hızlı",
-    "small_desc": "Electron yok, Chromium yok. Tauri yerel webview'u kullanır — kurulum dosyaları 10MB'den küçüktür ve bellek kullanımı minimumdur.",
+    "small_desc": "Electron yok, Chromium yok. Tamamen Rust olan bir uygulamanın webview’e ihtiyacı yoktur; Tauri ise işletim sisteminde zaten bulunan webview’i kullanır. Kurulumlar küçük, bellek kullanımı düşük kalır.",
     "safe_title": "Güvenli",
     "safe_desc": "Rust bellek hatalarını, buffer overflow'larını ve race condition'ları önler. Uygulama tasarım gereği güvenlidir.",
     "opensource_title": "Açık kaynak",
@@ -85,6 +85,26 @@
       "api_desc": "Her araç harici sistemlerle entegrasyon için bir REST API sunar. İş akışlarını otomatikleştirin, ERP sistemleriyle bağlantı kurun veya ekosistemin üzerine kendi gösterge panolarınızı oluşturun.",
       "mcp_desc": "Her araç için Model Context Protocol (MCP) sunucuları. Bu, AI ajanlarının (Claude gibi) araçlarla doğrudan iletişim kurmasını sağlar — modelleri doğrulayın, belgeler oluşturun veya doğal dil ile hesaplamalar gerçekleştirin.",
       "extensions_desc": "Her araç özel işlevsellik için uzantıları destekler. TypeScript veya Rust'ta kendi eklentilerinizi oluşturun ve uzantı kayıt defteri aracılığıyla toplulukla paylaşın."
+    }
+  },
+  "routes": {
+    "title": "Önce Rust, <span class=\"accent\">uygun olduğunda Tauri</span>",
+    "lead": "Tamamen Rust uygulamaları geliştirmeyi tercih ediyoruz. Bazı araçlar için bilinçli olarak Rust çekirdeği üzerinde TypeScript arayüzlü Tauri’yi seçiyoruz.",
+    "rust": {
+      "badge": "Tercih",
+      "title": "Tamamen Rust",
+      "desc": "Hesap çekirdeği ve kullanıcı arayüzü Rust ile, tek bir yerel programda. Webview ve JavaScript yok: hızlı açılış, az bellek ve tüm kod için tek dil.",
+      "li1": "Ağır, grafik araçlar için: CAD, BIM ve büyük modeller",
+      "li2": "Aynı Rust çekirdeği WebAssembly ile tarayıcıda da çalışabilir",
+      "li3": "Örnek: Open CAD Studio"
+    },
+    "tauri": {
+      "badge": "Uygun olduğunda",
+      "title": "Tauri + TypeScript",
+      "desc": "İşletim sisteminin webview’inde, TypeScript arayüzlü bir Rust çekirdeği. Aynı arayüz tarayıcıda web uygulaması olarak da çalışır.",
+      "li1": "Tarayıcıda da çalışması gereken ya da çoğunlukla form ve belge gösteren araçlar için",
+      "li2": "Hesaplar Rust’ta kalır; TypeScript yalnızca arayüzü yapar",
+      "li3": "Örnek: Open PDF Studio"
     }
   }
 }

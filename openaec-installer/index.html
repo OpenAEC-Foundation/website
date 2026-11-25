@@ -16,10 +16,9 @@
   <link rel="alternate" hreflang="fr" href="https://open-aec.com/fr/openaec-installer/">
   <link rel="alternate" hreflang="tr" href="https://open-aec.com/tr/openaec-installer/">
   <link rel="alternate" hreflang="es" href="https://open-aec.com/es/openaec-installer/">
+  <link rel="alternate" hreflang="de" href="https://open-aec.com/de/openaec-installer/">
   <link rel="alternate" hreflang="x-default" href="https://open-aec.com/en/openaec-installer/">
   <!-- hreflang:end -->
-
-
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
@@ -44,7 +43,8 @@
   <link rel="icon" href="/favicon.ico" sizes="32x32">
   <link rel="icon" type="image/svg+xml" href="/shared/assets/logo/openaec-symbol-v2-transparent.svg">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-  <link rel="stylesheet" href="/shared/style.css?v=20261015">
+  <link rel="stylesheet" href="/shared/style.css?v=20261111">
+  <link rel="stylesheet" href="/shared/productpagina.css?v=20261111">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,18 +54,22 @@
     "applicationSubCategory": "Software installer and launcher",
     "operatingSystem": "Windows, macOS, Linux",
     "url": "https://open-aec.com/openaec-installer/",
-    "downloadUrl": "https://github.com/OpenAEC-Foundation/openaec-installer/releases",
-    "softwareVersion": "0.2.2",
-    "description": "OpenAEC Installer: de centrale hub om alle open source OpenAEC-tools te installeren, bij te werken en te starten. Voor Windows, macOS en Linux.",
+    "downloadUrl": "https://github.com/OpenAEC-Foundation/openaec-installer/releases/latest",
+    "softwareVersion": "2026.47.1",
+    "datePublished": "2026-11-19",
+    "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "description": "Central hub for the open source construction software of the OpenAEC Foundation: discover, install, update and launch every OpenAEC tool from one app. For Windows, macOS and Linux.",
     "featureList": [
-      "Catalogus",
-      "Installatiedetectie",
-      "Updatedetectie",
-      "Eén klik installeren",
-      "Starten",
-      "Webtools in tabbladen",
-      "Werkt zichzelf bij",
-      "Vijf thema’s, twee talen"
+      "Catalogue of the OpenAEC desktop apps and web tools, with filters by status and discipline",
+      "Detects installed tools and their versions (Windows registry, Linux AppImage folder)",
+      "Compares installed versions with the newest release and offers Update all",
+      "One-click install of the official installer from GitHub Releases",
+      "Silent updates in the same kind of setup, after the tool has been closed, with a restart afterwards",
+      "Signature check for tools that publish a signed latest.json",
+      "Launches installed tools",
+      "Web tools in tabs inside the installer",
+      "Updates itself",
+      "Five themes, three text sizes, Dutch and English interface"
     ],
     "screenshot": "https://open-aec.com/shared/assets/screenshots/openaec-installer-overzicht.jpg",
     "offers": {
@@ -75,8 +79,7 @@
       "availability": "https://schema.org/InStock"
     },
     "isAccessibleForFree": true,
-    "license": "https://creativecommons.org/licenses/by-sa/4.0/",
-    "keywords": "OpenAEC, installer, launcher, updater, bouwsoftware, open source",
+    "keywords": "OpenAEC, installer, launcher, updater, construction software, open source",
     "sameAs": [
       "https://github.com/OpenAEC-Foundation/openaec-installer"
     ],
@@ -87,13 +90,57 @@
     }
   }
   </script>
-
-    <style>
-    .tech-chips { margin-bottom: var(--sp-6); justify-content: flex-start; }
-    /* Vijf downloads: twee gecentreerde rijen */
-    #download .download-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
-    #download .download-item { flex: 0 1 300px; }
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wat kost het?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Niets. De OpenAEC Installer en de tools die hij installeert zijn gratis en open source. Er is geen account nodig." }
+      },
+      {
+        "@type": "Question",
+        "name": "Wat doet de Installer precies?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Hij toont alle OpenAEC-tools, ziet welke er al op je computer staan en in welke versie, en zet met één klik de nieuwste officiële installer van GitHub Releases neer. Daarna start je de tools ook vanuit de Installer, en webtools open je in een tabblad." }
+      },
+      {
+        "@type": "Question",
+        "name": "Werkt het op macOS en Linux?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Installeren, bijwerken en starten werkt op Windows, via de officiële installers, en op Linux, via AppImages zonder beheerdersrechten en met een snelkoppeling in het menu. Op macOS werken de catalogus en de webtools; desktop-apps installeren volgt nog." }
+      },
+      {
+        "@type": "Question",
+        "name": "Raak ik werk kwijt bij een update?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Nee. De Installer downloadt en controleert de update terwijl de tool openblijft, en vraagt je hem daarna te sluiten. Hij sluit de tool niet zelf. Stond de tool open, dan start hij hem na de update weer." }
+      },
+      {
+        "@type": "Question",
+        "name": "Hoe weet ik dat een download echt is?",
+        "acceptedAnswer": { "@type": "Answer", "text": "De Installer haalt alleen de officiële bestanden van de GitHub-release van elke tool. Publiceert een tool een ondertekend updatebestand, dan controleert de Installer de handtekening tijdens het downloaden en start hij niets als die ontbreekt of niet klopt." }
+      },
+      {
+        "@type": "Question",
+        "name": "Heb ik beheerdersrechten nodig?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Voor de Installer zelf niet: die installeert alleen voor jou. Een tool die voor alle gebruikers van de computer geïnstalleerd is, vraagt bij bijwerken nog steeds om beheerdersrechten. Op Linux installeert hij tools als AppImage, zonder beheerdersrechten." }
+      },
+      {
+        "@type": "Question",
+        "name": "Onder welke licentie valt de Installer?",
+        "acceptedAnswer": { "@type": "Answer", "text": "De broncode van de Installer valt onder CC BY-SA 4.0. Elke tool die hij installeert heeft zijn eigen licentie; die staat op de productpagina en in de repository van die tool." }
+      }
+    ]
+  }
+  </script>
+  <style>
+    .pp-dl-notes { list-style: none; padding: 0; margin: var(--sp-6) auto 0; display: grid; gap: 10px; text-align: left; }
+    .pp-dl-notes li { color: var(--text-on-dark); font-size: 0.9rem; line-height: 1.6; }
+    .pp-dl-notes strong { color: white; }
+    .pp-dl-notes code { font-family: var(--font-code); font-size: 0.86em; overflow-wrap: anywhere; }
+    .page-panels .feature p a { color: #B45309; font-weight: 600; }
   </style>
+
   <!-- schema:start -->
   <script type="application/ld+json">
   {
@@ -129,7 +176,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "nl",
-        "dateModified": "2026-10-24",
+        "dateModified": "2026-11-19",
         "breadcrumb": {
           "@id": "https://open-aec.com/openaec-installer/#breadcrumb"
         }
@@ -167,183 +214,263 @@
     </button>
     <div class="nav-menu" onclick="if(event.target.closest('a')){this.classList.remove('active');var h=this.parentElement.querySelector('.hamburger');h.classList.remove('active');h.setAttribute('aria-expanded','false');}">
       <ul class="nav-links">
-        <li><a href="/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema">Ecosysteem</a></li>
-        <li><a href="/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta">Roadmap</a></li>
-        <li><a href="/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura">Architectuur</a></li>
-        <li><a href="/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas">Statistieken</a></li>
-        <li><a href="/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias">Nieuws</a></li>
-        <li><a href="/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores">Supporters</a></li>
-        <li><a href="/wij-ondersteunen/" class="nav-link" data-i18n-en="We support" data-i18n-fr="Nous soutenons" data-i18n-tr="Desteklerimiz" data-i18n-es="Apoyamos">Wij steunen</a></li>
-        <li><a href="/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura">Structuur</a></li>
+        <li><a href="/#ecosysteem" class="nav-link" data-i18n-en="Ecosystem" data-i18n-fr="Écosystème" data-i18n-tr="Ekosistem" data-i18n-es="Ecosistema" data-i18n-de="Ökosystem">Ecosysteem</a></li>
+        <li><a href="/roadmap/" class="nav-link" data-i18n-en="Roadmap" data-i18n-fr="Feuille de route" data-i18n-tr="Yol haritası" data-i18n-es="Hoja de ruta" data-i18n-de="Roadmap">Roadmap</a></li>
+        <li><a href="/architectuur/" class="nav-link" data-i18n-en="Architecture" data-i18n-fr="Architecture" data-i18n-tr="Mimari" data-i18n-es="Arquitectura" data-i18n-de="Architektur">Architectuur</a></li>
+        <li><a href="/statistieken/" class="nav-link" data-i18n-en="Statistics" data-i18n-fr="Statistiques" data-i18n-tr="İstatistikler" data-i18n-es="Estadísticas" data-i18n-de="Statistiken">Statistieken</a></li>
+        <li><a href="/nieuws/" class="nav-link" data-i18n-en="News" data-i18n-fr="Actualités" data-i18n-tr="Haberler" data-i18n-es="Noticias" data-i18n-de="Neuigkeiten">Nieuws</a></li>
+        <li><a href="/supporters/" class="nav-link" data-i18n-en="Supporters" data-i18n-fr="Partenaires" data-i18n-tr="Destekçiler" data-i18n-es="Colaboradores" data-i18n-de="Unterstützer">Supporters</a></li>
+        <li><a href="/structuur/" class="nav-link" data-i18n-en="Structure" data-i18n-fr="Structure" data-i18n-tr="Yapı" data-i18n-es="Estructura" data-i18n-de="Struktur">Structuur</a></li>
       </ul>
-      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios">Feedback</span></a>
+      <a href="https://open-feedback-studio.open-aec.com/" class="nav-feedback-btn"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg><span data-i18n-en="Feedback" data-i18n-fr="Commentaires" data-i18n-tr="Geri bildirim" data-i18n-es="Comentarios" data-i18n-de="Feedback">Feedback</span></a>
       <div class="lang-switcher">
         <a class="lang-btn active" data-lang="nl" href="/openaec-installer/" hreflang="nl">NL</a>
         <a class="lang-btn" data-lang="en" href="/en/openaec-installer/" hreflang="en">EN</a>
         <a class="lang-btn" data-lang="fr" href="/fr/openaec-installer/" hreflang="fr">FR</a>
         <a class="lang-btn" data-lang="tr" href="/tr/openaec-installer/" hreflang="tr">TR</a>
         <a class="lang-btn" data-lang="es" href="/es/openaec-installer/" hreflang="es">ES</a>
+        <a class="lang-btn" data-lang="de" href="/de/openaec-installer/" hreflang="de">DE</a>
       </div>
     </div>
   </div>
 </nav>
 <!-- nav:end --></div>
-<script src="/shared/nav.js?v=20261015"></script>
-<script src="/shared/feedback.js?v=20261102" defer></script>
+<script src="/shared/nav.js?v=20261128"></script>
+<script src="/shared/feedback.js?v=20261112" defer></script>
 
   <main id="main">
 
-  <header class="product-head surface-spot">
+  <header class="product-head surface-spot" id="top">
     <div class="product-head-inner">
       <p class="pill-label" data-i18n="header.label">Alle tools op één plek</p>
       <h1 data-i18n="header.title">OpenAEC <span class="accent">Installer</span></h1>
-      <p class="lead" data-i18n="header.desc">De centrale hub voor de open source bouwsoftware van OpenAEC. Ontdek, installeer, werk bij en start alle tools vanuit één app, voor Windows, macOS en Linux.</p>
+      <p class="pp-tagline" data-i18n="header.tagline">Ontdekken, installeren, bijwerken en starten</p>
+      <p class="lead" data-i18n="header.desc">De centrale hub voor de open source bouwsoftware van OpenAEC. Eén app die alle tools kent, ziet wat er al op je computer staat en met één klik de nieuwste officiële versie neerzet of bijwerkt. Voor Windows, macOS en Linux.</p>
       <div class="btn-group">
-        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.title">Download</span></a>
-        <a href="https://github.com/OpenAEC-Foundation/openaec-installer" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="cta.github">Bekijk op GitHub</span></a>
+        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="cta.download">Download</span></a>
+        <a href="#features" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg><span data-i18n="cta.features">Alle functies</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/openaec-installer" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="cta.github">GitHub</span></a>
       </div>
-      <div class="chip-row">
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-rocket"/></svg><span data-i18n="header.badge">Beta</span></span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg>Windows · macOS · Linux</span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chat"/></svg>NL · EN</span>
-        <span class="chip"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-euro"/></svg>€ 0</span>
-      </div>
+      <ul class="chip-row pp-proof">
+        <li class="chip"><span data-i18n="header.proofTools">Desktop-apps en webtools</span></li>
+        <li class="chip"><span>Windows · macOS · Linux</span></li>
+        <li class="chip"><span data-i18n="header.proofLang">Nederlands en Engels</span></li>
+        <li class="chip"><span data-i18n="header.proofFree">Gratis · CC BY-SA 4.0</span></li>
+      </ul>
     </div>
-    <div class="media-slider shot-overlap">
+    <div class="media-slider shot-overlap" data-pp-slider>
       <div class="slider-container">
-        <div class="slider-track" id="sliderTrack">
-          <div class="slider-slide"><img src="/shared/assets/screenshots/openaec-installer-overzicht.jpg" alt="OpenAEC Installer - Overzicht van alle tools met status en versie" width="1920" height="1080"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/openaec-installer-status.jpg" alt="OpenAEC Installer - Gegroepeerd op status: geïnstalleerd en update beschikbaar" width="1920" height="1080"></div>
-          <div class="slider-slide"><img src="/shared/assets/screenshots/openaec-installer-thema.jpg" alt="OpenAEC Installer - Instellingen met vijf thema’s" width="1920" height="1080"></div>
+        <div class="slider-track">
+          <div class="slider-slide"><img src="/shared/assets/screenshots/openaec-installer-overzicht.jpg" width="1920" height="1080" alt="Overzicht van de desktop-apps: per tool een voorbeeld, de status (geïnstalleerd, update beschikbaar of niet geïnstalleerd), de versie en knoppen om te starten, bij te werken of te installeren" data-i18n="slides.overview" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/openaec-installer-status.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Gegroepeerd op status: de geïnstalleerde tools bovenaan, twee daarvan met een update en de oude en nieuwe versie naast elkaar" data-i18n="slides.status" data-i18n-attr="alt"></div>
+          <div class="slider-slide"><img src="/shared/assets/screenshots/openaec-installer-thema.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Instellingen, onderdeel Uiterlijk, met de keuzelijst van de kleurthema's" data-i18n="slides.theme" data-i18n-attr="alt"></div>
         </div>
-        <button class="slider-btn slider-prev" onclick="slideMove(-1)" aria-label="Vorige">&lsaquo;</button>
-        <button class="slider-btn slider-next" onclick="slideMove(1)" aria-label="Volgende">&rsaquo;</button>
+        <button type="button" class="slider-btn slider-prev" aria-label="Vorige afbeelding">&lsaquo;</button>
+        <button type="button" class="slider-btn slider-next" aria-label="Volgende afbeelding">&rsaquo;</button>
       </div>
-      <div class="slider-dots" id="sliderDots"></div>
+      <div class="slider-dots"></div>
     </div>
   </header>
 
-  <section class="section after-overlap" id="download"><div class="container">
-    <div class="download-section">
-      <h3 data-i18n="download.title">Download</h3>
-      <div class="download-grid">
-        <div class="download-item"><div class="os">Windows</div><div class="size" data-i18n="download.windows">Installer (.exe)</div>
-          <a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_x64-setup.exe" data-gh-download="OpenAEC-Foundation/openaec-installer" data-platform="windows" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg>Download</a></div>
-        <div class="download-item"><div class="os">Windows</div><div class="size" data-i18n="download.windowsMsi">MSI-pakket (.msi)</div>
-          <a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_x64_en-US.msi" data-gh-download="OpenAEC-Foundation/openaec-installer" data-platform="windows-msi" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg>Download</a></div>
-        <div class="download-item"><div class="os">macOS</div><div class="size" data-i18n="download.macos">Apple- en Intel-processors (.dmg)</div>
-          <a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_universal.dmg" data-gh-download="OpenAEC-Foundation/openaec-installer" data-platform="macos" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg>Download</a></div>
-        <div class="download-item"><div class="os">Linux</div><div class="size" data-i18n="download.linuxDeb">Debian, Ubuntu (.deb)</div>
-          <a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_amd64.deb" data-gh-download="OpenAEC-Foundation/openaec-installer" data-platform="linux-deb" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg>Download</a></div>
-        <div class="download-item"><div class="os">Linux</div><div class="size" data-i18n="download.linuxAppimage">Elke distributie (AppImage)</div>
-          <a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_amd64.AppImage" data-gh-download="OpenAEC-Foundation/openaec-installer" data-platform="linux-appimage" class="btn btn-primary btn-sm"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg>Download</a></div>
+  <div class="after-overlap pp-notice-wrap">
+    <p class="pp-notice"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg><span data-i18n="notice.text"><strong>Altijd de officiële versie:</strong> de Installer haalt elke tool rechtstreeks van zijn eigen GitHub-release, en controleert de handtekening als de tool die meelevert.</span></p>
+  </div>
+
+  <nav class="pp-subnav" aria-label="Op deze pagina" data-i18n="subnav.label" data-i18n-attr="aria-label">
+    <div class="pp-subnav-inner">
+      <a href="#features" data-i18n="subnav.features">Functies</a>
+      <a href="#download" data-i18n="subnav.download">Download</a>
+      <a href="#whats-new" data-i18n="subnav.whatsnew">Nieuw</a>
+      <a href="#faq" data-i18n="subnav.faq">Vragen</a>
+      <a href="#technology" data-i18n="subnav.tech">Techniek</a>
+      <a href="#releases" data-i18n="subnav.releases">Releases</a>
+    </div>
+  </nav>
+
+  <section class="section pp-anchor" id="features"><div class="container">
+    <div class="section-head"><p class="pill-label" data-i18n="features.label">Functies</p><h2 data-i18n="features.heading">Alle OpenAEC-tools, één app</h2><p data-i18n="features.sub">Begin bij de hoogtepunten of kies een onderwerp.</p></div>
+    <div class="pp-tabs" role="tablist" aria-label="Functies per onderwerp" data-i18n="features.tabsLabel" data-i18n-attr="aria-label" hidden>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-highlights" data-tab="highlights" aria-controls="pp-feature-panel" aria-selected="true" tabindex="0"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg><span data-i18n="tabs.highlights">Hoogtepunten</span> <span class="pp-tab-count" data-count="highlights"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-find" data-tab="find" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg><span data-i18n="tabs.find">Vinden en starten</span> <span class="pp-tab-count" data-count="find"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-update" data-tab="update" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg><span data-i18n="tabs.update">Installeren en bijwerken</span> <span class="pp-tab-count" data-count="update"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-look" data-tab="look" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg><span data-i18n="tabs.look">Weergave</span> <span class="pp-tab-count" data-count="look"></span></button>
+      <button type="button" class="pp-tab" role="tab" id="pp-tab-all" data-tab="all" aria-controls="pp-feature-panel" aria-selected="false" tabindex="-1"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg><span data-i18n="tabs.all">Alle functies</span> <span class="pp-tab-count" data-count="all"></span></button>
+    </div>
+    <div id="pp-feature-panel" role="tabpanel" aria-labelledby="pp-tab-highlights">
+      <div class="pp-hl" data-panel="highlights">
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/openaec-installer-overzicht.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Overzicht van de desktop-apps: per tool een voorbeeld, de status (geïnstalleerd, update beschikbaar of niet geïnstalleerd), de versie en knoppen om te starten, bij te werken of te installeren" data-i18n="slides.overview" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">01</span> <span data-i18n="hl.catalog.kicker">Catalogus</span></p>
+            <h3 data-i18n="hl.catalog.title">Alle tools op één scherm</h3>
+            <p data-i18n="hl.catalog.desc">De desktop-apps en webtools van OpenAEC, elk met een voorbeeld, een korte omschrijving en de status op jouw computer. Filter op geïnstalleerd, op updates of op discipline (Architecture, Engineering, Construction, Infra en GWW), of zoek op naam.</p>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/openaec-installer-status.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Gegroepeerd op status: de geïnstalleerde tools bovenaan, twee daarvan met een update en de oude en nieuwe versie naast elkaar" data-i18n="slides.status" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">02</span> <span data-i18n="hl.updates.kicker">Bijwerken</span></p>
+            <h3 data-i18n="hl.updates.title">Zien wat er bij moet, en alles in één keer bijwerken</h3>
+            <p data-i18n="hl.updates.desc">De Installer vergelijkt de versie op je computer met de nieuwste release en toont beide naast elkaar. Met Alles bijwerken haal je alle updates tegelijk binnen. Op Windows gebeurt dat stil, in dezelfde soort setup als de bestaande installatie, zodat een tool er nooit twee keer op komt.</p>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/openaec-installer-overzicht.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Overzicht van de desktop-apps: per tool een voorbeeld, de status (geïnstalleerd, update beschikbaar of niet geïnstalleerd), de versie en knoppen om te starten, bij te werken of te installeren" data-i18n="slides.overview" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">03</span> <span data-i18n="hl.safe.kicker">Veilig bijwerken</span></p>
+            <h3 data-i18n="hl.safe.title">Geen werk kwijt, geen vreemde bestanden</h3>
+            <p data-i18n="hl.safe.desc">De update wordt gedownload en gecontroleerd terwijl de tool openblijft. Daarna vraagt de Installer je de tool te sluiten; zelf sluit hij hem niet. Na de update start hij hem weer. Levert een tool een ondertekend updatebestand, dan start er niets als de handtekening niet klopt.</p>
+          </div>
+        </article>
+        <article class="pp-hl-row">
+          <figure class="pp-shot"><img src="/shared/assets/screenshots/openaec-installer-thema.jpg" width="1920" height="1080" loading="lazy" decoding="async" alt="Instellingen, onderdeel Uiterlijk, met de keuzelijst van de kleurthema's" data-i18n="slides.theme" data-i18n-attr="alt"></figure>
+          <div class="pp-hl-text">
+            <p class="pp-kicker"><span class="pp-num">04</span> <span data-i18n="hl.look.kicker">Weergave</span></p>
+            <h3 data-i18n="hl.look.title">In de stijl van open-aec.com</h3>
+            <p data-i18n="hl.look.desc">Het donkere vlak en de tegels van deze website, met een uitgelichte tool bovenaan. Kies uit vijf thema's (licht, donker, Blueprint en hoog contrast donker of licht) en drie tekstgroottes, in het Nederlands of het Engels.</p>
+          </div>
+        </article>
       </div>
+      <ul class="pp-tiles">
+        <li class="pp-tile" data-cats="find"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div><div><h3 data-i18n="f.catalog.title">Catalogus</h3><p data-i18n="f.catalog.desc">Alle OpenAEC-tools met omschrijving en categorie: desktop-apps en webtools.</p></div></div></li>
+        <li class="pp-tile" data-cats="find"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div><div><h3 data-i18n="f.filters.title">Filters en zoeken</h3><p data-i18n="f.filters.desc">Op status, op discipline of op naam, zodat je snel vindt wat je zoekt.</p></div></div></li>
+        <li class="pp-tile" data-cats="find"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg></div><div><h3 data-i18n="f.launch.title">Starten</h3><p data-i18n="f.launch.desc">Start een geïnstalleerde tool direct vanuit de Installer.</p></div></div></li>
+        <li class="pp-tile" data-cats="find"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><h3 data-i18n="f.webtabs.title">Webtools in tabbladen</h3><p data-i18n="f.webtabs.desc">Webtools en de webversies van desktop-apps openen in een tabblad in de Installer of in je eigen browser. Open tabbladen worden onthouden.</p></div></div></li>
+        <li class="pp-tile" data-cats="update"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg></div><div><h3 data-i18n="f.detect.title">Installatiedetectie</h3><p data-i18n="f.detect.desc">Ziet welke tools al geïnstalleerd zijn en in welke versie: op Windows via het register, op Linux via de beheerde AppImage-map.</p></div></div></li>
+        <li class="pp-tile" data-cats="update"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div><div><h3 data-i18n="f.install.title">Eén klik installeren</h3><p data-i18n="f.install.desc">De officiële installer van GitHub Releases, passend bij je besturingssysteem en processor.</p></div></div></li>
+        <li class="pp-tile" data-cats="update"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div><div><h3 data-i18n="f.silent.title">Stil bijwerken</h3><p data-i18n="f.silent.desc">Op Windows in dezelfde soort setup, na het sluiten van de tool en met een herstart daarna.</p></div></div></li>
+        <li class="pp-tile" data-cats="update"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div><div><h3 data-i18n="f.signed.title">Handtekening gecontroleerd</h3><p data-i18n="f.signed.desc">Tools met een ondertekend updatebestand worden alleen geïnstalleerd als de handtekening klopt.</p></div></div></li>
+        <li class="pp-tile" data-cats="update"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-layers"/></svg></div><div><h3 data-i18n="f.copies.title">Dubbele en hernoemde tools</h3><p data-i18n="f.copies.desc">Staat een tool er twee keer op, dan worden beide bijgewerkt; een tool met een nieuwe naam wordt ook onder die naam herkend.</p></div></div></li>
+        <li class="pp-tile" data-cats="update"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-rocket"/></svg></div><div><h3 data-i18n="f.self.title">Werkt zichzelf bij</h3><p data-i18n="f.self.desc">De Installer controleert ook zijn eigen versie en werkt zichzelf stil bij.</p></div></div></li>
+        <li class="pp-tile" data-cats="look"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div><div><h3 data-i18n="f.themes.title">Vijf thema's</h3><p data-i18n="f.themes.desc">Licht, donker, Blueprint en hoog contrast donker of licht.</p></div></div></li>
+        <li class="pp-tile" data-cats="look"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-text"/></svg></div><div><h3 data-i18n="f.textsize.title">Drie tekstgroottes</h3><p data-i18n="f.textsize.desc">Compact, standaard of groot.</p></div></div></li>
+        <li class="pp-tile" data-cats="look"><div class="pp-tile-body"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div><div><h3 data-i18n="f.lang.title">Nederlands en Engels</h3><p data-i18n="f.lang.desc">De interface is tweetalig en te wisselen in Instellingen.</p></div></div></li>
+      </ul>
     </div>
   </div></section>
 
-  <section class="section"><div class="container">
-    <div class="panel-split on-light">
-      <div class="panel-split-text">
-        <h2 data-i18n="why.title">Waarom de OpenAEC <span class="accent">Installer</span>?</h2>
+  <section class="section surface-dark panel pp-anchor" id="download" data-pp-repo="OpenAEC-Foundation/openaec-installer">
+    <div class="pp-dl">
+      <p class="pill-label" data-i18n="download.label">Download</p>
+      <h2 data-i18n="download.title" data-pp-ver>Download v2026.47.1</h2>
+      <p class="pp-dl-lead" data-i18n="download.lead">Gratis en zonder account. Elke knop start de download meteen.</p>
+      <div class="pp-dl-main" data-pp-main>
+        <a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v2026.47.1/OpenAEC.Installer_2026.47.1_x64-setup.exe" class="btn btn-glow btn-lg" data-pp-dl="windows" data-pp-primary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.primary">Download voor je computer</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/openaec-installer#readme" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="download.readmeBtn">Lees de README</span></a>
       </div>
-      <div class="panel-split-body">
-        <p data-i18n="why.desc">Het OpenAEC-ecosysteem bestaat uit tientallen tools, elk met een eigen repository en eigen releases. Zelf bijhouden welke versie je hebt en waar de nieuwste staat, kost tijd.</p>
-        <p data-i18n="why.desc2">De Installer doet dat voor je. Hij kent alle tools, ziet wat er al op je computer staat en zet met één klik de nieuwste officiële versie van GitHub neer.</p>
-      </div>
+      <p class="pp-dl-meta"><span data-os="windows" data-i18n="download.metaWindows">Installer voor Windows, 64-bit, zonder beheerdersrechten</span><span data-os="macos" data-i18n="download.metaMac" hidden>Schijfkopie voor Macs met een Apple- of Intel-processor</span><span data-os="linux-appimage" data-i18n="download.metaLinux" hidden>AppImage voor Linux x86-64, draait op de meeste distributies</span><span class="pp-dl-size"> · <span data-pp-primary-size></span></span></p>
+      <p class="pp-dl-mobile" data-pp-mobile hidden data-i18n="download.mobileNote">De OpenAEC Installer is een desktopapplicatie voor Windows, macOS en Linux. Download hem op je computer; alle bestanden staan hieronder.</p>
+      <details class="pp-dl-other" data-pp-other>
+        <summary><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg><span data-i18n="download.other">Andere platforms</span></summary>
+        <div class="pp-files">
+          <div class="pp-files-col"><h3>Windows</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v2026.47.1/OpenAEC.Installer_2026.47.1_x64-setup.exe" data-gh-download="OpenAEC-Foundation/openaec-installer" data-platform="windows" data-pp-dl="windows" data-pp-item="windows"><span class="pp-file"><span data-i18n="download.win.primary">Installer (.exe)</span><span class="pp-file-size"> · <span data-pp-size="windows"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v2026.47.1/OpenAEC.Installer_2026.47.1_x64_en-US.msi" data-gh-download="OpenAEC-Foundation/openaec-installer" data-platform="windows-msi" data-pp-dl="windows-msi"><span class="pp-file"><span data-i18n="download.win.msi">MSI-pakket (.msi)</span><span class="pp-file-size"> · <span data-pp-size="windows-msi"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          </ul></div>
+          <div class="pp-files-col"><h3>macOS</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v2026.47.1/OpenAEC.Installer_2026.47.1_universal.dmg" data-gh-download="OpenAEC-Foundation/openaec-installer" data-platform="macos" data-pp-dl="macos" data-pp-item="macos"><span class="pp-file"><span data-i18n="download.mac.primary">Apple en Intel (.dmg)</span><span class="pp-file-size"> · <span data-pp-size="macos"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          </ul></div>
+          <div class="pp-files-col"><h3>Linux x86-64</h3><ul>
+            <li><a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v2026.47.1/OpenAEC.Installer_2026.47.1_amd64.AppImage" data-gh-download="OpenAEC-Foundation/openaec-installer" data-platform="linux-appimage" data-pp-dl="linux-appimage" data-pp-item="linux-appimage"><span class="pp-file"><span data-i18n="download.linux.appimage">AppImage (elke distributie)</span><span class="pp-file-size"> · <span data-pp-size="linux-appimage"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v2026.47.1/OpenAEC.Installer_2026.47.1_amd64.deb" data-gh-download="OpenAEC-Foundation/openaec-installer" data-platform="linux-deb" data-pp-dl="linux-deb"><span class="pp-file"><span data-i18n="download.linux.deb">.deb (Debian, Ubuntu)</span><span class="pp-file-size"> · <span data-pp-size="linux-deb"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+            <li><a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v2026.47.1/open-aec-installer_2026.47.1_amd64.snap" data-pp-dl="linux-snap"><span class="pp-file"><span data-i18n="download.linux.snap">Snap-pakket (.snap)</span><span class="pp-file-size"> · <span data-pp-size="linux-snap"></span></span></span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></a></li>
+          </ul></div>
+        </div>
+        <ul class="pp-dl-notes">
+          <li data-i18n="download.note.platforms"><strong>Per platform:</strong> installeren, bijwerken en starten werkt op Windows, via de officiële installers, en op Linux, via AppImages zonder beheerdersrechten en met een snelkoppeling in het menu. Op macOS werken de catalogus en de webtools; desktop-apps installeren volgt nog.</li>
+          <li data-i18n="download.note.linux"><strong>Linux:</strong> maak de AppImage één keer uitvoerbaar met <code>chmod +x</code> en start hem daarna.</li>
+        </ul>
+      </details>
+      <p class="pp-dl-note"><a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases" target="_blank" rel="noopener" data-i18n="releases.github">Alle releases op GitHub</a></p>
     </div>
-  </div></section>
+  </section>
 
-  <section class="section surface-dark panel">
+  <section class="section surface-dark panel pp-anchor" id="whats-new">
     <div class="panel-split">
       <div class="panel-split-text">
-        <p class="pill-label">Windows · macOS · Linux</p>
-        <h2 data-i18n="platforms.title">Per platform</h2>
-        <p data-i18n="platforms.desc">De catalogus en de webtools werken overal. Installeren en bijwerken verschilt per besturingssysteem.</p>
+        <p class="pill-label" data-i18n="whatsnew.label">Nieuw in v2026.47.1</p>
+        <h2 data-i18n="whatsnew.title">Dezelfde tools <span>als de website</span></h2>
+        <p data-i18n="whatsnew.desc">Uitgebracht op 19 november 2026. De catalogus volgt nu open-aec.com: alleen de tools die op de website staan, in dezelfde volgorde en met dezelfde namen, omschrijvingen en schermafbeeldingen. Versienummers volgen voortaan jaar.week, zoals bij alle OpenAEC-tools.</p>
+        <div class="btn-group">
+          <a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases/tag/v2026.47.1" target="_blank" rel="noopener" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-document"/></svg><span data-i18n="whatsnew.ctaChangelog">Volledige release notes</span></a>
+        </div>
       </div>
-      <ul class="split-cards">
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-grid"/></svg></div><div><p data-i18n="platforms.win"><strong>Windows</strong> Installeren, bijwerken en starten via de officiële installers van elke tool.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><p data-i18n="platforms.linux"><strong>Linux</strong> Installeren via AppImages, zonder beheerdersrechten en met een snelkoppeling in het menu.</p></div></li>
-        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-globe"/></svg></div><div><p data-i18n="platforms.mac"><strong>macOS</strong> De catalogus en de webtools werken; installeren van desktop-apps volgt nog.</p></div></li>
+      <ul class="split-cards split-cards-2">
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><h4 data-i18n="whatsnew.items.catalog.title">Volgt de website</h4><p data-i18n="whatsnew.items.catalog.desc">Alleen tools van open-aec.com, in dezelfde volgorde. Uitgefaseerde tools, zoals Open 2D Studio en Open Frame Studio, staan er niet meer in.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-bolt"/></svg></div><div><h4 data-i18n="whatsnew.items.newtools.title">Nieuwe tools</h4><p data-i18n="whatsnew.items.newtools.desc">Open BIM Suite, Open Office Studio, Open Paint Studio, Y-app en IFCCAD. Open BIM Validator is nu ook te installeren.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chip"/></svg></div><div><h4 data-i18n="whatsnew.items.suite.title">De juiste app uit een suite</h4><p data-i18n="whatsnew.items.suite.desc">Levert een release de setups van meerdere apps, zoals Open Office Studio, dan kiest de Installer de setup van de app zelf.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div><div><h4 data-i18n="whatsnew.items.renamed.title">Nieuwe naam, zelfde tool</h4><p data-i18n="whatsnew.items.renamed.desc">Een geïnstalleerde tool met een oude naam wordt herkend en onder de nieuwe naam bijgewerkt, zoals Open 3D Viewer Studio, dat nu Open BIM Suite heet.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div><div><h4 data-i18n="whatsnew.items.calver.title">Jaar.week</h4><p data-i18n="whatsnew.items.calver.desc">Versienummers volgen het schema van OpenAEC-Blueprint: 2026.47.1 is de tweede release in week 47 van 2026.</p></div></li>
+        <li class="split-card"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div><div><h4 data-i18n="whatsnew.items.signed.title">Ondertekend</h4><p data-i18n="whatsnew.items.signed.desc">De Windows-installers zijn ondertekend via Azure Trusted Signing, de Mac-versie is genotariseerd bij Apple.</p></div></li>
       </ul>
     </div>
   </section>
 
-  <section class="section"><div class="container">
-    <h2 data-i18n="features.title">Functionaliteiten</h2>
-    <div class="features features-4">
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-folder"/></svg></div>
-        <h4 data-i18n="features.catalog.title">Catalogus</h4>
-        <p data-i18n="features.catalog.desc">Alle OpenAEC-tools met omschrijving en categorie: desktop-apps én webtools.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-check"/></svg></div>
-        <h4 data-i18n="features.detect.title">Installatiedetectie</h4>
-        <p data-i18n="features.detect.desc">Ziet welke tools al geïnstalleerd zijn en welke versie. Op Windows via het register, op Linux via de beheerde AppImage-map.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-history"/></svg></div>
-        <h4 data-i18n="features.updates.title">Updatedetectie</h4>
-        <p data-i18n="features.updates.desc">Vergelijkt de geïnstalleerde versie met de laatste release op GitHub en laat zien waar een update klaarstaat.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg></div>
-        <h4 data-i18n="features.install.title">Eén klik installeren</h4>
-        <p data-i18n="features.install.desc">Downloadt de officiële installer van GitHub Releases en start hem. Bijwerken gaat op dezelfde manier.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-play"/></svg></div>
-        <h4 data-i18n="features.launch.title">Starten</h4>
-        <p data-i18n="features.launch.desc">Start geïnstalleerde tools direct vanuit de Installer.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div>
-        <h4 data-i18n="features.webtabs.title">Webtools in tabbladen</h4>
-        <p data-i18n="features.webtabs.desc">Webtools en de webversies van desktop-apps draaien in tabbladen binnen de Installer. Open tabbladen worden onthouden.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-rocket"/></svg></div>
-        <h4 data-i18n="features.selfupdate.title">Werkt zichzelf bij</h4>
-        <p data-i18n="features.selfupdate.desc">De Installer controleert ook zijn eigen versie en werkt zichzelf bij met één klik.</p>
-      </div>
-      <div class="feature">
-        <div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-sliders"/></svg></div>
-        <h4 data-i18n="features.themes.title">Vijf thema’s, twee talen</h4>
-        <p data-i18n="features.themes.desc">In de OpenAEC-huisstijl met de thema’s licht, Forge, OpenAEC, Blueprint en hoog contrast, in het Nederlands en het Engels.</p>
-      </div>
+  <section class="section pp-anchor" id="faq"><div class="container">
+    <h2 data-i18n="faq.heading">Veelgestelde vragen</h2>
+    <div class="pp-faq-list">
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.cost.q">Wat kost het?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.cost.a">Niets. De OpenAEC Installer en de tools die hij installeert zijn gratis en open source. Er is geen account nodig.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.what.q">Wat doet de Installer precies?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.what.a">Hij toont alle OpenAEC-tools, ziet welke er al op je computer staan en in welke versie, en zet met één klik de nieuwste officiële installer van GitHub Releases neer. Daarna start je de tools ook vanuit de Installer, en webtools open je in een tabblad.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.platforms.q">Werkt het op macOS en Linux?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.platforms.a">Installeren, bijwerken en starten werkt op Windows, via de officiële installers, en op Linux, via AppImages zonder beheerdersrechten en met een snelkoppeling in het menu. Op macOS werken de catalogus en de webtools; desktop-apps installeren volgt nog.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.work.q">Raak ik werk kwijt bij een update?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.work.a">Nee. De Installer downloadt en controleert de update terwijl de tool openblijft, en vraagt je hem daarna te sluiten. Hij sluit de tool niet zelf. Stond de tool open, dan start hij hem na de update weer.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.trust.q">Hoe weet ik dat een download echt is?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.trust.a">De Installer haalt alleen de officiële bestanden van de GitHub-release van elke tool. Publiceert een tool een ondertekend updatebestand, dan controleert de Installer de handtekening tijdens het downloaden en start hij niets als die ontbreekt of niet klopt.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.admin.q">Heb ik beheerdersrechten nodig?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.admin.a">Voor de Installer zelf niet: die installeert alleen voor jou. Een tool die voor alle gebruikers van de computer geïnstalleerd is, vraagt bij bijwerken nog steeds om beheerdersrechten. Op Linux installeert hij tools als AppImage, zonder beheerdersrechten.</p></div>
+      </details>
+      <details class="pp-faq-item">
+        <summary><span data-i18n="faq.license.q">Onder welke licentie valt de Installer?</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-chevron-down"/></svg></summary>
+        <div class="pp-faq-a"><p data-i18n="faq.license.a">De broncode van de Installer valt onder CC BY-SA 4.0. Elke tool die hij installeert heeft zijn eigen licentie; die staat op de productpagina en in de repository van die tool.</p></div>
+      </details>
     </div>
   </div></section>
 
-  <section class="section"><div class="container">
-    <div class="panel-split on-light">
-      <div class="panel-split-text">
-        <h2 data-i18n="tech.title">Technologie</h2>
-      </div>
-      <div class="panel-split-body">
-        <div class="chip-row chip-row-light tech-chips">
-          <span class="chip">Tauri 2</span>
-          <span class="chip">Rust</span>
-          <span class="chip">React</span>
-          <span class="chip">TypeScript</span>
-          <span class="chip">GitHub Releases</span>
-          <span class="chip">AppImage</span>
-        </div>
-        <p data-i18n="tech.desc">Gebouwd met Tauri 2: een Rust-backend die downloads, installaties en de versiecontrole afhandelt, met een React- en TypeScript-interface in de OpenAEC-huisstijl.</p>
-      </div>
+  <section class="section pp-anchor" id="technology"><div class="container">
+    <div class="section-head"><h2 data-i18n="tech.heading">Techniek en licentie</h2><p data-i18n="tech.sub">Voor wie wil weten hoe het gebouwd is.</p></div>
+    <div class="features features-compact">
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-cube"/></svg></div><div><h4 data-i18n="tech.tauri.title">Tauri 2 en Rust</h4><p data-i18n="tech.tauri.desc">Een Rust-kern handelt downloads, installaties, de versiecontrole en de handtekeningen af.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-viewport"/></svg></div><div><h4 data-i18n="tech.ui.title">React en TypeScript</h4><p data-i18n="tech.ui.desc">De interface volgt ontwerp 0.4 van OpenAEC-Blueprint, met de tokens, lettertypen en iconen van de huisstijl.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-link"/></svg></div><div><h4 data-i18n="tech.releases.title">GitHub Releases</h4><p data-i18n="tech.releases.desc">De versies komen uit één releasebestand; is dat er niet, dan vraagt de Installer ze bij GitHub zelf op.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-rocket"/></svg></div><div><h4 data-i18n="tech.plugin.title">Voor app-makers</h4><p data-i18n="tech.plugin.desc">Een Tauri-plug-in en een release-kit laten een OpenAEC-app zijn updates via de Installer afhandelen, met ondertekende updatebestanden.</p></div></div>
+      <div class="feature"><div class="icon-tile"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-shield"/></svg></div><div><h4 data-i18n="tech.license.title">CC BY-SA 4.0</h4><p data-i18n="tech.license.desc">De <a href="https://github.com/OpenAEC-Foundation/openaec-installer" target="_blank" rel="noopener">broncode</a> staat op GitHub, met de issues voor een probleem of een wens.</p></div></div>
     </div>
   </div></section>
 
   <!-- Release Notes (shared component) -->
+  <section id="releases" class="pp-releases">
   <div data-release-notes="openaec-installer"></div>
-  <script src="/shared/release-notes.js?v=20261105"></script>
+  <p class="pp-rel-more">
+    <button type="button" class="btn btn-secondary" data-rel-toggle aria-expanded="false" hidden><span data-rel-show data-i18n="releases.showAll">Toon alle releases</span><span data-rel-hide hidden data-i18n="releases.showLess">Toon alleen de laatste drie</span></button>
+    <a href="https://github.com/OpenAEC-Foundation/openaec-installer/releases" target="_blank" rel="noopener"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="releases.github">Alle releases op GitHub</span></a>
+  </p>
+  </section>
+  <script src="/shared/release-notes.js?v=20261112"></script>
+  <script src="/shared/productpagina.js?v=20261112"></script>
 
   <section class="section surface-spot panel">
     <div class="panel-center">
       <h2 data-i18n="header.title">OpenAEC <span class="accent">Installer</span></h2>
+      <p data-i18n="final.desc">Eén download, en je hebt alle OpenAEC-tools binnen handbereik.</p>
       <div class="btn-group">
-        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="download.title">Download</span></a>
-        <a href="https://github.com/OpenAEC-Foundation/openaec-installer" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-star"/></svg><span data-i18n="cta.github">Bekijk op GitHub</span></a>
+        <a href="#download" class="btn btn-glow btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-download"/></svg><span data-i18n="cta.download">Download</span></a>
+        <a href="https://github.com/OpenAEC-Foundation/openaec-installer" target="_blank" rel="noopener" class="btn btn-glass btn-lg"><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-external"/></svg><span data-i18n="cta.github">GitHub</span></a>
       </div>
+      <p><a href="/#ecosysteem" class="pp-more"><span data-i18n="cta.related">Bekijk alle tools op de homepage</span><svg class="ico" aria-hidden="true"><use href="/shared/icons.svg?v=20261016#i-arrow-right"/></svg></a></p>
     </div>
   </section>
 
@@ -355,38 +482,29 @@
     <div class="site-footer-grid">
       <div class="site-footer-about">
         <a href="/" class="nav-brand" aria-label="OpenAEC — home"><img class="nav-logo" src="/shared/assets/logo/openaec-symbol-v2-transparent.svg" alt="" width="28" height="32"><span class="nav-word">Open<span class="accent">AEC</span></span></a>
-        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión.">Open source software voor de volledige AEC-keten (bouw, utiliteit, GWW en civiele techniek) — van ontwerp tot oplevering en beheer.</p>
+        <p data-i18n-en="Open source software for the entire AEC chain (buildings, infrastructure, civil engineering) — from design to delivery and management." data-i18n-fr="Logiciels open source pour toute la chaîne AEC (bâtiment, infrastructure, génie civil) — de la conception à la livraison et à la gestion." data-i18n-tr="Tüm AEC zinciri (bina, altyapı, inşaat mühendisliği) için açık kaynak yazılım — tasarımdan teslime ve yönetime kadar." data-i18n-es="Software de código abierto para toda la cadena AEC (edificación, infraestructuras, ingeniería civil) — desde el diseño hasta la entrega y la gestión." data-i18n-de="Open-Source-Software für die gesamte AEC-Kette (Hochbau, Infrastruktur, Ingenieurbau) — vom Entwurf bis zu Übergabe und Betrieb.">Open source software voor de volledige AEC-keten (bouw, utiliteit, GWW en civiele techniek) — van ontwerp tot oplevering en beheer.</p>
       </div>
       <nav class="site-footer-col" aria-label="Pagina's">
-        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas">Pagina's</h4>
-        <a href="/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros">Over ons</a>
+        <h4 data-i18n-en="Pages" data-i18n-fr="Pages" data-i18n-tr="Sayfalar" data-i18n-es="Páginas" data-i18n-de="Seiten">Pagina's</h4>
+        <a href="/over-ons.html" data-i18n-en="About us" data-i18n-fr="À propos" data-i18n-tr="Hakkımızda" data-i18n-es="Sobre nosotros" data-i18n-de="Über uns">Over ons</a>
         <a href="/ifcx/">IFCX</a>
-        <a href="/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto">Offerte aanvragen</a>
-        <a href="/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes">FAQ</a>
-        <a href="/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal">Disclaimer</a>
-        <a href="/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos">Concept statuten</a>
-        <a href="/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos">Credits</a>
-        <a href="/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones">Beleid & standpunten</a>
-        <a href="/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales">Socials</a>
-      </nav>
-      <nav class="site-footer-col" aria-label="Meer tools">
-        <h4 data-i18n-en="More tools" data-i18n-fr="Plus d'outils" data-i18n-tr="Daha fazla araç" data-i18n-es="Más herramientas">Meer tools</h4>
-        <a href="/open-energy-studio/">Open Energy Studio</a>
-        <a href="/open-safety-studio/">Open Safety Studio</a>
-        <a href="/open-3d-viewer/">Open 3D Viewer</a>
-        <a href="/open-books/">OpenBooks</a>
-        <a href="/openaec-cloud/">SuperCloud</a>
-        <a href="/openaec-docs/">OpenAEC Docs</a>
-        <a href="/ext-drawing-statistics/">Drawing Statistics</a>
-        <a href="/y-app/">Y-app</a>
+        <a href="/offerte/" data-i18n-en="Request quote" data-i18n-fr="Demander un devis" data-i18n-tr="Teklif iste" data-i18n-es="Solicitar presupuesto" data-i18n-de="Angebot anfordern">Offerte aanvragen</a>
+        <a href="/faq/" data-i18n-en="FAQ" data-i18n-fr="FAQ" data-i18n-tr="SSS" data-i18n-es="Preguntas frecuentes" data-i18n-de="FAQ">FAQ</a>
+        <a href="/wiki/" data-i18n-en="Wiki" data-i18n-fr="Wiki" data-i18n-tr="Wiki" data-i18n-es="Wiki" data-i18n-de="Wiki">Wiki</a>
+        <a href="/academy/" data-i18n-en="Academy" data-i18n-fr="Academy" data-i18n-tr="Academy" data-i18n-es="Academy" data-i18n-de="Academy">Academy</a>
+        <a href="/disclaimer/" data-i18n-en="Disclaimer" data-i18n-fr="Avertissement" data-i18n-tr="Sorumluluk reddi" data-i18n-es="Aviso legal" data-i18n-de="Haftungsausschluss">Disclaimer</a>
+        <a href="/statuten/" data-i18n-en="Draft statutes" data-i18n-fr="Projet de statuts" data-i18n-tr="Taslak tüzük" data-i18n-es="Borrador de estatutos" data-i18n-de="Satzungsentwurf">Concept statuten</a>
+        <a href="/credits/" data-i18n-en="Credits" data-i18n-fr="Crédits" data-i18n-tr="Teşekkürler" data-i18n-es="Créditos" data-i18n-de="Credits">Credits</a>
+        <a href="/beleid/" data-i18n-en="Policy &amp; positions" data-i18n-fr="Politique &amp; positions" data-i18n-tr="Politika &amp; duruşlar" data-i18n-es="Política y posiciones" data-i18n-de="Grundsätze &amp; Positionen">Beleid & standpunten</a>
+        <a href="/socials/" data-i18n-en="Socials" data-i18n-fr="Réseaux sociaux" data-i18n-tr="Sosyal medya" data-i18n-es="Redes sociales" data-i18n-de="Social Media">Socials</a>
       </nav>
       <div class="site-footer-col">
-        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución">Stichting i.o.</h4>
-        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos">Nederland</span></p>
+        <h4 data-i18n-en="Foundation i.f." data-i18n-fr="Fondation en cours de constitution" data-i18n-tr="Kuruluş aşamasında vakıf" data-i18n-es="Fundación en constitución" data-i18n-de="Stiftung i. G.">Stichting i.o.</h4>
+        <p>Burgemeester de Raadtsingel 31<br>3311 JG Dordrecht<br><span data-i18n-en="The Netherlands" data-i18n-fr="Pays-Bas" data-i18n-tr="Hollanda" data-i18n-es="Países Bajos" data-i18n-de="Niederlande">Nederland</span></p>
       </div>
     </div>
     <div class="site-footer-bottom">
-      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras">© 2026 Open AEC Foundation i.o. — Open source voor een open bouw- en infrasector</p>
+      <p data-i18n-en="© 2026 Open AEC Foundation i.f. — Open source for an open construction &amp; infrastructure industry" data-i18n-fr="© 2026 Open AEC Foundation, en cours de constitution — L'open source pour un secteur ouvert de la construction et de l'infrastructure" data-i18n-tr="© 2026 Open AEC Foundation (kuruluş aşamasında) — Açık inşaat ve altyapı sektörü için açık kaynak" data-i18n-es="© 2026 Open AEC Foundation i.f. — Código abierto para un sector abierto de la construcción y las infraestructuras" data-i18n-de="© 2026 Open AEC Foundation i. G. — Open Source für eine offene Bau- und Infrastrukturbranche">© 2026 Open AEC Foundation i.o. — Open source voor een open bouw- en infrasector</p>
       <div class="footer-socials">
         <a href="https://github.com/OpenAEC-Foundation" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg></a>
           <a href="https://www.linkedin.com/company/openaec-foundation-io" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
@@ -402,29 +520,7 @@
   </div>
 </footer>
 <!-- footer:end --></div>
-
-  <script>
-  (function(){
-    const track = document.getElementById('sliderTrack');
-    const dots = document.getElementById('sliderDots');
-    if (!track || !dots) return;
-    const slides = track.children.length;
-    let current = 0;
-    for(let i=0;i<slides;i++){
-      const d = document.createElement('button');
-      d.className = 'slider-dot' + (i===0?' active':'');
-      d.onclick = ()=>slideTo(i);
-      dots.appendChild(d);
-    }
-    window.slideMove = function(dir){slideTo(current+dir);};
-    window.slideTo = function(i){
-      current = (i+slides)%slides;
-      track.style.transform = 'translateX(-'+current*100+'%)';
-      dots.querySelectorAll('.slider-dot').forEach((d,idx)=>d.classList.toggle('active',idx===current));
-    };
-  })();
-  </script>
-<script src="/shared/downloads.js?v=20261015"></script>
-<script src="/shared/i18n.js?v=20261105"></script>
+  <script src="/shared/downloads.js?v=20261015"></script>
+  <script src="/shared/i18n.js?v=20261105"></script>
 </body>
 </html>

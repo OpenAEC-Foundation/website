@@ -49,7 +49,7 @@
  * omschrijving. stats.json bewaart `pushed_at` niet.
  *
  * Inputs:  data/stats.json, data/downloads.json, data/release-notes/*.json
- * Outputs: de tools-grid in index.html en en/ fr/ tr/ es/ index.html
+ * Outputs: de tools-grid in index.html en en/ fr/ tr/ es/ de/ index.html
  *
  * Draaien: `node scripts/build-ecosystem-order.js`
  *          `node scripts/build-ecosystem-order.js --dry-run`  (alleen tonen)
@@ -61,19 +61,24 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.resolve(__dirname, '..');
-const PAGES = ['index.html', 'en/index.html', 'fr/index.html', 'tr/index.html', 'es/index.html'];
+const PAGES = ['index.html', 'en/index.html', 'fr/index.html', 'tr/index.html', 'es/index.html', 'de/index.html'];
 
 // Kaarten met een vaste plek (1 = bovenaan); de rest vult de overige plekken
 // op volgorde van score.
-// - openCad: Open CAD Studio is de uitgelichte tool en staat bovenaan.
+// - openBimSuite: Open BIM Suite (Viewer, Modeller en BIM Validator in
+//   één programma) staat bovenaan (besluit 13-11-2026). De losse builds Open
+//   BIM Modeller en Open BIM Validator hebben geen vaste plek en staan
+//   lager, bij de andere tools die nog niet uit zijn (besluit 14-11-2026).
+// - openCad: Open CAD Studio is de uitgelichte tool en staat direct erachter, op 2.
 // - openInfra: Open Infra Studio is een plugin voor Open CAD Studio (de tabs
-//   GIS en Civiel in zijn lint) en staat daarom direct erachter, op 2.
+//   GIS en Civiel in zijn lint) en staat daarom direct erachter, op 3.
 // - yapp: handmatig op 6 gezet. Y-app is een privé-repo, dus sterren,
 //   commits en downloads zijn er niet (publiek) te meten; de score leunt
 //   daardoor op te weinig gegevens om de plek zelf te bepalen.
 const PINNED = new Map([
-  ['openCad', 1],
-  ['openInfra', 2],
+  ['openBimSuite', 1],
+  ['openCad', 2],
+  ['openInfra', 3],
   ['openCalculations', 5],
   ['yapp', 6],
 ]);
@@ -87,6 +92,10 @@ const PINNED = new Map([
 // pijplijn draait. Het downloadgewicht valt voor deze repo's uit de weging;
 // de score komt dan uit versie, releases en activiteit.
 const SKIP_DOWNLOADS = new Set(['y-app']);
+
+// Kaarten die bewust onderaan staan, wat hun score ook is. Open Speech Studio:
+// minder belangrijk geworden voor het ecosysteem (besluit 11-11-2026).
+const BOTTOM = new Set(['openSpeech']);
 
 // ── data ───────────────────────────────────────────────────────────────────
 
@@ -345,6 +354,11 @@ const free = scored
     return b.total - a.total;
   })
   .map((c) => c.key);
+// De kaarten uit BOTTOM achteraan, na de kaarten zonder meetbare data.
+for (const key of BOTTOM) {
+  if (!free.includes(key)) throw new Error(`onderaan-kaart "${key}" staat niet in het grid`);
+  free.push(...free.splice(free.indexOf(key), 1));
+}
 
 const pinnedByPos = new Map([...PINNED].map(([key, pos]) => [pos, key]));
 const order = [];
@@ -364,7 +378,7 @@ console.log('  #  score  tool                       repo');
 order.forEach((key, i) => {
   const c = byKey.get(key);
   const score = c.total == null ? '  —  ' : c.total.toFixed(3);
-  const pin = PINNED.has(key) ? ' (vast)' : '';
+  const pin = PINNED.has(key) ? ' (vast)' : BOTTOM.has(key) ? ' (onderaan)' : '';
   console.log(`${String(i + 1).padStart(3)}  ${score}  ${key.padEnd(18)} ${(c.repo || '—').padEnd(26)}${pin}`);
 });
 

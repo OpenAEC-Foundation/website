@@ -6,19 +6,19 @@
 **License:** MPL-2.0
 **Platforms:** Linux
 **Category:** BIM Modelling
-**Current version:** v0.1.1 (2026-10-23)
+**Current version:** v2026.47.0 (2026-11-18)
 **Tool ID:** `open-bim-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-bim-studio`
 
 ## Live stats
 
-- Stars: **11**
-- Commits: **796**
-- Forks: **4**
-- Open issues: **48**
-- Releases: **2**
-- Total downloads: **257**
-- Downloads by platform: Archive (186), Other (71)
+- Stars: **30**
+- Commits: **1052**
+- Forks: **5**
+- Open issues: **54**
+- Releases: **3**
+- Total downloads: **547**
+- Downloads by platform: Archive (348), Other (199)
 
 ## Key features
 
@@ -54,18 +54,18 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 
 - Product page: https://open-aec.com/open-bim-studio/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-bim-studio
-- Latest release: https://github.com/OpenAEC-Foundation/open-bim-studio/releases/tag/v0.1.1
+- Latest release: https://github.com/OpenAEC-Foundation/open-bim-studio/releases/tag/v2026.47.0
 
 ## Direct downloads (most popular)
 
 - [Archive · Open-BIM-Studio-0.1-source.tar.gz](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1/Open-BIM-Studio-0.1-source.tar.gz) (v0.1 — 23.5 MB)
 - [Other · Open-BIM-Studio-0.1.1-linux-x86_64.run](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/Open-BIM-Studio-0.1.1-linux-x86_64.run) (v0.1.1 — 5.8 MB)
-- [Other · RELEASE-NOTES.txt](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/RELEASE-NOTES.txt) (v0.1.1)
-- [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/SHA256SUMS) (v0.1.1)
+- [Other · Open-BIM-Studio-2026.47.0-linux-x86_64.run](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v2026.47.0/Open-BIM-Studio-2026.47.0-linux-x86_64.run) (v2026.47.0 — 5.9 MB)
 - [Archive · Open-BIM-Studio-0.1.1-source.tar.gz](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/Open-BIM-Studio-0.1.1-source.tar.gz) (v0.1.1 — 4.4 MB)
+- [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/SHA256SUMS) (v0.1.1)
+- [Other · RELEASE-NOTES.txt](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/RELEASE-NOTES.txt) (v0.1.1)
 - [Other · VERIFICATION.txt](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/VERIFICATION.txt) (v0.1.1)
-- [Other · Demo-Pavilion.ifcxb](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1/Demo-Pavilion.ifcxb) (v0.1 — 10.5 MB)
-- [Other · RELEASE-NOTES.txt](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1/RELEASE-NOTES.txt) (v0.1)
+- [Other · Open-BIM-Studio-0.1-linux-x86_64.run](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1/Open-BIM-Studio-0.1-linux-x86_64.run) (v0.1 — 5.6 MB)
 
 ---
 

@@ -23,7 +23,7 @@ test('the page the QR code points to exists and is canonical', () => {
 });
 
 test('every contact card linked from the page exists', () => {
-  for (const lang of ['', 'en', 'fr', 'tr', 'es']) {
+  for (const lang of ['', 'en', 'fr', 'tr', 'es', 'de']) {
     const html = read(lang, 'socials', 'index.html');
     for (const [, href] of html.matchAll(/href="(\/socials\/[^"]+\.vcf)"/g)) {
       const vcf = read(...href.split('/').filter(Boolean));

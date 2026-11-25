@@ -75,7 +75,7 @@ Roadmap: https://open-aec.com/roadmap/ · Machine-readable catalog: https://open
 ### In development
 - [IFCX](https://open-aec.com/ifcx/) — The open data format of the OpenAEC ecosystem (see below).
 - [IFCCAD](https://open-aec.com/ifccad/) — Open CAD format using IFCX, with a native alpha, dimensions and DWG/DXF exchange through the Format Explorer (see below).
-- Open Office Studio — Open source word processor, spreadsheet and presentations in the OpenAEC style. GitHub: https://github.com/OpenAEC-Foundation/open-office-studio
+- [Open Office Studio](https://open-aec.com/open-office-studio/) — Open-source office suite: documents, spreadsheets, presentations, notes, Access databases and email in one desktop app, without an account or telemetry. Development releases.
 - Open FEM Studio — Finite elements for frames and plates in 2D and 3D, with Eurocode checks. First release v2026.44.0. GitHub: https://github.com/OpenAEC-Foundation/open-fem-studio
 - [OpenAEC SuperCloud](https://open-aec.com/openaec-cloud/) — Own cloud, account and sign-in for the whole OpenAEC ecosystem. Self-hosted and open.
 
@@ -162,7 +162,7 @@ Last updated: 2026-11-04
 Forks of external projects are excluded from these numbers: they are not our own software.
 
 Available in five languages, each on its own URL:
-Dutch at https://open-aec.com/, English at /en/, French at /fr/, Turkish at /tr/, Spanish at /es/.
+Dutch at https://open-aec.com/, English at /en/, French at /fr/, Turkish at /tr/, Spanish at /es/, German at /de/.
 <!-- stats:end -->
 
 ---

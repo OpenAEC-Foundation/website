@@ -39,7 +39,7 @@ function dialog(pathname = '/ifccad/', language = 'nl', response = {}) {
 }
 
 test('IFCCAD discloses public GitHub publication in every supported language', () => {
-  for (const language of ['nl', 'en', 'fr', 'tr', 'es']) {
+  for (const language of ['nl', 'en', 'fr', 'tr', 'es', 'de']) {
     const page = dialog(`/${language === 'nl' ? '' : language + '/'}ifccad/`, language);
     assert.equal(page.nodes.get('#fb-app').value, 'ifccad');
     assert.match(page.nodes.get('.fb-note-text').innerHTML, /GitHub/);

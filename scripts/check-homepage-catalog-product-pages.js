@@ -24,6 +24,7 @@ assert.ok(
 );
 
 const retiredHomepageRepos = [
+  'OpenAEC-BIM-validator',
   'open-2d-studio',
   'openaec-cloud',
   'openaec-docs',

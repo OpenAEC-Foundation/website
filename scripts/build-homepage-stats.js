@@ -22,14 +22,6 @@ if (fs.existsSync(downloadsPath)) {
   (dl.rankedByDownloads || []).forEach(r => { downloadMap[r.repo.toLowerCase()] = r.downloads; });
 }
 
-function formatVersion(tag) {
-  if (!tag) return null;
-  const m = tag.match(/v?(\d+)\.(\d+)/);
-  return m ? `v${m[1]}.${m[2]}` : tag;
-}
-
-const ICON_COMMIT = '<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><circle cx="8" cy="8" r="3"/></svg>';
-const ICON_VERSION = '<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M2 2h4l1 1v4l-1 1H2L1 7V3l1-1zm7 7h4l1 1v4l-1 1H9l-1-1v-4l1-1z"/></svg>';
 const ICON_STAR = '<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .25a.75.75 0 01.673.418l1.882 3.815 4.21.612a.75.75 0 01.416 1.279l-3.046 2.97.719 4.192a.75.75 0 01-1.088.791L8 12.347l-3.766 1.98a.75.75 0 01-1.088-.79l.72-4.194L.818 6.374a.75.75 0 01.416-1.28l4.21-.611L7.327.668A.75.75 0 018 .25z"/></svg>';
 const ICON_DOWNLOAD = '<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M7.25 1.75a.75.75 0 011.5 0v6.69l2.22-2.22a.75.75 0 111.06 1.06l-3.5 3.5a.75.75 0 01-1.06 0l-3.5-3.5a.75.75 0 111.06-1.06l2.22 2.22V1.75zM2.75 12.5a.75.75 0 000 1.5h10.5a.75.75 0 000-1.5H2.75z"/></svg>';
 const ICON_DATE = '<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M4 1.5a.5.5 0 011 0V2h6v-.5a.5.5 0 011 0V2h1a1 1 0 011 1v11a1 1 0 01-1 1H3a1 1 0 01-1-1V3a1 1 0 011-1h1v-.5zM2 5v9h12V5H2z"/></svg>';
@@ -55,13 +47,7 @@ function downloadsChip(count) {
 function buildStatsHtml(repo, downloads) {
   const parts = [];
   if (downloads > 0) parts.push(downloadsChip(downloads));
-  if (repo.commits != null && repo.commits > 0) {
-    parts.push(`<span class="tool-stat">${ICON_COMMIT} ${repo.commits} commits</span>`);
-  }
-  const ver = formatVersion(repo.latestRelease);
-  if (ver) {
-    parts.push(`<span class="tool-stat">${ICON_VERSION} ${ver}</span>`);
-  }
+  // Commits en versienummers (waaronder nightly) staan bewust niet meer op de tegels: rustiger (besluit 11-11-2026).
   if (repo.stars != null && repo.stars > 0) {
     parts.push(`<span class="tool-stat">${ICON_STAR} ${repo.stars}</span>`);
   }
@@ -85,9 +71,9 @@ let updates = 0;
 
 // Find each <article class="tool-card" data-repo="..."> and inject/replace tool-stats
 // We use a regex that matches the entire article block from <article ...> to </article>
-const articleRegex = /<article class="tool-card"([^>]*?)data-repo="([^"]+)"([^>]*)>([\s\S]*?)<\/article>/g;
+const articleRegex = /<article class="tool-card( is-soon)?"([^>]*?)data-repo="([^"]+)"([^>]*)>([\s\S]*?)<\/article>/g;
 
-html = html.replace(articleRegex, (match, before, repoName, after, inner) => {
+html = html.replace(articleRegex, (match, soon, before, repoName, after, inner) => {
   // Open CAD Studio is an external repo whose card updates itself live in the
   // browser (data-ocs-* + fetch). Leave it untouched so we don't wipe those.
   const repo = repoMap[repoName.toLowerCase()];
@@ -116,7 +102,7 @@ html = html.replace(articleRegex, (match, before, repoName, after, inner) => {
     }
   }
 
-  return `<article class="tool-card"${before}data-repo="${repoName}"${after}>${newInner}</article>`;
+  return `<article class="tool-card${soon || ''}"${before}data-repo="${repoName}"${after}>${newInner}</article>`;
 });
 
 // Open CAD Studio (class "tool-card tool-card-featured", so not matched above)

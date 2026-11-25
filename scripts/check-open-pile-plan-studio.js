@@ -15,7 +15,7 @@ assert.ok(homepage.includes('data-repo="pile-plan-studio"'), 'homepage mist de r
 assert.ok(homepage.includes('href="/open-pile-plan-studio/"'), 'homepage mist de productpaginalink');
 assert.ok(homepage.includes('https://pile-plan-studio.open-aec.com/'), 'homepage mist de live demo');
 assert.ok(homepage.includes('"name": "Open Pile Plan Studio"'), 'homepage mist de nieuwe productnaam');
-assert.equal((homepage.match(/openPilePlan:\s*\{/g) || []).length, 5, 'homepage mist één of meer taalitems');
+assert.equal((homepage.match(/openPilePlan:\s*\{/g) || []).length, 6, 'homepage mist één of meer taalitems');
 
 assert.ok(exists('open-pile-plan-studio/index.html'), 'productpagina ontbreekt');
 includes('open-pile-plan-studio/index.html', '<title>Open Pile Plan Studio — OpenAEC Foundation</title>');
@@ -36,7 +36,7 @@ includes(
   'open-pile-plan-studio/index.html',
   '<h1 data-i18n="header.title">Open <span class="accent">Pile Plan</span> Studio</h1>',
 );
-for (const language of ['en', 'fr', 'tr', 'es']) {
+for (const language of ['en', 'fr', 'tr', 'es', 'de']) {
   includes(
     `${language}/open-pile-plan-studio/index.html`,
     '<h1 data-i18n="header.title">Open <span class="accent">Pile Plan</span> Studio</h1>',
@@ -47,6 +47,7 @@ for (const file of [
   'shared/translations/open-pile-plan-studio.fr.json',
   'shared/translations/open-pile-plan-studio.tr.json',
   'shared/translations/open-pile-plan-studio.es.json',
+  'shared/translations/open-pile-plan-studio.de.json',
 ]) {
   assert.ok(exists(file), `${file} ontbreekt`);
   const translations = JSON.parse(read(file));
@@ -69,8 +70,20 @@ const productPage = read('open-pile-plan-studio/index.html');
 assert.ok(!productPage.includes('greedy optimizer'), 'oude optimizertekst staat nog op de productpagina');
 assert.ok(!productPage.includes('pile-plan-studio-3.png'), 'verwijderde CPT-screenshot staat nog in de slider');
 
-for (const language of ['en', 'fr', 'tr', 'es']) {
+for (const language of ['en', 'fr', 'tr', 'es', 'de']) {
   includes(`${language}/open-pile-plan-studio/index.html`, 'Open Pile Plan Studio');
+}
+
+for (const language of ['', 'en/', 'fr/', 'tr/', 'es/', 'de/']) {
+  const page = language + 'open-pile-plan-studio/index.html';
+  const track = read(page).match(/<div class="slider-track">([\s\S]*?)<button\b/)?.[1] ?? '';
+  const screenshots = [...track.matchAll(/<div class="slider-slide"><img[^>]*\bsrc="[^"]*\/(open-pile-plan-studio(?:-import|-optimization)?\.png)(?:\?[^"]*)?"/g)]
+    .map(([, filename]) => filename);
+  assert.deepEqual(screenshots, [
+    'open-pile-plan-studio.png',
+    'open-pile-plan-studio-import.png',
+    'open-pile-plan-studio-optimization.png',
+  ], page + ' heeft een onjuiste volgorde in de screenshotcarrousel');
 }
 
 includes('sitemap.xml', 'https://open-aec.com/open-pile-plan-studio/');

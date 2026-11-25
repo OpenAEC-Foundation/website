@@ -99,7 +99,7 @@ function staticBlock(data) {
     '<div class="rn-groups"><div class="rn-group latest expanded"><div class="rn-group-body">',
     body,
     '</div></div></div>',
-    `<p class="rn-viewall"><a href="https://github.com/OpenAEC-Foundation/${escapeHtml(data.repo)}/releases" target="_blank" rel="noopener">Bekijk alle releases op GitHub &rarr;</a></p>`,
+    `<p class="rn-viewall"><a href="https://github.com/${escapeHtml(data.owner || 'OpenAEC-Foundation')}/${escapeHtml(data.repo)}/releases" target="_blank" rel="noopener">Bekijk alle releases op GitHub &rarr;</a></p>`,
     '</div></section>',
     '<!-- rn:end -->',
   ].join('\n');
@@ -117,6 +117,7 @@ const T = {
   fr: { title: 'Notes de version', latest: 'Dernière', more: 'Plus', viewGitHub: 'Voir sur GitHub →', viewAll: 'Voir toutes les versions sur GitHub →', noNotes: 'Aucune note disponible pour cette version.', desc: 'Les points forts par version. Cliquez sur Plus pour les notes complètes.', days: (n, one) => `${n} ${one ? 'jour' : 'jours'}`, commits: (n) => `${n} commits`, lines: (n) => `+${n} lignes de code` },
   tr: { title: 'Sürüm notları', latest: 'En son', more: 'Daha fazla', viewGitHub: "GitHub'da görüntüle →", viewAll: "Tüm sürümleri GitHub'da görüntüle →", noNotes: 'Bu sürüm için not bulunmuyor.', desc: "Sürüm başına öne çıkanlar. Tüm notlar için Daha fazla'ya tıklayın.", days: (n) => `${n} gün`, commits: (n) => `${n} commit`, lines: (n) => `+${n} kod satırı` },
   es: { title: 'Notas de la versión', latest: 'Última', more: 'Más', viewGitHub: 'Ver en GitHub →', viewAll: 'Ver todas las versiones en GitHub →', noNotes: 'No hay notas disponibles para esta versión.', desc: 'Los puntos clave por versión. Pulse Más para ver las notas completas.', days: (n, one) => `${n} ${one ? 'día' : 'días'}`, commits: (n) => `${n} commits`, lines: (n) => `+${n} líneas de código` },
+  de: { title: 'Versionshinweise', latest: 'Aktuell', more: 'Mehr', viewGitHub: 'Auf GitHub ansehen →', viewAll: 'Alle Versionen auf GitHub ansehen →', noNotes: 'Für diese Version liegen keine Hinweise vor.', desc: 'Das Wichtigste je Version. Klicken Sie auf Mehr für die vollständigen Hinweise.', days: (n, one) => `${n} ${one ? 'Tag' : 'Tage'}`, commits: (n) => `${n} Commits`, lines: (n) => `+${n} Zeilen Code` },
 };
 
 const ICON_PATHS = {
@@ -312,7 +313,7 @@ function timelineBlock(data, highlights, lang) {
     `<p class="rn-desc"><strong>${escapeHtml(latest.tag)}</strong> &middot; ${escapeHtml(latest.date || '')} &middot; ${escapeHtml(tr.desc)}</p>`,
     '</div>',
     `<ol class="rn-timeline">${items}</ol>`,
-    `<p class="rn-viewall"><a href="https://github.com/OpenAEC-Foundation/${escapeHtml(data.repo)}/releases" target="_blank" rel="noopener">${escapeHtml(tr.viewAll)}</a></p>`,
+    `<p class="rn-viewall"><a href="https://github.com/${escapeHtml(data.owner || 'OpenAEC-Foundation')}/${escapeHtml(data.repo)}/releases" target="_blank" rel="noopener">${escapeHtml(tr.viewAll)}</a></p>`,
     '</div></section>',
     '<!-- rn:end -->',
   ].join('\n');
