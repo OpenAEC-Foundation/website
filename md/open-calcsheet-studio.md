@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux, Web
 **Category:** Structural Calculations
-**Current version:** v2026.47.3 (2026-11-21)
+**Current version:** nightly (2026-11-25)
 **Tool ID:** `open-calcsheet-studio`
 **GitHub repo:** `OpenAEC-Foundation/Open-CalcSheet-Studio`
 
 ## Live stats
 
 - Stars: **11**
-- Commits: **319**
+- Commits: **322**
 - Forks: **2**
-- Open issues: **31**
+- Open issues: **25**
 - Releases: **12**
-- Total downloads: **2,487**
-- Downloads by platform: Other (1152), Windows (1040), Linux (AppImage) (127), Linux (deb) (62), macOS (62), Archive (44)
+- Total downloads: **2,601**
+- Downloads by platform: Other (1210), Windows (1078), Linux (AppImage) (136), Linux (deb) (66), macOS (64), Archive (47)
 
 ## Key features
 
