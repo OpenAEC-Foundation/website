@@ -911,10 +911,37 @@
   var LANDEN = { nl: { nl: 'Nederland', en: 'Netherlands', fr: 'Pays-Bas', tr: 'Hollanda', es: 'Países Bajos', de: 'Niederlande' } };
   function landNaam(code) { var l = LANDEN[code]; return l ? (l[taal()] || l.en) : String(code).toUpperCase(); }
   function landMerk(code) { return '<span class="fo-landcode" aria-hidden="true">' + esc(String(code).toUpperCase()) + '</span>'; }
+  // De labels van beroepsgroepen bij een categorie (`beroepen` van de cloud): de naam per taal.
+  var BEROEPEN = {
+    'constructeur': { nl: 'Constructeur', en: 'Structural engineer', fr: 'Ingénieur structure', tr: 'Yapı mühendisi', es: 'Ingeniero estructural', de: 'Tragwerksplaner' },
+    'geotechnisch-adviseur': { nl: 'Geotechnisch adviseur', en: 'Geotechnical engineer', fr: 'Géotechnicien', tr: 'Geoteknik mühendisi', es: 'Ingeniero geotécnico', de: 'Geotechniker' },
+    'installatieadviseur': { nl: 'Installatieadviseur', en: 'Building services engineer', fr: 'Ingénieur fluides', tr: 'Tesisat mühendisi', es: 'Ingeniero de instalaciones', de: 'TGA-Planer' },
+    'energieadviseur': { nl: 'Energieadviseur', en: 'Energy assessor', fr: 'Conseiller en énergie', tr: 'Enerji danışmanı', es: 'Asesor energético', de: 'Energieberater' },
+    'civiel-ontwerper': { nl: 'Civiel ontwerper', en: 'Civil designer', fr: 'Projeteur VRD', tr: 'Altyapı tasarımcısı', es: 'Proyectista de obra civil', de: 'Tiefbauplaner' },
+    'tekenaar': { nl: 'Tekenaar', en: 'Drafter', fr: 'Dessinateur', tr: 'Teknik ressam', es: 'Delineante', de: 'Bauzeichner' },
+    'administrateur': { nl: 'Administrateur', en: 'Bookkeeper', fr: 'Comptable', tr: 'Muhasebeci', es: 'Contable', de: 'Buchhalter' }
+  };
+  var VOORWIE = { nl: ['Voor wie?', 'Iedereen'], en: ['For whom?', 'Everyone'], fr: ['Pour qui ?', 'Tout le monde'], tr: ['Kimin için?', 'Herkes'], es: ['¿Para quién?', 'Todos'], de: ['Für wen?', 'Alle'] };
+  var beroepKeuze = '';
+  function beroepNaam(code) { var b = BEROEPEN[code]; return b ? (b[taal()] || b.en) : String(code).replace(/-/g, ' '); }
+  function beroepLabels(c) {
+    return (c.beroepen || []).length ? '<span class="fo-beroepen">' + c.beroepen.map(function (b) { return '<i class="fo-beroep">' + esc(beroepNaam(b)) + '</i>'; }).join('') + '</span>' : '';
+  }
+  // Boven de categorieën van een land: kies een beroepsgroep en zie alleen wat daarvoor is.
+  function beroepKnoppen(lijst) {
+    var codes = [];
+    lijst.forEach(function (c) { (c.beroepen || []).forEach(function (b) { if (codes.indexOf(b) < 0) codes.push(b); }); });
+    if (!codes.length) return '';
+    if (codes.indexOf(beroepKeuze) < 0) beroepKeuze = '';
+    var w = VOORWIE[taal()] || VOORWIE.en;
+    return '<div class="fo-beroeprij"><span>' + esc(w[0]) + '</span>' + [''].concat(codes).map(function (b) {
+      return '<button type="button" class="fo-beroep" data-actie="beroep" data-beroep="' + esc(b) + '" aria-pressed="' + (beroepKeuze === b) + '">' + esc(b ? beroepNaam(b) : w[1]) + '</button>';
+    }).join('') + '</div>';
+  }
   function catRij(c) {
     return '<a class="fo-catrij' + (c.github_repo ? ' fo-catrij-tool' : '') + '" href="#/c/' + encodeURIComponent(c.slug) + '" style="--kleur:' + catKleur(c.slug) + '">' +
       (c.github_repo ? toolLogo(c.slug) : '') +
-      '<span class="fo-catrij-tekst"><strong>' + esc(catTitel(c)) + '</strong>' + (catUitleg(c) && !c.github_repo ? '<span>' + esc(catUitleg(c)) + '</span>' : '') +
+      '<span class="fo-catrij-tekst"><strong>' + esc(catTitel(c)) + '</strong>' + (catUitleg(c) && !c.github_repo ? '<span>' + esc(catUitleg(c)) + '</span>' : '') + beroepLabels(c) +
       (c.alleen_team ? '<em>' + esc(t('alleenTeamKort')) + '</em>' : '') + '</span><span class="fo-catrij-tal">' + c.onderwerpen + '</span></a>';
   }
   // De linkerkolom: eerst de gewone categorieën, dan de tools in twee kolommen.
@@ -1049,8 +1076,9 @@
     document.title = landNaam(code) + ' — ' + t('titel') + ' — OpenAEC';
     app.innerHTML = tabs('') +
       '<p class="fo-kruimel"><a href="#/">' + esc(t('titel')) + '</a> / ' + esc(landNaam(code)) + '</p>' +
-      '<div class="fo-catkop"><h2>' + landMerk(code) + esc(landNaam(code)) + '</h2><p>' + esc(t('landLead')) + '</p></div>' +
-      tweeKolommen(catLijst(van, t('landTools'), t('toolsUitleg')), '');
+      '<div class="fo-catkop"><h2>' + landMerk(code) + esc(landNaam(code)) + '</h2><p>' + esc(t('landLead')) + '</p></div>' + beroepKnoppen(van);
+    var gekozen = beroepKeuze ? van.filter(function (c) { return (c.beroepen || []).indexOf(beroepKeuze) >= 0; }) : van;
+    app.innerHTML += tweeKolommen(catLijst(gekozen, t('landTools'), t('toolsUitleg')), '');
     vulRecent({ land: code });
   }
 
@@ -1059,7 +1087,7 @@
     var kop = cat
       ? (cat.land ? '<p class="fo-kruimel"><a href="#/">' + esc(t('titel')) + '</a> / <a href="#/land/' + encodeURIComponent(cat.land) + '">' + esc(landNaam(cat.land)) + '</a></p>' : '') +
         '<div class="fo-catkop" style="--kleur:' + catKleur(cat.slug) + '"><h2>' + (cat.github_repo ? toolLogo(cat.slug) : '') + esc(catTitel(cat)) + '</h2>' +
-        (catUitleg(cat) ? '<p>' + esc(catUitleg(cat)) + '</p>' : '') +
+        (catUitleg(cat) ? '<p>' + esc(catUitleg(cat)) + '</p>' : '') + beroepLabels(cat) +
         (cat.alleen_team ? '<p class="fo-klein">' + esc(t('alleenTeam')) + '</p>' : '') + '</div>'
       : '';
     var metHerkomst = !cat || (cat.github_repo && cat.discussies >= 0);
@@ -1466,6 +1494,7 @@
         try { localStorage.setItem(SOORT, el.dataset.soort); } catch (e) {}
         toon();
       }
+      else if (actie === 'beroep') { beroepKeuze = el.dataset.beroep || ''; toon(); }
       else if (actie === 'herkomst') {
         try { localStorage.setItem(HERKOMST, el.dataset.herkomst); } catch (e) {}
         toon();
