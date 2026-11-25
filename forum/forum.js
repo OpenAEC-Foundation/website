@@ -78,9 +78,10 @@
       verwijderen: 'Verwijderen', verwijderVraag: 'Dit bericht verwijderen? Dat kan niet ongedaan worden gemaakt.', verwijderOnderwerpVraag: 'Dit onderwerp met alle reacties verwijderen? Dat kan niet ongedaan worden gemaakt.',
       afbeelding: 'Afbeelding toevoegen', afbeeldingBezig: 'Afbeelding uploaden…', afbeeldingAlt: 'Afbeelding bij het bericht',
       profiel: 'Mijn profiel', lidSinds: 'Lid sinds', mijnOnderwerpen: 'Mijn onderwerpen', geenEigen: 'Je hebt nog geen onderwerp gestart.', logInVoorProfiel: 'Log in om je profiel te zien.', upsellKnopIn: 'Open je SuperCloud',
+      landenKop: 'Forum per land', landenUitleg: 'In je eigen taal, met de tools voor jouw land', landLead: 'Praat in je eigen taal over bouwen in dit land. Hier staan ook de tools die vooral in dit land van pas komen.', landTools: 'Tools voor dit land',
       toolsKop: 'Tools', opGithub: 'Bekijk op GitHub', toolsUitleg: 'Met de issues van GitHub',
       ookOpGithub: 'Dit onderwerp hoort bij een issue op GitHub. Je bericht komt daar ook te staan, met je forumnaam; een GitHub-account heb je niet nodig.',
-      wordtIssue: 'In deze categorie wordt je onderwerp ook een issue op GitHub, met je forumnaam; een GitHub-account heb je niet nodig.',
+      discussie: 'Discussie', discussies: 'Discussies', githubMirror: 'GitHub Mirror', herkomstUitleg: 'Discussies zijn gesprekken op het forum. GitHub Mirror is de ontwikkeling: de issues van deze tool op GitHub.', geenDiscussies: 'Nog geen discussies over deze tool. Begin de eerste!', soortOnderwerp: 'Wat voor onderwerp is dit?', soortDiscussie: 'Discussie', soortDiscussieUitleg: 'Een vraag, idee of gesprek. Blijft op het forum.', soortIssue: 'Melding voor de ontwikkelaars', soortIssueUitleg: 'Een bug of een concrete wens. Wordt ook een issue op GitHub, met je forumnaam; een GitHub-account heb je niet nodig.', maakIssue: 'Maak er een issue van',
       community: 'Community',
       ontwikkeling: 'Ontwikkeling en AI',
       alles: 'Alles',
@@ -147,9 +148,10 @@
       verwijderen: 'Delete', verwijderVraag: 'Delete this post? This cannot be undone.', verwijderOnderwerpVraag: 'Delete this topic with all its replies? This cannot be undone.',
       afbeelding: 'Add image', afbeeldingBezig: 'Uploading image…', afbeeldingAlt: 'Image in the post',
       profiel: 'My profile', lidSinds: 'Member since', mijnOnderwerpen: 'My topics', geenEigen: 'You have not started a topic yet.', logInVoorProfiel: 'Log in to see your profile.', upsellKnopIn: 'Open your SuperCloud',
+      landenKop: 'Forum by country', landenUitleg: 'In your own language, with the tools for your country', landLead: 'Talk in your own language about building in this country. The tools that are mainly useful here live here too.', landTools: 'Tools for this country',
       toolsKop: 'Tools', opGithub: 'View on GitHub', toolsUitleg: 'With the issues from GitHub',
       ookOpGithub: 'This topic belongs to an issue on GitHub. Your post appears there too, with your forum name; you do not need a GitHub account.',
-      wordtIssue: 'In this category your topic also becomes an issue on GitHub, with your forum name; you do not need a GitHub account.',
+      discussie: 'Discussion', discussies: 'Discussions', githubMirror: 'GitHub Mirror', herkomstUitleg: 'Discussions are conversations on the forum. GitHub Mirror is the development work: this tool’s issues on GitHub.', geenDiscussies: 'No discussions about this tool yet. Start the first one!', soortOnderwerp: 'What kind of topic is this?', soortDiscussie: 'Discussion', soortDiscussieUitleg: 'A question, idea or conversation. Stays on the forum.', soortIssue: 'Report for the developers', soortIssueUitleg: 'A bug or a concrete request. Also becomes an issue on GitHub, with your forum name; you do not need a GitHub account.', maakIssue: 'Turn into an issue',
       community: 'Community',
       ontwikkeling: 'Development and AI',
       alles: 'All',
@@ -216,9 +218,10 @@
       verwijderen: 'Supprimer', verwijderVraag: 'Supprimer ce message ? Cette action est irréversible.', verwijderOnderwerpVraag: 'Supprimer ce sujet et toutes ses réponses ? Cette action est irréversible.',
       afbeelding: 'Ajouter une image', afbeeldingBezig: 'Envoi de l’image…', afbeeldingAlt: 'Image du message',
       profiel: 'Mon profil', lidSinds: 'Membre depuis', mijnOnderwerpen: 'Mes sujets', geenEigen: 'Vous n’avez pas encore lancé de sujet.', logInVoorProfiel: 'Connectez-vous pour voir votre profil.', upsellKnopIn: 'Ouvrir votre SuperCloud',
+      landenKop: 'Forum par pays', landenUitleg: 'Dans votre langue, avec les outils pour votre pays', landLead: 'Échangez dans votre langue sur la construction dans ce pays. Les outils surtout utiles ici s’y trouvent aussi.', landTools: 'Outils pour ce pays',
       toolsKop: 'Outils', opGithub: 'Voir sur GitHub', toolsUitleg: 'Avec les issues de GitHub',
       ookOpGithub: 'Ce sujet est lié à une issue sur GitHub. Votre message y apparaît aussi, avec votre nom du forum ; aucun compte GitHub n’est nécessaire.',
-      wordtIssue: 'Dans cette catégorie, votre sujet devient aussi une issue sur GitHub, avec votre nom du forum ; aucun compte GitHub n’est nécessaire.',
+      discussie: 'Discussion', discussies: 'Discussions', githubMirror: 'GitHub Mirror', herkomstUitleg: 'Les discussions sont des conversations sur le forum. GitHub Mirror, c’est le développement : les issues de cet outil sur GitHub.', geenDiscussies: 'Pas encore de discussion sur cet outil. Lancez la première !', soortOnderwerp: 'De quel type de sujet s’agit-il ?', soortDiscussie: 'Discussion', soortDiscussieUitleg: 'Une question, une idée ou un échange. Reste sur le forum.', soortIssue: 'Signalement pour les développeurs', soortIssueUitleg: 'Un bug ou une demande concrète. Devient aussi une issue sur GitHub, avec votre nom du forum ; un compte GitHub n’est pas nécessaire.', maakIssue: 'Transformer en issue',
       community: 'Communauté',
       ontwikkeling: 'Développement et IA',
       alles: 'Tout',
@@ -285,9 +288,10 @@
       verwijderen: 'Sil', verwijderVraag: 'Bu mesaj silinsin mi? Bu işlem geri alınamaz.', verwijderOnderwerpVraag: 'Bu konu tüm yanıtlarıyla silinsin mi? Bu işlem geri alınamaz.',
       afbeelding: 'Görsel ekle', afbeeldingBezig: 'Görsel yükleniyor…', afbeeldingAlt: 'Mesajdaki görsel',
       profiel: 'Profilim', lidSinds: 'Üyelik başlangıcı', mijnOnderwerpen: 'Konularım', geenEigen: 'Henüz bir konu başlatmadınız.', logInVoorProfiel: 'Profilinizi görmek için giriş yapın.', upsellKnopIn: 'SuperCloud’unuzu açın',
+      landenKop: 'Ülkeye göre forum', landenUitleg: 'Kendi dilinizde, ülkenize özel araçlarla', landLead: 'Bu ülkede yapı hakkında kendi dilinizde konuşun. Özellikle burada işe yarayan araçlar da burada.', landTools: 'Bu ülke için araçlar',
       toolsKop: 'Araçlar', opGithub: 'GitHub’da görüntüle', toolsUitleg: 'GitHub kayıtlarıyla birlikte',
       ookOpGithub: 'Bu konu GitHub’daki bir kayda bağlı. Mesajınız forum adınızla orada da görünür; GitHub hesabı gerekmez.',
-      wordtIssue: 'Bu kategoride konunuz forum adınızla GitHub’da da bir kayıt olur; GitHub hesabı gerekmez.',
+      discussie: 'Tartışma', discussies: 'Tartışmalar', githubMirror: 'GitHub Mirror', herkomstUitleg: 'Tartışmalar forumdaki konuşmalardır. GitHub Mirror geliştirme tarafıdır: bu aracın GitHub’daki kayıtları.', geenDiscussies: 'Bu araç hakkında henüz tartışma yok. İlkini siz başlatın!', soortOnderwerp: 'Bu nasıl bir konu?', soortDiscussie: 'Tartışma', soortDiscussieUitleg: 'Bir soru, fikir veya sohbet. Forumda kalır.', soortIssue: 'Geliştiricilere bildirim', soortIssueUitleg: 'Bir hata veya somut bir istek. Forum adınızla GitHub’da da bir kayıt olur; GitHub hesabı gerekmez.', maakIssue: 'GitHub kaydına dönüştür',
       community: 'Topluluk',
       ontwikkeling: 'Geliştirme ve YZ',
       alles: 'Tümü',
@@ -354,9 +358,10 @@
       verwijderen: 'Eliminar', verwijderVraag: '¿Eliminar este mensaje? No se puede deshacer.', verwijderOnderwerpVraag: '¿Eliminar este tema con todas sus respuestas? No se puede deshacer.',
       afbeelding: 'Añadir imagen', afbeeldingBezig: 'Subiendo imagen…', afbeeldingAlt: 'Imagen del mensaje',
       profiel: 'Mi perfil', lidSinds: 'Miembro desde', mijnOnderwerpen: 'Mis temas', geenEigen: 'Todavía no has empezado ningún tema.', logInVoorProfiel: 'Inicia sesión para ver tu perfil.', upsellKnopIn: 'Abrir tu SuperCloud',
+      landenKop: 'Foro por país', landenUitleg: 'En tu idioma, con las herramientas para tu país', landLead: 'Habla en tu idioma sobre la construcción en este país. Aquí están también las herramientas que son útiles sobre todo aquí.', landTools: 'Herramientas para este país',
       toolsKop: 'Herramientas', opGithub: 'Ver en GitHub', toolsUitleg: 'Con las incidencias de GitHub',
       ookOpGithub: 'Este tema pertenece a una incidencia de GitHub. Tu mensaje aparece también allí, con tu nombre del foro; no necesitas cuenta de GitHub.',
-      wordtIssue: 'En esta categoría tu tema también se convierte en una incidencia de GitHub, con tu nombre del foro; no necesitas cuenta de GitHub.',
+      discussie: 'Debate', discussies: 'Debates', githubMirror: 'GitHub Mirror', herkomstUitleg: 'Los debates son conversaciones en el foro. GitHub Mirror es el desarrollo: las incidencias de esta herramienta en GitHub.', geenDiscussies: 'Aún no hay debates sobre esta herramienta. ¡Empieza el primero!', soortOnderwerp: '¿Qué tipo de tema es?', soortDiscussie: 'Debate', soortDiscussieUitleg: 'Una pregunta, idea o conversación. Se queda en el foro.', soortIssue: 'Aviso para los desarrolladores', soortIssueUitleg: 'Un error o una petición concreta. También se convierte en una incidencia de GitHub, con tu nombre del foro; no necesitas una cuenta de GitHub.', maakIssue: 'Convertir en incidencia',
       community: 'Comunidad',
       ontwikkeling: 'Desarrollo e IA',
       alles: 'Todo',
@@ -423,9 +428,10 @@
       verwijderen: 'Löschen', verwijderVraag: 'Diesen Beitrag löschen? Das lässt sich nicht rückgängig machen.', verwijderOnderwerpVraag: 'Dieses Thema mit allen Antworten löschen? Das lässt sich nicht rückgängig machen.',
       afbeelding: 'Bild hinzufügen', afbeeldingBezig: 'Bild wird hochgeladen…', afbeeldingAlt: 'Bild im Beitrag',
       profiel: 'Mein Profil', lidSinds: 'Mitglied seit', mijnOnderwerpen: 'Meine Themen', geenEigen: 'Sie haben noch kein Thema eröffnet.', logInVoorProfiel: 'Melden Sie sich an, um Ihr Profil zu sehen.', upsellKnopIn: 'Ihre SuperCloud öffnen',
+      landenKop: 'Forum nach Land', landenUitleg: 'In Ihrer Sprache, mit den Tools für Ihr Land', landLead: 'Sprechen Sie in Ihrer Sprache über das Bauen in diesem Land. Hier finden Sie auch die Tools, die vor allem hier nützlich sind.', landTools: 'Tools für dieses Land',
       toolsKop: 'Tools', opGithub: 'Auf GitHub ansehen', toolsUitleg: 'Mit den Issues von GitHub',
       ookOpGithub: 'Dieses Thema gehört zu einem Issue auf GitHub. Ihr Beitrag erscheint auch dort, mit Ihrem Forennamen; ein GitHub-Konto brauchen Sie nicht.',
-      wordtIssue: 'In dieser Kategorie wird Ihr Thema auch ein Issue auf GitHub, mit Ihrem Forennamen; ein GitHub-Konto brauchen Sie nicht.',
+      discussie: 'Diskussion', discussies: 'Diskussionen', githubMirror: 'GitHub Mirror', herkomstUitleg: 'Diskussionen sind Gespräche im Forum. GitHub Mirror ist die Entwicklung: die Issues dieses Tools auf GitHub.', geenDiscussies: 'Noch keine Diskussionen zu diesem Tool. Starten Sie die erste!', soortOnderwerp: 'Was für ein Thema ist das?', soortDiscussie: 'Diskussion', soortDiscussieUitleg: 'Eine Frage, Idee oder ein Gespräch. Bleibt im Forum.', soortIssue: 'Meldung für die Entwickler', soortIssueUitleg: 'Ein Fehler oder ein konkreter Wunsch. Wird auch ein Issue auf GitHub, mit Ihrem Forennamen; ein GitHub-Konto brauchen Sie nicht.', maakIssue: 'In ein Issue umwandeln',
       community: 'Community',
       ontwikkeling: 'Entwicklung und KI',
       alles: 'Alle',
@@ -901,6 +907,48 @@
       return '<button type="button" data-actie="soort" data-soort="' + s + '"' + (soort() === s ? ' aria-pressed="true"' : ' aria-pressed="false"') + '>' + esc(t(s)) + '</button>';
     }).join('') + '</span>';
   }
+  // De fora per land: een categorie met `land` staat in het forum van dat land. De naam van het land per taal.
+  var LANDEN = { nl: { nl: 'Nederland', en: 'Netherlands', fr: 'Pays-Bas', tr: 'Hollanda', es: 'Países Bajos', de: 'Niederlande' } };
+  function landNaam(code) { var l = LANDEN[code]; return l ? (l[taal()] || l.en) : String(code).toUpperCase(); }
+  function landMerk(code) { return '<span class="fo-landcode" aria-hidden="true">' + esc(String(code).toUpperCase()) + '</span>'; }
+  function catRij(c) {
+    return '<a class="fo-catrij' + (c.github_repo ? ' fo-catrij-tool' : '') + '" href="#/c/' + encodeURIComponent(c.slug) + '" style="--kleur:' + catKleur(c.slug) + '">' +
+      (c.github_repo ? toolLogo(c.slug) : '') +
+      '<span class="fo-catrij-tekst"><strong>' + esc(catTitel(c)) + '</strong>' + (catUitleg(c) && !c.github_repo ? '<span>' + esc(catUitleg(c)) + '</span>' : '') +
+      (c.alleen_team ? '<em>' + esc(t('alleenTeamKort')) + '</em>' : '') + '</span><span class="fo-catrij-tal">' + c.onderwerpen + '</span></a>';
+  }
+  // De linkerkolom: eerst de gewone categorieën, dan de tools in twee kolommen.
+  function catLijst(lijst, toolsKop, toolsUitleg) {
+    var tools = lijst.filter(function (c) { return c.github_repo; });
+    return lijst.filter(function (c) { return !c.github_repo; }).map(catRij).join('') +
+      (tools.length ? '<div class="fo-paneel-kop fo-toolskop"><span>' + esc(toolsKop) + '</span><span>' + esc(toolsUitleg) + '</span></div>' +
+        '<div class="fo-tools">' + tools.map(catRij).join('') + '</div>' : '');
+  }
+  var HERKOMST = 'openaec-forum-herkomst';
+  var ICOON_GH = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>';
+  var ICOON_DIS = '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M4 3h16a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2h-7.6l-4.7 3.7A1 1 0 0 1 6 20.9V18H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/></svg>';
+  // Een onderwerp is een losse discussie op het forum of hoort bij GitHub (de GitHub Mirror).
+  function herkomstVan(o) { return o.herkomst || (o.github ? 'github' : 'discussie'); }
+  function herkomstMerk(o) {
+    return herkomstVan(o) === 'github'
+      ? '<span class="fo-herkomst fo-herkomst-gh">' + ICOON_GH + esc(t('githubMirror')) + (o.github ? ' #' + o.github.nummer : '') + '</span>'
+      : '<span class="fo-herkomst fo-herkomst-dis">' + ICOON_DIS + esc(t('discussie')) + '</span>';
+  }
+  function herkomst() {
+    var h = 'alles';
+    try { h = localStorage.getItem(HERKOMST) || h; } catch (e) {}
+    return h === 'discussie' || h === 'github' ? h : 'alles';
+  }
+  // De keuze boven de lijst van een tool: alles, alleen de discussies of alleen de GitHub Mirror.
+  function herkomstKnoppen(cat) {
+    var tal = cat ? { alles: cat.onderwerpen, discussie: cat.discussies, github: cat.onderwerpen - cat.discussies } : {};
+    var label = { alles: t('alles'), discussie: t('discussies'), github: t('githubMirror') };
+    var icoon = { alles: '', discussie: ICOON_DIS, github: ICOON_GH };
+    return '<div class="fo-herkomstrij"><div class="fo-herkomsttabs" role="group">' + ['alles', 'discussie', 'github'].map(function (h) {
+      return '<button type="button" class="fo-herkomsttab fo-herkomsttab-' + h + '" data-actie="herkomst" data-herkomst="' + h + '" aria-pressed="' + (herkomst() === h) + '">' +
+        icoon[h] + esc(label[h]) + (tal[h] >= 0 ? ' <span>' + tal[h] + '</span>' : '') + '</button>';
+    }).join('') + '</div><p class="fo-klein">' + esc(t('herkomstUitleg')) + '</p></div>';
+  }
   function zoekCat(slug) { return categorieen.find(function (c) { return c.slug === slug; }); }
   function catChip(cat) {
     return cat ? '<a class="fo-chip" href="#/c/' + encodeURIComponent(cat.slug) + '"><i style="background:' + catKleur(cat.slug) + '"></i>' + esc(catTitel(cat)) + '</a>' : '';
@@ -932,9 +980,9 @@
 
   function onderwerpRij(o, zonderCat) {
     var cat = zonderCat ? null : zoekCat(o.categorie);
-    return '<li class="fo-rij">' + avatar(o.auteur) +
+    return '<li class="fo-rij fo-rij-' + herkomstVan(o) + '">' + avatar(o.auteur) +
       '<div class="fo-rij-hoofd"><a class="fo-item-titel" href="#/t/' + encodeURIComponent(o.naam) + '">' + esc(o.titel) + '</a>' + labels(o) +
-      '<span class="fo-meta">' + catChip(cat) + auteur(o.auteur) + (o.github ? '<span class="fo-nummer">#' + o.github.nummer + '</span>' : '') + '</span></div>' +
+      '<span class="fo-meta">' + herkomstMerk(o) + catChip(cat) + auteur(o.auteur) + '</span></div>' +
       '<div class="fo-rij-tal"><strong title="' + esc(t('reacties')(o.reacties)) + '">' + o.reacties + '</strong><span>' + esc(tijd(o.laatste_activiteit)) + '</span></div></li>';
   }
 
@@ -958,26 +1006,35 @@
   }
 
   function startScherm() {
-    function rij(c) {
-      return '<a class="fo-catrij' + (c.github_repo ? ' fo-catrij-tool' : '') + '" href="#/c/' + encodeURIComponent(c.slug) + '" style="--kleur:' + catKleur(c.slug) + '">' +
-        (c.github_repo ? toolLogo(c.slug) : '') +
-        '<span class="fo-catrij-tekst"><strong>' + esc(catTitel(c)) + '</strong>' + (catUitleg(c) && !c.github_repo ? '<span>' + esc(catUitleg(c)) + '</span>' : '') +
-        (c.alleen_team ? '<em>' + esc(t('alleenTeamKort')) + '</em>' : '') + '</span><span class="fo-catrij-tal">' + c.onderwerpen + '</span></a>';
+    var cats = catLijst(categorieen.filter(function (c) { return !c.land; }), t('toolsKop'), t('toolsUitleg'));
+    var landen = [];
+    categorieen.forEach(function (c) { if (c.land && landen.indexOf(c.land) < 0) landen.push(c.land); });
+    if (landen.length) {
+      cats += '<div class="fo-paneel-kop fo-toolskop"><span>' + esc(t('landenKop')) + '</span><span>' + esc(t('landenUitleg')) + '</span></div>' +
+        landen.map(function (code) {
+          var van = categorieen.filter(function (c) { return c.land === code; });
+          return '<a class="fo-catrij fo-catrij-land" href="#/land/' + encodeURIComponent(code) + '">' + landMerk(code) +
+            '<span class="fo-catrij-tekst"><strong>' + esc(landNaam(code)) + '</strong><span>' + esc(van.map(catTitel).join(' · ')) + '</span></span>' +
+            '<span class="fo-catrij-tal">' + van.reduce(function (som, c) { return som + c.onderwerpen; }, 0) + '</span></a>';
+        }).join('');
     }
-    var tools = categorieen.filter(function (c) { return c.github_repo; });
-    var cats = categorieen.filter(function (c) { return !c.github_repo; }).map(rij).join('') +
-      (tools.length ? '<div class="fo-paneel-kop fo-toolskop"><span>' + esc(t('toolsKop')) + '</span><span>' + esc(t('toolsUitleg')) + '</span></div>' +
-        '<div class="fo-tools">' + tools.map(rij).join('') + '</div>' : '');
-    app.innerHTML = tabs('cats') +
-      '<div class="fo-twee">' +
+    app.innerHTML = tabs('cats') + tweeKolommen(cats, '#/recent') + onderblokken();
+    vulRecent({});
+  }
+
+  // Links de categorieën, rechts de recente onderwerpen (van alles, of van één land).
+  function tweeKolommen(cats, meerLink) {
+    return '<div class="fo-twee">' +
       '<section class="fo-paneel"><div class="fo-paneel-kop"><span>' + esc(t('categorie')) + '</span><span>' + esc(t('onderwerpenKop')) + '</span></div>' +
       (cats || '<p class="fo-leeg">' + esc(t('fout')) + '</p>') + '</section>' +
       '<section class="fo-paneel"><div class="fo-paneel-kop"><span>' + esc(t('recent')) + '</span>' + soortKnoppen() + '</div>' +
       '<ul class="fo-rijen" id="fo-recent"><li class="fo-leeg">' + esc(t('laden')) + '</li></ul>' +
-      '<a class="fo-meer-link fo-paneel-voet" href="#/recent">' + esc(t('alleRecent')) + ' →</a></section>' +
-      '</div>' + onderblokken();
+      (meerLink ? '<a class="fo-meer-link fo-paneel-voet" href="' + meerLink + '">' + esc(t('alleRecent')) + ' →</a>' : '') + '</section>' +
+      '</div>';
+  }
+  function vulRecent(extra) {
     var lijst = document.getElementById('fo-recent');
-    toonMet('onderwerpen', soortVelden({ start: 0 }), function (data) {
+    toonMet('onderwerpen', soortVelden(Object.assign({ start: 0 }, extra)), function (data) {
       var rijen = data.onderwerpen.slice(0, 8).map(function (o) { return onderwerpRij(o); }).join('');
       lijst.innerHTML = rijen || '<li class="fo-leeg">' + esc(t('geen')) + '</li>';
     }, function (e) {
@@ -985,22 +1042,38 @@
     });
   }
 
+  // Het forum van één land: zijn eigen categorieën en tools, met de recente onderwerpen van dat land.
+  function landScherm(code) {
+    var van = categorieen.filter(function (c) { return c.land === code; });
+    if (!van.length) return startScherm();
+    document.title = landNaam(code) + ' — ' + t('titel') + ' — OpenAEC';
+    app.innerHTML = tabs('') +
+      '<p class="fo-kruimel"><a href="#/">' + esc(t('titel')) + '</a> / ' + esc(landNaam(code)) + '</p>' +
+      '<div class="fo-catkop"><h2>' + landMerk(code) + esc(landNaam(code)) + '</h2><p>' + esc(t('landLead')) + '</p></div>' +
+      tweeKolommen(catLijst(van, t('landTools'), t('toolsUitleg')), '');
+    vulRecent({ land: code });
+  }
+
   function lijstScherm(cat) {
     var start = 0;
     var kop = cat
-      ? '<div class="fo-catkop" style="--kleur:' + catKleur(cat.slug) + '"><h2>' + (cat.github_repo ? toolLogo(cat.slug) : '') + esc(catTitel(cat)) + '</h2>' +
+      ? (cat.land ? '<p class="fo-kruimel"><a href="#/">' + esc(t('titel')) + '</a> / <a href="#/land/' + encodeURIComponent(cat.land) + '">' + esc(landNaam(cat.land)) + '</a></p>' : '') +
+        '<div class="fo-catkop" style="--kleur:' + catKleur(cat.slug) + '"><h2>' + (cat.github_repo ? toolLogo(cat.slug) : '') + esc(catTitel(cat)) + '</h2>' +
         (catUitleg(cat) ? '<p>' + esc(catUitleg(cat)) + '</p>' : '') +
         (cat.alleen_team ? '<p class="fo-klein">' + esc(t('alleenTeam')) + '</p>' : '') + '</div>'
       : '';
-    app.innerHTML = tabs(cat ? '' : 'recent', cat && cat.slug) + kop +
+    var metHerkomst = !cat || (cat.github_repo && cat.discussies >= 0);
+    app.innerHTML = tabs(cat ? '' : 'recent', cat && cat.slug) + kop + (metHerkomst ? herkomstKnoppen(cat) : '') +
       '<section class="fo-paneel"><div class="fo-paneel-kop"><span>' + esc(t('onderwerpKop')) + '</span>' + soortKnoppen() + '</div>' +
       '<ul class="fo-rijen" id="fo-lijst"><li class="fo-leeg">' + esc(t('laden')) + '</li></ul></section>' +
       '<p class="fo-meer"><button type="button" class="btn btn-secondary" id="fo-meer" hidden>' + esc(t('meer')) + '</button></p>';
     var lijst = document.getElementById('fo-lijst');
     var meer = document.getElementById('fo-meer');
-    function velden(vanaf) { return soortVelden(Object.assign({ start: vanaf }, cat ? { categorie: cat.slug } : {})); }
+    var kies = metHerkomst && herkomst() !== 'alles' ? { herkomst: herkomst() } : {};
+    function velden(vanaf) { return soortVelden(Object.assign({ start: vanaf }, kies, cat ? { categorie: cat.slug } : {})); }
     function teken(data) {
-      lijst.innerHTML = data.onderwerpen.map(function (o) { return onderwerpRij(o, !!cat); }).join('') || '<li class="fo-leeg">' + esc(t('geen')) + '</li>';
+      lijst.innerHTML = data.onderwerpen.map(function (o) { return onderwerpRij(o, !!cat); }).join('') ||
+        '<li class="fo-leeg">' + esc(t(cat && kies.herkomst === 'discussie' ? 'geenDiscussies' : 'geen')) + '</li>';
       start = data.onderwerpen.length;
       meer.hidden = !data.meer;
     }
@@ -1060,6 +1133,7 @@
         knop(t(o.vastgezet ? 'maakLos' : 'zetVast'), 'modereer', 'btn-ghost', ' data-soort="onderwerp" data-naam="' + esc(o.naam) + '" data-wat="' + (o.vastgezet ? 'maak_los' : 'zet_vast') + '"') +
         knop(t(o.status === 'Open' ? 'sluit' : 'open'), 'modereer', 'btn-ghost', ' data-soort="onderwerp" data-naam="' + esc(o.naam) + '" data-wat="' + (o.status === 'Open' ? 'sluit' : 'open') + '"') +
         knop(t(o.verborgen ? 'toon' : 'verberg'), 'modereer', 'btn-ghost', ' data-soort="onderwerp" data-naam="' + esc(o.naam) + '" data-wat="' + (o.verborgen ? 'toon' : 'verberg') + '"') +
+        (o.herkomst === 'discussie' && cat && cat.github_schrijven ? knop(t('maakIssue'), 'modereer', 'btn-ghost', ' data-soort="onderwerp" data-naam="' + esc(o.naam) + '" data-wat="naar_github"') : '') +
         '</div>';
     }
     var reageer;
@@ -1077,9 +1151,9 @@
     }
     app.innerHTML = tabs('', o.categorie) +
       '<div class="fo-onderwerp">' +
-      '<p class="fo-kruimel"><a href="#/">' + esc(t('titel')) + '</a>' + (cat ? ' / <a href="#/c/' + encodeURIComponent(cat.slug) + '">' + esc(catTitel(cat)) + '</a>' : '') + '</p>' +
+      '<p class="fo-kruimel"><a href="#/">' + esc(t('titel')) + '</a>' + (cat && cat.land ? ' / <a href="#/land/' + encodeURIComponent(cat.land) + '">' + esc(landNaam(cat.land)) + '</a>' : '') + (cat ? ' / <a href="#/c/' + encodeURIComponent(cat.slug) + '">' + esc(catTitel(cat)) + '</a>' : '') + '</p>' +
       '<h2 class="fo-onderwerp-titel">' + esc(o.titel) + labels(o) + '</h2>' +
-      '<p class="fo-meta">' + catChip(cat) + '<span>' + esc(t('reacties')(o.reacties)) + '</span>' +
+      '<p class="fo-meta">' + herkomstMerk(o) + catChip(cat) + '<span>' + esc(t('reacties')(o.reacties)) + '</span>' +
       (o.github && githubAdres(o.github.url) ? '<a class="fo-meer-link" href="' + esc(o.github.url) + '" target="_blank" rel="noopener">' + esc(t('opGithub')) + ' #' + o.github.nummer + ' ↗</a>' : '') + '</p>' + modknoppen +
       '<div class="fo-posts">' + data.berichten.map(function (b) { return berichtHtml(b, o); }).join('') + '</div>' +
       reageer + '</div>';
@@ -1152,11 +1226,14 @@
     var keuzes = categorieen.filter(function (c) { return !c.alleen_team || ik.moderator; });
     enkel(slug, '<h2>' + esc(t('nieuw')) + '</h2><form class="fo-form" id="fo-nieuw">' +
       '<label><span>' + esc(t('categorieVeld')) + '</span><select name="categorie" required>' +
-      keuzes.map(function (c) { return '<option value="' + esc(c.slug) + '"' + (c.slug === slug ? ' selected' : '') + '>' + esc(catTitel(c)) + '</option>'; }).join('') +
+      keuzes.map(function (c) { return '<option value="' + esc(c.slug) + '"' + (c.slug === slug ? ' selected' : '') + '>' + esc((c.land ? landNaam(c.land) + ' · ' : '') + catTitel(c)) + '</option>'; }).join('') +
       '</select></label>' +
       '<label><span>' + esc(t('titelVeld')) + '</span><input name="titel" required minlength="5" maxlength="140"></label>' +
       '<label><span>' + esc(t('berichtVeld')) + '</span><textarea name="tekst" rows="10" required minlength="2" maxlength="20000"></textarea></label>' +
-      '<p class="fo-klein">' + esc(t('opmaakMd')) + '</p><p class="fo-klein fo-gh-uitleg" id="fo-wordt-issue" hidden>' + esc(t('wordtIssue')) + '</p>' +
+      '<p class="fo-klein">' + esc(t('opmaakMd')) + '</p>' +
+      '<fieldset class="fo-soortkeuze" id="fo-wordt-issue" hidden><legend>' + esc(t('soortOnderwerp')) + '</legend>' +
+      '<label class="fo-soortoptie fo-soortoptie-dis"><input type="radio" name="issue" value="0" checked><span>' + ICOON_DIS + '<strong>' + esc(t('soortDiscussie')) + '</strong><em>' + esc(t('soortDiscussieUitleg')) + '</em></span></label>' +
+      '<label class="fo-soortoptie fo-soortoptie-gh"><input type="radio" name="issue" value="1"><span>' + ICOON_GH + '<strong>' + esc(t('soortIssue')) + '</strong><em>' + esc(t('soortIssueUitleg')) + '</em></span></label></fieldset>' +
       '<label class="fo-akkoord"><input type="checkbox" name="ai" value="1"> <span>' + esc(t('metAi')) + '</span></label>' +
       '<p><button class="btn btn-primary" type="submit">' + esc(t('plaatsen')) + '</button></p></form>');
     var form = document.getElementById('fo-nieuw');
@@ -1172,7 +1249,7 @@
       var knopEl = form.querySelector('button');
       knopEl.disabled = true;
       try {
-        var data = await api('nieuw_onderwerp', { categorie: form.categorie.value, titel: form.titel.value, tekst: form.tekst.value, ai: form.ai.checked ? 1 : 0 }, true);
+        var data = await api('nieuw_onderwerp', { categorie: form.categorie.value, titel: form.titel.value, tekst: form.tekst.value, ai: form.ai.checked ? 1 : 0, issue: !document.getElementById('fo-wordt-issue').hidden && form.issue.value === '1' ? 1 : 0 }, true);
         melding('');
         await laadCategorieen();
         location.hash = '#/t/' + data.naam;
@@ -1356,6 +1433,7 @@
       var cat = zoekCat(route[1]);
       return cat ? lijstScherm(cat) : lijstScherm(null);
     }
+    if (route[0] === 'land' && route[1]) return landScherm(route[1]);
     if (route[0] === 'recent') return lijstScherm(null);
     if (route[0] === 'nieuw') return nieuwScherm(route[1] || null);
     if (route[0] === 'aanmelden') return aanmeldScherm();
@@ -1386,6 +1464,10 @@
       var actie = el.dataset.actie;
       if (actie === 'soort') {
         try { localStorage.setItem(SOORT, el.dataset.soort); } catch (e) {}
+        toon();
+      }
+      else if (actie === 'herkomst') {
+        try { localStorage.setItem(HERKOMST, el.dataset.herkomst); } catch (e) {}
         toon();
       }
       else if (actie === 'inloggen') {
