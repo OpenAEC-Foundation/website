@@ -90,7 +90,7 @@
       fotoKiezen: 'Foto kiezen',
       fotoWeg: 'Foto verwijderen',
       mijnReacties: 'Mijn reacties',
-      overJou: 'Over jou', pBedrijf: 'Bedrijf', pFunctie: 'Functie', pPlaats: 'Plaats', pOver: 'Over mij', pWebsite: 'Website', pLinkedin: 'LinkedIn', pGithub: 'GitHub-account', toonAnderen: 'Zichtbaar voor anderen', zichtbaarUitleg: 'Anderen zien alleen wat je aanvinkt. Je naam en foto staan altijd bij je berichten; je e-mailadres tonen we nooit.', profielBewaard: 'Je profiel is bewaard.', openbaarProfiel: 'Bekijk je openbare profiel', profielVan: 'Profiel', geenOnderwerpenLid: 'Nog geen onderwerpen.', geenReactiesLid: 'Nog geen reacties.', linkedinHulp: 'De link naar je profiel, of alleen je LinkedIn-naam.',
+      overJou: 'Over jou', pBeroep: 'Beroepsgroep', geenBeroep: 'Geen label', beroepUitleg: 'Staat als label bij je naam op het forum.', pBedrijf: 'Bedrijf', pFunctie: 'Functie', pPlaats: 'Plaats', pOver: 'Over mij', pWebsite: 'Website', pLinkedin: 'LinkedIn', pGithub: 'GitHub-account', toonAnderen: 'Zichtbaar voor anderen', zichtbaarUitleg: 'Anderen zien alleen wat je aanvinkt. Je naam en foto staan altijd bij je berichten; je e-mailadres tonen we nooit.', profielBewaard: 'Je profiel is bewaard.', openbaarProfiel: 'Bekijk je openbare profiel', profielVan: 'Profiel', geenOnderwerpenLid: 'Nog geen onderwerpen.', geenReactiesLid: 'Nog geen reacties.', linkedinHulp: 'De link naar je profiel, of alleen je LinkedIn-naam.',
       geenReacties: 'Je hebt nog niet gereageerd.',
       githubAccount: 'GitHub-account',
       githubKoppelen: 'Koppel je GitHub-account',
@@ -160,7 +160,7 @@
       fotoKiezen: 'Choose photo',
       fotoWeg: 'Remove photo',
       mijnReacties: 'My replies',
-      overJou: 'About you', pBedrijf: 'Company', pFunctie: 'Role', pPlaats: 'Location', pOver: 'About me', pWebsite: 'Website', pLinkedin: 'LinkedIn', pGithub: 'GitHub account', toonAnderen: 'Visible to others', zichtbaarUitleg: 'Others only see what you tick. Your name and photo always appear with your posts; we never show your email address.', profielBewaard: 'Your profile has been saved.', openbaarProfiel: 'View your public profile', profielVan: 'Profile', geenOnderwerpenLid: 'No topics yet.', geenReactiesLid: 'No replies yet.', linkedinHulp: 'The link to your profile, or just your LinkedIn name.',
+      overJou: 'About you', pBeroep: 'Profession', geenBeroep: 'No label', beroepUitleg: 'Shown as a label next to your name on the forum.', pBedrijf: 'Company', pFunctie: 'Role', pPlaats: 'Location', pOver: 'About me', pWebsite: 'Website', pLinkedin: 'LinkedIn', pGithub: 'GitHub account', toonAnderen: 'Visible to others', zichtbaarUitleg: 'Others only see what you tick. Your name and photo always appear with your posts; we never show your email address.', profielBewaard: 'Your profile has been saved.', openbaarProfiel: 'View your public profile', profielVan: 'Profile', geenOnderwerpenLid: 'No topics yet.', geenReactiesLid: 'No replies yet.', linkedinHulp: 'The link to your profile, or just your LinkedIn name.',
       geenReacties: 'You have not replied yet.',
       githubAccount: 'GitHub account',
       githubKoppelen: 'Link your GitHub account',
@@ -230,7 +230,7 @@
       fotoKiezen: 'Choisir une photo',
       fotoWeg: 'Supprimer la photo',
       mijnReacties: 'Mes réponses',
-      overJou: 'À propos de vous', pBedrijf: 'Entreprise', pFunctie: 'Fonction', pPlaats: 'Lieu', pOver: 'À propos de moi', pWebsite: 'Site web', pLinkedin: 'LinkedIn', pGithub: 'Compte GitHub', toonAnderen: 'Visible par les autres', zichtbaarUitleg: 'Les autres ne voient que ce que vous cochez. Votre nom et votre photo accompagnent toujours vos messages ; nous n’affichons jamais votre adresse e-mail.', profielBewaard: 'Votre profil a été enregistré.', openbaarProfiel: 'Voir votre profil public', profielVan: 'Profil', geenOnderwerpenLid: 'Pas encore de sujets.', geenReactiesLid: 'Pas encore de réponses.', linkedinHulp: 'Le lien vers votre profil, ou seulement votre nom LinkedIn.',
+      overJou: 'À propos de vous', pBeroep: 'Profession', geenBeroep: 'Pas d’étiquette', beroepUitleg: 'Affichée comme étiquette à côté de votre nom sur le forum.', pBedrijf: 'Entreprise', pFunctie: 'Fonction', pPlaats: 'Lieu', pOver: 'À propos de moi', pWebsite: 'Site web', pLinkedin: 'LinkedIn', pGithub: 'Compte GitHub', toonAnderen: 'Visible par les autres', zichtbaarUitleg: 'Les autres ne voient que ce que vous cochez. Votre nom et votre photo accompagnent toujours vos messages ; nous n’affichons jamais votre adresse e-mail.', profielBewaard: 'Votre profil a été enregistré.', openbaarProfiel: 'Voir votre profil public', profielVan: 'Profil', geenOnderwerpenLid: 'Pas encore de sujets.', geenReactiesLid: 'Pas encore de réponses.', linkedinHulp: 'Le lien vers votre profil, ou seulement votre nom LinkedIn.',
       geenReacties: 'Vous n’avez pas encore répondu.',
       githubAccount: 'Compte GitHub',
       githubKoppelen: 'Lier votre compte GitHub',
@@ -300,7 +300,7 @@
       fotoKiezen: 'Fotoğraf seç',
       fotoWeg: 'Fotoğrafı kaldır',
       mijnReacties: 'Yanıtlarım',
-      overJou: 'Hakkınızda', pBedrijf: 'Şirket', pFunctie: 'Görev', pPlaats: 'Konum', pOver: 'Hakkımda', pWebsite: 'Web sitesi', pLinkedin: 'LinkedIn', pGithub: 'GitHub hesabı', toonAnderen: 'Başkalarına görünür', zichtbaarUitleg: 'Başkaları yalnızca işaretlediklerinizi görür. Adınız ve fotoğrafınız her zaman gönderilerinizde görünür; e-posta adresinizi asla göstermeyiz.', profielBewaard: 'Profiliniz kaydedildi.', openbaarProfiel: 'Herkese açık profilinizi görün', profielVan: 'Profil', geenOnderwerpenLid: 'Henüz konu yok.', geenReactiesLid: 'Henüz yanıt yok.', linkedinHulp: 'Profilinizin bağlantısı veya yalnızca LinkedIn adınız.',
+      overJou: 'Hakkınızda', pBeroep: 'Meslek grubu', geenBeroep: 'Etiket yok', beroepUitleg: 'Forumda adınızın yanında etiket olarak görünür.', pBedrijf: 'Şirket', pFunctie: 'Görev', pPlaats: 'Konum', pOver: 'Hakkımda', pWebsite: 'Web sitesi', pLinkedin: 'LinkedIn', pGithub: 'GitHub hesabı', toonAnderen: 'Başkalarına görünür', zichtbaarUitleg: 'Başkaları yalnızca işaretlediklerinizi görür. Adınız ve fotoğrafınız her zaman gönderilerinizde görünür; e-posta adresinizi asla göstermeyiz.', profielBewaard: 'Profiliniz kaydedildi.', openbaarProfiel: 'Herkese açık profilinizi görün', profielVan: 'Profil', geenOnderwerpenLid: 'Henüz konu yok.', geenReactiesLid: 'Henüz yanıt yok.', linkedinHulp: 'Profilinizin bağlantısı veya yalnızca LinkedIn adınız.',
       geenReacties: 'Henüz yanıt yazmadınız.',
       githubAccount: 'GitHub hesabı',
       githubKoppelen: 'GitHub hesabınızı bağlayın',
@@ -370,7 +370,7 @@
       fotoKiezen: 'Elegir foto',
       fotoWeg: 'Quitar foto',
       mijnReacties: 'Mis respuestas',
-      overJou: 'Sobre ti', pBedrijf: 'Empresa', pFunctie: 'Cargo', pPlaats: 'Lugar', pOver: 'Sobre mí', pWebsite: 'Sitio web', pLinkedin: 'LinkedIn', pGithub: 'Cuenta de GitHub', toonAnderen: 'Visible para los demás', zichtbaarUitleg: 'Los demás solo ven lo que marcas. Tu nombre y tu foto siempre aparecen junto a tus mensajes; nunca mostramos tu correo electrónico.', profielBewaard: 'Tu perfil se ha guardado.', openbaarProfiel: 'Ver tu perfil público', profielVan: 'Perfil', geenOnderwerpenLid: 'Todavía no hay temas.', geenReactiesLid: 'Todavía no hay respuestas.', linkedinHulp: 'El enlace a tu perfil, o solo tu nombre de LinkedIn.',
+      overJou: 'Sobre ti', pBeroep: 'Profesión', geenBeroep: 'Sin etiqueta', beroepUitleg: 'Aparece como etiqueta junto a tu nombre en el foro.', pBedrijf: 'Empresa', pFunctie: 'Cargo', pPlaats: 'Lugar', pOver: 'Sobre mí', pWebsite: 'Sitio web', pLinkedin: 'LinkedIn', pGithub: 'Cuenta de GitHub', toonAnderen: 'Visible para los demás', zichtbaarUitleg: 'Los demás solo ven lo que marcas. Tu nombre y tu foto siempre aparecen junto a tus mensajes; nunca mostramos tu correo electrónico.', profielBewaard: 'Tu perfil se ha guardado.', openbaarProfiel: 'Ver tu perfil público', profielVan: 'Perfil', geenOnderwerpenLid: 'Todavía no hay temas.', geenReactiesLid: 'Todavía no hay respuestas.', linkedinHulp: 'El enlace a tu perfil, o solo tu nombre de LinkedIn.',
       geenReacties: 'Todavía no has respondido.',
       githubAccount: 'Cuenta de GitHub',
       githubKoppelen: 'Vincula tu cuenta de GitHub',
@@ -440,7 +440,7 @@
       fotoKiezen: 'Foto wählen',
       fotoWeg: 'Foto entfernen',
       mijnReacties: 'Meine Antworten',
-      overJou: 'Über Sie', pBedrijf: 'Unternehmen', pFunctie: 'Funktion', pPlaats: 'Ort', pOver: 'Über mich', pWebsite: 'Website', pLinkedin: 'LinkedIn', pGithub: 'GitHub-Konto', toonAnderen: 'Für andere sichtbar', zichtbaarUitleg: 'Andere sehen nur, was Sie ankreuzen. Ihr Name und Ihr Foto stehen immer bei Ihren Beiträgen; Ihre E-Mail-Adresse zeigen wir nie.', profielBewaard: 'Ihr Profil wurde gespeichert.', openbaarProfiel: 'Ihr öffentliches Profil ansehen', profielVan: 'Profil', geenOnderwerpenLid: 'Noch keine Themen.', geenReactiesLid: 'Noch keine Antworten.', linkedinHulp: 'Der Link zu Ihrem Profil oder nur Ihr LinkedIn-Name.',
+      overJou: 'Über Sie', pBeroep: 'Berufsgruppe', geenBeroep: 'Kein Label', beroepUitleg: 'Erscheint als Label neben Ihrem Namen im Forum.', pBedrijf: 'Unternehmen', pFunctie: 'Funktion', pPlaats: 'Ort', pOver: 'Über mich', pWebsite: 'Website', pLinkedin: 'LinkedIn', pGithub: 'GitHub-Konto', toonAnderen: 'Für andere sichtbar', zichtbaarUitleg: 'Andere sehen nur, was Sie ankreuzen. Ihr Name und Ihr Foto stehen immer bei Ihren Beiträgen; Ihre E-Mail-Adresse zeigen wir nie.', profielBewaard: 'Ihr Profil wurde gespeichert.', openbaarProfiel: 'Ihr öffentliches Profil ansehen', profielVan: 'Profil', geenOnderwerpenLid: 'Noch keine Themen.', geenReactiesLid: 'Noch keine Antworten.', linkedinHulp: 'Der Link zu Ihrem Profil oder nur Ihr LinkedIn-Name.',
       geenReacties: 'Sie haben noch nicht geantwortet.',
       githubAccount: 'GitHub-Konto',
       githubKoppelen: 'GitHub-Konto verknüpfen',
@@ -577,6 +577,7 @@
   function auteur(a) {
     var naam = /^[a-z0-9]{6,20}$/.test(a.id || '') ? '<a class="fo-auteur-link" href="#/lid/' + a.id + '">' + esc(a.naam) + '</a>' : esc(a.naam);
     return '<span class="fo-auteur">' + naam + (a.team ? ' <span class="fo-team">' + esc(t('team')) + '</span>' : '') +
+      (a.beroep ? ' <i class="fo-beroep fo-beroep-lid">' + esc(beroepNaam(a.beroep)) + '</i>' : '') +
       (a.github ? ' <span class="fo-gh">GitHub</span>' : '') + '</span>';
   }
 
@@ -908,7 +909,10 @@
     }).join('') + '</span>';
   }
   // De fora per land: een categorie met `land` staat in het forum van dat land. De naam van het land per taal.
-  var LANDEN = { nl: { nl: 'Nederland', en: 'Netherlands', fr: 'Pays-Bas', tr: 'Hollanda', es: 'Países Bajos', de: 'Niederlande' } };
+  var LANDEN = {
+    nl: { nl: 'Nederland', en: 'Netherlands', fr: 'Pays-Bas', tr: 'Hollanda', es: 'Países Bajos', de: 'Niederlande' },
+    es: { nl: 'Spanje', en: 'Spain', fr: 'Espagne', tr: 'İspanya', es: 'España', de: 'Spanien' }
+  };
   function landNaam(code) { var l = LANDEN[code]; return l ? (l[taal()] || l.en) : String(code).toUpperCase(); }
   function landMerk(code) { return '<span class="fo-landcode" aria-hidden="true">' + esc(String(code).toUpperCase()) + '</span>'; }
   // De labels van beroepsgroepen bij een categorie (`beroepen` van de cloud): de naam per taal.
@@ -919,8 +923,23 @@
     'energieadviseur': { nl: 'Energieadviseur', en: 'Energy assessor', fr: 'Conseiller en énergie', tr: 'Enerji danışmanı', es: 'Asesor energético', de: 'Energieberater' },
     'civiel-ontwerper': { nl: 'Civiel ontwerper', en: 'Civil designer', fr: 'Projeteur VRD', tr: 'Altyapı tasarımcısı', es: 'Proyectista de obra civil', de: 'Tiefbauplaner' },
     'tekenaar': { nl: 'Tekenaar', en: 'Drafter', fr: 'Dessinateur', tr: 'Teknik ressam', es: 'Delineante', de: 'Bauzeichner' },
+    'architect': { nl: 'Architect', en: 'Architect', fr: 'Architecte', tr: 'Mimar', es: 'Arquitecto', de: 'Architekt' },
+    'bouwkundige': { nl: 'Bouwkundige', en: 'Building engineer', fr: 'Ingénieur bâtiment', tr: 'İnşaat teknikeri', es: 'Arquitecto técnico', de: 'Bauingenieur' },
+    'bouwfysicus': { nl: 'Bouwfysicus', en: 'Building physicist', fr: 'Thermicien du bâtiment', tr: 'Yapı fizikçisi', es: 'Especialista en física de la construcción', de: 'Bauphysiker' },
+    'bim-modelleur': { nl: 'BIM-modelleur', en: 'BIM modeller', fr: 'Modeleur BIM', tr: 'BIM modelleyici', es: 'Modelador BIM', de: 'BIM-Modellierer' },
+    'werkvoorbereider': { nl: 'Werkvoorbereider', en: 'Site planner', fr: 'Préparateur de chantier', tr: 'İş hazırlık uzmanı', es: 'Jefe de oficina técnica', de: 'Arbeitsvorbereiter' },
+    'projectleider': { nl: 'Projectleider', en: 'Project manager', fr: 'Chef de projet', tr: 'Proje yöneticisi', es: 'Jefe de proyecto', de: 'Projektleiter' },
+    'aannemer': { nl: 'Aannemer', en: 'Contractor', fr: 'Entrepreneur', tr: 'Yüklenici', es: 'Contratista', de: 'Bauunternehmer' },
+    'calculator': { nl: 'Calculator', en: 'Cost estimator', fr: 'Métreur', tr: 'Maliyet uzmanı', es: 'Presupuestador', de: 'Kalkulator' },
+    'landmeter': { nl: 'Landmeter', en: 'Surveyor', fr: 'Géomètre', tr: 'Harita mühendisi', es: 'Topógrafo', de: 'Vermesser' },
+    'softwareontwikkelaar': { nl: 'Softwareontwikkelaar', en: 'Software developer', fr: 'Développeur', tr: 'Yazılım geliştirici', es: 'Desarrollador de software', de: 'Softwareentwickler' },
+    'docent': { nl: 'Docent', en: 'Teacher', fr: 'Enseignant', tr: 'Öğretmen', es: 'Docente', de: 'Dozent' },
+    'student': { nl: 'Student', en: 'Student', fr: 'Étudiant', tr: 'Öğrenci', es: 'Estudiante', de: 'Student' },
     'administrateur': { nl: 'Administrateur', en: 'Bookkeeper', fr: 'Comptable', tr: 'Muhasebeci', es: 'Contable', de: 'Buchhalter' }
   };
+  var BEROEPKEUZE = ['architect', 'bouwkundige', 'constructeur', 'geotechnisch-adviseur', 'installatieadviseur', 'energieadviseur', 'bouwfysicus',
+    'civiel-ontwerper', 'tekenaar', 'bim-modelleur', 'werkvoorbereider', 'projectleider', 'aannemer', 'calculator', 'landmeter', 'administrateur',
+    'softwareontwikkelaar', 'docent', 'student'];
   var VOORWIE = { nl: ['Voor wie?', 'Iedereen'], en: ['For whom?', 'Everyone'], fr: ['Pour qui ?', 'Tout le monde'], tr: ['Kimin için?', 'Herkes'], es: ['¿Para quién?', 'Todos'], de: ['Für wen?', 'Alle'] };
   var beroepKeuze = '';
   function beroepNaam(code) { var b = BEROEPEN[code]; return b ? (b[taal()] || b.en) : String(code).replace(/-/g, ' '); }
@@ -1359,7 +1378,7 @@
     var formulier = document.getElementById('fo-profiel-form');
     if (formulier) formulier.addEventListener('submit', function (e) {
       e.preventDefault();
-      var gegevens = {}, zichtbaar = {};
+      var gegevens = { beroep: formulier.elements.beroep ? formulier.elements.beroep.value : '' }, zichtbaar = {};
       PROFIELVELDEN.forEach(function (v) {
         if (formulier.elements[v]) gegevens[v] = formulier.elements[v].value;
         if (formulier.elements['toon_' + v]) zichtbaar[v] = formulier.elements['toon_' + v].checked ? 1 : 0;
@@ -1385,8 +1404,13 @@
       return '<div class="fo-pveld"><label for="' + id + '">' + esc(t(PROFIELLABEL[v])) + '</label>' + invoer +
         '<label class="fo-toon"><input type="checkbox" name="toon_' + v + '"' + (p.zichtbaar[v] ? ' checked' : '') + '> ' + esc(t('toonAnderen')) + '</label></div>';
     }).join('');
+    var beroep = p.gegevens.beroep || '';
+    var keuze = '<div class="fo-pveld"><label for="fo-p-beroep">' + esc(t('pBeroep')) + '</label><select id="fo-p-beroep" name="beroep">' +
+      '<option value="">' + esc(t('geenBeroep')) + '</option>' + BEROEPKEUZE.map(function (b) {
+        return '<option value="' + b + '"' + (b === beroep ? ' selected' : '') + '>' + esc(beroepNaam(b)) + '</option>';
+      }).join('') + '</select><span class="fo-klein fo-toon">' + esc(t('beroepUitleg')) + '</span></div>';
     return '<section class="fo-kaart fo-profiel-over"><h3>' + esc(t('overJou')) + '</h3><p class="fo-klein">' + esc(t('zichtbaarUitleg')) + '</p>' +
-      '<form class="fo-form fo-pform" id="fo-profiel-form">' + velden +
+      '<form class="fo-form fo-pform" id="fo-profiel-form">' + keuze + velden +
       '<p class="fo-profiel-knoppen"><button type="submit" class="btn btn-primary fo-knop">' + esc(t('opslaan')) + '</button>' +
       (/^[a-z0-9]{6,20}$/.test(p.id || '') ? '<a class="btn btn-ghost fo-knop" href="#/lid/' + p.id + '">' + esc(t('openbaarProfiel')) + '</a>' : '') + '</p></form></section>';
   }
@@ -1415,6 +1439,7 @@
     app.innerHTML = tabs('') + '<div class="fo-enkel">' +
       '<section class="fo-kaart fo-profiel"><div class="fo-profiel-kop">' + avatar(p, true) +
       '<div><h2>' + esc(p.naam) + (p.team ? ' <span class="fo-team">' + esc(t('team')) + '</span>' : '') + '</h2>' +
+      (p.beroep ? '<p><i class="fo-beroep">' + esc(beroepNaam(p.beroep)) + '</i></p>' : '') +
       (werk ? '<p>' + esc(werk) + '</p>' : '') + (p.plaats ? '<p class="fo-klein">' + esc(p.plaats) + '</p>' : '') + '</div></div>' +
       (p.over ? '<p class="fo-lid-over">' + esc(p.over) + '</p>' : '') +
       (links ? '<p class="fo-lid-links">' + links + '</p>' : '') +
