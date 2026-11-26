@@ -49,6 +49,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: node scripts/generate-downloads.js
 
+      - name: Refresh other open source AEC projects (stars, contributors)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/generate-aec-landscape.js
+
       - name: Compute download trends (weekly deltas)
         run: node scripts/compute-download-trends.js
 

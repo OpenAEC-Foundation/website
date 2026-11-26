@@ -22,6 +22,7 @@ const STEPS = [
   // (release-highlights.json). Voedt de releasetijdlijn op de productpagina.
   // Faalt nooit hard: bij netwerkproblemen blijft de vorige file staan.
   { name: 'Generate release highlights (product timeline copy)',          cmd: 'node scripts/generate-release-highlights.js' },
+  { name: 'Refresh other open source AEC projects (/aec-open-source/)', cmd: 'node scripts/generate-aec-landscape.js' },
   { name: 'Generate downloads stats (+ daily snapshot)',                  cmd: 'node scripts/generate-downloads.js' },
   { name: 'Compute download trends (weekly deltas)',                      cmd: 'node scripts/compute-download-trends.js' },
   { name: 'Update homepage tool stats (static HTML injection)',           cmd: 'node scripts/build-homepage-stats.js' },
