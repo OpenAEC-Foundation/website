@@ -77,6 +77,7 @@
     .lo-table .what { display: block; color: #52525B; font-size: 0.83rem; margin-top: 2px; }
     .lo-cat { display: inline-block; font-size: 0.72rem; font-weight: 700; padding: 2px 8px; border-radius: var(--radius-full); color: #fff; }
     .lo-cat.BIM { background: var(--cat-bim); } .lo-cat.CAD { background: var(--cat-cad); }
+    .lo-new { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 1px 7px; border-radius: var(--radius-full); background: #FEF3C7; color: #92400E; vertical-align: 2px; }
     .lo-note { font-size: 0.82rem; color: #71717A; margin-top: var(--sp-4); }
     @media (max-width: 768px) { .lo-chart { grid-template-columns: 110px 1fr; } .lo-card { padding: var(--sp-4); } }
   </style>
@@ -182,14 +183,15 @@
   <header class="product-head surface-spot">
     <div class="product-head-inner">
       <p class="pill-label" data-i18n="header.label">Open-source landschap</p>
-      <h1 data-i18n="header.title">Andere open-source projecten <span class="accent">in de AEC</span></h1>
-      <p class="lead" data-i18n="header.desc">OpenAEC is niet de enige. Hier zie je opkomende open-source BIM- en CAD-projecten van andere bedrijven, instituten en communities: wie erachter zit, wanneer ze begonnen, hoeveel mensen eraan bijdragen en hoeveel sterren ze op GitHub hebben.</p>
+      <h1 data-i18n="header.title">Nieuwe open-source BIM en CAD <span class="accent">van anderen</span></h1>
+      <p class="lead" data-i18n="header.desc">OpenAEC is niet de enige. Er verschijnen steeds meer nieuwe open-source BIM- en CAD-programma’s van andere bedrijven en makers. Hier zie je ze op een rij: wie erachter zit, wanneer ze begonnen, hoeveel mensen eraan bijdragen en hoeveel sterren ze op GitHub hebben. Onder Alle staan ook een paar gevestigde namen ter vergelijking.</p>
     </div>
   </header>
 
   <section class="section"><div class="container lo-wrap">
     <div class="lo-filters" role="group" aria-label="Filter">
-      <button type="button" class="lo-filter" data-cat="ALL" aria-pressed="true" data-i18n="filters.all">Alle</button>
+      <button type="button" class="lo-filter" data-cat="NEW" aria-pressed="true" data-i18n="filters.new">Nieuw (sinds 2025)</button>
+      <button type="button" class="lo-filter" data-cat="ALL" aria-pressed="false" data-i18n="filters.all">Alle</button>
       <button type="button" class="lo-filter" data-cat="BIM" aria-pressed="false">BIM</button>
       <button type="button" class="lo-filter" data-cat="CAD" aria-pressed="false">CAD</button>
     </div>
@@ -210,9 +212,9 @@
             <th scope="col"><button type="button" data-sort="name" data-i18n="table.project">Project</button></th>
             <th scope="col" data-i18n="table.type">Soort</th>
             <th scope="col"><button type="button" data-sort="org" data-i18n="table.org">Bedrijf / organisatie</button></th>
-            <th scope="col"><button type="button" data-sort="started" data-i18n="table.started">Gestart</button></th>
+            <th scope="col" aria-sort="descending"><button type="button" data-sort="started" data-i18n="table.started">Gestart</button></th>
             <th scope="col" class="num"><button type="button" data-sort="contributors" data-i18n="table.contributors">Contributors</button></th>
-            <th scope="col" class="num" aria-sort="descending"><button type="button" data-sort="stars" data-i18n="table.stars">Sterren</button></th>
+            <th scope="col" class="num"><button type="button" data-sort="stars" data-i18n="table.stars">Sterren</button></th>
             <th scope="col" data-i18n="table.license">Licentie</th>
             <th scope="col"><button type="button" data-sort="lastPush" data-i18n="table.active">Laatst actief</button></th>
           </tr></thead>
@@ -274,24 +276,24 @@
   <script>
   (function () {
     var L = {
-      nl: { stars: 'sterren', contributors: 'contributors', started: 'gestart', none: '—', loc: 'nl-NL' },
-      en: { stars: 'stars', contributors: 'contributors', started: 'started', none: '—', loc: 'en-GB' },
-      fr: { stars: 'étoiles', contributors: 'contributeurs', started: 'début', none: '—', loc: 'fr-FR' },
-      tr: { stars: 'yıldız', contributors: 'katkıcı', started: 'başlangıç', none: '—', loc: 'tr-TR' },
-      es: { stars: 'estrellas', contributors: 'colaboradores', started: 'inicio', none: '—', loc: 'es-ES' },
-      de: { stars: 'Sterne', contributors: 'Mitwirkende', started: 'Start', none: '—', loc: 'de-DE' }
+      nl: { stars: 'sterren', contributors: 'contributors', started: 'gestart', fresh: 'Nieuw', none: '—', loc: 'nl-NL' },
+      en: { stars: 'stars', contributors: 'contributors', started: 'started', fresh: 'New', none: '—', loc: 'en-GB' },
+      fr: { stars: 'étoiles', contributors: 'contributeurs', started: 'début', fresh: 'Nouveau', none: '—', loc: 'fr-FR' },
+      tr: { stars: 'yıldız', contributors: 'katkıcı', started: 'başlangıç', fresh: 'Yeni', none: '—', loc: 'tr-TR' },
+      es: { stars: 'estrellas', contributors: 'colaboradores', started: 'inicio', fresh: 'Nuevo', none: '—', loc: 'es-ES' },
+      de: { stars: 'Sterne', contributors: 'Mitwirkende', started: 'Start', fresh: 'Neu', none: '—', loc: 'de-DE' }
     };
     function lang() {
       var l = (document.documentElement.lang || 'nl').slice(0, 2);
       return L[l] ? l : 'en';
     }
-    var data = [], cat = 'ALL', sortKey = 'stars', sortDir = -1;
+    var data = [], cat = 'NEW', sortKey = 'started', sortDir = -1;
     var tip = document.getElementById('lo-tip');
     function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
     function fmt(n) { return Number(n).toLocaleString(L[lang()].loc); }
     function fdate(d) { return new Date(d + 'T00:00:00Z').toLocaleDateString(L[lang()].loc, { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }); }
     function what(p) { var l = lang(); return (p.what && (p.what[l] || p.what.en)) || ''; }
-    function shown() { return data.filter(function (p) { return cat === 'ALL' || p.cat === cat; }); }
+    function shown() { return data.filter(function (p) { return cat === 'ALL' || (cat === 'NEW' ? p.isNew : p.cat === cat); }); }
 
     function chart() {
       var rows = shown().slice().sort(function (a, b) { return b.stars - a.stars; });
@@ -312,7 +314,7 @@
         return (x - y) * sortDir;
       });
       document.getElementById('lo-body').innerHTML = rows.map(function (p) {
-        return '<tr><td><a href="https://github.com/' + esc(p.repo) + '" target="_blank" rel="noopener">' + esc(p.name) + '</a><span class="what">' + esc(what(p)) + '</span></td>' +
+        return '<tr><td><a href="https://github.com/' + esc(p.repo) + '" target="_blank" rel="noopener">' + esc(p.name) + '</a>' + (p.isNew ? ' <span class="lo-new">' + esc(L[lang()].fresh) + '</span>' : '') + '<span class="what">' + esc(what(p)) + '</span></td>' +
           '<td><span class="lo-cat ' + p.cat + '">' + p.cat + '</span></td>' +
           '<td>' + esc(p.org) + '<span class="what">' + esc(p.country) + '</span></td>' +
           '<td>' + p.started.slice(0, 4) + '</td>' +
@@ -350,7 +352,7 @@
       b.addEventListener('click', function () {
         var k = b.dataset.sort;
         if (k === sortKey) sortDir = -sortDir;
-        else { sortKey = k; sortDir = (k === 'name' || k === 'org' || k === 'started') ? 1 : -1; }
+        else { sortKey = k; sortDir = (k === 'name' || k === 'org') ? 1 : -1; }
         table();
       });
     });
