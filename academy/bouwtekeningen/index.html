@@ -43,9 +43,33 @@
     .cu-answer { margin-top: var(--sp-4); border: 1px solid rgba(217,119,6,0.3); border-radius: var(--radius-md); background: rgba(217,119,6,0.05); }
     .cu-answer summary { cursor: pointer; padding: 10px 14px; font-weight: 600; color: var(--deep-forge); }
     .cu-answer > div { padding: 0 14px 12px; }
+    .cu-rules { display: grid; gap: var(--sp-2); }
+    .cu-rules strong { color: var(--deep-forge); }
+    .cu-hatch-group { font-family: var(--font-heading); font-size: 1rem; color: var(--deep-forge); margin: var(--sp-5) 0 var(--sp-2); }
+    .cu-lesson ul.cu-hatches { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: var(--sp-3); }
+    .cu-hatch { border: 1px solid rgba(42,42,50,0.12); border-radius: var(--radius-md); background: #FFFFFF; padding: var(--sp-3); }
+    .cu-hatch-swatches { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-bottom: var(--sp-2); }
+    .cu-hatch-swatches figure { margin: 0; }
+    .cu-hatch-swatches figcaption { font-family: var(--font-code); font-size: 0.7rem; color: var(--text-on-light); margin-top: 3px; white-space: nowrap; }
+    .ts-swatch { display: block; background: #FFFFFF; }
+    .cu-wrap p.cu-hatch-name { margin: 0; font-weight: 600; color: var(--deep-forge); line-height: 1.35; }
+    .cu-hatch-name code { font-family: var(--font-code); font-size: 0.8rem; color: #B45309; margin-right: 4px; }
+    .cu-b { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border: 1px solid var(--deep-forge); font-family: var(--font-code); font-size: 0.72rem; font-weight: 500; color: var(--deep-forge); vertical-align: 1px; margin-left: 4px; }
+    .cu-wrap p.cu-hatch-note { margin: 4px 0 0; font-size: 0.82rem; line-height: 1.45; }
+    .cu-figure { margin: var(--sp-3) 0 0; }
+    .cu-figure a { display: block; border: 1px solid rgba(42,42,50,0.15); border-radius: var(--radius-md); overflow: hidden; background: #FFFFFF; }
+    .cu-figure img { display: block; width: 100%; height: auto; }
+    .cu-figure figcaption { font-size: 0.85rem; color: var(--text-on-light); margin-top: var(--sp-2); }
+    .cu-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: var(--sp-2) 0 var(--sp-3); }
+    .cu-table th { text-align: left; font-family: var(--font-code); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: #B45309; border-bottom: 2px solid rgba(217,119,6,0.35); padding: 6px 8px; }
+    .cu-table td { border-bottom: 1px solid rgba(42,42,50,0.08); padding: 6px 8px; vertical-align: top; color: var(--text-on-light); }
+    .cu-lesson code { font-family: var(--font-code); font-size: 0.85em; color: var(--deep-forge); background: rgba(217,119,6,0.08); padding: 0 4px; border-radius: 3px; white-space: nowrap; }
     .cu-next { margin-top: var(--sp-10); }
     @media (max-width: 768px) { .cu-intro { grid-template-columns: minmax(0, 1fr); } .cu-lesson { padding: var(--sp-5) var(--sp-4); } }
   </style>
+
+
+
   <!-- schema:start -->
   <script type="application/ld+json">
   {
@@ -81,7 +105,7 @@
           "@id": "https://open-aec.com/#website"
         },
         "inLanguage": "nl",
-        "dateModified": "2026-11-11",
+        "dateModified": "2026-11-24",
         "breadcrumb": {
           "@id": "https://open-aec.com/academy/bouwtekeningen/#breadcrumb"
         }
@@ -155,7 +179,7 @@
     <div class="product-head-inner">
       <p class="pill-label"><a href="/academy/" style="color: inherit; text-decoration: none;">Academy</a> · cursus</p>
       <h1>Bouwtekeningen <span class="accent">lezen en maken</span></h1>
-      <p class="lead">Zes korte lessen over de afspraken achter een Nederlandse bouwtekening: van fasen en schalen tot arceringen en wat er op een bestek- of werktekening hoort.</p>
+      <p class="lead">Zeven korte lessen over de afspraken achter een Nederlandse bouwtekening: van fasen en schalen tot arceringen, wat er op een bestek- of werktekening hoort, en de regels voor constructietekeningen.</p>
     </div>
   </header>
 
@@ -163,7 +187,7 @@
     <div class="cu-wrap">
       <div class="cu-intro">
         <div><strong>Voor wie</strong>Beginnende tekenaars, studenten bouwkunde en iedereen die tekeningen moet maken of beoordelen.</div>
-        <div><strong>Tijd</strong>Zes lessen van ongeveer een half uur.</div>
+        <div><strong>Tijd</strong>Zeven lessen van ongeveer een half uur.</div>
         <div><strong>Nodig</strong>Een tekeningenset van een project, op papier of als PDF. Een eigen project of een voorbeeld werkt allebei.</div>
       </div>
 
@@ -204,6 +228,67 @@
       <article class="cu-lesson" id="les-3">
         <h2><span class="cu-num">Les 3</span> Arceringen volgens NEN 47</h2>
         <p>In een doorsnede laat de arcering zien van welk materiaal een onderdeel is. NEN 47 geeft per materiaal de arcering, en die hangt af van de schaal.</p>
+        <h3>Hoe arceringen werken</h3>
+        <ul class="cu-rules">
+          <li><strong>Alleen wat doorgesneden is, krijgt een arcering.</strong> Wat je in aanzicht ziet, blijft leeg. Daar geven dikkere en dunnere lijnen de diepte aan.</li>
+          <li><strong>Elk materiaal heeft een eigen arcering.</strong> Zo zie je in één oogopslag wat baksteen, beton, hout of isolatie is, ook zonder de tekst te lezen.</li>
+          <li><strong>De schaal bepaalt de arcering.</strong> Op 1:100 is er geen ruimte voor fijne lijnen, dus de arcering is eenvoudiger dan op 1:5. Bij elk vlakje hieronder staat voor welke schalen het geldt.</li>
+          <li><strong>Een B betekent: ook in woorden benoemen.</strong> Sommige materialen delen een arcering, zoals kalkzandsteen en betonblokken. Dan zet je de naam van het materiaal erbij.</li>
+          <li><strong>Teken arceringen met je dunste lijn.</strong> Schuine lijnen staan onder 45°, de zigzag van isolatie onder 60°. De omtrek van het doorgesneden onderdeel blijft dik.</li>
+          <li><strong>Kleur is een afspraak van het bureau.</strong> Op details krijgt een materiaal vaak een kleurvlak onder de arcering. De arcering komt uit de norm, de kleur niet.</li>
+        </ul>
+        <h3>Alle arceringen op een rij</h3>
+        <p>De 31 materialen uit NEN 47, in vier groepen. De arceringen zijn nagetekend en een benadering; controleer lijnafstanden en diktes tegen de norm zelf.</p>
+        <!-- arceringen:start -->
+        <h4 class="cu-hatch-group">Steen en beton</h4>
+        <ul class="cu-hatches">
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Metselwerk van baksteen, 1:100 en 1:50"><defs><pattern id="pat-les-1-1" width="1.6" height="1.6" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="1.6" stroke="#2A2A32" stroke-width="1.1"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-1-1)" stroke="#2A2A32"/></svg><figcaption>1:100 en 1:50</figcaption></figure><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Metselwerk van baksteen, 1:50 tot 1:1"><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><line x1="1" y1="3" x2="71" y2="3" stroke="#2A2A32" stroke-width="2.4"/><line x1="1" y1="33" x2="71" y2="33" stroke="#2A2A32" stroke-width="2.4"/></svg><figcaption>1:50 tot 1:1</figcaption></figure><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Metselwerk van baksteen, 1:50 tot 1:1"><defs><pattern id="pat-les-1-3" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="9" stroke="#2A2A32" stroke-width="0.9"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-1-3)" stroke="#2A2A32"/></svg><figcaption>1:50 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>1</code> Metselwerk van baksteen</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Speciale steenachtige materialen, alle schalen"><defs><pattern id="pat-les-2-4" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="11" stroke="#2A2A32" stroke-width="0.9"/><line x1="0" y1="0" x2="11" y2="0" stroke="#2A2A32" stroke-width="0.9"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-2-4)" stroke="#2A2A32"/></svg><figcaption>alle schalen</figcaption></figure></div><p class="cu-hatch-name"><code>2</code> Speciale steenachtige materialen <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p><p class="cu-hatch-note">bijvoorbeeld cementraam, vuurvast materiaal, raamdorpelsteen, dakpannen</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Metselwerk van niet-gebakken kunststeen, alle schalen"><defs><pattern id="pat-les-3-5" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="11" stroke="#2A2A32" stroke-width="0.9"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-3-5)" stroke="#2A2A32"/></svg><figcaption>alle schalen</figcaption></figure></div><p class="cu-hatch-name"><code>3</code> Metselwerk van niet-gebakken kunststeen <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p><p class="cu-hatch-note">bijvoorbeeld kalkzandsteen, betonblokken</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Niet-dragende lichte scheidingswanden, 1:100 en 1:50"><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="10.799999999999999" width="71" height="14.4" fill="none" stroke="#2A2A32" stroke-width="0.8"/><rect x="0.5" y="10.799999999999999" width="18" height="14.4" fill="#2A2A32"/><rect x="36.5" y="10.799999999999999" width="18" height="14.4" fill="#2A2A32"/></svg><figcaption>1:100 en 1:50</figcaption></figure><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Niet-dragende lichte scheidingswanden, 1:20 en 1:10"><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="10.799999999999999" width="71" height="14.4" fill="none" stroke="#2A2A32" stroke-width="0.8"/><line x1="2.5" y1="10.799999999999999" x2="2.5" y2="25.2" stroke="#2A2A32" stroke-width="0.8"/><line x1="5.5" y1="10.799999999999999" x2="5.5" y2="25.2" stroke="#2A2A32" stroke-width="0.8"/><line x1="8.5" y1="10.799999999999999" x2="8.5" y2="25.2" stroke="#2A2A32" stroke-width="0.8"/><line x1="11.5" y1="10.799999999999999" x2="11.5" y2="25.2" stroke="#2A2A32" stroke-width="0.8"/><line x1="14.5" y1="10.799999999999999" x2="14.5" y2="25.2" stroke="#2A2A32" stroke-width="0.8"/><line x1="17.5" y1="10.799999999999999" x2="17.5" y2="25.2" stroke="#2A2A32" stroke-width="0.8"/><line x1="38.5" y1="10.799999999999999" x2="38.5" y2="25.2" stroke="#2A2A32" stroke-width="0.8"/><line x1="41.5" y1="10.799999999999999" x2="41.5" y2="25.2" stroke="#2A2A32" stroke-width="0.8"/><line x1="44.5" y1="10.799999999999999" x2="44.5" y2="25.2" stroke="#2A2A32" stroke-width="0.8"/><line x1="47.5" y1="10.799999999999999" x2="47.5" y2="25.2" stroke="#2A2A32" stroke-width="0.8"/><line x1="50.5" y1="10.799999999999999" x2="50.5" y2="25.2" stroke="#2A2A32" stroke-width="0.8"/><line x1="53.5" y1="10.799999999999999" x2="53.5" y2="25.2" stroke="#2A2A32" stroke-width="0.8"/></svg><figcaption>1:20 en 1:10</figcaption></figure><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Niet-dragende lichte scheidingswanden, 1:5 en 1:1"><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/></svg><figcaption>1:5 en 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>4</code> Niet-dragende lichte scheidingswanden <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p><p class="cu-hatch-note">is de wand dragend: gebakken steen als nr. 1, niet-gebakken steen als nr. 3</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Gewapend beton, in het werk gestort, 1:100 en 1:50"><defs><pattern id="pat-les-5-9" width="4" height="4" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="0.9" fill="#2A2A32"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-5-9)" stroke="#2A2A32"/></svg><figcaption>1:100 en 1:50</figcaption></figure><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Gewapend beton, in het werk gestort, 1:50 tot 1:1"><rect x="0.5" y="0.5" width="71" height="35" fill="#D6D3D1" stroke="#2A2A32"/></svg><figcaption>1:50 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>5</code> Gewapend beton, in het werk gestort</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Gewapend beton, niet in het werk gestort, alle schalen"><defs><pattern id="pat-les-6-11" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="11" stroke="#2A2A32" stroke-width="0.9"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="#D6D3D1"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-6-11)" stroke="#2A2A32"/></svg><figcaption>alle schalen</figcaption></figure></div><p class="cu-hatch-name"><code>6</code> Gewapend beton, niet in het werk gestort</p><p class="cu-hatch-note">prefab, bijvoorbeeld systeemvloeren</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Ongewapend beton, in het werk gestort, alle schalen"><defs><pattern id="pat-les-7-12" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="11" stroke="#2A2A32" stroke-width="0.9"/><line x1="0" y1="0" x2="11" y2="0" stroke="#2A2A32" stroke-width="0.9"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="#D6D3D1"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-7-12)" stroke="#2A2A32"/></svg><figcaption>alle schalen</figcaption></figure></div><p class="cu-hatch-name"><code>7</code> Ongewapend beton, in het werk gestort <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p><p class="cu-hatch-note">bijvoorbeeld vulbeton, lichtbeton, werkvloeren</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Ongewapend beton, niet in het werk gestort, alle schalen"><defs><pattern id="pat-les-7a-13" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="11" stroke="#2A2A32" stroke-width="0.9"/><line x1="0" y1="0" x2="11" y2="0" stroke="#2A2A32" stroke-width="0.9"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-7a-13)" stroke="#2A2A32"/></svg><figcaption>alle schalen</figcaption></figure></div><p class="cu-hatch-name"><code>7a</code> Ongewapend beton, niet in het werk gestort <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p><p class="cu-hatch-note">bijvoorbeeld betonbroodjes; arcering als nr. 2</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Sierbeton, alle schalen"><defs><pattern id="pat-les-8-14" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="11" stroke="#2A2A32" stroke-width="0.9" stroke-dasharray="5 3"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="#D6D3D1"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-8-14)" stroke="#2A2A32"/></svg><figcaption>alle schalen</figcaption></figure></div><p class="cu-hatch-name"><code>8</code> Sierbeton</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Natuursteen, alle schalen"><defs><pattern id="pat-les-9-15" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="11" stroke="#2A2A32" stroke-width="0.9" stroke-dasharray="5 3"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-9-15)" stroke="#2A2A32"/></svg><figcaption>alle schalen</figcaption></figure></div><p class="cu-hatch-name"><code>9</code> Natuursteen</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Enkele vloer- en wandafwerking, 1:5 en 1:1"><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><path d="M1 34 L39.6 4 L71 34" fill="none" stroke="#2A2A32" stroke-width="0.8"/></svg><figcaption>1:5 en 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>10</code> Enkele vloer- en wandafwerking <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p><p class="cu-hatch-note">bijvoorbeeld pleisterwerk</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Samengestelde vloer- en wandafwerking, 1:20 tot 1:1"><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><line x1="1" y1="13.68" x2="71" y2="13.68" stroke="#2A2A32" stroke-width="0.8"/><path d="M1 34 L39.6 13.68 L71 34" fill="none" stroke="#2A2A32" stroke-width="0.8"/></svg><figcaption>1:20 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>11</code> Samengestelde vloer- en wandafwerking <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p></li>
+        </ul>
+        <h4 class="cu-hatch-group">Hout en plaatmateriaal</h4>
+        <ul class="cu-hatches">
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Naaldhout, 1:20 tot 1:1"><defs><pattern id="pat-les-12-18" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="11" stroke="#2A2A32" stroke-width="0.9"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-12-18)" stroke="#2A2A32"/></svg><figcaption>1:20 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>12</code> Naaldhout</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Loofhout, 1:20 tot 1:1"><defs><pattern id="pat-les-13-19" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="11" stroke="#2A2A32" stroke-width="0.9"/><line x1="0" y1="0" x2="11" y2="0" stroke="#2A2A32" stroke-width="0.9"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-13-19)" stroke="#2A2A32"/></svg><figcaption>1:20 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>13</code> Loofhout</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Naald- en loofhout, langshout, 1:10 tot 1:1"><defs><pattern id="pat-les-14-20" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="4" stroke="#2A2A32" stroke-width="0.8"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-14-20)" stroke="#2A2A32"/></svg><figcaption>1:10 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>14</code> Naald- en loofhout, langshout</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Triplex en ander gelamineerd plaatmateriaal, 1:10 tot 1:1"><defs><pattern id="pat-les-14a-21" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="3" stroke="#2A2A32" stroke-width="0.7"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="8.75" fill="url(#pat-les-14a-21)" stroke="#2A2A32" stroke-width="0.8"/><rect x="0.5" y="9.25" width="71" height="8.75" fill="#FFFFFF" stroke="#2A2A32" stroke-width="0.8"/><rect x="0.5" y="18" width="71" height="8.75" fill="url(#pat-les-14a-21)" stroke="#2A2A32" stroke-width="0.8"/><rect x="0.5" y="26.75" width="71" height="8.75" fill="#FFFFFF" stroke="#2A2A32" stroke-width="0.8"/></svg><figcaption>1:10 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>14a</code> Triplex en ander gelamineerd plaatmateriaal <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Lijmnaad, 1:10 tot 1:1"><line x1="2" y1="18" x2="70" y2="18" stroke="#2A2A32" stroke-width="1"/><circle cx="10" cy="18" r="1.8" fill="#2A2A32"/><circle cx="23" cy="18" r="1.8" fill="#2A2A32"/><circle cx="36" cy="18" r="1.8" fill="#2A2A32"/><circle cx="49" cy="18" r="1.8" fill="#2A2A32"/><circle cx="62" cy="18" r="1.8" fill="#2A2A32"/></svg><figcaption>1:10 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>15</code> Lijmnaad</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Bekledingsplaat, geen triplex, 1:10 tot 1:1"><defs><pattern id="pat-les-16-23" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(0)"><line x1="0" y1="0" x2="0" y2="5" stroke="#2A2A32" stroke-width="0.8"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-16-23)" stroke="#2A2A32"/></svg><figcaption>1:10 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>16</code> Bekledingsplaat, geen triplex <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Isolatieplaat, 1:10 tot 1:1"><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><clipPath id="pat-les-17-24"><rect x="0.5" y="0.5" width="71" height="35"/></clipPath><path d="M0 34 L18.475208614068027 2 L36.950417228136054 34 L55.425625842204084 2 L73.90083445627211 34" fill="none" stroke="#2A2A32" stroke-width="0.9" clip-path="url(#pat-les-17-24)"/></svg><figcaption>1:10 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>17</code> Isolatieplaat <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p><p class="cu-hatch-note">zigzaglijn met hoeken van 60°</p></li>
+        </ul>
+        <h4 class="cu-hatch-group">Metalen</h4>
+        <ul class="cu-hatches">
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Staal, alle schalen"><defs><pattern id="pat-les-18-25" width="1.6" height="1.6" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="1.6" stroke="#2A2A32" stroke-width="1.1"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-18-25)" stroke="#2A2A32"/></svg><figcaption>alle schalen</figcaption></figure><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Staal, 1:5 en 1:1"><defs><pattern id="pat-les-18-26" width="11" height="11" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="11" stroke="#2A2A32" stroke-width="2.4"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-18-26)" stroke="#2A2A32"/></svg><figcaption>1:5 en 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>18</code> Staal</p><p class="cu-hatch-note">op constructietekeningen mag de doorsnede open blijven</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Aluminium, brons, koper en dergelijke, 1:20 tot 1:1"><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/></svg><figcaption>1:20 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>19</code> Aluminium, brons, koper en dergelijke <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Lood, 1:20 tot 1:1"><rect x="2" y="15" width="68" height="6" fill="#FFFFFF" stroke="#2A2A32"/><line x1="2" y1="18" x2="70" y2="18" stroke="#2A2A32" stroke-width="6" stroke-dasharray="8 6"/></svg><figcaption>1:20 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>20</code> Lood <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p><p class="cu-hatch-note">met vermelding van de zwaarte</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Zink, 1:20 tot 1:1"><rect x="2" y="15" width="68" height="6" fill="#2A2A32" stroke="#2A2A32"/></svg><figcaption>1:20 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>21</code> Zink <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p><p class="cu-hatch-note">met vermelding van het nummer</p></li>
+        </ul>
+        <h4 class="cu-hatch-group">Overige materialen</h4>
+        <ul class="cu-hatches">
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Kunststof, 1:5 en 1:1"><defs><pattern id="pat-les-22-30" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="4" stroke="#2A2A32" stroke-width="0.8"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="0.5" y="0.5" width="71" height="35" fill="url(#pat-les-22-30)" stroke="#2A2A32"/></svg><figcaption>1:5 en 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>22</code> Kunststof <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Afdichtingsmiddel, 1:5 en 1:1"><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><circle cx="7" cy="9" r="0.9" fill="#2A2A32"/><circle cx="16" cy="24" r="0.9" fill="#2A2A32"/><circle cx="25" cy="11" r="0.9" fill="#2A2A32"/><circle cx="32" cy="29" r="0.9" fill="#2A2A32"/><circle cx="41" cy="16" r="0.9" fill="#2A2A32"/><circle cx="48" cy="7" r="0.9" fill="#2A2A32"/><circle cx="54" cy="26" r="0.9" fill="#2A2A32"/><circle cx="62" cy="13" r="0.9" fill="#2A2A32"/><circle cx="67" cy="30" r="0.9" fill="#2A2A32"/><circle cx="11" cy="32" r="0.9" fill="#2A2A32"/><circle cx="37" cy="6" r="0.9" fill="#2A2A32"/><circle cx="58" cy="19" r="0.9" fill="#2A2A32"/><circle cx="21" cy="17" r="0.9" fill="#2A2A32"/><circle cx="46" cy="31" r="0.9" fill="#2A2A32"/><circle cx="4" cy="20" r="0.9" fill="#2A2A32"/><circle cx="28" cy="22" r="0.9" fill="#2A2A32"/><circle cx="64" cy="5" r="0.9" fill="#2A2A32"/><circle cx="51" cy="14" r="0.9" fill="#2A2A32"/></svg><figcaption>1:5 en 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>23</code> Afdichtingsmiddel <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Bitumenweefsel en folie, 1:5 en 1:1"><line x1="2" y1="16" x2="70" y2="16" stroke="#2A2A32" stroke-width="1.4"/><line x1="2" y1="20" x2="70" y2="20" stroke="#2A2A32" stroke-width="1.4"/></svg><figcaption>1:5 en 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>24</code> Bitumenweefsel en folie <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Maaiveld, alle schalen"><defs><clipPath id="pat-les-25-33"><rect x="0" y="0" width="72" height="20"/></clipPath></defs><g clip-path="url(#pat-les-25-33)"><line x1="1" y1="6" x2="71" y2="6" stroke="#2A2A32" stroke-width="1.2"/><line x1="-14" y1="6" x2="0" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="-10.5" y1="6" x2="3.5" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="-7" y1="6" x2="7" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="-3.5" y1="6" x2="10.5" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="0" y1="6" x2="14" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="3.5" y1="6" x2="17.5" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="21" y1="6" x2="7" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="24.5" y1="6" x2="10.5" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="28" y1="6" x2="14" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="31.5" y1="6" x2="17.5" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="35" y1="6" x2="21" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="24.5" y1="6" x2="38.5" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="28" y1="6" x2="42" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="31.5" y1="6" x2="45.5" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="35" y1="6" x2="49" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="38.5" y1="6" x2="52.5" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="56" y1="6" x2="42" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="59.5" y1="6" x2="45.5" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="63" y1="6" x2="49" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="66.5" y1="6" x2="52.5" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="70" y1="6" x2="56" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="59.5" y1="6" x2="73.5" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="63" y1="6" x2="77" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="66.5" y1="6" x2="80.5" y2="20" stroke="#2A2A32" stroke-width="0.7"/><line x1="70" y1="6" x2="84" y2="20" stroke="#2A2A32" stroke-width="0.7"/></g></svg><figcaption>alle schalen</figcaption></figure></div><p class="cu-hatch-name"><code>25</code> Maaiveld</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Zand, alle schalen"><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><circle cx="7" cy="9" r="0.9" fill="#2A2A32"/><circle cx="16" cy="24" r="0.9" fill="#2A2A32"/><circle cx="25" cy="11" r="0.9" fill="#2A2A32"/><circle cx="32" cy="29" r="0.9" fill="#2A2A32"/><circle cx="41" cy="16" r="0.9" fill="#2A2A32"/><circle cx="48" cy="7" r="0.9" fill="#2A2A32"/><circle cx="54" cy="26" r="0.9" fill="#2A2A32"/><circle cx="62" cy="13" r="0.9" fill="#2A2A32"/><circle cx="67" cy="30" r="0.9" fill="#2A2A32"/><circle cx="11" cy="32" r="0.9" fill="#2A2A32"/><circle cx="37" cy="6" r="0.9" fill="#2A2A32"/><circle cx="58" cy="19" r="0.9" fill="#2A2A32"/><circle cx="21" cy="17" r="0.9" fill="#2A2A32"/><circle cx="46" cy="31" r="0.9" fill="#2A2A32"/><circle cx="4" cy="20" r="0.9" fill="#2A2A32"/><circle cx="28" cy="22" r="0.9" fill="#2A2A32"/><circle cx="64" cy="5" r="0.9" fill="#2A2A32"/><circle cx="51" cy="14" r="0.9" fill="#2A2A32"/></svg><figcaption>alle schalen</figcaption></figure></div><p class="cu-hatch-name"><code>26</code> Zand</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Grind, alle schalen"><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><ellipse cx="8" cy="9" rx="2.6" ry="2" fill="none" stroke="#2A2A32" stroke-width="0.7"/><ellipse cx="20" cy="7" rx="2.6" ry="2" fill="none" stroke="#2A2A32" stroke-width="0.7"/><ellipse cx="33" cy="11" rx="2.6" ry="2" fill="none" stroke="#2A2A32" stroke-width="0.7"/><ellipse cx="46" cy="8" rx="2.6" ry="2" fill="none" stroke="#2A2A32" stroke-width="0.7"/><ellipse cx="59" cy="10" rx="2.6" ry="2" fill="none" stroke="#2A2A32" stroke-width="0.7"/><ellipse cx="13" cy="21" rx="2.6" ry="2" fill="none" stroke="#2A2A32" stroke-width="0.7"/><ellipse cx="27" cy="24" rx="2.6" ry="2" fill="none" stroke="#2A2A32" stroke-width="0.7"/><ellipse cx="40" cy="20" rx="2.6" ry="2" fill="none" stroke="#2A2A32" stroke-width="0.7"/><ellipse cx="53" cy="25" rx="2.6" ry="2" fill="none" stroke="#2A2A32" stroke-width="0.7"/><ellipse cx="64" cy="21" rx="2.6" ry="2" fill="none" stroke="#2A2A32" stroke-width="0.7"/><ellipse cx="6" cy="30" rx="2.6" ry="2" fill="none" stroke="#2A2A32" stroke-width="0.7"/><ellipse cx="34" cy="30" rx="2.6" ry="2" fill="none" stroke="#2A2A32" stroke-width="0.7"/><ellipse cx="58" cy="31" rx="2.6" ry="2" fill="none" stroke="#2A2A32" stroke-width="0.7"/></svg><figcaption>alle schalen</figcaption></figure></div><p class="cu-hatch-name"><code>27</code> Grind</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Water, alle schalen"><path d="M2 10 q 8.5 -4 17 0 t 17 0 t 17 0 t 17 0" fill="none" stroke="#2A2A32" stroke-width="0.8"/><path d="M2 18 q 8.5 -4 17 0 t 17 0 t 17 0 t 17 0" fill="none" stroke="#2A2A32" stroke-width="0.8"/><path d="M2 26 q 8.5 -4 17 0 t 17 0 t 17 0 t 17 0" fill="none" stroke="#2A2A32" stroke-width="0.8"/></svg><figcaption>alle schalen</figcaption></figure></div><p class="cu-hatch-name"><code>28</code> Water</p></li>
+          <li class="cu-hatch"><div class="cu-hatch-swatches"><figure><svg class="ts-swatch" viewBox="0 0 72 36" width="72" height="36" role="img" aria-label="Glas, 1:10 tot 1:1"><defs><pattern id="pat-les-29-37" width="4" height="4" patternUnits="userSpaceOnUse" patternTransform="rotate(90)"><line x1="0" y1="0" x2="0" y2="4" stroke="#2A2A32" stroke-width="0.6"/></pattern></defs><rect x="0.5" y="0.5" width="71" height="35" fill="#FFFFFF" stroke="#2A2A32"/><rect x="6" y="11" width="60" height="14" fill="url(#pat-les-29-37)" stroke="#2A2A32" stroke-width="0.8"/></svg><figcaption>1:10 tot 1:1</figcaption></figure></div><p class="cu-hatch-name"><code>29</code> Glas <span class="cu-b" title="materiaal ook in woorden beschrijven">B</span></p></li>
+        </ul>
+        <!-- arceringen:end -->
+        <h3>Voorbeeld: arceringen in een detail</h3>
+        <figure class="cu-figure">
+          <a href="/shared/assets/academy/voorbeeldtekeningen/d01-fundering-langsgevel.svg" target="_blank" rel="noopener"><img src="/shared/assets/academy/voorbeeldtekeningen/d01-fundering-langsgevel.svg" width="1188" height="1680" loading="lazy" alt="Voorbeelddetail D01 op schaal 1:5: de aansluiting van een spouwmuur en een kanaalplaatvloer op de fundering, met arceringen, opbouwteksten, maatvoering en peilmaten"></a>
+          <figcaption>Voorbeelddetail D01, fundering bij de langsgevel, schaal 1:5. Elke doorgesneden laag heeft zijn arcering en staat in de opbouwtekst. Klik voor de volledige tekening.</figcaption>
+        </figure>
         <h3>Lezen</h3>
         <p>De <a href="/wiki/tekeningstandaard/#arceringen">tabel met arceringen</a>. Let op de kolom B: daar beschrijf je het materiaal ook in woorden.</p>
         <h3>Opdracht</h3>
@@ -260,6 +345,127 @@
             <li>Bouwkunde: matenplannen, doorsneden en aanzichten op 1:50 of 1:20, kozijnoverzichten, trapdetails en uitvoeringsdetails op 1:5 of 1:1.</li>
             <li>Constructie: palenplan op 1:50 of 1:100, betonvorm, wapening en sparingen op 1:50 met details op 1:20 of 1:10.</li>
           </ul>
+        </div></details>
+      </article>
+
+      <article class="cu-lesson" id="les-7">
+        <h2><span class="cu-num">Les 7</span> Constructietekeningen</h2>
+        <p>Een constructietekening laat alleen zien wat draagt of belast: palen, fundering, vloeren, kolommen, balken en wanden. Vaste afspraken over tekst, namen en lijnen zorgen dat een aannemer, een wapeningsleverancier en een collega dezelfde tekening op dezelfde manier lezen.</p>
+        <p class="cu-figure"><a href="/academy/bouwtekeningen/constructietekening/">Bekijk het voorbeeld: een constructietekening van een woonhuis, opgeknipt in palenplan, paalstaat, fundering, wapening, plattegronden en details &rarr;</a></p>
+
+        <h3>Tekstgrootte</h3>
+        <div class="table-wrapper"><table class="cu-table">
+          <thead><tr><th>Tekening</th><th>Tekstgrootte</th></tr></thead>
+          <tbody>
+            <tr><td>Schaal 1:100</td><td>1,8 mm</td></tr>
+            <tr><td>Schaal 1:50 en 1:20</td><td>2,5 mm</td></tr>
+          </tbody>
+        </table></div>
+        <p>Op uitvoeringstekeningen zet je wat nog niet definitief is <strong>op HOLD</strong>. Dan weet iedereen dat hij daar nog niet op kan bouwen of bestellen.</p>
+
+        <h3>Wat teken je wel en wat niet</h3>
+        <ul class="cu-rules">
+          <li><strong>Alleen constructieve onderdelen.</strong> Teken wat dragend en/of belastend is: palen, wapening, constructievloeren, fundering, en isolatie als die deel is van een systeemvloer.</li>
+          <li><strong>Niet:</strong> afwerkvloeren, losse isolatie, lichte scheidingswanden en trappen.</li>
+          <li><strong>Je kijkt door de vloer heen</strong> naar wat eronder zit. Het snijvlak ligt ongeveer 50 mm boven de vloer.</li>
+        </ul>
+
+        <h3>Namen van onderdelen</h3>
+        <p>Schrijf profielen en onderdelen altijd op dezelfde manier: hoofdletters, zonder spatie tussen naam en maat. Dus <code>HEA100</code>, niet <em>HEA 100</em>, <em>HE100A</em> of <em>hea100</em>.</p>
+        <div class="table-wrapper"><table class="cu-table">
+          <thead><tr><th>Onderdeel</th><th>Aanduiding</th><th>Voorbeeld</th></tr></thead>
+          <tbody>
+            <tr><td>Staal</td><td>profielnaam + maat</td><td><code>HEA100</code>, <code>IPE100</code>, <code>UNP100</code>, <code>UPE80</code>, <code>K100/5</code>, <code>K120/80/5</code>, <code>B219/5</code> (buis), <code>S50x5</code> (strip), <code>R25</code> (rond)</td></tr>
+            <tr><td>Zeeg</td><td>achter het profiel</td><td><code>IPE500 (zeeg 25 mm)</code></td></tr>
+            <tr><td>Betonkolom, rechthoekig</td><td>BK</td><td><code>BK 400x400</code></td></tr>
+            <tr><td>Betonkolom, rond</td><td>BK</td><td><code>BK Ø400</code></td></tr>
+            <tr><td>Betonbalk, ter plaatse gestort</td><td>BB</td><td><code>BB 400x600</code></td></tr>
+            <tr><td>Funderingsbalk</td><td>alleen de maat</td><td><code>400x600</code></td></tr>
+            <tr><td>Betonbalk, prefab</td><td>PB</td><td><code>PB 400x600</code></td></tr>
+            <tr><td>Houten kolom</td><td>HK</td><td><code>HK 200x200</code></td></tr>
+            <tr><td>Houten balk</td><td>HB</td><td><code>HB 71x196</code></td></tr>
+            <tr><td>Gelamineerde balk</td><td>GL</td><td><code>GL 125x400</code></td></tr>
+            <tr><td>Breedplaatvloer</td><td>BPV</td><td><code>BPV 240</code></td></tr>
+            <tr><td>Kanaalplaatvloer</td><td>KPV</td><td><code>KPV 200</code>, met druklaag: <code>KPV 200 + druklaag 50</code></td></tr>
+            <tr><td>Geïsoleerde kanaalplaatvloer</td><td>Geïs KPV</td><td><code>Geïs KPV 200 Rc 3.5</code></td></tr>
+            <tr><td>Ribcassettevloer, PS-combinatievloer</td><td>voluit</td><td><code>Ribcassettevloer</code>, <code>PS-combinatievloer</code></td></tr>
+            <tr><td>Ter plaatse gestorte betonvloer</td><td>TPG</td><td><code>TPG 200</code></td></tr>
+            <tr><td>Kalkzandsteen</td><td>KZST</td><td><code>KZST 100</code></td></tr>
+            <tr><td>Metselwerk</td><td>MW</td><td><code>MW 100</code></td></tr>
+            <tr><td>Betonwand</td><td>BW</td><td><code>BW 200</code></td></tr>
+            <tr><td>Prefab betonwand</td><td>PBW</td><td><code>PBW 200</code></td></tr>
+            <tr><td>HSB-wand</td><td>met nummer</td><td><code>HSB-WAND 1</code>, <code>HSB-WAND 2</code></td></tr>
+            <tr><td>Opstort, poer</td><td>voluit</td><td><code>Opstort 200x200</code>, <code>Poer 200x200</code></td></tr>
+            <tr><td>Houten balklaag</td><td>balk + h.o.h.</td><td><code>HB 71x271 hoh 610</code>, <code>SLS 38x235 hoh 610</code></td></tr>
+            <tr><td>Verticaal windverband (plattegrond)</td><td>WVB</td><td><code>WVB S70/7</code></td></tr>
+            <tr><td>Plaatmateriaal</td><td>materiaal + dikte</td><td><code>Multiplex D 18 mm</code>, <code>Gipsvezelplaat D 18 mm</code></td></tr>
+          </tbody>
+        </table></div>
+
+        <h3>Namen van views in het model</h3>
+        <div class="table-wrapper"><table class="cu-table">
+          <thead><tr><th>View</th><th>Regel</th><th>Voorbeeld</th></tr></thead>
+          <tbody>
+            <tr><td>Constructieplattegronden</td><td>Elk woord met een hoofdletter</td><td>Constructie Kelder, Constructie Begane Grond, Constructie 1e Verdieping, Constructie Dak, Palenplan, Constructie Begane Grond Bestaand/Nieuw</td></tr>
+            <tr><td>Constructiedetails</td><td>Verdieping, dan volgnummer; algemene details met X</td><td>-101, 001, 002, 101, 102, 201, 202, X01</td></tr>
+            <tr><td>Bouwkundige details</td><td>V (verticaal) of H (horizontaal), dan volgnummer</td><td>V01, V02, H01, H02</td></tr>
+          </tbody>
+        </table></div>
+        <p>Objecten en families in het model volgen de Nederlandse naamgevingsstandaard van je BIM-programma.</p>
+
+        <h3>Constructiedetails</h3>
+        <ul class="cu-rules">
+          <li><strong>Schaal 1:20.</strong> Staaldetails op 1:10 als dat nodig is.</li>
+          <li><strong>Afbreeklijn op 700 mm</strong> uit het hart van het detail.</li>
+          <li><strong>Peilmaten als tekst of label</strong>, niet als bouwlaag uit het model.</li>
+          <li><strong>Niet-dragend metselwerk</strong> grijs (halftoon), en alleen in doorsnede als gevuld vlak.</li>
+          <li><strong>Liever een label (tag) dan losse tekst</strong>, zodat de naam met het onderdeel meeverandert.</li>
+          <li><strong>Geen aanwijslijn als het niet nodig is.</strong> Heb je er wel een nodig, dan met een bolletje aan het eind.</li>
+          <li><strong>Het label staat naast de wand, vloer of het dak</strong>, niet erin.</li>
+        </ul>
+
+        <h3>Palenplan</h3>
+        <ul class="cu-rules">
+          <li><strong>Palen nummeren van linksboven naar rechtsonder.</strong></li>
+          <li><strong>Sonderingen</strong> staan op het palenplan.</li>
+          <li><strong>Puntniveau</strong> in m t.o.v. NAP of t.o.v. een referentiepeil. Gebieden met een ander puntniveau scheid je met de detaillijn <code>16_puntniveau</code>.</li>
+          <li><strong>Afhakhoogte</strong> geef je aan bij prefab palen en bij houten palen met een betonopzetter.</li>
+          <li><strong>Peil t.o.v. NAP</strong> staat op het palenplan.</li>
+          <li><strong>Worden de palen met de hand uitgezet,</strong> dan maatvoer je ze volledig vanaf één nulpunt.</li>
+          <li><strong>In het model:</strong> plaats palen op peil 0 of de begane grond, op een werkvlak en nooit op het vlak van een ander object. Spiegel of draai palen niet, want dan klopt het paalsymbool niet meer.</li>
+        </ul>
+
+        <h3>Constructieplattegronden</h3>
+        <div class="table-wrapper"><table class="cu-table">
+          <thead><tr><th>Onderdeel</th><th>Regel</th></tr></thead>
+          <tbody>
+            <tr><td>Funderingsbalken</td><td>Label boven of links van de balk</td></tr>
+            <tr><td>Kolommen</td><td>Label rechtsboven, tenzij daar geen ruimte is</td></tr>
+            <tr><td>Niet-dragend metselwerk</td><td>Niet tekenen</td></tr>
+            <tr><td>Liggers onder een systeemvloer (kanaalplaat, ribcassette)</td><td>Niet gestippeld</td></tr>
+            <tr><td>Liggers onder een ter plaatse gestorte vloer</td><td>Betonliggers gestippeld, stalen liggers niet</td></tr>
+            <tr><td>Stalen liggers op 1:100 en 1:50</td><td>Als hartlijn</td></tr>
+            <tr><td>Stalen liggers op 1:20</td><td>Lijf als stippellijn</td></tr>
+            <tr><td>Arcering bestaande situatie</td><td>Randen van de arcering onzichtbaar</td></tr>
+            <tr><td>Verticaal windverband</td><td>Stippellijn 0,35 mm met tekst, bijvoorbeeld <code>WVB S70/7</code></td></tr>
+          </tbody>
+        </table></div>
+
+        <h3>Revisies</h3>
+        <p>Revisies nummer je van laag naar hoog, en een nummer dat er eenmaal staat, verander je niet meer.</p>
+
+        <h3>Opdracht</h3>
+        <ol>
+          <li>Schrijf deze onderdelen zoals ze op de tekening horen: een stalen ligger HE 200 A, een ronde betonkolom van 350 mm, een kanaalplaatvloer van 260 mm met een druklaag van 60 mm, en een houten balklaag van 71 x 246 mm om de 600 mm.</li>
+          <li>Wat teken je op de constructieplattegrond van de begane grond: de dekvloer, de kanaalplaatvloer, een binnenwand van gipsblokken, de stalen ligger onder de vloer, de trap?</li>
+          <li>Een collega nummert de palen van rechtsonder naar linksboven en zet de puntniveaus alleen in een losse lijst. Wat zeg je?</li>
+        </ol>
+        <details class="cu-answer"><summary>Controleer je werk</summary><div>
+          <ol>
+            <li><code>HEA200</code>, <code>BK Ø350</code>, <code>KPV 260 + druklaag 60</code>, <code>HB 71x246 hoh 600</code>.</li>
+            <li>Wel de kanaalplaatvloer en de stalen ligger, die als hartlijn op 1:100 of 1:50 en niet gestippeld, omdat het een systeemvloer is. Niet de dekvloer, de lichte binnenwand en de trap.</li>
+            <li>Nummer van linksboven naar rechtsonder, zet het puntniveau op het palenplan zelf in m t.o.v. NAP, en scheid gebieden met een ander puntniveau met de lijn <code>16_puntniveau</code>.</li>
+          </ol>
         </div></details>
       </article>
 
