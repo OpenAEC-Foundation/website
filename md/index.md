@@ -2,11 +2,11 @@
 
 > Machine-readable Markdown mirrors of the OpenAEC product pages. Use these when feeding the OpenAEC catalog to AI assistants (Claude, Continue, Cursor, etc).
 
-Generated: 2026-11-25T06:06:26.202Z
+Generated: 2026-11-26T06:06:43.644Z
 
-**Foundation totals:** 94 public repos · 6154 stars · 36382 commits · 127 contributors.
+**Foundation totals:** 94 public repos · 6177 stars · 37060 commits · 127 contributors.
 
-**Total downloads across tools:** 305,256 (26 repos).
+**Total downloads across tools:** 311,088 (26 repos).
 
 ## Live
 
@@ -15,7 +15,7 @@ Generated: 2026-11-25T06:06:26.202Z
 
 ## Beta
 
-- [Open PDF Studio](./open-pdf-studio.md) — Open-source PDF editor and annotator with a custom Rust PDF engine. 20+ annotation tools, measurement, redaction, OCR, forms. Vector PDF rendering optimized for CAD drawings. (`v2026.48.8`)
+- [Open PDF Studio](./open-pdf-studio.md) — Open-source PDF editor and annotator with a custom Rust PDF engine. 20+ annotation tools, measurement, redaction, OCR, forms. Vector PDF rendering optimized for CAD drawings. (`v2026.48.28`)
 - [Open Calc Studio](./open-calc-studio.md) — Cost estimation and budgeting for buildings, civil infrastructure and GWW projects. STABU/RAW support, IFCX integration, MCP server for AI control. (`v2026.48.0`)
 - [Open Energy Studio](./open-energy-studio.md) — Building energy analysis and performance for the Dutch NTA 8800 / BENG framework. (`v2026.45.0`)
 - [Open Planner Studio](./open-planner-studio.md) — Free, open-source construction scheduling with Gantt charts, critical path (CPM), WBS, resources, leveling, baselines and progress tracking. Opens Microsoft Project (.mpp) and Primavera P6 (.xer) files directly — .mpp dates match to the minute across a 216-file test corpus — and calculates with named scheduling profiles for Primavera P6, Microsoft Project or Open Planner Studio. Task types per task (fixed duration, units or work), task splitting, saved layouts, a progress sheet that round-trips through Excel or CSV, and eleven report types including a DCMA 14-point assessment. Saves natively as IFC 4.3 (ADD2), exports MS Project XML, Primavera P6 XML and CSV, and offers an optional MCP server for an AI assistant in the desktop app. Interface and Help in 28 languages. Runs on Windows, macOS and Linux and fully in the browser. (`v2026.48.0`)
@@ -25,10 +25,10 @@ Generated: 2026-11-25T06:06:26.202Z
 - [Open Speech Studio](./open-speech-studio.md) — Local speech-to-text using Whisper AI. CTRL+Win shortcut for OS-wide dictation. Privacy-first, no cloud. (`v0.12.3`)
 - [Open Field Studio](./open-field-studio.md) — Site inspection and quality control. Defect pinning on floorplans, NEN 2767 checklists, offline-first. (`v0.4.12`)
 - [OpenAEC Installer](./openaec-installer.md) — Central hub to discover, install, update and launch every OpenAEC tool from one app. (`v2026.47.1`)
-- [Open CalcSheet Studio](./open-calcsheet-studio.md) — Structural calculations you can read back: every result shows its formula, numbers and units, and all your sheets end up in one report. (`nightly`)
+- [Open CalcSheet Studio](./open-calcsheet-studio.md) — Structural calculations you can read back: every result shows its formula, numbers and units, and all your sheets end up in one report. (`v2026.48.0`)
 - [BCF Manager Studio](./bcf-manager-studio.md) — BCF 2.1 issue management platform. BCF API 2.1 server, IFC GlobalId linking, self-hosted with Docker. (`n/a`)
 - [Y-app](./y-app.md) — Communication and collaboration for construction projects. (`v0.34.0`)
-- [Open 3D Viewer Studio](./open-3d-viewer.md) — Viewer for the 3D models that architects, engineers and builders exchange: SketchUp, Tekla Structures, Revit, IFC, glTF, OBJ, STL, PLY, CityJSON, LandXML and DWG/DXF. Measure, section, explode and save as IFC 4, as a desktop app and in the browser. (`v2026.47.5`)
+- [Open 3D Viewer Studio](./open-3d-viewer.md) — Viewer for the 3D models that architects, engineers and builders exchange: SketchUp, Tekla Structures, Revit, IFC, glTF, OBJ, STL, PLY, CityJSON, LandXML and DWG/DXF. Measure, section, explode and save as IFC 4, as a desktop app and in the browser. (`v2026.48.1`)
 - [Open Safety Studio](./open-safety-studio.md) — Safety plans for construction: health and safety plan (V&G), BLVC plan, risk matrix and safe maintenance, with the Dutch legal basis alongside. Live demo in the browser. (`n/a`)
 
 ## Alpha
