@@ -20,6 +20,7 @@
     ['open-pile-plan-studio', 'Open Pile Plan Studio', 'OpenAEC-Foundation/pile-plan-studio', 'public'],
     ['open-pointcloud-studio', 'Open Pointcloud Studio', 'OpenAEC-Foundation/open-pointcloud-studio', 'public'],
     ['open-frame-studio', 'Open Frame Studio', 'OpenAEC-Foundation/open-frame-studio', 'public'],
+    ['open-precast-concrete-studio', 'Open Precast Concrete Studio', 'OpenAEC-Foundation/open-precast-concrete-studio', 'public'],
     ['open-heatloss-studio', 'Open Heatloss Studio', 'OpenAEC-Foundation/open-heatloss-studio', 'public'],
     ['open-energy-studio', 'Open Energy Studio', 'OpenAEC-Foundation/open-energy-studio', 'public'],
     ['open-field-studio', 'Open Field Studio', 'OpenAEC-Foundation/Open-Field-Studio', 'public'],

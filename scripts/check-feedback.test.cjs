@@ -75,3 +75,17 @@ test('switching from another public app to IFCCAD uses the selected repository',
   assert.equal(page.requests[0].url, 'https://open-feedback-studio.pages.dev/api/feedback');
   assert.equal(page.requests[0].fields.app, 'ifccad');
 });
+
+test('selecting Open Precast Concrete Studio discloses the public repository and routes the report', async () => {
+  const page = dialog('/');
+  const selector = page.nodes.get('#fb-app');
+  selector.value = 'open-precast-concrete-studio';
+  selector.handlers.change();
+  const notice = page.nodes.get('.fb-note-text').innerHTML;
+  assert.match(notice, /openbaar issue op GitHub/);
+  assert.ok(notice.includes('OpenAEC-Foundation/open-precast-concrete-studio'));
+  await page.submit();
+  assert.equal(page.requests.length, 1);
+  assert.equal(page.requests[0].url, 'https://open-feedback-studio.pages.dev/api/feedback');
+  assert.equal(page.requests[0].fields.app, 'open-precast-concrete-studio');
+});
