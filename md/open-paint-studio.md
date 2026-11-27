@@ -17,8 +17,8 @@
 - Forks: **0**
 - Open issues: **4**
 - Releases: **4**
-- Total downloads: **356**
-- Downloads by platform: Windows (199), Linux (AppImage) (58), Linux (deb) (44), macOS (32), Other (19), Linux (snap) (4)
+- Total downloads: **377**
+- Downloads by platform: Windows (212), Linux (AppImage) (59), Linux (deb) (50), macOS (33), Other (19), Linux (snap) (4)
 
 ## Key features
 
@@ -64,8 +64,8 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Linux (AppImage) · OpenAEC-Paint-Studio_2026.45.1_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.45.1/OpenAEC-Paint-Studio_2026.45.1_amd64.AppImage) (v2026.45.1 — 83.2 MB)
 - [Linux (deb) · OpenAEC-Paint-Studio_2026.45.1_amd64.deb](https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.45.1/OpenAEC-Paint-Studio_2026.45.1_amd64.deb) (v2026.45.1 — 8.5 MB)
 - [Linux (AppImage) · OpenAEC-Paint-Studio_2026.43.2_amd64.AppImage](https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.43.2/OpenAEC-Paint-Studio_2026.43.2_amd64.AppImage) (v2026.43.2 — 82.9 MB)
+- [Linux (deb) · OpenAEC-Paint-Studio_2026.48.1_amd64.deb](https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.48.1/OpenAEC-Paint-Studio_2026.48.1_amd64.deb) (v2026.48.1 — 8.5 MB)
 - [macOS · OpenAEC-Paint-Studio_2026.43.2_universal.dmg](https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.43.2/OpenAEC-Paint-Studio_2026.43.2_universal.dmg) (v2026.43.2 — 16.3 MB)
-- [macOS · OpenAEC-Paint-Studio_2026.45.1_universal.dmg](https://github.com/OpenAEC-Foundation/open-paint-studio/releases/download/v2026.45.1/OpenAEC-Paint-Studio_2026.45.1_universal.dmg) (v2026.45.1 — 18.6 MB)
 
 ---
 

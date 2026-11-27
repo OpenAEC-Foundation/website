@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux, Android
 **Category:** PDF / Document
-**Current version:** v2026.48.28 (2026-11-25)
+**Current version:** v2026.48.29 (2026-11-26)
 **Tool ID:** `open-pdf-studio`
 **GitHub repo:** `OpenAEC-Foundation/open-pdf-studio`
 
 ## Live stats
 
-- Stars: **1384**
+- Stars: **1387**
 - Commits: **2432**
 - Forks: **140**
-- Open issues: **80**
-- Releases: **99**
-- Total downloads: **55,928**
-- Downloads by platform: Windows (32331), Android (7569), Linux (deb) (4030), macOS (4010), Linux (AppImage) (3974), Archive (2577), Other (877), Linux (snap) (440), Linux (rpm) (74), Windows (MSI) (46)
+- Open issues: **101**
+- Releases: **100**
+- Total downloads: **56,886**
+- Downloads by platform: Windows (32881), Android (7685), Linux (deb) (4087), macOS (4056), Linux (AppImage) (4033), Archive (2660), Other (923), Linux (snap) (441), Linux (rpm) (74), Windows (MSI) (46)
 
 ## Key features
 
@@ -62,7 +62,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - Product page: https://open-aec.com/open-pdf-studio/
 - Live demo: https://open-pdf-studio.open-aec.com/
 - GitHub repo: https://github.com/OpenAEC-Foundation/open-pdf-studio
-- Latest release: https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/tag/v2026.48.28
+- Latest release: https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/tag/v2026.48.29
 - Nightly builds: https://github.com/OpenAEC-Foundation/open-pdf-studio/releases/tag/nightly
 
 ## Direct downloads (most popular)
