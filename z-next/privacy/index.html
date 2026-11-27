@@ -129,8 +129,12 @@
         '#delete-data': '/z-next/privacy/google-play/#delete-data',
         '#english': '/z-next/privacy/apple/#english'
       };
-      var destination = legacy[window.location.hash];
-      if (destination) window.location.replace(destination);
+      function followLegacyLink() {
+        var destination = legacy[window.location.hash];
+        if (destination) window.location.replace(destination);
+      }
+      window.addEventListener('hashchange', followLegacyLink);
+      followLegacyLink();
     }());
   </script>
 </head>
