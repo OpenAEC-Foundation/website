@@ -1,11 +1,11 @@
-"""Generate Z-Next platform privacy pages from z-next/privacy/index.html.
+"""Generate Z-Next platform privacy pages from scripts/templates/znext-privacy.html.template.
 Edit the shared policy in that source, then run: python scripts/build-znext-privacy.py
 No platform-specific data handling is asserted by this generator.
 """
 from pathlib import Path
 import re
 ROOT = Path(__file__).resolve().parents[1]
-source = (ROOT / "z-next/privacy/index.html").read_text(encoding="utf-8")
+source = (ROOT / "scripts/templates/znext-privacy.html.template").read_text(encoding="utf-8")
 for slug, label, device, english in [
     ("apple", "Apple", "iPhone en iPad (iOS / App Store)", "iPhone and iPad (iOS / App Store)"),
     ("google-play", "Google Play", "Android (Google Play)", "Android (Google Play)"),
