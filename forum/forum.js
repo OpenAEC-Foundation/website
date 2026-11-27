@@ -63,6 +63,7 @@
       reactiesKop: 'Reacties',
       activiteit: 'Activiteit',
       alleRecent: 'Alle recente onderwerpen',
+      elders: 'Elders', eldersKop: 'Elders over OpenAEC', eldersUitleg: 'Gesprekken op andere forums waarin OpenAEC of een van de tools genoemd wordt. Elk uur bijgewerkt; het gesprek zelf staat op het andere forum.', eldersTool: 'Elders over deze tool', eldersAlle: 'Alle gesprekken elders', eldersGeen: 'Nog geen gesprekken gevonden.', bespreekHier: 'Bespreek hier',
       alleenTeamKort: 'Alleen het team start hier',
       foraKop: 'Andere fora',
       foraUitleg: 'Open source in de bouw is groter dan wij. Hier praten we ook mee:',
@@ -133,6 +134,7 @@
       reactiesKop: 'Replies',
       activiteit: 'Activity',
       alleRecent: 'All recent topics',
+      elders: 'Elsewhere', eldersKop: 'OpenAEC elsewhere', eldersUitleg: 'Conversations on other forums that mention OpenAEC or one of the tools. Updated hourly; the conversation itself lives on the other forum.', eldersTool: 'This tool elsewhere', eldersAlle: 'All conversations elsewhere', eldersGeen: 'No conversations found yet.', bespreekHier: 'Discuss here',
       alleenTeamKort: 'Only the team starts topics here',
       foraKop: 'Other forums',
       foraUitleg: 'Open source in construction is bigger than us. We also take part here:',
@@ -203,6 +205,7 @@
       reactiesKop: 'Réponses',
       activiteit: 'Activité',
       alleRecent: 'Tous les sujets récents',
+      elders: 'Ailleurs', eldersKop: 'OpenAEC ailleurs', eldersUitleg: 'Des conversations sur d’autres forums qui mentionnent OpenAEC ou l’un des outils. Mis à jour toutes les heures ; la conversation elle-même se trouve sur l’autre forum.', eldersTool: 'Cet outil ailleurs', eldersAlle: 'Toutes les conversations ailleurs', eldersGeen: 'Aucune conversation trouvée pour l’instant.', bespreekHier: 'En discuter ici',
       alleenTeamKort: 'Seule l’équipe lance des sujets ici',
       foraKop: 'Autres forums',
       foraUitleg: 'L’open source dans la construction dépasse notre cadre. Nous participons aussi ici :',
@@ -273,6 +276,7 @@
       reactiesKop: 'Yanıtlar',
       activiteit: 'Etkinlik',
       alleRecent: 'Tüm son konular',
+      elders: 'Başka yerlerde', eldersKop: 'Başka yerlerde OpenAEC', eldersUitleg: 'Diğer forumlarda OpenAEC’ten veya araçlarından birinden bahseden konuşmalar. Saatlik güncellenir; konuşmanın kendisi diğer forumdadır.', eldersTool: 'Bu araç başka yerlerde', eldersAlle: 'Başka yerlerdeki tüm konuşmalar', eldersGeen: 'Henüz konuşma bulunamadı.', bespreekHier: 'Burada tartış',
       alleenTeamKort: 'Burada yalnızca ekip konu başlatır',
       foraKop: 'Diğer forumlar',
       foraUitleg: 'İnşaatta açık kaynak bizden büyük. Buralarda da varız:',
@@ -343,6 +347,7 @@
       reactiesKop: 'Respuestas',
       activiteit: 'Actividad',
       alleRecent: 'Todos los temas recientes',
+      elders: 'En otros foros', eldersKop: 'OpenAEC en otros foros', eldersUitleg: 'Conversaciones en otros foros que mencionan OpenAEC o una de sus herramientas. Se actualiza cada hora; la conversación sigue en el otro foro.', eldersTool: 'Esta herramienta en otros foros', eldersAlle: 'Todas las conversaciones en otros foros', eldersGeen: 'Todavía no se han encontrado conversaciones.', bespreekHier: 'Comentar aquí',
       alleenTeamKort: 'Aquí solo el equipo empieza temas',
       foraKop: 'Otros foros',
       foraUitleg: 'El código abierto en la construcción es más grande que nosotros. También participamos aquí:',
@@ -413,6 +418,7 @@
       reactiesKop: 'Antworten',
       activiteit: 'Aktivität',
       alleRecent: 'Alle neuesten Themen',
+      elders: 'Anderswo', eldersKop: 'OpenAEC anderswo', eldersUitleg: 'Gespräche in anderen Foren, in denen OpenAEC oder eines der Tools erwähnt wird. Stündlich aktualisiert; das Gespräch selbst findet im anderen Forum statt.', eldersTool: 'Dieses Tool anderswo', eldersAlle: 'Alle Gespräche anderswo', eldersGeen: 'Noch keine Gespräche gefunden.', bespreekHier: 'Hier besprechen',
       alleenTeamKort: 'Hier eröffnet nur das Team Themen',
       foraKop: 'Andere Foren',
       foraUitleg: 'Open Source im Bauwesen ist größer als wir. Hier sind wir auch dabei:',
@@ -1015,7 +1021,7 @@
       return '<a class="fo-tab" href="' + href + '"' + (actief === id ? ' aria-current="page"' : '') + '>' + esc(label) + '</a>';
     }
     return '<div class="fo-tabs"><nav class="fo-tabrij" aria-label="' + esc(t('titel')) + '">' +
-      tab('cats', '#/', t('categorieen')) + tab('recent', '#/recent', t('recent')) + '</nav>' +
+      tab('cats', '#/', t('categorieen')) + tab('recent', '#/recent', t('recent')) + tab('elders', '#/elders', t('elders')) + '</nav>' +
       '<a class="btn btn-primary fo-knop fo-nieuw" href="#/nieuw' + (slug ? '/' + encodeURIComponent(slug) : '') + '">+ ' + esc(t('nieuw')) + '</a></div>';
   }
 
@@ -1066,8 +1072,9 @@
             '<span class="fo-catrij-tal">' + van.reduce(function (som, c) { return som + c.onderwerpen; }, 0) + '</span></a>';
         }).join('');
     }
-    app.innerHTML = tabs('cats') + tweeKolommen(cats, '#/recent') + onderblokken();
+    app.innerHTML = tabs('cats') + tweeKolommen(cats, '#/recent') + eldersPaneel('fo-elders', t('eldersKop'), '#/elders') + onderblokken();
     vulRecent({});
+    vulElders('fo-elders', { start: 0 }, 5);
   }
 
   // Links de categorieën, rechts de recente onderwerpen (van alles, of van één land).
@@ -1139,6 +1146,79 @@
     meer.addEventListener('click', laadMeer);
     toonMet('onderwerpen', velden(0), teken, function (e) {
       lijst.innerHTML = '<li class="fo-leeg">' + esc(e.message || t('fout')) + '</li>';
+    });
+    if (cat && !cat.land) {
+      app.insertAdjacentHTML('beforeend', eldersPaneel('fo-elders-tool', t('eldersTool'), ''));
+      vulElders('fo-elders-tool', { categorie: cat.slug, start: 0 }, 10, true);
+    }
+  }
+
+  // Elders over OpenAEC: gesprekken op andere forums die OpenAEC of een tool noemen (forum.elders). De link gaat
+  // naar het gesprek daar; "Bespreek hier" begint een eigen onderwerp met die link.
+  var BRONNEN = {
+    osarch: { naam: 'OSArch', kleur: '#16A34A', letter: 'O' },
+    hackernews: { naam: 'Hacker News', kleur: '#FF6600', letter: 'Y' }
+  };
+  var CONCEPT = 'openaec-forum-concept';
+  var eldersBron = '';
+  function eldersRij(v, zonderCat) {
+    var b = BRONNEN[v.bron] || { naam: v.bron, kleur: '#6B7280', letter: '?' };
+    var cat = zonderCat ? null : zoekCat(v.categorie);
+    var adres = /^https:\/\//.test(v.url || '') ? v.url : '#';
+    return '<li class="fo-rij fo-rij-elders"><span class="fo-av" style="background:' + b.kleur + '" aria-hidden="true">' + esc(b.letter) + '</span>' +
+      '<div class="fo-rij-hoofd"><a class="fo-item-titel" href="' + esc(adres) + '" target="_blank" rel="noopener nofollow ugc">' + esc(v.titel) + ' <span class="fo-uit" aria-hidden="true">↗</span></a>' +
+      (v.verborgen ? '<span class="fo-label fo-label-rood">' + esc(t('verborgen')) + '</span>' : '') +
+      (v.fragment ? '<p class="fo-fragment">' + esc(v.fragment) + '</p>' : '') +
+      '<span class="fo-meta"><span class="fo-herkomst fo-herkomst-elders" style="--bron:' + b.kleur + '">' + esc(b.naam) + '</span>' + catChip(cat) +
+      (v.auteur ? '<span class="fo-auteur">' + esc(v.auteur) + '</span>' : '') +
+      '<button type="button" class="fo-bespreek" data-actie="bespreek" data-naam="' + esc(v.naam) + '">' + esc(t('bespreekHier')) + '</button>' +
+      (ik && ik.moderator ? knop(t(v.verborgen ? 'toon' : 'verberg'), 'modereer', 'btn-ghost fo-bespreek', ' data-soort="vermelding" data-naam="' + esc(v.naam) + '" data-wat="' + (v.verborgen ? 'toon' : 'verberg') + '"') : '') +
+      '</span></div>' +
+      '<div class="fo-rij-tal"><strong title="' + esc(t('reacties')(v.reacties)) + '">' + v.reacties + '</strong><span>' + esc(tijd(v.laatste_activiteit)) + '</span></div></li>';
+  }
+  var eldersGezien = {};
+  function onthoudElders(lijst) { lijst.forEach(function (v) { eldersGezien[v.naam] = v; }); }
+  function eldersPaneel(id, kop, meerLink) {
+    return '<section class="fo-paneel fo-elders" id="' + id + '-blok"><div class="fo-paneel-kop"><span>' + esc(kop) + '</span><span class="fo-klein">' + esc(t('eldersUitleg')) + '</span></div>' +
+      '<ul class="fo-rijen" id="' + id + '"><li class="fo-leeg">' + esc(t('laden')) + '</li></ul>' +
+      (meerLink ? '<a class="fo-meer-link fo-paneel-voet" href="' + meerLink + '">' + esc(t('eldersAlle')) + ' →</a>' : '') + '</section>';
+  }
+  // Vul een blok met de laatste gesprekken elders; zonder gesprekken verdwijnt het blok.
+  function vulElders(id, velden, max, zonderCat) {
+    var lijst = document.getElementById(id), blok = document.getElementById(id + '-blok');
+    toonMet('elders', velden, function (data) {
+      onthoudElders(data.vermeldingen);
+      blok.hidden = !data.vermeldingen.length;
+      lijst.innerHTML = data.vermeldingen.slice(0, max).map(function (v) { return eldersRij(v, zonderCat); }).join('');
+    }, function () { blok.hidden = true; });
+  }
+  function eldersScherm() {
+    document.title = t('eldersKop') + ' — ' + t('titel') + ' — OpenAEC';
+    var start = 0;
+    app.innerHTML = tabs('elders') + '<div class="fo-catkop"><h2>' + esc(t('eldersKop')) + '</h2><p>' + esc(t('eldersUitleg')) + '</p></div>' +
+      '<div class="fo-beroeprij">' + [''].concat(Object.keys(BRONNEN)).map(function (b) {
+        return '<button type="button" class="fo-beroep" data-actie="eldersbron" data-bron="' + b + '" aria-pressed="' + (eldersBron === b) + '">' + esc(b ? BRONNEN[b].naam : t('alles')) + '</button>';
+      }).join('') + '</div>' +
+      '<section class="fo-paneel"><ul class="fo-rijen" id="fo-elders-lijst"><li class="fo-leeg">' + esc(t('laden')) + '</li></ul></section>' +
+      '<p class="fo-meer"><button type="button" class="btn btn-secondary" id="fo-meer" hidden>' + esc(t('meer')) + '</button></p>';
+    var lijst = document.getElementById('fo-elders-lijst'), meer = document.getElementById('fo-meer');
+    function velden(vanaf) { return Object.assign({ start: vanaf }, eldersBron ? { bron: eldersBron } : {}); }
+    toonMet('elders', velden(0), function (data) {
+      onthoudElders(data.vermeldingen);
+      lijst.innerHTML = data.vermeldingen.map(function (v) { return eldersRij(v); }).join('') || '<li class="fo-leeg">' + esc(t('eldersGeen')) + '</li>';
+      start = data.vermeldingen.length;
+      meer.hidden = !data.meer;
+    }, function (e) { lijst.innerHTML = '<li class="fo-leeg">' + esc(e.message || t('fout')) + '</li>'; });
+    meer.addEventListener('click', async function () {
+      meer.disabled = true;
+      try {
+        var data = await haal('elders', velden(start));
+        onthoudElders(data.vermeldingen);
+        lijst.insertAdjacentHTML('beforeend', data.vermeldingen.map(function (v) { return eldersRij(v); }).join(''));
+        start += data.vermeldingen.length;
+        meer.hidden = !data.meer;
+      } catch (e) { melding(e.message || t('fout')); }
+      meer.disabled = false;
     });
   }
 
@@ -1292,6 +1372,11 @@
     }
     form.categorie.addEventListener('change', toonIssueUitleg);
     toonIssueUitleg();
+    try {
+      var concept = JSON.parse(sessionStorage.getItem(CONCEPT) || 'null');
+      sessionStorage.removeItem(CONCEPT);
+      if (concept) { form.titel.value = String(concept.titel || '').slice(0, 140); form.tekst.value = String(concept.tekst || ''); }
+    } catch (e) {}
     metAfbeeldingen(form.tekst);
     form.addEventListener('submit', async function (ev) {
       ev.preventDefault();
@@ -1492,6 +1577,7 @@
     }
     if (route[0] === 'land' && route[1]) return landScherm(route[1]);
     if (route[0] === 'recent') return lijstScherm(null);
+    if (route[0] === 'elders') return eldersScherm();
     if (route[0] === 'nieuw') return nieuwScherm(route[1] || null);
     if (route[0] === 'aanmelden') return aanmeldScherm();
     if (route[0] === 'regels') return regelsScherm();
@@ -1524,6 +1610,14 @@
         toon();
       }
       else if (actie === 'beroep') { beroepKeuze = el.dataset.beroep || ''; toon(); }
+      else if (actie === 'eldersbron') { eldersBron = el.dataset.bron || ''; toon(); }
+      else if (actie === 'bespreek') {
+        // Een eigen onderwerp over een gesprek elders: titel en link staan alvast in het formulier.
+        var v = eldersGezien[el.dataset.naam];
+        if (!v) return;
+        try { sessionStorage.setItem(CONCEPT, JSON.stringify({ titel: v.titel, tekst: ((BRONNEN[v.bron] || {}).naam || v.bron) + ': ' + v.url + '\n\n' })); } catch (e) {}
+        location.hash = '#/nieuw' + (v.categorie && zoekCat(v.categorie) ? '/' + encodeURIComponent(v.categorie) : '');
+      }
       else if (actie === 'herkomst') {
         try { localStorage.setItem(HERKOMST, el.dataset.herkomst); } catch (e) {}
         toon();
