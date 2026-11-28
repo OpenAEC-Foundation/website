@@ -6,19 +6,19 @@
 **License:** LGPL-3.0
 **Platforms:** Windows, macOS, Linux, Web
 **Category:** Structural Calculations
-**Current version:** nightly (2026-11-27)
+**Current version:** nightly (2026-11-28)
 **Tool ID:** `open-calcsheet-studio`
 **GitHub repo:** `OpenAEC-Foundation/Open-CalcSheet-Studio`
 
 ## Live stats
 
-- Stars: **12**
-- Commits: **505**
-- Forks: **2**
-- Open issues: **2**
+- Stars: **13**
+- Commits: **534**
+- Forks: **3**
+- Open issues: **1**
 - Releases: **14**
-- Total downloads: **3,371**
-- Downloads by platform: Other (1691), Windows (1297), Linux (AppImage) (153), Linux (deb) (81), macOS (81), Archive (68)
+- Total downloads: **3,698**
+- Downloads by platform: Other (1904), Windows (1388), Linux (AppImage) (157), Linux (deb) (86), macOS (82), Archive (81)
 
 ## Key features
 
@@ -64,12 +64,12 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 
 - [Other · openaec-mcp-server_2026.46.1_THIRD-PARTY-NOTICES.txt](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/fem-server-2026.46.1/openaec-mcp-server_2026.46.1_THIRD-PARTY-NOTICES.txt) (fem-server-2026.46.1 — 0.5 MB)
 - [Windows · openaec-mcp-server_2026.46.1_windows-x64.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/fem-server-2026.46.1/openaec-mcp-server_2026.46.1_windows-x64.exe) (fem-server-2026.46.1 — 38.4 MB)
+- [Other · openaec-mcp-server_2026.46.3_THIRD-PARTY-NOTICES.txt](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/fem-server-2026.46.3/openaec-mcp-server_2026.46.3_THIRD-PARTY-NOTICES.txt) (fem-server-2026.46.3 — 0.6 MB)
 - [Other · openaec-mcp-server_2026.46.1_linux-x64](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/fem-server-2026.46.1/openaec-mcp-server_2026.46.1_linux-x64) (fem-server-2026.46.1 — 31.9 MB)
 - [Other · openaec-mcp-server_2026.46.1_macos-universal](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/fem-server-2026.46.1/openaec-mcp-server_2026.46.1_macos-universal) (fem-server-2026.46.1 — 59 MB)
-- [Other · openaec-mcp-server_2026.46.3_THIRD-PARTY-NOTICES.txt](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/fem-server-2026.46.3/openaec-mcp-server_2026.46.3_THIRD-PARTY-NOTICES.txt) (fem-server-2026.46.3 — 0.6 MB)
+- [Windows · openaec-mcp-server_2026.46.3_windows-x64.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/fem-server-2026.46.3/openaec-mcp-server_2026.46.3_windows-x64.exe) (fem-server-2026.46.3 — 43.9 MB)
 - [Windows · Open.CalcSheet.Studio_2026.46.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.46.1/Open.CalcSheet.Studio_2026.46.1_x64-setup.exe) (v2026.46.1 — 73.8 MB)
 - [Windows · Open.CalcSheet.Studio_2026.45.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.45.2/Open.CalcSheet.Studio_2026.45.2_x64-setup.exe) (v2026.45.2 — 64.1 MB)
-- [Windows · Open.CalcSheet.Studio_2026.46.1_x64_user-setup.exe](https://github.com/OpenAEC-Foundation/Open-CalcSheet-Studio/releases/download/v2026.46.1/Open.CalcSheet.Studio_2026.46.1_x64_user-setup.exe) (v2026.46.1 — 73.8 MB)
 
 ---
 

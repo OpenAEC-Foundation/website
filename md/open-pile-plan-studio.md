@@ -17,8 +17,8 @@
 - Forks: **1**
 - Open issues: **13**
 - Releases: **1**
-- Total downloads: **322**
-- Downloads by platform: Windows (221), Linux (AppImage) (41), Other (22), macOS (21), Linux (deb) (16), Archive (1)
+- Total downloads: **331**
+- Downloads by platform: Windows (229), Linux (AppImage) (42), Other (22), macOS (21), Linux (deb) (16), Archive (1)
 
 ## Key features
 
@@ -60,9 +60,9 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Windows · Open.Pile.Plan.Studio_2026.46.4_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.46.4/Open.Pile.Plan.Studio_2026.46.4_x64-setup.exe) (v2026.46.4 — 11.4 MB)
 - [Windows · Open.Pile.Plan.Studio_0.4.3_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v0.4.3-alpha/Open.Pile.Plan.Studio_0.4.3_x64-setup.exe) (v0.4.3-alpha — 7.2 MB)
 - [Linux (AppImage) · Open.Pile.Plan.Studio_2026.46.4_amd64.AppImage](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.46.4/Open.Pile.Plan.Studio_2026.46.4_amd64.AppImage) (v2026.46.4 — 89.6 MB)
+- [Windows · Open.Pile.Plan.Studio_2026.48.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.48.0/Open.Pile.Plan.Studio_2026.48.0_x64-setup.exe) (v2026.48.0 — 12 MB)
 - [Windows · Open.Pile.Plan.Studio_2026.47.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.47.0/Open.Pile.Plan.Studio_2026.47.0_x64-setup.exe) (v2026.47.0 — 11.9 MB)
 - [Windows · Open.Pile.Plan.Studio_2026.45.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.45.1/Open.Pile.Plan.Studio_2026.45.1_x64-setup.exe) (v2026.45.1 — 8 MB)
-- [Windows · Open.Pile.Plan.Studio_2026.48.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.48.0/Open.Pile.Plan.Studio_2026.48.0_x64-setup.exe) (v2026.48.0 — 12 MB)
 - [Windows · Open.Pile.Plan.Studio_0.4.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v0.4.1-alpha/Open.Pile.Plan.Studio_0.4.1_x64-setup.exe) (v0.4.1-alpha — 6.9 MB)
 - [Windows · Open.Pile.Plan.Studio_2026.47.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/pile-plan-studio/releases/download/v2026.47.1/Open.Pile.Plan.Studio_2026.47.1_x64-setup.exe) (v2026.47.1 — 11.9 MB)
 

@@ -17,8 +17,8 @@
 - Forks: **5**
 - Open issues: **54**
 - Releases: **3**
-- Total downloads: **619**
-- Downloads by platform: Archive (394), Other (225)
+- Total downloads: **636**
+- Downloads by platform: Archive (401), Other (235)
 
 ## Key features
 
@@ -65,7 +65,7 @@ All OpenAEC tools exchange data via the open **IFCX** format (based on IFC 4.3).
 - [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/SHA256SUMS) (v0.1.1)
 - [Other · RELEASE-NOTES.txt](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/RELEASE-NOTES.txt) (v0.1.1)
 - [Other · SHA256SUMS](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v2026.47.0/SHA256SUMS) (v2026.47.0)
-- [Other · VERIFICATION.txt](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v0.1.1/VERIFICATION.txt) (v0.1.1)
+- [Archive · Open-BIM-Studio-2026.47.0-source.tar.gz](https://github.com/OpenAEC-Foundation/open-bim-studio/releases/download/v2026.47.0/Open-BIM-Studio-2026.47.0-source.tar.gz) (v2026.47.0 — 7.3 MB)
 
 ---
 

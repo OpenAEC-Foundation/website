@@ -15,10 +15,10 @@
 - Stars: **4**
 - Commits: **97**
 - Forks: **2**
-- Open issues: **17**
+- Open issues: **19**
 - Releases: **25**
-- Total downloads: **4,406**
-- Downloads by platform: Windows (2776), Linux (AppImage) (1027), macOS (263), Linux (deb) (232), Windows (MSI) (76), Linux (snap) (31), Other (1)
+- Total downloads: **4,567**
+- Downloads by platform: Windows (2902), Linux (AppImage) (1050), macOS (273), Linux (deb) (234), Windows (MSI) (76), Linux (snap) (31), Other (1)
 
 ## Key features
 
@@ -56,10 +56,10 @@ Installing and keeping all OpenAEC tools up to date on one workstation without v
 - [Windows · OpenAEC.Installer_2026.47.1_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v2026.47.1/OpenAEC.Installer_2026.47.1_x64-setup.exe) (v2026.47.1 — 5.7 MB)
 - [Linux (AppImage) · OpenAEC.Installer_0.2.2_amd64.AppImage](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_amd64.AppImage) (v0.2.2 — 79.4 MB)
 - [Linux (AppImage) · OpenAEC.Installer_0.2.14_amd64.AppImage](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.14/OpenAEC.Installer_0.2.14_amd64.AppImage) (v0.2.14 — 80.4 MB)
+- [Windows · OpenAEC.Installer_2026.48.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v2026.48.0/OpenAEC.Installer_2026.48.0_x64-setup.exe) (v2026.48.0 — 5.7 MB)
 - [Windows · OpenAEC.Installer_0.2.2_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.2/OpenAEC.Installer_0.2.2_x64-setup.exe) (v0.2.2 — 4.2 MB)
 - [Windows · OpenAEC.Installer_0.2.11_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.11/OpenAEC.Installer_0.2.11_x64-setup.exe) (v0.2.11 — 4.8 MB)
 - [Linux (AppImage) · OpenAEC.Installer_2026.47.1_amd64.AppImage](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v2026.47.1/OpenAEC.Installer_2026.47.1_amd64.AppImage) (v2026.47.1 — 81.8 MB)
-- [Windows · OpenAEC.Installer_0.2.0_x64-setup.exe](https://github.com/OpenAEC-Foundation/openaec-installer/releases/download/v0.2.0/OpenAEC.Installer_0.2.0_x64-setup.exe) (v0.2.0 — 4.2 MB)
 
 ---
 
